@@ -1,0 +1,41 @@
+# Virtual environment
+venv/
+.venv/
+env/
+
+# Original data (contains sensitive medical data)
+data_llm/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+dist/
+build/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Environment variables (API keys)
+.env
+.env.local
+
+# Large model files
+*.bin
+*.gguf
+*.safetensors
+
+# Temporary files
+*.tmp
+*.temp
+*.log

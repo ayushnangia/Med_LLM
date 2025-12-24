@@ -1,0 +1,370 @@
+{
+  "schema_version": "1.1",
+  "cases": [
+    {
+      "case_meta": {
+        "fallnummer": "1352759232",
+        "datum_vorstellung": null,
+        "tumorboard": null,
+        "diskussionstyp": null
+      },
+      "patient": {
+        "nachname": "Test",
+        "vorname": "Testovoci",
+        "geburtsdatum": "1968-02-26",
+        "alter_jahre": 65,
+        "performance_status": {
+          "ecog": 1,
+          "karnofsky_prozent": null
+        },
+        "komorbiditaet_level": "unknown",
+        "lebenserwartung": "unknown",
+        "sonstige_fachkliniken_bereiche": [
+          "NU"
+        ]
+      },
+      "anmeldung": {
+        "anmeldender_arzt": {
+          "name": "Mustermann",
+          "abteilung": null
+        }
+      },
+      "fragestellung": "Progress im PSMA PET/CT vom 21.12.2025?",
+      "anamnese_freitext": "mCRPC, ossär und lymphogen metastasiert. Pat. bekannt. Mehrlinientherapie inkl. ADT, Docetaxel, Abirateron/Prednisolon, Lu-PSMA; BRCA1/2 negativ.",
+      "nebendiagnosen": [],
+      "medikation": [],
+      "entitaeten": [
+        {
+          "entity_id": "E1",
+          "entitaet_typ": "prostatakarzinom_mcrpc",
+          "diagnose_kurz": "mCRPC mit ossärer und lymphonodaler Metastasierung",
+          "stadium_oder_risikoklasse": "metastasiert, kastrationsresistent",
+          "klassifikation": {
+            "tnm_clinical": {
+              "T": "unknown",
+              "T_sub": "unknown",
+              "N": "unknown",
+              "M": "M1",
+              "stage_group": "unknown"
+            },
+            "tnm_pathological": {
+              "T": null,
+              "T_sub": null,
+              "N": null,
+              "M": null,
+              "stage_group": null
+            },
+            "isup_gleason": null,
+            "grad": null,
+            "icd": null,
+            "icdo": null
+          },
+          "molekular": {
+            "brca": "negativ (BRCA1/2)",
+            "pd_l1": null,
+            "sonstige": []
+          },
+          "marker_oder_labor": {
+            "psa": {
+              "initial": null,
+              "verlauf": [
+                {
+                  "datum": "2023-02-01",
+                  "wert": 13.14,
+                  "einheit": "ng/ml"
+                },
+                {
+                  "datum": "2023-03-01",
+                  "wert": 6.4,
+                  "einheit": "ng/ml"
+                },
+                {
+                  "datum": "2024-03-01",
+                  "wert": 27.32,
+                  "einheit": "ng/ml"
+                },
+                {
+                  "datum": "2024-04-01",
+                  "wert": 35.92,
+                  "einheit": "ng/ml"
+                },
+                {
+                  "datum": "2024-06-01",
+                  "wert": 21.51,
+                  "einheit": "ng/ml"
+                },
+                {
+                  "datum": "2024-09-01",
+                  "wert": 11.47,
+                  "einheit": "ng/ml"
+                },
+                {
+                  "datum": "2024-12-01",
+                  "wert": 27.41,
+                  "einheit": "ng/ml"
+                },
+                {
+                  "datum": "2025-02-01",
+                  "wert": 76.72,
+                  "einheit": "ng/ml"
+                },
+                {
+                  "datum": "2025-03-01",
+                  "wert": 89.22,
+                  "einheit": "ng/ml"
+                },
+                {
+                  "datum": "2025-04-01",
+                  "wert": 24.41,
+                  "einheit": "ng/ml"
+                },
+                {
+                  "datum": "2025-05-01",
+                  "wert": 13.2,
+                  "einheit": "ng/ml"
+                },
+                {
+                  "datum": "2025-06-01",
+                  "wert": 12.3,
+                  "einheit": "ng/ml"
+                },
+                {
+                  "datum": "2025-07-01",
+                  "wert": 24.0,
+                  "einheit": "ng/ml"
+                }
+              ],
+              "einheit": "ng/ml"
+            },
+            "tumormarker": {
+              "hodenmarker": {
+                "afp": {
+                  "initial": null,
+                  "verlauf": [],
+                  "einheit": "ng/ml"
+                },
+                "bhcg": {
+                  "initial": null,
+                  "verlauf": [],
+                  "einheit": "IU/l"
+                },
+                "ldh": {
+                  "initial": null,
+                  "verlauf": [],
+                  "einheit": "U/l"
+                }
+              }
+            },
+            "sonstige": []
+          },
+          "therapien_und_eingriffe": [
+            {
+              "typ": "Systemtherapie",
+              "beschreibung": "ADT (Leuprorelin)",
+              "zeitraum": {
+                "von": "2019-01-01",
+                "bis": null
+              },
+              "details": null
+            },
+            {
+              "typ": "Supportivtherapie",
+              "beschreibung": "Denosumab (Xgeva) / Knochenprotektion",
+              "zeitraum": {
+                "von": "2019-01-01",
+                "bis": null
+              },
+              "details": "Pause 01/2021–01/2023; erneut seit 03/2023"
+            },
+            {
+              "typ": "Chemotherapie",
+              "beschreibung": "Docetaxel 75 mg, 6 Zyklen",
+              "zeitraum": {
+                "von": "2019-03-01",
+                "bis": "2020-01-01"
+              },
+              "details": null
+            },
+            {
+              "typ": "Systemtherapie",
+              "beschreibung": "Abirateron + Prednisolon",
+              "zeitraum": {
+                "von": "2021-02-01",
+                "bis": "2024-03-01"
+              },
+              "details": null
+            },
+            {
+              "typ": "Chemotherapie",
+              "beschreibung": "Docetaxel Rechallenge, 6 Zyklen",
+              "zeitraum": {
+                "von": "2024-01-01",
+                "bis": "2024-05-01"
+              },
+              "details": null
+            },
+            {
+              "typ": "Radioligandentherapie",
+              "beschreibung": "Lu-PSMA, 6 Zyklen (letzte Gabe 14.08.2025)",
+              "zeitraum": {
+                "von": null,
+                "bis": "2025-08-14"
+              },
+              "details": null
+            }
+          ],
+          "bildgebung": [
+            {
+              "modalitaet": "PSMA-PET/CT",
+              "region": "Ganzkörper",
+              "datum": "2025-12-21",
+              "befund_kurz": "Primarius- und LK-Läsionen regredient, deutliche ossäre Progredienz, kein Leberbefall.",
+              "quelle": "Erforderlicher Befund"
+            }
+          ],
+          "pathologie": [],
+          "kommentar": "Geplante weitere Therapieoptionen: Ac-PSMA vs Enzalutamid vs Cabazitaxel; Vorstellung im molekularen Tumorboard."
+        }
+      ],
+      "geplantes_therapiekonzept": "Ac-PSMA vs Enzalutamid vs Cabazitaxel; Vorstellung im molekularen Tumorboard.",
+      "erforderliche_befunde": {
+        "bildgebung": [
+          "PSMA-PET/CT 21.12.2025 (ossäre Progredienz, kein Leberbefall)"
+        ],
+        "pathologie": [],
+        "labor": [
+          "aktuelles PSA (Trend/Verlauf)"
+        ],
+        "sonstiges": [
+          "Vorstellung molekulares Tumorboard"
+        ]
+      }
+    },
+    {
+      "case_meta": {
+        "fallnummer": "134774556",
+        "datum_vorstellung": null,
+        "tumorboard": null,
+        "diskussionstyp": null
+      },
+      "patient": {
+        "nachname": "Mustermann",
+        "vorname": "Muster",
+        "geburtsdatum": "1960-01-21",
+        "alter_jahre": 62,
+        "performance_status": {
+          "ecog": 0,
+          "karnofsky_prozent": null
+        },
+        "komorbiditaet_level": "unknown",
+        "lebenserwartung": "unknown",
+        "sonstige_fachkliniken_bereiche": [
+          "NU",
+          "RA"
+        ]
+      },
+      "anmeldung": {
+        "anmeldender_arzt": {
+          "name": "Musterovici",
+          "abteilung": "Uro"
+        }
+      },
+      "fragestellung": "Knochenszintigraphie vom 01.11.2025 mit Metastasennachweis?",
+      "anamnese_freitext": "Prostatakarzinom intermediate risk. ED 10/2022: ISUP 2 in 10/22 Stanzen nach mpMRT; iPSA 17,3 ng/ml. Keine abdominellen Vor-OPs, keine Antikoagulation. Pat. wünscht kurative OP, keine Radiatio.",
+      "nebendiagnosen": [],
+      "medikation": [],
+      "entitaeten": [
+        {
+          "entity_id": "E1",
+          "entitaet_typ": "prostatakarzinom_lokalisiert",
+          "diagnose_kurz": "Prostatakarzinom, intermediäres Risiko (ISUP 2), iPSA 17,3 ng/ml (ED 10/2022)",
+          "stadium_oder_risikoklasse": "intermediate risk (prätherapeutisch)",
+          "klassifikation": {
+            "tnm_clinical": {
+              "T": "unknown",
+              "T_sub": "unknown",
+              "N": "unknown",
+              "M": "M0",
+              "stage_group": "unknown"
+            },
+            "tnm_pathological": {
+              "T": null,
+              "T_sub": null,
+              "N": null,
+              "M": null,
+              "stage_group": null
+            },
+            "isup_gleason": "ISUP 2",
+            "grad": null,
+            "icd": null,
+            "icdo": null
+          },
+          "molekular": {
+            "brca": null,
+            "pd_l1": null,
+            "sonstige": []
+          },
+          "marker_oder_labor": {
+            "psa": {
+              "initial": 17.3,
+              "verlauf": [],
+              "einheit": "ng/ml"
+            },
+            "tumormarker": {
+              "hodenmarker": {
+                "afp": {
+                  "initial": null,
+                  "verlauf": [],
+                  "einheit": "ng/ml"
+                },
+                "bhcg": {
+                  "initial": null,
+                  "verlauf": [],
+                  "einheit": "IU/l"
+                },
+                "ldh": {
+                  "initial": null,
+                  "verlauf": [],
+                  "einheit": "U/l"
+                }
+              }
+            },
+            "sonstige": []
+          },
+          "therapien_und_eingriffe": [],
+          "bildgebung": [
+            {
+              "modalitaet": "Skelettszintigraphie",
+              "region": "Ganzkörper",
+              "datum": "2025-11-01",
+              "befund_kurz": "Kein Hinweis auf ossäre Filiae.",
+              "quelle": "Erforderlicher Befund"
+            }
+          ],
+          "pathologie": [
+            {
+              "datum": "2022-10-01",
+              "material": "Prostatabiopsie (10/22 Stanzen)",
+              "diagnose": "Prostatakarzinom, ISUP 2",
+              "details": "nach mpMRT"
+            }
+          ],
+          "kommentar": "Patient wünscht kurative Operation, keine Radiatio. Knochenmetastasen in KnoSzi 01.11.2025 verneint."
+        }
+      ],
+      "geplantes_therapiekonzept": "Planung kurative Therapie: radikale Prostatektomie robotischassistiert.",
+      "erforderliche_befunde": {
+        "bildgebung": [
+          "Skelettszintigraphie 01.11.2025 (kein Hinweis auf ossäre Filiae)"
+        ],
+        "pathologie": [
+          "Biopsiebefund (ISUP 2, Stanzen/Anzahl bereits angegeben)"
+        ],
+        "labor": [
+          "aktuelles PSA (präoperativ)"
+        ],
+        "sonstiges": []
+      }
+    }
+  ]
+}

@@ -1,0 +1,275 @@
+{
+  "metadata": {
+    "model": "qwen3:latest",
+    "timestamp": "2025-12-23T21:01:02.550728",
+    "total_cases": 26
+  },
+  "predictions": [
+    {
+      "case_id": "ncc_1",
+      "patient_name": "Turtle, Ninja",
+      "ground_truth": "nierenzellkarzinom",
+      "predicted": "unknown",
+      "correct": false,
+      "inference_time": 17.676552057266235,
+      "raw_response": "",
+      "success": true
+    },
+    {
+      "case_id": "ncc_2",
+      "patient_name": "Ninja, Son",
+      "ground_truth": "nierenzellkarzinom",
+      "predicted": "nierenzellkarzinom",
+      "correct": true,
+      "inference_time": 10.781453847885132,
+      "raw_response": "custom<think>\nOkay, let's see. The patient is an 82-year-old male with a suspected malignant mass in the left kidney. The TNM staging is unknown for T, N, and M. I need to classify this into one",
+      "success": true
+    },
+    {
+      "case_id": "ncc_3",
+      "patient_name": "Muster, Alpha",
+      "ground_truth": "nierenzellkarzinom",
+      "predicted": "unknown",
+      "correct": false,
+      "inference_time": 10.61003303527832,
+      "raw_response": " dokład<think>\nOkay, let's see. The patient is a 58-year-old male with a solid renal mass on the right side, measuring 2.2 cm. The TNM staging is T:unknown, N:unknown, M",
+      "success": true
+    },
+    {
+      "case_id": "ncc_4",
+      "patient_name": "Beispiel, Beta",
+      "ground_truth": "nierenzellkarzinom",
+      "predicted": "nierenzellkarzinom",
+      "correct": true,
+      "inference_time": 10.829593658447266,
+      "raw_response": "custom<think>\nOkay, let's tackle this case. The patient is a 66-year-old male with a small left kidney tumor measuring 2.8 cm, classified as cT1a and malignancy suspected. The TNM staging is",
+      "success": true
+    },
+    {
+      "case_id": "ncc_5",
+      "patient_name": "Muster, Clara",
+      "ground_truth": "nierenzellkarzinom",
+      "predicted": "nierenzellkarzinom",
+      "correct": true,
+      "inference_time": 10.713674068450928,
+      "raw_response": "gun<think>\nOkay, let's tackle this case. The patient is Clara Muster, 47 years old, with a diagnosis of a Bosniak IV cystic lesion in the right kidney, measuring 2.5 cm. The TN",
+      "success": true
+    },
+    {
+      "case_id": "ncc_6",
+      "patient_name": "Beispiel, Daniel",
+      "ground_truth": "nierenzellkarzinom",
+      "predicted": "unknown",
+      "correct": false,
+      "inference_time": 11.05647897720337,
+      "raw_response": "",
+      "success": true
+    },
+    {
+      "case_id": "ncc_7",
+      "patient_name": "Muster, Emil",
+      "ground_truth": "nierenzellkarzinom",
+      "predicted": "unknown",
+      "correct": false,
+      "inference_time": 11.0645010471344,
+      "raw_response": " The<think>\nOkay, let's tackle this case. The patient is Emil Muster, 43 years old. The diagnosis is an unclear space-occupying lesion in the right renal pelvis, about 1x1 cm, detected on",
+      "success": true
+    },
+    {
+      "case_id": "ncc_8",
+      "patient_name": "Beispiel, Felix",
+      "ground_truth": "nierenzellkarzinom",
+      "predicted": "nierenzellkarzinom",
+      "correct": true,
+      "inference_time": 10.7556312084198,
+      "raw_response": " CAT<think>\nOkay, let's tackle this case. The patient is a 70-year-old man with a small left kidney tumor measuring 2.7 cm, located near the hilum. The TNM staging is given as T:unknown",
+      "success": true
+    },
+    {
+      "case_id": "ncc_9",
+      "patient_name": "Muster, Georg",
+      "ground_truth": "nierenzellkarzinom",
+      "predicted": "unknown",
+      "correct": false,
+      "inference_time": 11.566006898880005,
+      "raw_response": "",
+      "success": true
+    },
+    {
+      "case_id": "ncc_10",
+      "patient_name": "Beispiel, Hanna",
+      "ground_truth": "nierenzellkarzinom",
+      "predicted": "nierenzellkarzinom",
+      "correct": true,
+      "inference_time": 11.070419073104858,
+      "raw_response": "ames<think>\nOkay, let's see. The patient is Hanna, 75 years old. The diagnosis is a large right kidney tumor at the upper pole, about 7.5 x 6.5 cm. The note says \"V",
+      "success": true
+    },
+    {
+      "case_id": "ncc_11",
+      "patient_name": "Muster, Ivan",
+      "ground_truth": "nierenzellkarzinom",
+      "predicted": "nierenzellkarzinom",
+      "correct": true,
+      "inference_time": 11.707767963409424,
+      "raw_response": "gun<think>\nOkay, let's tackle this case. The patient is a 55-year-old male with a large left kidney tumor measuring about 7.8 x 6.9 cm. The CT shows subdiaphragmatic infiltration and a",
+      "success": true
+    },
+    {
+      "case_id": "ncc_12",
+      "patient_name": "Beispiel, Julia",
+      "ground_truth": "nierenzellkarzinom",
+      "predicted": "unknown",
+      "correct": false,
+      "inference_time": 11.285088062286377,
+      "raw_response": "",
+      "success": true
+    },
+    {
+      "case_id": "ncc_13",
+      "patient_name": "Muster, Karl",
+      "ground_truth": "nierenzellkarzinom",
+      "predicted": "unknown",
+      "correct": false,
+      "inference_time": 11.300331115722656,
+      "raw_response": "gun<think>\nOkay, let's see. The patient is Karl Muster, 64 years old. The diagnosis is bilateral renal space-occupying lesions: right 4.1 cm (cT1b*), left 1.",
+      "success": true
+    },
+    {
+      "case_id": "ncc_14",
+      "patient_name": "Beispiel, Leon",
+      "ground_truth": "nierenzellkarzinom",
+      "predicted": "nierenzellkarzinom",
+      "correct": true,
+      "inference_time": 11.151591062545776,
+      "raw_response": "忠诚<think>\nOkay, let's tackle this case. The patient is Leon, 79 years old. The diagnosis is a large left kidney tumor about 9 cm, highly suspicious for malignancy, possibly RCC. There's questionable infiltration of the",
+      "success": true
+    },
+    {
+      "case_id": "pca_1",
+      "patient_name": "Test, Testovoci",
+      "ground_truth": "prostatakarzinom",
+      "predicted": "prostatakarzinom",
+      "correct": true,
+      "inference_time": 10.763453960418701,
+      "raw_response": "ames<think>\nOkay, let's tackle this. The patient is 65 years old with mCRPC, which stands for metastatic castration-resistant prostate cancer. The diagnosis mentions bone and lymph node metastases. The TNM staging is M",
+      "success": true
+    },
+    {
+      "case_id": "pca_2",
+      "patient_name": "Mustermann, Muster",
+      "ground_truth": "prostatakarzinom",
+      "predicted": "prostatakarzinom",
+      "correct": true,
+      "inference_time": 10.939661026000977,
+      "raw_response": "\nOkay, let's see. The patient is a 62-year-old male with a diagnosis of prostate cancer, intermediate risk (ISUP 2), with an iPSA of 17.3 ng/ml. The TN",
+      "success": true
+    },
+    {
+      "case_id": "hoden_ca_1",
+      "patient_name": "Test, Test1",
+      "ground_truth": "hodentumor",
+      "predicted": "unknown",
+      "correct": false,
+      "inference_time": 11.776969909667969,
+      "raw_response": "M<think>\nOkay, let's tackle this. The patient is a 34-year-old male with a diagnosis of a germ cell tumor on the right side, mixed histology: 70% postpubertal teratoma and ",
+      "success": true
+    },
+    {
+      "case_id": "hoden_ca_2",
+      "patient_name": "Bruno, Brunovici",
+      "ground_truth": "hodentumor",
+      "predicted": "unknown",
+      "correct": false,
+      "inference_time": 11.230782985687256,
+      "raw_response": "opal<think>\nOkay, let's tackle this case. The patient is Bruno, 23 years old, diagnosed with a left-sided seminoma (100%), small (max. 0.2×0.5×0.",
+      "success": true
+    },
+    {
+      "case_id": "penis_ca_1",
+      "patient_name": "Bruno, Brandon",
+      "ground_truth": "peniskarzinom",
+      "predicted": "peniskarzinom",
+      "correct": true,
+      "inference_time": 11.003873109817505,
+      "raw_response": "1<think>\nOkay, let's see. The patient is Bruno, 69 years old. The diagnosis is peniskarzinom, specifically high-risk with inguinal and pelvic lymph node metastases. The TNM staging is T:",
+      "success": true
+    },
+    {
+      "case_id": "penis_ca_2",
+      "patient_name": "Schlummer, Ninja",
+      "ground_truth": "peniskarzinom",
+      "predicted": "peniskarzinom",
+      "correct": true,
+      "inference_time": 11.02582597732544,
+      "raw_response": "gun<think>\nOkay, let's tackle this. The patient is Ninja, 52 years old, diagnosed with metastatic penile carcinoma (squamous cell carcinoma) with skin metastases. The TNM staging is T:unknown, N:",
+      "success": true
+    },
+    {
+      "case_id": "uca_1",
+      "patient_name": "Horatium, Burdon",
+      "ground_truth": "urothelkarzinom",
+      "predicted": "urothelkarzinom",
+      "correct": true,
+      "inference_time": 11.546028852462769,
+      "raw_response": "😗<think>\nOkay, let's tackle this case. The patient is Horatium Burdon, 63 years old. The diagnosis is multilocalized NMIBC recurrence: non-invasive papillary urothelial carcinoma low grade (",
+      "success": true
+    },
+    {
+      "case_id": "uca_2",
+      "patient_name": "Holman, Elisa",
+      "ground_truth": "urothelkarzinom",
+      "predicted": "urothelkarzinom",
+      "correct": true,
+      "inference_time": 11.275269985198975,
+      "raw_response": " typeId<think>\nOkay, let's see. The patient is Elisa Holman, 54 years old. The diagnosis is a non-invasive papillary urothelial carcinoma pTa, focal high grade (G3) on the left",
+      "success": true
+    },
+    {
+      "case_id": "combi_1",
+      "patient_name": "Draco, Severus",
+      "ground_truth": "polymalignancy",
+      "predicted": "prostatakarzinom",
+      "correct": false,
+      "inference_time": 12.504557132720947,
+      "raw_response": " posterior<think>\nOkay, let's tackle this case. The patient is Draco Severus, 67 years old. The diagnosis is Prostatakarzinom with specific details: ED 2019 ISUP 4, iPS",
+      "success": true
+    },
+    {
+      "case_id": "combi_2",
+      "patient_name": "Vega, Orion",
+      "ground_truth": "polymalignancy",
+      "predicted": "unknown",
+      "correct": false,
+      "inference_time": 10.97662878036499,
+      "raw_response": "",
+      "success": true
+    },
+    {
+      "case_id": "non_uro_1",
+      "patient_name": "Mumbasa, Lion",
+      "ground_truth": "non_urological",
+      "predicted": "unknown",
+      "correct": false,
+      "inference_time": 11.632300853729248,
+      "raw_response": "renal<think>\nOkay, let's tackle this case. The patient is Mumbasa, Lion, 81 years old. The diagnosis is an aggressive B-cell non-Hodgkin lymphoma (GCB type according to Hans), double-ex",
+      "success": true
+    },
+    {
+      "case_id": "non_uro_2",
+      "patient_name": "Peter, Dostoyevski",
+      "ground_truth": "non_urological",
+      "predicted": "urothelkarzinom",
+      "correct": false,
+      "inference_time": 12.559158086776733,
+      "raw_response": "}(<think>\nOkay, let's tackle this case. The patient is Peter Dostoyevski, 52 years old. The diagnosis is an unclear space-occupying lesion in the bladder wall, with a TUR-B procedure on ",
+      "success": true
+    }
+  ],
+  "summary": {
+    "correct": 13,
+    "incorrect": 13,
+    "errors": 0,
+    "accuracy": 0.5
+  }
+}

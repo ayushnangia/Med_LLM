@@ -1,0 +1,16 @@
+Nr. ,Cases,Classes : tumor entity _ real,Therapy line,json,json_ver,urological/non_urological
+,,,,,,
+1.0,"Turtle, Ninja, *23.02.1963","Nierenkarzinom, met. Pap. NCC, therapy naive  ",Naive,True,1.1.,True
+2.0,"Ninja, Son *22.03.1951","Nierenkarzinom, local begrenzt",-,True,1.1.,True
+3.0,"Muster, Alpha, 11.01.1967","Nierenkarzinom, local begrenzt",-,True,1.1.,True
+4.0,"Beispiel, Beta, 05.05.1959 ","Nierenkarzinom, local begrenzt",-,True,1.1.,True
+5.0,"Muster, Clara, 20.02.1978","Nierenkarzinom, local begrenzt",-,True,1.1.,True
+6.0,"Beispiel, Daniel, 09.09.1948","Nierenkarzinom, local begrenzt",-,True,1.1.,True
+7.0,"Muster, Emil, 03.03.1982","Nierenkarzinom, local begrenzt, unklar - URS diagn",-,True,1.1.,True
+8.0,"Beispiel, Felix 14.04.1955","Nierenkarzinom, local begrenzt",-,True,1.1.,True
+9.0,"Muster, Georg, 01.01.1964","Nierenkarzinom, local begrenzt",-,True,1.1.,True
+10.0,"Beispiel, Hanna, 12.12.1950","Nierenkarzinom, local begrenzt",-,True,1.1.,True
+11.0,"Muster, Ivan, 05.05.1970","Nierenkarzinom, inf. V. cava cT3b",-,True,1.1.,True
+12.0,"Beispiel, Julia, 09.09.1958","Nierenkarzinom, local begrenzt",-,True,1.1.,True
+13.0,"Muster, Karl, 23.02.1961","Nierenkarzinom, local begrenzt, bilateral",-,True,1.1.,True
+14.0,"Beispiel, Leon, 18.10.1946","Nierenkarzinom, inf. Nebenniere",-,True,1.1.,True

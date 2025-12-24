@@ -1,0 +1,4 @@
+Nr. ,Cases,Classes : tumor entity _ real,urological/non_urological,Therapy line,json,json_ver
+,,,,,,
+1.0,"Mumbasa, Lion, 18.04.1947",Non-Hodgkin-Lymphom ,False,,True,1.1.
+2.0,"Peter, Dostoyevski, 12.04.1975",Sigmakarzinom ,False,,True,1.1.

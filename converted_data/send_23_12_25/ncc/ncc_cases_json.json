@@ -1,0 +1,3555 @@
+{
+  "schema_version": "1.1",
+  "hinweis_missing_values": "Nicht vorhandene/fehlende Informationen werden als null (oder leere Liste []) eingetragen.",
+  "cases": [
+    {
+      "case_meta": {
+        "fallnummer": "123421353452",
+        "datum_vorstellung": null,
+        "tumorboard": null,
+        "diskussionstyp": null
+      },
+      "patient": {
+        "nachname": "Turtle",
+        "vorname": "Ninja",
+        "geburtsdatum": "1963-02-23",
+        "alter_jahre": 52,
+        "performance_status": {
+          "ecog": 0,
+          "karnofsky_prozent": null
+        },
+        "komorbiditaet_level": "unknown",
+        "lebenserwartung": "unknown",
+        "sonstige_fachkliniken_bereiche": [
+          "RA"
+        ]
+      },
+      "anmeldung": {
+        "anmeldender_arzt": {
+          "name": "Abrahamovici",
+          "abteilung": "Uro"
+        }
+      },
+      "fragestellung": "Demo Bildgebung, progress?",
+      "anamnese_freitext": "Met. pap. RCC. Z. n. Nephrektomie links 2014 (papilläres RCC pT3b, Nx, L0, V0, Pn0, G3, Rx). Z. n. offener Resektion eines Lokalrezidivs 2024. Aktuell multiple Rezidive (pulmonal, lymphonodal, hepatisch).",
+      "nebendiagnosen": [
+        "obstruktive Kardiomyopathie",
+        "Z. n. Hyperthyreose 2021",
+        "arterielle Hypertonie",
+        "Diabetes mellitus",
+        "Z. n. LAE",
+        "Hyperlipidämie"
+      ],
+      "medikation": [
+        {
+          "wirkstoff_oder_klasse": "Betablocker",
+          "details": null
+        },
+        {
+          "wirkstoff_oder_klasse": "Statin",
+          "details": null
+        },
+        {
+          "wirkstoff_oder_klasse": "Metformin",
+          "details": null
+        },
+        {
+          "wirkstoff_oder_klasse": "DOAK",
+          "details": "bei LAE"
+        }
+      ],
+      "entitaeten": [
+        {
+          "entity_id": "E1",
+          "entitaet_typ": "nierenzellkarzinom",
+          "diagnose_kurz": "Metastasiertes papilläres RCC",
+          "stadium_oder_risikoklasse": "metastasiert (pulmonal, lymphonodal, hepatisch)",
+          "klassifikation": {
+            "tnm_clinical": {
+              "T": "unknown",
+              "T_sub": "unknown",
+              "N": "unknown",
+              "M": "M1",
+              "stage_group": "unknown"
+            },
+            "tnm_pathological": {
+              "T": "T3b",
+              "T_sub": null,
+              "N": "NX",
+              "M": null,
+              "stage_group": null
+            },
+            "isup_gleason": null,
+            "grad": "G3",
+            "icd": null,
+            "icdo": null
+          },
+          "quick_access": {
+            "metastatic": true,
+            "rcc_histologie_klarzellig": false,
+            "imdc_risiko": null,
+            "ici_kombination_durchfuehrbar": null,
+            "vorherige_systemtherapien": []
+          },
+          "schema_inputs": {
+            "schema1_mccrcc": {
+              "anwendbar": false,
+              "imdc_risiko": null,
+              "ici_kombination_durchfuehrbar": null,
+              "vorherige_systemtherapien": []
+            },
+            "schema2_nmrcc": {
+              "anwendbar": false,
+              "patient": {
+                "age_years": 52,
+                "comorbidity_level": "unknown",
+                "life_expectancy": "unknown"
+              },
+              "tumor": {
+                "metastatic": true,
+                "tumor_size_cm": null,
+                "tumor_confined_to_kidney": "unknown",
+                "local_extension": {
+                  "major_veins_or_perinephric_tissues_involved": "unknown",
+                  "beyond_gerotas_fascia": "unknown",
+                  "ipsilateral_adrenal_gland_invasion_contiguous": "unknown"
+                },
+                "venous_involvement": {
+                  "renal_vein_involved": "unknown",
+                  "renal_sinus_fat_involved": "unknown",
+                  "inferior_vena_cava_involved": "unknown",
+                  "ivc_level": "unknown"
+                },
+                "regional_nodes": {
+                  "status": "unknown",
+                  "suspicious_or_enlarged_lymph_nodes": "unknown"
+                },
+                "distant_metastases": {
+                  "status": "M1"
+                },
+                "clinical_T_category": "unknown",
+                "clinical_T_subcategory": "unknown",
+                "clinical_N_category": "unknown",
+                "clinical_M_category": "M1",
+                "clinical_stage_group": "unknown",
+                "tumor_size_category": "unknown",
+                "nephron_sparing_technically_possible": "unknown",
+                "local_findings_allow_minimally_invasive": "unknown",
+                "adrenal_suspicion_imaging_or_intraop": "unknown"
+              },
+              "surgery_context": {
+                "planned_procedure": "unknown",
+                "approach_preference": "unknown",
+                "surgeon_experience_drives_choice": true,
+                "ischemia_expected": "unknown"
+              },
+              "pathology_postop": {
+                "margin_status": "unknown",
+                "tumor_bed_macroscopically_unremarkable": "unknown"
+              }
+            }
+          },
+          "rcc_spezifisch": {
+            "histologie": {
+              "subtyp": "papillär",
+              "klarzellig": false,
+              "sarcomatoid": null,
+              "rhabdoid": null,
+              "grading_system": "WHO/ISUP (unspezifiziert im Text)",
+              "grading_value": "G3"
+            },
+            "imdc": {
+              "kategorie": null,
+              "risikofaktoren_structured": {
+                "karnofsky_prozent": null,
+                "intervall_diagnose_bis_systemtherapie_monate": null,
+                "haemoglobin_unter_norm": null,
+                "korrigiertes_calcium_ueber_norm": null,
+                "neutrophile_ueber_norm": null,
+                "thrombozyten_ueber_norm": null
+              },
+              "laborwerte_optional": {
+                "haemoglobin": {
+                  "wert": null,
+                  "einheit": "g/dl",
+                  "datum": null,
+                  "flag_unter_norm": null
+                },
+                "calcium_korrigiert": {
+                  "wert": null,
+                  "einheit": "mmol/l",
+                  "datum": null,
+                  "flag_ueber_norm": null
+                },
+                "neutrophile": {
+                  "wert": null,
+                  "einheit": "G/l",
+                  "datum": null,
+                  "flag_ueber_norm": null
+                },
+                "thrombozyten": {
+                  "wert": null,
+                  "einheit": "G/l",
+                  "datum": null,
+                  "flag_ueber_norm": null
+                }
+              }
+            },
+            "systemtherapie_kontext": {
+              "ici_kombination_durchfuehrbar": null,
+              "gruende_wenn_nein": [],
+              "vorherige_systemtherapien": [],
+              "therapielinien": []
+            }
+          },
+          "molekular": {
+            "brca": null,
+            "pd_l1": null,
+            "sonstige": []
+          },
+          "marker_oder_labor": {
+            "psa": {
+              "initial": null,
+              "verlauf": [],
+              "einheit": "ng/ml"
+            },
+            "tumormarker": {
+              "hodenmarker": {
+                "afp": {
+                  "initial": null,
+                  "verlauf": [],
+                  "einheit": "ng/ml"
+                },
+                "bhcg": {
+                  "initial": null,
+                  "verlauf": [],
+                  "einheit": "IU/l"
+                },
+                "ldh": {
+                  "initial": null,
+                  "verlauf": [],
+                  "einheit": "U/l"
+                }
+              }
+            },
+            "labor_allgemein": [],
+            "sonstige": []
+          },
+          "bildgebung": [
+            {
+              "modalitaet": "CT",
+              "region": "Ganzkörper",
+              "datum": "2025-11-03",
+              "befund_kurz": "Multiple Rezidive/Metastasen pulmonal, lymphonodal, hepatisch.",
+              "quelle": "Erforderliche Bildgebung"
+            }
+          ],
+          "pathologie": [
+            {
+              "datum": "2014-01-01",
+              "material": "Nephrektomie links",
+              "diagnose": "Papilläres RCC",
+              "details": {
+                "pT": "pT3b",
+                "pN": "pNx",
+                "L": "L0",
+                "V": "V0",
+                "Pn": "Pn0",
+                "G": "G3",
+                "R": "Rx"
+              }
+            }
+          ],
+          "therapien_und_eingriffe": [
+            {
+              "datum": "2014-01-01",
+              "typ": "Operation",
+              "beschreibung": "Nephrektomie links",
+              "intent": "kurativ",
+              "details": null
+            },
+            {
+              "datum": "2024-01-01",
+              "typ": "Operation",
+              "beschreibung": "Offene Resektion eines Lokalrezidivs",
+              "intent": "kurativ/lokal",
+              "details": null
+            }
+          ],
+          "kommentar": null
+        }
+      ],
+      "geplantes_therapiekonzept": "Einleitung palliative Systemtherapie TKI/IO (z.B. Nivolumab/Cabozantinib).",
+      "erforderliche_befunde": {
+        "bildgebung": [
+          "CT Ganzkörper 03.11.2025 (Staging/Progress?)"
+        ],
+        "pathologie": [],
+        "labor": [],
+        "sonstiges": []
+      }
+    },
+    {
+      "case_meta": {
+        "fallnummer": "12142354343124",
+        "datum_vorstellung": null,
+        "tumorboard": null,
+        "diskussionstyp": null
+      },
+      "patient": {
+        "nachname": "Ninja",
+        "vorname": "Son",
+        "geburtsdatum": "1951-03-22",
+        "alter_jahre": 82,
+        "performance_status": {
+          "ecog": 1,
+          "karnofsky_prozent": null
+        },
+        "komorbiditaet_level": "hoch",
+        "lebenserwartung": "unknown",
+        "sonstige_fachkliniken_bereiche": []
+      },
+      "anmeldung": {
+        "anmeldender_arzt": {
+          "name": "Milanovici",
+          "abteilung": "MED I"
+        }
+      },
+      "fragestellung": "Weiteres Procedere (Diagnostik/Intervention vs Surveillance) unter Berücksichtigung TAVI-Priorität.",
+      "anamnese_freitext": "Pat synkopiert, zur TAVI-Evaluation. TAVI indiziert. Im TAVI-CT malignomsuspekte Raumforderung linke Niere (ca. 2×3 cm). Erstdiagnose 06.11.2025, links.",
+      "nebendiagnosen": [
+        "Aortenstenose hochgradig (TAVI indiziert)",
+        "KHK",
+        "CKD G3"
+      ],
+      "medikation": [
+        {
+          "wirkstoff_oder_klasse": "ASS",
+          "details": null
+        },
+        {
+          "wirkstoff_oder_klasse": "Statin",
+          "details": null
+        },
+        {
+          "wirkstoff_oder_klasse": "ACE-Hemmer",
+          "details": null
+        },
+        {
+          "wirkstoff_oder_klasse": "Diuretikum",
+          "details": null
+        }
+      ],
+      "entitaeten": [
+        {
+          "entity_id": "E1",
+          "entitaet_typ": "nierentumor_verdacht",
+          "diagnose_kurz": "Malignomsuspekte Raumforderung linke Niere",
+          "stadium_oder_risikoklasse": "unbekannt (prätherapeutisch)",
+          "klassifikation": {
+            "tnm_clinical": {
+              "T": "unknown",
+              "T_sub": "unknown",
+              "N": "unknown",
+              "M": "unknown",
+              "stage_group": "unknown"
+            },
+            "tnm_pathological": {
+              "T": null,
+              "T_sub": null,
+              "N": null,
+              "M": null,
+              "stage_group": null
+            },
+            "isup_gleason": null,
+            "grad": null,
+            "icd": null,
+            "icdo": null
+          },
+          "quick_access": {
+            "metastatic": false,
+            "rcc_histologie_klarzellig": null,
+            "imdc_risiko": null,
+            "ici_kombination_durchfuehrbar": null,
+            "vorherige_systemtherapien": []
+          },
+          "schema_inputs": {
+            "schema1_mccrcc": {
+              "anwendbar": false,
+              "imdc_risiko": null,
+              "ici_kombination_durchfuehrbar": null,
+              "vorherige_systemtherapien": []
+            },
+            "schema2_nmrcc": {
+              "anwendbar": true,
+              "patient": {
+                "age_years": 82,
+                "comorbidity_level": "hoch",
+                "life_expectancy": "unknown"
+              },
+              "tumor": {
+                "metastatic": false,
+                "tumor_size_cm": 3.0,
+                "tumor_confined_to_kidney": "unknown",
+                "local_extension": {
+                  "major_veins_or_perinephric_tissues_involved": "unknown",
+                  "beyond_gerotas_fascia": "unknown",
+                  "ipsilateral_adrenal_gland_invasion_contiguous": "unknown"
+                },
+                "venous_involvement": {
+                  "renal_vein_involved": "unknown",
+                  "renal_sinus_fat_involved": "unknown",
+                  "inferior_vena_cava_involved": "unknown",
+                  "ivc_level": "unknown"
+                },
+                "regional_nodes": {
+                  "status": "unknown",
+                  "suspicious_or_enlarged_lymph_nodes": "unknown"
+                },
+                "distant_metastases": {
+                  "status": "unknown"
+                },
+                "clinical_T_category": "unknown",
+                "clinical_T_subcategory": "unknown",
+                "clinical_N_category": "unknown",
+                "clinical_M_category": "unknown",
+                "clinical_stage_group": "unknown",
+                "tumor_size_category": "klein",
+                "nephron_sparing_technically_possible": "unknown",
+                "local_findings_allow_minimally_invasive": "unknown",
+                "adrenal_suspicion_imaging_or_intraop": "unknown"
+              },
+              "surgery_context": {
+                "planned_procedure": "unknown",
+                "approach_preference": "unknown",
+                "surgeon_experience_drives_choice": true,
+                "ischemia_expected": "unknown"
+              },
+              "pathology_postop": {
+                "margin_status": "unknown",
+                "tumor_bed_macroscopically_unremarkable": "unknown"
+              }
+            }
+          },
+          "rcc_spezifisch": {
+            "histologie": {
+              "subtyp": null,
+              "klarzellig": null,
+              "sarcomatoid": null,
+              "rhabdoid": null,
+              "grading_system": null,
+              "grading_value": null
+            },
+            "imdc": {
+              "kategorie": null,
+              "risikofaktoren_structured": {
+                "karnofsky_prozent": null,
+                "intervall_diagnose_bis_systemtherapie_monate": null,
+                "haemoglobin_unter_norm": null,
+                "korrigiertes_calcium_ueber_norm": null,
+                "neutrophile_ueber_norm": null,
+                "thrombozyten_ueber_norm": null
+              },
+              "laborwerte_optional": {
+                "haemoglobin": {
+                  "wert": null,
+                  "einheit": "g/dl",
+                  "datum": null,
+                  "flag_unter_norm": null
+                },
+                "calcium_korrigiert": {
+                  "wert": null,
+                  "einheit": "mmol/l",
+                  "datum": null,
+                  "flag_ueber_norm": null
+                },
+                "neutrophile": {
+                  "wert": null,
+                  "einheit": "G/l",
+                  "datum": null,
+                  "flag_ueber_norm": null
+                },
+                "thrombozyten": {
+                  "wert": null,
+                  "einheit": "G/l",
+                  "datum": null,
+                  "flag_ueber_norm": null
+                }
+              }
+            },
+            "systemtherapie_kontext": {
+              "ici_kombination_durchfuehrbar": null,
+              "gruende_wenn_nein": [],
+              "vorherige_systemtherapien": [],
+              "therapielinien": []
+            }
+          },
+          "molekular": {
+            "brca": null,
+            "pd_l1": null,
+            "sonstige": []
+          },
+          "marker_oder_labor": {
+            "psa": {
+              "initial": null,
+              "verlauf": [],
+              "einheit": "ng/ml"
+            },
+            "tumormarker": {
+              "hodenmarker": {
+                "afp": {
+                  "initial": null,
+                  "verlauf": [],
+                  "einheit": "ng/ml"
+                },
+                "bhcg": {
+                  "initial": null,
+                  "verlauf": [],
+                  "einheit": "IU/l"
+                },
+                "ldh": {
+                  "initial": null,
+                  "verlauf": [],
+                  "einheit": "U/l"
+                }
+              }
+            },
+            "labor_allgemein": [],
+            "sonstige": []
+          },
+          "bildgebung": [
+            {
+              "modalitaet": "CT",
+              "region": "Ganzkörper (TAVI-CT/Staging)",
+              "datum": "2025-11-06",
+              "befund_kurz": "Malignomsuspekte Raumforderung linke Niere, ca. 2×3 cm.",
+              "quelle": "Erforderliche Bildgebung"
+            }
+          ],
+          "pathologie": [],
+          "therapien_und_eingriffe": [],
+          "kommentar": "Tumorgröße 2×3 cm -> tumor_size_cm als Maximaldurchmesser 3.0 cm dokumentiert; Tumorgröße-Kategorie als 'klein' gesetzt."
+        }
+      ],
+      "geplantes_therapiekonzept": "Weiteres Procedere (Intervention vs Surveillance) unter Berücksichtigung TAVI-Priorität.",
+      "erforderliche_befunde": {
+        "bildgebung": [
+          "CT Ganzkörper 06.11.2025 (malignomsuspekte RF links 2×3 cm)"
+        ],
+        "pathologie": [],
+        "labor": [],
+        "sonstiges": [
+          "TAVI-Priorität/Timing klären (kardiologischer Kontext)"
+        ]
+      }
+    },
+    {
+      "case_meta": {
+        "fallnummer": "2100010001",
+        "datum_vorstellung": null,
+        "tumorboard": null,
+        "diskussionstyp": null
+      },
+      "patient": {
+        "nachname": "Muster",
+        "vorname": "Alpha",
+        "geburtsdatum": "1967-01-11",
+        "alter_jahre": 58,
+        "performance_status": {
+          "ecog": 0,
+          "karnofsky_prozent": null
+        },
+        "komorbiditaet_level": "unknown",
+        "lebenserwartung": "unknown",
+        "sonstige_fachkliniken_bereiche": [
+          "RA"
+        ]
+      },
+      "anmeldung": {
+        "anmeldender_arzt": {
+          "name": "Mustermann",
+          "abteilung": "Uro"
+        }
+      },
+      "fragestellung": "Malignitätskriterien? – ja. Aktive Überwachung vs. Nierenteilresektion vs. Ablation (je nach Lage/RENAL-Score). Biopsie ja/nein?",
+      "anamnese_freitext": "Zufallsbefund im CT wegen Nephrolithiasis. Solide Nierenraumforderung rechts (2,2 cm).",
+      "nebendiagnosen": [
+        "arterielle Hypertonie"
+      ],
+      "medikation": [
+        {
+          "wirkstoff_oder_klasse": "Ramipril",
+          "details": null
+        }
+      ],
+      "entitaeten": [
+        {
+          "entity_id": "E1",
+          "entitaet_typ": "nierentumor_verdacht",
+          "diagnose_kurz": "Solide Nierenraumforderung rechts (2,2 cm)",
+          "stadium_oder_risikoklasse": "nicht-metastasiert (Verdacht, prätherapeutisch)",
+          "klassifikation": {
+            "tnm_clinical": {
+              "T": "unknown",
+              "T_sub": "unknown",
+              "N": "unknown",
+              "M": "M0",
+              "stage_group": "unknown"
+            },
+            "tnm_pathological": {
+              "T": null,
+              "T_sub": null,
+              "N": null,
+              "M": null,
+              "stage_group": null
+            },
+            "isup_gleason": null,
+            "grad": null,
+            "icd": null,
+            "icdo": null
+          },
+          "quick_access": {
+            "metastatic": false,
+            "rcc_histologie_klarzellig": null,
+            "imdc_risiko": null,
+            "ici_kombination_durchfuehrbar": null,
+            "vorherige_systemtherapien": []
+          },
+          "schema_inputs": {
+            "schema1_mccrcc": {
+              "anwendbar": false,
+              "imdc_risiko": null,
+              "ici_kombination_durchfuehrbar": null,
+              "vorherige_systemtherapien": []
+            },
+            "schema2_nmrcc": {
+              "anwendbar": true,
+              "patient": {
+                "age_years": 58,
+                "comorbidity_level": "unknown",
+                "life_expectancy": "unknown"
+              },
+              "tumor": {
+                "metastatic": false,
+                "tumor_size_cm": 2.2,
+                "tumor_confined_to_kidney": "unknown",
+                "local_extension": {
+                  "major_veins_or_perinephric_tissues_involved": "unknown",
+                  "beyond_gerotas_fascia": "unknown",
+                  "ipsilateral_adrenal_gland_invasion_contiguous": "unknown"
+                },
+                "venous_involvement": {
+                  "renal_vein_involved": "unknown",
+                  "renal_sinus_fat_involved": "unknown",
+                  "inferior_vena_cava_involved": "unknown",
+                  "ivc_level": "unknown"
+                },
+                "regional_nodes": {
+                  "status": "unknown",
+                  "suspicious_or_enlarged_lymph_nodes": "unknown"
+                },
+                "distant_metastases": {
+                  "status": "M0"
+                },
+                "clinical_T_category": "unknown",
+                "clinical_T_subcategory": "unknown",
+                "clinical_N_category": "unknown",
+                "clinical_M_category": "M0",
+                "clinical_stage_group": "unknown",
+                "tumor_size_category": "klein",
+                "nephron_sparing_technically_possible": "unknown",
+                "local_findings_allow_minimally_invasive": "unknown",
+                "adrenal_suspicion_imaging_or_intraop": "unknown"
+              },
+              "surgery_context": {
+                "planned_procedure": "unknown",
+                "approach_preference": "unknown",
+                "surgeon_experience_drives_choice": true,
+                "ischemia_expected": "unknown"
+              },
+              "pathology_postop": {
+                "margin_status": "unknown",
+                "tumor_bed_macroscopically_unremarkable": "unknown"
+              }
+            }
+          },
+          "rcc_spezifisch": {
+            "histologie": {
+              "subtyp": null,
+              "klarzellig": null,
+              "sarcomatoid": null,
+              "rhabdoid": null,
+              "grading_system": null,
+              "grading_value": null
+            },
+            "imdc": {
+              "kategorie": null,
+              "risikofaktoren_structured": {
+                "karnofsky_prozent": null,
+                "intervall_diagnose_bis_systemtherapie_monate": null,
+                "haemoglobin_unter_norm": null,
+                "korrigiertes_calcium_ueber_norm": null,
+                "neutrophile_ueber_norm": null,
+                "thrombozyten_ueber_norm": null
+              },
+              "laborwerte_optional": {
+                "haemoglobin": {
+                  "wert": null,
+                  "einheit": "g/dl",
+                  "datum": null,
+                  "flag_unter_norm": null
+                },
+                "calcium_korrigiert": {
+                  "wert": null,
+                  "einheit": "mmol/l",
+                  "datum": null,
+                  "flag_ueber_norm": null
+                },
+                "neutrophile": {
+                  "wert": null,
+                  "einheit": "G/l",
+                  "datum": null,
+                  "flag_ueber_norm": null
+                },
+                "thrombozyten": {
+                  "wert": null,
+                  "einheit": "G/l",
+                  "datum": null,
+                  "flag_ueber_norm": null
+                }
+              }
+            },
+            "systemtherapie_kontext": {
+              "ici_kombination_durchfuehrbar": null,
+              "gruende_wenn_nein": [],
+              "vorherige_systemtherapien": [],
+              "therapielinien": []
+            }
+          },
+          "molekular": {
+            "brca": null,
+            "pd_l1": null,
+            "sonstige": []
+          },
+          "marker_oder_labor": {
+            "psa": {
+              "initial": null,
+              "verlauf": [],
+              "einheit": "ng/ml"
+            },
+            "tumormarker": {
+              "hodenmarker": {
+                "afp": {
+                  "initial": null,
+                  "verlauf": [],
+                  "einheit": "ng/ml"
+                },
+                "bhcg": {
+                  "initial": null,
+                  "verlauf": [],
+                  "einheit": "IU/l"
+                },
+                "ldh": {
+                  "initial": null,
+                  "verlauf": [],
+                  "einheit": "U/l"
+                }
+              }
+            },
+            "labor_allgemein": [],
+            "sonstige": []
+          },
+          "bildgebung": [
+            {
+              "modalitaet": "CT",
+              "region": "Abdomen/Niere",
+              "datum": null,
+              "befund_kurz": "Zufallsbefund: solide Nierenraumforderung rechts (2,2 cm) im Rahmen CT wegen Nephrolithiasis.",
+              "quelle": "Anamnese"
+            },
+            {
+              "modalitaet": "MRT",
+              "region": "Niere mit KM",
+              "datum": "2025-12-01",
+              "befund_kurz": "Solide Nierenraumforderung rechts, 2,2 cm; malignomsuspekt (Malignitätskriterien: ja).",
+              "quelle": "Erforderliche Bildgebung"
+            }
+          ],
+          "pathologie": [],
+          "therapien_und_eingriffe": [],
+          "kommentar": "RENAL-Score/Lokalisation nicht angegeben -> therapeutische Option abhängig von Lage. Biopsie-Frage explizit offen."
+        }
+      ],
+      "geplantes_therapiekonzept": "Aktive Überwachung vs. Nierenteilresektion vs. Ablation (je nach Lage/RENAL-Score); Biopsie ja/nein?",
+      "erforderliche_befunde": {
+        "bildgebung": [
+          "MRT Niere mit KM 12/2025 (2,2 cm solide RF rechts)"
+        ],
+        "pathologie": [],
+        "labor": [],
+        "sonstiges": [
+          "RENAL-Score/Lokalisation (für OP vs Ablation vs AS)"
+        ]
+      }
+    },
+    {
+      "case_meta": {
+        "fallnummer": "2100010002",
+        "datum_vorstellung": null,
+        "tumorboard": null,
+        "diskussionstyp": null
+      },
+      "patient": {
+        "nachname": "Beispiel",
+        "vorname": "Beta",
+        "geburtsdatum": "1959-05-05",
+        "alter_jahre": 66,
+        "performance_status": {
+          "ecog": 1,
+          "karnofsky_prozent": null
+        },
+        "komorbiditaet_level": "unknown",
+        "lebenserwartung": "unknown",
+        "sonstige_fachkliniken_bereiche": []
+      },
+      "anmeldung": {
+        "anmeldender_arzt": {
+          "name": "Beispiel",
+          "abteilung": "Uro"
+        }
+      },
+      "fragestellung": "Malignitätskriterien? Ja.",
+      "anamnese_freitext": "Kleiner Nierentumor links 2,8 cm (cT1a). Vorerkrankungen: Z. n. Appendektomie; COPD GOLD I (Raucher 20 PY).",
+      "nebendiagnosen": [
+        "Z. n. Appendektomie",
+        "COPD GOLD I (Raucher 20 PY)"
+      ],
+      "medikation": [
+        {
+          "wirkstoff_oder_klasse": "LAMA inhalativ",
+          "details": null
+        },
+        {
+          "wirkstoff_oder_klasse": "Atorvastatin",
+          "details": null
+        }
+      ],
+      "entitaeten": [
+        {
+          "entity_id": "E1",
+          "entitaet_typ": "nierentumor_verdacht",
+          "diagnose_kurz": "Kleiner Nierentumor links 2,8 cm (cT1a), malignitätsverdächtig",
+          "stadium_oder_risikoklasse": "cT1a, nicht-metastasiert (prätherapeutisch)",
+          "klassifikation": {
+            "tnm_clinical": {
+              "T": "T1",
+              "T_sub": "T1a",
+              "N": "unknown",
+              "M": "M0",
+              "stage_group": "unknown"
+            },
+            "tnm_pathological": {
+              "T": null,
+              "T_sub": null,
+              "N": null,
+              "M": null,
+              "stage_group": null
+            },
+            "isup_gleason": null,
+            "grad": null,
+            "icd": null,
+            "icdo": null
+          },
+          "quick_access": {
+            "metastatic": false,
+            "rcc_histologie_klarzellig": null,
+            "imdc_risiko": null,
+            "ici_kombination_durchfuehrbar": null,
+            "vorherige_systemtherapien": []
+          },
+          "schema_inputs": {
+            "schema1_mccrcc": {
+              "anwendbar": false,
+              "imdc_risiko": null,
+              "ici_kombination_durchfuehrbar": null,
+              "vorherige_systemtherapien": []
+            },
+            "schema2_nmrcc": {
+              "anwendbar": true,
+              "patient": {
+                "age_years": 66,
+                "comorbidity_level": "unknown",
+                "life_expectancy": "unknown"
+              },
+              "tumor": {
+                "metastatic": false,
+                "tumor_size_cm": 2.8,
+                "tumor_confined_to_kidney": "unknown",
+                "local_extension": {
+                  "major_veins_or_perinephric_tissues_involved": "unknown",
+                  "beyond_gerotas_fascia": "unknown",
+                  "ipsilateral_adrenal_gland_invasion_contiguous": "unknown"
+                },
+                "venous_involvement": {
+                  "renal_vein_involved": "unknown",
+                  "renal_sinus_fat_involved": "unknown",
+                  "inferior_vena_cava_involved": "unknown",
+                  "ivc_level": "unknown"
+                },
+                "regional_nodes": {
+                  "status": "unknown",
+                  "suspicious_or_enlarged_lymph_nodes": "unknown"
+                },
+                "distant_metastases": {
+                  "status": "M0"
+                },
+                "clinical_T_category": "T1",
+                "clinical_T_subcategory": "T1a",
+                "clinical_N_category": "unknown",
+                "clinical_M_category": "M0",
+                "clinical_stage_group": "unknown",
+                "tumor_size_category": "klein",
+                "nephron_sparing_technically_possible": "unknown",
+                "local_findings_allow_minimally_invasive": "unknown",
+                "adrenal_suspicion_imaging_or_intraop": "unknown"
+              },
+              "surgery_context": {
+                "planned_procedure": "teilresektion",
+                "approach_preference": "robotisch",
+                "surgeon_experience_drives_choice": true,
+                "ischemia_expected": "unknown"
+              },
+              "pathology_postop": {
+                "margin_status": "unknown",
+                "tumor_bed_macroscopically_unremarkable": "unknown"
+              }
+            }
+          },
+          "rcc_spezifisch": {
+            "histologie": {
+              "subtyp": null,
+              "klarzellig": null,
+              "sarcomatoid": null,
+              "rhabdoid": null,
+              "grading_system": null,
+              "grading_value": null
+            },
+            "imdc": {
+              "kategorie": null,
+              "risikofaktoren_structured": {
+                "karnofsky_prozent": null,
+                "intervall_diagnose_bis_systemtherapie_monate": null,
+                "haemoglobin_unter_norm": null,
+                "korrigiertes_calcium_ueber_norm": null,
+                "neutrophile_ueber_norm": null,
+                "thrombozyten_ueber_norm": null
+              },
+              "laborwerte_optional": {
+                "haemoglobin": {
+                  "wert": null,
+                  "einheit": "g/dl",
+                  "datum": null,
+                  "flag_unter_norm": null
+                },
+                "calcium_korrigiert": {
+                  "wert": null,
+                  "einheit": "mmol/l",
+                  "datum": null,
+                  "flag_ueber_norm": null
+                },
+                "neutrophile": {
+                  "wert": null,
+                  "einheit": "G/l",
+                  "datum": null,
+                  "flag_ueber_norm": null
+                },
+                "thrombozyten": {
+                  "wert": null,
+                  "einheit": "G/l",
+                  "datum": null,
+                  "flag_ueber_norm": null
+                }
+              }
+            },
+            "systemtherapie_kontext": {
+              "ici_kombination_durchfuehrbar": null,
+              "gruende_wenn_nein": [],
+              "vorherige_systemtherapien": [],
+              "therapielinien": []
+            }
+          },
+          "molekular": {
+            "brca": null,
+            "pd_l1": null,
+            "sonstige": []
+          },
+          "marker_oder_labor": {
+            "psa": {
+              "initial": null,
+              "verlauf": [],
+              "einheit": "ng/ml"
+            },
+            "tumormarker": {
+              "hodenmarker": {
+                "afp": {
+                  "initial": null,
+                  "verlauf": [],
+                  "einheit": "ng/ml"
+                },
+                "bhcg": {
+                  "initial": null,
+                  "verlauf": [],
+                  "einheit": "IU/l"
+                },
+                "ldh": {
+                  "initial": null,
+                  "verlauf": [],
+                  "einheit": "U/l"
+                }
+              }
+            },
+            "labor_allgemein": [],
+            "sonstige": []
+          },
+          "bildgebung": [
+            {
+              "modalitaet": "CT",
+              "region": "Niere (Nierenprotokoll)",
+              "datum": "2025-11-01",
+              "befund_kurz": "Kleine Raumforderung links 2,8 cm (cT1a), malignitätsverdächtig.",
+              "quelle": "Erforderlicher Befund"
+            }
+          ],
+          "pathologie": [],
+          "therapien_und_eingriffe": [],
+          "kommentar": "Therapieoptionen: robotische partielle Nephrektomie vs Kryoablation abhängig von Komorbidität/OP-Risiko; nephron-sparing prinzipiell naheliegend bei cT1a."
+        }
+      ],
+      "geplantes_therapiekonzept": "Roboterassistierte partielle Nephrektomie vs. Kryoablation (Komorbidität/OP-Risiko).",
+      "erforderliche_befunde": {
+        "bildgebung": [
+          "CT Nierenprotokoll 11/2025 (2,8 cm RF links, cT1a, malignitätsverdächtig)"
+        ],
+        "pathologie": [],
+        "labor": [],
+        "sonstiges": [
+          "OP-Risiko/Komorbidität (COPD, Raucherstatus) für Ablation vs OP bewerten"
+        ]
+      }
+    },
+    {
+      "case_meta": {
+        "fallnummer": "2100010003",
+        "datum_vorstellung": null,
+        "tumorboard": null,
+        "diskussionstyp": null
+      },
+      "patient": {
+        "nachname": "Muster",
+        "vorname": "Clara",
+        "geburtsdatum": "1978-02-20",
+        "alter_jahre": 47,
+        "performance_status": {
+          "ecog": 0,
+          "karnofsky_prozent": null
+        },
+        "komorbiditaet_level": "unknown",
+        "lebenserwartung": "unknown",
+        "sonstige_fachkliniken_bereiche": []
+      },
+      "anmeldung": {
+        "anmeldender_arzt": {
+          "name": "Mustermann",
+          "abteilung": "Uro"
+        }
+      },
+      "fragestellung": "Malignitätskriterien?",
+      "anamnese_freitext": "Zystische Läsion Bosniak IV (2,5 cm) an der rechten Niere. Keine relevanten Vorerkrankungen.",
+      "nebendiagnosen": [],
+      "medikation": [],
+      "entitaeten": [
+        {
+          "entity_id": "E1",
+          "entitaet_typ": "nierentumor_verdacht",
+          "diagnose_kurz": "Zystische Läsion Bosniak IV, 2,5 cm, rechte Niere",
+          "stadium_oder_risikoklasse": "nicht-metastasiert (Verdacht, prätherapeutisch)",
+          "klassifikation": {
+            "tnm_clinical": {
+              "T": "unknown",
+              "T_sub": "unknown",
+              "N": "unknown",
+              "M": "M0",
+              "stage_group": "unknown"
+            },
+            "tnm_pathological": {
+              "T": null,
+              "T_sub": null,
+              "N": null,
+              "M": null,
+              "stage_group": null
+            },
+            "isup_gleason": null,
+            "grad": null,
+            "icd": null,
+            "icdo": null
+          },
+          "quick_access": {
+            "metastatic": false,
+            "rcc_histologie_klarzellig": null,
+            "imdc_risiko": null,
+            "ici_kombination_durchfuehrbar": null,
+            "vorherige_systemtherapien": []
+          },
+          "schema_inputs": {
+            "schema1_mccrcc": {
+              "anwendbar": false,
+              "imdc_risiko": null,
+              "ici_kombination_durchfuehrbar": null,
+              "vorherige_systemtherapien": []
+            },
+            "schema2_nmrcc": {
+              "anwendbar": true,
+              "patient": {
+                "age_years": 47,
+                "comorbidity_level": "unknown",
+                "life_expectancy": "unknown"
+              },
+              "tumor": {
+                "metastatic": false,
+                "tumor_size_cm": 2.5,
+                "tumor_confined_to_kidney": "unknown",
+                "local_extension": {
+                  "major_veins_or_perinephric_tissues_involved": "unknown",
+                  "beyond_gerotas_fascia": "unknown",
+                  "ipsilateral_adrenal_gland_invasion_contiguous": "unknown"
+                },
+                "venous_involvement": {
+                  "renal_vein_involved": "unknown",
+                  "renal_sinus_fat_involved": "unknown",
+                  "inferior_vena_cava_involved": "unknown",
+                  "ivc_level": "unknown"
+                },
+                "regional_nodes": {
+                  "status": "unknown",
+                  "suspicious_or_enlarged_lymph_nodes": "unknown"
+                },
+                "distant_metastases": {
+                  "status": "M0"
+                },
+                "clinical_T_category": "unknown",
+                "clinical_T_subcategory": "unknown",
+                "clinical_N_category": "unknown",
+                "clinical_M_category": "M0",
+                "clinical_stage_group": "unknown",
+                "tumor_size_category": "klein",
+                "nephron_sparing_technically_possible": "unknown",
+                "local_findings_allow_minimally_invasive": "unknown",
+                "adrenal_suspicion_imaging_or_intraop": "unknown"
+              },
+              "surgery_context": {
+                "planned_procedure": "unknown",
+                "approach_preference": "unknown",
+                "surgeon_experience_drives_choice": true,
+                "ischemia_expected": "unknown"
+              },
+              "pathology_postop": {
+                "margin_status": "unknown",
+                "tumor_bed_macroscopically_unremarkable": "unknown"
+              }
+            }
+          },
+          "rcc_spezifisch": {
+            "histologie": {
+              "subtyp": null,
+              "klarzellig": null,
+              "sarcomatoid": null,
+              "rhabdoid": null,
+              "grading_system": null,
+              "grading_value": null
+            },
+            "imdc": {
+              "kategorie": null,
+              "risikofaktoren_structured": {
+                "karnofsky_prozent": null,
+                "intervall_diagnose_bis_systemtherapie_monate": null,
+                "haemoglobin_unter_norm": null,
+                "korrigiertes_calcium_ueber_norm": null,
+                "neutrophile_ueber_norm": null,
+                "thrombozyten_ueber_norm": null
+              },
+              "laborwerte_optional": {
+                "haemoglobin": {
+                  "wert": null,
+                  "einheit": "g/dl",
+                  "datum": null,
+                  "flag_unter_norm": null
+                },
+                "calcium_korrigiert": {
+                  "wert": null,
+                  "einheit": "mmol/l",
+                  "datum": null,
+                  "flag_ueber_norm": null
+                },
+                "neutrophile": {
+                  "wert": null,
+                  "einheit": "G/l",
+                  "datum": null,
+                  "flag_ueber_norm": null
+                },
+                "thrombozyten": {
+                  "wert": null,
+                  "einheit": "G/l",
+                  "datum": null,
+                  "flag_ueber_norm": null
+                }
+              }
+            },
+            "systemtherapie_kontext": {
+              "ici_kombination_durchfuehrbar": null,
+              "gruende_wenn_nein": [],
+              "vorherige_systemtherapien": [],
+              "therapielinien": []
+            }
+          },
+          "molekular": {
+            "brca": null,
+            "pd_l1": null,
+            "sonstige": []
+          },
+          "marker_oder_labor": {
+            "psa": {
+              "initial": null,
+              "verlauf": [],
+              "einheit": "ng/ml"
+            },
+            "tumormarker": {
+              "hodenmarker": {
+                "afp": {
+                  "initial": null,
+                  "verlauf": [],
+                  "einheit": "ng/ml"
+                },
+                "bhcg": {
+                  "initial": null,
+                  "verlauf": [],
+                  "einheit": "IU/l"
+                },
+                "ldh": {
+                  "initial": null,
+                  "verlauf": [],
+                  "einheit": "U/l"
+                }
+              }
+            },
+            "labor_allgemein": [],
+            "sonstige": []
+          },
+          "bildgebung": [
+            {
+              "modalitaet": "MRT",
+              "region": "Niere",
+              "datum": "2025-12-01",
+              "befund_kurz": "Zystische Läsion Bosniak IV, 2,5 cm, rechte Niere.",
+              "quelle": "Erforderliche Bildgebung"
+            }
+          ],
+          "pathologie": [],
+          "therapien_und_eingriffe": [],
+          "kommentar": "Bosniak IV als hochgradig malignitätsverdächtig dokumentiert; genaue Lokalisation/RENAL-Score nicht angegeben -> OP-Zugang/Ablation abhängig von Lage und Machbarkeit."
+        }
+      ],
+      "geplantes_therapiekonzept": "Nierenteilresektion robotisch vs. laparoskopisch vs. offen vs. Ablation.",
+      "erforderliche_befunde": {
+        "bildgebung": [
+          "MRT Niere 12/2025 (Bosniak IV, 2,5 cm rechts)"
+        ],
+        "pathologie": [],
+        "labor": [],
+        "sonstiges": [
+          "Lokalisation/Komplexität (RENAL-Score) zur Wahl OP-Zugang vs Ablation"
+        ]
+      }
+    },
+    {
+      "case_meta": {
+        "fallnummer": "2100010004",
+        "datum_vorstellung": null,
+        "tumorboard": null,
+        "diskussionstyp": null
+      },
+      "patient": {
+        "nachname": "Beispiel",
+        "vorname": "Daniel",
+        "geburtsdatum": "1948-09-09",
+        "alter_jahre": 77,
+        "performance_status": {
+          "ecog": 2,
+          "karnofsky_prozent": null
+        },
+        "komorbiditaet_level": "hoch",
+        "lebenserwartung": "unknown",
+        "sonstige_fachkliniken_bereiche": []
+      },
+      "anmeldung": {
+        "anmeldender_arzt": {
+          "name": "Beispiel",
+          "abteilung": "Uro"
+        }
+      },
+      "fragestellung": "Malignitätskriterien? Therapiekonzept?",
+      "anamnese_freitext": "Zufallsbefund: Nierentumor links 2,1 cm bei Urolithiasis. Vorerkrankungen: KHK (Z. n. Stent 2016), CKD G3b, arterielle Hypertonie. Z. n. Hüft-TEP.",
+      "nebendiagnosen": [
+        "KHK (Z. n. Stent 2016)",
+        "CKD G3b",
+        "arterielle Hypertonie",
+        "Z. n. Hüft-TEP"
+      ],
+      "medikation": [
+        {
+          "wirkstoff_oder_klasse": "ASS",
+          "details": null
+        },
+        {
+          "wirkstoff_oder_klasse": "Betablocker",
+          "details": null
+        },
+        {
+          "wirkstoff_oder_klasse": "Statin",
+          "details": null
+        },
+        {
+          "wirkstoff_oder_klasse": "ACE-Hemmer",
+          "details": null
+        }
+      ],
+      "entitaeten": [
+        {
+          "entity_id": "E1",
+          "entitaet_typ": "nierentumor_verdacht",
+          "diagnose_kurz": "Unklare Raumforderung linke Niere (Oberpol) 2,1 cm, malignitätskriterien vorhanden",
+          "stadium_oder_risikoklasse": "nicht-metastasiert (Verdacht, prätherapeutisch)",
+          "klassifikation": {
+            "tnm_clinical": {
+              "T": "unknown",
+              "T_sub": "unknown",
+              "N": "unknown",
+              "M": "M0",
+              "stage_group": "unknown"
+            },
+            "tnm_pathological": {
+              "T": null,
+              "T_sub": null,
+              "N": null,
+              "M": null,
+              "stage_group": null
+            },
+            "isup_gleason": null,
+            "grad": null,
+            "icd": null,
+            "icdo": null
+          },
+          "quick_access": {
+            "metastatic": false,
+            "rcc_histologie_klarzellig": null,
+            "imdc_risiko": null,
+            "ici_kombination_durchfuehrbar": null,
+            "vorherige_systemtherapien": []
+          },
+          "schema_inputs": {
+            "schema1_mccrcc": {
+              "anwendbar": false,
+              "imdc_risiko": null,
+              "ici_kombination_durchfuehrbar": null,
+              "vorherige_systemtherapien": []
+            },
+            "schema2_nmrcc": {
+              "anwendbar": true,
+              "patient": {
+                "age_years": 77,
+                "comorbidity_level": "hoch",
+                "life_expectancy": "unknown"
+              },
+              "tumor": {
+                "metastatic": false,
+                "tumor_size_cm": 2.1,
+                "tumor_confined_to_kidney": "unknown",
+                "local_extension": {
+                  "major_veins_or_perinephric_tissues_involved": "unknown",
+                  "beyond_gerotas_fascia": "unknown",
+                  "ipsilateral_adrenal_gland_invasion_contiguous": "unknown"
+                },
+                "venous_involvement": {
+                  "renal_vein_involved": "unknown",
+                  "renal_sinus_fat_involved": "unknown",
+                  "inferior_vena_cava_involved": "unknown",
+                  "ivc_level": "unknown"
+                },
+                "regional_nodes": {
+                  "status": "unknown",
+                  "suspicious_or_enlarged_lymph_nodes": "unknown"
+                },
+                "distant_metastases": {
+                  "status": "M0"
+                },
+                "clinical_T_category": "unknown",
+                "clinical_T_subcategory": "unknown",
+                "clinical_N_category": "unknown",
+                "clinical_M_category": "M0",
+                "clinical_stage_group": "unknown",
+                "tumor_size_category": "klein",
+                "nephron_sparing_technically_possible": "unknown",
+                "local_findings_allow_minimally_invasive": "unknown",
+                "adrenal_suspicion_imaging_or_intraop": "unknown"
+              },
+              "surgery_context": {
+                "planned_procedure": "unknown",
+                "approach_preference": "unknown",
+                "surgeon_experience_drives_choice": true,
+                "ischemia_expected": "unknown"
+              },
+              "pathology_postop": {
+                "margin_status": "unknown",
+                "tumor_bed_macroscopically_unremarkable": "unknown"
+              }
+            }
+          },
+          "rcc_spezifisch": {
+            "histologie": {
+              "subtyp": null,
+              "klarzellig": null,
+              "sarcomatoid": null,
+              "rhabdoid": null,
+              "grading_system": null,
+              "grading_value": null
+            },
+            "imdc": {
+              "kategorie": null,
+              "risikofaktoren_structured": {
+                "karnofsky_prozent": null,
+                "intervall_diagnose_bis_systemtherapie_monate": null,
+                "haemoglobin_unter_norm": null,
+                "korrigiertes_calcium_ueber_norm": null,
+                "neutrophile_ueber_norm": null,
+                "thrombozyten_ueber_norm": null
+              },
+              "laborwerte_optional": {
+                "haemoglobin": {
+                  "wert": null,
+                  "einheit": "g/dl",
+                  "datum": null,
+                  "flag_unter_norm": null
+                },
+                "calcium_korrigiert": {
+                  "wert": null,
+                  "einheit": "mmol/l",
+                  "datum": null,
+                  "flag_ueber_norm": null
+                },
+                "neutrophile": {
+                  "wert": null,
+                  "einheit": "G/l",
+                  "datum": null,
+                  "flag_ueber_norm": null
+                },
+                "thrombozyten": {
+                  "wert": null,
+                  "einheit": "G/l",
+                  "datum": null,
+                  "flag_ueber_norm": null
+                }
+              }
+            },
+            "systemtherapie_kontext": {
+              "ici_kombination_durchfuehrbar": null,
+              "gruende_wenn_nein": [],
+              "vorherige_systemtherapien": [],
+              "therapielinien": []
+            }
+          },
+          "molekular": {
+            "brca": null,
+            "pd_l1": null,
+            "sonstige": []
+          },
+          "marker_oder_labor": {
+            "psa": {
+              "initial": null,
+              "verlauf": [],
+              "einheit": "ng/ml"
+            },
+            "tumormarker": {
+              "hodenmarker": {
+                "afp": {
+                  "initial": null,
+                  "verlauf": [],
+                  "einheit": "ng/ml"
+                },
+                "bhcg": {
+                  "initial": null,
+                  "verlauf": [],
+                  "einheit": "IU/l"
+                },
+                "ldh": {
+                  "initial": null,
+                  "verlauf": [],
+                  "einheit": "U/l"
+                }
+              }
+            },
+            "labor_allgemein": [],
+            "sonstige": []
+          },
+          "bildgebung": [
+            {
+              "modalitaet": "MRT",
+              "region": "Niere",
+              "datum": "2025-11-01",
+              "befund_kurz": "Unklare Raumforderung linke Niere am Oberpol, ca. 2,1 cm; Malignitätskriterien vorhanden.",
+              "quelle": "Erforderlicher Befund"
+            }
+          ],
+          "pathologie": [],
+          "therapien_und_eingriffe": [
+            {
+              "datum": "2016-01-01",
+              "typ": "Kardiologie/Intervention",
+              "beschreibung": "Koronarstent",
+              "intent": "nicht-onkologisch",
+              "details": "Z. n. Stent 2016"
+            },
+            {
+              "datum": null,
+              "typ": "Operation",
+              "beschreibung": "Hüft-TEP",
+              "intent": "nicht-onkologisch",
+              "details": null
+            }
+          ],
+          "kommentar": "Aktive Überwachung aufgrund Alter/ECOG 2/Komorbidität bevorzugt; Intervention nur bei Progress; Kontrollbildgebung in 6 Monaten geplant."
+        }
+      ],
+      "geplantes_therapiekonzept": "OP vs Ablation vs Überwachung; Überwachung wegen Alter und Komorbiditäten bevorzugt; Intervention nur bei Progress; erneute Bildgebung in 6 Monaten.",
+      "erforderliche_befunde": {
+        "bildgebung": [
+          "MRT Niere 11/2025 (Oberpol links, 2,1 cm, malignitätsverdächtig)",
+          "Kontrollbildgebung in 6 Monaten"
+        ],
+        "pathologie": [],
+        "labor": [],
+        "sonstiges": [
+          "OP-Risiko/Komorbidität (KHK, CKD G3b) für AS vs Ablation vs OP bewerten"
+        ]
+      }
+    },
+    {
+      "case_meta": {
+        "fallnummer": "2100010005",
+        "datum_vorstellung": null,
+        "tumorboard": null,
+        "diskussionstyp": null
+      },
+      "patient": {
+        "nachname": "Muster",
+        "vorname": "Emil",
+        "geburtsdatum": "1982-03-03",
+        "alter_jahre": 43,
+        "performance_status": {
+          "ecog": 0,
+          "karnofsky_prozent": null
+        },
+        "komorbiditaet_level": "unknown",
+        "lebenserwartung": "unknown",
+        "sonstige_fachkliniken_bereiche": []
+      },
+      "anmeldung": {
+        "anmeldender_arzt": {
+          "name": "Mustermann",
+          "abteilung": "Uro"
+        }
+      },
+      "fragestellung": "Beurteilung CT Abdomen vom 11.11.2025: Malignitätskriterien?",
+      "anamnese_freitext": "Nierentumor rechts 1,9 cm, endophytisch. CT-graphisch V. a. Nierenbeckentumor rechts ca. 1×1 cm. Z. n. Ureterorenoskopie rechts 11/2023.",
+      "nebendiagnosen": [],
+      "medikation": [],
+      "entitaeten": [
+        {
+          "entity_id": "E1",
+          "entitaet_typ": "oberer_harntrakt_urothelkarzinom_verdacht",
+          "diagnose_kurz": "Unklare Raumforderung Nierenbecken rechts ca. 1×1 cm (CT 11.11.2025), V. a. Nierenbeckentumor; dd: RCC endophytisch 1,9 cm",
+          "stadium_oder_risikoklasse": "unbekannt (prätherapeutisch)",
+          "klassifikation": {
+            "tnm_clinical": {
+              "T": "unknown",
+              "T_sub": "unknown",
+              "N": "unknown",
+              "M": "unknown",
+              "stage_group": "unknown"
+            },
+            "tnm_pathological": {
+              "T": null,
+              "T_sub": null,
+              "N": null,
+              "M": null,
+              "stage_group": null
+            },
+            "isup_gleason": null,
+            "grad": null,
+            "icd": null,
+            "icdo": null
+          },
+          "quick_access": {
+            "metastatic": false,
+            "rcc_histologie_klarzellig": null,
+            "imdc_risiko": null,
+            "ici_kombination_durchfuehrbar": null,
+            "vorherige_systemtherapien": []
+          },
+          "schema_inputs": {
+            "schema1_mccrcc": {
+              "anwendbar": false,
+              "imdc_risiko": null,
+              "ici_kombination_durchfuehrbar": null,
+              "vorherige_systemtherapien": []
+            },
+            "schema2_nmrcc": {
+              "anwendbar": false,
+              "patient": {
+                "age_years": 43,
+                "comorbidity_level": "unknown",
+                "life_expectancy": "unknown"
+              },
+              "tumor": {
+                "metastatic": false,
+                "tumor_size_cm": null,
+                "tumor_confined_to_kidney": "unknown",
+                "local_extension": {
+                  "major_veins_or_perinephric_tissues_involved": "unknown",
+                  "beyond_gerotas_fascia": "unknown",
+                  "ipsilateral_adrenal_gland_invasion_contiguous": "unknown"
+                },
+                "venous_involvement": {
+                  "renal_vein_involved": "unknown",
+                  "renal_sinus_fat_involved": "unknown",
+                  "inferior_vena_cava_involved": "unknown",
+                  "ivc_level": "unknown"
+                },
+                "regional_nodes": {
+                  "status": "unknown",
+                  "suspicious_or_enlarged_lymph_nodes": "unknown"
+                },
+                "distant_metastases": {
+                  "status": "unknown"
+                },
+                "clinical_T_category": "unknown",
+                "clinical_T_subcategory": "unknown",
+                "clinical_N_category": "unknown",
+                "clinical_M_category": "unknown",
+                "clinical_stage_group": "unknown",
+                "tumor_size_category": "unknown",
+                "nephron_sparing_technically_possible": "unknown",
+                "local_findings_allow_minimally_invasive": "unknown",
+                "adrenal_suspicion_imaging_or_intraop": "unknown"
+              },
+              "surgery_context": {
+                "planned_procedure": "unknown",
+                "approach_preference": "unknown",
+                "surgeon_experience_drives_choice": true,
+                "ischemia_expected": "unknown"
+              },
+              "pathology_postop": {
+                "margin_status": "unknown",
+                "tumor_bed_macroscopically_unremarkable": "unknown"
+              }
+            }
+          },
+          "rcc_spezifisch": {
+            "histologie": {
+              "subtyp": null,
+              "klarzellig": null,
+              "sarcomatoid": null,
+              "rhabdoid": null,
+              "grading_system": null,
+              "grading_value": null
+            },
+            "imdc": {
+              "kategorie": null,
+              "risikofaktoren_structured": {
+                "karnofsky_prozent": null,
+                "intervall_diagnose_bis_systemtherapie_monate": null,
+                "haemoglobin_unter_norm": null,
+                "korrigiertes_calcium_ueber_norm": null,
+                "neutrophile_ueber_norm": null,
+                "thrombozyten_ueber_norm": null
+              },
+              "laborwerte_optional": {
+                "haemoglobin": {
+                  "wert": null,
+                  "einheit": "g/dl",
+                  "datum": null,
+                  "flag_unter_norm": null
+                },
+                "calcium_korrigiert": {
+                  "wert": null,
+                  "einheit": "mmol/l",
+                  "datum": null,
+                  "flag_ueber_norm": null
+                },
+                "neutrophile": {
+                  "wert": null,
+                  "einheit": "G/l",
+                  "datum": null,
+                  "flag_ueber_norm": null
+                },
+                "thrombozyten": {
+                  "wert": null,
+                  "einheit": "G/l",
+                  "datum": null,
+                  "flag_ueber_norm": null
+                }
+              }
+            },
+            "systemtherapie_kontext": {
+              "ici_kombination_durchfuehrbar": null,
+              "gruende_wenn_nein": [],
+              "vorherige_systemtherapien": [],
+              "therapielinien": []
+            }
+          },
+          "molekular": {
+            "brca": null,
+            "pd_l1": null,
+            "sonstige": []
+          },
+          "marker_oder_labor": {
+            "psa": {
+              "initial": null,
+              "verlauf": [],
+              "einheit": "ng/ml"
+            },
+            "tumormarker": {
+              "hodenmarker": {
+                "afp": {
+                  "initial": null,
+                  "verlauf": [],
+                  "einheit": "ng/ml"
+                },
+                "bhcg": {
+                  "initial": null,
+                  "verlauf": [],
+                  "einheit": "IU/l"
+                },
+                "ldh": {
+                  "initial": null,
+                  "verlauf": [],
+                  "einheit": "U/l"
+                }
+              }
+            },
+            "labor_allgemein": [],
+            "sonstige": []
+          },
+          "bildgebung": [
+            {
+              "modalitaet": "CT",
+              "region": "Abdomen (CT-Urographie/CT graphisch)",
+              "datum": "2025-11-11",
+              "befund_kurz": "Unklare Raumforderung des Nierenbeckens rechts ca. 1×1 cm, V. a. Nierenbeckentumor. Zusätzlich beschrieben: Nierentumor rechts 1,9 cm, endophytisch.",
+              "quelle": "Erforderlicher Befund"
+            }
+          ],
+          "pathologie": [],
+          "therapien_und_eingriffe": [
+            {
+              "datum": "2023-11-01",
+              "typ": "Endourologie",
+              "beschreibung": "Ureterorenoskopie rechts",
+              "intent": "diagnostisch/therapeutisch (unklar)",
+              "details": null
+            }
+          ],
+          "kommentar": "Konstellation spricht primär für V. a. UTUC (Nierenbeckenläsion). Geplantes Vorgehen ist diagnostische URS rechts mit Probeentnahme."
+        }
+      ],
+      "geplantes_therapiekonzept": "Diagnostische Ureterorenoskopie rechts mit Probeentnahme.",
+      "erforderliche_befunde": {
+        "bildgebung": [
+          "CT Abdomen 11.11.2025 (unklare Nierenbecken-RF rechts ca. 1×1 cm)"
+        ],
+        "pathologie": [
+          "Histologie/ZYTO aus geplanter URS mit Probeentnahme"
+        ],
+        "labor": [],
+        "sonstiges": []
+      }
+    },
+    {
+      "case_meta": {
+        "fallnummer": "2100010006",
+        "datum_vorstellung": null,
+        "tumorboard": null,
+        "diskussionstyp": null
+      },
+      "patient": {
+        "nachname": "Beispiel",
+        "vorname": "Felix",
+        "geburtsdatum": "1955-04-14",
+        "alter_jahre": 70,
+        "performance_status": {
+          "ecog": 1,
+          "karnofsky_prozent": null
+        },
+        "komorbiditaet_level": "unknown",
+        "lebenserwartung": "unknown",
+        "sonstige_fachkliniken_bereiche": []
+      },
+      "anmeldung": {
+        "anmeldender_arzt": {
+          "name": "Beispiel",
+          "abteilung": "Uro"
+        }
+      },
+      "fragestellung": "Malignitätskriterien vorhanden?",
+      "anamnese_freitext": "Kleiner Nierentumor links 2,7 cm, hilusnah. Vorerkrankungen: DM Typ 2, arterielle Hypertonie, Hyperlipidämie.",
+      "nebendiagnosen": [
+        "Diabetes mellitus Typ 2",
+        "arterielle Hypertonie",
+        "Hyperlipidämie"
+      ],
+      "medikation": [
+        {
+          "wirkstoff_oder_klasse": "Metformin",
+          "details": null
+        },
+        {
+          "wirkstoff_oder_klasse": "Amlodipin",
+          "details": null
+        },
+        {
+          "wirkstoff_oder_klasse": "Statin",
+          "details": null
+        }
+      ],
+      "entitaeten": [
+        {
+          "entity_id": "E1",
+          "entitaet_typ": "nierentumor_verdacht",
+          "diagnose_kurz": "Kleiner Nierentumor links 2,7 cm, hilusnah",
+          "stadium_oder_risikoklasse": "nicht-metastasiert (Verdacht, prätherapeutisch)",
+          "klassifikation": {
+            "tnm_clinical": {
+              "T": "unknown",
+              "T_sub": "unknown",
+              "N": "unknown",
+              "M": "M0",
+              "stage_group": "unknown"
+            },
+            "tnm_pathological": {
+              "T": null,
+              "T_sub": null,
+              "N": null,
+              "M": null,
+              "stage_group": null
+            },
+            "isup_gleason": null,
+            "grad": null,
+            "icd": null,
+            "icdo": null
+          },
+          "quick_access": {
+            "metastatic": false,
+            "rcc_histologie_klarzellig": null,
+            "imdc_risiko": null,
+            "ici_kombination_durchfuehrbar": null,
+            "vorherige_systemtherapien": []
+          },
+          "schema_inputs": {
+            "schema1_mccrcc": {
+              "anwendbar": false,
+              "imdc_risiko": null,
+              "ici_kombination_durchfuehrbar": null,
+              "vorherige_systemtherapien": []
+            },
+            "schema2_nmrcc": {
+              "anwendbar": true,
+              "patient": {
+                "age_years": 70,
+                "comorbidity_level": "unknown",
+                "life_expectancy": "unknown"
+              },
+              "tumor": {
+                "metastatic": false,
+                "tumor_size_cm": 2.7,
+                "tumor_confined_to_kidney": "unknown",
+                "local_extension": {
+                  "major_veins_or_perinephric_tissues_involved": "unknown",
+                  "beyond_gerotas_fascia": "unknown",
+                  "ipsilateral_adrenal_gland_invasion_contiguous": "unknown"
+                },
+                "venous_involvement": {
+                  "renal_vein_involved": "unknown",
+                  "renal_sinus_fat_involved": "unknown",
+                  "inferior_vena_cava_involved": "unknown",
+                  "ivc_level": "unknown"
+                },
+                "regional_nodes": {
+                  "status": "unknown",
+                  "suspicious_or_enlarged_lymph_nodes": "unknown"
+                },
+                "distant_metastases": {
+                  "status": "M0"
+                },
+                "clinical_T_category": "unknown",
+                "clinical_T_subcategory": "unknown",
+                "clinical_N_category": "unknown",
+                "clinical_M_category": "M0",
+                "clinical_stage_group": "unknown",
+                "tumor_size_category": "klein",
+                "nephron_sparing_technically_possible": "unknown",
+                "local_findings_allow_minimally_invasive": "unknown",
+                "adrenal_suspicion_imaging_or_intraop": "unknown"
+              },
+              "surgery_context": {
+                "planned_procedure": "unknown",
+                "approach_preference": "unknown",
+                "surgeon_experience_drives_choice": true,
+                "ischemia_expected": "unknown"
+              },
+              "pathology_postop": {
+                "margin_status": "unknown",
+                "tumor_bed_macroscopically_unremarkable": "unknown"
+              }
+            }
+          },
+          "rcc_spezifisch": {
+            "histologie": {
+              "subtyp": null,
+              "klarzellig": null,
+              "sarcomatoid": null,
+              "rhabdoid": null,
+              "grading_system": null,
+              "grading_value": null
+            },
+            "imdc": {
+              "kategorie": null,
+              "risikofaktoren_structured": {
+                "karnofsky_prozent": null,
+                "intervall_diagnose_bis_systemtherapie_monate": null,
+                "haemoglobin_unter_norm": null,
+                "korrigiertes_calcium_ueber_norm": null,
+                "neutrophile_ueber_norm": null,
+                "thrombozyten_ueber_norm": null
+              },
+              "laborwerte_optional": {
+                "haemoglobin": {
+                  "wert": null,
+                  "einheit": "g/dl",
+                  "datum": null,
+                  "flag_unter_norm": null
+                },
+                "calcium_korrigiert": {
+                  "wert": null,
+                  "einheit": "mmol/l",
+                  "datum": null,
+                  "flag_ueber_norm": null
+                },
+                "neutrophile": {
+                  "wert": null,
+                  "einheit": "G/l",
+                  "datum": null,
+                  "flag_ueber_norm": null
+                },
+                "thrombozyten": {
+                  "wert": null,
+                  "einheit": "G/l",
+                  "datum": null,
+                  "flag_ueber_norm": null
+                }
+              }
+            },
+            "systemtherapie_kontext": {
+              "ici_kombination_durchfuehrbar": null,
+              "gruende_wenn_nein": [],
+              "vorherige_systemtherapien": [],
+              "therapielinien": []
+            }
+          },
+          "molekular": {
+            "brca": null,
+            "pd_l1": null,
+            "sonstige": []
+          },
+          "marker_oder_labor": {
+            "psa": {
+              "initial": null,
+              "verlauf": [],
+              "einheit": "ng/ml"
+            },
+            "tumormarker": {
+              "hodenmarker": {
+                "afp": {
+                  "initial": null,
+                  "verlauf": [],
+                  "einheit": "ng/ml"
+                },
+                "bhcg": {
+                  "initial": null,
+                  "verlauf": [],
+                  "einheit": "IU/l"
+                },
+                "ldh": {
+                  "initial": null,
+                  "verlauf": [],
+                  "einheit": "U/l"
+                }
+              }
+            },
+            "labor_allgemein": [],
+            "sonstige": []
+          },
+          "bildgebung": [
+            {
+              "modalitaet": "CT",
+              "region": "Abdomen",
+              "datum": "2025-12-10",
+              "befund_kurz": "Kleiner Nierentumor links, hilusnah (2,7 cm).",
+              "quelle": "Erforderlicher Befund"
+            }
+          ],
+          "pathologie": [],
+          "therapien_und_eingriffe": [],
+          "kommentar": "Hilusnahe Lage -> partielle Nephrektomie technisch anspruchsvoll; daher Diskussion Ablation vs OP vs Surveillance."
+        }
+      ],
+      "geplantes_therapiekonzept": "Partielle Nephrektomie technisch anspruchsvoll → Diskussion Ablation vs. OP vs. Surveillance.",
+      "erforderliche_befunde": {
+        "bildgebung": [
+          "CT Abdomen 10.12.2025 (hilusnaher Nierentumor links, 2,7 cm)"
+        ],
+        "pathologie": [],
+        "labor": [],
+        "sonstiges": [
+          "Lokalisation/Komplexität (RENAL-Score) zur Machbarkeit Teilresektion vs Ablation"
+        ]
+      }
+    },
+    {
+      "case_meta": {
+        "fallnummer": "2200020001",
+        "datum_vorstellung": null,
+        "tumorboard": null,
+        "diskussionstyp": null
+      },
+      "patient": {
+        "nachname": "Muster",
+        "vorname": "Georg",
+        "geburtsdatum": "1964-01-01",
+        "alter_jahre": 61,
+        "performance_status": {
+          "ecog": 0,
+          "karnofsky_prozent": null
+        },
+        "komorbiditaet_level": "unknown",
+        "lebenserwartung": "unknown",
+        "sonstige_fachkliniken_bereiche": []
+      },
+      "anmeldung": {
+        "anmeldender_arzt": {
+          "name": "Mustermann",
+          "abteilung": "Uro"
+        }
+      },
+      "fragestellung": "Malignitätskriterien? Metastasen?",
+      "anamnese_freitext": "Nierentumor links 4,6 cm (cT1b). Raucher: ex 15 PY. Z. n. Cholezystektomie.",
+      "nebendiagnosen": [
+        "Ex-Raucher (15 PY)",
+        "Z. n. Cholezystektomie"
+      ],
+      "medikation": [],
+      "entitaeten": [
+        {
+          "entity_id": "E1",
+          "entitaet_typ": "nierentumor_verdacht",
+          "diagnose_kurz": "Nierentumor links (Oberpol) 4,6 cm, malignitätsverdächtig (cT1b), keine Metastasen im CT-Staging",
+          "stadium_oder_risikoklasse": "cT1b, M0 (radiologisch), prätherapeutisch",
+          "klassifikation": {
+            "tnm_clinical": {
+              "T": "T1",
+              "T_sub": "T1b",
+              "N": "N0",
+              "M": "M0",
+              "stage_group": "unknown"
+            },
+            "tnm_pathological": {
+              "T": null,
+              "T_sub": null,
+              "N": null,
+              "M": null,
+              "stage_group": null
+            },
+            "isup_gleason": null,
+            "grad": null,
+            "icd": null,
+            "icdo": null
+          },
+          "quick_access": {
+            "metastatic": false,
+            "rcc_histologie_klarzellig": null,
+            "imdc_risiko": null,
+            "ici_kombination_durchfuehrbar": null,
+            "vorherige_systemtherapien": []
+          },
+          "schema_inputs": {
+            "schema1_mccrcc": {
+              "anwendbar": false,
+              "imdc_risiko": null,
+              "ici_kombination_durchfuehrbar": null,
+              "vorherige_systemtherapien": []
+            },
+            "schema2_nmrcc": {
+              "anwendbar": true,
+              "patient": {
+                "age_years": 61,
+                "comorbidity_level": "unknown",
+                "life_expectancy": "unknown"
+              },
+              "tumor": {
+                "metastatic": false,
+                "tumor_size_cm": 4.6,
+                "tumor_confined_to_kidney": "unknown",
+                "local_extension": {
+                  "major_veins_or_perinephric_tissues_involved": "unknown",
+                  "beyond_gerotas_fascia": "unknown",
+                  "ipsilateral_adrenal_gland_invasion_contiguous": "unknown"
+                },
+                "venous_involvement": {
+                  "renal_vein_involved": "unknown",
+                  "renal_sinus_fat_involved": "unknown",
+                  "inferior_vena_cava_involved": "unknown",
+                  "ivc_level": "unknown"
+                },
+                "regional_nodes": {
+                  "status": "unknown",
+                  "suspicious_or_enlarged_lymph_nodes": "unknown"
+                },
+                "distant_metastases": {
+                  "status": "M0"
+                },
+                "clinical_T_category": "T1",
+                "clinical_T_subcategory": "T1b",
+                "clinical_N_category": "N0",
+                "clinical_M_category": "M0",
+                "clinical_stage_group": "unknown",
+                "tumor_size_category": "unknown",
+                "nephron_sparing_technically_possible": "unknown",
+                "local_findings_allow_minimally_invasive": "unknown",
+                "adrenal_suspicion_imaging_or_intraop": "unknown"
+              },
+              "surgery_context": {
+                "planned_procedure": "unknown",
+                "approach_preference": "unknown",
+                "surgeon_experience_drives_choice": true,
+                "ischemia_expected": "unknown"
+              },
+              "pathology_postop": {
+                "margin_status": "unknown",
+                "tumor_bed_macroscopically_unremarkable": "unknown"
+              }
+            }
+          },
+          "rcc_spezifisch": {
+            "histologie": {
+              "subtyp": null,
+              "klarzellig": null,
+              "sarcomatoid": null,
+              "rhabdoid": null,
+              "grading_system": null,
+              "grading_value": null
+            },
+            "imdc": {
+              "kategorie": null,
+              "risikofaktoren_structured": {
+                "karnofsky_prozent": null,
+                "intervall_diagnose_bis_systemtherapie_monate": null,
+                "haemoglobin_unter_norm": null,
+                "korrigiertes_calcium_ueber_norm": null,
+                "neutrophile_ueber_norm": null,
+                "thrombozyten_ueber_norm": null
+              },
+              "laborwerte_optional": {
+                "haemoglobin": {
+                  "wert": null,
+                  "einheit": "g/dl",
+                  "datum": null,
+                  "flag_unter_norm": null
+                },
+                "calcium_korrigiert": {
+                  "wert": null,
+                  "einheit": "mmol/l",
+                  "datum": null,
+                  "flag_ueber_norm": null
+                },
+                "neutrophile": {
+                  "wert": null,
+                  "einheit": "G/l",
+                  "datum": null,
+                  "flag_ueber_norm": null
+                },
+                "thrombozyten": {
+                  "wert": null,
+                  "einheit": "G/l",
+                  "datum": null,
+                  "flag_ueber_norm": null
+                }
+              }
+            },
+            "systemtherapie_kontext": {
+              "ici_kombination_durchfuehrbar": null,
+              "gruende_wenn_nein": [],
+              "vorherige_systemtherapien": [],
+              "therapielinien": []
+            }
+          },
+          "molekular": {
+            "brca": null,
+            "pd_l1": null,
+            "sonstige": []
+          },
+          "marker_oder_labor": {
+            "psa": {
+              "initial": null,
+              "verlauf": [],
+              "einheit": "ng/ml"
+            },
+            "tumormarker": {
+              "hodenmarker": {
+                "afp": {
+                  "initial": null,
+                  "verlauf": [],
+                  "einheit": "ng/ml"
+                },
+                "bhcg": {
+                  "initial": null,
+                  "verlauf": [],
+                  "einheit": "IU/l"
+                },
+                "ldh": {
+                  "initial": null,
+                  "verlauf": [],
+                  "einheit": "U/l"
+                }
+              }
+            },
+            "labor_allgemein": [],
+            "sonstige": []
+          },
+          "bildgebung": [
+            {
+              "modalitaet": "CT",
+              "region": "Staging Thorax/Abdomen",
+              "datum": "2025-10-11",
+              "befund_kurz": "Unklare Raumforderung linke Niere (Oberpol) ca. 4,6 cm (cT1b), malignitätsverdächtig. Kein Hinweis auf Filiae/Metastasen.",
+              "quelle": "Erforderlicher Befund"
+            }
+          ],
+          "pathologie": [],
+          "therapien_und_eingriffe": [],
+          "kommentar": "CT-Staging ohne Metastasenhinweis -> M0 radiologisch. OP-Strategie (Teil- vs radikal) abhängig von Lage/Komplexität."
+        }
+      ],
+      "geplantes_therapiekonzept": "Partielle vs. radikale Nephrektomie je nach Lage/Komplexität.",
+      "erforderliche_befunde": {
+        "bildgebung": [
+          "CT Staging Thorax/Abdomen 11.10.2025 (4,6 cm Oberpol links, cT1b, keine Filiae)"
+        ],
+        "pathologie": [],
+        "labor": [],
+        "sonstiges": [
+          "Lokalisation/Komplexität (RENAL-Score) zur Entscheidung Teil- vs radikale Nephrektomie"
+        ]
+      }
+    },
+    {
+      "case_meta": {
+        "fallnummer": "2200020002",
+        "datum_vorstellung": null,
+        "tumorboard": null,
+        "diskussionstyp": null
+      },
+      "patient": {
+        "nachname": "Beispiel",
+        "vorname": "Hanna",
+        "geburtsdatum": "1950-12-12",
+        "alter_jahre": 75,
+        "performance_status": {
+          "ecog": 2,
+          "karnofsky_prozent": null
+        },
+        "komorbiditaet_level": "hoch",
+        "lebenserwartung": "unknown",
+        "sonstige_fachkliniken_bereiche": []
+      },
+      "anmeldung": {
+        "anmeldender_arzt": {
+          "name": "Beispiel",
+          "abteilung": "Uro"
+        }
+      },
+      "fragestellung": "Malignitätskriterien im CT Abdomen vom 09.12.2025?",
+      "anamnese_freitext": "Großer Tumor rechte Niere 7,5 cm (cT2a). Vorerkrankungen: CKD G3, arterielle Hypertonie, Vorhofflimmern (DOAK). Z. n. TUR-B 2019 ohne Malignität.",
+      "nebendiagnosen": [
+        "CKD G3",
+        "arterielle Hypertonie",
+        "Vorhofflimmern (Antikoagulation mit DOAK)",
+        "Z. n. TUR-B 2019 (ohne Malignität)"
+      ],
+      "medikation": [
+        {
+          "wirkstoff_oder_klasse": "DOAK",
+          "details": "bei Vorhofflimmern"
+        },
+        {
+          "wirkstoff_oder_klasse": "Betablocker",
+          "details": null
+        },
+        {
+          "wirkstoff_oder_klasse": "ACE-Hemmer",
+          "details": null
+        }
+      ],
+      "entitaeten": [
+        {
+          "entity_id": "E1",
+          "entitaet_typ": "nierentumor_verdacht",
+          "diagnose_kurz": "Großer Nierentumor rechts (Oberpol) ca. 7,5 × 6,5 cm, V. a. RCC (cT2a, prätherapeutisch)",
+          "stadium_oder_risikoklasse": "cT2a, Staging inkomplett (CT Thorax ausstehend)",
+          "klassifikation": {
+            "tnm_clinical": {
+              "T": "T2",
+              "T_sub": "T2a",
+              "N": "unknown",
+              "M": "unknown",
+              "stage_group": "unknown"
+            },
+            "tnm_pathological": {
+              "T": null,
+              "T_sub": null,
+              "N": null,
+              "M": null,
+              "stage_group": null
+            },
+            "isup_gleason": null,
+            "grad": null,
+            "icd": null,
+            "icdo": null
+          },
+          "quick_access": {
+            "metastatic": null,
+            "rcc_histologie_klarzellig": null,
+            "imdc_risiko": null,
+            "ici_kombination_durchfuehrbar": null,
+            "vorherige_systemtherapien": []
+          },
+          "schema_inputs": {
+            "schema1_mccrcc": {
+              "anwendbar": false,
+              "imdc_risiko": null,
+              "ici_kombination_durchfuehrbar": null,
+              "vorherige_systemtherapien": []
+            },
+            "schema2_nmrcc": {
+              "anwendbar": true,
+              "patient": {
+                "age_years": 75,
+                "comorbidity_level": "hoch",
+                "life_expectancy": "unknown"
+              },
+              "tumor": {
+                "metastatic": false,
+                "tumor_size_cm": 7.5,
+                "tumor_confined_to_kidney": "unknown",
+                "local_extension": {
+                  "major_veins_or_perinephric_tissues_involved": "unknown",
+                  "beyond_gerotas_fascia": "unknown",
+                  "ipsilateral_adrenal_gland_invasion_contiguous": "unknown"
+                },
+                "venous_involvement": {
+                  "renal_vein_involved": "unknown",
+                  "renal_sinus_fat_involved": "unknown",
+                  "inferior_vena_cava_involved": "unknown",
+                  "ivc_level": "unknown"
+                },
+                "regional_nodes": {
+                  "status": "unknown",
+                  "suspicious_or_enlarged_lymph_nodes": "unknown"
+                },
+                "distant_metastases": {
+                  "status": "unknown"
+                },
+                "clinical_T_category": "T2",
+                "clinical_T_subcategory": "T2a",
+                "clinical_N_category": "unknown",
+                "clinical_M_category": "unknown",
+                "clinical_stage_group": "unknown",
+                "tumor_size_category": "unknown",
+                "nephron_sparing_technically_possible": "unknown",
+                "local_findings_allow_minimally_invasive": "unknown",
+                "adrenal_suspicion_imaging_or_intraop": "unknown"
+              },
+              "surgery_context": {
+                "planned_procedure": "radikale_nephrektomie",
+                "approach_preference": "unknown",
+                "surgeon_experience_drives_choice": true,
+                "ischemia_expected": "unknown"
+              },
+              "pathology_postop": {
+                "margin_status": "unknown",
+                "tumor_bed_macroscopically_unremarkable": "unknown"
+              }
+            }
+          },
+          "rcc_spezifisch": {
+            "histologie": {
+              "subtyp": null,
+              "klarzellig": null,
+              "sarcomatoid": null,
+              "rhabdoid": null,
+              "grading_system": null,
+              "grading_value": null
+            },
+            "imdc": {
+              "kategorie": null,
+              "risikofaktoren_structured": {
+                "karnofsky_prozent": null,
+                "intervall_diagnose_bis_systemtherapie_monate": null,
+                "haemoglobin_unter_norm": null,
+                "korrigiertes_calcium_ueber_norm": null,
+                "neutrophile_ueber_norm": null,
+                "thrombozyten_ueber_norm": null
+              },
+              "laborwerte_optional": {
+                "haemoglobin": {
+                  "wert": null,
+                  "einheit": "g/dl",
+                  "datum": null,
+                  "flag_unter_norm": null
+                },
+                "calcium_korrigiert": {
+                  "wert": null,
+                  "einheit": "mmol/l",
+                  "datum": null,
+                  "flag_ueber_norm": null
+                },
+                "neutrophile": {
+                  "wert": null,
+                  "einheit": "G/l",
+                  "datum": null,
+                  "flag_ueber_norm": null
+                },
+                "thrombozyten": {
+                  "wert": null,
+                  "einheit": "G/l",
+                  "datum": null,
+                  "flag_ueber_norm": null
+                }
+              }
+            },
+            "systemtherapie_kontext": {
+              "ici_kombination_durchfuehrbar": null,
+              "gruende_wenn_nein": [],
+              "vorherige_systemtherapien": [],
+              "therapielinien": []
+            }
+          },
+          "molekular": {
+            "brca": null,
+            "pd_l1": null,
+            "sonstige": []
+          },
+          "marker_oder_labor": {
+            "psa": {
+              "initial": null,
+              "verlauf": [],
+              "einheit": "ng/ml"
+            },
+            "tumormarker": {
+              "hodenmarker": {
+                "afp": {
+                  "initial": null,
+                  "verlauf": [],
+                  "einheit": "ng/ml"
+                },
+                "bhcg": {
+                  "initial": null,
+                  "verlauf": [],
+                  "einheit": "IU/l"
+                },
+                "ldh": {
+                  "initial": null,
+                  "verlauf": [],
+                  "einheit": "U/l"
+                }
+              }
+            },
+            "labor_allgemein": [],
+            "sonstige": []
+          },
+          "bildgebung": [
+            {
+              "modalitaet": "CT",
+              "region": "Abdomen",
+              "datum": "2025-12-09",
+              "befund_kurz": "V. a. Nierenzellkarzinom rechte Niere am Oberpol ca. 7,5 × 6,5 cm (cT2a).",
+              "quelle": "Erforderlicher Befund"
+            }
+          ],
+          "pathologie": [
+            {
+              "datum": "2019-01-01",
+              "material": "TUR-B",
+              "diagnose": "kein Malignitätsnachweis",
+              "details": null
+            }
+          ],
+          "therapien_und_eingriffe": [
+            {
+              "datum": "2019-01-01",
+              "typ": "Operation",
+              "beschreibung": "TUR-B",
+              "intent": "diagnostisch/therapeutisch (nicht-onkologisch relevant)",
+              "details": "ohne Malignität"
+            }
+          ],
+          "kommentar": "Staging aktuell unvollständig (CT Thorax geplant). Perioperatives Antikoagulationsmanagement (DOAK) erforderlich. Bei fehlender Metastasierung: radikale Nephrektomie rechts."
+        }
+      ],
+      "geplantes_therapiekonzept": "Perioperatives Antikoagulationsmanagement; Komplettierung Staging mittels CT Thorax; sofern keine Metastasen: radikale Nephrektomie rechts.",
+      "erforderliche_befunde": {
+        "bildgebung": [
+          "CT Abdomen 09.12.2025 (7,5 × 6,5 cm Oberpol rechts, V. a. RCC, cT2a)",
+          "CT Thorax (Staging, ausstehend)"
+        ],
+        "pathologie": [],
+        "labor": [],
+        "sonstiges": [
+          "Perioperatives DOAK-Management/Bridging-Plan (interdisziplinär)"
+        ]
+      }
+    },
+    {
+      "case_meta": {
+        "fallnummer": "2200020003",
+        "datum_vorstellung": null,
+        "tumorboard": null,
+        "diskussionstyp": null
+      },
+      "patient": {
+        "nachname": "Muster",
+        "vorname": "Ivan",
+        "geburtsdatum": "1970-05-05",
+        "alter_jahre": 55,
+        "performance_status": {
+          "ecog": 0,
+          "karnofsky_prozent": null
+        },
+        "komorbiditaet_level": "unknown",
+        "lebenserwartung": "unknown",
+        "sonstige_fachkliniken_bereiche": []
+      },
+      "anmeldung": {
+        "anmeldender_arzt": {
+          "name": "Alexa",
+          "abteilung": "Uro"
+        }
+      },
+      "fragestellung": "Tumorthrombus im MRT-Abdomen vom 06.12.2025? Metastasen im CT-Thorax vom 07.12.2025?",
+      "anamnese_freitext": "Im Rahmen TAVI-Abklärung Zufallsbefund: Nierentumor links (ca. 7,8 cm) mit V. a. Infiltration/Tumorthrombus in die V. cava inferior. Vorerkrankung: arterielle Hypertonie.",
+      "nebendiagnosen": [
+        "arterielle Hypertonie"
+      ],
+      "medikation": [
+        {
+          "wirkstoff_oder_klasse": "Ramipril",
+          "details": null
+        }
+      ],
+      "entitaeten": [
+        {
+          "entity_id": "E1",
+          "entitaet_typ": "nierentumor_verdacht",
+          "diagnose_kurz": "Großer Nierentumor links ca. 7,8 × 6,9 cm mit subdiaphragmaler Infiltration/Tumorthrombus V. cava inferior (cT3b?); CT Thorax ohne Metastasen",
+          "stadium_oder_risikoklasse": "lokal fortgeschritten (V. cava-Beteiligung), M0 (CT Thorax 07.12.2025)",
+          "klassifikation": {
+            "tnm_clinical": {
+              "T": "T3",
+              "T_sub": "T3b",
+              "N": "unknown",
+              "M": "M0",
+              "stage_group": "unknown"
+            },
+            "tnm_pathological": {
+              "T": null,
+              "T_sub": null,
+              "N": null,
+              "M": null,
+              "stage_group": null
+            },
+            "isup_gleason": null,
+            "grad": null,
+            "icd": null,
+            "icdo": null
+          },
+          "quick_access": {
+            "metastatic": false,
+            "rcc_histologie_klarzellig": null,
+            "imdc_risiko": null,
+            "ici_kombination_durchfuehrbar": null,
+            "vorherige_systemtherapien": []
+          },
+          "schema_inputs": {
+            "schema1_mccrcc": {
+              "anwendbar": false,
+              "imdc_risiko": null,
+              "ici_kombination_durchfuehrbar": null,
+              "vorherige_systemtherapien": []
+            },
+            "schema2_nmrcc": {
+              "anwendbar": true,
+              "patient": {
+                "age_years": 55,
+                "comorbidity_level": "unknown",
+                "life_expectancy": "unknown"
+              },
+              "tumor": {
+                "metastatic": false,
+                "tumor_size_cm": 7.8,
+                "tumor_confined_to_kidney": "unknown",
+                "local_extension": {
+                  "major_veins_or_perinephric_tissues_involved": true,
+                  "beyond_gerotas_fascia": "unknown",
+                  "ipsilateral_adrenal_gland_invasion_contiguous": "unknown"
+                },
+                "venous_involvement": {
+                  "renal_vein_involved": "unknown",
+                  "renal_sinus_fat_involved": "unknown",
+                  "inferior_vena_cava_involved": true,
+                  "ivc_level": "below_diaphragm"
+                },
+                "regional_nodes": {
+                  "status": "unknown",
+                  "suspicious_or_enlarged_lymph_nodes": "unknown"
+                },
+                "distant_metastases": {
+                  "status": "M0"
+                },
+                "clinical_T_category": "T3",
+                "clinical_T_subcategory": "T3b",
+                "clinical_N_category": "unknown",
+                "clinical_M_category": "M0",
+                "clinical_stage_group": "unknown",
+                "tumor_size_category": "unknown",
+                "nephron_sparing_technically_possible": "unknown",
+                "local_findings_allow_minimally_invasive": "unknown",
+                "adrenal_suspicion_imaging_or_intraop": "unknown"
+              },
+              "surgery_context": {
+                "planned_procedure": "radikale_nephrektomie",
+                "approach_preference": "offen",
+                "surgeon_experience_drives_choice": true,
+                "ischemia_expected": "unknown"
+              },
+              "pathology_postop": {
+                "margin_status": "unknown",
+                "tumor_bed_macroscopically_unremarkable": "unknown"
+              }
+            }
+          },
+          "rcc_spezifisch": {
+            "histologie": {
+              "subtyp": null,
+              "klarzellig": null,
+              "sarcomatoid": null,
+              "rhabdoid": null,
+              "grading_system": null,
+              "grading_value": null
+            },
+            "imdc": {
+              "kategorie": null,
+              "risikofaktoren_structured": {
+                "karnofsky_prozent": null,
+                "intervall_diagnose_bis_systemtherapie_monate": null,
+                "haemoglobin_unter_norm": null,
+                "korrigiertes_calcium_ueber_norm": null,
+                "neutrophile_ueber_norm": null,
+                "thrombozyten_ueber_norm": null
+              },
+              "laborwerte_optional": {
+                "haemoglobin": {
+                  "wert": null,
+                  "einheit": "g/dl",
+                  "datum": null,
+                  "flag_unter_norm": null
+                },
+                "calcium_korrigiert": {
+                  "wert": null,
+                  "einheit": "mmol/l",
+                  "datum": null,
+                  "flag_ueber_norm": null
+                },
+                "neutrophile": {
+                  "wert": null,
+                  "einheit": "G/l",
+                  "datum": null,
+                  "flag_ueber_norm": null
+                },
+                "thrombozyten": {
+                  "wert": null,
+                  "einheit": "G/l",
+                  "datum": null,
+                  "flag_ueber_norm": null
+                }
+              }
+            },
+            "systemtherapie_kontext": {
+              "ici_kombination_durchfuehrbar": null,
+              "gruende_wenn_nein": [],
+              "vorherige_systemtherapien": [],
+              "therapielinien": []
+            }
+          },
+          "molekular": {
+            "brca": null,
+            "pd_l1": null,
+            "sonstige": []
+          },
+          "marker_oder_labor": {
+            "psa": {
+              "initial": null,
+              "verlauf": [],
+              "einheit": "ng/ml"
+            },
+            "tumormarker": {
+              "hodenmarker": {
+                "afp": {
+                  "initial": null,
+                  "verlauf": [],
+                  "einheit": "ng/ml"
+                },
+                "bhcg": {
+                  "initial": null,
+                  "verlauf": [],
+                  "einheit": "IU/l"
+                },
+                "ldh": {
+                  "initial": null,
+                  "verlauf": [],
+                  "einheit": "U/l"
+                }
+              }
+            },
+            "labor_allgemein": [],
+            "sonstige": []
+          },
+          "bildgebung": [
+            {
+              "modalitaet": "MRT",
+              "region": "Abdomen",
+              "datum": "2025-12-06",
+              "befund_kurz": "Hochgradiger Verdacht auf linksseitigen Nierentumor ca. 7,8 × 6,9 cm mit subdiaphragmaler Infiltration der V. cava inferior (Tumorthrombus/V.-cava-Beteiligung).",
+              "quelle": "Erforderlicher Befund"
+            },
+            {
+              "modalitaet": "CT",
+              "region": "Thorax",
+              "datum": "2025-12-07",
+              "befund_kurz": "Kein Hinweis auf Filiae/Metastasen.",
+              "quelle": "Erforderlicher Befund"
+            }
+          ],
+          "pathologie": [],
+          "therapien_und_eingriffe": [],
+          "kommentar": "V. cava-Beteiligung subdiaphragmal -> klinisch am ehesten T3b (entsprechend Schema2: IVC below diaphragm). OP-Planung: offene linksseitige Nephrektomie (wahrscheinlich mit Thrombektomie je nach intraop. Befund)."
+        }
+      ],
+      "geplantes_therapiekonzept": "OP-Planung: Nephrektomie links offen (bei V.-cava-Beteiligung ggf. Thrombektomie).",
+      "erforderliche_befunde": {
+        "bildgebung": [
+          "MRT Abdomen 06.12.2025 (7,8 × 6,9 cm links, subdiaphragmale V.-cava-Infiltration/Tumorthrombus)",
+          "CT Thorax 07.12.2025 (keine Filiae)"
+        ],
+        "pathologie": [],
+        "labor": [],
+        "sonstiges": [
+          "Interdisziplinäre OP-Planung bei V.-cava-Beteiligung (Gefäßchirurgie/Anästhesie)"
+        ]
+      }
+    },
+    {
+      "case_meta": {
+        "fallnummer": "2200020004",
+        "datum_vorstellung": null,
+        "tumorboard": null,
+        "diskussionstyp": null
+      },
+      "patient": {
+        "nachname": "Beispiel",
+        "vorname": "Julia",
+        "geburtsdatum": "1958-09-09",
+        "alter_jahre": 67,
+        "performance_status": {
+          "ecog": 1,
+          "karnofsky_prozent": null
+        },
+        "komorbiditaet_level": "unknown",
+        "lebenserwartung": "unknown",
+        "sonstige_fachkliniken_bereiche": []
+      },
+      "anmeldung": {
+        "anmeldender_arzt": {
+          "name": "Mustermann Mold",
+          "abteilung": "Uro"
+        }
+      },
+      "fragestellung": "Malignitätskriterien im CT Abdomen vom 21.11.2025?",
+      "anamnese_freitext": "Zufallsbefund: Raumforderung linke Niere ca. 5,2 × 4,5 cm im Rahmen Abklärung von Rückenschmerzen. COPD GOLD II, Raucher 30 PY.",
+      "nebendiagnosen": [
+        "COPD GOLD II",
+        "Raucher (30 PY)"
+      ],
+      "medikation": [
+        {
+          "wirkstoff_oder_klasse": "Amlodipin",
+          "details": null
+        },
+        {
+          "wirkstoff_oder_klasse": "Candesartan",
+          "details": null
+        },
+        {
+          "wirkstoff_oder_klasse": "Digitoxin",
+          "details": null
+        },
+        {
+          "wirkstoff_oder_klasse": "Atrovent (Ipratropium)",
+          "details": null
+        }
+      ],
+      "entitaeten": [
+        {
+          "entity_id": "E1",
+          "entitaet_typ": "nierentumor_verdacht",
+          "diagnose_kurz": "Raumforderung linke Niere ca. 5,2 × 4,5 cm, V. a. RCC (prätherapeutisch)",
+          "stadium_oder_risikoklasse": "Staging inkomplett (CT Thorax ausstehend)",
+          "klassifikation": {
+            "tnm_clinical": {
+              "T": "T1",
+              "T_sub": "T1b",
+              "N": "unknown",
+              "M": "unknown",
+              "stage_group": "unknown"
+            },
+            "tnm_pathological": {
+              "T": null,
+              "T_sub": null,
+              "N": null,
+              "M": null,
+              "stage_group": null
+            },
+            "isup_gleason": null,
+            "grad": null,
+            "icd": null,
+            "icdo": null
+          },
+          "quick_access": {
+            "metastatic": null,
+            "rcc_histologie_klarzellig": null,
+            "imdc_risiko": null,
+            "ici_kombination_durchfuehrbar": null,
+            "vorherige_systemtherapien": []
+          },
+          "schema_inputs": {
+            "schema1_mccrcc": {
+              "anwendbar": false,
+              "imdc_risiko": null,
+              "ici_kombination_durchfuehrbar": null,
+              "vorherige_systemtherapien": []
+            },
+            "schema2_nmrcc": {
+              "anwendbar": true,
+              "patient": {
+                "age_years": 67,
+                "comorbidity_level": "unknown",
+                "life_expectancy": "unknown"
+              },
+              "tumor": {
+                "metastatic": false,
+                "tumor_size_cm": 5.2,
+                "tumor_confined_to_kidney": "unknown",
+                "local_extension": {
+                  "major_veins_or_perinephric_tissues_involved": "unknown",
+                  "beyond_gerotas_fascia": "unknown",
+                  "ipsilateral_adrenal_gland_invasion_contiguous": "unknown"
+                },
+                "venous_involvement": {
+                  "renal_vein_involved": "unknown",
+                  "renal_sinus_fat_involved": "unknown",
+                  "inferior_vena_cava_involved": "unknown",
+                  "ivc_level": "unknown"
+                },
+                "regional_nodes": {
+                  "status": "unknown",
+                  "suspicious_or_enlarged_lymph_nodes": "unknown"
+                },
+                "distant_metastases": {
+                  "status": "unknown"
+                },
+                "clinical_T_category": "T1",
+                "clinical_T_subcategory": "T1b",
+                "clinical_N_category": "unknown",
+                "clinical_M_category": "unknown",
+                "clinical_stage_group": "unknown",
+                "tumor_size_category": "unknown",
+                "nephron_sparing_technically_possible": "unknown",
+                "local_findings_allow_minimally_invasive": "unknown",
+                "adrenal_suspicion_imaging_or_intraop": "unknown"
+              },
+              "surgery_context": {
+                "planned_procedure": "unknown",
+                "approach_preference": "unknown",
+                "surgeon_experience_drives_choice": true,
+                "ischemia_expected": "unknown"
+              },
+              "pathology_postop": {
+                "margin_status": "unknown",
+                "tumor_bed_macroscopically_unremarkable": "unknown"
+              }
+            }
+          },
+          "rcc_spezifisch": {
+            "histologie": {
+              "subtyp": null,
+              "klarzellig": null,
+              "sarcomatoid": null,
+              "rhabdoid": null,
+              "grading_system": null,
+              "grading_value": null
+            },
+            "imdc": {
+              "kategorie": null,
+              "risikofaktoren_structured": {
+                "karnofsky_prozent": null,
+                "intervall_diagnose_bis_systemtherapie_monate": null,
+                "haemoglobin_unter_norm": null,
+                "korrigiertes_calcium_ueber_norm": null,
+                "neutrophile_ueber_norm": null,
+                "thrombozyten_ueber_norm": null
+              },
+              "laborwerte_optional": {
+                "haemoglobin": {
+                  "wert": null,
+                  "einheit": "g/dl",
+                  "datum": null,
+                  "flag_unter_norm": null
+                },
+                "calcium_korrigiert": {
+                  "wert": null,
+                  "einheit": "mmol/l",
+                  "datum": null,
+                  "flag_ueber_norm": null
+                },
+                "neutrophile": {
+                  "wert": null,
+                  "einheit": "G/l",
+                  "datum": null,
+                  "flag_ueber_norm": null
+                },
+                "thrombozyten": {
+                  "wert": null,
+                  "einheit": "G/l",
+                  "datum": null,
+                  "flag_ueber_norm": null
+                }
+              }
+            },
+            "systemtherapie_kontext": {
+              "ici_kombination_durchfuehrbar": null,
+              "gruende_wenn_nein": [],
+              "vorherige_systemtherapien": [],
+              "therapielinien": []
+            }
+          },
+          "molekular": {
+            "brca": null,
+            "pd_l1": null,
+            "sonstige": []
+          },
+          "marker_oder_labor": {
+            "psa": {
+              "initial": null,
+              "verlauf": [],
+              "einheit": "ng/ml"
+            },
+            "tumormarker": {
+              "hodenmarker": {
+                "afp": {
+                  "initial": null,
+                  "verlauf": [],
+                  "einheit": "ng/ml"
+                },
+                "bhcg": {
+                  "initial": null,
+                  "verlauf": [],
+                  "einheit": "IU/l"
+                },
+                "ldh": {
+                  "initial": null,
+                  "verlauf": [],
+                  "einheit": "U/l"
+                }
+              }
+            },
+            "labor_allgemein": [],
+            "sonstige": []
+          },
+          "bildgebung": [
+            {
+              "modalitaet": "CT",
+              "region": "Abdomen",
+              "datum": "2025-11-21",
+              "befund_kurz": "Raumforderung linke Niere ca. 5,2 × 4,5 cm, V. a. Nierenzellkarzinom. Ansonsten keine pathologischen Befunde.",
+              "quelle": "Erforderlicher Befund"
+            }
+          ],
+          "pathologie": [],
+          "therapien_und_eingriffe": [],
+          "kommentar": "Größe 5,2 cm -> klinisch T1b plausibel (≤7 cm, organbegrenzt unklar). Staging noch unvollständig (CT Thorax geplant). COPD/Raucher -> präoperative pulmonale Evaluation erforderlich."
+        }
+      ],
+      "geplantes_therapiekonzept": "Komplettierung des Stagings mittels CT Thorax; bei fehlender Metastasierung: Nierenteilresektion vs Nephrektomie; pulmonale Prä-OP-Evaluierung.",
+      "erforderliche_befunde": {
+        "bildgebung": [
+          "CT Abdomen 21.11.2025 (5,2 × 4,5 cm links, V. a. RCC)",
+          "CT Thorax (Staging, ausstehend)"
+        ],
+        "pathologie": [],
+        "labor": [],
+        "sonstiges": [
+          "Pulmonale Prä-OP-Evaluierung (COPD GOLD II, Raucher 30 PY)"
+        ]
+      }
+    },
+    {
+      "case_meta": {
+        "fallnummer": "2200020005",
+        "datum_vorstellung": null,
+        "tumorboard": null,
+        "diskussionstyp": null
+      },
+      "patient": {
+        "nachname": "Muster",
+        "vorname": "Karl",
+        "geburtsdatum": "1961-02-23",
+        "alter_jahre": 64,
+        "performance_status": {
+          "ecog": 0,
+          "karnofsky_prozent": null
+        },
+        "komorbiditaet_level": "unknown",
+        "lebenserwartung": "unknown",
+        "sonstige_fachkliniken_bereiche": []
+      },
+      "anmeldung": {
+        "anmeldender_arzt": {
+          "name": "Mustermann",
+          "abteilung": "Uro"
+        }
+      },
+      "fragestellung": "Malignitätskriterien in der CT Abdomen vom 03.12.2025?",
+      "anamnese_freitext": "Vorstellung zur regelmäßigen Ultraschallkontrolle beim Hausarzt. Dabei Nachweis Raumforderung rechte Niere. Anschließend CT Abdomen mit Nachweis von zwei renalen Raumforderungen: rechts ca. 4,1 cm, links ca. 1,8 cm. Z. n. Kolon-OP bei Divertikulitis.",
+      "nebendiagnosen": [
+        "Z. n. Kolon-OP bei Divertikulitis"
+      ],
+      "medikation": [],
+      "entitaeten": [
+        {
+          "entity_id": "E1",
+          "entitaet_typ": "nierentumor_verdacht",
+          "diagnose_kurz": "Beidseitige renale Raumforderungen: rechts 4,1 cm (cT1b*), links 1,8 cm (cT1a*) – malignitätsverdächtig (V. a. RCC)",
+          "stadium_oder_risikoklasse": "bilateral, prätherapeutisch; Staging (CT Thorax) ausstehend",
+          "klassifikation": {
+            "tnm_clinical": {
+              "T": "unknown",
+              "T_sub": "unknown",
+              "N": "unknown",
+              "M": "unknown",
+              "stage_group": "unknown"
+            },
+            "tnm_pathological": {
+              "T": null,
+              "T_sub": null,
+              "N": null,
+              "M": null,
+              "stage_group": null
+            },
+            "isup_gleason": null,
+            "grad": null,
+            "icd": null,
+            "icdo": null
+          },
+          "quick_access": {
+            "metastatic": null,
+            "rcc_histologie_klarzellig": null,
+            "imdc_risiko": null,
+            "ici_kombination_durchfuehrbar": null,
+            "vorherige_systemtherapien": []
+          },
+          "schema_inputs": {
+            "schema1_mccrcc": {
+              "anwendbar": false,
+              "imdc_risiko": null,
+              "ici_kombination_durchfuehrbar": null,
+              "vorherige_systemtherapien": []
+            },
+            "schema2_nmrcc": {
+              "anwendbar": true,
+              "patient": {
+                "age_years": 64,
+                "comorbidity_level": "unknown",
+                "life_expectancy": "unknown"
+              },
+              "tumor": {
+                "metastatic": false,
+                "tumor_size_cm": null,
+                "tumor_confined_to_kidney": "unknown",
+                "local_extension": {
+                  "major_veins_or_perinephric_tissues_involved": "unknown",
+                  "beyond_gerotas_fascia": "unknown",
+                  "ipsilateral_adrenal_gland_invasion_contiguous": "unknown"
+                },
+                "venous_involvement": {
+                  "renal_vein_involved": "unknown",
+                  "renal_sinus_fat_involved": "unknown",
+                  "inferior_vena_cava_involved": "unknown",
+                  "ivc_level": "unknown"
+                },
+                "regional_nodes": {
+                  "status": "unknown",
+                  "suspicious_or_enlarged_lymph_nodes": "unknown"
+                },
+                "distant_metastases": {
+                  "status": "unknown"
+                },
+                "clinical_T_category": "unknown",
+                "clinical_T_subcategory": "unknown",
+                "clinical_N_category": "unknown",
+                "clinical_M_category": "unknown",
+                "clinical_stage_group": "unknown",
+                "tumor_size_category": "unknown",
+                "nephron_sparing_technically_possible": "unknown",
+                "local_findings_allow_minimally_invasive": "unknown",
+                "adrenal_suspicion_imaging_or_intraop": "unknown"
+              },
+              "surgery_context": {
+                "planned_procedure": "teilresektion",
+                "approach_preference": "unknown",
+                "surgeon_experience_drives_choice": true,
+                "ischemia_expected": "unknown"
+              },
+              "pathology_postop": {
+                "margin_status": "unknown",
+                "tumor_bed_macroscopically_unremarkable": "unknown"
+              }
+            }
+          },
+          "rcc_spezifisch": {
+            "histologie": {
+              "subtyp": null,
+              "klarzellig": null,
+              "sarcomatoid": null,
+              "rhabdoid": null,
+              "grading_system": null,
+              "grading_value": null
+            },
+            "imdc": {
+              "kategorie": null,
+              "risikofaktoren_structured": {
+                "karnofsky_prozent": null,
+                "intervall_diagnose_bis_systemtherapie_monate": null,
+                "haemoglobin_unter_norm": null,
+                "korrigiertes_calcium_ueber_norm": null,
+                "neutrophile_ueber_norm": null,
+                "thrombozyten_ueber_norm": null
+              },
+              "laborwerte_optional": {
+                "haemoglobin": {
+                  "wert": null,
+                  "einheit": "g/dl",
+                  "datum": null,
+                  "flag_unter_norm": null
+                },
+                "calcium_korrigiert": {
+                  "wert": null,
+                  "einheit": "mmol/l",
+                  "datum": null,
+                  "flag_ueber_norm": null
+                },
+                "neutrophile": {
+                  "wert": null,
+                  "einheit": "G/l",
+                  "datum": null,
+                  "flag_ueber_norm": null
+                },
+                "thrombozyten": {
+                  "wert": null,
+                  "einheit": "G/l",
+                  "datum": null,
+                  "flag_ueber_norm": null
+                }
+              }
+            },
+            "systemtherapie_kontext": {
+              "ici_kombination_durchfuehrbar": null,
+              "gruende_wenn_nein": [],
+              "vorherige_systemtherapien": [],
+              "therapielinien": []
+            }
+          },
+          "molekular": {
+            "brca": null,
+            "pd_l1": null,
+            "sonstige": []
+          },
+          "marker_oder_labor": {
+            "psa": {
+              "initial": null,
+              "verlauf": [],
+              "einheit": "ng/ml"
+            },
+            "tumormarker": {
+              "hodenmarker": {
+                "afp": {
+                  "initial": null,
+                  "verlauf": [],
+                  "einheit": "ng/ml"
+                },
+                "bhcg": {
+                  "initial": null,
+                  "verlauf": [],
+                  "einheit": "IU/l"
+                },
+                "ldh": {
+                  "initial": null,
+                  "verlauf": [],
+                  "einheit": "U/l"
+                }
+              }
+            },
+            "labor_allgemein": [],
+            "sonstige": []
+          },
+          "bildgebung": [
+            {
+              "modalitaet": "CT",
+              "region": "Abdomen",
+              "datum": "2025-12-03",
+              "befund_kurz": "Beidseitige renale Raumforderungen: rechts ca. 4,1 cm, links ca. 1,8 cm. Malignitätsverdächtig, vereinbar mit V. a. Nierenzellkarzinom. Pankreas unauffällig.",
+              "quelle": "Erforderlicher Befund"
+            }
+          ],
+          "pathologie": [],
+          "therapien_und_eingriffe": [
+            {
+              "datum": null,
+              "typ": "Operation",
+              "beschreibung": "Kolon-OP bei Divertikulitis",
+              "intent": "nicht-onkologisch",
+              "details": null
+            }
+          ],
+          "kommentar": "Bilaterale renale Raumforderungen. Klinische T-Kategorie pro Seite nicht explizit angegeben; größenbasiert wäre rechts eher T1b (4,1 cm), links T1a (1,8 cm), sofern organbegrenzt. CT Thorax zum Staging geplant."
+        }
+      ],
+      "geplantes_therapiekonzept": "Nierenteilresektion beidseits: zuerst rechts, 8 Wochen später links. Komplettierung des Stagings mittels CT Thorax.",
+      "erforderliche_befunde": {
+        "bildgebung": [
+          "CT Abdomen 03.12.2025 (bilaterale RF: re 4,1 cm / li 1,8 cm, malignitätsverdächtig)",
+          "CT Thorax (Staging, ausstehend)"
+        ],
+        "pathologie": [
+          "Histologie nach (geplanter) Teilresektion / ggf. präoperative Biopsie nach Team-Entscheid"
+        ],
+        "labor": [],
+        "sonstiges": [
+          "Seitengetrennte Tumor-Charakterisierung (Lage/Komplexität, RENAL-Score) für OP-Planung",
+          "Nierenfunktion/CKD-Risiko vor bilateraler OP (Basiswerte, ggf. Szinti nach Bedarf)"
+        ]
+      }
+    },
+    {
+      "case_meta": {
+        "fallnummer": "2200020006",
+        "datum_vorstellung": null,
+        "tumorboard": null,
+        "diskussionstyp": null
+      },
+      "patient": {
+        "nachname": "Beispiel",
+        "vorname": "Leon",
+        "geburtsdatum": "1946-10-18",
+        "alter_jahre": 79,
+        "performance_status": {
+          "ecog": 2,
+          "karnofsky_prozent": null
+        },
+        "komorbiditaet_level": "hoch",
+        "lebenserwartung": "unknown",
+        "sonstige_fachkliniken_bereiche": []
+      },
+      "anmeldung": {
+        "anmeldender_arzt": {
+          "name": "Beispiel",
+          "abteilung": "Uro"
+        }
+      },
+      "fragestellung": "Malignitätskriterien im CT Abdomen? Metastasen? Großer Nierentumor links 9 cm, fragliche Infiltration der linken Nebenniere.",
+      "anamnese_freitext": "Zufallsbefund der linken Niere (Sonographie beim Hausarzt bei Rückenschmerzen). Großer Nierentumor links ca. 9 cm. Vorerkrankungen: KHK, Z. n. Bypass 2012, CKD G2.",
+      "nebendiagnosen": [
+        "KHK",
+        "Z. n. aortokoronarer Bypass 2012",
+        "CKD G2"
+      ],
+      "medikation": [
+        {
+          "wirkstoff_oder_klasse": "ASS",
+          "details": null
+        },
+        {
+          "wirkstoff_oder_klasse": "Statin",
+          "details": null
+        },
+        {
+          "wirkstoff_oder_klasse": "Betablocker",
+          "details": null
+        }
+      ],
+      "entitaeten": [
+        {
+          "entity_id": "E1",
+          "entitaet_typ": "nierentumor_verdacht",
+          "diagnose_kurz": "Großer Nierentumor links ca. 9,0 cm, hochgradig malignitätsverdächtig (V. a. RCC), fragliche Infiltration linke Nebenniere; CT Thorax ohne Metastasen",
+          "stadium_oder_risikoklasse": "lokal fortgeschritten vs organbegrenzt; M0 (CT Thorax 04.12.2025)",
+          "klassifikation": {
+            "tnm_clinical": {
+              "T": "T2",
+              "T_sub": "T2a",
+              "N": "N0",
+              "M": "M0",
+              "stage_group": "unknown"
+            },
+            "tnm_pathological": {
+              "T": null,
+              "T_sub": null,
+              "N": null,
+              "M": null,
+              "stage_group": null
+            },
+            "isup_gleason": null,
+            "grad": null,
+            "icd": null,
+            "icdo": null
+          },
+          "quick_access": {
+            "metastatic": false,
+            "rcc_histologie_klarzellig": null,
+            "imdc_risiko": null,
+            "ici_kombination_durchfuehrbar": null,
+            "vorherige_systemtherapien": []
+          },
+          "schema_inputs": {
+            "schema1_mccrcc": {
+              "anwendbar": false,
+              "imdc_risiko": null,
+              "ici_kombination_durchfuehrbar": null,
+              "vorherige_systemtherapien": []
+            },
+            "schema2_nmrcc": {
+              "anwendbar": true,
+              "patient": {
+                "age_years": 79,
+                "comorbidity_level": "hoch",
+                "life_expectancy": "unknown"
+              },
+              "tumor": {
+                "metastatic": false,
+                "tumor_size_cm": 9.0,
+                "tumor_confined_to_kidney": "unknown",
+                "local_extension": {
+                  "major_veins_or_perinephric_tissues_involved": "unknown",
+                  "beyond_gerotas_fascia": "unknown",
+                  "ipsilateral_adrenal_gland_invasion_contiguous": "unknown"
+                },
+                "venous_involvement": {
+                  "renal_vein_involved": "unknown",
+                  "renal_sinus_fat_involved": "unknown",
+                  "inferior_vena_cava_involved": "unknown",
+                  "ivc_level": "unknown"
+                },
+                "regional_nodes": {
+                  "status": "N0",
+                  "suspicious_or_enlarged_lymph_nodes": "false"
+                },
+                "distant_metastases": {
+                  "status": "M0"
+                },
+                "clinical_T_category": "T2",
+                "clinical_T_subcategory": "T2a",
+                "clinical_N_category": "N0",
+                "clinical_M_category": "M0",
+                "clinical_stage_group": "unknown",
+                "tumor_size_category": "unknown",
+                "nephron_sparing_technically_possible": "unknown",
+                "local_findings_allow_minimally_invasive": "unknown",
+                "adrenal_suspicion_imaging_or_intraop": "true"
+              },
+              "surgery_context": {
+                "planned_procedure": "radikale_nephrektomie",
+                "approach_preference": "unknown",
+                "surgeon_experience_drives_choice": true,
+                "ischemia_expected": "unknown"
+              },
+              "pathology_postop": {
+                "margin_status": "unknown",
+                "tumor_bed_macroscopically_unremarkable": "unknown"
+              }
+            }
+          },
+          "rcc_spezifisch": {
+            "histologie": {
+              "subtyp": null,
+              "klarzellig": null,
+              "sarcomatoid": null,
+              "rhabdoid": null,
+              "grading_system": null,
+              "grading_value": null
+            },
+            "imdc": {
+              "kategorie": null,
+              "risikofaktoren_structured": {
+                "karnofsky_prozent": null,
+                "intervall_diagnose_bis_systemtherapie_monate": null,
+                "haemoglobin_unter_norm": null,
+                "korrigiertes_calcium_ueber_norm": null,
+                "neutrophile_ueber_norm": null,
+                "thrombozyten_ueber_norm": null
+              },
+              "laborwerte_optional": {
+                "haemoglobin": {
+                  "wert": null,
+                  "einheit": "g/dl",
+                  "datum": null,
+                  "flag_unter_norm": null
+                },
+                "calcium_korrigiert": {
+                  "wert": null,
+                  "einheit": "mmol/l",
+                  "datum": null,
+                  "flag_ueber_norm": null
+                },
+                "neutrophile": {
+                  "wert": null,
+                  "einheit": "G/l",
+                  "datum": null,
+                  "flag_ueber_norm": null
+                },
+                "thrombozyten": {
+                  "wert": null,
+                  "einheit": "G/l",
+                  "datum": null,
+                  "flag_ueber_norm": null
+                }
+              }
+            },
+            "systemtherapie_kontext": {
+              "ici_kombination_durchfuehrbar": null,
+              "gruende_wenn_nein": [],
+              "vorherige_systemtherapien": [],
+              "therapielinien": []
+            }
+          },
+          "molekular": {
+            "brca": null,
+            "pd_l1": null,
+            "sonstige": []
+          },
+          "marker_oder_labor": {
+            "psa": {
+              "initial": null,
+              "verlauf": [],
+              "einheit": "ng/ml"
+            },
+            "tumormarker": {
+              "hodenmarker": {
+                "afp": {
+                  "initial": null,
+                  "verlauf": [],
+                  "einheit": "ng/ml"
+                },
+                "bhcg": {
+                  "initial": null,
+                  "verlauf": [],
+                  "einheit": "IU/l"
+                },
+                "ldh": {
+                  "initial": null,
+                  "verlauf": [],
+                  "einheit": "U/l"
+                }
+              }
+            },
+            "labor_allgemein": [],
+            "sonstige": []
+          },
+          "bildgebung": [
+            {
+              "modalitaet": "CT",
+              "region": "Abdomen mit KM",
+              "datum": "2025-12-04",
+              "befund_kurz": "Linksseitige große renale Raumforderung, max. ca. 9,0 cm, hochgradig malignitätsverdächtig (V. a. RCC). In enger Nachbarschaft zur linken Nebenniere mit fraglicher Infiltration; sichere Abgrenzung nicht eindeutig möglich. Rechte Niere ohne fokale Läsion. Keine abdominelle Lymphadenopathie, keine Aszites, übrige Organe (inkl. Pankreas/Leber/Milz/Gallenwege) unauffällig.",
+              "quelle": "Erforderlicher Befund"
+            },
+            {
+              "modalitaet": "CT",
+              "region": "Thorax",
+              "datum": "2025-12-04",
+              "befund_kurz": "Kein Nachweis pulmonaler Rundherde oder suspekter Infiltrate. Keine Pleuraergüsse. Keine pathologisch vergrößerten mediastinalen/hilären Lymphknoten. Kein Hinweis auf ossäre Metastasen. Beurteilung: Kein Hinweis auf thorakale Metastasierung.",
+              "quelle": "Erforderlicher Befund"
+            }
+          ],
+          "pathologie": [],
+          "therapien_und_eingriffe": [
+            {
+              "datum": "2012-01-01",
+              "typ": "Kardiologie/Operation",
+              "beschreibung": "Aortokoronarer Bypass",
+              "intent": "nicht-onkologisch",
+              "details": null
+            }
+          ],
+          "kommentar": "Tumorgröße 9,0 cm -> größenbasiert T2a (7–10 cm) sofern organbegrenzt. Fragliche Nebenniereninfiltration könnte Upstaging (T4) bedeuten, ist bildmorphologisch aber unklar. CT Thorax ohne Metastasen. Geplant: Nephrektomie + Adrenalektomie links, perioperatives Risiko (KHK/Bypass, ECOG 2) evaluieren."
+        }
+      ],
+      "geplantes_therapiekonzept": "Nephrektomie mit Adrenalektomie links; Einschätzung des perioperativen Risikos.",
+      "erforderliche_befunde": {
+        "bildgebung": [
+          "CT Abdomen mit KM 04.12.2025 (9,0 cm links, V. a. RCC, fragliche Nebenniereninfiltration)",
+          "CT Thorax 04.12.2025 (keine thorakale Metastasierung)"
+        ],
+        "pathologie": [],
+        "labor": [],
+        "sonstiges": [
+          "Präoperative Risikostratifizierung/Anästhesie-Konsil (KHK, Bypass 2012, ECOG 2)",
+          "Interdisziplinäre OP-Planung bzgl. Adrenalektomie (Infiltration unklar)"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,275 @@
+{
+  "metadata": {
+    "model": "mistral:7b-instruct",
+    "timestamp": "2025-12-24T00:05:31.086936",
+    "total_cases": 26
+  },
+  "predictions": [
+    {
+      "case_id": "ncc_1",
+      "patient_name": "Turtle, Ninja",
+      "ground_truth": "nierenzellkarzinom",
+      "predicted": "nierenzellkarzinom",
+      "correct": true,
+      "inference_time": 8.345475196838379,
+      "raw_response": " nierenzellkarzinom (RCC)",
+      "success": true
+    },
+    {
+      "case_id": "ncc_2",
+      "patient_name": "Ninja, Son",
+      "ground_truth": "nierenzellkarzinom",
+      "predicted": "nierenzellkarzinom",
+      "correct": true,
+      "inference_time": 3.9820408821105957,
+      "raw_response": " nierenzellkarzinom",
+      "success": true
+    },
+    {
+      "case_id": "ncc_3",
+      "patient_name": "Muster, Alpha",
+      "ground_truth": "nierenzellkarzinom",
+      "predicted": "nierenzellkarzinom",
+      "correct": true,
+      "inference_time": 4.227399110794067,
+      "raw_response": " nierenzellkarzinom",
+      "success": true
+    },
+    {
+      "case_id": "ncc_4",
+      "patient_name": "Beispiel, Beta",
+      "ground_truth": "nierenzellkarzinom",
+      "predicted": "nierenzellkarzinom",
+      "correct": true,
+      "inference_time": 3.7710561752319336,
+      "raw_response": " nierenzellkarzinom",
+      "success": true
+    },
+    {
+      "case_id": "ncc_5",
+      "patient_name": "Muster, Clara",
+      "ground_truth": "nierenzellkarzinom",
+      "predicted": "nierenzellkarzinom",
+      "correct": true,
+      "inference_time": 5.3821539878845215,
+      "raw_response": " nierenzellkarzinom",
+      "success": true
+    },
+    {
+      "case_id": "ncc_6",
+      "patient_name": "Beispiel, Daniel",
+      "ground_truth": "nierenzellkarzinom",
+      "predicted": "nierenzellkarzinom",
+      "correct": true,
+      "inference_time": 4.269504070281982,
+      "raw_response": " nierenzellkarzinom",
+      "success": true
+    },
+    {
+      "case_id": "ncc_7",
+      "patient_name": "Muster, Emil",
+      "ground_truth": "nierenzellkarzinom",
+      "predicted": "nierenzellkarzinom",
+      "correct": true,
+      "inference_time": 4.464737892150879,
+      "raw_response": " nierenzellkarzinom",
+      "success": true
+    },
+    {
+      "case_id": "ncc_8",
+      "patient_name": "Beispiel, Felix",
+      "ground_truth": "nierenzellkarzinom",
+      "predicted": "nierenzellkarzinom",
+      "correct": true,
+      "inference_time": 4.141077041625977,
+      "raw_response": " nierenzellkarzinom",
+      "success": true
+    },
+    {
+      "case_id": "ncc_9",
+      "patient_name": "Muster, Georg",
+      "ground_truth": "nierenzellkarzinom",
+      "predicted": "nierenzellkarzinom",
+      "correct": true,
+      "inference_time": 4.44679069519043,
+      "raw_response": " nierenzellkarzinom",
+      "success": true
+    },
+    {
+      "case_id": "ncc_10",
+      "patient_name": "Beispiel, Hanna",
+      "ground_truth": "nierenzellkarzinom",
+      "predicted": "nierenzellkarzinom",
+      "correct": true,
+      "inference_time": 4.4534173011779785,
+      "raw_response": " nierenzellkarzinom",
+      "success": true
+    },
+    {
+      "case_id": "ncc_11",
+      "patient_name": "Muster, Ivan",
+      "ground_truth": "nierenzellkarzinom",
+      "predicted": "nierenzellkarzinom",
+      "correct": true,
+      "inference_time": 4.726596117019653,
+      "raw_response": " nierenzellkarzinom",
+      "success": true
+    },
+    {
+      "case_id": "ncc_12",
+      "patient_name": "Beispiel, Julia",
+      "ground_truth": "nierenzellkarzinom",
+      "predicted": "nierenzellkarzinom",
+      "correct": true,
+      "inference_time": 4.201786994934082,
+      "raw_response": " nierenzellkarzinom",
+      "success": true
+    },
+    {
+      "case_id": "ncc_13",
+      "patient_name": "Muster, Karl",
+      "ground_truth": "nierenzellkarzinom",
+      "predicted": "nierenzellkarzinom",
+      "correct": true,
+      "inference_time": 5.096697807312012,
+      "raw_response": " nierenzellkarzinom (RCC)",
+      "success": true
+    },
+    {
+      "case_id": "ncc_14",
+      "patient_name": "Beispiel, Leon",
+      "ground_truth": "nierenzellkarzinom",
+      "predicted": "nierenzellkarzinom",
+      "correct": true,
+      "inference_time": 4.944218873977661,
+      "raw_response": " nierenzellkarzinom (RCC)",
+      "success": true
+    },
+    {
+      "case_id": "pca_1",
+      "patient_name": "Test, Testovoci",
+      "ground_truth": "prostatakarzinom",
+      "predicted": "prostatakarzinom",
+      "correct": true,
+      "inference_time": 3.92985200881958,
+      "raw_response": " prostatakarzinom",
+      "success": true
+    },
+    {
+      "case_id": "pca_2",
+      "patient_name": "Mustermann, Muster",
+      "ground_truth": "prostatakarzinom",
+      "predicted": "prostatakarzinom",
+      "correct": true,
+      "inference_time": 4.221303224563599,
+      "raw_response": " Prostatakarzinom",
+      "success": true
+    },
+    {
+      "case_id": "hoden_ca_1",
+      "patient_name": "Test, Test1",
+      "ground_truth": "hodentumor",
+      "predicted": "hodentumor",
+      "correct": true,
+      "inference_time": 4.315001010894775,
+      "raw_response": " hodentumor",
+      "success": true
+    },
+    {
+      "case_id": "hoden_ca_2",
+      "patient_name": "Bruno, Brunovici",
+      "ground_truth": "hodentumor",
+      "predicted": "hodentumor",
+      "correct": true,
+      "inference_time": 4.144165754318237,
+      "raw_response": " hodentumor",
+      "success": true
+    },
+    {
+      "case_id": "penis_ca_1",
+      "patient_name": "Bruno, Brandon",
+      "ground_truth": "peniskarzinom",
+      "predicted": "peniskarzinom",
+      "correct": true,
+      "inference_time": 3.7729990482330322,
+      "raw_response": " peniskarzinom",
+      "success": true
+    },
+    {
+      "case_id": "penis_ca_2",
+      "patient_name": "Schlummer, Ninja",
+      "ground_truth": "peniskarzinom",
+      "predicted": "peniskarzinom",
+      "correct": true,
+      "inference_time": 3.9020371437072754,
+      "raw_response": " peniskarzinom",
+      "success": true
+    },
+    {
+      "case_id": "uca_1",
+      "patient_name": "Horatium, Burdon",
+      "ground_truth": "urothelkarzinom",
+      "predicted": "urothelkarzinom",
+      "correct": true,
+      "inference_time": 4.470588207244873,
+      "raw_response": " urothelkarzinom",
+      "success": true
+    },
+    {
+      "case_id": "uca_2",
+      "patient_name": "Holman, Elisa",
+      "ground_truth": "urothelkarzinom",
+      "predicted": "urothelkarzinom",
+      "correct": true,
+      "inference_time": 4.513862133026123,
+      "raw_response": " urothelkarzinom",
+      "success": true
+    },
+    {
+      "case_id": "combi_1",
+      "patient_name": "Draco, Severus",
+      "ground_truth": "polymalignancy",
+      "predicted": "prostatakarzinom",
+      "correct": false,
+      "inference_time": 5.246139764785767,
+      "raw_response": " Prostatakarzinom",
+      "success": true
+    },
+    {
+      "case_id": "combi_2",
+      "patient_name": "Vega, Orion",
+      "ground_truth": "polymalignancy",
+      "predicted": "nierenzellkarzinom",
+      "correct": false,
+      "inference_time": 5.181868076324463,
+      "raw_response": " nierenzellkarzinom (RCC)",
+      "success": true
+    },
+    {
+      "case_id": "non_uro_1",
+      "patient_name": "Mumbasa, Lion",
+      "ground_truth": "non_urological",
+      "predicted": "non_urological",
+      "correct": true,
+      "inference_time": 4.821627855300903,
+      "raw_response": " non_urological",
+      "success": true
+    },
+    {
+      "case_id": "non_uro_2",
+      "patient_name": "Peter, Dostoyevski",
+      "ground_truth": "non_urological",
+      "predicted": "urothelkarzinom",
+      "correct": false,
+      "inference_time": 4.8805460929870605,
+      "raw_response": " urothelkarzinom",
+      "success": true
+    }
+  ],
+  "summary": {
+    "correct": 23,
+    "incorrect": 3,
+    "errors": 0,
+    "accuracy": 0.8846153846153846
+  }
+}

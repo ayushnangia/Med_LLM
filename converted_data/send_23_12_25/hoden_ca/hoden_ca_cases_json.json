@@ -1,0 +1,332 @@
+{
+  "schema_version": "1.0",
+  "hinweis_missing_values": "Nicht vorhandene/fehlende Informationen werden als null (oder leere Liste []) eingetragen.",
+  "cases": [
+    {
+      "case_meta": {
+        "fallnummer": "1253777557",
+        "datum_vorstellung": null,
+        "tumorboard": null,
+        "diskussionstyp": null
+      },
+      "patient": {
+        "nachname": "Test",
+        "vorname": "Test1",
+        "geburtsdatum": "1995-01-12",
+        "alter_jahre": 34,
+        "performance_status": {
+          "ecog": 0,
+          "karnofsky_prozent": null
+        },
+        "komorbiditaet_level": "unknown",
+        "lebenserwartung": "unknown",
+        "sonstige_fachkliniken_bereiche": [
+          "NU",
+          "RA"
+        ]
+      },
+      "anmeldung": {
+        "anmeldender_arzt": {
+          "name": "Arzt 1",
+          "abteilung": "Uro"
+        }
+      },
+      "fragestellung": "CT Ganzkörper vom 25.10.2025 mit Metastasennachweis?",
+      "anamnese_freitext": "Vorgeschichte: Z. n. KZT rechts (ED 12/2023). Histologie: 70% postpubertales Teratom, 30% Seminom. Präop Tumormarker: AFP 7,9; ßHCG 10,2. Postoperativ: AFP 6,2; ßHCG <0,1; LDH 98. CT Abdomen 05/2024: interaortokavale LK-Metastasen -> klin. Stadium IIA. Z. n. RPLND 05/2024: 3/18 LK positiv. 3 Zyklen PEB 05/2024–08/2024. Aktuell Marker: AFP 8,1 (leicht erhöht), ßHCG <0,1, LDH 213. CT 08.10.2024: fleckförmige Verdichtung ULL links a. e. postentzündlich, kein LK-Nachweis.",
+      "nebendiagnosen": [],
+      "medikation": [],
+      "entitaeten": [
+        {
+          "entity_id": "E1",
+          "entitaet_typ": "hodentumor_nsgct_mischtumor",
+          "diagnose_kurz": "Keimzelltumor rechts (Mischhistologie: 70% postpubertales Teratom, 30% Seminom) – Status nach Orchiektomie, RPLND und PEB; aktuell in Nachsorge, CT 25.10.2025 ohne Metastasen",
+          "stadium_oder_risikoklasse": "klin. Stadium IIA (05/2024) mit LK-Metastasen; Status nach Therapie; aktuell kein CT-Nachweis von Metastasen",
+          "klassifikation": {
+            "tnm": null,
+            "isup_gleason": null,
+            "grad": null,
+            "icd": null,
+            "icdo": null
+          },
+          "molekular": {
+            "brca": null,
+            "pd_l1": null,
+            "sonstige": []
+          },
+          "marker_oder_labor": {
+            "psa": {
+              "initial": null,
+              "verlauf": [],
+              "einheit": "ng/ml"
+            },
+            "tumormarker": {
+              "hodenmarker": {
+                "afp": {
+                  "initial": 7.9,
+                  "verlauf": [
+                    {
+                      "datum": "2023-12-01",
+                      "wert": 7.9,
+                      "einheit": "ng/ml",
+                      "kontext": "präoperativ"
+                    },
+                    {
+                      "datum": "2023-12-15",
+                      "wert": 6.2,
+                      "einheit": "ng/ml",
+                      "kontext": "postoperativ"
+                    },
+                    {
+                      "datum": null,
+                      "wert": 7.2,
+                      "einheit": "ng/ml",
+                      "kontext": "aktuell (Labor)"
+                    },
+                    {
+                      "datum": null,
+                      "wert": 8.1,
+                      "einheit": "ng/ml",
+                      "kontext": "aktuell (AFP)"
+                    }
+                  ],
+                  "einheit": "ng/ml"
+                },
+                "bhcg": {
+                  "initial": 10.2,
+                  "verlauf": [
+                    {
+                      "datum": "2023-12-01",
+                      "wert": 10.2,
+                      "einheit": "IU/l",
+                      "kontext": "präoperativ"
+                    },
+                    {
+                      "datum": "2023-12-15",
+                      "wert": 0.1,
+                      "einheit": "IU/l",
+                      "kontext": "postoperativ (als <0,1 dokumentiert)"
+                    },
+                    {
+                      "datum": null,
+                      "wert": 0.1,
+                      "einheit": "IU/l",
+                      "kontext": "aktuell (als <0,1 dokumentiert)"
+                    }
+                  ],
+                  "einheit": "IU/l"
+                },
+                "ldh": {
+                  "initial": 98,
+                  "verlauf": [
+                    {
+                      "datum": "2023-12-15",
+                      "wert": 98,
+                      "einheit": "U/l",
+                      "kontext": "postoperativ"
+                    },
+                    {
+                      "datum": null,
+                      "wert": 213,
+                      "einheit": "U/l",
+                      "kontext": "aktuell (Labor)"
+                    }
+                  ],
+                  "einheit": "U/l"
+                }
+              }
+            },
+            "sonstige": []
+          },
+          "therapien_und_eingriffe": [
+            {
+              "datum": "2023-12-01",
+              "typ": "Operation",
+              "beschreibung": "KZT rechts (Orchiektomie)",
+              "intent": "kurativ",
+              "details": "Histologie: 70% postpubertales Teratom, 30% Seminom"
+            },
+            {
+              "datum": "2024-05-01",
+              "typ": "Operation",
+              "beschreibung": "RPLND",
+              "intent": "kurativ/staging",
+              "details": "3/18 Lymphknoten positiv"
+            },
+            {
+              "datum": "2024-05-01",
+              "typ": "Chemotherapie",
+              "beschreibung": "PEB, 3 Zyklen",
+              "intent": "kurativ/adjuvant",
+              "details": "05/2024–08/2024"
+            }
+          ],
+          "pathologie": [
+            {
+              "datum": "2023-12-01",
+              "material": "KZT rechts (Orchiektomiepräparat)",
+              "diagnose": "Keimzelltumor: 70% postpubertales Teratom, 30% Seminom",
+              "details": null
+            },
+            {
+              "datum": "2024-05-01",
+              "material": "RPLND (retroperitoneale LK)",
+              "diagnose": "3/18 Lymphknoten positiv",
+              "details": null
+            }
+          ],
+          "bildgebung": [
+            {
+              "modalitaet": "CT",
+              "region": "Abdomen",
+              "datum": "2024-05-01",
+              "befund_kurz": "Interaortokavale Lymphknotenmetastasen -> klin. Stadium IIA.",
+              "quelle": "Anamnese"
+            },
+            {
+              "modalitaet": "CT",
+              "region": "Thorax/Abdomen",
+              "datum": "2024-10-08",
+              "befund_kurz": "Fleckförmige Verdichtung medialer ULL links a. e. postentzündlich; kein LK-Nachweis.",
+              "quelle": "Anamnese"
+            },
+            {
+              "modalitaet": "CT",
+              "region": "Ganzkörper",
+              "datum": "2025-10-25",
+              "befund_kurz": "Thorax: kein Nachweis suspekter pulmonaler Rundherde/kein Pleuraerguss/keine pathologisch vergrößerten mediastinalen oder hilären LK. Abdomen/Becken: Organe inkl. Nebennieren unauffällig, keine abdominellen/pelvinen LK-Vergrößerungen, kein Aszites. Skelett/Weichteile: kein Hinweis auf ossäre Läsionen/Weichteilmetastasen. Beurteilung: unauffälliger CT-Ganzkörperbefund, kein Hinweis auf lokoregionäre oder Fernmetastasierung.",
+              "quelle": "Erforderlicher Befund"
+            }
+          ],
+          "kommentar": "Fragestellung Metastasennachweis im CT 25.10.2025: verneint. AFP leicht erhöht, ßHCG negativ; LDH moderat erhöht -> im Verlauf weiter im Rahmen Nachsorge kontrollieren."
+        }
+      ],
+      "geplantes_therapiekonzept": "Uroonkologische Nachsorge.",
+      "erforderliche_befunde": {
+        "bildgebung": [
+          "CT Ganzkörper 25.10.2025 (kein Metastasennachweis)"
+        ],
+        "pathologie": [
+          "Primärtumorhistologie (Teratom/Seminom) und RPLND-Befund (3/18 positiv)"
+        ],
+        "labor": [
+          "AFP/ßHCG/LDH-Verlauf (aktuell: AFP 8,1; ßHCG <0,1; LDH 213)"
+        ],
+        "sonstiges": []
+      }
+    },
+    {
+      "schema_version": "1.0",
+      "hinweis_missing_values": "Nicht vorhandene/fehlende Informationen werden als null (oder leere Liste []) eingetragen.",
+      "case_template": {
+        "patient": {
+          "nachname": "Bruno",
+          "vorname": "Brunovici",
+          "geburtsdatum": "1995-01-03",
+          "alter_jahre": 23,
+          "fallnummer": "1353567357",
+          "ecog": 1,
+          "sonstige_fachkliniken_bereiche": []
+        },
+        "anmeldung": {
+          "anmeldender_arzt": {
+            "name": "Mustermanovici",
+            "abteilung": "URO"
+          },
+          "diskussionstyp": null
+        },
+        "entitaeten": [
+          {
+            "entitaet_typ": "hodentumor",
+            "diagnose_kurz": "Seminom links (100%), kleinherdig (max. 0,2×0,5×0,1 cm) – Status nach inguinaler Ablatio testis links (19.09.2025), Rete testis infiltriert, GCNIS+",
+            "stadium_oder_risikoklasse": "pT1 pNX (klinisches Stadium offen; Staging CT Thorax/Abdomen ausstehend)",
+            "klassifikation": {
+              "tnm": "pT1 pNX L0 V0 Pn0 R0",
+              "isup_gleason": null,
+              "grad": null,
+              "icd": null,
+              "icdo": null
+            },
+            "molekular": {
+              "brca": null,
+              "pd_l1": null,
+              "sonstige": [
+                "GCNIS positiv"
+              ]
+            },
+            "marker_oder_labor": {
+              "psa": {
+                "initial": null,
+                "verlauf": [],
+                "einheit": "ng/ml"
+              },
+              "tumormarker": {
+                "hodenmarker": {
+                  "afp": {
+                    "initial": null,
+                    "verlauf": [],
+                    "einheit": "ng/ml"
+                  },
+                  "bhcg": {
+                    "initial": null,
+                    "verlauf": [],
+                    "einheit": "IU/l"
+                  },
+                  "ldh": {
+                    "initial": null,
+                    "verlauf": [],
+                    "einheit": "U/l"
+                  }
+                }
+              },
+              "sonstige": [
+                {
+                  "parameter": "Tumormarker präoperativ",
+                  "wert": "normwertig",
+                  "datum": null
+                }
+              ]
+            },
+            "therapien_und_eingriffe": [
+              {
+                "datum": "2025-09-19",
+                "typ": "Operation",
+                "beschreibung": "Inguinale Ablatio testis links",
+                "details": "Kryokonservierung erfolgt; keine Prothese gewünscht"
+              }
+            ],
+            "pathologie": [
+              {
+                "datum": "2025-09-19",
+                "material": "Hoden links (Ablatio testis)",
+                "befund": "Seminom (100%), max. 0,2×0,5×0,1 cm; Infiltration des Rete testis; keine Tunica-/Nebenhoden-/Samenstranginvasion; L0 V0 Pn0; R0; GCNIS+",
+                "klassifikation": "pT1 pNX L0 V0 Pn0 R0"
+              }
+            ],
+            "bildgebung": [],
+            "kommentar": "Fragestellung 'Malignität?' ist durch Histologie beantwortet: Seminom (maligne Keimzelltumorentität). Staging (CT Thorax/Abdomen) ausstehend."
+          }
+        ],
+        "anamnese_freitext": "V. a. Hodentumor links, Tumormarker normwertig. Kryokonservierung erfolgt, keine Prothese gewünscht. Z. n. inguinaler Ablatio testis links am 19.09.2025. Histologie: Seminom (100%), Rete testis infiltriert, keine Tunica-/Nebenhoden-/Samenstranginvasion, R0, GCNIS+.",
+        "nebendiagnosen": [
+          "Hypothyreose",
+          "arterielle Hypertonie"
+        ],
+        "medikation": [],
+        "fragestellung": "Malignität in der Histologie vom 19.09.2025?",
+        "geplantes_therapiekonzept": "Staging CT Thorax/Abdomen und Wiedervorstellung.",
+        "erforderliche_befunde": {
+          "bildgebung": [
+            "CT Thorax/Abdomen (Staging, ausstehend)"
+          ],
+          "pathologie": [
+            "Histologie Hoden 19.09.2025 (Seminom, pT1 pNX L0 V0 Pn0 R0, GCNIS+)"
+          ],
+          "labor": [
+            "Tumormarker (AFP, ßHCG, LDH) im Verlauf"
+          ],
+          "sonstiges": []
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,275 @@
+{
+  "metadata": {
+    "model": "qwen3:4b",
+    "timestamp": "2025-12-23T23:53:08.722021",
+    "total_cases": 26
+  },
+  "predictions": [
+    {
+      "case_id": "ncc_1",
+      "patient_name": "Turtle, Ninja",
+      "ground_truth": "nierenzellkarzinom",
+      "predicted": "unknown",
+      "correct": false,
+      "inference_time": 21.392798900604248,
+      "raw_response": "",
+      "success": true
+    },
+    {
+      "case_id": "ncc_2",
+      "patient_name": "Ninja, Son",
+      "ground_truth": "nierenzellkarzinom",
+      "predicted": "unknown",
+      "correct": false,
+      "inference_time": 20.735146045684814,
+      "raw_response": "",
+      "success": true
+    },
+    {
+      "case_id": "ncc_3",
+      "patient_name": "Muster, Alpha",
+      "ground_truth": "nierenzellkarzinom",
+      "predicted": "unknown",
+      "correct": false,
+      "inference_time": 18.670128107070923,
+      "raw_response": "",
+      "success": true
+    },
+    {
+      "case_id": "ncc_4",
+      "patient_name": "Beispiel, Beta",
+      "ground_truth": "nierenzellkarzinom",
+      "predicted": "unknown",
+      "correct": false,
+      "inference_time": 17.73947811126709,
+      "raw_response": "",
+      "success": true
+    },
+    {
+      "case_id": "ncc_5",
+      "patient_name": "Muster, Clara",
+      "ground_truth": "nierenzellkarzinom",
+      "predicted": "unknown",
+      "correct": false,
+      "inference_time": 21.066532135009766,
+      "raw_response": "",
+      "success": true
+    },
+    {
+      "case_id": "ncc_6",
+      "patient_name": "Beispiel, Daniel",
+      "ground_truth": "nierenzellkarzinom",
+      "predicted": "unknown",
+      "correct": false,
+      "inference_time": 20.07180905342102,
+      "raw_response": "",
+      "success": true
+    },
+    {
+      "case_id": "ncc_7",
+      "patient_name": "Muster, Emil",
+      "ground_truth": "nierenzellkarzinom",
+      "predicted": "unknown",
+      "correct": false,
+      "inference_time": 20.014834880828857,
+      "raw_response": "",
+      "success": true
+    },
+    {
+      "case_id": "ncc_8",
+      "patient_name": "Beispiel, Felix",
+      "ground_truth": "nierenzellkarzinom",
+      "predicted": "unknown",
+      "correct": false,
+      "inference_time": 19.49668788909912,
+      "raw_response": "",
+      "success": true
+    },
+    {
+      "case_id": "ncc_9",
+      "patient_name": "Muster, Georg",
+      "ground_truth": "nierenzellkarzinom",
+      "predicted": "unknown",
+      "correct": false,
+      "inference_time": 19.755659103393555,
+      "raw_response": "",
+      "success": true
+    },
+    {
+      "case_id": "ncc_10",
+      "patient_name": "Beispiel, Hanna",
+      "ground_truth": "nierenzellkarzinom",
+      "predicted": "unknown",
+      "correct": false,
+      "inference_time": 19.947603940963745,
+      "raw_response": "",
+      "success": true
+    },
+    {
+      "case_id": "ncc_11",
+      "patient_name": "Muster, Ivan",
+      "ground_truth": "nierenzellkarzinom",
+      "predicted": "unknown",
+      "correct": false,
+      "inference_time": 19.64580512046814,
+      "raw_response": "",
+      "success": true
+    },
+    {
+      "case_id": "ncc_12",
+      "patient_name": "Beispiel, Julia",
+      "ground_truth": "nierenzellkarzinom",
+      "predicted": "unknown",
+      "correct": false,
+      "inference_time": 19.642795085906982,
+      "raw_response": "",
+      "success": true
+    },
+    {
+      "case_id": "ncc_13",
+      "patient_name": "Muster, Karl",
+      "ground_truth": "nierenzellkarzinom",
+      "predicted": "unknown",
+      "correct": false,
+      "inference_time": 20.228983879089355,
+      "raw_response": "",
+      "success": true
+    },
+    {
+      "case_id": "ncc_14",
+      "patient_name": "Beispiel, Leon",
+      "ground_truth": "nierenzellkarzinom",
+      "predicted": "unknown",
+      "correct": false,
+      "inference_time": 19.95438289642334,
+      "raw_response": "",
+      "success": true
+    },
+    {
+      "case_id": "pca_1",
+      "patient_name": "Test, Testovoci",
+      "ground_truth": "prostatakarzinom",
+      "predicted": "unknown",
+      "correct": false,
+      "inference_time": 20.723493099212646,
+      "raw_response": "",
+      "success": true
+    },
+    {
+      "case_id": "pca_2",
+      "patient_name": "Mustermann, Muster",
+      "ground_truth": "prostatakarzinom",
+      "predicted": "unknown",
+      "correct": false,
+      "inference_time": 19.90018606185913,
+      "raw_response": "",
+      "success": true
+    },
+    {
+      "case_id": "hoden_ca_1",
+      "patient_name": "Test, Test1",
+      "ground_truth": "hodentumor",
+      "predicted": "unknown",
+      "correct": false,
+      "inference_time": 19.984014987945557,
+      "raw_response": "",
+      "success": true
+    },
+    {
+      "case_id": "hoden_ca_2",
+      "patient_name": "Bruno, Brunovici",
+      "ground_truth": "hodentumor",
+      "predicted": "unknown",
+      "correct": false,
+      "inference_time": 19.776700973510742,
+      "raw_response": "",
+      "success": true
+    },
+    {
+      "case_id": "penis_ca_1",
+      "patient_name": "Bruno, Brandon",
+      "ground_truth": "peniskarzinom",
+      "predicted": "unknown",
+      "correct": false,
+      "inference_time": 19.828702926635742,
+      "raw_response": "",
+      "success": true
+    },
+    {
+      "case_id": "penis_ca_2",
+      "patient_name": "Schlummer, Ninja",
+      "ground_truth": "peniskarzinom",
+      "predicted": "unknown",
+      "correct": false,
+      "inference_time": 19.517087936401367,
+      "raw_response": "",
+      "success": true
+    },
+    {
+      "case_id": "uca_1",
+      "patient_name": "Horatium, Burdon",
+      "ground_truth": "urothelkarzinom",
+      "predicted": "unknown",
+      "correct": false,
+      "inference_time": 20.06392502784729,
+      "raw_response": "",
+      "success": true
+    },
+    {
+      "case_id": "uca_2",
+      "patient_name": "Holman, Elisa",
+      "ground_truth": "urothelkarzinom",
+      "predicted": "unknown",
+      "correct": false,
+      "inference_time": 19.772369861602783,
+      "raw_response": "",
+      "success": true
+    },
+    {
+      "case_id": "combi_1",
+      "patient_name": "Draco, Severus",
+      "ground_truth": "polymalignancy",
+      "predicted": "unknown",
+      "correct": false,
+      "inference_time": 20.309598922729492,
+      "raw_response": "",
+      "success": true
+    },
+    {
+      "case_id": "combi_2",
+      "patient_name": "Vega, Orion",
+      "ground_truth": "polymalignancy",
+      "predicted": "unknown",
+      "correct": false,
+      "inference_time": 19.644380807876587,
+      "raw_response": "",
+      "success": true
+    },
+    {
+      "case_id": "non_uro_1",
+      "patient_name": "Mumbasa, Lion",
+      "ground_truth": "non_urological",
+      "predicted": "unknown",
+      "correct": false,
+      "inference_time": 19.707481145858765,
+      "raw_response": "",
+      "success": true
+    },
+    {
+      "case_id": "non_uro_2",
+      "patient_name": "Peter, Dostoyevski",
+      "ground_truth": "non_urological",
+      "predicted": "unknown",
+      "correct": false,
+      "inference_time": 19.675057888031006,
+      "raw_response": "",
+      "success": true
+    }
+  ],
+  "summary": {
+    "correct": 0,
+    "incorrect": 26,
+    "errors": 0,
+    "accuracy": 0.0
+  }
+}
