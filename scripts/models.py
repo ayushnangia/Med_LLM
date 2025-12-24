@@ -94,7 +94,7 @@ class CaseInput(BaseModel):
     nebendiagnosen: Optional[List[str]] = Field(None, description="Secondary diagnoses")
 
     # Ground truth (for evaluation only, not sent to model)
-    ground_truth: Optional[CancerType] = Field(None, description="Actual classification")
+    ground_truth: Optional[List[CancerType]] = Field(None, description="Actual classification(s)")
 
     @classmethod
     def from_case_json(cls, case_id: str, case: dict, ground_truth: str = None) -> "CaseInput":
@@ -150,7 +150,7 @@ class CaseInput(BaseModel):
             histologie=klassifikation.get('histologie') or entity.get('histologie'),
             metastatic=quick_access.get('metastatic'),
             nebendiagnosen=case.get('nebendiagnosen'),
-            ground_truth=CancerType(ground_truth) if ground_truth else None
+            ground_truth=[CancerType(ground_truth)] if ground_truth else None
         )
 
     def to_prompt_text(self) -> str:
@@ -212,9 +212,9 @@ class ClassificationOutput(BaseModel):
         ...,
         description="Step-by-step explanation of how the classification was determined"
     )
-    classification: CancerType = Field(
+    classification: List[CancerType] = Field(
         ...,
-        description="The final cancer type classification"
+        description="One or more cancer type classifications"
     )
     confidence: Optional[float] = Field(
         None,
@@ -250,7 +250,7 @@ class ClassificationResult(BaseModel):
     raw_response: str = Field("", description="Raw model response")
 
     # Evaluation
-    ground_truth: Optional[CancerType] = None
+    ground_truth: Optional[List[CancerType]] = None
     is_correct: Optional[bool] = None
 
     # Performance
@@ -263,9 +263,11 @@ class ClassificationResult(BaseModel):
     error_message: Optional[str] = None
 
     def evaluate(self) -> bool:
-        """Check if prediction matches ground truth."""
+        """Check if prediction matches ground truth (sets match if same elements)."""
         if self.output and self.ground_truth:
-            self.is_correct = self.output.classification == self.ground_truth
+            pred_set = set(self.output.classification)
+            truth_set = set(self.ground_truth)
+            self.is_correct = pred_set == truth_set
             return self.is_correct
         return False
 
@@ -279,7 +281,7 @@ CLASSIFICATION_PROMPT = """Du bist ein erfahrener medizinischer Onkologe. Klassi
 FALL:
 {case_text}
 
-Klassifiziere in EINE Kategorie:
+Klassifiziere in eine oder mehrere Kategorien:
 - nierenzellkarzinom
 - prostatakarzinom
 - hodentumor
@@ -291,7 +293,7 @@ Klassifiziere in EINE Kategorie:
 Antwort als JSON:
 {{
     "reasoning": "Begründung",
-    "classification": "kategorie",
+    "classification": ["kategorie1", "kategorie2"],
     "confidence": 0.0-1.0,
     "key_indicators": ["..."]
 }}"""
@@ -321,9 +323,12 @@ def get_output_schema() -> dict:
                         "description": "Step-by-step explanation in German"
                     },
                     "classification": {
-                        "type": "string",
-                        "enum": [e.value for e in CancerType],
-                        "description": "Cancer type classification"
+                        "type": "array",
+                        "items": {
+                            "type": "string",
+                            "enum": [e.value for e in CancerType]
+                        },
+                        "description": "One or more cancer type classifications"
                     },
                     "confidence": {
                         "type": "number",

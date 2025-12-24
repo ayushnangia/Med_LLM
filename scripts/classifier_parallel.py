@@ -157,20 +157,31 @@ class ParallelClassifier:
         if json_start >= 0 and json_end > json_start:
             try:
                 data = json.loads(raw[json_start:json_end])
-                classification = data.get("classification", "").lower().strip()
+                raw_classification = data.get("classification", [])
 
-                # Fuzzy match
-                if classification not in [e.value for e in CancerType]:
-                    for ct in CancerType:
-                        if ct.value in classification or classification in ct.value:
-                            classification = ct.value
-                            break
+                # Handle both list and single string responses
+                if isinstance(raw_classification, str):
+                    raw_classification = [raw_classification]
+
+                # Parse and validate classifications
+                classifications = []
+                for c in raw_classification:
+                    c = c.lower().strip()
+                    # Fuzzy match
+                    if c in [e.value for e in CancerType]:
+                        classifications.append(CancerType(c))
                     else:
-                        classification = "non_urological"
+                        for ct in CancerType:
+                            if ct.value in c or c in ct.value:
+                                classifications.append(ct)
+                                break
+
+                if not classifications:
+                    classifications = [CancerType.non_urological]
 
                 return ClassificationOutput(
                     reasoning=data.get("reasoning", ""),
-                    classification=CancerType(classification),
+                    classification=classifications,
                     confidence=data.get("confidence"),
                     key_indicators=data.get("key_indicators")
                 )
@@ -181,7 +192,7 @@ class ParallelClassifier:
         raw_lower = raw.lower()
         for ct in CancerType:
             if ct.value in raw_lower:
-                return ClassificationOutput(reasoning=raw[:300], classification=ct)
+                return ClassificationOutput(reasoning=raw[:300], classification=[ct])
         return None
 
     async def classify_all(self, cases: List[CaseInput]) -> List[ClassificationResult]:
@@ -275,7 +286,7 @@ async def run_parallel_classification(
         elif r.is_correct:
             status = "✅"
         else:
-            pred = r.output.classification.value if r.output else "?"
+            pred = ", ".join(c.value for c in r.output.classification) if r.output else "?"
             status = f"❌ {pred}"
         print(f"  {r.case_id}: {status}")
 
