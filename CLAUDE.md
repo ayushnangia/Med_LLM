@@ -6,6 +6,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 This project was developed with assistance from **Claude Code** (claude.ai/code) using **Claude Opus 4.5**.
 
+**Important:** Do NOT add Claude attribution to git commits. No "Generated with Claude Code" or "Co-Authored-By: Claude" in commit messages.
+
 ## Project Overview
 
 Med_LLM is a German medical oncology dataset project for training Large Language Models on clinical decision-making. The project focuses on urological cancer cases (prostate, kidney, testicular, penile, urothelial) and non-urological cancers, structured for tumor board discussions.
