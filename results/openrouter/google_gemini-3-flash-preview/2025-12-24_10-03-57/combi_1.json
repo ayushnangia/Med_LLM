@@ -1,0 +1,45 @@
+{
+  "case_id": "combi_1",
+  "timestamp": "2025-12-24T10:03:57.133132",
+  "provider": "openrouter",
+  "model": "google/gemini-3-flash-preview",
+  "input_case": {
+    "case_id": "combi_1",
+    "patient": {
+      "alter_jahre": 67,
+      "geschlecht": null,
+      "ecog": null,
+      "komorbiditaet": null
+    },
+    "anamnese": null,
+    "diagnose_kurz": "Prostatakarzinom (ED 2019 ISUP 4, iPSA 32) – Z. n. RPE 01/2020 (pT3a R1 pN0), biochemisches Rezidiv 2025; PSMA-PET/CT 11/2025: 1 PSMA-positiver pelviner LK rechts obturatorisch (8×6 mm, SUVmax 7,4), sonst kein PSMA-positiver Befund",
+    "stadium": "BCR nach RPE + oligometastatische pelvine LK-Metastase (1 LK, PSMA-positiv)",
+    "tnm_clinical": null,
+    "tnm_pathological": null,
+    "histologie": null,
+    "metastatic": null,
+    "nebendiagnosen": null,
+    "ground_truth": "polymalignancy"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 67 Jahre\nDiagnose: Prostatakarzinom (ED 2019 ISUP 4, iPSA 32) – Z. n. RPE 01/2020 (pT3a R1 pN0), biochemisches Rezidiv 2025; PSMA-PET/CT 11/2025: 1 PSMA-positiver pelviner LK rechts obturatorisch (8×6 mm, SUVmax 7,4), sonst kein PSMA-positiver Befund\nStadium: BCR nach RPE + oligometastatische pelvine LK-Metastase (1 LK, PSMA-positiv)\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Der vorliegende Fall beschreibt einen Patienten mit einem primären Prostatakarzinom (ISUP 4), das initial mittels radikaler Prostatektomie (RPE) behandelt wurde. Die aktuelle klinische Situation zeigt ein biochemisches Rezidiv (BCR) mit einer korrespondierenden solitären pelvinen Lymphknotenmetastase, die spezifisch mittels PSMA-PET/CT (einem Standardverfahren beim Prostatakarzinom) identifiziert wurde. Alle genannten Parameter (PSA, RPE, PSMA) sind pathognomonisch bzw. leitliniengerecht für das Prostatakarzinom.",
+    "classification": "prostatakarzinom",
+    "confidence": 1.0,
+    "key_indicators": [
+      "Prostatakarzinom",
+      "iPSA 32",
+      "RPE (Radikale Prostatektomie)",
+      "PSMA-PET/CT",
+      "biochemisches Rezidiv"
+    ]
+  },
+  "raw_response": "```json\n{\n    \"reasoning\": \"Der vorliegende Fall beschreibt einen Patienten mit einem primären Prostatakarzinom (ISUP 4), das initial mittels radikaler Prostatektomie (RPE) behandelt wurde. Die aktuelle klinische Situation zeigt ein biochemisches Rezidiv (BCR) mit einer korrespondierenden solitären pelvinen Lymphknotenmetastase, die spezifisch mittels PSMA-PET/CT (einem Standardverfahren beim Prostatakarzinom) identifiziert wurde. Alle genannten Parameter (PSA, RPE, PSMA) sind pathognomonisch bzw. leitliniengerecht für das Prostatakarzinom.\",\n    \"classification\": \"prostatakarzinom\",\n    \"confidence\": 1.0,\n    \"key_indicators\": [\"Prostatakarzinom\", \"iPSA 32\", \"RPE (Radikale Prostatektomie)\", \"PSMA-PET/CT\", \"biochemisches Rezidiv\"]\n}\n```",
+  "ground_truth": "polymalignancy",
+  "is_correct": false,
+  "inference_time_seconds": 22.6488845,
+  "tokens_used": 1177,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

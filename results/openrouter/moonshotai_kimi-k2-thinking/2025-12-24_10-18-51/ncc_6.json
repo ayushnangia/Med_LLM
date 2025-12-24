@@ -1,0 +1,62 @@
+{
+  "case_id": "ncc_6",
+  "timestamp": "2025-12-24T10:18:51.802023",
+  "provider": "openrouter",
+  "model": "moonshotai/kimi-k2-thinking",
+  "input_case": {
+    "case_id": "ncc_6",
+    "patient": {
+      "alter_jahre": 77,
+      "geschlecht": null,
+      "ecog": 2,
+      "komorbiditaet": "hoch"
+    },
+    "anamnese": "Zufallsbefund: Nierentumor links 2,1 cm bei Urolithiasis. Vorerkrankungen: KHK (Z. n. Stent 2016), CKD G3b, arterielle Hypertonie. Z. n. Hüft-TEP.",
+    "diagnose_kurz": "Unklare Raumforderung linke Niere (Oberpol) 2,1 cm, malignitätskriterien vorhanden",
+    "alle_diagnosen": null,
+    "stadium": "nicht-metastasiert (Verdacht, prätherapeutisch)",
+    "tnm_clinical": {
+      "T": "unknown",
+      "N": "unknown",
+      "M": "M0",
+      "stage_group": "unknown"
+    },
+    "tnm_pathological": {
+      "T": null,
+      "N": null,
+      "M": null,
+      "stage_group": null
+    },
+    "histologie": null,
+    "metastatic": false,
+    "nebendiagnosen": [
+      "KHK (Z. n. Stent 2016)",
+      "CKD G3b",
+      "arterielle Hypertonie",
+      "Z. n. Hüft-TEP"
+    ],
+    "ground_truth": "nierenzellkarzinom"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 77 Jahre\nECOG: 2\nAnamnese: Zufallsbefund: Nierentumor links 2,1 cm bei Urolithiasis. Vorerkrankungen: KHK (Z. n. Stent 2016), CKD G3b, arterielle Hypertonie. Z. n. Hüft-TEP.\nDiagnose: Unklare Raumforderung linke Niere (Oberpol) 2,1 cm, malignitätskriterien vorhanden\nStadium: nicht-metastasiert (Verdacht, prätherapeutisch)\nTNM (klinisch): T:unknown N:unknown M:M0\nTNM (pathologisch): Unbekannt\nMetastasiert: Nein\nNebendiagnosen: KHK (Z. n. Stent 2016), CKD G3b, arterielle Hypertonie, Z. n. Hüft-TEP\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Die Klassifizierung als Nierenzellkarzinom basiert auf mehreren eindeutigen Befunden: 1) Lokalisation des Tumors im linken Nierenoberpol, 2) typische radiologische Malignitätskriterien für einen soliden Nierentumor, 3) Größe von 2,1 cm im klinisch lokalisierten Stadium (T1a vermutet), 4) fehlende Metastasierung (M0). Das Nierenzellkarzinom ist mit >90% der häufigste maligne Nierentumor im Erwachsenenalter. Alternative Diagnosen wie Urothelkarzinom des Nierenbeckens sind aufgrund der Lokalisation im Parenchym (Oberpol) und der Größe extrem unwahrscheinlich. Die Komorbiditäten (CKD G3b, KHK) sind für die Therapieentscheidung relevant, ändern aber nicht die Tumorklassifikation.",
+    "classification": "nierenzellkarzinom",
+    "confidence": 0.97,
+    "key_indicators": [
+      "Raumforderung linke Niere (Oberpol)",
+      "Tumorgröße 2,1 cm",
+      "Malignitätskriterien radiologisch vorhanden",
+      "Nicht-metastasiert (M0)",
+      "Zufallsdiagnose bei Urolithiasis",
+      "CKD G3b als relevante Komorbidität"
+    ]
+  },
+  "raw_response": "```json\n{\n    \"reasoning\": \"Die Klassifizierung als Nierenzellkarzinom basiert auf mehreren eindeutigen Befunden: 1) Lokalisation des Tumors im linken Nierenoberpol, 2) typische radiologische Malignitätskriterien für einen soliden Nierentumor, 3) Größe von 2,1 cm im klinisch lokalisierten Stadium (T1a vermutet), 4) fehlende Metastasierung (M0). Das Nierenzellkarzinom ist mit >90% der häufigste maligne Nierentumor im Erwachsenenalter. Alternative Diagnosen wie Urothelkarzinom des Nierenbeckens sind aufgrund der Lokalisation im Parenchym (Oberpol) und der Größe extrem unwahrscheinlich. Die Komorbiditäten (CKD G3b, KHK) sind für die Therapieentscheidung relevant, ändern aber nicht die Tumorklassifikation.\",\n    \"classification\": \"nierenzellkarzinom\",\n    \"confidence\": 0.97,\n    \"key_indicators\": [\n        \"Raumforderung linke Niere (Oberpol)\",\n        \"Tumorgröße 2,1 cm\",\n        \"Malignitätskriterien radiologisch vorhanden\",\n        \"Nicht-metastasiert (M0)\",\n        \"Zufallsdiagnose bei Urolithiasis\",\n        \"CKD G3b als relevante Komorbidität\"\n    ]\n}\n```",
+  "ground_truth": "nierenzellkarzinom",
+  "is_correct": true,
+  "inference_time_seconds": 6.817244957999947,
+  "tokens_used": 1507,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

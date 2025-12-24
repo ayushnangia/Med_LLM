@@ -1,0 +1,57 @@
+{
+  "case_id": "ncc_13",
+  "timestamp": "2025-12-24T10:24:35.475793",
+  "provider": "openrouter",
+  "model": "google/gemma-3n-e4b-it",
+  "input_case": {
+    "case_id": "ncc_13",
+    "patient": {
+      "alter_jahre": 64,
+      "geschlecht": null,
+      "ecog": 0,
+      "komorbiditaet": "unknown"
+    },
+    "anamnese": "Vorstellung zur regelmäßigen Ultraschallkontrolle beim Hausarzt. Dabei Nachweis Raumforderung rechte Niere. Anschließend CT Abdomen mit Nachweis von zwei renalen Raumforderungen: rechts ca. 4,1 cm, links ca. 1,8 cm. Z. n. Kolon-OP bei Divertikulitis.",
+    "diagnose_kurz": "Beidseitige renale Raumforderungen: rechts 4,1 cm (cT1b*), links 1,8 cm (cT1a*) – malignitätsverdächtig (V. a. RCC)",
+    "alle_diagnosen": null,
+    "stadium": "bilateral, prätherapeutisch; Staging (CT Thorax) ausstehend",
+    "tnm_clinical": {
+      "T": "unknown",
+      "N": "unknown",
+      "M": "unknown",
+      "stage_group": "unknown"
+    },
+    "tnm_pathological": {
+      "T": null,
+      "N": null,
+      "M": null,
+      "stage_group": null
+    },
+    "histologie": null,
+    "metastatic": null,
+    "nebendiagnosen": [
+      "Z. n. Kolon-OP bei Divertikulitis"
+    ],
+    "ground_truth": "nierenzellkarzinom"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 64 Jahre\nECOG: 0\nAnamnese: Vorstellung zur regelmäßigen Ultraschallkontrolle beim Hausarzt. Dabei Nachweis Raumforderung rechte Niere. Anschließend CT Abdomen mit Nachweis von zwei renalen Raumforderungen: rechts ca. 4,1 cm, links ca. 1,8 cm. Z. n. Kolon-OP bei Divertikulitis.\nDiagnose: Beidseitige renale Raumforderungen: rechts 4,1 cm (cT1b*), links 1,8 cm (cT1a*) – malignitätsverdächtig (V. a. RCC)\nStadium: bilateral, prätherapeutisch; Staging (CT Thorax) ausstehend\nTNM (klinisch): T:unknown N:unknown M:unknown\nTNM (pathologisch): Unbekannt\nNebendiagnosen: Z. n. Kolon-OP bei Divertikulitis\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Der Fall beschreibt zwei renale Raumforderungen, die aufgrund ihrer Größe und der Verdachtsdiagnose (V. a. RCC - renal cell carcinoma) als malignitätsverdächtig eingestuft werden. Die Größe der Raumforderungen (4,1 cm und 1,8 cm) und die Beschreibung als cT1b bzw. cT1a deuten auf ein Nierenzellkarzinom hin. Die Anamnese mit einer Kolon-OP bei Divertikulitis ist zwar relevant für die allgemeine medizinische Vorgeschichte, aber nicht direkt für die Klassifizierung des primären Tumors. Da die Diagnose ein Nierenzellkarzinom (RCC) ist und weitere Untersuchungen (CT Thorax) zur Stadieneinteilung ausstehen, ist dies die wahrscheinlichste Kategorie.",
+    "classification": "nierenzellkarzinom",
+    "confidence": 0.95,
+    "key_indicators": [
+      "Renale Raumforderungen",
+      "Malignitätsverdacht (RCC)",
+      "Größe der Raumforderungen (cT1a/b)",
+      "Anamnese irrelevant für die Tumorart"
+    ]
+  },
+  "raw_response": "```json\n{\n    \"reasoning\": \"Der Fall beschreibt zwei renale Raumforderungen, die aufgrund ihrer Größe und der Verdachtsdiagnose (V. a. RCC - renal cell carcinoma) als malignitätsverdächtig eingestuft werden. Die Größe der Raumforderungen (4,1 cm und 1,8 cm) und die Beschreibung als cT1b bzw. cT1a deuten auf ein Nierenzellkarzinom hin. Die Anamnese mit einer Kolon-OP bei Divertikulitis ist zwar relevant für die allgemeine medizinische Vorgeschichte, aber nicht direkt für die Klassifizierung des primären Tumors. Da die Diagnose ein Nierenzellkarzinom (RCC) ist und weitere Untersuchungen (CT Thorax) zur Stadieneinteilung ausstehen, ist dies die wahrscheinlichste Kategorie.\",\n    \"classification\": \"nierenzellkarzinom\",\n    \"confidence\": 0.95,\n    \"key_indicators\": [\"Renale Raumforderungen\", \"Malignitätsverdacht (RCC)\", \"Größe der Raumforderungen (cT1a/b)\", \"Anamnese irrelevant für die Tumorart\"]\n}\n```",
+  "ground_truth": "nierenzellkarzinom",
+  "is_correct": true,
+  "inference_time_seconds": 13.180070957999988,
+  "tokens_used": 603,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

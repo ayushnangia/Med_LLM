@@ -1,0 +1,61 @@
+{
+  "case_id": "ncc_1",
+  "timestamp": "2025-12-24T10:24:35.474375",
+  "provider": "openrouter",
+  "model": "google/gemma-3n-e4b-it",
+  "input_case": {
+    "case_id": "ncc_1",
+    "patient": {
+      "alter_jahre": 52,
+      "geschlecht": null,
+      "ecog": 0,
+      "komorbiditaet": "unknown"
+    },
+    "anamnese": "Met. pap. RCC. Z. n. Nephrektomie links 2014 (papilläres RCC pT3b, Nx, L0, V0, Pn0, G3, Rx). Z. n. offener Resektion eines Lokalrezidivs 2024. Aktuell multiple Rezidive (pulmonal, lymphonodal, hepatisch).",
+    "diagnose_kurz": "Metastasiertes papilläres RCC",
+    "alle_diagnosen": null,
+    "stadium": "metastasiert (pulmonal, lymphonodal, hepatisch)",
+    "tnm_clinical": {
+      "T": "unknown",
+      "N": "unknown",
+      "M": "M1",
+      "stage_group": "unknown"
+    },
+    "tnm_pathological": {
+      "T": "T3b",
+      "N": "NX",
+      "M": null,
+      "stage_group": null
+    },
+    "histologie": null,
+    "metastatic": true,
+    "nebendiagnosen": [
+      "obstruktive Kardiomyopathie",
+      "Z. n. Hyperthyreose 2021",
+      "arterielle Hypertonie",
+      "Diabetes mellitus",
+      "Z. n. LAE",
+      "Hyperlipidämie"
+    ],
+    "ground_truth": "nierenzellkarzinom"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 52 Jahre\nECOG: 0\nAnamnese: Met. pap. RCC. Z. n. Nephrektomie links 2014 (papilläres RCC pT3b, Nx, L0, V0, Pn0, G3, Rx). Z. n. offener Resektion eines Lokalrezidivs 2024. Aktuell multiple Rezidive (pulmonal, lymphonodal, hepatisch).\nDiagnose: Metastasiertes papilläres RCC\nStadium: metastasiert (pulmonal, lymphonodal, hepatisch)\nTNM (klinisch): T:unknown N:unknown M:M1\nTNM (pathologisch): T:T3b N:NX\nMetastasiert: Ja\nNebendiagnosen: obstruktive Kardiomyopathie, Z. n. Hyperthyreose 2021, arterielle Hypertonie, Diabetes mellitus, Z. n. LAE\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Der Fall beschreibt einen 52-jährigen Patienten mit einer Anamnese von metastasiertem Nierenzellkarzinom (RCC). Der Patient hatte bereits eine linke Nephrektomie aufgrund eines papillären RCC und nun multiple Rezidive in Lunge, Lymphknoten und Leber. Die Diagnose ist metastasiertes papilläres RCC.  Da das primäre Tumororgan die Niere ist und das Karzinom als Nierenzellkarzinom klassifiziert wird, ist dies die korrekte Kategorie.",
+    "classification": "nierenzellkarzinom",
+    "confidence": 1.0,
+    "key_indicators": [
+      "Metastasiertes papilläres RCC",
+      "Anamnese von Nephrektomie aufgrund von RCC",
+      "Multiple Rezidive in Lunge, Lymphknoten und Leber"
+    ]
+  },
+  "raw_response": "```json\n{\n    \"reasoning\": \"Der Fall beschreibt einen 52-jährigen Patienten mit einer Anamnese von metastasiertem Nierenzellkarzinom (RCC). Der Patient hatte bereits eine linke Nephrektomie aufgrund eines papillären RCC und nun multiple Rezidive in Lunge, Lymphknoten und Leber. Die Diagnose ist metastasiertes papilläres RCC.  Da das primäre Tumororgan die Niere ist und das Karzinom als Nierenzellkarzinom klassifiziert wird, ist dies die korrekte Kategorie.\",\n    \"classification\": \"nierenzellkarzinom\",\n    \"confidence\": 1.0,\n    \"key_indicators\": [\"Metastasiertes papilläres RCC\", \"Anamnese von Nephrektomie aufgrund von RCC\", \"Multiple Rezidive in Lunge, Lymphknoten und Leber\"]\n}\n```",
+  "ground_truth": "nierenzellkarzinom",
+  "is_correct": true,
+  "inference_time_seconds": 6.061073540999999,
+  "tokens_used": 556,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

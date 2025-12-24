@@ -1,0 +1,59 @@
+{
+  "case_id": "ncc_8",
+  "timestamp": "2025-12-24T10:16:01.366393",
+  "provider": "openrouter",
+  "model": "essentialai/rnj-1-instruct",
+  "input_case": {
+    "case_id": "ncc_8",
+    "patient": {
+      "alter_jahre": 70,
+      "geschlecht": null,
+      "ecog": 1,
+      "komorbiditaet": "unknown"
+    },
+    "anamnese": "Kleiner Nierentumor links 2,7 cm, hilusnah. Vorerkrankungen: DM Typ 2, arterielle Hypertonie, Hyperlipidämie.",
+    "diagnose_kurz": "Kleiner Nierentumor links 2,7 cm, hilusnah",
+    "alle_diagnosen": null,
+    "stadium": "nicht-metastasiert (Verdacht, prätherapeutisch)",
+    "tnm_clinical": {
+      "T": "unknown",
+      "N": "unknown",
+      "M": "M0",
+      "stage_group": "unknown"
+    },
+    "tnm_pathological": {
+      "T": null,
+      "N": null,
+      "M": null,
+      "stage_group": null
+    },
+    "histologie": null,
+    "metastatic": false,
+    "nebendiagnosen": [
+      "Diabetes mellitus Typ 2",
+      "arterielle Hypertonie",
+      "Hyperlipidämie"
+    ],
+    "ground_truth": "nierenzellkarzinom"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 70 Jahre\nECOG: 1\nAnamnese: Kleiner Nierentumor links 2,7 cm, hilusnah. Vorerkrankungen: DM Typ 2, arterielle Hypertonie, Hyperlipidämie.\nDiagnose: Kleiner Nierentumor links 2,7 cm, hilusnah\nStadium: nicht-metastasiert (Verdacht, prätherapeutisch)\nTNM (klinisch): T:unknown N:unknown M:M0\nTNM (pathologisch): Unbekannt\nMetastasiert: Nein\nNebendiagnosen: Diabetes mellitus Typ 2, arterielle Hypertonie, Hyperlipidämie\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Der Patient leidet an einem Nierentumor, der 2,7 cm groß ist und hilusnah ist. Nierentumoren sind typischerweise urotheliale oder nierenzellähmende Tumoren. Da keine Metastasie vorliegt und die Lokalisation im Nieren deutlich ist, handelt es sich wahrscheinlich um ein urothelka- rzinom oder ein nierenzellkarzinom. Ohne weitere klinische oder pathologische TNM-Klassifikation ist die genaue Unterscheidung schwierig, aber die Lokalisation im Nieren legt nahe, dass es sich um ein urothelkarzinom handelt, da diese häufiger im Nieren vorkommen.",
+    "classification": "urothelkarzinom",
+    "confidence": 0.8,
+    "key_indicators": [
+      "Nierentumor",
+      "2,7 cm",
+      "hilusnah",
+      "keine Metastasie"
+    ]
+  },
+  "raw_response": "{\n    \"reasoning\": \"Der Patient leidet an einem Nierentumor, der 2,7 cm groß ist und hilusnah ist. Nierentumoren sind typischerweise urotheliale oder nierenzellähmende Tumoren. Da keine Metastasie vorliegt und die Lokalisation im Nieren deutlich ist, handelt es sich wahrscheinlich um ein urothelka- rzinom oder ein nierenzellkarzinom. Ohne weitere klinische oder pathologische TNM-Klassifikation ist die genaue Unterscheidung schwierig, aber die Lokalisation im Nieren legt nahe, dass es sich um ein urothelkarzinom handelt, da diese häufiger im Nieren vorkommen.\",\n    \"classification\": \"urothelkarzinom\",\n    \"confidence\": 0.8,\n    \"key_indicators\": [\"Nierentumor\", \"2,7 cm\", \"hilusnah\", \"keine Metastasie\"]\n}",
+  "ground_truth": "nierenzellkarzinom",
+  "is_correct": false,
+  "inference_time_seconds": 5.094426541999951,
+  "tokens_used": 558,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

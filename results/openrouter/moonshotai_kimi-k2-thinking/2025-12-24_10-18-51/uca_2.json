@@ -1,0 +1,48 @@
+{
+  "case_id": "uca_2",
+  "timestamp": "2025-12-24T10:18:51.802447",
+  "provider": "openrouter",
+  "model": "moonshotai/kimi-k2-thinking",
+  "input_case": {
+    "case_id": "uca_2",
+    "patient": {
+      "alter_jahre": 54,
+      "geschlecht": null,
+      "ecog": null,
+      "komorbiditaet": null
+    },
+    "anamnese": null,
+    "diagnose_kurz": "Harnblasen-NMIBC: nicht-invasives papilläres Urothelkarzinom pTa, fokal high grade (G3), Hinterwand links; Detrusor nicht nachweisbar",
+    "alle_diagnosen": null,
+    "stadium": "pTa high grade (fokal) – EORTC-Risikostratifizierung geplant; Nachresektion erwägen (Detrusor fehlt)",
+    "tnm_clinical": null,
+    "tnm_pathological": null,
+    "histologie": null,
+    "metastatic": null,
+    "nebendiagnosen": null,
+    "ground_truth": "urothelkarzinom"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 54 Jahre\nDiagnose: Harnblasen-NMIBC: nicht-invasives papilläres Urothelkarzinom pTa, fokal high grade (G3), Hinterwand links; Detrusor nicht nachweisbar\nStadium: pTa high grade (fokal) – EORTC-Risikostratifizierung geplant; Nachresektion erwägen (Detrusor fehlt)\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Die Diagnose ist eindeutig als 'nicht-invasives papilläres Urothelkarzinom pTa, fokal high grade (G3)' der Harnblase spezifiziert. Urothelkarzinome entstehen aus dem Urothel, dem Übergangsepithel des gesamten Harntrakts (Harnblase, Ureter, Nierenbecken). Die Lokalisation in der Harnblase, das papilläre Wachstumsmuster, das nicht-invasive Stadium pTa (Oberflächenkarzinom) und der high-grade-Differenzierungsgrad sind alle klassische Merkmale eines Urothelkarzinoms. Keine andere angebotene Kategorie passt zu dieser präzisen uro-onkologischen Diagnose.",
+    "classification": "urothelkarzinom",
+    "confidence": 1.0,
+    "key_indicators": [
+      "Urothelkarzinom",
+      "Harnblase",
+      "pTa",
+      "high grade",
+      "papillär",
+      "NMIBC",
+      "Detrusor nicht nachweisbar"
+    ]
+  },
+  "raw_response": "```json\n{\n    \"reasoning\": \"Die Diagnose ist eindeutig als 'nicht-invasives papilläres Urothelkarzinom pTa, fokal high grade (G3)' der Harnblase spezifiziert. Urothelkarzinome entstehen aus dem Urothel, dem Übergangsepithel des gesamten Harntrakts (Harnblase, Ureter, Nierenbecken). Die Lokalisation in der Harnblase, das papilläre Wachstumsmuster, das nicht-invasive Stadium pTa (Oberflächenkarzinom) und der high-grade-Differenzierungsgrad sind alle klassische Merkmale eines Urothelkarzinoms. Keine andere angebotene Kategorie passt zu dieser präzisen uro-onkologischen Diagnose.\",\n    \"classification\": \"urothelkarzinom\",\n    \"confidence\": 1.0,\n    \"key_indicators\": [\"Urothelkarzinom\", \"Harnblase\", \"pTa\", \"high grade\", \"papillär\", \"NMIBC\", \"Detrusor nicht nachweisbar\"]\n}\n```",
+  "ground_truth": "urothelkarzinom",
+  "is_correct": true,
+  "inference_time_seconds": 101.25041287500005,
+  "tokens_used": 1168,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

@@ -1,0 +1,55 @@
+{
+  "case_id": "ncc_7",
+  "timestamp": "2025-12-24T10:23:15.109964",
+  "provider": "openrouter",
+  "model": "google/gemma-3-27b-it",
+  "input_case": {
+    "case_id": "ncc_7",
+    "patient": {
+      "alter_jahre": 43,
+      "geschlecht": null,
+      "ecog": 0,
+      "komorbiditaet": "unknown"
+    },
+    "anamnese": "Nierentumor rechts 1,9 cm, endophytisch. CT-graphisch V. a. Nierenbeckentumor rechts ca. 1×1 cm. Z. n. Ureterorenoskopie rechts 11/2023.",
+    "diagnose_kurz": "Unklare Raumforderung Nierenbecken rechts ca. 1×1 cm (CT 11.11.2025), V. a. Nierenbeckentumor; dd: RCC endophytisch 1,9 cm",
+    "alle_diagnosen": null,
+    "stadium": "unbekannt (prätherapeutisch)",
+    "tnm_clinical": {
+      "T": "unknown",
+      "N": "unknown",
+      "M": "unknown",
+      "stage_group": "unknown"
+    },
+    "tnm_pathological": {
+      "T": null,
+      "N": null,
+      "M": null,
+      "stage_group": null
+    },
+    "histologie": null,
+    "metastatic": false,
+    "nebendiagnosen": [],
+    "ground_truth": "nierenzellkarzinom"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 43 Jahre\nECOG: 0\nAnamnese: Nierentumor rechts 1,9 cm, endophytisch. CT-graphisch V. a. Nierenbeckentumor rechts ca. 1×1 cm. Z. n. Ureterorenoskopie rechts 11/2023.\nDiagnose: Unklare Raumforderung Nierenbecken rechts ca. 1×1 cm (CT 11.11.2025), V. a. Nierenbeckentumor; dd: RCC endophytisch 1,9 cm\nStadium: unbekannt (prätherapeutisch)\nTNM (klinisch): T:unknown N:unknown M:unknown\nTNM (pathologisch): Unbekannt\nMetastasiert: Nein\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Der Fall beschreibt einen Patienten mit einer Raumforderung im Nierenbecken, die entweder ein Nierenbeckentumor oder ein endophytisch wachsendes Nierenzellkarzinom sein könnte. Die Anamnese erwähnt einen Nierentumor und eine Ureterorenoskopie, was auf eine Untersuchung im Bereich der Harnwege hindeutet. Da die Raumforderung im Nierenbecken lokalisiert ist und die Differentialdiagnose einen Nierenbeckentumor einschließt, ist die wahrscheinlichste Klassifizierung ein Urothelkarzinom, da dies der häufigste Tumor des Nierenbeckens ist. Ein Nierenzellkarzinom kann zwar endophytisch wachsen, aber die primäre Lokalisation im Nierenbecken spricht eher für ein Urothelkarzinom. Die weiteren Untersuchungen werden das Stadium und die genaue Diagnose klären.",
+    "classification": "urothelkarzinom",
+    "confidence": 0.75,
+    "key_indicators": [
+      "Raumforderung Nierenbecken",
+      "V. a. Nierenbeckentumor",
+      "Ureterorenoskopie",
+      "Differentialdiagnose Nierenbeckentumor"
+    ]
+  },
+  "raw_response": "\n\n```json\n{\n    \"reasoning\": \"Der Fall beschreibt einen Patienten mit einer Raumforderung im Nierenbecken, die entweder ein Nierenbeckentumor oder ein endophytisch wachsendes Nierenzellkarzinom sein könnte. Die Anamnese erwähnt einen Nierentumor und eine Ureterorenoskopie, was auf eine Untersuchung im Bereich der Harnwege hindeutet. Da die Raumforderung im Nierenbecken lokalisiert ist und die Differentialdiagnose einen Nierenbeckentumor einschließt, ist die wahrscheinlichste Klassifizierung ein Urothelkarzinom, da dies der häufigste Tumor des Nierenbeckens ist. Ein Nierenzellkarzinom kann zwar endophytisch wachsen, aber die primäre Lokalisation im Nierenbecken spricht eher für ein Urothelkarzinom. Die weiteren Untersuchungen werden das Stadium und die genaue Diagnose klären.\",\n    \"classification\": \"urothelkarzinom\",\n    \"confidence\": 0.75,\n    \"key_indicators\": [\"Raumforderung Nierenbecken\", \"V. a. Nierenbeckentumor\", \"Ureterorenoskopie\", \"Differentialdiagnose Nierenbeckentumor\"]\n}\n```",
+  "ground_truth": "nierenzellkarzinom",
+  "is_correct": false,
+  "inference_time_seconds": 19.857242292,
+  "tokens_used": 584,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

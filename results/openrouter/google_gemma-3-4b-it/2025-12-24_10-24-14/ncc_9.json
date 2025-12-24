@@ -1,0 +1,59 @@
+{
+  "case_id": "ncc_9",
+  "timestamp": "2025-12-24T10:24:14.635238",
+  "provider": "openrouter",
+  "model": "google/gemma-3-4b-it",
+  "input_case": {
+    "case_id": "ncc_9",
+    "patient": {
+      "alter_jahre": 61,
+      "geschlecht": null,
+      "ecog": 0,
+      "komorbiditaet": "unknown"
+    },
+    "anamnese": "Nierentumor links 4,6 cm (cT1b). Raucher: ex 15 PY. Z. n. Cholezystektomie.",
+    "diagnose_kurz": "Nierentumor links (Oberpol) 4,6 cm, malignitätsverdächtig (cT1b), keine Metastasen im CT-Staging",
+    "alle_diagnosen": null,
+    "stadium": "cT1b, M0 (radiologisch), prätherapeutisch",
+    "tnm_clinical": {
+      "T": "T1",
+      "N": "N0",
+      "M": "M0",
+      "stage_group": "unknown"
+    },
+    "tnm_pathological": {
+      "T": null,
+      "N": null,
+      "M": null,
+      "stage_group": null
+    },
+    "histologie": null,
+    "metastatic": false,
+    "nebendiagnosen": [
+      "Ex-Raucher (15 PY)",
+      "Z. n. Cholezystektomie"
+    ],
+    "ground_truth": "nierenzellkarzinom"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 61 Jahre\nECOG: 0\nAnamnese: Nierentumor links 4,6 cm (cT1b). Raucher: ex 15 PY. Z. n. Cholezystektomie.\nDiagnose: Nierentumor links (Oberpol) 4,6 cm, malignitätsverdächtig (cT1b), keine Metastasen im CT-Staging\nStadium: cT1b, M0 (radiologisch), prätherapeutisch\nTNM (klinisch): T:T1 N:N0 M:M0\nTNM (pathologisch): Unbekannt\nMetastasiert: Nein\nNebendiagnosen: Ex-Raucher (15 PY), Z. n. Cholezystektomie\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Der Patient präsentiert sich mit einem Nierentumor im Oberpol, der als malignitätsverdächtig eingestuft wird. Die Größe von 4,6 cm und die initiale Stadieneinteilung cT1b deuten stark auf ein Nierenzellkarzinom hin. Die Anamnese des Rauchens ist ein bekannter Risikofaktor für diese Art von Tumor. Es gibt keine Hinweise auf andere Krebsarten, und die Nebendiagnose der Cholezystektomie ist irrelevant für die aktuelle Klassifizierung. Die ECOG 0 und das Fehlen von Metastasen unterstützen die Diagnose eines lokalisierten Nierenzellkarzinoms.",
+    "classification": "nierenzellkarzinom",
+    "confidence": 0.95,
+    "key_indicators": [
+      "Nierentumor im Oberpol",
+      "4,6 cm Größe",
+      "malignitätsverdächtig",
+      "Raucheranamnese",
+      "cT1b"
+    ]
+  },
+  "raw_response": "```json\n{\n    \"reasoning\": \"Der Patient präsentiert sich mit einem Nierentumor im Oberpol, der als malignitätsverdächtig eingestuft wird. Die Größe von 4,6 cm und die initiale Stadieneinteilung cT1b deuten stark auf ein Nierenzellkarzinom hin. Die Anamnese des Rauchens ist ein bekannter Risikofaktor für diese Art von Tumor. Es gibt keine Hinweise auf andere Krebsarten, und die Nebendiagnose der Cholezystektomie ist irrelevant für die aktuelle Klassifizierung. Die ECOG 0 und das Fehlen von Metastasen unterstützen die Diagnose eines lokalisierten Nierenzellkarzinoms.\",\n    \"classification\": \"nierenzellkarzinom\",\n    \"confidence\": 0.95,\n    \"key_indicators\": [\"Nierentumor im Oberpol\", \"4,6 cm Größe\", \"malignitätsverdächtig\", \"Raucheranamnese\", \"cT1b\"]\n}\n```",
+  "ground_truth": "nierenzellkarzinom",
+  "is_correct": true,
+  "inference_time_seconds": 5.816631459,
+  "tokens_used": 529,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

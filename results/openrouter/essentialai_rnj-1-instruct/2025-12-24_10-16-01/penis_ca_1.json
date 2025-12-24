@@ -1,0 +1,55 @@
+{
+  "case_id": "penis_ca_1",
+  "timestamp": "2025-12-24T10:16:01.366666",
+  "provider": "openrouter",
+  "model": "essentialai/rnj-1-instruct",
+  "input_case": {
+    "case_id": "penis_ca_1",
+    "patient": {
+      "alter_jahre": 69,
+      "geschlecht": null,
+      "ecog": 0,
+      "komorbiditaet": "unknown"
+    },
+    "anamnese": "High-risk Peniskarzinom mit inguinalen und pelvinen LK-Metastasen. Z. n. Glansresektion 12.07.2025, offene inguinale LNE bds. 19.08.2025 (LK-Metastasen 5/12, bis 5 cm), DaV pelvine Lymphadenektomie bds. 11.09.2025. TuBo-Empfehlung 02.09.2025: pelvine LNE bds. + adjuvante Chemotherapie.",
+    "diagnose_kurz": "Peniskarzinom (Plattenepithelkarzinom) high-risk mit inguinalen und pelvinen Lymphknotenmetastasen",
+    "alle_diagnosen": null,
+    "stadium": "high-risk, mindestens pN2; nodal metastasiert (inguinal + pelvin)",
+    "tnm_clinical": {
+      "T": "unknown",
+      "N": "N2",
+      "M": "unknown",
+      "stage_group": "unknown"
+    },
+    "tnm_pathological": {
+      "T": "pT2",
+      "N": "pN2",
+      "M": null,
+      "stage_group": null
+    },
+    "histologie": null,
+    "metastatic": null,
+    "nebendiagnosen": [],
+    "ground_truth": "peniskarzinom"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 69 Jahre\nECOG: 0\nAnamnese: High-risk Peniskarzinom mit inguinalen und pelvinen LK-Metastasen. Z. n. Glansresektion 12.07.2025, offene inguinale LNE bds. 19.08.2025 (LK-Metastasen 5/12, bis 5 cm), DaV pelvine Lymphadenektomie bds. 11.09.2025. TuBo-Empfehlung 02.09.2025: pelvine LNE bds. + adjuvante Chemotherapie.\nDiagnose: Peniskarzinom (Plattenepithelkarzinom) high-risk mit inguinalen und pelvinen Lymphknotenmetastasen\nStadium: high-risk, mindestens pN2; nodal metastasiert (inguinal + pelvin)\nTNM (klinisch): T:unknown N:N2 M:unknown\nTNM (pathologisch): T:pT2 N:pN2\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Der Patient leidet an einem high-risk Peniskarzinom mit inguinalen und pelvinen Lymphknotenmetastasen. Das TNM-Staging deutet auf eine pT2 und pN2-Klassifikation hin, was ein klassisches Beispiel für ein Peniskarzinom ist. Es gibt keine Indikatoren für nierenzellkarzinom, prostatakarzinom, hodentumor, urothelkarzinom oder polymalignancy. Da es sich um ein urologisches Problem handelt, wird 'non_urological' nicht gewählt.",
+    "classification": "peniskarzinom",
+    "confidence": 0.95,
+    "key_indicators": [
+      "Peniskarzinom",
+      "high-risk",
+      "inguinale und pelvine LK-Metastasen",
+      "TNM pT2 pN2"
+    ]
+  },
+  "raw_response": "{\n    \"reasoning\": \"Der Patient leidet an einem high-risk Peniskarzinom mit inguinalen und pelvinen Lymphknotenmetastasen. Das TNM-Staging deutet auf eine pT2 und pN2-Klassifikation hin, was ein klassisches Beispiel für ein Peniskarzinom ist. Es gibt keine Indikatoren für nierenzellkarzinom, prostatakarzinom, hodentumor, urothelkarzinom oder polymalignancy. Da es sich um ein urologisches Problem handelt, wird 'non_urological' nicht gewählt.\",\n    \"classification\": \"peniskarzinom\",\n    \"confidence\": 0.95,\n    \"key_indicators\": [\"Peniskarzinom\", \"high-risk\", \"inguinale und pelvine LK-Metastasen\", \"TNM pT2 pN2\"]\n}",
+  "ground_truth": "peniskarzinom",
+  "is_correct": true,
+  "inference_time_seconds": 10.923006291999968,
+  "tokens_used": 612,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

@@ -1,0 +1,59 @@
+{
+  "case_id": "ncc_8",
+  "timestamp": "2025-12-24T10:24:14.635177",
+  "provider": "openrouter",
+  "model": "google/gemma-3-4b-it",
+  "input_case": {
+    "case_id": "ncc_8",
+    "patient": {
+      "alter_jahre": 70,
+      "geschlecht": null,
+      "ecog": 1,
+      "komorbiditaet": "unknown"
+    },
+    "anamnese": "Kleiner Nierentumor links 2,7 cm, hilusnah. Vorerkrankungen: DM Typ 2, arterielle Hypertonie, Hyperlipidämie.",
+    "diagnose_kurz": "Kleiner Nierentumor links 2,7 cm, hilusnah",
+    "alle_diagnosen": null,
+    "stadium": "nicht-metastasiert (Verdacht, prätherapeutisch)",
+    "tnm_clinical": {
+      "T": "unknown",
+      "N": "unknown",
+      "M": "M0",
+      "stage_group": "unknown"
+    },
+    "tnm_pathological": {
+      "T": null,
+      "N": null,
+      "M": null,
+      "stage_group": null
+    },
+    "histologie": null,
+    "metastatic": false,
+    "nebendiagnosen": [
+      "Diabetes mellitus Typ 2",
+      "arterielle Hypertonie",
+      "Hyperlipidämie"
+    ],
+    "ground_truth": "nierenzellkarzinom"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 70 Jahre\nECOG: 1\nAnamnese: Kleiner Nierentumor links 2,7 cm, hilusnah. Vorerkrankungen: DM Typ 2, arterielle Hypertonie, Hyperlipidämie.\nDiagnose: Kleiner Nierentumor links 2,7 cm, hilusnah\nStadium: nicht-metastasiert (Verdacht, prätherapeutisch)\nTNM (klinisch): T:unknown N:unknown M:M0\nTNM (pathologisch): Unbekannt\nMetastasiert: Nein\nNebendiagnosen: Diabetes mellitus Typ 2, arterielle Hypertonie, Hyperlipidämie\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Der Patient hat einen kleinen Tumor in der Niere, der als Nierenzellkarzinom (RCC) klassifiziert werden muss. Die Anamnese und die Beschreibung des Tumors (hilusnah) deuten stark auf dieses Karzinom hin. Die Vorerkrankungen (Diabetes, Hypertonie, Hyperlipidämie) sind zwar relevant für die allgemeine Behandlung, aber nicht entscheidend für die Klassifizierung des Tumors. Die fehlenden pathologischen TNM-Daten erschweren eine definitive Klassifizierung, aber die klinische TNM-Klassifizierung und die Beschreibung des Tumors sprechen stark für RCC.",
+    "classification": "nierenzellkarzinom",
+    "confidence": 0.95,
+    "key_indicators": [
+      "Nierentumor",
+      "hilusnah",
+      "Diabetes mellitus Typ 2",
+      "arterielle Hypertonie"
+    ]
+  },
+  "raw_response": "\n```json\n{\n    \"reasoning\": \"Der Patient hat einen kleinen Tumor in der Niere, der als Nierenzellkarzinom (RCC) klassifiziert werden muss. Die Anamnese und die Beschreibung des Tumors (hilusnah) deuten stark auf dieses Karzinom hin. Die Vorerkrankungen (Diabetes, Hypertonie, Hyperlipidämie) sind zwar relevant für die allgemeine Behandlung, aber nicht entscheidend für die Klassifizierung des Tumors. Die fehlenden pathologischen TNM-Daten erschweren eine definitive Klassifizierung, aber die klinische TNM-Klassifizierung und die Beschreibung des Tumors sprechen stark für RCC.\",\n    \"classification\": \"nierenzellkarzinom\",\n    \"confidence\": 0.95,\n    \"key_indicators\": [\"Nierentumor\", \"hilusnah\", \"Diabetes mellitus Typ 2\", \"arterielle Hypertonie\"]\n}\n```",
+  "ground_truth": "nierenzellkarzinom",
+  "is_correct": true,
+  "inference_time_seconds": 5.940934208999998,
+  "tokens_used": 493,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

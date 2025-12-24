@@ -1,0 +1,59 @@
+{
+  "case_id": "ncc_3",
+  "timestamp": "2025-12-24T10:13:41.834381",
+  "provider": "openrouter",
+  "model": "nvidia/nemotron-3-nano-30b-a3b:free",
+  "input_case": {
+    "case_id": "ncc_3",
+    "patient": {
+      "alter_jahre": 58,
+      "geschlecht": null,
+      "ecog": 0,
+      "komorbiditaet": "unknown"
+    },
+    "anamnese": "Zufallsbefund im CT wegen Nephrolithiasis. Solide Nierenraumforderung rechts (2,2 cm).",
+    "diagnose_kurz": "Solide Nierenraumforderung rechts (2,2 cm)",
+    "alle_diagnosen": null,
+    "stadium": "nicht-metastasiert (Verdacht, prätherapeutisch)",
+    "tnm_clinical": {
+      "T": "unknown",
+      "N": "unknown",
+      "M": "M0",
+      "stage_group": "unknown"
+    },
+    "tnm_pathological": {
+      "T": null,
+      "N": null,
+      "M": null,
+      "stage_group": null
+    },
+    "histologie": null,
+    "metastatic": false,
+    "nebendiagnosen": [
+      "arterielle Hypertonie"
+    ],
+    "ground_truth": "nierenzellkarzinom"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 58 Jahre\nECOG: 0\nAnamnese: Zufallsbefund im CT wegen Nephrolithiasis. Solide Nierenraumforderung rechts (2,2 cm).\nDiagnose: Solide Nierenraumforderung rechts (2,2 cm)\nStadium: nicht-metastasiert (Verdacht, prätherapeutisch)\nTNM (klinisch): T:unknown N:unknown M:M0\nTNM (pathologisch): Unbekannt\nMetastasiert: Nein\nNebendiagnosen: arterielle Hypertonie\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Der Patient hat eine zufällig entdeckte solide Nierentumor im rechten Nierenbereich (2,2 cm) ohne metastatische Erkrankung. Dies ist typisch für ein frühes Stadium eines Nierenzellkarzinoms. Keine Hinweise auf Prostata-, Hoden-, Penis- oder Harnwegskarzinome liegen vor.",
+    "classification": "non_urological",
+    "confidence": 0.97,
+    "key_indicators": [
+      "solider Nierentumor",
+      "rechtsseitig",
+      "2,2 cm",
+      "nicht metastasiert",
+      "zufällige Entdeckung bei CT",
+      "arterielle Hypertonie als Begleiterkrankung"
+    ]
+  },
+  "raw_response": "{\n    \"reasoning\": \"Der Patient hat eine zufällig entdeckte solide Nierentumor im rechten Nierenbereich (2,2 cm) ohne metastatische Erkrankung. Dies ist typisch für ein frühes Stadium eines Nierenzellkarzinoms. Keine Hinweise auf Prostata-, Hoden-, Penis- oder Harnwegskarzinome liegen vor.\",\n    \"classification\": \"kidney cancer\",\n    \"confidence\": 0.97,\n    \"key_indicators\": [\n        \"solider Nierentumor\",\n        \"rechtsseitig\",\n        \"2,2 cm\",\n        \"nicht metastasiert\",\n        \"zufällige Entdeckung bei CT\",\n        \"arterielle Hypertonie als Begleiterkrankung\"\n    ]\n}",
+  "ground_truth": "nierenzellkarzinom",
+  "is_correct": false,
+  "inference_time_seconds": 5.852509209000004,
+  "tokens_used": 587,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

@@ -1,0 +1,42 @@
+{
+  "case_id": "uca_1",
+  "timestamp": "2025-12-24T09:55:07.800420",
+  "provider": "ollama",
+  "model": "mistral:7b-instruct",
+  "input_case": {
+    "case_id": "uca_1",
+    "patient": {
+      "alter_jahre": 63,
+      "geschlecht": null,
+      "ecog": null,
+      "komorbiditaet": null
+    },
+    "anamnese": null,
+    "diagnose_kurz": "Multilokuläres NMIBC-Rezidiv: nicht-invasives papilläres Urothelkarzinom low grade (pTa G1) in mehreren Lokalisationen (A–C), D/E ohne Malignität",
+    "stadium": "NMIBC, low grade pTa (multifokal, Rezidiv >3 Läsionen) – Risikostratifizierung (EORTC) geplant",
+    "tnm_clinical": null,
+    "tnm_pathological": null,
+    "histologie": null,
+    "metastatic": null,
+    "nebendiagnosen": null,
+    "ground_truth": "urothelkarzinom"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Analysiere den folgenden klinischen Fall und bestimme die Haupttumorentität.\n\nKLINISCHER FALL:\nPatient: 63 Jahre\nDiagnose: Multilokuläres NMIBC-Rezidiv: nicht-invasives papilläres Urothelkarzinom low grade (pTa G1) in mehreren Lokalisationen (A–C), D/E ohne Malignität\nStadium: NMIBC, low grade pTa (multifokal, Rezidiv >3 Läsionen) – Risikostratifizierung (EORTC) geplant\n\nAUFGABE:\nKlassifiziere diesen Fall in GENAU eine der folgenden Kategorien:\n- nierenzellkarzinom (Nierenkrebs/RCC)\n- prostatakarzinom (Prostatakrebs)\n- hodentumor (Hodenkrebs)\n- peniskarzinom (Peniskrebs)\n- urothelkarzinom (Blasen-/Harnwegskrebs)\n- polymalignancy (Mehrfachtumoren/Polymalignität)\n- non_urological (Nicht-urologische Tumoren)\n\nAntworte im folgenden JSON-Format:\n{\n    \"reasoning\": \"Deine schrittweise Begründung auf Deutsch\",\n    \"classification\": \"eine der obigen Kategorien\",\n    \"confidence\": 0.0 bis 1.0,\n    \"key_indicators\": [\"Indikator 1\", \"Indikator 2\"]\n}\n\nJSON-Antwort:",
+  "output": {
+    "reasoning": "Der Patient leidet an einem nicht-invasiven papillären Urothelkarzinom, das in mehreren Lokalisationen des Urinarysystems auftreten ist. Dieses Tumorstadium (pTa) und die Gradeigenschaft (G1) deuten auf eine Blasen-/Harnwegskrebserkrankung hin. Da keine anderen Tumoren erwähnt werden, kann der Fall in die Kategorie 'urothelkarzinom' eingeordnet werden.",
+    "classification": "urothelkarzinom",
+    "confidence": 1.0,
+    "key_indicators": [
+      "Tumortyp: papilläres Urothelkarzinom",
+      "Lokalisation: mehrere Lokalisationen im Urinarysystem"
+    ]
+  },
+  "raw_response": " {\n    \"reasoning\": \"Der Patient leidet an einem nicht-invasiven papillären Urothelkarzinom, das in mehreren Lokalisationen des Urinarysystems auftreten ist. Dieses Tumorstadium (pTa) und die Gradeigenschaft (G1) deuten auf eine Blasen-/Harnwegskrebserkrankung hin. Da keine anderen Tumoren erwähnt werden, kann der Fall in die Kategorie 'urothelkarzinom' eingeordnet werden.\",\n    \"classification\": \"urothelkarzinom\",\n    \"confidence\": 1.0,\n    \"key_indicators\": [\"Tumortyp: papilläres Urothelkarzinom\", \"Lokalisation: mehrere Lokalisationen im Urinarysystem\"]\n}",
+  "ground_truth": "urothelkarzinom",
+  "is_correct": true,
+  "inference_time_seconds": 36.714515209198,
+  "tokens_used": 612,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

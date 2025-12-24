@@ -1,0 +1,56 @@
+{
+  "case_id": "pca_2",
+  "timestamp": "2025-12-24T10:23:15.110798",
+  "provider": "openrouter",
+  "model": "google/gemma-3-27b-it",
+  "input_case": {
+    "case_id": "pca_2",
+    "patient": {
+      "alter_jahre": 62,
+      "geschlecht": null,
+      "ecog": 0,
+      "komorbiditaet": "unknown"
+    },
+    "anamnese": "Prostatakarzinom intermediate risk. ED 10/2022: ISUP 2 in 10/22 Stanzen nach mpMRT; iPSA 17,3 ng/ml. Keine abdominellen Vor-OPs, keine Antikoagulation. Pat. wünscht kurative OP, keine Radiatio.",
+    "diagnose_kurz": "Prostatakarzinom, intermediäres Risiko (ISUP 2), iPSA 17,3 ng/ml (ED 10/2022)",
+    "alle_diagnosen": null,
+    "stadium": "intermediate risk (prätherapeutisch)",
+    "tnm_clinical": {
+      "T": "unknown",
+      "N": "unknown",
+      "M": "M0",
+      "stage_group": "unknown"
+    },
+    "tnm_pathological": {
+      "T": null,
+      "N": null,
+      "M": null,
+      "stage_group": null
+    },
+    "histologie": null,
+    "metastatic": null,
+    "nebendiagnosen": [],
+    "ground_truth": "prostatakarzinom"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 62 Jahre\nECOG: 0\nAnamnese: Prostatakarzinom intermediate risk. ED 10/2022: ISUP 2 in 10/22 Stanzen nach mpMRT; iPSA 17,3 ng/ml. Keine abdominellen Vor-OPs, keine Antikoagulation. Pat. wünscht kurative OP, keine Radiatio.\nDiagnose: Prostatakarzinom, intermediäres Risiko (ISUP 2), iPSA 17,3 ng/ml (ED 10/2022)\nStadium: intermediate risk (prätherapeutisch)\nTNM (klinisch): T:unknown N:unknown M:M0\nTNM (pathologisch): Unbekannt\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Der Fall beschreibt explizit ein Prostatakarzinom mit Angabe von iPSA-Wert, ISUP-Grad und dem Wunsch nach kurativer Operation. Alle Informationen im Fall beziehen sich auf die Prostata und deren Malignität. Die anderen Optionen sind nicht relevant, da keine Hinweise auf andere urologische oder nicht-urologische Krebserkrankungen vorliegen.",
+    "classification": "prostatakarzinom",
+    "confidence": 1.0,
+    "key_indicators": [
+      "Prostatakarzinom",
+      "iPSA",
+      "ISUP",
+      "Prostata",
+      "mpMRT"
+    ]
+  },
+  "raw_response": "\n\n```json\n{\n    \"reasoning\": \"Der Fall beschreibt explizit ein Prostatakarzinom mit Angabe von iPSA-Wert, ISUP-Grad und dem Wunsch nach kurativer Operation. Alle Informationen im Fall beziehen sich auf die Prostata und deren Malignität. Die anderen Optionen sind nicht relevant, da keine Hinweise auf andere urologische oder nicht-urologische Krebserkrankungen vorliegen.\",\n    \"classification\": \"prostatakarzinom\",\n    \"confidence\": 1.0,\n    \"key_indicators\": [\"Prostatakarzinom\", \"iPSA\", \"ISUP\", \"Prostata\", \"mpMRT\"]\n}\n```\n",
+  "ground_truth": "prostatakarzinom",
+  "is_correct": true,
+  "inference_time_seconds": 22.563822499999997,
+  "tokens_used": 461,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

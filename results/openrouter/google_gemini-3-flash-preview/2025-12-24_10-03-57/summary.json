@@ -1,0 +1,13 @@
+{
+  "model": "google/gemini-3-flash-preview",
+  "provider": "openrouter",
+  "timestamp": "2025-12-24T10:04:19.782054",
+  "total_cases": 26,
+  "correct": 22,
+  "incorrect": 4,
+  "errors": 0,
+  "accuracy": 0.8461538461538461,
+  "total_tokens": 27783,
+  "elapsed_seconds": 22.650749,
+  "concurrency": 10
+}

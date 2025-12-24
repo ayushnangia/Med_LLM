@@ -1,0 +1,58 @@
+{
+  "case_id": "ncc_13",
+  "timestamp": "2025-12-24T10:18:07.232089",
+  "provider": "openrouter",
+  "model": "anthropic/claude-opus-4.5",
+  "input_case": {
+    "case_id": "ncc_13",
+    "patient": {
+      "alter_jahre": 64,
+      "geschlecht": null,
+      "ecog": 0,
+      "komorbiditaet": "unknown"
+    },
+    "anamnese": "Vorstellung zur regelmäßigen Ultraschallkontrolle beim Hausarzt. Dabei Nachweis Raumforderung rechte Niere. Anschließend CT Abdomen mit Nachweis von zwei renalen Raumforderungen: rechts ca. 4,1 cm, links ca. 1,8 cm. Z. n. Kolon-OP bei Divertikulitis.",
+    "diagnose_kurz": "Beidseitige renale Raumforderungen: rechts 4,1 cm (cT1b*), links 1,8 cm (cT1a*) – malignitätsverdächtig (V. a. RCC)",
+    "alle_diagnosen": null,
+    "stadium": "bilateral, prätherapeutisch; Staging (CT Thorax) ausstehend",
+    "tnm_clinical": {
+      "T": "unknown",
+      "N": "unknown",
+      "M": "unknown",
+      "stage_group": "unknown"
+    },
+    "tnm_pathological": {
+      "T": null,
+      "N": null,
+      "M": null,
+      "stage_group": null
+    },
+    "histologie": null,
+    "metastatic": null,
+    "nebendiagnosen": [
+      "Z. n. Kolon-OP bei Divertikulitis"
+    ],
+    "ground_truth": "nierenzellkarzinom"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 64 Jahre\nECOG: 0\nAnamnese: Vorstellung zur regelmäßigen Ultraschallkontrolle beim Hausarzt. Dabei Nachweis Raumforderung rechte Niere. Anschließend CT Abdomen mit Nachweis von zwei renalen Raumforderungen: rechts ca. 4,1 cm, links ca. 1,8 cm. Z. n. Kolon-OP bei Divertikulitis.\nDiagnose: Beidseitige renale Raumforderungen: rechts 4,1 cm (cT1b*), links 1,8 cm (cT1a*) – malignitätsverdächtig (V. a. RCC)\nStadium: bilateral, prätherapeutisch; Staging (CT Thorax) ausstehend\nTNM (klinisch): T:unknown N:unknown M:unknown\nTNM (pathologisch): Unbekannt\nNebendiagnosen: Z. n. Kolon-OP bei Divertikulitis\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Der Fall beschreibt beidseitige renale Raumforderungen (rechts 4,1 cm cT1b, links 1,8 cm cT1a), die als malignitätsverdächtig eingestuft werden mit explizitem Verdacht auf RCC (Renal Cell Carcinoma = Nierenzellkarzinom). Die TNM-Klassifikation cT1a/cT1b entspricht der Stadieneinteilung für Nierentumoren. Die Nebendiagnose Z.n. Kolon-OP bei Divertikulitis ist benigne und stellt kein zweites Malignom dar.",
+    "classification": "nierenzellkarzinom",
+    "confidence": 0.95,
+    "key_indicators": [
+      "Renale Raumforderungen bilateral",
+      "V.a. RCC (Renal Cell Carcinoma)",
+      "cT1b rechts, cT1a links - nierenspezifische TNM-Klassifikation",
+      "Malignitätsverdächtig",
+      "Typische Lokalisation und Größenangaben für Nierentumoren"
+    ]
+  },
+  "raw_response": "```json\n{\n    \"reasoning\": \"Der Fall beschreibt beidseitige renale Raumforderungen (rechts 4,1 cm cT1b, links 1,8 cm cT1a), die als malignitätsverdächtig eingestuft werden mit explizitem Verdacht auf RCC (Renal Cell Carcinoma = Nierenzellkarzinom). Die TNM-Klassifikation cT1a/cT1b entspricht der Stadieneinteilung für Nierentumoren. Die Nebendiagnose Z.n. Kolon-OP bei Divertikulitis ist benigne und stellt kein zweites Malignom dar.\",\n    \"classification\": \"nierenzellkarzinom\",\n    \"confidence\": 0.95,\n    \"key_indicators\": [\n        \"Renale Raumforderungen bilateral\",\n        \"V.a. RCC (Renal Cell Carcinoma)\",\n        \"cT1b rechts, cT1a links - nierenspezifische TNM-Klassifikation\",\n        \"Malignitätsverdächtig\",\n        \"Typische Lokalisation und Größenangaben für Nierentumoren\"\n    ]\n}\n```",
+  "ground_truth": "nierenzellkarzinom",
+  "is_correct": true,
+  "inference_time_seconds": 22.499857500000076,
+  "tokens_used": 1111,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

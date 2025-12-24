@@ -1,0 +1,57 @@
+{
+  "case_id": "ncc_4",
+  "timestamp": "2025-12-24T10:08:18.796377",
+  "provider": "openrouter",
+  "model": "allenai/olmo-3.1-32b-think:free",
+  "input_case": {
+    "case_id": "ncc_4",
+    "patient": {
+      "alter_jahre": 66,
+      "geschlecht": null,
+      "ecog": 1,
+      "komorbiditaet": "unknown"
+    },
+    "anamnese": "Kleiner Nierentumor links 2,8 cm (cT1a). Vorerkrankungen: Z. n. Appendektomie; COPD GOLD I (Raucher 20 PY).",
+    "diagnose_kurz": "Kleiner Nierentumor links 2,8 cm (cT1a), malignitätsverdächtig",
+    "alle_diagnosen": null,
+    "stadium": "cT1a, nicht-metastasiert (prätherapeutisch)",
+    "tnm_clinical": {
+      "T": "T1",
+      "N": "unknown",
+      "M": "M0",
+      "stage_group": "unknown"
+    },
+    "tnm_pathological": {
+      "T": null,
+      "N": null,
+      "M": null,
+      "stage_group": null
+    },
+    "histologie": null,
+    "metastatic": false,
+    "nebendiagnosen": [
+      "Z. n. Appendektomie",
+      "COPD GOLD I (Raucher 20 PY)"
+    ],
+    "ground_truth": "nierenzellkarzinom"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 66 Jahre\nECOG: 1\nAnamnese: Kleiner Nierentumor links 2,8 cm (cT1a). Vorerkrankungen: Z. n. Appendektomie; COPD GOLD I (Raucher 20 PY).\nDiagnose: Kleiner Nierentumor links 2,8 cm (cT1a), malignitätsverdächtig\nStadium: cT1a, nicht-metastasiert (prätherapeutisch)\nTNM (klinisch): T:T1 N:unknown M:M0\nTNM (pathologisch): Unbekannt\nMetastasiert: Nein\nNebendiagnosen: Z. n. Appendektomie, COPD GOLD I (Raucher 20 PY)\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Der Patient hat einen primären Tumor in der Niere (links, 2,8 cm, cT1a), der als malign verdächtigt wird. Die Diagnose und Lokalisation deuten eindeutig auf einen Nierenzellkarzinom hin. Es gibt keine Hinweise auf Metastasen, andere Karzinome oder nicht-urologische Ursachen. Die Nebendiagnosen (Appendektomie, COPD) sind irrelevant für die Tumorklassifikation.",
+    "classification": "nierenzellkarzinom",
+    "confidence": 1.0,
+    "key_indicators": [
+      "Nierentumor links 2,8 cm (cT1a)",
+      "malignitätsverdächtig",
+      "primäre Tumourlokalisierung in der Niere"
+    ]
+  },
+  "raw_response": "{\n    \"reasoning\": \"Der Patient hat einen primären Tumor in der Niere (links, 2,8 cm, cT1a), der als malign verdächtigt wird. Die Diagnose und Lokalisation deuten eindeutig auf einen Nierenzellkarzinom hin. Es gibt keine Hinweise auf Metastasen, andere Karzinome oder nicht-urologische Ursachen. Die Nebendiagnosen (Appendektomie, COPD) sind irrelevant für die Tumorklassifikation.\",\n    \"classification\": \"nierenzellkarzinom\",\n    \"confidence\": 1.0,\n    \"key_indicators\": [\"Nierentumor links 2,8 cm (cT1a)\", \"malignitätsverdächtig\", \"primäre Tumourlokalisierung in der Niere\"]\n}",
+  "ground_truth": "nierenzellkarzinom",
+  "is_correct": true,
+  "inference_time_seconds": 35.534899749999994,
+  "tokens_used": 1270,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

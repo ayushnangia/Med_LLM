@@ -1,0 +1,13 @@
+{
+  "model": "deepseek/deepseek-v3.2",
+  "provider": "openrouter",
+  "timestamp": "2025-12-24T10:18:07.211534",
+  "total_cases": 26,
+  "correct": 25,
+  "incorrect": 1,
+  "errors": 0,
+  "accuracy": 0.9615384615384616,
+  "total_tokens": 27012,
+  "elapsed_seconds": 108.485186,
+  "concurrency": 10
+}

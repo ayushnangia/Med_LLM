@@ -1,0 +1,48 @@
+{
+  "case_id": "uca_1",
+  "timestamp": "2025-12-24T10:23:54.063959",
+  "provider": "openrouter",
+  "model": "google/gemma-3-12b-it",
+  "input_case": {
+    "case_id": "uca_1",
+    "patient": {
+      "alter_jahre": 63,
+      "geschlecht": null,
+      "ecog": null,
+      "komorbiditaet": null
+    },
+    "anamnese": null,
+    "diagnose_kurz": "Multilokuläres NMIBC-Rezidiv: nicht-invasives papilläres Urothelkarzinom low grade (pTa G1) in mehreren Lokalisationen (A–C), D/E ohne Malignität",
+    "alle_diagnosen": null,
+    "stadium": "NMIBC, low grade pTa (multifokal, Rezidiv >3 Läsionen) – Risikostratifizierung (EORTC) geplant",
+    "tnm_clinical": null,
+    "tnm_pathological": null,
+    "histologie": null,
+    "metastatic": null,
+    "nebendiagnosen": null,
+    "ground_truth": "urothelkarzinom"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 63 Jahre\nDiagnose: Multilokuläres NMIBC-Rezidiv: nicht-invasives papilläres Urothelkarzinom low grade (pTa G1) in mehreren Lokalisationen (A–C), D/E ohne Malignität\nStadium: NMIBC, low grade pTa (multifokal, Rezidiv >3 Läsionen) – Risikostratifizierung (EORTC) geplant\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Der Fall beschreibt ein Rezidiv von nicht-invasiven papillären Urothelkarzinomen (pTa G1) in mehreren Lokalisationen der Harnblase. Die Diagnose, das Stadium (NMIBC) und die histopathologischen Details (pTa, G1, papilläres Urothelkarzinom) weisen eindeutig auf eine Erkrankung des Urothels hin. Es gibt keine Hinweise auf andere primäre Tumoren oder eine Polymalignanz.",
+    "classification": "urothelkarzinom",
+    "confidence": 1.0,
+    "key_indicators": [
+      "Urothelkarzinom",
+      "pTa",
+      "G1",
+      "NMIBC",
+      "papilläres",
+      "Harnblase",
+      "Rezidiv"
+    ]
+  },
+  "raw_response": "```json\n{\n    \"reasoning\": \"Der Fall beschreibt ein Rezidiv von nicht-invasiven papillären Urothelkarzinomen (pTa G1) in mehreren Lokalisationen der Harnblase. Die Diagnose, das Stadium (NMIBC) und die histopathologischen Details (pTa, G1, papilläres Urothelkarzinom) weisen eindeutig auf eine Erkrankung des Urothels hin. Es gibt keine Hinweise auf andere primäre Tumoren oder eine Polymalignanz.\",\n    \"classification\": \"urothelkarzinom\",\n    \"confidence\": 1.0,\n    \"key_indicators\": [\"Urothelkarzinom\", \"pTa\", \"G1\", \"NMIBC\", \"papilläres\", \"Harnblase\", \"Rezidiv\"]\n}\n```",
+  "ground_truth": "urothelkarzinom",
+  "is_correct": true,
+  "inference_time_seconds": 13.237934832999997,
+  "tokens_used": 424,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

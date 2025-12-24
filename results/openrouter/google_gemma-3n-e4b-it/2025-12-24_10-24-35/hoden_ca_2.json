@@ -1,0 +1,45 @@
+{
+  "case_id": "hoden_ca_2",
+  "timestamp": "2025-12-24T10:24:35.475851",
+  "provider": "openrouter",
+  "model": "google/gemma-3n-e4b-it",
+  "input_case": {
+    "case_id": "hoden_ca_2",
+    "patient": {
+      "alter_jahre": 23,
+      "geschlecht": null,
+      "ecog": null,
+      "komorbiditaet": null
+    },
+    "anamnese": null,
+    "diagnose_kurz": "Seminom links (100%), kleinherdig (max. 0,2×0,5×0,1 cm) – Status nach inguinaler Ablatio testis links (19.09.2025), Rete testis infiltriert, GCNIS+",
+    "alle_diagnosen": null,
+    "stadium": "pT1 pNX (klinisches Stadium offen; Staging CT Thorax/Abdomen ausstehend)",
+    "tnm_clinical": null,
+    "tnm_pathological": null,
+    "histologie": null,
+    "metastatic": null,
+    "nebendiagnosen": null,
+    "ground_truth": "hodentumor"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 23 Jahre\nDiagnose: Seminom links (100%), kleinherdig (max. 0,2×0,5×0,1 cm) – Status nach inguinaler Ablatio testis links (19.09.2025), Rete testis infiltriert, GCNIS+\nStadium: pT1 pNX (klinisches Stadium offen; Staging CT Thorax/Abdomen ausstehend)\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Der Fall beschreibt einen 23-jährigen Patienten mit einem Seminom, einem Typ von Hodentumor. Die Diagnose wird durch eine Inguinalorchie (Entfernung des Hodens) links und die Infiltration des Rete testis bestätigt.  Die Angabe 'kleinherdig' und die Größe des Tumors sind weitere Hinweise auf einen Hodentumor. Die Klassifizierung der anderen Optionen ist aufgrund der spezifischen Beschreibung des Tumors nicht zutreffend.",
+    "classification": "hodentumor",
+    "confidence": 1.0,
+    "key_indicators": [
+      "Seminom",
+      "Hodentumor",
+      "Inguinalorchie",
+      "Rete testis infiltration"
+    ]
+  },
+  "raw_response": "```json\n{\n    \"reasoning\": \"Der Fall beschreibt einen 23-jährigen Patienten mit einem Seminom, einem Typ von Hodentumor. Die Diagnose wird durch eine Inguinalorchie (Entfernung des Hodens) links und die Infiltration des Rete testis bestätigt.  Die Angabe 'kleinherdig' und die Größe des Tumors sind weitere Hinweise auf einen Hodentumor. Die Klassifizierung der anderen Optionen ist aufgrund der spezifischen Beschreibung des Tumors nicht zutreffend.\",\n    \"classification\": \"hodentumor\",\n    \"confidence\": 1.0,\n    \"key_indicators\": [\"Seminom\", \"Hodentumor\", \"Inguinalorchie\", \"Rete testis infiltration\"]\n}\n```",
+  "ground_truth": "hodentumor",
+  "is_correct": true,
+  "inference_time_seconds": 11.322575291999996,
+  "tokens_used": 407,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

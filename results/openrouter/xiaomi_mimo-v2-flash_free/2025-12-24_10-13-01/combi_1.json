@@ -1,0 +1,49 @@
+{
+  "case_id": "combi_1",
+  "timestamp": "2025-12-24T10:13:01.684452",
+  "provider": "openrouter",
+  "model": "xiaomi/mimo-v2-flash:free",
+  "input_case": {
+    "case_id": "combi_1",
+    "patient": {
+      "alter_jahre": 67,
+      "geschlecht": null,
+      "ecog": null,
+      "komorbiditaet": null
+    },
+    "anamnese": null,
+    "diagnose_kurz": "Prostatakarzinom (ED 2019 ISUP 4, iPSA 32) – Z. n. RPE 01/2020 (pT3a R1 pN0), biochemisches Rezidiv 2025; PSMA-PET/CT 11/2025: 1 PSMA-positiver pelviner LK rechts obturatorisch (8×6 mm, SUVmax 7,4), sonst kein PSMA-positiver Befund",
+    "alle_diagnosen": [
+      "Prostatakarzinom (ED 2019 ISUP 4, iPSA 32) – Z. n. RPE 01/2020 (pT3a R1 pN0), biochemisches Rezidiv 2025; PSMA-PET/CT 11/2025: 1 PSMA-positiver pelviner LK rechts obturatorisch (8×6 mm, SUVmax 7,4), sonst kein PSMA-positiver Befund",
+      "NMIBC (UCA): ED 06/2024 pTa high grade + fokal pTis; BCG-Induktion 08/2024 abgebrochen (NW). Rezidiv 10/2025: pTa high grade, Detrusor vorhanden und tumorfrei"
+    ],
+    "stadium": "BCR nach RPE + oligometastatische pelvine LK-Metastase (1 LK, PSMA-positiv)",
+    "tnm_clinical": null,
+    "tnm_pathological": null,
+    "histologie": null,
+    "metastatic": null,
+    "nebendiagnosen": null,
+    "ground_truth": "polymalignancy"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 67 Jahre\nDiagnose 1: Prostatakarzinom (ED 2019 ISUP 4, iPSA 32) – Z. n. RPE 01/2020 (pT3a R1 pN0), biochemisches Rezidiv 2025; PSMA-PET/CT 11/2025: 1 PSMA-positiver pelviner LK rechts obturatorisch (8×6 mm, SUVmax 7,4), sonst kein PSMA-positiver Befund\nDiagnose 2: NMIBC (UCA): ED 06/2024 pTa high grade + fokal pTis; BCG-Induktion 08/2024 abgebrochen (NW). Rezidiv 10/2025: pTa high grade, Detrusor vorhanden und tumorfrei\nStadium: BCR nach RPE + oligometastatische pelvine LK-Metastase (1 LK, PSMA-positiv)\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Der Patient hat zwei unabhängige maligne Erkrankungen: 1) Prostatakarzinom mit biochemischem Rezidiv und oligometastatischer pelviner Lymphknotenmetastase (PSMA-PET-positiv), 2) Nicht-muskelinvasives Blasenkarzinom (NMIBC) vom Typ Urothelkarzinom mit Rezidiv. Beide Tumoren sind urologischen Ursprungs, aber unterschiedliche Primärtumoren. Daher erfüllt der Fall die Definition einer Polymalignität (mehrere unabhängige Malignome).",
+    "classification": "polymalignancy",
+    "confidence": 0.95,
+    "key_indicators": [
+      "Prostatakarzinom mit biochemischem Rezidiv (PSA-Werte nicht explizit, aber LK-Metastase im PSMA-PET)",
+      "Oligometastatische pelvine Lymphknotenmetastase (1 LK, PSMA-positiv)",
+      "NMIBC/Urothelkarzinom der Harnblase (pTa high grade + fokal pTis, Rezidiv 2025)",
+      "Zwei separate Primärtumoren mit unterschiedlicher Histologie (Adenokarzinom der Prostata vs. Urothelkarzinom)",
+      "Unabhängige Tumorentitäten mit jeweils eigenem Staging und Therapien (RPE vs. BCG-Therapie)"
+    ]
+  },
+  "raw_response": "{\n    \"reasoning\": \"Der Patient hat zwei unabhängige maligne Erkrankungen: 1) Prostatakarzinom mit biochemischem Rezidiv und oligometastatischer pelviner Lymphknotenmetastase (PSMA-PET-positiv), 2) Nicht-muskelinvasives Blasenkarzinom (NMIBC) vom Typ Urothelkarzinom mit Rezidiv. Beide Tumoren sind urologischen Ursprungs, aber unterschiedliche Primärtumoren. Daher erfüllt der Fall die Definition einer Polymalignität (mehrere unabhängige Malignome).\",\n    \"classification\": \"polymalignancy\",\n    \"confidence\": 0.95,\n    \"key_indicators\": [\n        \"Prostatakarzinom mit biochemischem Rezidiv (PSA-Werte nicht explizit, aber LK-Metastase im PSMA-PET)\",\n        \"Oligometastatische pelvine Lymphknotenmetastase (1 LK, PSMA-positiv)\",\n        \"NMIBC/Urothelkarzinom der Harnblase (pTa high grade + fokal pTis, Rezidiv 2025)\",\n        \"Zwei separate Primärtumoren mit unterschiedlicher Histologie (Adenokarzinom der Prostata vs. Urothelkarzinom)\",\n        \"Unabhängige Tumorentitäten mit jeweils eigenem Staging und Therapien (RPE vs. BCG-Therapie)\"\n    ]\n}",
+  "ground_truth": "polymalignancy",
+  "is_correct": true,
+  "inference_time_seconds": 32.002254332999996,
+  "tokens_used": 1407,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

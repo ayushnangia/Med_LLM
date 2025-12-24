@@ -1,0 +1,48 @@
+{
+  "case_id": "combi_1",
+  "timestamp": "2025-12-24T10:18:51.802457",
+  "provider": "openrouter",
+  "model": "moonshotai/kimi-k2-thinking",
+  "input_case": {
+    "case_id": "combi_1",
+    "patient": {
+      "alter_jahre": 67,
+      "geschlecht": null,
+      "ecog": null,
+      "komorbiditaet": null
+    },
+    "anamnese": null,
+    "diagnose_kurz": "Prostatakarzinom (ED 2019 ISUP 4, iPSA 32) – Z. n. RPE 01/2020 (pT3a R1 pN0), biochemisches Rezidiv 2025; PSMA-PET/CT 11/2025: 1 PSMA-positiver pelviner LK rechts obturatorisch (8×6 mm, SUVmax 7,4), sonst kein PSMA-positiver Befund",
+    "alle_diagnosen": [
+      "Prostatakarzinom (ED 2019 ISUP 4, iPSA 32) – Z. n. RPE 01/2020 (pT3a R1 pN0), biochemisches Rezidiv 2025; PSMA-PET/CT 11/2025: 1 PSMA-positiver pelviner LK rechts obturatorisch (8×6 mm, SUVmax 7,4), sonst kein PSMA-positiver Befund",
+      "NMIBC (UCA): ED 06/2024 pTa high grade + fokal pTis; BCG-Induktion 08/2024 abgebrochen (NW). Rezidiv 10/2025: pTa high grade, Detrusor vorhanden und tumorfrei"
+    ],
+    "stadium": "BCR nach RPE + oligometastatische pelvine LK-Metastase (1 LK, PSMA-positiv)",
+    "tnm_clinical": null,
+    "tnm_pathological": null,
+    "histologie": null,
+    "metastatic": null,
+    "nebendiagnosen": null,
+    "ground_truth": "polymalignancy"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 67 Jahre\nDiagnose 1: Prostatakarzinom (ED 2019 ISUP 4, iPSA 32) – Z. n. RPE 01/2020 (pT3a R1 pN0), biochemisches Rezidiv 2025; PSMA-PET/CT 11/2025: 1 PSMA-positiver pelviner LK rechts obturatorisch (8×6 mm, SUVmax 7,4), sonst kein PSMA-positiver Befund\nDiagnose 2: NMIBC (UCA): ED 06/2024 pTa high grade + fokal pTis; BCG-Induktion 08/2024 abgebrochen (NW). Rezidiv 10/2025: pTa high grade, Detrusor vorhanden und tumorfrei\nStadium: BCR nach RPE + oligometastatische pelvine LK-Metastase (1 LK, PSMA-positiv)\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Der Patient weist zwei separate primäre urologische Malignome auf: ein Prostatakarzinom (metastasiert, biochemisches Rezidiv) und ein nicht-muskelinvasives Urothelkarzinom der Blase (NMIBC, high grade, Rezidiv nach BCG). Beide Entitäten sind eigenständige Krebserkrankungen mit unterschiedlichem biologischen Verhalten und Therapieansätzen. Die gleichzeitige Existenz mehrerer primärer Malignome erfüllt die Definition einer Polymalignancy. Weder das Prostatakarzinom noch das Urothelkarzinom allein erfasst die Gesamtsituation angemessen.",
+    "classification": "polymalignancy",
+    "confidence": 0.98,
+    "key_indicators": [
+      "Prostatakarzinom mit biochemischem Rezidiv und PSMA-positiver Lymphknotenmetastase",
+      "Nicht-muskelinvasives Urothelkarzinom der Blase (high grade, pTa/pTis)",
+      "Zwei separate primäre urologische Malignome",
+      "Abgebrochene BCG-Therapie bei NMIBC"
+    ]
+  },
+  "raw_response": "{\n    \"reasoning\": \"Der Patient weist zwei separate primäre urologische Malignome auf: ein Prostatakarzinom (metastasiert, biochemisches Rezidiv) und ein nicht-muskelinvasives Urothelkarzinom der Blase (NMIBC, high grade, Rezidiv nach BCG). Beide Entitäten sind eigenständige Krebserkrankungen mit unterschiedlichem biologischen Verhalten und Therapieansätzen. Die gleichzeitige Existenz mehrerer primärer Malignome erfüllt die Definition einer Polymalignancy. Weder das Prostatakarzinom noch das Urothelkarzinom allein erfasst die Gesamtsituation angemessen.\",\n    \"classification\": \"polymalignancy\",\n    \"confidence\": 0.98,\n    \"key_indicators\": [\"Prostatakarzinom mit biochemischem Rezidiv und PSMA-positiver Lymphknotenmetastase\", \"Nicht-muskelinvasives Urothelkarzinom der Blase (high grade, pTa/pTis)\", \"Zwei separate primäre urologische Malignome\", \"Abgebrochene BCG-Therapie bei NMIBC\"]\n}",
+  "ground_truth": "polymalignancy",
+  "is_correct": true,
+  "inference_time_seconds": 88.73042874999999,
+  "tokens_used": 1716,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

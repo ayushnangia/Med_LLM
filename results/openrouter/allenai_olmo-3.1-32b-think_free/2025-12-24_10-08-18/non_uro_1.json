@@ -1,0 +1,45 @@
+{
+  "case_id": "non_uro_1",
+  "timestamp": "2025-12-24T10:08:18.799168",
+  "provider": "openrouter",
+  "model": "allenai/olmo-3.1-32b-think:free",
+  "input_case": {
+    "case_id": "non_uro_1",
+    "patient": {
+      "alter_jahre": 81,
+      "geschlecht": null,
+      "ecog": null,
+      "komorbiditaet": null
+    },
+    "anamnese": null,
+    "diagnose_kurz": "Aggressives B-Zell Non-Hodgkin-Lymphom (GCB-Typ nach Hans), Double-Expressor (BCL2/cMYC), EBV-negativ; große paraaortale/peritoneale Raumforderung links (ca. 12,1×8,2×13,2 cm) mit Infiltration Pankreasschwanz/IVC/li. A. iliaca communis",
+    "alle_diagnosen": null,
+    "stadium": "aggressives NHL; Staging unvollständig (CT Thorax ohne Metastasen; weitere Lymphom-Stagingdiagnostik ausstehend)",
+    "tnm_clinical": null,
+    "tnm_pathological": null,
+    "histologie": null,
+    "metastatic": null,
+    "nebendiagnosen": null,
+    "ground_truth": "non_urological"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 81 Jahre\nDiagnose: Aggressives B-Zell Non-Hodgkin-Lymphom (GCB-Typ nach Hans), Double-Expressor (BCL2/cMYC), EBV-negativ; große paraaortale/peritoneale Raumforderung links (ca. 12,1×8,2×13,2 cm) mit Infiltration Pankreasschwanz/IVC/li. A. iliaca communis\nStadium: aggressives NHL; Staging unvollständig (CT Thorax ohne Metastasen; weitere Lymphom-Stagingdiagnostik ausstehend)\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Der Fall zeigt eine explizite Diagnose von Aggressivem B-Zell-Non-Hodgkin-Lymphom (NHL), einem Typ von Blutkrebs. Keine der genannten kategorisierten Tumoren (nierenzellkarzinom, prostatakarzinom usw.) wird hier als Primartumor angegeben. Der Begriff 'polymalignancy' wäre nur relevant, wenn mehrere unabhängige Karzinome dokumentiert wären, was nicht der Fall ist. 'non_urological' ist die passende Kategorie, da NHL keine urologische Neoplasie ist und die anderen Kategorien (z.B. 'hodentumor') auf Hodgkin-Lymphom oder spezifische Gewebstumoren abzielen. Die Stagingunvollständigkeit und die Lokalisation der Raumforderung (paraortale/peritoneale) sind sekundär, da die primäre Tumorklasse eindeutig als NHL identifiziert ist.",
+    "classification": "non_urological",
+    "confidence": 1.0,
+    "key_indicators": [
+      "Aggressives B-Zell Non-Hodgkin-Lymphom",
+      "Double-Expressor (BCL2/cMYC)",
+      "EBV-negativ",
+      "keine Hinweise auf urologische Primartumoren oder polymale Neoplasien"
+    ]
+  },
+  "raw_response": "{\n    \"reasoning\": \"Der Fall zeigt eine explizite Diagnose von Aggressivem B-Zell-Non-Hodgkin-Lymphom (NHL), einem Typ von Blutkrebs. Keine der genannten kategorisierten Tumoren (nierenzellkarzinom, prostatakarzinom usw.) wird hier als Primartumor angegeben. Der Begriff 'polymalignancy' wäre nur relevant, wenn mehrere unabhängige Karzinome dokumentiert wären, was nicht der Fall ist. 'non_urological' ist die passende Kategorie, da NHL keine urologische Neoplasie ist und die anderen Kategorien (z.B. 'hodentumor') auf Hodgkin-Lymphom oder spezifische Gewebstumoren abzielen. Die Stagingunvollständigkeit und die Lokalisation der Raumforderung (paraortale/peritoneale) sind sekundär, da die primäre Tumorklasse eindeutig als NHL identifiziert ist.\",\n    \"classification\": \"non_urological\",\n    \"confidence\": 1.0,\n    \"key_indicators\": [\"Aggressives B-Zell Non-Hodgkin-Lymphom\", \"Double-Expressor (BCL2/cMYC)\", \"EBV-negativ\", \"keine Hinweise auf urologische Primartumoren oder polymale Neoplasien\"]\n}",
+  "ground_truth": "non_urological",
+  "is_correct": true,
+  "inference_time_seconds": 134.83051925,
+  "tokens_used": 1136,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

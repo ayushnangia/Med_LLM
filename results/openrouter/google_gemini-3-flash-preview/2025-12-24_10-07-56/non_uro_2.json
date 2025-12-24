@@ -1,0 +1,48 @@
+{
+  "case_id": "non_uro_2",
+  "timestamp": "2025-12-24T10:07:56.352899",
+  "provider": "openrouter",
+  "model": "google/gemini-3-flash-preview",
+  "input_case": {
+    "case_id": "non_uro_2",
+    "patient": {
+      "alter_jahre": 52,
+      "geschlecht": null,
+      "ecog": null,
+      "komorbiditaet": null
+    },
+    "anamnese": null,
+    "diagnose_kurz": "Unklare Raumforderung Harnblase (Seitenwand) – TUR-B 01.11.2025; Histologie: morphologisch/klinisch Infiltration durch bekanntes Sigmakarzinom (sekundäre Blaseninfiltration, kein primäres Urothelkarzinom beschrieben)",
+    "alle_diagnosen": [
+      "Unklare Raumforderung Harnblase (Seitenwand) – TUR-B 01.11.2025; Histologie: morphologisch/klinisch Infiltration durch bekanntes Sigmakarzinom (sekundäre Blaseninfiltration, kein primäres Urothelkarzinom beschrieben)",
+      "Hepatisch metastasiertes Sigmakarzinom (ED 01/2025), Status nach Sigmaresektion mit subperitonealer Exzision am Blasendach (12.01.2025) und Leber-lokalen Therapien/Resektionen"
+    ],
+    "stadium": "Sekundärbefall der Harnblase durch kolorektales Karzinom (Verdacht/Kommentar), genaue TNM der Blasenläsion nicht angegeben",
+    "tnm_clinical": null,
+    "tnm_pathological": null,
+    "histologie": null,
+    "metastatic": null,
+    "nebendiagnosen": null,
+    "ground_truth": "non_urological"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 52 Jahre\nDiagnose 1: Unklare Raumforderung Harnblase (Seitenwand) – TUR-B 01.11.2025; Histologie: morphologisch/klinisch Infiltration durch bekanntes Sigmakarzinom (sekundäre Blaseninfiltration, kein primäres Urothelkarzinom beschrieben)\nDiagnose 2: Hepatisch metastasiertes Sigmakarzinom (ED 01/2025), Status nach Sigmaresektion mit subperitonealer Exzision am Blasendach (12.01.2025) und Leber-lokalen Therapien/Resektionen\nStadium: Sekundärbefall der Harnblase durch kolorektales Karzinom (Verdacht/Kommentar), genaue TNM der Blasenläsion nicht angegeben\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Der Patient leidet primär an einem hepatisch metastasierten Sigmakarzinom (kolorektales Karzinom). Die histologische Untersuchung der Raumforderung in der Harnblase (TUR-B) ergab eindeutig eine Infiltration durch das bekannte Sigmakarzinom und schloss ein primäres Urothelkarzinom aus. Da es sich um eine sekundäre Absiedlung bzw. ein Einwachsen eines gastrointestinalen Tumors in das urogenitale System handelt und kein zweiter Primärtumor vorliegt, ist der Fall als nicht-urologisches Karzinom zu klassifizieren.",
+    "classification": "non_urological",
+    "confidence": 1.0,
+    "key_indicators": [
+      "Infiltration durch bekanntes Sigmakarzinom",
+      "kein primäres Urothelkarzinom",
+      "sekundäre Blaseninfiltration",
+      "Hepatisch metastasiertes Sigmakarzinom"
+    ]
+  },
+  "raw_response": "```json\n{\n    \"reasoning\": \"Der Patient leidet primär an einem hepatisch metastasierten Sigmakarzinom (kolorektales Karzinom). Die histologische Untersuchung der Raumforderung in der Harnblase (TUR-B) ergab eindeutig eine Infiltration durch das bekannte Sigmakarzinom und schloss ein primäres Urothelkarzinom aus. Da es sich um eine sekundäre Absiedlung bzw. ein Einwachsen eines gastrointestinalen Tumors in das urogenitale System handelt und kein zweiter Primärtumor vorliegt, ist der Fall als nicht-urologisches Karzinom zu klassifizieren.\",\n    \"classification\": \"non_urological\",\n    \"confidence\": 1.0,\n    \"key_indicators\": [\n        \"Infiltration durch bekanntes Sigmakarzinom\",\n        \"kein primäres Urothelkarzinom\",\n        \"sekundäre Blaseninfiltration\",\n        \"Hepatisch metastasiertes Sigmakarzinom\"\n    ]\n}\n```",
+  "ground_truth": "non_urological",
+  "is_correct": true,
+  "inference_time_seconds": 22.409587916,
+  "tokens_used": 1173,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

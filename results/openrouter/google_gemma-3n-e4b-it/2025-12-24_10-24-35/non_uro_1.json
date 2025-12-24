@@ -1,0 +1,46 @@
+{
+  "case_id": "non_uro_1",
+  "timestamp": "2025-12-24T10:24:35.475927",
+  "provider": "openrouter",
+  "model": "google/gemma-3n-e4b-it",
+  "input_case": {
+    "case_id": "non_uro_1",
+    "patient": {
+      "alter_jahre": 81,
+      "geschlecht": null,
+      "ecog": null,
+      "komorbiditaet": null
+    },
+    "anamnese": null,
+    "diagnose_kurz": "Aggressives B-Zell Non-Hodgkin-Lymphom (GCB-Typ nach Hans), Double-Expressor (BCL2/cMYC), EBV-negativ; große paraaortale/peritoneale Raumforderung links (ca. 12,1×8,2×13,2 cm) mit Infiltration Pankreasschwanz/IVC/li. A. iliaca communis",
+    "alle_diagnosen": null,
+    "stadium": "aggressives NHL; Staging unvollständig (CT Thorax ohne Metastasen; weitere Lymphom-Stagingdiagnostik ausstehend)",
+    "tnm_clinical": null,
+    "tnm_pathological": null,
+    "histologie": null,
+    "metastatic": null,
+    "nebendiagnosen": null,
+    "ground_truth": "non_urological"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 81 Jahre\nDiagnose: Aggressives B-Zell Non-Hodgkin-Lymphom (GCB-Typ nach Hans), Double-Expressor (BCL2/cMYC), EBV-negativ; große paraaortale/peritoneale Raumforderung links (ca. 12,1×8,2×13,2 cm) mit Infiltration Pankreasschwanz/IVC/li. A. iliaca communis\nStadium: aggressives NHL; Staging unvollständig (CT Thorax ohne Metastasen; weitere Lymphom-Stagingdiagnostik ausstehend)\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Der Fall beschreibt ein aggressives B-Zell Non-Hodgkin-Lymphom (NHL) vom GCB-Typ, das als Double-Expressor (BCL2/cMYC) klassifiziert ist und EBV-negativ ist.  NHL ist eine Art von Krebs, der das lymphatische System betrifft. Die Beschreibung der Raumforderung und Infiltration von Organen wie Pankreas, IVC und A. iliaca communis deutet auf eine fortgeschrittene Erkrankung hin. Die fehlenden Metastasen im Thorax-CT schließen Metastasen in dieser Region aus, aber weitere Staging-Diagnostik ist noch ausstehend.  Die Klassifizierung muss als 'non_urological' erfolgen, da es sich um ein Lymphom und nicht um einen Krebs der Harnwege handelt. Die anderen Optionen (Nierenzellkarzinom, Prostatakarzinom, Hodentumor, Peniskarzinom, Urothelkarzinom, Polymalignancy) sind aufgrund der Diagnose und der Art des Tumors ausgeschlossen.",
+    "classification": "non_urological",
+    "confidence": 0.95,
+    "key_indicators": [
+      "Aggressives B-Zell Non-Hodgkin-Lymphom (GCB-Typ)",
+      "Double-Expressor (BCL2/cMYC)",
+      "Infiltration von Organen (Pankreas, IVC, A. iliaca communis)",
+      "EBV-negativ",
+      "Lymphom"
+    ]
+  },
+  "raw_response": "```json\n{\n    \"reasoning\": \"Der Fall beschreibt ein aggressives B-Zell Non-Hodgkin-Lymphom (NHL) vom GCB-Typ, das als Double-Expressor (BCL2/cMYC) klassifiziert ist und EBV-negativ ist.  NHL ist eine Art von Krebs, der das lymphatische System betrifft. Die Beschreibung der Raumforderung und Infiltration von Organen wie Pankreas, IVC und A. iliaca communis deutet auf eine fortgeschrittene Erkrankung hin. Die fehlenden Metastasen im Thorax-CT schließen Metastasen in dieser Region aus, aber weitere Staging-Diagnostik ist noch ausstehend.  Die Klassifizierung muss als 'non_urological' erfolgen, da es sich um ein Lymphom und nicht um einen Krebs der Harnwege handelt. Die anderen Optionen (Nierenzellkarzinom, Prostatakarzinom, Hodentumor, Peniskarzinom, Urothelkarzinom, Polymalignancy) sind aufgrund der Diagnose und der Art des Tumors ausgeschlossen.\",\n    \"classification\": \"non_urological\",\n    \"confidence\": 0.95,\n    \"key_indicators\": [\"Aggressives B-Zell Non-Hodgkin-Lymphom (GCB-Typ)\", \"Double-Expressor (BCL2/cMYC)\", \"Infiltration von Organen (Pankreas, IVC, A. iliaca communis)\", \"EBV-negativ\", \"Lymphom\"]\n}\n```",
+  "ground_truth": "non_urological",
+  "is_correct": true,
+  "inference_time_seconds": 20.708149707999993,
+  "tokens_used": 615,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

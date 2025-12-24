@@ -1,0 +1,45 @@
+{
+  "case_id": "uca_2",
+  "timestamp": "2025-12-24T10:16:18.727542",
+  "provider": "openrouter",
+  "model": "deepseek/deepseek-v3.2",
+  "input_case": {
+    "case_id": "uca_2",
+    "patient": {
+      "alter_jahre": 54,
+      "geschlecht": null,
+      "ecog": null,
+      "komorbiditaet": null
+    },
+    "anamnese": null,
+    "diagnose_kurz": "Harnblasen-NMIBC: nicht-invasives papilläres Urothelkarzinom pTa, fokal high grade (G3), Hinterwand links; Detrusor nicht nachweisbar",
+    "alle_diagnosen": null,
+    "stadium": "pTa high grade (fokal) – EORTC-Risikostratifizierung geplant; Nachresektion erwägen (Detrusor fehlt)",
+    "tnm_clinical": null,
+    "tnm_pathological": null,
+    "histologie": null,
+    "metastatic": null,
+    "nebendiagnosen": null,
+    "ground_truth": "urothelkarzinom"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 54 Jahre\nDiagnose: Harnblasen-NMIBC: nicht-invasives papilläres Urothelkarzinom pTa, fokal high grade (G3), Hinterwand links; Detrusor nicht nachweisbar\nStadium: pTa high grade (fokal) – EORTC-Risikostratifizierung geplant; Nachresektion erwägen (Detrusor fehlt)\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Die Diagnose beschreibt ein nicht-muskelinvasives papilläres Urothelkarzinom (pTa, fokal high grade) der Harnblase. Dies ist die klassische Definition eines Harnblasenkarzinoms, das vom Urothel (Übergangsepithel) ausgeht. Die anderen genannten Entitäten (Nierenzell-, Prostata-, Hoden-, Peniskarzinom) betreffen andere Organe und haben unterschiedliche Histologien. 'Polymalignancy' wäre nicht zutreffend, da nur ein Tumor beschrieben wird, und 'non_urological' ist ausgeschlossen, da es sich um einen urologischen Tumor handelt.",
+    "classification": "urothelkarzinom",
+    "confidence": 1.0,
+    "key_indicators": [
+      "Harnblasen-NMIBC",
+      "nicht-invasives papilläres Urothelkarzinom",
+      "pTa high grade",
+      "Urothelkarzinom explizit genannt"
+    ]
+  },
+  "raw_response": "```json\n{\n    \"reasoning\": \"Die Diagnose beschreibt ein nicht-muskelinvasives papilläres Urothelkarzinom (pTa, fokal high grade) der Harnblase. Dies ist die klassische Definition eines Harnblasenkarzinoms, das vom Urothel (Übergangsepithel) ausgeht. Die anderen genannten Entitäten (Nierenzell-, Prostata-, Hoden-, Peniskarzinom) betreffen andere Organe und haben unterschiedliche Histologien. 'Polymalignancy' wäre nicht zutreffend, da nur ein Tumor beschrieben wird, und 'non_urological' ist ausgeschlossen, da es sich um einen urologischen Tumor handelt.\",\n    \"classification\": \"urothelkarzinom\",\n    \"confidence\": 1.0,\n    \"key_indicators\": [\"Harnblasen-NMIBC\", \"nicht-invasives papilläres Urothelkarzinom\", \"pTa high grade\", \"Urothelkarzinom explizit genannt\"]\n}\n```",
+  "ground_truth": "urothelkarzinom",
+  "is_correct": true,
+  "inference_time_seconds": 60.45163975000003,
+  "tokens_used": 798,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

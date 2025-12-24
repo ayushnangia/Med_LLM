@@ -1,0 +1,58 @@
+{
+  "case_id": "ncc_12",
+  "timestamp": "2025-12-24T10:07:56.352761",
+  "provider": "openrouter",
+  "model": "google/gemini-3-flash-preview",
+  "input_case": {
+    "case_id": "ncc_12",
+    "patient": {
+      "alter_jahre": 67,
+      "geschlecht": null,
+      "ecog": 1,
+      "komorbiditaet": "unknown"
+    },
+    "anamnese": "Zufallsbefund: Raumforderung linke Niere ca. 5,2 × 4,5 cm im Rahmen Abklärung von Rückenschmerzen. COPD GOLD II, Raucher 30 PY.",
+    "diagnose_kurz": "Raumforderung linke Niere ca. 5,2 × 4,5 cm, V. a. RCC (prätherapeutisch)",
+    "alle_diagnosen": null,
+    "stadium": "Staging inkomplett (CT Thorax ausstehend)",
+    "tnm_clinical": {
+      "T": "T1",
+      "N": "unknown",
+      "M": "unknown",
+      "stage_group": "unknown"
+    },
+    "tnm_pathological": {
+      "T": null,
+      "N": null,
+      "M": null,
+      "stage_group": null
+    },
+    "histologie": null,
+    "metastatic": null,
+    "nebendiagnosen": [
+      "COPD GOLD II",
+      "Raucher (30 PY)"
+    ],
+    "ground_truth": "nierenzellkarzinom"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 67 Jahre\nECOG: 1\nAnamnese: Zufallsbefund: Raumforderung linke Niere ca. 5,2 × 4,5 cm im Rahmen Abklärung von Rückenschmerzen. COPD GOLD II, Raucher 30 PY.\nDiagnose: Raumforderung linke Niere ca. 5,2 × 4,5 cm, V. a. RCC (prätherapeutisch)\nStadium: Staging inkomplett (CT Thorax ausstehend)\nTNM (klinisch): T:T1 N:unknown M:unknown\nTNM (pathologisch): Unbekannt\nNebendiagnosen: COPD GOLD II, Raucher (30 PY)\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Der Patient weist eine Raumforderung der linken Niere (5,2 x 4,5 cm) auf, die explizit als Verdacht auf ein Nierenzellkarzinom (RCC) diagnostiziert wurde. Die klinische Einstufung T1 (aufgrund der Größe >4 cm, aber <7 cm wahrscheinlich T1b) ist typisch für ein lokalisiertes Nierenzellkarzinom.",
+    "classification": "nierenzellkarzinom",
+    "confidence": 1.0,
+    "key_indicators": [
+      "Raumforderung linke Niere",
+      "V. a. RCC",
+      "T1",
+      "Nierenzellkarzinom"
+    ]
+  },
+  "raw_response": "```json\n{\n    \"reasoning\": \"Der Patient weist eine Raumforderung der linken Niere (5,2 x 4,5 cm) auf, die explizit als Verdacht auf ein Nierenzellkarzinom (RCC) diagnostiziert wurde. Die klinische Einstufung T1 (aufgrund der Größe >4 cm, aber <7 cm wahrscheinlich T1b) ist typisch für ein lokalisiertes Nierenzellkarzinom.\",\n    \"classification\": \"nierenzellkarzinom\",\n    \"confidence\": 1.0,\n    \"key_indicators\": [\n        \"Raumforderung linke Niere\",\n        \"V. a. RCC\",\n        \"T1\",\n        \"Nierenzellkarzinom\"\n    ]\n}\n```",
+  "ground_truth": "nierenzellkarzinom",
+  "is_correct": true,
+  "inference_time_seconds": 12.04385875,
+  "tokens_used": 954,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

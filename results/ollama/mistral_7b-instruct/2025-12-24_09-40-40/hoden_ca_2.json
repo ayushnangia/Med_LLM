@@ -1,0 +1,44 @@
+{
+  "case_id": "hoden_ca_2",
+  "timestamp": "2025-12-24T09:52:51.712187",
+  "provider": "ollama",
+  "model": "mistral:7b-instruct",
+  "input_case": {
+    "case_id": "hoden_ca_2",
+    "patient": {
+      "alter_jahre": 23,
+      "geschlecht": null,
+      "ecog": null,
+      "komorbiditaet": null
+    },
+    "anamnese": null,
+    "diagnose_kurz": "Seminom links (100%), kleinherdig (max. 0,2×0,5×0,1 cm) – Status nach inguinaler Ablatio testis links (19.09.2025), Rete testis infiltriert, GCNIS+",
+    "stadium": "pT1 pNX (klinisches Stadium offen; Staging CT Thorax/Abdomen ausstehend)",
+    "tnm_clinical": null,
+    "tnm_pathological": null,
+    "histologie": null,
+    "metastatic": null,
+    "nebendiagnosen": null,
+    "ground_truth": "hodentumor"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Analysiere den folgenden klinischen Fall und bestimme die Haupttumorentität.\n\nKLINISCHER FALL:\nPatient: 23 Jahre\nDiagnose: Seminom links (100%), kleinherdig (max. 0,2×0,5×0,1 cm) – Status nach inguinaler Ablatio testis links (19.09.2025), Rete testis infiltriert, GCNIS+\nStadium: pT1 pNX (klinisches Stadium offen; Staging CT Thorax/Abdomen ausstehend)\n\nAUFGABE:\nKlassifiziere diesen Fall in GENAU eine der folgenden Kategorien:\n- nierenzellkarzinom (Nierenkrebs/RCC)\n- prostatakarzinom (Prostatakrebs)\n- hodentumor (Hodenkrebs)\n- peniskarzinom (Peniskrebs)\n- urothelkarzinom (Blasen-/Harnwegskrebs)\n- polymalignancy (Mehrfachtumoren/Polymalignität)\n- non_urological (Nicht-urologische Tumoren)\n\nAntworte im folgenden JSON-Format:\n{\n    \"reasoning\": \"Deine schrittweise Begründung auf Deutsch\",\n    \"classification\": \"eine der obigen Kategorien\",\n    \"confidence\": 0.0 bis 1.0,\n    \"key_indicators\": [\"Indikator 1\", \"Indikator 2\"]\n}\n\nJSON-Antwort:",
+  "output": {
+    "reasoning": "Der Patient ist ein 23-jähriger Mann mit einer Diagnose von Seminom links, was auf einen Hodenkrebs hindeutet. Der Befund der inguinalen Ablatio testis links bestätigt dies. Die Infiltration des Rete testis und die GCNIS+ (Germ Cell Neoplasia In Situ) sind weitere Indizien für einen Hodenkrebs. Es gibt keine Anzeichen für andere Tumorentitäten wie Nierenzellkarzinom, Prostatakarzinom, Peniskrebs, Urothelkarzinom oder Polymalignancy, da es sich um eine solide Tumorenhandlung handelt und die Prostata nicht beteiligt ist. Es gibt auch keine Anzeichen für nicht-urologische Tumoren.",
+    "classification": "hodentumor",
+    "confidence": 1.0,
+    "key_indicators": [
+      "Diagnose von Seminom links",
+      "Inguinaler Ablatio testis links",
+      "Rete testis infiltriert",
+      "GCNIS+"
+    ]
+  },
+  "raw_response": " {\n    \"reasoning\": \"Der Patient ist ein 23-jähriger Mann mit einer Diagnose von Seminom links, was auf einen Hodenkrebs hindeutet. Der Befund der inguinalen Ablatio testis links bestätigt dies. Die Infiltration des Rete testis und die GCNIS+ (Germ Cell Neoplasia In Situ) sind weitere Indizien für einen Hodenkrebs. Es gibt keine Anzeichen für andere Tumorentitäten wie Nierenzellkarzinom, Prostatakarzinom, Peniskrebs, Urothelkarzinom oder Polymalignancy, da es sich um eine solide Tumorenhandlung handelt und die Prostata nicht beteiligt ist. Es gibt auch keine Anzeichen für nicht-urologische Tumoren.\",\n    \"classification\": \"hodentumor (Hodenkrebs)\",\n    \"confidence\": 1.0,\n    \"key_indicators\": [\"Diagnose von Seminom links\", \"Inguinaler Ablatio testis links\", \"Rete testis infiltriert\", \"GCNIS+\"]\n}",
+  "ground_truth": "hodentumor",
+  "is_correct": true,
+  "inference_time_seconds": 46.5835919380188,
+  "tokens_used": 680,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

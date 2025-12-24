@@ -1,0 +1,43 @@
+{
+  "case_id": "non_uro_2",
+  "timestamp": "2025-12-24T10:03:57.133162",
+  "provider": "openrouter",
+  "model": "google/gemini-3-flash-preview",
+  "input_case": {
+    "case_id": "non_uro_2",
+    "patient": {
+      "alter_jahre": 52,
+      "geschlecht": null,
+      "ecog": null,
+      "komorbiditaet": null
+    },
+    "anamnese": null,
+    "diagnose_kurz": "Unklare Raumforderung Harnblase (Seitenwand) – TUR-B 01.11.2025; Histologie: morphologisch/klinisch Infiltration durch bekanntes Sigmakarzinom (sekundäre Blaseninfiltration, kein primäres Urothelkarzinom beschrieben)",
+    "stadium": "Sekundärbefall der Harnblase durch kolorektales Karzinom (Verdacht/Kommentar), genaue TNM der Blasenläsion nicht angegeben",
+    "tnm_clinical": null,
+    "tnm_pathological": null,
+    "histologie": null,
+    "metastatic": null,
+    "nebendiagnosen": null,
+    "ground_truth": "non_urological"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 52 Jahre\nDiagnose: Unklare Raumforderung Harnblase (Seitenwand) – TUR-B 01.11.2025; Histologie: morphologisch/klinisch Infiltration durch bekanntes Sigmakarzinom (sekundäre Blaseninfiltration, kein primäres Urothelkarzinom beschrieben)\nStadium: Sekundärbefall der Harnblase durch kolorektales Karzinom (Verdacht/Kommentar), genaue TNM der Blasenläsion nicht angegeben\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Die histologische Untersuchung der TUR-B ergab, dass die Raumforderung in der Harnblase kein primäres Urothelkarzinom ist, sondern eine sekundäre Infiltration durch ein bereits bekanntes Sigmakarzinom (kolorektales Karzinom). Da der Primärtumor gastrointestinalen Ursprungs ist, fällt dieser Fall unter die Kategorie der nicht-urologischen Malignome.",
+    "classification": "non_urological",
+    "confidence": 1.0,
+    "key_indicators": [
+      "Infiltration durch bekanntes Sigmakarzinom",
+      "kein primäres Urothelkarzinom beschrieben",
+      "sekundäre Blaseninfiltration"
+    ]
+  },
+  "raw_response": "```json\n{\n    \"reasoning\": \"Die histologische Untersuchung der TUR-B ergab, dass die Raumforderung in der Harnblase kein primäres Urothelkarzinom ist, sondern eine sekundäre Infiltration durch ein bereits bekanntes Sigmakarzinom (kolorektales Karzinom). Da der Primärtumor gastrointestinalen Ursprungs ist, fällt dieser Fall unter die Kategorie der nicht-urologischen Malignome.\",\n    \"classification\": \"non_urological\",\n    \"confidence\": 1.0,\n    \"key_indicators\": [\n        \"Infiltration durch bekanntes Sigmakarzinom\",\n        \"kein primäres Urothelkarzinom beschrieben\",\n        \"sekundäre Blaseninfiltration\"\n    ]\n}\n```",
+  "ground_truth": "non_urological",
+  "is_correct": true,
+  "inference_time_seconds": 20.730255667,
+  "tokens_used": 1019,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

@@ -1,0 +1,64 @@
+{
+  "case_id": "ncc_1",
+  "timestamp": "2025-12-24T10:18:51.801523",
+  "provider": "openrouter",
+  "model": "moonshotai/kimi-k2-thinking",
+  "input_case": {
+    "case_id": "ncc_1",
+    "patient": {
+      "alter_jahre": 52,
+      "geschlecht": null,
+      "ecog": 0,
+      "komorbiditaet": "unknown"
+    },
+    "anamnese": "Met. pap. RCC. Z. n. Nephrektomie links 2014 (papilläres RCC pT3b, Nx, L0, V0, Pn0, G3, Rx). Z. n. offener Resektion eines Lokalrezidivs 2024. Aktuell multiple Rezidive (pulmonal, lymphonodal, hepatisch).",
+    "diagnose_kurz": "Metastasiertes papilläres RCC",
+    "alle_diagnosen": null,
+    "stadium": "metastasiert (pulmonal, lymphonodal, hepatisch)",
+    "tnm_clinical": {
+      "T": "unknown",
+      "N": "unknown",
+      "M": "M1",
+      "stage_group": "unknown"
+    },
+    "tnm_pathological": {
+      "T": "T3b",
+      "N": "NX",
+      "M": null,
+      "stage_group": null
+    },
+    "histologie": null,
+    "metastatic": true,
+    "nebendiagnosen": [
+      "obstruktive Kardiomyopathie",
+      "Z. n. Hyperthyreose 2021",
+      "arterielle Hypertonie",
+      "Diabetes mellitus",
+      "Z. n. LAE",
+      "Hyperlipidämie"
+    ],
+    "ground_truth": "nierenzellkarzinom"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 52 Jahre\nECOG: 0\nAnamnese: Met. pap. RCC. Z. n. Nephrektomie links 2014 (papilläres RCC pT3b, Nx, L0, V0, Pn0, G3, Rx). Z. n. offener Resektion eines Lokalrezidivs 2024. Aktuell multiple Rezidive (pulmonal, lymphonodal, hepatisch).\nDiagnose: Metastasiertes papilläres RCC\nStadium: metastasiert (pulmonal, lymphonodal, hepatisch)\nTNM (klinisch): T:unknown N:unknown M:M1\nTNM (pathologisch): T:T3b N:NX\nMetastasiert: Ja\nNebendiagnosen: obstruktive Kardiomyopathie, Z. n. Hyperthyreose 2021, arterielle Hypertonie, Diabetes mellitus, Z. n. LAE\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Der Fall beschreibt ein eindeutig diagnostiziertes papilläres Nierenzellkarzinom (RCC) mit entsprechender Anamnese (Nephrektomie 2014, Rezidivresektion 2024) und aktuell metastasierter Erkrankung (Lunge, Lymphknoten, Leber). Die Diagnose wird mehrfach explizit als 'pap. RCC' bzw. 'papilläres RCC' genannt. Papilläres RCC ist ein histologischer Subtyp des Nierenzellkarzinoms, einem urologischen Malignom. Keine andere Tumorentität wird erwähnt, sodass 'polymalignancy' ausgeschlossen ist. Die Lokalisation (Niere) und Histologie sind klar urologisch, nicht 'non_urological'.",
+    "classification": "nierenzellkarzinom",
+    "confidence": 1.0,
+    "key_indicators": [
+      "pap. RCC",
+      "papilläres RCC",
+      "Nephrektomie",
+      "metastasiertes RCC",
+      "T3b",
+      "urologisches Malignom"
+    ]
+  },
+  "raw_response": "```json\n{\n    \"reasoning\": \"Der Fall beschreibt ein eindeutig diagnostiziertes papilläres Nierenzellkarzinom (RCC) mit entsprechender Anamnese (Nephrektomie 2014, Rezidivresektion 2024) und aktuell metastasierter Erkrankung (Lunge, Lymphknoten, Leber). Die Diagnose wird mehrfach explizit als 'pap. RCC' bzw. 'papilläres RCC' genannt. Papilläres RCC ist ein histologischer Subtyp des Nierenzellkarzinoms, einem urologischen Malignom. Keine andere Tumorentität wird erwähnt, sodass 'polymalignancy' ausgeschlossen ist. Die Lokalisation (Niere) und Histologie sind klar urologisch, nicht 'non_urological'.\",\n    \"classification\": \"nierenzellkarzinom\",\n    \"confidence\": 1.0,\n    \"key_indicators\": [\"pap. RCC\", \"papilläres RCC\", \"Nephrektomie\", \"metastasiertes RCC\", \"T3b\", \"urologisches Malignom\"]\n}\n```",
+  "ground_truth": "nierenzellkarzinom",
+  "is_correct": true,
+  "inference_time_seconds": 69.67231233299992,
+  "tokens_used": 1218,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

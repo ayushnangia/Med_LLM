@@ -1,0 +1,54 @@
+{
+  "case_id": "ncc_5",
+  "timestamp": "2025-12-24T10:08:18.796616",
+  "provider": "openrouter",
+  "model": "allenai/olmo-3.1-32b-think:free",
+  "input_case": {
+    "case_id": "ncc_5",
+    "patient": {
+      "alter_jahre": 47,
+      "geschlecht": null,
+      "ecog": 0,
+      "komorbiditaet": "unknown"
+    },
+    "anamnese": "Zystische Läsion Bosniak IV (2,5 cm) an der rechten Niere. Keine relevanten Vorerkrankungen.",
+    "diagnose_kurz": "Zystische Läsion Bosniak IV, 2,5 cm, rechte Niere",
+    "alle_diagnosen": null,
+    "stadium": "nicht-metastasiert (Verdacht, prätherapeutisch)",
+    "tnm_clinical": {
+      "T": "unknown",
+      "N": "unknown",
+      "M": "M0",
+      "stage_group": "unknown"
+    },
+    "tnm_pathological": {
+      "T": null,
+      "N": null,
+      "M": null,
+      "stage_group": null
+    },
+    "histologie": null,
+    "metastatic": false,
+    "nebendiagnosen": [],
+    "ground_truth": "nierenzellkarzinom"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 47 Jahre\nECOG: 0\nAnamnese: Zystische Läsion Bosniak IV (2,5 cm) an der rechten Niere. Keine relevanten Vorerkrankungen.\nDiagnose: Zystische Läsion Bosniak IV, 2,5 cm, rechte Niere\nStadium: nicht-metastasiert (Verdacht, prätherapeutisch)\nTNM (klinisch): T:unknown N:unknown M:M0\nTNM (pathologisch): Unbekannt\nMetastasiert: Nein\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Der Fall bezieht sich auf eine Zystische Läsion Bosniak IV in der Niere. Bosniak IV-Läsionen sind hochwahrscheinlich malign, insbesondere im Kontext von nierenzellkarzinomen (RCC). Die Lokalisation (Niere), die klinische Diagnose und die Klassifikation deuten stark auf ein nierenzellkarzinom hin. Weitere Kategorien wie urothelkarzinom oder prostatakarzinom sind unwahrscheinlich, da die Läsion explizit in der Niere liegt und die Bosniak-Klassifikation primär für Nierenkarzinome relevant ist. 'non_urological' ist nicht zutreffend, da die Niere zu den urologischen Organen gehört. 'polymalignancy' oder andere Karzinome sind nicht indiziert.",
+    "classification": "nierenzellkarzinom",
+    "confidence": 0.95,
+    "key_indicators": [
+      "Zystische Läsion Bosniak IV",
+      "Lokalisation: rechte Niere",
+      "klinische Verdacht auf Malignität"
+    ]
+  },
+  "raw_response": "{\n    \"reasoning\": \"Der Fall bezieht sich auf eine Zystische Läsion Bosniak IV in der Niere. Bosniak IV-Läsionen sind hochwahrscheinlich malign, insbesondere im Kontext von nierenzellkarzinomen (RCC). Die Lokalisation (Niere), die klinische Diagnose und die Klassifikation deuten stark auf ein nierenzellkarzinom hin. Weitere Kategorien wie urothelkarzinom oder prostatakarzinom sind unwahrscheinlich, da die Läsion explizit in der Niere liegt und die Bosniak-Klassifikation primär für Nierenkarzinome relevant ist. 'non_urological' ist nicht zutreffend, da die Niere zu den urologischen Organen gehört. 'polymalignancy' oder andere Karzinome sind nicht indiziert.\",\n    \"classification\": \"nierenzellkarzinom\",\n    \"confidence\": 0.95,\n    \"key_indicators\": [\"Zystische Läsion Bosniak IV\", \"Lokalisation: rechte Niere\", \"klinische Verdacht auf Malignität\"]\n}",
+  "ground_truth": "nierenzellkarzinom",
+  "is_correct": true,
+  "inference_time_seconds": 47.182652874999995,
+  "tokens_used": 1540,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

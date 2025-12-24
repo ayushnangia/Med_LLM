@@ -1,0 +1,46 @@
+{
+  "case_id": "non_uro_1",
+  "timestamp": "2025-12-24T10:13:41.835368",
+  "provider": "openrouter",
+  "model": "nvidia/nemotron-3-nano-30b-a3b:free",
+  "input_case": {
+    "case_id": "non_uro_1",
+    "patient": {
+      "alter_jahre": 81,
+      "geschlecht": null,
+      "ecog": null,
+      "komorbiditaet": null
+    },
+    "anamnese": null,
+    "diagnose_kurz": "Aggressives B-Zell Non-Hodgkin-Lymphom (GCB-Typ nach Hans), Double-Expressor (BCL2/cMYC), EBV-negativ; große paraaortale/peritoneale Raumforderung links (ca. 12,1×8,2×13,2 cm) mit Infiltration Pankreasschwanz/IVC/li. A. iliaca communis",
+    "alle_diagnosen": null,
+    "stadium": "aggressives NHL; Staging unvollständig (CT Thorax ohne Metastasen; weitere Lymphom-Stagingdiagnostik ausstehend)",
+    "tnm_clinical": null,
+    "tnm_pathological": null,
+    "histologie": null,
+    "metastatic": null,
+    "nebendiagnosen": null,
+    "ground_truth": "non_urological"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 81 Jahre\nDiagnose: Aggressives B-Zell Non-Hodgkin-Lymphom (GCB-Typ nach Hans), Double-Expressor (BCL2/cMYC), EBV-negativ; große paraaortale/peritoneale Raumforderung links (ca. 12,1×8,2×13,2 cm) mit Infiltration Pankreasschwanz/IVC/li. A. iliaca communis\nStadium: aggressives NHL; Staging unvollständig (CT Thorax ohne Metastasen; weitere Lymphom-Stagingdiagnostik ausstehend)\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Der Patient wird mit einem aggressiven B-Zellen-Nicht-Hodgkin-Lymphom (NHL) diagnostiziert, das sich im retroperitonealen Bereich manifestiert. NHL ist eine hämatologische Malignität und keine primäre Tumorerkrankung eines urologischen Organs (Niere, Prostata, Hoden, Penis oder Harnblase). Daher fällt der Fall in die Kategorie „non_urological“.",
+    "classification": "non_urological",
+    "confidence": 0.96,
+    "key_indicators": [
+      "Aggressive B-cell Non-Hodgkin-Lymphom (NHL)",
+      "Double-expressor (BCL2/cMYC)",
+      "EBV-negativ",
+      "Große retroperitoneale Masse (para-aortal/peritoneale Raumforderung)",
+      "Keine Hinweise auf primäre urologische Tumoren"
+    ]
+  },
+  "raw_response": "{\n    \"reasoning\": \"Der Patient wird mit einem aggressiven B-Zellen-Nicht-Hodgkin-Lymphom (NHL) diagnostiziert, das sich im retroperitonealen Bereich manifestiert. NHL ist eine hämatologische Malignität und keine primäre Tumorerkrankung eines urologischen Organs (Niere, Prostata, Hoden, Penis oder Harnblase). Daher fällt der Fall in die Kategorie „non_urological“.\",\n    \"classification\": \"non_urological\",\n    \"confidence\": 0.96,\n    \"key_indicators\": [\n        \"Aggressive B-cell Non-Hodgkin-Lymphom (NHL)\",\n        \"Double-expressor (BCL2/cMYC)\",\n        \"EBV-negativ\",\n        \"Große retroperitoneale Masse (para-aortal/peritoneale Raumforderung)\",\n        \"Keine Hinweise auf primäre urologische Tumoren\"\n    ]\n}",
+  "ground_truth": "non_urological",
+  "is_correct": true,
+  "inference_time_seconds": 12.10542454099999,
+  "tokens_used": 713,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

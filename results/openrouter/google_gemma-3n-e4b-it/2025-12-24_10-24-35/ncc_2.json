@@ -1,0 +1,59 @@
+{
+  "case_id": "ncc_2",
+  "timestamp": "2025-12-24T10:24:35.474631",
+  "provider": "openrouter",
+  "model": "google/gemma-3n-e4b-it",
+  "input_case": {
+    "case_id": "ncc_2",
+    "patient": {
+      "alter_jahre": 82,
+      "geschlecht": null,
+      "ecog": 1,
+      "komorbiditaet": "hoch"
+    },
+    "anamnese": "Pat synkopiert, zur TAVI-Evaluation. TAVI indiziert. Im TAVI-CT malignomsuspekte Raumforderung linke Niere (ca. 2×3 cm). Erstdiagnose 06.11.2025, links.",
+    "diagnose_kurz": "Malignomsuspekte Raumforderung linke Niere",
+    "alle_diagnosen": null,
+    "stadium": "unbekannt (prätherapeutisch)",
+    "tnm_clinical": {
+      "T": "unknown",
+      "N": "unknown",
+      "M": "unknown",
+      "stage_group": "unknown"
+    },
+    "tnm_pathological": {
+      "T": null,
+      "N": null,
+      "M": null,
+      "stage_group": null
+    },
+    "histologie": null,
+    "metastatic": false,
+    "nebendiagnosen": [
+      "Aortenstenose hochgradig (TAVI indiziert)",
+      "KHK",
+      "CKD G3"
+    ],
+    "ground_truth": "nierenzellkarzinom"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 82 Jahre\nECOG: 1\nAnamnese: Pat synkopiert, zur TAVI-Evaluation. TAVI indiziert. Im TAVI-CT malignomsuspekte Raumforderung linke Niere (ca. 2×3 cm). Erstdiagnose 06.11.2025, links.\nDiagnose: Malignomsuspekte Raumforderung linke Niere\nStadium: unbekannt (prätherapeutisch)\nTNM (klinisch): T:unknown N:unknown M:unknown\nTNM (pathologisch): Unbekannt\nMetastasiert: Nein\nNebendiagnosen: Aortenstenose hochgradig (TAVI indiziert), KHK, CKD G3\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Der Fall beschreibt eine malignomsuspekte Raumforderung in der linken Niere bei einem 82-jährigen Patienten. Die Anamnese deutet auf eine Erstdiagnose hin, die im November 2025 erfolgte.  Die Größe der Raumforderung (2x3 cm) und die Indikation zur TAVI-Evaluation (was auf eine kardiovaskuläre Erkrankung hindeutet, die mit dem Tumor in Verbindung stehen könnte) sind wichtige Hinweise.  Da die Raumforderung in der Niere lokalisiert ist, ist das Nierenzellkarzinom die wahrscheinlichste Diagnose.  Die anderen Optionen sind aufgrund der Lokalisation und der beschriebenen Symptomatik weniger wahrscheinlich. Da keine weiteren Informationen vorliegen, ist eine definitive Klassifizierung nicht möglich, aber das Nierenzellkarzinom ist die wahrscheinlichste Kategorie.",
+    "classification": "nierenzellkarzinom",
+    "confidence": 0.9,
+    "key_indicators": [
+      "Raumforderung in der Niere",
+      "Malignomsuspekt",
+      "Alter des Patienten",
+      "Klinische Indikation zur TAVI-Evaluation"
+    ]
+  },
+  "raw_response": "```json\n{\n    \"reasoning\": \"Der Fall beschreibt eine malignomsuspekte Raumforderung in der linken Niere bei einem 82-jährigen Patienten. Die Anamnese deutet auf eine Erstdiagnose hin, die im November 2025 erfolgte.  Die Größe der Raumforderung (2x3 cm) und die Indikation zur TAVI-Evaluation (was auf eine kardiovaskuläre Erkrankung hindeutet, die mit dem Tumor in Verbindung stehen könnte) sind wichtige Hinweise.  Da die Raumforderung in der Niere lokalisiert ist, ist das Nierenzellkarzinom die wahrscheinlichste Diagnose.  Die anderen Optionen sind aufgrund der Lokalisation und der beschriebenen Symptomatik weniger wahrscheinlich. Da keine weiteren Informationen vorliegen, ist eine definitive Klassifizierung nicht möglich, aber das Nierenzellkarzinom ist die wahrscheinlichste Kategorie.\",\n    \"classification\": \"nierenzellkarzinom\",\n    \"confidence\": 0.9,\n    \"key_indicators\": [\"Raumforderung in der Niere\", \"Malignomsuspekt\", \"Alter des Patienten\", \"Klinische Indikation zur TAVI-Evaluation\"]\n}\n```",
+  "ground_truth": "nierenzellkarzinom",
+  "is_correct": true,
+  "inference_time_seconds": 7.354639375000005,
+  "tokens_used": 560,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

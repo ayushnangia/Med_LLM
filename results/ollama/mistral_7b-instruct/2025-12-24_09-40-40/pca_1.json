@@ -1,0 +1,55 @@
+{
+  "case_id": "pca_1",
+  "timestamp": "2025-12-24T09:50:37.200764",
+  "provider": "ollama",
+  "model": "mistral:7b-instruct",
+  "input_case": {
+    "case_id": "pca_1",
+    "patient": {
+      "alter_jahre": 65,
+      "geschlecht": null,
+      "ecog": 1,
+      "komorbiditaet": "unknown"
+    },
+    "anamnese": "mCRPC, ossär und lymphogen metastasiert. Pat. bekannt. Mehrlinientherapie inkl. ADT, Docetaxel, Abirateron/Prednisolon, Lu-PSMA; BRCA1/2 negativ.",
+    "diagnose_kurz": "mCRPC mit ossärer und lymphonodaler Metastasierung",
+    "stadium": "metastasiert, kastrationsresistent",
+    "tnm_clinical": {
+      "T": "unknown",
+      "N": "unknown",
+      "M": "M1",
+      "stage_group": "unknown"
+    },
+    "tnm_pathological": {
+      "T": null,
+      "N": null,
+      "M": null,
+      "stage_group": null
+    },
+    "histologie": null,
+    "metastatic": null,
+    "nebendiagnosen": [],
+    "ground_truth": "prostatakarzinom"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Analysiere den folgenden klinischen Fall und bestimme die Haupttumorentität.\n\nKLINISCHER FALL:\nPatient: 65 Jahre\nECOG: 1\nAnamnese: mCRPC, ossär und lymphogen metastasiert. Pat. bekannt. Mehrlinientherapie inkl. ADT, Docetaxel, Abirateron/Prednisolon, Lu-PSMA; BRCA1/2 negativ.\nDiagnose: mCRPC mit ossärer und lymphonodaler Metastasierung\nStadium: metastasiert, kastrationsresistent\nTNM (klinisch): T:unknown N:unknown M:M1\nTNM (pathologisch): Unbekannt\n\nAUFGABE:\nKlassifiziere diesen Fall in GENAU eine der folgenden Kategorien:\n- nierenzellkarzinom (Nierenkrebs/RCC)\n- prostatakarzinom (Prostatakrebs)\n- hodentumor (Hodenkrebs)\n- peniskarzinom (Peniskrebs)\n- urothelkarzinom (Blasen-/Harnwegskrebs)\n- polymalignancy (Mehrfachtumoren/Polymalignität)\n- non_urological (Nicht-urologische Tumoren)\n\nAntworte im folgenden JSON-Format:\n{\n    \"reasoning\": \"Deine schrittweise Begründung auf Deutsch\",\n    \"classification\": \"eine der obigen Kategorien\",\n    \"confidence\": 0.0 bis 1.0,\n    \"key_indicators\": [\"Indikator 1\", \"Indikator 2\"]\n}\n\nJSON-Antwort:",
+  "output": {
+    "reasoning": "Der Patient ist ein männlicher Patient mit einem kastrationsresistenten Prostatakarzinom (mCRPC), das sowohl knochen- als auch lymphonodal metastasiert ist. Die Mehrlinientherapie umfasst ADT, Docetaxel, Abirateron/Prednisolon und Lu-PSMA, was auf eine Behandlung von Prostatakrebs hinweist. BRCA1/2 sind negativ, was keinen Hinweis auf andere Tumorentitäten gibt. Daher kann der Fall als 'prostatakarzinom' klassifiziert werden.",
+    "classification": "prostatakarzinom",
+    "confidence": 1.0,
+    "key_indicators": [
+      "mCRPC",
+      "ADT",
+      "Docetaxel",
+      "Abirateron/Prednisolon",
+      "Lu-PSMA"
+    ]
+  },
+  "raw_response": " {\n    \"reasoning\": \"Der Patient ist ein männlicher Patient mit einem kastrationsresistenten Prostatakarzinom (mCRPC), das sowohl knochen- als auch lymphonodal metastasiert ist. Die Mehrlinientherapie umfasst ADT, Docetaxel, Abirateron/Prednisolon und Lu-PSMA, was auf eine Behandlung von Prostatakrebs hinweist. BRCA1/2 sind negativ, was keinen Hinweis auf andere Tumorentitäten gibt. Daher kann der Fall als 'prostatakarzinom' klassifiziert werden.\",\n    \"classification\": \"prostatakarzinom\",\n    \"confidence\": 1.0,\n    \"key_indicators\": [\"mCRPC\", \"ADT\", \"Docetaxel\", \"Abirateron/Prednisolon\", \"Lu-PSMA\"]\n}",
+  "ground_truth": "prostatakarzinom",
+  "is_correct": true,
+  "inference_time_seconds": 42.52784204483032,
+  "tokens_used": 670,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

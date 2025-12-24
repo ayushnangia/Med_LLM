@@ -1,0 +1,59 @@
+{
+  "case_id": "ncc_8",
+  "timestamp": "2025-12-24T10:23:54.063673",
+  "provider": "openrouter",
+  "model": "google/gemma-3-12b-it",
+  "input_case": {
+    "case_id": "ncc_8",
+    "patient": {
+      "alter_jahre": 70,
+      "geschlecht": null,
+      "ecog": 1,
+      "komorbiditaet": "unknown"
+    },
+    "anamnese": "Kleiner Nierentumor links 2,7 cm, hilusnah. Vorerkrankungen: DM Typ 2, arterielle Hypertonie, Hyperlipidämie.",
+    "diagnose_kurz": "Kleiner Nierentumor links 2,7 cm, hilusnah",
+    "alle_diagnosen": null,
+    "stadium": "nicht-metastasiert (Verdacht, prätherapeutisch)",
+    "tnm_clinical": {
+      "T": "unknown",
+      "N": "unknown",
+      "M": "M0",
+      "stage_group": "unknown"
+    },
+    "tnm_pathological": {
+      "T": null,
+      "N": null,
+      "M": null,
+      "stage_group": null
+    },
+    "histologie": null,
+    "metastatic": false,
+    "nebendiagnosen": [
+      "Diabetes mellitus Typ 2",
+      "arterielle Hypertonie",
+      "Hyperlipidämie"
+    ],
+    "ground_truth": "nierenzellkarzinom"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 70 Jahre\nECOG: 1\nAnamnese: Kleiner Nierentumor links 2,7 cm, hilusnah. Vorerkrankungen: DM Typ 2, arterielle Hypertonie, Hyperlipidämie.\nDiagnose: Kleiner Nierentumor links 2,7 cm, hilusnah\nStadium: nicht-metastasiert (Verdacht, prätherapeutisch)\nTNM (klinisch): T:unknown N:unknown M:M0\nTNM (pathologisch): Unbekannt\nMetastasiert: Nein\nNebendiagnosen: Diabetes mellitus Typ 2, arterielle Hypertonie, Hyperlipidämie\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Der Fall beschreibt einen Tumor der linken Niere. Die Anamnese, Diagnose und das Stadium deuten eindeutig auf ein Nierenzellkarzinom hin. Die anderen Optionen (Prostatakarzinom, Hodentumor, Peniskarzinom, Urothelkarzinom, Polymalignancy, non_urological) sind durch die klinischen Informationen ausgeschlossen. Obwohl die TNM-Klassifikation vor der Therapie unbekannt ist, ist die Lokalisation und die Beschreibung des Tumors eindeutig auf die Niere bezogen.",
+    "classification": "nierenzellkarzinom",
+    "confidence": 1.0,
+    "key_indicators": [
+      "Nierentumor links",
+      "2,7 cm",
+      "hilusnah",
+      "nicht-metastasiert"
+    ]
+  },
+  "raw_response": "\n\n```json\n{\n    \"reasoning\": \"Der Fall beschreibt einen Tumor der linken Niere. Die Anamnese, Diagnose und das Stadium deuten eindeutig auf ein Nierenzellkarzinom hin. Die anderen Optionen (Prostatakarzinom, Hodentumor, Peniskarzinom, Urothelkarzinom, Polymalignancy, non_urological) sind durch die klinischen Informationen ausgeschlossen. Obwohl die TNM-Klassifikation vor der Therapie unbekannt ist, ist die Lokalisation und die Beschreibung des Tumors eindeutig auf die Niere bezogen.\",\n    \"classification\": \"nierenzellkarzinom\",\n    \"confidence\": 1.0,\n    \"key_indicators\": [\"Nierentumor links\", \"2,7 cm\", \"hilusnah\", \"nicht-metastasiert\"]\n}\n```",
+  "ground_truth": "nierenzellkarzinom",
+  "is_correct": true,
+  "inference_time_seconds": 6.360606957999998,
+  "tokens_used": 477,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

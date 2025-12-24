@@ -1,0 +1,55 @@
+{
+  "case_id": "pca_1",
+  "timestamp": "2025-12-24T10:24:35.475820",
+  "provider": "openrouter",
+  "model": "google/gemma-3n-e4b-it",
+  "input_case": {
+    "case_id": "pca_1",
+    "patient": {
+      "alter_jahre": 65,
+      "geschlecht": null,
+      "ecog": 1,
+      "komorbiditaet": "unknown"
+    },
+    "anamnese": "mCRPC, ossär und lymphogen metastasiert. Pat. bekannt. Mehrlinientherapie inkl. ADT, Docetaxel, Abirateron/Prednisolon, Lu-PSMA; BRCA1/2 negativ.",
+    "diagnose_kurz": "mCRPC mit ossärer und lymphonodaler Metastasierung",
+    "alle_diagnosen": null,
+    "stadium": "metastasiert, kastrationsresistent",
+    "tnm_clinical": {
+      "T": "unknown",
+      "N": "unknown",
+      "M": "M1",
+      "stage_group": "unknown"
+    },
+    "tnm_pathological": {
+      "T": null,
+      "N": null,
+      "M": null,
+      "stage_group": null
+    },
+    "histologie": null,
+    "metastatic": null,
+    "nebendiagnosen": [],
+    "ground_truth": "prostatakarzinom"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 65 Jahre\nECOG: 1\nAnamnese: mCRPC, ossär und lymphogen metastasiert. Pat. bekannt. Mehrlinientherapie inkl. ADT, Docetaxel, Abirateron/Prednisolon, Lu-PSMA; BRCA1/2 negativ.\nDiagnose: mCRPC mit ossärer und lymphonodaler Metastasierung\nStadium: metastasiert, kastrationsresistent\nTNM (klinisch): T:unknown N:unknown M:M1\nTNM (pathologisch): Unbekannt\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Der Fall beschreibt einen 65-jährigen Patienten mit metastasiertem kastrationsresistentem Prostatakarzinom (mCRPC), das Knochen- und Lymphknotenmetastasen aufweist. Die Anamnese erwähnt eine mehrlinientherapie, die typischerweise bei Prostatakrebs eingesetzt wird. Die Diagnose ist eindeutig als Prostatakarzinom angegeben. Die Beschreibung 'mCRPC' steht für metastasiertes kastrationsresistentes Prostatakarzinom.",
+    "classification": "prostatakarzinom",
+    "confidence": 0.95,
+    "key_indicators": [
+      "mCRPC",
+      "kastrationsresistent",
+      "ossär und lymphogen metastasiert",
+      "Anamnese mit Prostatakrebs-spezifischer Therapie (ADT, Docetaxel, Abirateron/Prednisolon, Lu-PSMA)"
+    ]
+  },
+  "raw_response": "```json\n{\n    \"reasoning\": \"Der Fall beschreibt einen 65-jährigen Patienten mit metastasiertem kastrationsresistentem Prostatakarzinom (mCRPC), das Knochen- und Lymphknotenmetastasen aufweist. Die Anamnese erwähnt eine mehrlinientherapie, die typischerweise bei Prostatakrebs eingesetzt wird. Die Diagnose ist eindeutig als Prostatakarzinom angegeben. Die Beschreibung 'mCRPC' steht für metastasiertes kastrationsresistentes Prostatakarzinom.\",\n    \"classification\": \"prostatakarzinom\",\n    \"confidence\": 0.95,\n    \"key_indicators\": [\"mCRPC\", \"kastrationsresistent\", \"ossär und lymphogen metastasiert\", \"Anamnese mit Prostatakrebs-spezifischer Therapie (ADT, Docetaxel, Abirateron/Prednisolon, Lu-PSMA)\"]\n}\n```",
+  "ground_truth": "prostatakarzinom",
+  "is_correct": true,
+  "inference_time_seconds": 13.173152250000001,
+  "tokens_used": 481,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

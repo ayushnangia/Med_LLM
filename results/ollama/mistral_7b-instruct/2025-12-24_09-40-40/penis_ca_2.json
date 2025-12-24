@@ -1,0 +1,57 @@
+{
+  "case_id": "penis_ca_2",
+  "timestamp": "2025-12-24T09:54:15.047423",
+  "provider": "ollama",
+  "model": "mistral:7b-instruct",
+  "input_case": {
+    "case_id": "penis_ca_2",
+    "patient": {
+      "alter_jahre": 52,
+      "geschlecht": null,
+      "ecog": 1,
+      "komorbiditaet": "unknown"
+    },
+    "anamnese": "Metastasiertes Peniskarzinom (Plattenepithelkarzinom) mit komplexer Vortherapie (Penektomie, LK-Dissektionen inguinal/pelvin, Cis/Pacli/5FU, Radiatio 61 Gy pelvin/inguinal). Aktuell bioptisch gesicherte Hautmetastasen linker Oberschenkel (10.04.2025). MTB: Pembro + Sacituzumab govitecan, Kostenübernahme abgelehnt.",
+    "diagnose_kurz": "Metastasiertes Peniskarzinom (Plattenepithelkarzinom) mit Hautmetastasen",
+    "stadium": "metastasiert (Hautmetastasen), mehrfach vorbehandelt",
+    "tnm_clinical": {
+      "T": "unknown",
+      "N": "unknown",
+      "M": "M1",
+      "stage_group": "unknown"
+    },
+    "tnm_pathological": {
+      "T": "pT2",
+      "N": "pN2",
+      "M": null,
+      "stage_group": null
+    },
+    "histologie": null,
+    "metastatic": null,
+    "nebendiagnosen": [
+      "SARS-CoV-2 2024",
+      "Ablatio testis links (Leydig-Zell-Tumor 03/2018)",
+      "Thrombophlebitis",
+      "arterielle Hypertonie"
+    ],
+    "ground_truth": "peniskarzinom"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Analysiere den folgenden klinischen Fall und bestimme die Haupttumorentität.\n\nKLINISCHER FALL:\nPatient: 52 Jahre\nECOG: 1\nAnamnese: Metastasiertes Peniskarzinom (Plattenepithelkarzinom) mit komplexer Vortherapie (Penektomie, LK-Dissektionen inguinal/pelvin, Cis/Pacli/5FU, Radiatio 61 Gy pelvin/inguinal). Aktuell bioptisch gesicherte Hautmetastasen linker Oberschenkel (10.04.2025). MTB: Pembro + Sacituzumab govitecan, Kostenübernahme abgelehnt.\nDiagnose: Metastasiertes Peniskarzinom (Plattenepithelkarzinom) mit Hautmetastasen\nStadium: metastasiert (Hautmetastasen), mehrfach vorbehandelt\nTNM (klinisch): T:unknown N:unknown M:M1\nTNM (pathologisch): T:pT2 N:pN2\nNebendiagnosen: SARS-CoV-2 2024, Ablatio testis links (Leydig-Zell-Tumor 03/2018), Thrombophlebitis, arterielle Hypertonie\n\nAUFGABE:\nKlassifiziere diesen Fall in GENAU eine der folgenden Kategorien:\n- nierenzellkarzinom (Nierenkrebs/RCC)\n- prostatakarzinom (Prostatakrebs)\n- hodentumor (Hodenkrebs)\n- peniskarzinom (Peniskrebs)\n- urothelkarzinom (Blasen-/Harnwegskrebs)\n- polymalignancy (Mehrfachtumoren/Polymalignität)\n- non_urological (Nicht-urologische Tumoren)\n\nAntworte im folgenden JSON-Format:\n{\n    \"reasoning\": \"Deine schrittweise Begründung auf Deutsch\",\n    \"classification\": \"eine der obigen Kategorien\",\n    \"confidence\": 0.0 bis 1.0,\n    \"key_indicators\": [\"Indikator 1\", \"Indikator 2\"]\n}\n\nJSON-Antwort:",
+  "output": {
+    "reasoning": "Der Patient leidet an einem Metastasierten Peniskarzinom (Plattenepithelkarzinom), das auch vorher behandelt wurde. Die bioptisch gesicherte Hautmetastase auf dem linken Oberschenkel bestätigt dieses Tumorstadium. Es gibt keine Anzeichen für andere urologische Tumoren wie Nierenzellkarzinom, Prostatakarzinom, Hodentumor oder Urothelkarzinom. Die Nebendiagnosen wie SARS-CoV-2 2024, Ablatio testis links (Leydig-Zell-Tumor 03/2018), Thrombophlebitis und arterielle Hypertonie sind nicht direkt mit dem Tumorentitat assoziiert. Daher kann der Fall als 'peniskarzinom' klassifiziert werden.",
+    "classification": "peniskarzinom",
+    "confidence": 1.0,
+    "key_indicators": [
+      "Metastasiertes Peniskarzinom",
+      "bioptisch gesicherte Hautmetastase"
+    ]
+  },
+  "raw_response": " {\n    \"reasoning\": \"Der Patient leidet an einem Metastasierten Peniskarzinom (Plattenepithelkarzinom), das auch vorher behandelt wurde. Die bioptisch gesicherte Hautmetastase auf dem linken Oberschenkel bestätigt dieses Tumorstadium. Es gibt keine Anzeichen für andere urologische Tumoren wie Nierenzellkarzinom, Prostatakarzinom, Hodentumor oder Urothelkarzinom. Die Nebendiagnosen wie SARS-CoV-2 2024, Ablatio testis links (Leydig-Zell-Tumor 03/2018), Thrombophlebitis und arterielle Hypertonie sind nicht direkt mit dem Tumorentitat assoziiert. Daher kann der Fall als 'peniskarzinom' klassifiziert werden.\",\n    \"classification\": \"peniskarzinom\",\n    \"confidence\": 1.0,\n    \"key_indicators\": [\"Metastasiertes Peniskarzinom\", \"bioptisch gesicherte Hautmetastase\"]\n}",
+  "ground_truth": "peniskarzinom",
+  "is_correct": true,
+  "inference_time_seconds": 52.75240683555603,
+  "tokens_used": 881,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

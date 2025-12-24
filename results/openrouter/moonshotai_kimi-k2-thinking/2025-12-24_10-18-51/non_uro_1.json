@@ -1,0 +1,46 @@
+{
+  "case_id": "non_uro_1",
+  "timestamp": "2025-12-24T10:18:51.802472",
+  "provider": "openrouter",
+  "model": "moonshotai/kimi-k2-thinking",
+  "input_case": {
+    "case_id": "non_uro_1",
+    "patient": {
+      "alter_jahre": 81,
+      "geschlecht": null,
+      "ecog": null,
+      "komorbiditaet": null
+    },
+    "anamnese": null,
+    "diagnose_kurz": "Aggressives B-Zell Non-Hodgkin-Lymphom (GCB-Typ nach Hans), Double-Expressor (BCL2/cMYC), EBV-negativ; große paraaortale/peritoneale Raumforderung links (ca. 12,1×8,2×13,2 cm) mit Infiltration Pankreasschwanz/IVC/li. A. iliaca communis",
+    "alle_diagnosen": null,
+    "stadium": "aggressives NHL; Staging unvollständig (CT Thorax ohne Metastasen; weitere Lymphom-Stagingdiagnostik ausstehend)",
+    "tnm_clinical": null,
+    "tnm_pathological": null,
+    "histologie": null,
+    "metastatic": null,
+    "nebendiagnosen": null,
+    "ground_truth": "non_urological"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 81 Jahre\nDiagnose: Aggressives B-Zell Non-Hodgkin-Lymphom (GCB-Typ nach Hans), Double-Expressor (BCL2/cMYC), EBV-negativ; große paraaortale/peritoneale Raumforderung links (ca. 12,1×8,2×13,2 cm) mit Infiltration Pankreasschwanz/IVC/li. A. iliaca communis\nStadium: aggressives NHL; Staging unvollständig (CT Thorax ohne Metastasen; weitere Lymphom-Stagingdiagnostik ausstehend)\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Der Patient hat ein eindeutig diagnostiziertes aggressives B-Zell Non-Hodgkin-Lymphom (GCB-Typ, Double-Expressor). Dies ist ein hämatologisches Malignom und kein urologischer Tumor. Die genannten Differenzialdiagnosen (Nierenzellkarzinom, Prostatakarzinom, Hodentumor, Peniskarzinom, Urothelkarzinom) sind alle urologische Primärtumoren. Die Infiltration der V. cava inferior ist eine sekundäre Tumorausdehnung des Lymphoms und definiert nicht die Tumorentität. Es liegt keine Polymalignancy vor, da nur ein einzelnes Primärmalignom existiert. Daher ist die Klassifizierung als 'non_urological' zwingend.",
+    "classification": "non_urological",
+    "confidence": 1.0,
+    "key_indicators": [
+      "Aggressives B-Zell Non-Hodgkin-Lymphom als gesicherte Primärdiagnose",
+      "Hämatologische Malignität, keine urologische Tumorentität",
+      "GCB-Typ, Double-Expressor (BCL2/cMYC), EBV-negativ",
+      "Paraaortale/peritoneale Raumforderung als typische Lymphommanifestation",
+      "Infiltration von IVC ist sekundär und nicht primär-urologisch"
+    ]
+  },
+  "raw_response": "```json\n{\n    \"reasoning\": \"Der Patient hat ein eindeutig diagnostiziertes aggressives B-Zell Non-Hodgkin-Lymphom (GCB-Typ, Double-Expressor). Dies ist ein hämatologisches Malignom und kein urologischer Tumor. Die genannten Differenzialdiagnosen (Nierenzellkarzinom, Prostatakarzinom, Hodentumor, Peniskarzinom, Urothelkarzinom) sind alle urologische Primärtumoren. Die Infiltration der V. cava inferior ist eine sekundäre Tumorausdehnung des Lymphoms und definiert nicht die Tumorentität. Es liegt keine Polymalignancy vor, da nur ein einzelnes Primärmalignom existiert. Daher ist die Klassifizierung als 'non_urological' zwingend.\",\n    \"classification\": \"non_urological\",\n    \"confidence\": 1.0,\n    \"key_indicators\": [\n        \"Aggressives B-Zell Non-Hodgkin-Lymphom als gesicherte Primärdiagnose\",\n        \"Hämatologische Malignität, keine urologische Tumorentität\",\n        \"GCB-Typ, Double-Expressor (BCL2/cMYC), EBV-negativ\",\n        \"Paraaortale/peritoneale Raumforderung als typische Lymphommanifestation\",\n        \"Infiltration von IVC ist sekundär und nicht primär-urologisch\"\n    ]\n}\n```",
+  "ground_truth": "non_urological",
+  "is_correct": true,
+  "inference_time_seconds": 50.99358066700006,
+  "tokens_used": 1300,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

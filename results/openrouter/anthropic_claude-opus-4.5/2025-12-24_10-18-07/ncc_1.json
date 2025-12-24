@@ -1,0 +1,63 @@
+{
+  "case_id": "ncc_1",
+  "timestamp": "2025-12-24T10:18:07.230703",
+  "provider": "openrouter",
+  "model": "anthropic/claude-opus-4.5",
+  "input_case": {
+    "case_id": "ncc_1",
+    "patient": {
+      "alter_jahre": 52,
+      "geschlecht": null,
+      "ecog": 0,
+      "komorbiditaet": "unknown"
+    },
+    "anamnese": "Met. pap. RCC. Z. n. Nephrektomie links 2014 (papilläres RCC pT3b, Nx, L0, V0, Pn0, G3, Rx). Z. n. offener Resektion eines Lokalrezidivs 2024. Aktuell multiple Rezidive (pulmonal, lymphonodal, hepatisch).",
+    "diagnose_kurz": "Metastasiertes papilläres RCC",
+    "alle_diagnosen": null,
+    "stadium": "metastasiert (pulmonal, lymphonodal, hepatisch)",
+    "tnm_clinical": {
+      "T": "unknown",
+      "N": "unknown",
+      "M": "M1",
+      "stage_group": "unknown"
+    },
+    "tnm_pathological": {
+      "T": "T3b",
+      "N": "NX",
+      "M": null,
+      "stage_group": null
+    },
+    "histologie": null,
+    "metastatic": true,
+    "nebendiagnosen": [
+      "obstruktive Kardiomyopathie",
+      "Z. n. Hyperthyreose 2021",
+      "arterielle Hypertonie",
+      "Diabetes mellitus",
+      "Z. n. LAE",
+      "Hyperlipidämie"
+    ],
+    "ground_truth": "nierenzellkarzinom"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 52 Jahre\nECOG: 0\nAnamnese: Met. pap. RCC. Z. n. Nephrektomie links 2014 (papilläres RCC pT3b, Nx, L0, V0, Pn0, G3, Rx). Z. n. offener Resektion eines Lokalrezidivs 2024. Aktuell multiple Rezidive (pulmonal, lymphonodal, hepatisch).\nDiagnose: Metastasiertes papilläres RCC\nStadium: metastasiert (pulmonal, lymphonodal, hepatisch)\nTNM (klinisch): T:unknown N:unknown M:M1\nTNM (pathologisch): T:T3b N:NX\nMetastasiert: Ja\nNebendiagnosen: obstruktive Kardiomyopathie, Z. n. Hyperthyreose 2021, arterielle Hypertonie, Diabetes mellitus, Z. n. LAE\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Der Fall beschreibt eindeutig ein metastasiertes papilläres Nierenzellkarzinom (RCC = Renal Cell Carcinoma). Die Diagnose wird explizit als 'Met. pap. RCC' bzw. 'Metastasiertes papilläres RCC' angegeben. Der Patient hatte 2014 eine Nephrektomie links aufgrund eines papillären RCC und präsentiert sich nun mit multiplen Metastasen (pulmonal, lymphonodal, hepatisch). Die aufgeführten Nebendiagnosen sind nicht-maligne Erkrankungen und spielen für die Tumorklassifikation keine Rolle.",
+    "classification": "nierenzellkarzinom",
+    "confidence": 1.0,
+    "key_indicators": [
+      "Met. pap. RCC (Metastasiertes papilläres Nierenzellkarzinom)",
+      "Z. n. Nephrektomie links 2014",
+      "papilläres RCC pT3b in der Histologie",
+      "Diagnose explizit: Metastasiertes papilläres RCC",
+      "Multiple Metastasen (pulmonal, lymphonodal, hepatisch)"
+    ]
+  },
+  "raw_response": "```json\n{\n    \"reasoning\": \"Der Fall beschreibt eindeutig ein metastasiertes papilläres Nierenzellkarzinom (RCC = Renal Cell Carcinoma). Die Diagnose wird explizit als 'Met. pap. RCC' bzw. 'Metastasiertes papilläres RCC' angegeben. Der Patient hatte 2014 eine Nephrektomie links aufgrund eines papillären RCC und präsentiert sich nun mit multiplen Metastasen (pulmonal, lymphonodal, hepatisch). Die aufgeführten Nebendiagnosen sind nicht-maligne Erkrankungen und spielen für die Tumorklassifikation keine Rolle.\",\n    \"classification\": \"nierenzellkarzinom\",\n    \"confidence\": 1.0,\n    \"key_indicators\": [\n        \"Met. pap. RCC (Metastasiertes papilläres Nierenzellkarzinom)\",\n        \"Z. n. Nephrektomie links 2014\",\n        \"papilläres RCC pT3b in der Histologie\",\n        \"Diagnose explizit: Metastasiertes papilläres RCC\",\n        \"Multiple Metastasen (pulmonal, lymphonodal, hepatisch)\"\n    ]\n}\n```",
+  "ground_truth": "nierenzellkarzinom",
+  "is_correct": true,
+  "inference_time_seconds": 11.731360791999919,
+  "tokens_used": 1119,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

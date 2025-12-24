@@ -1,0 +1,60 @@
+{
+  "case_id": "ncc_1",
+  "timestamp": "2025-12-24T09:40:40.556469",
+  "provider": "ollama",
+  "model": "mistral:7b-instruct",
+  "input_case": {
+    "case_id": "ncc_1",
+    "patient": {
+      "alter_jahre": 52,
+      "geschlecht": null,
+      "ecog": 0,
+      "komorbiditaet": "unknown"
+    },
+    "anamnese": "Met. pap. RCC. Z. n. Nephrektomie links 2014 (papilläres RCC pT3b, Nx, L0, V0, Pn0, G3, Rx). Z. n. offener Resektion eines Lokalrezidivs 2024. Aktuell multiple Rezidive (pulmonal, lymphonodal, hepatisch).",
+    "diagnose_kurz": "Metastasiertes papilläres RCC",
+    "stadium": "metastasiert (pulmonal, lymphonodal, hepatisch)",
+    "tnm_clinical": {
+      "T": "unknown",
+      "N": "unknown",
+      "M": "M1",
+      "stage_group": "unknown"
+    },
+    "tnm_pathological": {
+      "T": "T3b",
+      "N": "NX",
+      "M": null,
+      "stage_group": null
+    },
+    "histologie": null,
+    "metastatic": true,
+    "nebendiagnosen": [
+      "obstruktive Kardiomyopathie",
+      "Z. n. Hyperthyreose 2021",
+      "arterielle Hypertonie",
+      "Diabetes mellitus",
+      "Z. n. LAE",
+      "Hyperlipidämie"
+    ],
+    "ground_truth": "nierenzellkarzinom"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Analysiere den folgenden klinischen Fall und bestimme die Haupttumorentität.\n\nKLINISCHER FALL:\nPatient: 52 Jahre\nECOG: 0\nAnamnese: Met. pap. RCC. Z. n. Nephrektomie links 2014 (papilläres RCC pT3b, Nx, L0, V0, Pn0, G3, Rx). Z. n. offener Resektion eines Lokalrezidivs 2024. Aktuell multiple Rezidive (pulmonal, lymphonodal, hepatisch).\nDiagnose: Metastasiertes papilläres RCC\nStadium: metastasiert (pulmonal, lymphonodal, hepatisch)\nTNM (klinisch): T:unknown N:unknown M:M1\nTNM (pathologisch): T:T3b N:NX\nMetastasiert: Ja\nNebendiagnosen: obstruktive Kardiomyopathie, Z. n. Hyperthyreose 2021, arterielle Hypertonie, Diabetes mellitus, Z. n. LAE\n\nAUFGABE:\nKlassifiziere diesen Fall in GENAU eine der folgenden Kategorien:\n- nierenzellkarzinom (Nierenkrebs/RCC)\n- prostatakarzinom (Prostatakrebs)\n- hodentumor (Hodenkrebs)\n- peniskarzinom (Peniskrebs)\n- urothelkarzinom (Blasen-/Harnwegskrebs)\n- polymalignancy (Mehrfachtumoren/Polymalignität)\n- non_urological (Nicht-urologische Tumoren)\n\nAntworte im folgenden JSON-Format:\n{\n    \"reasoning\": \"Deine schrittweise Begründung auf Deutsch\",\n    \"classification\": \"eine der obigen Kategorien\",\n    \"confidence\": 0.0 bis 1.0,\n    \"key_indicators\": [\"Indikator 1\", \"Indikator 2\"]\n}\n\nJSON-Antwort:",
+  "output": {
+    "reasoning": "Der Patient hat eine Metastasierung des papillären RCC (Nierenkrebs), was durch die Anamnese 'Met. pap. RCC' und die Diagnose 'Metastasiertes papilläres RCC' deutlich wird. Die TNM-Klassifikation bestätigt dies, da es sich bei der initialen Operation um eine Nephrektomie links (Entfernung eines Teils oder der ganzen linken Niere) handelt und das Tumorstadium als pT3b angegeben ist. Der Patient hat auch mehrere Rezidive in Lunge, Leber und Lymphknoten, was auf die Metastasierung hinweist. Daher kann der Fall eindeutig als 'nierenzellkarzinom (Nierenkrebs/RCC)' klassifiziert werden.",
+    "classification": "nierenzellkarzinom",
+    "confidence": 1.0,
+    "key_indicators": [
+      "Metastasiertes papilläres RCC",
+      "pT3b",
+      "multiple Rezidive"
+    ]
+  },
+  "raw_response": " {\n    \"reasoning\": \"Der Patient hat eine Metastasierung des papillären RCC (Nierenkrebs), was durch die Anamnese 'Met. pap. RCC' und die Diagnose 'Metastasiertes papilläres RCC' deutlich wird. Die TNM-Klassifikation bestätigt dies, da es sich bei der initialen Operation um eine Nephrektomie links (Entfernung eines Teils oder der ganzen linken Niere) handelt und das Tumorstadium als pT3b angegeben ist. Der Patient hat auch mehrere Rezidive in Lunge, Leber und Lymphknoten, was auf die Metastasierung hinweist. Daher kann der Fall eindeutig als 'nierenzellkarzinom (Nierenkrebs/RCC)' klassifiziert werden.\",\n    \"classification\": \"nierenzellkarzinom (Nierenkrebs/RCC)\",\n    \"confidence\": 1.0,\n    \"key_indicators\": [\"Metastasiertes papilläres RCC\", \"pT3b\", \"multiple Rezidive\"]\n}",
+  "ground_truth": "nierenzellkarzinom",
+  "is_correct": true,
+  "inference_time_seconds": 47.897485971450806,
+  "tokens_used": 826,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

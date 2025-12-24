@@ -1,0 +1,13 @@
+{
+  "model": "allenai/olmo-3.1-32b-think:free",
+  "provider": "openrouter",
+  "timestamp": "2025-12-24T10:13:01.674532",
+  "total_cases": 26,
+  "correct": 24,
+  "incorrect": 2,
+  "errors": 0,
+  "accuracy": 0.9230769230769231,
+  "total_tokens": 44478,
+  "elapsed_seconds": 282.879479,
+  "concurrency": 10
+}

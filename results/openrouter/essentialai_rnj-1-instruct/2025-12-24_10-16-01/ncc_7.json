@@ -1,0 +1,55 @@
+{
+  "case_id": "ncc_7",
+  "timestamp": "2025-12-24T10:16:01.366324",
+  "provider": "openrouter",
+  "model": "essentialai/rnj-1-instruct",
+  "input_case": {
+    "case_id": "ncc_7",
+    "patient": {
+      "alter_jahre": 43,
+      "geschlecht": null,
+      "ecog": 0,
+      "komorbiditaet": "unknown"
+    },
+    "anamnese": "Nierentumor rechts 1,9 cm, endophytisch. CT-graphisch V. a. Nierenbeckentumor rechts ca. 1×1 cm. Z. n. Ureterorenoskopie rechts 11/2023.",
+    "diagnose_kurz": "Unklare Raumforderung Nierenbecken rechts ca. 1×1 cm (CT 11.11.2025), V. a. Nierenbeckentumor; dd: RCC endophytisch 1,9 cm",
+    "alle_diagnosen": null,
+    "stadium": "unbekannt (prätherapeutisch)",
+    "tnm_clinical": {
+      "T": "unknown",
+      "N": "unknown",
+      "M": "unknown",
+      "stage_group": "unknown"
+    },
+    "tnm_pathological": {
+      "T": null,
+      "N": null,
+      "M": null,
+      "stage_group": null
+    },
+    "histologie": null,
+    "metastatic": false,
+    "nebendiagnosen": [],
+    "ground_truth": "nierenzellkarzinom"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 43 Jahre\nECOG: 0\nAnamnese: Nierentumor rechts 1,9 cm, endophytisch. CT-graphisch V. a. Nierenbeckentumor rechts ca. 1×1 cm. Z. n. Ureterorenoskopie rechts 11/2023.\nDiagnose: Unklare Raumforderung Nierenbecken rechts ca. 1×1 cm (CT 11.11.2025), V. a. Nierenbeckentumor; dd: RCC endophytisch 1,9 cm\nStadium: unbekannt (prätherapeutisch)\nTNM (klinisch): T:unknown N:unknown M:unknown\nTNM (pathologisch): Unbekannt\nMetastasiert: Nein\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Der Patient leidet an einem Nierentumor rechts mit einer Raumforderung im Nierenbecken. Die Diagnose ist ein endophytisches Renalcellcarcinom (RCC) mit einer Tumorgröße von 1,9 cm. RCC ist ein typisches nierenzellkarzinom, das im Organum der Niere auftritt. Es gibt keine Indikatoren für andere urologische Tumore wie Prostatakarzinom, Hodentumor oder Peniskarzinom. Die Metastasie ist nicht dokumentiert, und es handelt sich um ein prätherapeutisches Bild, wodurch keine pathologischen TNM-Stadien verfügbar sind. Daher ist die Klassifizierung aufgrund der Diagnose und der Lokalisation auf ein nierenzellkarzinom.",
+    "classification": "nierenzellkarzinom",
+    "confidence": 0.95,
+    "key_indicators": [
+      "Diagnose: RCC",
+      "Lokalisation: Niere",
+      "Tumorgröße: 1,9 cm",
+      "Endophytisch"
+    ]
+  },
+  "raw_response": "{\n    \"reasoning\": \"Der Patient leidet an einem Nierentumor rechts mit einer Raumforderung im Nierenbecken. Die Diagnose ist ein endophytisches Renalcellcarcinom (RCC) mit einer Tumorgröße von 1,9 cm. RCC ist ein typisches nierenzellkarzinom, das im Organum der Niere auftritt. Es gibt keine Indikatoren für andere urologische Tumore wie Prostatakarzinom, Hodentumor oder Peniskarzinom. Die Metastasie ist nicht dokumentiert, und es handelt sich um ein prätherapeutisches Bild, wodurch keine pathologischen TNM-Stadien verfügbar sind. Daher ist die Klassifizierung aufgrund der Diagnose und der Lokalisation auf ein nierenzellkarzinom.\",\n    \"classification\": \"nierenzellkarzinom\",\n    \"confidence\": 0.95,\n    \"key_indicators\": [\"Diagnose: RCC\", \"Lokalisation: Niere\", \"Tumorgröße: 1,9 cm\", \"Endophytisch\"]\n}",
+  "ground_truth": "nierenzellkarzinom",
+  "is_correct": true,
+  "inference_time_seconds": 5.222115916999996,
+  "tokens_used": 603,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

@@ -1,0 +1,47 @@
+{
+  "case_id": "combi_2",
+  "timestamp": "2025-12-24T10:21:45.782841",
+  "provider": "openrouter",
+  "model": "google/gemini-3-pro-preview",
+  "input_case": {
+    "case_id": "combi_2",
+    "patient": {
+      "alter_jahre": 63,
+      "geschlecht": null,
+      "ecog": null,
+      "komorbiditaet": null
+    },
+    "anamnese": null,
+    "diagnose_kurz": "Raumforderung rechte Niere 3,6 cm (cT1a/b grenzwertig), malignitätsverdächtig (V. a. RCC/ccRCC); keine abdominelle Lymphadenopathie; CT Thorax: kleine pulmonale Rundherde <5 mm unklar",
+    "alle_diagnosen": [
+      "Raumforderung rechte Niere 3,6 cm (cT1a/b grenzwertig), malignitätsverdächtig (V. a. RCC/ccRCC); keine abdominelle Lymphadenopathie; CT Thorax: kleine pulmonale Rundherde <5 mm unklar",
+      "Prostatakarzinom: ED 2018 ISUP 2 (iPSA 12,4), Active Surveillance bis 2024; Re-Biopsie 10.10.2025: Upgrade ISUP 3 (Gleason 4+3=7) in 5/12 Stanzen"
+    ],
+    "stadium": "nicht metastasiert nicht gesichert; pulmonale Herde unklar (Verlauf empfohlen)",
+    "tnm_clinical": null,
+    "tnm_pathological": null,
+    "histologie": null,
+    "metastatic": null,
+    "nebendiagnosen": null,
+    "ground_truth": "polymalignancy"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 63 Jahre\nDiagnose 1: Raumforderung rechte Niere 3,6 cm (cT1a/b grenzwertig), malignitätsverdächtig (V. a. RCC/ccRCC); keine abdominelle Lymphadenopathie; CT Thorax: kleine pulmonale Rundherde <5 mm unklar\nDiagnose 2: Prostatakarzinom: ED 2018 ISUP 2 (iPSA 12,4), Active Surveillance bis 2024; Re-Biopsie 10.10.2025: Upgrade ISUP 3 (Gleason 4+3=7) in 5/12 Stanzen\nStadium: nicht metastasiert nicht gesichert; pulmonale Herde unklar (Verlauf empfohlen)\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Der Patient präsentiert sich mit zwei unabhängigen, klinisch relevanten Tumorentitäten. Zum einen besteht ein bioptisch gesichertes Prostatakarzinom mit Progress unter Active Surveillance (Upgrade auf ISUP 3), was eine aktive Therapieindikation darstellt. Zum anderen liegt eine radiologisch hochgradig malignitätsverdächtige Raumforderung der Niere (cT1a/b, V. a. RCC) vor. Das gleichzeitige Vorliegen von zwei verschiedenen Primärtumoren (synchrones Zweitkarzinom) entspricht der Definition einer Polymalignität (Mehrfachtumorerkrankung).",
+    "classification": "polymalignancy",
+    "confidence": 0.95,
+    "key_indicators": [
+      "Raumforderung Niere 3,6 cm (V. a. RCC)",
+      "Prostatakarzinom ISUP 3 (Gleason 4+3)",
+      "Synchrone urologische Tumoren"
+    ]
+  },
+  "raw_response": "```json\n{\n    \"reasoning\": \"Der Patient präsentiert sich mit zwei unabhängigen, klinisch relevanten Tumorentitäten. Zum einen besteht ein bioptisch gesichertes Prostatakarzinom mit Progress unter Active Surveillance (Upgrade auf ISUP 3), was eine aktive Therapieindikation darstellt. Zum anderen liegt eine radiologisch hochgradig malignitätsverdächtige Raumforderung der Niere (cT1a/b, V. a. RCC) vor. Das gleichzeitige Vorliegen von zwei verschiedenen Primärtumoren (synchrones Zweitkarzinom) entspricht der Definition einer Polymalignität (Mehrfachtumorerkrankung).\",\n    \"classification\": \"polymalignancy\",\n    \"confidence\": 0.95,\n    \"key_indicators\": [\n        \"Raumforderung Niere 3,6 cm (V. a. RCC)\",\n        \"Prostatakarzinom ISUP 3 (Gleason 4+3)\",\n        \"Synchrone urologische Tumoren\"\n    ]\n}\n```",
+  "ground_truth": "polymalignancy",
+  "is_correct": true,
+  "inference_time_seconds": 47.322536291999995,
+  "tokens_used": 1711,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

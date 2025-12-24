@@ -1,0 +1,57 @@
+{
+  "case_id": "penis_ca_1",
+  "timestamp": "2025-12-24T10:23:54.063940",
+  "provider": "openrouter",
+  "model": "google/gemma-3-12b-it",
+  "input_case": {
+    "case_id": "penis_ca_1",
+    "patient": {
+      "alter_jahre": 69,
+      "geschlecht": null,
+      "ecog": 0,
+      "komorbiditaet": "unknown"
+    },
+    "anamnese": "High-risk Peniskarzinom mit inguinalen und pelvinen LK-Metastasen. Z. n. Glansresektion 12.07.2025, offene inguinale LNE bds. 19.08.2025 (LK-Metastasen 5/12, bis 5 cm), DaV pelvine Lymphadenektomie bds. 11.09.2025. TuBo-Empfehlung 02.09.2025: pelvine LNE bds. + adjuvante Chemotherapie.",
+    "diagnose_kurz": "Peniskarzinom (Plattenepithelkarzinom) high-risk mit inguinalen und pelvinen Lymphknotenmetastasen",
+    "alle_diagnosen": null,
+    "stadium": "high-risk, mindestens pN2; nodal metastasiert (inguinal + pelvin)",
+    "tnm_clinical": {
+      "T": "unknown",
+      "N": "N2",
+      "M": "unknown",
+      "stage_group": "unknown"
+    },
+    "tnm_pathological": {
+      "T": "pT2",
+      "N": "pN2",
+      "M": null,
+      "stage_group": null
+    },
+    "histologie": null,
+    "metastatic": null,
+    "nebendiagnosen": [],
+    "ground_truth": "peniskarzinom"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 69 Jahre\nECOG: 0\nAnamnese: High-risk Peniskarzinom mit inguinalen und pelvinen LK-Metastasen. Z. n. Glansresektion 12.07.2025, offene inguinale LNE bds. 19.08.2025 (LK-Metastasen 5/12, bis 5 cm), DaV pelvine Lymphadenektomie bds. 11.09.2025. TuBo-Empfehlung 02.09.2025: pelvine LNE bds. + adjuvante Chemotherapie.\nDiagnose: Peniskarzinom (Plattenepithelkarzinom) high-risk mit inguinalen und pelvinen Lymphknotenmetastasen\nStadium: high-risk, mindestens pN2; nodal metastasiert (inguinal + pelvin)\nTNM (klinisch): T:unknown N:N2 M:unknown\nTNM (pathologisch): T:pT2 N:pN2\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Der Fall beschreibt eindeutig ein Peniskarzinom, das als Plattenepithelkarzinom diagnostiziert wurde und sich inguinal und pelvin ausgebreitet hat. Die durchgeführten chirurgischen Eingriffe (Glansresektion, inguinale und pelvine Lymphadenektomie) sowie die Empfehlung für adjuvante Chemotherapie sind typisch für die Behandlung von Peniskarzinom mit fortgeschrittenem Stadium. Die anderen Optionen (Nierenzellkarzinom, Prostatakarzinom, Hodentumor, Urothelkarzinom, Polymalignancy, non_urological) sind durch die klinischen und pathologischen Befunde nicht gerechtfertigt.",
+    "classification": "peniskarzinom",
+    "confidence": 1.0,
+    "key_indicators": [
+      "Peniskarzinom (Plattenepithelkarzinom)",
+      "inguinale Lymphknotenmetastasen",
+      "pelvine Lymphknotenmetastasen",
+      "Glansresektion",
+      "inguinale Lymphadenektomie",
+      "pelvine Lymphadenektomie"
+    ]
+  },
+  "raw_response": "\n\n```json\n{\n    \"reasoning\": \"Der Fall beschreibt eindeutig ein Peniskarzinom, das als Plattenepithelkarzinom diagnostiziert wurde und sich inguinal und pelvin ausgebreitet hat. Die durchgeführten chirurgischen Eingriffe (Glansresektion, inguinale und pelvine Lymphadenektomie) sowie die Empfehlung für adjuvante Chemotherapie sind typisch für die Behandlung von Peniskarzinom mit fortgeschrittenem Stadium. Die anderen Optionen (Nierenzellkarzinom, Prostatakarzinom, Hodentumor, Urothelkarzinom, Polymalignancy, non_urological) sind durch die klinischen und pathologischen Befunde nicht gerechtfertigt.\",\n    \"classification\": \"peniskarzinom\",\n    \"confidence\": 1.0,\n    \"key_indicators\": [\"Peniskarzinom (Plattenepithelkarzinom)\", \"inguinale Lymphknotenmetastasen\", \"pelvine Lymphknotenmetastasen\", \"Glansresektion\", \"inguinale Lymphadenektomie\", \"pelvine Lymphadenektomie\"]\n}\n```",
+  "ground_truth": "peniskarzinom",
+  "is_correct": true,
+  "inference_time_seconds": 15.913612416,
+  "tokens_used": 623,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

@@ -1,0 +1,42 @@
+{
+  "case_id": "non_uro_2",
+  "timestamp": "2025-12-24T09:58:51.061574",
+  "provider": "ollama",
+  "model": "mistral:7b-instruct",
+  "input_case": {
+    "case_id": "non_uro_2",
+    "patient": {
+      "alter_jahre": 52,
+      "geschlecht": null,
+      "ecog": null,
+      "komorbiditaet": null
+    },
+    "anamnese": null,
+    "diagnose_kurz": "Unklare Raumforderung Harnblase (Seitenwand) – TUR-B 01.11.2025; Histologie: morphologisch/klinisch Infiltration durch bekanntes Sigmakarzinom (sekundäre Blaseninfiltration, kein primäres Urothelkarzinom beschrieben)",
+    "stadium": "Sekundärbefall der Harnblase durch kolorektales Karzinom (Verdacht/Kommentar), genaue TNM der Blasenläsion nicht angegeben",
+    "tnm_clinical": null,
+    "tnm_pathological": null,
+    "histologie": null,
+    "metastatic": null,
+    "nebendiagnosen": null,
+    "ground_truth": "non_urological"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Analysiere den folgenden klinischen Fall und bestimme die Haupttumorentität.\n\nKLINISCHER FALL:\nPatient: 52 Jahre\nDiagnose: Unklare Raumforderung Harnblase (Seitenwand) – TUR-B 01.11.2025; Histologie: morphologisch/klinisch Infiltration durch bekanntes Sigmakarzinom (sekundäre Blaseninfiltration, kein primäres Urothelkarzinom beschrieben)\nStadium: Sekundärbefall der Harnblase durch kolorektales Karzinom (Verdacht/Kommentar), genaue TNM der Blasenläsion nicht angegeben\n\nAUFGABE:\nKlassifiziere diesen Fall in GENAU eine der folgenden Kategorien:\n- nierenzellkarzinom (Nierenkrebs/RCC)\n- prostatakarzinom (Prostatakrebs)\n- hodentumor (Hodenkrebs)\n- peniskarzinom (Peniskrebs)\n- urothelkarzinom (Blasen-/Harnwegskrebs)\n- polymalignancy (Mehrfachtumoren/Polymalignität)\n- non_urological (Nicht-urologische Tumoren)\n\nAntworte im folgenden JSON-Format:\n{\n    \"reasoning\": \"Deine schrittweise Begründung auf Deutsch\",\n    \"classification\": \"eine der obigen Kategorien\",\n    \"confidence\": 0.0 bis 1.0,\n    \"key_indicators\": [\"Indikator 1\", \"Indikator 2\"]\n}\n\nJSON-Antwort:",
+  "output": {
+    "reasoning": "Der Patient hat eine unklare Raumforderung in der Harnblase, die histologisch als Infiltration durch ein Sigmakarzinom (Darmkrebs) beschrieben wurde. Es ist kein primäres Urothelkarzinom (Blasen-/Harnwegskrebs) beschrieben. Daher kann der Fall nicht in die Kategorie 'urothelkarzinom' fallen. Der Darmkrebs hat sich sekundär in die Harnblase ausgebreitet, was den Fall in die Kategorie 'non_urological' (Nicht-urologische Tumoren) einordnet.",
+    "classification": "non_urological",
+    "confidence": 1.0,
+    "key_indicators": [
+      "Histologie: morphologisch/klinisch Infiltration durch bekanntes Sigmakarzinom",
+      "Stadium: Sekundärbefall der Harnblase durch kolorektales Karzinom"
+    ]
+  },
+  "raw_response": " {\n    \"reasoning\": \"Der Patient hat eine unklare Raumforderung in der Harnblase, die histologisch als Infiltration durch ein Sigmakarzinom (Darmkrebs) beschrieben wurde. Es ist kein primäres Urothelkarzinom (Blasen-/Harnwegskrebs) beschrieben. Daher kann der Fall nicht in die Kategorie 'urothelkarzinom' fallen. Der Darmkrebs hat sich sekundär in die Harnblase ausgebreitet, was den Fall in die Kategorie 'non_urological' (Nicht-urologische Tumoren) einordnet.\",\n    \"classification\": \"non_urological\",\n    \"confidence\": 1.0,\n    \"key_indicators\": [\"Histologie: morphologisch/klinisch Infiltration durch bekanntes Sigmakarzinom\", \"Stadium: Sekundärbefall der Harnblase durch kolorektales Karzinom\"]\n}",
+  "ground_truth": "non_urological",
+  "is_correct": true,
+  "inference_time_seconds": 44.74917793273926,
+  "tokens_used": 686,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

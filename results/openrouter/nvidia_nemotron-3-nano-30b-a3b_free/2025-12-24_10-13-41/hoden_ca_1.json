@@ -1,0 +1,46 @@
+{
+  "case_id": "hoden_ca_1",
+  "timestamp": "2025-12-24T10:13:41.835292",
+  "provider": "openrouter",
+  "model": "nvidia/nemotron-3-nano-30b-a3b:free",
+  "input_case": {
+    "case_id": "hoden_ca_1",
+    "patient": {
+      "alter_jahre": 34,
+      "geschlecht": null,
+      "ecog": 0,
+      "komorbiditaet": "unknown"
+    },
+    "anamnese": "Vorgeschichte: Z. n. KZT rechts (ED 12/2023). Histologie: 70% postpubertales Teratom, 30% Seminom. Präop Tumormarker: AFP 7,9; ßHCG 10,2. Postoperativ: AFP 6,2; ßHCG <0,1; LDH 98. CT Abdomen 05/2024: interaortokavale LK-Metastasen -> klin. Stadium IIA. Z. n. RPLND 05/2024: 3/18 LK positiv. 3 Zyklen PEB 05/2024–08/2024. Aktuell Marker: AFP 8,1 (leicht erhöht), ßHCG <0,1, LDH 213. CT 08.10.2024: fleckförmige Verdichtung ULL links a. e. postentzündlich, kein LK-Nachweis.",
+    "diagnose_kurz": "Keimzelltumor rechts (Mischhistologie: 70% postpubertales Teratom, 30% Seminom) – Status nach Orchiektomie, RPLND und PEB; aktuell in Nachsorge, CT 25.10.2025 ohne Metastasen",
+    "alle_diagnosen": null,
+    "stadium": "klin. Stadium IIA (05/2024) mit LK-Metastasen; Status nach Therapie; aktuell kein CT-Nachweis von Metastasen",
+    "tnm_clinical": null,
+    "tnm_pathological": null,
+    "histologie": null,
+    "metastatic": null,
+    "nebendiagnosen": [],
+    "ground_truth": "hodentumor"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 34 Jahre\nECOG: 0\nAnamnese: Vorgeschichte: Z. n. KZT rechts (ED 12/2023). Histologie: 70% postpubertales Teratom, 30% Seminom. Präop Tumormarker: AFP 7,9; ßHCG 10,2. Postoperativ: AFP 6,2; ßHCG <0,1; LDH 98. CT Abdomen 05/2024: interaortokavale LK-Metastasen -> klin. Stadium IIA. Z. n. RPLND 05/2024: 3/18 LK positiv. 3 Zyklen PEB 05/2024–08/2024. Aktuell Marker: AFP 8,1 (leicht erhöht), ßHCG <0,1, LDH 213. CT 08.10.2024: fleckförmige Verdichtung ULL links a. e. postentzündlich, kein LK-Nachweis.\nDiagnose: Keimzelltumor rechts (Mischhistologie: 70% postpubertales Teratom, 30% Seminom) – Status nach Orchiektomie, RPLND und PEB; aktuell in Nachsorge, CT 25.10.2025 ohne Metastasen\nStadium: klin. Stadium IIA (05/2024) mit LK-Metastasen; Status nach Therapie; aktuell kein CT-Nachweis von Metastasen\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Der Patient ist ein junger Mann mit einer gemischten Keimzelltumor-Pathologie des Hodens (postpubertaler Teratom und Seminom), der eine Orchiektomie, RPLND und Chemotherapie erhalten hat. Die aktuelle Nachsorge zeigt keine nachweisbaren Metastasen. Diese Befunde sind eindeutig auf einen Hodentumor (Testikularkrebs) bezogen und nicht auf die anderen aufgelisteten urologischen Karzinome.",
+    "classification": "hodentumor",
+    "confidence": 0.99,
+    "key_indicators": [
+      "Mischhistologie: 70% postpubertaler Teratom, 30% Seminom",
+      "Orchiektomie und RPLND durchgeführt",
+      "Tumormarker AFP leicht erhöht, β‑HCG negativ",
+      "Keine nachweisbaren Metastasen im aktuellen CT",
+      "Männliches Geschlecht, Altersgruppe 30‑35 Jahre"
+    ]
+  },
+  "raw_response": "{\n    \"reasoning\": \"Der Patient ist ein junger Mann mit einer gemischten Keimzelltumor-Pathologie des Hodens (postpubertaler Teratom und Seminom), der eine Orchiektomie, RPLND und Chemotherapie erhalten hat. Die aktuelle Nachsorge zeigt keine nachweisbaren Metastasen. Diese Befunde sind eindeutig auf einen Hodentumor (Testikularkrebs) bezogen und nicht auf die anderen aufgelisteten urologischen Karzinome.\",\n    \"classification\": \"hodentumor\",\n    \"confidence\": 0.99,\n    \"key_indicators\": [\n        \"Mischhistologie: 70% postpubertaler Teratom, 30% Seminom\",\n        \"Orchiektomie und RPLND durchgeführt\",\n        \"Tumormarker AFP leicht erhöht, β‑HCG negativ\",\n        \"Keine nachweisbaren Metastasen im aktuellen CT\",\n        \"Männliches Geschlecht, Altersgruppe 30‑35 Jahre\"\n    ]\n}",
+  "ground_truth": "hodentumor",
+  "is_correct": true,
+  "inference_time_seconds": 8.218642541999998,
+  "tokens_used": 922,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

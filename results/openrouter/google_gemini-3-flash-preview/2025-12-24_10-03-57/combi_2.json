@@ -1,0 +1,44 @@
+{
+  "case_id": "combi_2",
+  "timestamp": "2025-12-24T10:03:57.133140",
+  "provider": "openrouter",
+  "model": "google/gemini-3-flash-preview",
+  "input_case": {
+    "case_id": "combi_2",
+    "patient": {
+      "alter_jahre": 63,
+      "geschlecht": null,
+      "ecog": null,
+      "komorbiditaet": null
+    },
+    "anamnese": null,
+    "diagnose_kurz": "Raumforderung rechte Niere 3,6 cm (cT1a/b grenzwertig), malignitätsverdächtig (V. a. RCC/ccRCC); keine abdominelle Lymphadenopathie; CT Thorax: kleine pulmonale Rundherde <5 mm unklar",
+    "stadium": "nicht metastasiert nicht gesichert; pulmonale Herde unklar (Verlauf empfohlen)",
+    "tnm_clinical": null,
+    "tnm_pathological": null,
+    "histologie": null,
+    "metastatic": null,
+    "nebendiagnosen": null,
+    "ground_truth": "polymalignancy"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 63 Jahre\nDiagnose: Raumforderung rechte Niere 3,6 cm (cT1a/b grenzwertig), malignitätsverdächtig (V. a. RCC/ccRCC); keine abdominelle Lymphadenopathie; CT Thorax: kleine pulmonale Rundherde <5 mm unklar\nStadium: nicht metastasiert nicht gesichert; pulmonale Herde unklar (Verlauf empfohlen)\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Der Fall beschreibt eine solitäre Raumforderung der Niere (3,6 cm), die explizit als verdächtig auf ein Nierenzellkarzinom (RCC bzw. ccRCC für klarzelliges Nierenzellkarzinom) eingestuft wird. Die klinische Stadieneinteilung cT1a/b ist spezifisch für Nierentumoren dieser Größe. Andere urologische Primärtumoren werden nicht erwähnt.",
+    "classification": "nierenzellkarzinom",
+    "confidence": 1.0,
+    "key_indicators": [
+      "Raumforderung rechte Niere",
+      "V. a. RCC/ccRCC",
+      "cT1a/b",
+      "3,6 cm"
+    ]
+  },
+  "raw_response": "```json\n{\n    \"reasoning\": \"Der Fall beschreibt eine solitäre Raumforderung der Niere (3,6 cm), die explizit als verdächtig auf ein Nierenzellkarzinom (RCC bzw. ccRCC für klarzelliges Nierenzellkarzinom) eingestuft wird. Die klinische Stadieneinteilung cT1a/b ist spezifisch für Nierentumoren dieser Größe. Andere urologische Primärtumoren werden nicht erwähnt.\",\n    \"classification\": \"nierenzellkarzinom\",\n    \"confidence\": 1.0,\n    \"key_indicators\": [\"Raumforderung rechte Niere\", \"V. a. RCC/ccRCC\", \"cT1a/b\", \"3,6 cm\"]\n}\n```",
+  "ground_truth": "polymalignancy",
+  "is_correct": false,
+  "inference_time_seconds": 19.868969749999998,
+  "tokens_used": 977,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

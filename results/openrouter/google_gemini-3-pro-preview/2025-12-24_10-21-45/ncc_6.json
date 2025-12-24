@@ -1,0 +1,60 @@
+{
+  "case_id": "ncc_6",
+  "timestamp": "2025-12-24T10:21:45.782330",
+  "provider": "openrouter",
+  "model": "google/gemini-3-pro-preview",
+  "input_case": {
+    "case_id": "ncc_6",
+    "patient": {
+      "alter_jahre": 77,
+      "geschlecht": null,
+      "ecog": 2,
+      "komorbiditaet": "hoch"
+    },
+    "anamnese": "Zufallsbefund: Nierentumor links 2,1 cm bei Urolithiasis. Vorerkrankungen: KHK (Z. n. Stent 2016), CKD G3b, arterielle Hypertonie. Z. n. Hüft-TEP.",
+    "diagnose_kurz": "Unklare Raumforderung linke Niere (Oberpol) 2,1 cm, malignitätskriterien vorhanden",
+    "alle_diagnosen": null,
+    "stadium": "nicht-metastasiert (Verdacht, prätherapeutisch)",
+    "tnm_clinical": {
+      "T": "unknown",
+      "N": "unknown",
+      "M": "M0",
+      "stage_group": "unknown"
+    },
+    "tnm_pathological": {
+      "T": null,
+      "N": null,
+      "M": null,
+      "stage_group": null
+    },
+    "histologie": null,
+    "metastatic": false,
+    "nebendiagnosen": [
+      "KHK (Z. n. Stent 2016)",
+      "CKD G3b",
+      "arterielle Hypertonie",
+      "Z. n. Hüft-TEP"
+    ],
+    "ground_truth": "nierenzellkarzinom"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 77 Jahre\nECOG: 2\nAnamnese: Zufallsbefund: Nierentumor links 2,1 cm bei Urolithiasis. Vorerkrankungen: KHK (Z. n. Stent 2016), CKD G3b, arterielle Hypertonie. Z. n. Hüft-TEP.\nDiagnose: Unklare Raumforderung linke Niere (Oberpol) 2,1 cm, malignitätskriterien vorhanden\nStadium: nicht-metastasiert (Verdacht, prätherapeutisch)\nTNM (klinisch): T:unknown N:unknown M:M0\nTNM (pathologisch): Unbekannt\nMetastasiert: Nein\nNebendiagnosen: KHK (Z. n. Stent 2016), CKD G3b, arterielle Hypertonie, Z. n. Hüft-TEP\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Der Patient präsentiert sich mit einer inzidentell entdeckten Raumforderung der linken Niere (2,1 cm) mit radiologischen Malignitätskriterien. Klinisch entspricht dies dem typischen Bild eines Nierentumors im Frühstadium (cT1a). Da keine Hinweise auf eine Urothelkarzinom-Genese (z.B. Nierenbecken) oder andere Primärtumoren vorliegen, ist die Einordnung als Nierenzellkarzinom (bzw. Verdacht auf) die korrekte Klassifikation innerhalb der vorgegebenen Kategorien.",
+    "classification": "nierenzellkarzinom",
+    "confidence": 0.95,
+    "key_indicators": [
+      "Nierentumor links 2,1 cm",
+      "Unklare Raumforderung linke Niere (Oberpol)",
+      "malignitätskriterien vorhanden",
+      "Zufallsbefund"
+    ]
+  },
+  "raw_response": "```json\n{\n    \"reasoning\": \"Der Patient präsentiert sich mit einer inzidentell entdeckten Raumforderung der linken Niere (2,1 cm) mit radiologischen Malignitätskriterien. Klinisch entspricht dies dem typischen Bild eines Nierentumors im Frühstadium (cT1a). Da keine Hinweise auf eine Urothelkarzinom-Genese (z.B. Nierenbecken) oder andere Primärtumoren vorliegen, ist die Einordnung als Nierenzellkarzinom (bzw. Verdacht auf) die korrekte Klassifikation innerhalb der vorgegebenen Kategorien.\",\n    \"classification\": \"nierenzellkarzinom\",\n    \"confidence\": 0.95,\n    \"key_indicators\": [\n        \"Nierentumor links 2,1 cm\",\n        \"Unklare Raumforderung linke Niere (Oberpol)\",\n        \"malignitätskriterien vorhanden\",\n        \"Zufallsbefund\"\n    ]\n}\n```",
+  "ground_truth": "nierenzellkarzinom",
+  "is_correct": true,
+  "inference_time_seconds": 17.13778929099999,
+  "tokens_used": 1892,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

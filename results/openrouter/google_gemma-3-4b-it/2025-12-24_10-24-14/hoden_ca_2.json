@@ -1,0 +1,45 @@
+{
+  "case_id": "hoden_ca_2",
+  "timestamp": "2025-12-24T10:24:14.635430",
+  "provider": "openrouter",
+  "model": "google/gemma-3-4b-it",
+  "input_case": {
+    "case_id": "hoden_ca_2",
+    "patient": {
+      "alter_jahre": 23,
+      "geschlecht": null,
+      "ecog": null,
+      "komorbiditaet": null
+    },
+    "anamnese": null,
+    "diagnose_kurz": "Seminom links (100%), kleinherdig (max. 0,2×0,5×0,1 cm) – Status nach inguinaler Ablatio testis links (19.09.2025), Rete testis infiltriert, GCNIS+",
+    "alle_diagnosen": null,
+    "stadium": "pT1 pNX (klinisches Stadium offen; Staging CT Thorax/Abdomen ausstehend)",
+    "tnm_clinical": null,
+    "tnm_pathological": null,
+    "histologie": null,
+    "metastatic": null,
+    "nebendiagnosen": null,
+    "ground_truth": "hodentumor"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 23 Jahre\nDiagnose: Seminom links (100%), kleinherdig (max. 0,2×0,5×0,1 cm) – Status nach inguinaler Ablatio testis links (19.09.2025), Rete testis infiltriert, GCNIS+\nStadium: pT1 pNX (klinisches Stadium offen; Staging CT Thorax/Abdomen ausstehend)\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Der Patient wurde mit einem Seminom diagnostiziert, der aus dem Hoden stammt. Ein Seminom ist eine Art von Keimzelltumor, der im Bereich der Hoden auftritt. Die Infiltration der Rete testis und die GCNIS+ (Grading for Consensus on Neoplastic Invasive Spread) Bewertung deuten auf eine gewisse Aggressivität hin, aber der Tumor ist kleinherdig und die initiale Behandlung (inguinale Ablatio testis) erfolgte.  Die klinische Offenheit des Staging (CT Thorax/Abdomen ausstehend) deutet darauf hin, dass weitere Untersuchungen zur Beurteilung der Ausbreitung erforderlich sind.  Daher ist die Klassifizierung als 'peniskarzinom', 'nierenzellkarzinom', 'hodentumor', 'urothelkarzinom' oder 'polymalignancy' nicht zutreffend.  'Non_urological' ist ebenfalls nicht passend, da der Tumor spezifisch im Bereich des Hoden lokalisiert ist.",
+    "classification": "non_urological",
+    "confidence": 0.95,
+    "key_indicators": [
+      "Seminom",
+      "Hoden",
+      "Rete testis infiltriert",
+      "GCNIS+"
+    ]
+  },
+  "raw_response": "```json\n{\n    \"reasoning\": \"Der Patient wurde mit einem Seminom diagnostiziert, der aus dem Hoden stammt. Ein Seminom ist eine Art von Keimzelltumor, der im Bereich der Hoden auftritt. Die Infiltration der Rete testis und die GCNIS+ (Grading for Consensus on Neoplastic Invasive Spread) Bewertung deuten auf eine gewisse Aggressivität hin, aber der Tumor ist kleinherdig und die initiale Behandlung (inguinale Ablatio testis) erfolgte.  Die klinische Offenheit des Staging (CT Thorax/Abdomen ausstehend) deutet darauf hin, dass weitere Untersuchungen zur Beurteilung der Ausbreitung erforderlich sind.  Daher ist die Klassifizierung als 'peniskarzinom', 'nierenzellkarzinom', 'hodentumor', 'urothelkarzinom' oder 'polymalignancy' nicht zutreffend.  'Non_urological' ist ebenfalls nicht passend, da der Tumor spezifisch im Bereich des Hoden lokalisiert ist.\",\n    \"classification\": \"non_urological\",\n    \"confidence\": 0.95,\n    \"key_indicators\": [\"Seminom\", \"Hoden\", \"Rete testis infiltriert\", \"GCNIS+\"]\n}\n```\n",
+  "ground_truth": "hodentumor",
+  "is_correct": false,
+  "inference_time_seconds": 19.731233791999998,
+  "tokens_used": 515,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

@@ -1,0 +1,49 @@
+{
+  "case_id": "non_uro_2",
+  "timestamp": "2025-12-24T10:23:54.064116",
+  "provider": "openrouter",
+  "model": "google/gemma-3-12b-it",
+  "input_case": {
+    "case_id": "non_uro_2",
+    "patient": {
+      "alter_jahre": 52,
+      "geschlecht": null,
+      "ecog": null,
+      "komorbiditaet": null
+    },
+    "anamnese": null,
+    "diagnose_kurz": "Unklare Raumforderung Harnblase (Seitenwand) – TUR-B 01.11.2025; Histologie: morphologisch/klinisch Infiltration durch bekanntes Sigmakarzinom (sekundäre Blaseninfiltration, kein primäres Urothelkarzinom beschrieben)",
+    "alle_diagnosen": [
+      "Unklare Raumforderung Harnblase (Seitenwand) – TUR-B 01.11.2025; Histologie: morphologisch/klinisch Infiltration durch bekanntes Sigmakarzinom (sekundäre Blaseninfiltration, kein primäres Urothelkarzinom beschrieben)",
+      "Hepatisch metastasiertes Sigmakarzinom (ED 01/2025), Status nach Sigmaresektion mit subperitonealer Exzision am Blasendach (12.01.2025) und Leber-lokalen Therapien/Resektionen"
+    ],
+    "stadium": "Sekundärbefall der Harnblase durch kolorektales Karzinom (Verdacht/Kommentar), genaue TNM der Blasenläsion nicht angegeben",
+    "tnm_clinical": null,
+    "tnm_pathological": null,
+    "histologie": null,
+    "metastatic": null,
+    "nebendiagnosen": null,
+    "ground_truth": "non_urological"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 52 Jahre\nDiagnose 1: Unklare Raumforderung Harnblase (Seitenwand) – TUR-B 01.11.2025; Histologie: morphologisch/klinisch Infiltration durch bekanntes Sigmakarzinom (sekundäre Blaseninfiltration, kein primäres Urothelkarzinom beschrieben)\nDiagnose 2: Hepatisch metastasiertes Sigmakarzinom (ED 01/2025), Status nach Sigmaresektion mit subperitonealer Exzision am Blasendach (12.01.2025) und Leber-lokalen Therapien/Resektionen\nStadium: Sekundärbefall der Harnblase durch kolorektales Karzinom (Verdacht/Kommentar), genaue TNM der Blasenläsion nicht angegeben\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Der Fall beschreibt ein Sigmakarzinom (kolorektales Karzinom), das sich metastasiert hat und nun die Harnblase infiltriert. Es wird explizit darauf hingewiesen, dass es sich um eine sekundäre Blaseninfiltration handelt und kein primäres Urothelkarzinom vorliegt. Obwohl die Blasenläsion vorhanden ist, ist die primäre Erkrankung das Sigmakarzinom. Polymalignancy wäre nur dann zutreffend, wenn der Patient zusätzlich zu dem Sigmakarzinom eine weitere, unabhängige Krebserkrankung hätte. Die anderen Optionen (nierenzellkarzinom, Prostatakarzinom, Hodentumor, Peniskarzinom, urothelkarzinom) sind aufgrund der vorliegenden Informationen nicht zutreffend. Da die Blasenläsion eine Metastase ist, fällt der Fall unter die Kategorie 'non_urological', da die primäre Erkrankung nicht im Urogenitalsystem lokalisiert ist.",
+    "classification": "non_urological",
+    "confidence": 0.95,
+    "key_indicators": [
+      "Sigmakarzinom",
+      "Hepatische Metastasen",
+      "Sekundäre Blaseninfiltration",
+      "Kein primäres Urothelkarzinom",
+      "Sigmaresektion"
+    ]
+  },
+  "raw_response": "```json\n{\n    \"reasoning\": \"Der Fall beschreibt ein Sigmakarzinom (kolorektales Karzinom), das sich metastasiert hat und nun die Harnblase infiltriert. Es wird explizit darauf hingewiesen, dass es sich um eine sekundäre Blaseninfiltration handelt und kein primäres Urothelkarzinom vorliegt. Obwohl die Blasenläsion vorhanden ist, ist die primäre Erkrankung das Sigmakarzinom. Polymalignancy wäre nur dann zutreffend, wenn der Patient zusätzlich zu dem Sigmakarzinom eine weitere, unabhängige Krebserkrankung hätte. Die anderen Optionen (nierenzellkarzinom, Prostatakarzinom, Hodentumor, Peniskarzinom, urothelkarzinom) sind aufgrund der vorliegenden Informationen nicht zutreffend. Da die Blasenläsion eine Metastase ist, fällt der Fall unter die Kategorie 'non_urological', da die primäre Erkrankung nicht im Urogenitalsystem lokalisiert ist.\",\n    \"classification\": \"non_urological\",\n    \"confidence\": 0.95,\n    \"key_indicators\": [\"Sigmakarzinom\", \"Hepatische Metastasen\", \"Sekundäre Blaseninfiltration\", \"Kein primäres Urothelkarzinom\", \"Sigmaresektion\"]\n}\n```",
+  "ground_truth": "non_urological",
+  "is_correct": true,
+  "inference_time_seconds": 19.276906417,
+  "tokens_used": 626,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

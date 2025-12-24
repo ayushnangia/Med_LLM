@@ -1,0 +1,46 @@
+{
+  "case_id": "uca_2",
+  "timestamp": "2025-12-24T10:24:35.475896",
+  "provider": "openrouter",
+  "model": "google/gemma-3n-e4b-it",
+  "input_case": {
+    "case_id": "uca_2",
+    "patient": {
+      "alter_jahre": 54,
+      "geschlecht": null,
+      "ecog": null,
+      "komorbiditaet": null
+    },
+    "anamnese": null,
+    "diagnose_kurz": "Harnblasen-NMIBC: nicht-invasives papilläres Urothelkarzinom pTa, fokal high grade (G3), Hinterwand links; Detrusor nicht nachweisbar",
+    "alle_diagnosen": null,
+    "stadium": "pTa high grade (fokal) – EORTC-Risikostratifizierung geplant; Nachresektion erwägen (Detrusor fehlt)",
+    "tnm_clinical": null,
+    "tnm_pathological": null,
+    "histologie": null,
+    "metastatic": null,
+    "nebendiagnosen": null,
+    "ground_truth": "urothelkarzinom"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 54 Jahre\nDiagnose: Harnblasen-NMIBC: nicht-invasives papilläres Urothelkarzinom pTa, fokal high grade (G3), Hinterwand links; Detrusor nicht nachweisbar\nStadium: pTa high grade (fokal) – EORTC-Risikostratifizierung geplant; Nachresektion erwägen (Detrusor fehlt)\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Der Fall beschreibt ein nicht-invasives papilläres Urothelkarzinom (NMIBC) der Harnblase.  Urothelkarzinome sind Krebsarten, die die Urothelzellen betreffen, die die Innenseite der Harnblase auskleiden. Die Diagnose wird durch die Angabe von 'Harnblasen-NMIBC' und 'Urothelkarzinom' eindeutig bestätigt. Die weitere Beschreibung des Tumors als 'pTa high grade (fokal)' und die Erwähnung der Detrusor-Nichtnachweisbarkeit sind weitere Hinweise auf ein Urothelkarzinom.",
+    "classification": "urothelkarzinom",
+    "confidence": 0.95,
+    "key_indicators": [
+      "Harnblasen-NMIBC",
+      "Urothelkarzinom",
+      "papilläres Urothelkarzinom",
+      "pTa",
+      "high grade"
+    ]
+  },
+  "raw_response": "```json\n{\n    \"reasoning\": \"Der Fall beschreibt ein nicht-invasives papilläres Urothelkarzinom (NMIBC) der Harnblase.  Urothelkarzinome sind Krebsarten, die die Urothelzellen betreffen, die die Innenseite der Harnblase auskleiden. Die Diagnose wird durch die Angabe von 'Harnblasen-NMIBC' und 'Urothelkarzinom' eindeutig bestätigt. Die weitere Beschreibung des Tumors als 'pTa high grade (fokal)' und die Erwähnung der Detrusor-Nichtnachweisbarkeit sind weitere Hinweise auf ein Urothelkarzinom.\",\n    \"classification\": \"urothelkarzinom\",\n    \"confidence\": 0.95,\n    \"key_indicators\": [\"Harnblasen-NMIBC\", \"Urothelkarzinom\", \"papilläres Urothelkarzinom\", \"pTa\", \"high grade\"]\n}\n```",
+  "ground_truth": "urothelkarzinom",
+  "is_correct": true,
+  "inference_time_seconds": 18.953247207999993,
+  "tokens_used": 454,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

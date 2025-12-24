@@ -1,0 +1,57 @@
+{
+  "case_id": "ncc_10",
+  "timestamp": "2025-12-24T09:46:54.597217",
+  "provider": "ollama",
+  "model": "mistral:7b-instruct",
+  "input_case": {
+    "case_id": "ncc_10",
+    "patient": {
+      "alter_jahre": 75,
+      "geschlecht": null,
+      "ecog": 2,
+      "komorbiditaet": "hoch"
+    },
+    "anamnese": "Großer Tumor rechte Niere 7,5 cm (cT2a). Vorerkrankungen: CKD G3, arterielle Hypertonie, Vorhofflimmern (DOAK). Z. n. TUR-B 2019 ohne Malignität.",
+    "diagnose_kurz": "Großer Nierentumor rechts (Oberpol) ca. 7,5 × 6,5 cm, V. a. RCC (cT2a, prätherapeutisch)",
+    "stadium": "cT2a, Staging inkomplett (CT Thorax ausstehend)",
+    "tnm_clinical": {
+      "T": "T2",
+      "N": "unknown",
+      "M": "unknown",
+      "stage_group": "unknown"
+    },
+    "tnm_pathological": {
+      "T": null,
+      "N": null,
+      "M": null,
+      "stage_group": null
+    },
+    "histologie": null,
+    "metastatic": null,
+    "nebendiagnosen": [
+      "CKD G3",
+      "arterielle Hypertonie",
+      "Vorhofflimmern (Antikoagulation mit DOAK)",
+      "Z. n. TUR-B 2019 (ohne Malignität)"
+    ],
+    "ground_truth": "nierenzellkarzinom"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Analysiere den folgenden klinischen Fall und bestimme die Haupttumorentität.\n\nKLINISCHER FALL:\nPatient: 75 Jahre\nECOG: 2\nAnamnese: Großer Tumor rechte Niere 7,5 cm (cT2a). Vorerkrankungen: CKD G3, arterielle Hypertonie, Vorhofflimmern (DOAK). Z. n. TUR-B 2019 ohne Malignität.\nDiagnose: Großer Nierentumor rechts (Oberpol) ca. 7,5 × 6,5 cm, V. a. RCC (cT2a, prätherapeutisch)\nStadium: cT2a, Staging inkomplett (CT Thorax ausstehend)\nTNM (klinisch): T:T2 N:unknown M:unknown\nTNM (pathologisch): Unbekannt\nNebendiagnosen: CKD G3, arterielle Hypertonie, Vorhofflimmern (Antikoagulation mit DOAK), Z. n. TUR-B 2019 (ohne Malignität)\n\nAUFGABE:\nKlassifiziere diesen Fall in GENAU eine der folgenden Kategorien:\n- nierenzellkarzinom (Nierenkrebs/RCC)\n- prostatakarzinom (Prostatakrebs)\n- hodentumor (Hodenkrebs)\n- peniskarzinom (Peniskrebs)\n- urothelkarzinom (Blasen-/Harnwegskrebs)\n- polymalignancy (Mehrfachtumoren/Polymalignität)\n- non_urological (Nicht-urologische Tumoren)\n\nAntworte im folgenden JSON-Format:\n{\n    \"reasoning\": \"Deine schrittweise Begründung auf Deutsch\",\n    \"classification\": \"eine der obigen Kategorien\",\n    \"confidence\": 0.0 bis 1.0,\n    \"key_indicators\": [\"Indikator 1\", \"Indikator 2\"]\n}\n\nJSON-Antwort:",
+  "output": {
+    "reasoning": "Der Patient ist ein 75-jähriger Mann mit einem großen Tumor der rechten Niere (7,5 cm) und einer Diagnose von Oberpolaren Nierentumor (RCC). Zudem gibt es keine Hinweise auf andere Tumoren im Körper. Daher kann der Fall als 'nierenzellkarzinom' (Nierenkrebs/RCC) klassifiziert werden.",
+    "classification": "nierenzellkarzinom",
+    "confidence": 1.0,
+    "key_indicators": [
+      "Großer Tumor der rechten Niere",
+      "Diagnose von Oberpolaren Nierentumor"
+    ]
+  },
+  "raw_response": " {\n    \"reasoning\": \"Der Patient ist ein 75-jähriger Mann mit einem großen Tumor der rechten Niere (7,5 cm) und einer Diagnose von Oberpolaren Nierentumor (RCC). Zudem gibt es keine Hinweise auf andere Tumoren im Körper. Daher kann der Fall als 'nierenzellkarzinom' (Nierenkrebs/RCC) klassifiziert werden.\",\n    \"classification\": \"nierenzellkarzinom\",\n    \"confidence\": 1.0,\n    \"key_indicators\": [\"Großer Tumor der rechten Niere\", \"Diagnose von Oberpolaren Nierentumor\"]\n}",
+  "ground_truth": "nierenzellkarzinom",
+  "is_correct": true,
+  "inference_time_seconds": 38.77842164039612,
+  "tokens_used": 713,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

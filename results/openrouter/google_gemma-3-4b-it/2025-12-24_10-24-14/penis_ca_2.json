@@ -1,0 +1,60 @@
+{
+  "case_id": "penis_ca_2",
+  "timestamp": "2025-12-24T10:24:14.635452",
+  "provider": "openrouter",
+  "model": "google/gemma-3-4b-it",
+  "input_case": {
+    "case_id": "penis_ca_2",
+    "patient": {
+      "alter_jahre": 52,
+      "geschlecht": null,
+      "ecog": 1,
+      "komorbiditaet": "unknown"
+    },
+    "anamnese": "Metastasiertes Peniskarzinom (Plattenepithelkarzinom) mit komplexer Vortherapie (Penektomie, LK-Dissektionen inguinal/pelvin, Cis/Pacli/5FU, Radiatio 61 Gy pelvin/inguinal). Aktuell bioptisch gesicherte Hautmetastasen linker Oberschenkel (10.04.2025). MTB: Pembro + Sacituzumab govitecan, Kostenübernahme abgelehnt.",
+    "diagnose_kurz": "Metastasiertes Peniskarzinom (Plattenepithelkarzinom) mit Hautmetastasen",
+    "alle_diagnosen": null,
+    "stadium": "metastasiert (Hautmetastasen), mehrfach vorbehandelt",
+    "tnm_clinical": {
+      "T": "unknown",
+      "N": "unknown",
+      "M": "M1",
+      "stage_group": "unknown"
+    },
+    "tnm_pathological": {
+      "T": "pT2",
+      "N": "pN2",
+      "M": null,
+      "stage_group": null
+    },
+    "histologie": null,
+    "metastatic": null,
+    "nebendiagnosen": [
+      "SARS-CoV-2 2024",
+      "Ablatio testis links (Leydig-Zell-Tumor 03/2018)",
+      "Thrombophlebitis",
+      "arterielle Hypertonie"
+    ],
+    "ground_truth": "peniskarzinom"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 52 Jahre\nECOG: 1\nAnamnese: Metastasiertes Peniskarzinom (Plattenepithelkarzinom) mit komplexer Vortherapie (Penektomie, LK-Dissektionen inguinal/pelvin, Cis/Pacli/5FU, Radiatio 61 Gy pelvin/inguinal). Aktuell bioptisch gesicherte Hautmetastasen linker Oberschenkel (10.04.2025). MTB: Pembro + Sacituzumab govitecan, Kostenübernahme abgelehnt.\nDiagnose: Metastasiertes Peniskarzinom (Plattenepithelkarzinom) mit Hautmetastasen\nStadium: metastasiert (Hautmetastasen), mehrfach vorbehandelt\nTNM (klinisch): T:unknown N:unknown M:M1\nTNM (pathologisch): T:pT2 N:pN2\nNebendiagnosen: SARS-CoV-2 2024, Ablatio testis links (Leydig-Zell-Tumor 03/2018), Thrombophlebitis, arterielle Hypertonie\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Der Patient hat ein metastasiertes Peniskarzinom (Plattenepithelkarzinom), das sich in Hautmetastasen manifestiert. Die Vorgeschichte umfasst eine mehrfache Chemotherapie und Strahlentherapie, was auf eine etablierte Krebserkrankung hindeutet. Obwohl der Patient auch einen Leydig-Zell-Tumor des Testis hatte, ist das Peniskarzinom die primäre und aktuell relevante Erkrankung. Die Kombination aus der Art des Primärtumors und der Metastasierung deutet am stärksten auf ein Peniskarzinom hin. Die vorherige Behandlung und die Hautmetastasen bestätigen diese Klassifizierung.",
+    "classification": "peniskarzinom",
+    "confidence": 0.95,
+    "key_indicators": [
+      "metastasiertes Peniskarzinom (Plattenepithelkarzinom)",
+      "Hautmetastasen",
+      "mehrfache Vortherapie",
+      "Penektomie, LK-Dissektionen inguinal/pelvin"
+    ]
+  },
+  "raw_response": "\n```json\n{\n    \"reasoning\": \"Der Patient hat ein metastasiertes Peniskarzinom (Plattenepithelkarzinom), das sich in Hautmetastasen manifestiert. Die Vorgeschichte umfasst eine mehrfache Chemotherapie und Strahlentherapie, was auf eine etablierte Krebserkrankung hindeutet. Obwohl der Patient auch einen Leydig-Zell-Tumor des Testis hatte, ist das Peniskarzinom die primäre und aktuell relevante Erkrankung. Die Kombination aus der Art des Primärtumors und der Metastasierung deutet am stärksten auf ein Peniskarzinom hin. Die vorherige Behandlung und die Hautmetastasen bestätigen diese Klassifizierung.\",\n    \"classification\": \"peniskarzinom\",\n    \"confidence\": 0.95,\n    \"key_indicators\": [\"metastasiertes Peniskarzinom (Plattenepithelkarzinom)\", \"Hautmetastasen\", \"mehrfache Vortherapie\", \"Penektomie, LK-Dissektionen inguinal/pelvin\"]\n}\n```",
+  "ground_truth": "peniskarzinom",
+  "is_correct": true,
+  "inference_time_seconds": 15.435217499999993,
+  "tokens_used": 626,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

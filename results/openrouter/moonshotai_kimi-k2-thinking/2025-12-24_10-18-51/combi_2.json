@@ -1,0 +1,49 @@
+{
+  "case_id": "combi_2",
+  "timestamp": "2025-12-24T10:18:51.802465",
+  "provider": "openrouter",
+  "model": "moonshotai/kimi-k2-thinking",
+  "input_case": {
+    "case_id": "combi_2",
+    "patient": {
+      "alter_jahre": 63,
+      "geschlecht": null,
+      "ecog": null,
+      "komorbiditaet": null
+    },
+    "anamnese": null,
+    "diagnose_kurz": "Raumforderung rechte Niere 3,6 cm (cT1a/b grenzwertig), malignitätsverdächtig (V. a. RCC/ccRCC); keine abdominelle Lymphadenopathie; CT Thorax: kleine pulmonale Rundherde <5 mm unklar",
+    "alle_diagnosen": [
+      "Raumforderung rechte Niere 3,6 cm (cT1a/b grenzwertig), malignitätsverdächtig (V. a. RCC/ccRCC); keine abdominelle Lymphadenopathie; CT Thorax: kleine pulmonale Rundherde <5 mm unklar",
+      "Prostatakarzinom: ED 2018 ISUP 2 (iPSA 12,4), Active Surveillance bis 2024; Re-Biopsie 10.10.2025: Upgrade ISUP 3 (Gleason 4+3=7) in 5/12 Stanzen"
+    ],
+    "stadium": "nicht metastasiert nicht gesichert; pulmonale Herde unklar (Verlauf empfohlen)",
+    "tnm_clinical": null,
+    "tnm_pathological": null,
+    "histologie": null,
+    "metastatic": null,
+    "nebendiagnosen": null,
+    "ground_truth": "polymalignancy"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 63 Jahre\nDiagnose 1: Raumforderung rechte Niere 3,6 cm (cT1a/b grenzwertig), malignitätsverdächtig (V. a. RCC/ccRCC); keine abdominelle Lymphadenopathie; CT Thorax: kleine pulmonale Rundherde <5 mm unklar\nDiagnose 2: Prostatakarzinom: ED 2018 ISUP 2 (iPSA 12,4), Active Surveillance bis 2024; Re-Biopsie 10.10.2025: Upgrade ISUP 3 (Gleason 4+3=7) in 5/12 Stanzen\nStadium: nicht metastasiert nicht gesichert; pulmonale Herde unklar (Verlauf empfohlen)\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Der Patient weist zwei unabhängige urologische Malignome auf: 1) einen radiologisch verdächtigen Nierentumor (cT1a/b, V.a. RCC/ccRCC) und 2) ein histologisch gesichertes Prostatakarzinom (ISUP 3, Gleason 4+3=7). Die Tumoren haben unterschiedliche Histologien (Nierenzellkarzinom vs. Prostataadenokarzinom), sind an verschiedenen Organen lokalisiert und wurden zu unterschiedlichen Zeitpunkten diagnostiziert (Prostatakarzinom 2018, Nierenverdacht aktuell). Dies entspricht der Definition einer Polymalignancy (multiple primäre Malignome). Die pulmonalen Herde sind aktuell unklar und ändern nichts an der Grundklassifikation. Die spezifischen Kategorien 'nierenzellkarzinom' oder 'prostatakarzinom' würden nur einen Teil der Diagnosen abdecken und sind daher unvollständig. Die anderen urologischen Kategorien passen nicht. Da beide Tumoren urologischen Ursprungs sind, fällt der Fall nicht unter 'non_urological'.",
+    "classification": "polymalignancy",
+    "confidence": 0.95,
+    "key_indicators": [
+      "Zwei unterschiedliche primäre urologische Malignome",
+      "Nierenzellkarzinom (verdächtig) und Prostatakarzinom (gesichert)",
+      "Unterschiedliche Histologien und Organlokalisation",
+      "Zeitlich versetzte Diagnosen",
+      "Keine gesicherte Ausschlussdiagnostik für beide Malignome"
+    ]
+  },
+  "raw_response": "```json\n{\n    \"reasoning\": \"Der Patient weist zwei unabhängige urologische Malignome auf: 1) einen radiologisch verdächtigen Nierentumor (cT1a/b, V.a. RCC/ccRCC) und 2) ein histologisch gesichertes Prostatakarzinom (ISUP 3, Gleason 4+3=7). Die Tumoren haben unterschiedliche Histologien (Nierenzellkarzinom vs. Prostataadenokarzinom), sind an verschiedenen Organen lokalisiert und wurden zu unterschiedlichen Zeitpunkten diagnostiziert (Prostatakarzinom 2018, Nierenverdacht aktuell). Dies entspricht der Definition einer Polymalignancy (multiple primäre Malignome). Die pulmonalen Herde sind aktuell unklar und ändern nichts an der Grundklassifikation. Die spezifischen Kategorien 'nierenzellkarzinom' oder 'prostatakarzinom' würden nur einen Teil der Diagnosen abdecken und sind daher unvollständig. Die anderen urologischen Kategorien passen nicht. Da beide Tumoren urologischen Ursprungs sind, fällt der Fall nicht unter 'non_urological'.\",\n    \"classification\": \"polymalignancy\",\n    \"confidence\": 0.95,\n    \"key_indicators\": [\"Zwei unterschiedliche primäre urologische Malignome\", \"Nierenzellkarzinom (verdächtig) und Prostatakarzinom (gesichert)\", \"Unterschiedliche Histologien und Organlokalisation\", \"Zeitlich versetzte Diagnosen\", \"Keine gesicherte Ausschlussdiagnostik für beide Malignome\"]\n}\n```",
+  "ground_truth": "polymalignancy",
+  "is_correct": true,
+  "inference_time_seconds": 101.03872154099997,
+  "tokens_used": 1946,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

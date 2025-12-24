@@ -1,0 +1,42 @@
+{
+  "case_id": "combi_1",
+  "timestamp": "2025-12-24T09:56:28.651175",
+  "provider": "ollama",
+  "model": "mistral:7b-instruct",
+  "input_case": {
+    "case_id": "combi_1",
+    "patient": {
+      "alter_jahre": 67,
+      "geschlecht": null,
+      "ecog": null,
+      "komorbiditaet": null
+    },
+    "anamnese": null,
+    "diagnose_kurz": "Prostatakarzinom (ED 2019 ISUP 4, iPSA 32) – Z. n. RPE 01/2020 (pT3a R1 pN0), biochemisches Rezidiv 2025; PSMA-PET/CT 11/2025: 1 PSMA-positiver pelviner LK rechts obturatorisch (8×6 mm, SUVmax 7,4), sonst kein PSMA-positiver Befund",
+    "stadium": "BCR nach RPE + oligometastatische pelvine LK-Metastase (1 LK, PSMA-positiv)",
+    "tnm_clinical": null,
+    "tnm_pathological": null,
+    "histologie": null,
+    "metastatic": null,
+    "nebendiagnosen": null,
+    "ground_truth": "polymalignancy"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Analysiere den folgenden klinischen Fall und bestimme die Haupttumorentität.\n\nKLINISCHER FALL:\nPatient: 67 Jahre\nDiagnose: Prostatakarzinom (ED 2019 ISUP 4, iPSA 32) – Z. n. RPE 01/2020 (pT3a R1 pN0), biochemisches Rezidiv 2025; PSMA-PET/CT 11/2025: 1 PSMA-positiver pelviner LK rechts obturatorisch (8×6 mm, SUVmax 7,4), sonst kein PSMA-positiver Befund\nStadium: BCR nach RPE + oligometastatische pelvine LK-Metastase (1 LK, PSMA-positiv)\n\nAUFGABE:\nKlassifiziere diesen Fall in GENAU eine der folgenden Kategorien:\n- nierenzellkarzinom (Nierenkrebs/RCC)\n- prostatakarzinom (Prostatakrebs)\n- hodentumor (Hodenkrebs)\n- peniskarzinom (Peniskrebs)\n- urothelkarzinom (Blasen-/Harnwegskrebs)\n- polymalignancy (Mehrfachtumoren/Polymalignität)\n- non_urological (Nicht-urologische Tumoren)\n\nAntworte im folgenden JSON-Format:\n{\n    \"reasoning\": \"Deine schrittweise Begründung auf Deutsch\",\n    \"classification\": \"eine der obigen Kategorien\",\n    \"confidence\": 0.0 bis 1.0,\n    \"key_indicators\": [\"Indikator 1\", \"Indikator 2\"]\n}\n\nJSON-Antwort:",
+  "output": {
+    "reasoning": "Der Patient leidet an einem Prostatakarzinom (Prostatakrebs), da die Diagnose bereits angegeben ist. Die weiteren Angaben beziehen sich auf diesen Tumor und bestätigen dies. Es gibt keinerlei Hinweise auf andere Tumoren, wie Nierenzellkarzinom, Hodentumor, Peniskarzinom, Urothelkarzinom oder Polymalignancy. Daher kann der Fall in die Kategorie 'prostatakarzinom' eingeordnet werden.",
+    "classification": "prostatakarzinom",
+    "confidence": 1.0,
+    "key_indicators": [
+      "Diagnose: Prostatakarzinom",
+      "keine Hinweise auf andere Tumoren"
+    ]
+  },
+  "raw_response": " {\n    \"reasoning\": \"Der Patient leidet an einem Prostatakarzinom (Prostatakrebs), da die Diagnose bereits angegeben ist. Die weiteren Angaben beziehen sich auf diesen Tumor und bestätigen dies. Es gibt keinerlei Hinweise auf andere Tumoren, wie Nierenzellkarzinom, Hodentumor, Peniskarzinom, Urothelkarzinom oder Polymalignancy. Daher kann der Fall in die Kategorie 'prostatakarzinom' eingeordnet werden.\",\n    \"classification\": \"prostatakarzinom\",\n    \"confidence\": 1.0,\n    \"key_indicators\": [\"Diagnose: Prostatakarzinom\", \"keine Hinweise auf andere Tumoren\"]\n}",
+  "ground_truth": "polymalignancy",
+  "is_correct": false,
+  "inference_time_seconds": 37.85319781303406,
+  "tokens_used": 667,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

@@ -1,0 +1,60 @@
+{
+  "case_id": "ncc_2",
+  "timestamp": "2025-12-24T10:18:07.231123",
+  "provider": "openrouter",
+  "model": "anthropic/claude-opus-4.5",
+  "input_case": {
+    "case_id": "ncc_2",
+    "patient": {
+      "alter_jahre": 82,
+      "geschlecht": null,
+      "ecog": 1,
+      "komorbiditaet": "hoch"
+    },
+    "anamnese": "Pat synkopiert, zur TAVI-Evaluation. TAVI indiziert. Im TAVI-CT malignomsuspekte Raumforderung linke Niere (ca. 2×3 cm). Erstdiagnose 06.11.2025, links.",
+    "diagnose_kurz": "Malignomsuspekte Raumforderung linke Niere",
+    "alle_diagnosen": null,
+    "stadium": "unbekannt (prätherapeutisch)",
+    "tnm_clinical": {
+      "T": "unknown",
+      "N": "unknown",
+      "M": "unknown",
+      "stage_group": "unknown"
+    },
+    "tnm_pathological": {
+      "T": null,
+      "N": null,
+      "M": null,
+      "stage_group": null
+    },
+    "histologie": null,
+    "metastatic": false,
+    "nebendiagnosen": [
+      "Aortenstenose hochgradig (TAVI indiziert)",
+      "KHK",
+      "CKD G3"
+    ],
+    "ground_truth": "nierenzellkarzinom"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 82 Jahre\nECOG: 1\nAnamnese: Pat synkopiert, zur TAVI-Evaluation. TAVI indiziert. Im TAVI-CT malignomsuspekte Raumforderung linke Niere (ca. 2×3 cm). Erstdiagnose 06.11.2025, links.\nDiagnose: Malignomsuspekte Raumforderung linke Niere\nStadium: unbekannt (prätherapeutisch)\nTNM (klinisch): T:unknown N:unknown M:unknown\nTNM (pathologisch): Unbekannt\nMetastasiert: Nein\nNebendiagnosen: Aortenstenose hochgradig (TAVI indiziert), KHK, CKD G3\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Malignomsuspekte Raumforderung der linken Niere (2×3 cm), als Zufallsbefund im TAVI-CT entdeckt. Solide Raumforderungen im Nierenparenchym sind in über 85% der Fälle Nierenzellkarzinome. Die Lokalisation wird als 'Niere' beschrieben, nicht als Nierenbecken/Urothel, was gegen ein Urothelkarzinom spricht. Typische Präsentation eines inzidentellen Nierenzellkarzinoms bei älterem Patienten. Histologische Sicherung steht noch aus, aber klinisch hochverdächtig auf Nierenzellkarzinom.",
+    "classification": "nierenzellkarzinom",
+    "confidence": 0.82,
+    "key_indicators": [
+      "Malignomsuspekte Raumforderung linke Niere",
+      "Größe 2×3 cm (typisch für inzidentelles NZK)",
+      "Parenchymatöse Lokalisation (nicht Nierenbecken)",
+      "Zufallsbefund im CT (klassische Erstmanifestation NZK)",
+      "Keine Hinweise auf Metastasierung"
+    ]
+  },
+  "raw_response": "```json\n{\n    \"reasoning\": \"Malignomsuspekte Raumforderung der linken Niere (2×3 cm), als Zufallsbefund im TAVI-CT entdeckt. Solide Raumforderungen im Nierenparenchym sind in über 85% der Fälle Nierenzellkarzinome. Die Lokalisation wird als 'Niere' beschrieben, nicht als Nierenbecken/Urothel, was gegen ein Urothelkarzinom spricht. Typische Präsentation eines inzidentellen Nierenzellkarzinoms bei älterem Patienten. Histologische Sicherung steht noch aus, aber klinisch hochverdächtig auf Nierenzellkarzinom.\",\n    \"classification\": \"nierenzellkarzinom\",\n    \"confidence\": 0.82,\n    \"key_indicators\": [\n        \"Malignomsuspekte Raumforderung linke Niere\",\n        \"Größe 2×3 cm (typisch für inzidentelles NZK)\",\n        \"Parenchymatöse Lokalisation (nicht Nierenbecken)\",\n        \"Zufallsbefund im CT (klassische Erstmanifestation NZK)\",\n        \"Keine Hinweise auf Metastasierung\"\n    ]\n}\n```",
+  "ground_truth": "nierenzellkarzinom",
+  "is_correct": true,
+  "inference_time_seconds": 19.34213183399993,
+  "tokens_used": 1609,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

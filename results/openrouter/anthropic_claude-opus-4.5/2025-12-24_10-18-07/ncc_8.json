@@ -1,0 +1,60 @@
+{
+  "case_id": "ncc_8",
+  "timestamp": "2025-12-24T10:18:07.231818",
+  "provider": "openrouter",
+  "model": "anthropic/claude-opus-4.5",
+  "input_case": {
+    "case_id": "ncc_8",
+    "patient": {
+      "alter_jahre": 70,
+      "geschlecht": null,
+      "ecog": 1,
+      "komorbiditaet": "unknown"
+    },
+    "anamnese": "Kleiner Nierentumor links 2,7 cm, hilusnah. Vorerkrankungen: DM Typ 2, arterielle Hypertonie, Hyperlipidämie.",
+    "diagnose_kurz": "Kleiner Nierentumor links 2,7 cm, hilusnah",
+    "alle_diagnosen": null,
+    "stadium": "nicht-metastasiert (Verdacht, prätherapeutisch)",
+    "tnm_clinical": {
+      "T": "unknown",
+      "N": "unknown",
+      "M": "M0",
+      "stage_group": "unknown"
+    },
+    "tnm_pathological": {
+      "T": null,
+      "N": null,
+      "M": null,
+      "stage_group": null
+    },
+    "histologie": null,
+    "metastatic": false,
+    "nebendiagnosen": [
+      "Diabetes mellitus Typ 2",
+      "arterielle Hypertonie",
+      "Hyperlipidämie"
+    ],
+    "ground_truth": "nierenzellkarzinom"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 70 Jahre\nECOG: 1\nAnamnese: Kleiner Nierentumor links 2,7 cm, hilusnah. Vorerkrankungen: DM Typ 2, arterielle Hypertonie, Hyperlipidämie.\nDiagnose: Kleiner Nierentumor links 2,7 cm, hilusnah\nStadium: nicht-metastasiert (Verdacht, prätherapeutisch)\nTNM (klinisch): T:unknown N:unknown M:M0\nTNM (pathologisch): Unbekannt\nMetastasiert: Nein\nNebendiagnosen: Diabetes mellitus Typ 2, arterielle Hypertonie, Hyperlipidämie\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Es handelt sich um einen primären Nierentumor (2,7 cm, hilusnah). Nierentumoren in der Nierenparenchym sind in etwa 85-90% der Fälle Nierenzellkarzinome. Die Größe von 2,7 cm entspricht einem cT1a-Stadium. Die Lokalisation 'hilusnah' spricht für einen parenchymatösen Tumor und gegen ein Urothelkarzinom des Nierenbeckens. Der Fall ist prätherapeutisch ohne histologische Sicherung, aber die klinische Präsentation ist typisch für ein Nierenzellkarzinom.",
+    "classification": "nierenzellkarzinom",
+    "confidence": 0.88,
+    "key_indicators": [
+      "Nierentumor links 2,7 cm",
+      "hilusnahe Lokalisation (Nierenparenchym)",
+      "nicht-metastasiert (M0)",
+      "typische Präsentation für RCC",
+      "Alter 70 Jahre (typisches Erkrankungsalter)"
+    ]
+  },
+  "raw_response": "```json\n{\n    \"reasoning\": \"Es handelt sich um einen primären Nierentumor (2,7 cm, hilusnah). Nierentumoren in der Nierenparenchym sind in etwa 85-90% der Fälle Nierenzellkarzinome. Die Größe von 2,7 cm entspricht einem cT1a-Stadium. Die Lokalisation 'hilusnah' spricht für einen parenchymatösen Tumor und gegen ein Urothelkarzinom des Nierenbeckens. Der Fall ist prätherapeutisch ohne histologische Sicherung, aber die klinische Präsentation ist typisch für ein Nierenzellkarzinom.\",\n    \"classification\": \"nierenzellkarzinom\",\n    \"confidence\": 0.88,\n    \"key_indicators\": [\n        \"Nierentumor links 2,7 cm\",\n        \"hilusnahe Lokalisation (Nierenparenchym)\",\n        \"nicht-metastasiert (M0)\",\n        \"typische Präsentation für RCC\",\n        \"Alter 70 Jahre (typisches Erkrankungsalter)\"\n    ]\n}\n```",
+  "ground_truth": "nierenzellkarzinom",
+  "is_correct": true,
+  "inference_time_seconds": 16.055460792000076,
+  "tokens_used": 1239,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

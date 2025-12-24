@@ -1,0 +1,46 @@
+{
+  "case_id": "uca_2",
+  "timestamp": "2025-12-24T10:18:07.232199",
+  "provider": "openrouter",
+  "model": "anthropic/claude-opus-4.5",
+  "input_case": {
+    "case_id": "uca_2",
+    "patient": {
+      "alter_jahre": 54,
+      "geschlecht": null,
+      "ecog": null,
+      "komorbiditaet": null
+    },
+    "anamnese": null,
+    "diagnose_kurz": "Harnblasen-NMIBC: nicht-invasives papilläres Urothelkarzinom pTa, fokal high grade (G3), Hinterwand links; Detrusor nicht nachweisbar",
+    "alle_diagnosen": null,
+    "stadium": "pTa high grade (fokal) – EORTC-Risikostratifizierung geplant; Nachresektion erwägen (Detrusor fehlt)",
+    "tnm_clinical": null,
+    "tnm_pathological": null,
+    "histologie": null,
+    "metastatic": null,
+    "nebendiagnosen": null,
+    "ground_truth": "urothelkarzinom"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 54 Jahre\nDiagnose: Harnblasen-NMIBC: nicht-invasives papilläres Urothelkarzinom pTa, fokal high grade (G3), Hinterwand links; Detrusor nicht nachweisbar\nStadium: pTa high grade (fokal) – EORTC-Risikostratifizierung geplant; Nachresektion erwägen (Detrusor fehlt)\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Der Fall beschreibt ein nicht-muskelinvasives Blasenkarzinom (NMIBC) der Harnblase. Die histologische Diagnose lautet explizit 'nicht-invasives papilläres Urothelkarzinom'. Das Urothelkarzinom ist der häufigste histologische Subtyp von Blasenkrebs (>90%). Das Stadium pTa bezeichnet ein auf das Urothel beschränktes, nicht-invasives papilläres Karzinom. Der fehlende Detrusormuskel in der Probe erfordert eine Nachresektion zur sicheren Stadieneinteilung, ändert aber nichts an der histologischen Klassifikation als Urothelkarzinom.",
+    "classification": "urothelkarzinom",
+    "confidence": 0.99,
+    "key_indicators": [
+      "Harnblasen-NMIBC",
+      "nicht-invasives papilläres Urothelkarzinom",
+      "pTa Stadium",
+      "Lokalisation Harnblase (Hinterwand)",
+      "histologisch gesichertes Urothelkarzinom"
+    ]
+  },
+  "raw_response": "```json\n{\n    \"reasoning\": \"Der Fall beschreibt ein nicht-muskelinvasives Blasenkarzinom (NMIBC) der Harnblase. Die histologische Diagnose lautet explizit 'nicht-invasives papilläres Urothelkarzinom'. Das Urothelkarzinom ist der häufigste histologische Subtyp von Blasenkrebs (>90%). Das Stadium pTa bezeichnet ein auf das Urothel beschränktes, nicht-invasives papilläres Karzinom. Der fehlende Detrusormuskel in der Probe erfordert eine Nachresektion zur sicheren Stadieneinteilung, ändert aber nichts an der histologischen Klassifikation als Urothelkarzinom.\",\n    \"classification\": \"urothelkarzinom\",\n    \"confidence\": 0.99,\n    \"key_indicators\": [\n        \"Harnblasen-NMIBC\",\n        \"nicht-invasives papilläres Urothelkarzinom\",\n        \"pTa Stadium\",\n        \"Lokalisation Harnblase (Hinterwand)\",\n        \"histologisch gesichertes Urothelkarzinom\"\n    ]\n}\n```",
+  "ground_truth": "urothelkarzinom",
+  "is_correct": true,
+  "inference_time_seconds": 36.27420895800003,
+  "tokens_used": 1024,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

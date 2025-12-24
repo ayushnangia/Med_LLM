@@ -1,0 +1,47 @@
+{
+  "case_id": "non_uro_1",
+  "timestamp": "2025-12-24T10:13:01.684478",
+  "provider": "openrouter",
+  "model": "xiaomi/mimo-v2-flash:free",
+  "input_case": {
+    "case_id": "non_uro_1",
+    "patient": {
+      "alter_jahre": 81,
+      "geschlecht": null,
+      "ecog": null,
+      "komorbiditaet": null
+    },
+    "anamnese": null,
+    "diagnose_kurz": "Aggressives B-Zell Non-Hodgkin-Lymphom (GCB-Typ nach Hans), Double-Expressor (BCL2/cMYC), EBV-negativ; große paraaortale/peritoneale Raumforderung links (ca. 12,1×8,2×13,2 cm) mit Infiltration Pankreasschwanz/IVC/li. A. iliaca communis",
+    "alle_diagnosen": null,
+    "stadium": "aggressives NHL; Staging unvollständig (CT Thorax ohne Metastasen; weitere Lymphom-Stagingdiagnostik ausstehend)",
+    "tnm_clinical": null,
+    "tnm_pathological": null,
+    "histologie": null,
+    "metastatic": null,
+    "nebendiagnosen": null,
+    "ground_truth": "non_urological"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 81 Jahre\nDiagnose: Aggressives B-Zell Non-Hodgkin-Lymphom (GCB-Typ nach Hans), Double-Expressor (BCL2/cMYC), EBV-negativ; große paraaortale/peritoneale Raumforderung links (ca. 12,1×8,2×13,2 cm) mit Infiltration Pankreasschwanz/IVC/li. A. iliaca communis\nStadium: aggressives NHL; Staging unvollständig (CT Thorax ohne Metastasen; weitere Lymphom-Stagingdiagnostik ausstehend)\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Der Fall beschreibt ein aggressives B-Zell Non-Hodgkin-Lymphom (GCB-Typ, Double-Expressor) mit einer großen paraaortalen/peritonealen Raumforderung. Dies ist eindeutig ein hämatologisches Neoplasma des lymphatischen Systems und kein urologisches Karzinom (wie Nierenzell-, Prostata-, Hoden-, Penis- oder Urothelkarzinom). Es liegt auch keine polymaligne Erkrankung vor, da nur ein Primärtumor (Lymphom) dokumentiert ist. Die Lokalisation (paraaortal/peritoneal, Infiltration von Pankreas, IVC, A. iliaca) ist typisch für lymphomatische Manifestationen, nicht für urologische Tumoren.",
+    "classification": "non_urological",
+    "confidence": 1.0,
+    "key_indicators": [
+      "Aggressives B-Zell Non-Hodgkin-Lymphom",
+      "GCB-Typ nach Hans",
+      "Double-Expressor (BCL2/cMYC)",
+      "EBV-negativ",
+      "paraaortale/peritoneale Raumforderung",
+      "Infiltration Pankreasschwanz/IVC/li. A. iliaca communis"
+    ]
+  },
+  "raw_response": "{\n    \"reasoning\": \"Der Fall beschreibt ein aggressives B-Zell Non-Hodgkin-Lymphom (GCB-Typ, Double-Expressor) mit einer großen paraaortalen/peritonealen Raumforderung. Dies ist eindeutig ein hämatologisches Neoplasma des lymphatischen Systems und kein urologisches Karzinom (wie Nierenzell-, Prostata-, Hoden-, Penis- oder Urothelkarzinom). Es liegt auch keine polymaligne Erkrankung vor, da nur ein Primärtumor (Lymphom) dokumentiert ist. Die Lokalisation (paraaortal/peritoneal, Infiltration von Pankreas, IVC, A. iliaca) ist typisch für lymphomatische Manifestationen, nicht für urologische Tumoren.\",\n    \"classification\": \"non_urological\",\n    \"confidence\": 1.0,\n    \"key_indicators\": [\n        \"Aggressives B-Zell Non-Hodgkin-Lymphom\",\n        \"GCB-Typ nach Hans\",\n        \"Double-Expressor (BCL2/cMYC)\",\n        \"EBV-negativ\",\n        \"paraaortale/peritoneale Raumforderung\",\n        \"Infiltration Pankreasschwanz/IVC/li. A. iliaca communis\"\n    ]\n}",
+  "ground_truth": "non_urological",
+  "is_correct": true,
+  "inference_time_seconds": 35.18363391599996,
+  "tokens_used": 1317,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

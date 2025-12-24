@@ -1,0 +1,48 @@
+{
+  "case_id": "non_uro_2",
+  "timestamp": "2025-12-24T10:13:41.835377",
+  "provider": "openrouter",
+  "model": "nvidia/nemotron-3-nano-30b-a3b:free",
+  "input_case": {
+    "case_id": "non_uro_2",
+    "patient": {
+      "alter_jahre": 52,
+      "geschlecht": null,
+      "ecog": null,
+      "komorbiditaet": null
+    },
+    "anamnese": null,
+    "diagnose_kurz": "Unklare Raumforderung Harnblase (Seitenwand) – TUR-B 01.11.2025; Histologie: morphologisch/klinisch Infiltration durch bekanntes Sigmakarzinom (sekundäre Blaseninfiltration, kein primäres Urothelkarzinom beschrieben)",
+    "alle_diagnosen": [
+      "Unklare Raumforderung Harnblase (Seitenwand) – TUR-B 01.11.2025; Histologie: morphologisch/klinisch Infiltration durch bekanntes Sigmakarzinom (sekundäre Blaseninfiltration, kein primäres Urothelkarzinom beschrieben)",
+      "Hepatisch metastasiertes Sigmakarzinom (ED 01/2025), Status nach Sigmaresektion mit subperitonealer Exzision am Blasendach (12.01.2025) und Leber-lokalen Therapien/Resektionen"
+    ],
+    "stadium": "Sekundärbefall der Harnblase durch kolorektales Karzinom (Verdacht/Kommentar), genaue TNM der Blasenläsion nicht angegeben",
+    "tnm_clinical": null,
+    "tnm_pathological": null,
+    "histologie": null,
+    "metastatic": null,
+    "nebendiagnosen": null,
+    "ground_truth": "non_urological"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 52 Jahre\nDiagnose 1: Unklare Raumforderung Harnblase (Seitenwand) – TUR-B 01.11.2025; Histologie: morphologisch/klinisch Infiltration durch bekanntes Sigmakarzinom (sekundäre Blaseninfiltration, kein primäres Urothelkarzinom beschrieben)\nDiagnose 2: Hepatisch metastasiertes Sigmakarzinom (ED 01/2025), Status nach Sigmaresektion mit subperitonealer Exzision am Blasendach (12.01.2025) und Leber-lokalen Therapien/Resektionen\nStadium: Sekundärbefall der Harnblase durch kolorektales Karzinom (Verdacht/Kommentar), genaue TNM der Blasenläsion nicht angegeben\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Der Patient hat ein Raumforderungsgeschehen in der Blase, das als sekundäre Infiltration durch ein bekanntes Sigmakarzinom (Kolonkarzinom) beschrieben wird. Es wird ausdrücklich darauf hingewiesen, dass kein primäres Urothelkarzinom vorliegt. Damit handelt es sich nicht um ein primäres Blasentumour, sondern um eine Metastase bzw. sekundäre Beteiligung einer kolorektalen Karzinom. Das zugrundeliegende Malignom ist somit nicht urologisch, sondern ein kolorektales Karzinom, das nicht in die aufgelisteten urologischen Primärtumoren fällt. Deshalb passt die Klassifikation am besten zu 'non_urological'.",
+    "classification": "non_urological",
+    "confidence": 0.96,
+    "key_indicators": [
+      "sekundäre Blaseninfiltration durch bekanntes Sigmakarzinom",
+      "kein primäres Urothelkarzinom",
+      "Hintergrund: metastasiertes Sigmakarzinom des Colon",
+      "Tumour liegt in der Blase, stammt aber von einem nicht-urologischen Primärtumor"
+    ]
+  },
+  "raw_response": "{\n    \"reasoning\": \"Der Patient hat ein Raumforderungsgeschehen in der Blase, das als sekundäre Infiltration durch ein bekanntes Sigmakarzinom (Kolonkarzinom) beschrieben wird. Es wird ausdrücklich darauf hingewiesen, dass kein primäres Urothelkarzinom vorliegt. Damit handelt es sich nicht um ein primäres Blasentumour, sondern um eine Metastase bzw. sekundäre Beteiligung einer kolorektalen Karzinom. Das zugrundeliegende Malignom ist somit nicht urologisch, sondern ein kolorektales Karzinom, das nicht in die aufgelisteten urologischen Primärtumoren fällt. Deshalb passt die Klassifikation am besten zu 'non_urological'.\",\n    \"classification\": \"non_urological\",\n    \"confidence\": 0.96,\n    \"key_indicators\": [\n        \"sekundäre Blaseninfiltration durch bekanntes Sigmakarzinom\",\n        \"kein primäres Urothelkarzinom\",\n        \"Hintergrund: metastasiertes Sigmakarzinom des Colon\",\n        \"Tumour liegt in der Blase, stammt aber von einem nicht-urologischen Primärtumor\"\n    ]\n}",
+  "ground_truth": "non_urological",
+  "is_correct": true,
+  "inference_time_seconds": 14.805478875000006,
+  "tokens_used": 1462,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

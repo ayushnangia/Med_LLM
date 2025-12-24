@@ -1,0 +1,46 @@
+{
+  "case_id": "non_uro_1",
+  "timestamp": "2025-12-24T10:23:15.110882",
+  "provider": "openrouter",
+  "model": "google/gemma-3-27b-it",
+  "input_case": {
+    "case_id": "non_uro_1",
+    "patient": {
+      "alter_jahre": 81,
+      "geschlecht": null,
+      "ecog": null,
+      "komorbiditaet": null
+    },
+    "anamnese": null,
+    "diagnose_kurz": "Aggressives B-Zell Non-Hodgkin-Lymphom (GCB-Typ nach Hans), Double-Expressor (BCL2/cMYC), EBV-negativ; große paraaortale/peritoneale Raumforderung links (ca. 12,1×8,2×13,2 cm) mit Infiltration Pankreasschwanz/IVC/li. A. iliaca communis",
+    "alle_diagnosen": null,
+    "stadium": "aggressives NHL; Staging unvollständig (CT Thorax ohne Metastasen; weitere Lymphom-Stagingdiagnostik ausstehend)",
+    "tnm_clinical": null,
+    "tnm_pathological": null,
+    "histologie": null,
+    "metastatic": null,
+    "nebendiagnosen": null,
+    "ground_truth": "non_urological"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 81 Jahre\nDiagnose: Aggressives B-Zell Non-Hodgkin-Lymphom (GCB-Typ nach Hans), Double-Expressor (BCL2/cMYC), EBV-negativ; große paraaortale/peritoneale Raumforderung links (ca. 12,1×8,2×13,2 cm) mit Infiltration Pankreasschwanz/IVC/li. A. iliaca communis\nStadium: aggressives NHL; Staging unvollständig (CT Thorax ohne Metastasen; weitere Lymphom-Stagingdiagnostik ausstehend)\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Der Fall beschreibt ein aggressives B-Zell Non-Hodgkin-Lymphom (NHL). Dies ist ein hämatologischer Krebs, der von Lymphozyten ausgeht und nicht zu den urologischen Krebsarten gehört (Niere, Prostata, Hoden, Penis, Harnblase). Die Beschreibung der Raumforderung und der Infiltration verschiedener Organe deutet auf ein fortgeschrittenes Lymphom hin, aber nicht auf eine der anderen genannten Krebsarten. Polymalignancy wäre nur dann in Betracht zu ziehen, wenn Hinweise auf weitere, unabhängige Krebserkrankungen vorlägen, was hier nicht der Fall ist.",
+    "classification": "non_urological",
+    "confidence": 1.0,
+    "key_indicators": [
+      "Non-Hodgkin-Lymphom",
+      "B-Zell",
+      "BCL2/cMYC",
+      "paraaortale Raumforderung",
+      "keine Hinweise auf urologische Primärtumore"
+    ]
+  },
+  "raw_response": "\n\n```json\n{\n    \"reasoning\": \"Der Fall beschreibt ein aggressives B-Zell Non-Hodgkin-Lymphom (NHL). Dies ist ein hämatologischer Krebs, der von Lymphozyten ausgeht und nicht zu den urologischen Krebsarten gehört (Niere, Prostata, Hoden, Penis, Harnblase). Die Beschreibung der Raumforderung und der Infiltration verschiedener Organe deutet auf ein fortgeschrittenes Lymphom hin, aber nicht auf eine der anderen genannten Krebsarten. Polymalignancy wäre nur dann in Betracht zu ziehen, wenn Hinweise auf weitere, unabhängige Krebserkrankungen vorlägen, was hier nicht der Fall ist.\",\n    \"classification\": \"non_urological\",\n    \"confidence\": 1.0,\n    \"key_indicators\": [\"Non-Hodgkin-Lymphom\", \"B-Zell\", \"BCL2/cMYC\", \"paraaortale Raumforderung\", \"keine Hinweise auf urologische Primärtumore\"]\n}\n```\n",
+  "ground_truth": "non_urological",
+  "is_correct": true,
+  "inference_time_seconds": 32.245111042,
+  "tokens_used": 499,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

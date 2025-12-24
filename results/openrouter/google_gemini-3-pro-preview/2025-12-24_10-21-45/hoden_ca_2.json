@@ -1,0 +1,46 @@
+{
+  "case_id": "hoden_ca_2",
+  "timestamp": "2025-12-24T10:21:45.782783",
+  "provider": "openrouter",
+  "model": "google/gemini-3-pro-preview",
+  "input_case": {
+    "case_id": "hoden_ca_2",
+    "patient": {
+      "alter_jahre": 23,
+      "geschlecht": null,
+      "ecog": null,
+      "komorbiditaet": null
+    },
+    "anamnese": null,
+    "diagnose_kurz": "Seminom links (100%), kleinherdig (max. 0,2×0,5×0,1 cm) – Status nach inguinaler Ablatio testis links (19.09.2025), Rete testis infiltriert, GCNIS+",
+    "alle_diagnosen": null,
+    "stadium": "pT1 pNX (klinisches Stadium offen; Staging CT Thorax/Abdomen ausstehend)",
+    "tnm_clinical": null,
+    "tnm_pathological": null,
+    "histologie": null,
+    "metastatic": null,
+    "nebendiagnosen": null,
+    "ground_truth": "hodentumor"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 23 Jahre\nDiagnose: Seminom links (100%), kleinherdig (max. 0,2×0,5×0,1 cm) – Status nach inguinaler Ablatio testis links (19.09.2025), Rete testis infiltriert, GCNIS+\nStadium: pT1 pNX (klinisches Stadium offen; Staging CT Thorax/Abdomen ausstehend)\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Der Patient weist ein Seminom auf, welches histologisch zu 100% gesichert ist. Ein Seminom ist ein maligner Keimzelltumor, der im Hoden entsteht. Die durchgeführte Operation (inguinale Ablatio testis) sowie die pathologischen Befunde (Rete testis Infiltration, GCNIS+) bestätigen die Lokalisation im Hoden. Das Alter des Patienten (23 Jahre) ist zudem typisch für diese Erkrankung.",
+    "classification": "hodentumor",
+    "confidence": 1.0,
+    "key_indicators": [
+      "Diagnose: Seminom",
+      "Lokalisation: testis (Hoden)",
+      "Prozedur: inguinale Ablatio testis",
+      "Histologie: GCNIS+",
+      "Stadium: pT1"
+    ]
+  },
+  "raw_response": "```json\n{\n    \"reasoning\": \"Der Patient weist ein Seminom auf, welches histologisch zu 100% gesichert ist. Ein Seminom ist ein maligner Keimzelltumor, der im Hoden entsteht. Die durchgeführte Operation (inguinale Ablatio testis) sowie die pathologischen Befunde (Rete testis Infiltration, GCNIS+) bestätigen die Lokalisation im Hoden. Das Alter des Patienten (23 Jahre) ist zudem typisch für diese Erkrankung.\",\n    \"classification\": \"hodentumor\",\n    \"confidence\": 1.0,\n    \"key_indicators\": [\n        \"Diagnose: Seminom\",\n        \"Lokalisation: testis (Hoden)\",\n        \"Prozedur: inguinale Ablatio testis\",\n        \"Histologie: GCNIS+\",\n        \"Stadium: pT1\"\n    ]\n}\n```",
+  "ground_truth": "hodentumor",
+  "is_correct": true,
+  "inference_time_seconds": 31.076166917000023,
+  "tokens_used": 1385,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

@@ -1,0 +1,47 @@
+{
+  "case_id": "combi_1",
+  "timestamp": "2025-12-24T10:16:01.366703",
+  "provider": "openrouter",
+  "model": "essentialai/rnj-1-instruct",
+  "input_case": {
+    "case_id": "combi_1",
+    "patient": {
+      "alter_jahre": 67,
+      "geschlecht": null,
+      "ecog": null,
+      "komorbiditaet": null
+    },
+    "anamnese": null,
+    "diagnose_kurz": "Prostatakarzinom (ED 2019 ISUP 4, iPSA 32) – Z. n. RPE 01/2020 (pT3a R1 pN0), biochemisches Rezidiv 2025; PSMA-PET/CT 11/2025: 1 PSMA-positiver pelviner LK rechts obturatorisch (8×6 mm, SUVmax 7,4), sonst kein PSMA-positiver Befund",
+    "alle_diagnosen": [
+      "Prostatakarzinom (ED 2019 ISUP 4, iPSA 32) – Z. n. RPE 01/2020 (pT3a R1 pN0), biochemisches Rezidiv 2025; PSMA-PET/CT 11/2025: 1 PSMA-positiver pelviner LK rechts obturatorisch (8×6 mm, SUVmax 7,4), sonst kein PSMA-positiver Befund",
+      "NMIBC (UCA): ED 06/2024 pTa high grade + fokal pTis; BCG-Induktion 08/2024 abgebrochen (NW). Rezidiv 10/2025: pTa high grade, Detrusor vorhanden und tumorfrei"
+    ],
+    "stadium": "BCR nach RPE + oligometastatische pelvine LK-Metastase (1 LK, PSMA-positiv)",
+    "tnm_clinical": null,
+    "tnm_pathological": null,
+    "histologie": null,
+    "metastatic": null,
+    "nebendiagnosen": null,
+    "ground_truth": "polymalignancy"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 67 Jahre\nDiagnose 1: Prostatakarzinom (ED 2019 ISUP 4, iPSA 32) – Z. n. RPE 01/2020 (pT3a R1 pN0), biochemisches Rezidiv 2025; PSMA-PET/CT 11/2025: 1 PSMA-positiver pelviner LK rechts obturatorisch (8×6 mm, SUVmax 7,4), sonst kein PSMA-positiver Befund\nDiagnose 2: NMIBC (UCA): ED 06/2024 pTa high grade + fokal pTis; BCG-Induktion 08/2024 abgebrochen (NW). Rezidiv 10/2025: pTa high grade, Detrusor vorhanden und tumorfrei\nStadium: BCR nach RPE + oligometastatische pelvine LK-Metastase (1 LK, PSMA-positiv)\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Der Patient leidet sowohl von einem Prostatakarzinom als auch von NMIBC (Nebenwänden urothelkarziniertem Bladder-Carcinoma). Beide Diagnosen sind urologische Malignitäten, die jedoch nicht in eine einzige Hauptkategorie passen. Da es sich um mehrere urologische Tumore handelt, aber keine polymalignancy (mehrere primäre Malignitäten in verschiedenen Organen) vorliegt, ist die korrekte Klassifizierung als 'non_urological' nicht möglich. Die Option 'polymalignancy' ist ebenfalls nicht zutreffend, da beide Tumore sich auf das Urogenitaltrakt beziehen. Die einzige passende Kategorie ist 'urothelkarzinom', da NMIBC ein urothelkaries Tumor ist und somit der zentrale urologische Fokus darstellt.",
+    "classification": "urothelkarzinom",
+    "confidence": 0.8,
+    "key_indicators": [
+      "NMIBC (Nebenwänden urothelkarzinom)",
+      "Urothelkarzinom ist der zentrale urologische Fokus",
+      "Beide Diagnosen sind urologische Malignitäten"
+    ]
+  },
+  "raw_response": "{\n    \"reasoning\": \"Der Patient leidet sowohl von einem Prostatakarzinom als auch von NMIBC (Nebenwänden urothelkarziniertem Bladder-Carcinoma). Beide Diagnosen sind urologische Malignitäten, die jedoch nicht in eine einzige Hauptkategorie passen. Da es sich um mehrere urologische Tumore handelt, aber keine polymalignancy (mehrere primäre Malignitäten in verschiedenen Organen) vorliegt, ist die korrekte Klassifizierung als 'non_urological' nicht möglich. Die Option 'polymalignancy' ist ebenfalls nicht zutreffend, da beide Tumore sich auf das Urogenitaltrakt beziehen. Die einzige passende Kategorie ist 'urothelkarzinom', da NMIBC ein urothelkaries Tumor ist und somit der zentrale urologische Fokus darstellt.\",\n    \"classification\": \"urothelkarzinom\",\n    \"confidence\": 0.8,\n    \"key_indicators\": [\"NMIBC (Nebenwänden urothelkarzinom)\", \"Urothelkarzinom ist der zentrale urologische Fokus\", \"Beide Diagnosen sind urologische Malignitäten\"]\n}",
+  "ground_truth": "polymalignancy",
+  "is_correct": false,
+  "inference_time_seconds": 15.021276999999998,
+  "tokens_used": 695,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

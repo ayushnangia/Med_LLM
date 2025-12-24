@@ -1,0 +1,55 @@
+{
+  "case_id": "pca_2",
+  "timestamp": "2025-12-24T10:07:56.352805",
+  "provider": "openrouter",
+  "model": "google/gemini-3-flash-preview",
+  "input_case": {
+    "case_id": "pca_2",
+    "patient": {
+      "alter_jahre": 62,
+      "geschlecht": null,
+      "ecog": 0,
+      "komorbiditaet": "unknown"
+    },
+    "anamnese": "Prostatakarzinom intermediate risk. ED 10/2022: ISUP 2 in 10/22 Stanzen nach mpMRT; iPSA 17,3 ng/ml. Keine abdominellen Vor-OPs, keine Antikoagulation. Pat. wünscht kurative OP, keine Radiatio.",
+    "diagnose_kurz": "Prostatakarzinom, intermediäres Risiko (ISUP 2), iPSA 17,3 ng/ml (ED 10/2022)",
+    "alle_diagnosen": null,
+    "stadium": "intermediate risk (prätherapeutisch)",
+    "tnm_clinical": {
+      "T": "unknown",
+      "N": "unknown",
+      "M": "M0",
+      "stage_group": "unknown"
+    },
+    "tnm_pathological": {
+      "T": null,
+      "N": null,
+      "M": null,
+      "stage_group": null
+    },
+    "histologie": null,
+    "metastatic": null,
+    "nebendiagnosen": [],
+    "ground_truth": "prostatakarzinom"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 62 Jahre\nECOG: 0\nAnamnese: Prostatakarzinom intermediate risk. ED 10/2022: ISUP 2 in 10/22 Stanzen nach mpMRT; iPSA 17,3 ng/ml. Keine abdominellen Vor-OPs, keine Antikoagulation. Pat. wünscht kurative OP, keine Radiatio.\nDiagnose: Prostatakarzinom, intermediäres Risiko (ISUP 2), iPSA 17,3 ng/ml (ED 10/2022)\nStadium: intermediate risk (prätherapeutisch)\nTNM (klinisch): T:unknown N:unknown M:M0\nTNM (pathologisch): Unbekannt\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Der vorliegende Fall beschreibt eindeutig ein Prostatakarzinom. Die Diagnose wird im Text explizit genannt ('Prostatakarzinom'). Zudem sind die angegebenen klinischen Parameter wie der iPSA-Wert (prostataspezifisches Antigen) von 17,3 ng/ml sowie das ISUP-Grading (ISUP 2) spezifische diagnostische Kriterien für diese Entität. Die Klassifizierung als 'intermediate risk' entspricht den gängigen urologischen Leitlinien (z.B. D'Amico oder EAU) für das Prostatakarzinom.",
+    "classification": "prostatakarzinom",
+    "confidence": 1.0,
+    "key_indicators": [
+      "Prostatakarzinom",
+      "iPSA 17,3 ng/ml",
+      "ISUP 2",
+      "intermediate risk"
+    ]
+  },
+  "raw_response": "```json\n{\n    \"reasoning\": \"Der vorliegende Fall beschreibt eindeutig ein Prostatakarzinom. Die Diagnose wird im Text explizit genannt ('Prostatakarzinom'). Zudem sind die angegebenen klinischen Parameter wie der iPSA-Wert (prostataspezifisches Antigen) von 17,3 ng/ml sowie das ISUP-Grading (ISUP 2) spezifische diagnostische Kriterien für diese Entität. Die Klassifizierung als 'intermediate risk' entspricht den gängigen urologischen Leitlinien (z.B. D'Amico oder EAU) für das Prostatakarzinom.\",\n    \"classification\": \"prostatakarzinom\",\n    \"confidence\": 1.0,\n    \"key_indicators\": [\"Prostatakarzinom\", \"iPSA 17,3 ng/ml\", \"ISUP 2\", \"intermediate risk\"]\n}\n```",
+  "ground_truth": "prostatakarzinom",
+  "is_correct": true,
+  "inference_time_seconds": 14.954858542,
+  "tokens_used": 1077,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

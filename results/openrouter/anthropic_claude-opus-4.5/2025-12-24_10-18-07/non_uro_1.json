@@ -1,0 +1,46 @@
+{
+  "case_id": "non_uro_1",
+  "timestamp": "2025-12-24T10:18:07.232232",
+  "provider": "openrouter",
+  "model": "anthropic/claude-opus-4.5",
+  "input_case": {
+    "case_id": "non_uro_1",
+    "patient": {
+      "alter_jahre": 81,
+      "geschlecht": null,
+      "ecog": null,
+      "komorbiditaet": null
+    },
+    "anamnese": null,
+    "diagnose_kurz": "Aggressives B-Zell Non-Hodgkin-Lymphom (GCB-Typ nach Hans), Double-Expressor (BCL2/cMYC), EBV-negativ; große paraaortale/peritoneale Raumforderung links (ca. 12,1×8,2×13,2 cm) mit Infiltration Pankreasschwanz/IVC/li. A. iliaca communis",
+    "alle_diagnosen": null,
+    "stadium": "aggressives NHL; Staging unvollständig (CT Thorax ohne Metastasen; weitere Lymphom-Stagingdiagnostik ausstehend)",
+    "tnm_clinical": null,
+    "tnm_pathological": null,
+    "histologie": null,
+    "metastatic": null,
+    "nebendiagnosen": null,
+    "ground_truth": "non_urological"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 81 Jahre\nDiagnose: Aggressives B-Zell Non-Hodgkin-Lymphom (GCB-Typ nach Hans), Double-Expressor (BCL2/cMYC), EBV-negativ; große paraaortale/peritoneale Raumforderung links (ca. 12,1×8,2×13,2 cm) mit Infiltration Pankreasschwanz/IVC/li. A. iliaca communis\nStadium: aggressives NHL; Staging unvollständig (CT Thorax ohne Metastasen; weitere Lymphom-Stagingdiagnostik ausstehend)\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Der Fall beschreibt ein aggressives B-Zell Non-Hodgkin-Lymphom (diffus großzelliges B-Zell-Lymphom, DLBCL vom GCB-Typ). Dies ist eine hämatologisch-onkologische Erkrankung des lymphatischen Systems und keine urologische Tumorerkrankung. Obwohl die Tumormasse im Retroperitoneum/paraaortal lokalisiert ist und benachbarte Strukturen infiltriert, handelt es sich primär um ein Lymphom - nicht um ein Karzinom urologischen Ursprungs. Die Double-Expressor-Positivität (BCL2/cMYC) ist ein typischer prognostischer Marker bei DLBCL. Es liegt keine urologische Grunderkrankung vor.",
+    "classification": "non_urological",
+    "confidence": 0.98,
+    "key_indicators": [
+      "B-Zell Non-Hodgkin-Lymphom",
+      "GCB-Typ nach Hans-Klassifikation",
+      "Double-Expressor (BCL2/cMYC)",
+      "Hämatologische Neoplasie",
+      "Kein Hinweis auf urologischen Primärtumor"
+    ]
+  },
+  "raw_response": "```json\n{\n    \"reasoning\": \"Der Fall beschreibt ein aggressives B-Zell Non-Hodgkin-Lymphom (diffus großzelliges B-Zell-Lymphom, DLBCL vom GCB-Typ). Dies ist eine hämatologisch-onkologische Erkrankung des lymphatischen Systems und keine urologische Tumorerkrankung. Obwohl die Tumormasse im Retroperitoneum/paraaortal lokalisiert ist und benachbarte Strukturen infiltriert, handelt es sich primär um ein Lymphom - nicht um ein Karzinom urologischen Ursprungs. Die Double-Expressor-Positivität (BCL2/cMYC) ist ein typischer prognostischer Marker bei DLBCL. Es liegt keine urologische Grunderkrankung vor.\",\n    \"classification\": \"non_urological\",\n    \"confidence\": 0.98,\n    \"key_indicators\": [\n        \"B-Zell Non-Hodgkin-Lymphom\",\n        \"GCB-Typ nach Hans-Klassifikation\",\n        \"Double-Expressor (BCL2/cMYC)\",\n        \"Hämatologische Neoplasie\",\n        \"Kein Hinweis auf urologischen Primärtumor\"\n    ]\n}\n```",
+  "ground_truth": "non_urological",
+  "is_correct": true,
+  "inference_time_seconds": 42.047129584000004,
+  "tokens_used": 1295,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

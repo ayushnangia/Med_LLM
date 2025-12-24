@@ -1,0 +1,60 @@
+{
+  "case_id": "ncc_4",
+  "timestamp": "2025-12-24T10:18:51.801890",
+  "provider": "openrouter",
+  "model": "moonshotai/kimi-k2-thinking",
+  "input_case": {
+    "case_id": "ncc_4",
+    "patient": {
+      "alter_jahre": 66,
+      "geschlecht": null,
+      "ecog": 1,
+      "komorbiditaet": "unknown"
+    },
+    "anamnese": "Kleiner Nierentumor links 2,8 cm (cT1a). Vorerkrankungen: Z. n. Appendektomie; COPD GOLD I (Raucher 20 PY).",
+    "diagnose_kurz": "Kleiner Nierentumor links 2,8 cm (cT1a), malignitätsverdächtig",
+    "alle_diagnosen": null,
+    "stadium": "cT1a, nicht-metastasiert (prätherapeutisch)",
+    "tnm_clinical": {
+      "T": "T1",
+      "N": "unknown",
+      "M": "M0",
+      "stage_group": "unknown"
+    },
+    "tnm_pathological": {
+      "T": null,
+      "N": null,
+      "M": null,
+      "stage_group": null
+    },
+    "histologie": null,
+    "metastatic": false,
+    "nebendiagnosen": [
+      "Z. n. Appendektomie",
+      "COPD GOLD I (Raucher 20 PY)"
+    ],
+    "ground_truth": "nierenzellkarzinom"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 66 Jahre\nECOG: 1\nAnamnese: Kleiner Nierentumor links 2,8 cm (cT1a). Vorerkrankungen: Z. n. Appendektomie; COPD GOLD I (Raucher 20 PY).\nDiagnose: Kleiner Nierentumor links 2,8 cm (cT1a), malignitätsverdächtig\nStadium: cT1a, nicht-metastasiert (prätherapeutisch)\nTNM (klinisch): T:T1 N:unknown M:M0\nTNM (pathologisch): Unbekannt\nMetastasiert: Nein\nNebendiagnosen: Z. n. Appendektomie, COPD GOLD I (Raucher 20 PY)\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Der Fall beschreibt einen 66-jährigen Patienten mit einem soliden, malignitätsverdächtigen Tumor des Nierenparenchyms (2,8 cm, klinisch als cT1a klassifiziert). Diese Befundkonstellation ist typisch für ein frühes Nierenzellkarzinom (RCC), das häufigste maligne Nierentumor. Die Größe und das klinische Stadium (cT1a) entsprechen dem üblichen Befund bei zufällig entdeckten, lokalisierten Nierenzellkarzinomen. Rauchen ist ein etablierter Risikofaktor für RCC. Die anderen Differentialdiagnosen (Urothelkarzinom des Nierenbeckens, benigne Tumoren) sind deutlich seltener oder widersprechen der klinischen Beschreibung. Die fehlende pathologische Bestätigung ist bei präoperativer Klassifikation üblich und ändert nicht die hohe Wahrscheinlichkeit einer klinischen RCC-Diagnose.",
+    "classification": "nierenzellkarzinom",
+    "confidence": 0.95,
+    "key_indicators": [
+      "Nierentumor",
+      "cT1a",
+      "malignitätsverdächtig",
+      "Alter 66 Jahre",
+      "Raucher (20 PY)",
+      "nicht-metastasiert"
+    ]
+  },
+  "raw_response": "```json\n{\n    \"reasoning\": \"Der Fall beschreibt einen 66-jährigen Patienten mit einem soliden, malignitätsverdächtigen Tumor des Nierenparenchyms (2,8 cm, klinisch als cT1a klassifiziert). Diese Befundkonstellation ist typisch für ein frühes Nierenzellkarzinom (RCC), das häufigste maligne Nierentumor. Die Größe und das klinische Stadium (cT1a) entsprechen dem üblichen Befund bei zufällig entdeckten, lokalisierten Nierenzellkarzinomen. Rauchen ist ein etablierter Risikofaktor für RCC. Die anderen Differentialdiagnosen (Urothelkarzinom des Nierenbeckens, benigne Tumoren) sind deutlich seltener oder widersprechen der klinischen Beschreibung. Die fehlende pathologische Bestätigung ist bei präoperativer Klassifikation üblich und ändert nicht die hohe Wahrscheinlichkeit einer klinischen RCC-Diagnose.\",\n    \"classification\": \"nierenzellkarzinom\",\n    \"confidence\": 0.95,\n    \"key_indicators\": [\"Nierentumor\", \"cT1a\", \"malignitätsverdächtig\", \"Alter 66 Jahre\", \"Raucher (20 PY)\", \"nicht-metastasiert\"]\n}\n```",
+  "ground_truth": "nierenzellkarzinom",
+  "is_correct": true,
+  "inference_time_seconds": 16.631850499999928,
+  "tokens_used": 1924,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

@@ -1,0 +1,42 @@
+{
+  "case_id": "non_uro_1",
+  "timestamp": "2025-12-24T09:57:46.005098",
+  "provider": "ollama",
+  "model": "mistral:7b-instruct",
+  "input_case": {
+    "case_id": "non_uro_1",
+    "patient": {
+      "alter_jahre": 81,
+      "geschlecht": null,
+      "ecog": null,
+      "komorbiditaet": null
+    },
+    "anamnese": null,
+    "diagnose_kurz": "Aggressives B-Zell Non-Hodgkin-Lymphom (GCB-Typ nach Hans), Double-Expressor (BCL2/cMYC), EBV-negativ; große paraaortale/peritoneale Raumforderung links (ca. 12,1×8,2×13,2 cm) mit Infiltration Pankreasschwanz/IVC/li. A. iliaca communis",
+    "stadium": "aggressives NHL; Staging unvollständig (CT Thorax ohne Metastasen; weitere Lymphom-Stagingdiagnostik ausstehend)",
+    "tnm_clinical": null,
+    "tnm_pathological": null,
+    "histologie": null,
+    "metastatic": null,
+    "nebendiagnosen": null,
+    "ground_truth": "non_urological"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Analysiere den folgenden klinischen Fall und bestimme die Haupttumorentität.\n\nKLINISCHER FALL:\nPatient: 81 Jahre\nDiagnose: Aggressives B-Zell Non-Hodgkin-Lymphom (GCB-Typ nach Hans), Double-Expressor (BCL2/cMYC), EBV-negativ; große paraaortale/peritoneale Raumforderung links (ca. 12,1×8,2×13,2 cm) mit Infiltration Pankreasschwanz/IVC/li. A. iliaca communis\nStadium: aggressives NHL; Staging unvollständig (CT Thorax ohne Metastasen; weitere Lymphom-Stagingdiagnostik ausstehend)\n\nAUFGABE:\nKlassifiziere diesen Fall in GENAU eine der folgenden Kategorien:\n- nierenzellkarzinom (Nierenkrebs/RCC)\n- prostatakarzinom (Prostatakrebs)\n- hodentumor (Hodenkrebs)\n- peniskarzinom (Peniskrebs)\n- urothelkarzinom (Blasen-/Harnwegskrebs)\n- polymalignancy (Mehrfachtumoren/Polymalignität)\n- non_urological (Nicht-urologische Tumoren)\n\nAntworte im folgenden JSON-Format:\n{\n    \"reasoning\": \"Deine schrittweise Begründung auf Deutsch\",\n    \"classification\": \"eine der obigen Kategorien\",\n    \"confidence\": 0.0 bis 1.0,\n    \"key_indicators\": [\"Indikator 1\", \"Indikator 2\"]\n}\n\nJSON-Antwort:",
+  "output": {
+    "reasoning": "Der Patient ist ein 81-jähriger Mann mit einer Diagnose von Aggressives B-Zell Non-Hodgkin-Lymphom (GCB-Typ nach Hans), Double-Expressor (BCL2/cMYC), EBV-negativ. Es gibt eine große paraaortale/peritoneale Raumforderung links mit Infiltration Pankreasschwanz/IVC/li. A. iliaca communis. Das Tumorstadium ist aggressiv und das Lymphom-Stagingdiagnostik ist unvollständig. Da es sich um eine bösartige Erkrankung des Lymphgewebes handelt, die nicht im Bereich der Niere, Prostata, Hoden, Penis oder Harnblase liegt, kann dieses Tumor nicht in die Kategorien 'nierenzellkarzinom', 'prostatakarzinom', 'hodentumor', 'peniskarzinom', 'urothelkarzinom' oder 'polymalignancy' eingeordnet werden. Es handelt sich um eine 'non_urological' Tumorentität.",
+    "classification": "non_urological",
+    "confidence": 1.0,
+    "key_indicators": [
+      "Diagnose: Aggressives B-Zell Non-Hodgkin-Lymphom",
+      "große paraaortale/peritoneale Raumforderung links"
+    ]
+  },
+  "raw_response": " {\n    \"reasoning\": \"Der Patient ist ein 81-jähriger Mann mit einer Diagnose von Aggressives B-Zell Non-Hodgkin-Lymphom (GCB-Typ nach Hans), Double-Expressor (BCL2/cMYC), EBV-negativ. Es gibt eine große paraaortale/peritoneale Raumforderung links mit Infiltration Pankreasschwanz/IVC/li. A. iliaca communis. Das Tumorstadium ist aggressiv und das Lymphom-Stagingdiagnostik ist unvollständig. Da es sich um eine bösartige Erkrankung des Lymphgewebes handelt, die nicht im Bereich der Niere, Prostata, Hoden, Penis oder Harnblase liegt, kann dieses Tumor nicht in die Kategorien 'nierenzellkarzinom', 'prostatakarzinom', 'hodentumor', 'peniskarzinom', 'urothelkarzinom' oder 'polymalignancy' eingeordnet werden. Es handelt sich um eine 'non_urological' Tumorentität.\",\n    \"classification\": \"non_urological\",\n    \"confidence\": 1.0,\n    \"key_indicators\": [\"Diagnose: Aggressives B-Zell Non-Hodgkin-Lymphom\", \"große paraaortale/peritoneale Raumforderung links\"]\n}",
+  "ground_truth": "non_urological",
+  "is_correct": true,
+  "inference_time_seconds": 65.05494403839111,
+  "tokens_used": 815,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

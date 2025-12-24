@@ -1,0 +1,13 @@
+{
+  "model": "google/gemma-3n-e4b-it",
+  "provider": "openrouter",
+  "timestamp": "2025-12-24T10:24:56.185909",
+  "total_cases": 26,
+  "correct": 24,
+  "incorrect": 2,
+  "errors": 0,
+  "accuracy": 0.9230769230769231,
+  "total_tokens": 14361,
+  "elapsed_seconds": 20.711633,
+  "concurrency": 10
+}

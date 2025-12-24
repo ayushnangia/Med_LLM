@@ -1,0 +1,61 @@
+{
+  "case_id": "penis_ca_2",
+  "timestamp": "2025-12-24T10:21:45.782805",
+  "provider": "openrouter",
+  "model": "google/gemini-3-pro-preview",
+  "input_case": {
+    "case_id": "penis_ca_2",
+    "patient": {
+      "alter_jahre": 52,
+      "geschlecht": null,
+      "ecog": 1,
+      "komorbiditaet": "unknown"
+    },
+    "anamnese": "Metastasiertes Peniskarzinom (Plattenepithelkarzinom) mit komplexer Vortherapie (Penektomie, LK-Dissektionen inguinal/pelvin, Cis/Pacli/5FU, Radiatio 61 Gy pelvin/inguinal). Aktuell bioptisch gesicherte Hautmetastasen linker Oberschenkel (10.04.2025). MTB: Pembro + Sacituzumab govitecan, Kostenübernahme abgelehnt.",
+    "diagnose_kurz": "Metastasiertes Peniskarzinom (Plattenepithelkarzinom) mit Hautmetastasen",
+    "alle_diagnosen": null,
+    "stadium": "metastasiert (Hautmetastasen), mehrfach vorbehandelt",
+    "tnm_clinical": {
+      "T": "unknown",
+      "N": "unknown",
+      "M": "M1",
+      "stage_group": "unknown"
+    },
+    "tnm_pathological": {
+      "T": "pT2",
+      "N": "pN2",
+      "M": null,
+      "stage_group": null
+    },
+    "histologie": null,
+    "metastatic": null,
+    "nebendiagnosen": [
+      "SARS-CoV-2 2024",
+      "Ablatio testis links (Leydig-Zell-Tumor 03/2018)",
+      "Thrombophlebitis",
+      "arterielle Hypertonie"
+    ],
+    "ground_truth": "peniskarzinom"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 52 Jahre\nECOG: 1\nAnamnese: Metastasiertes Peniskarzinom (Plattenepithelkarzinom) mit komplexer Vortherapie (Penektomie, LK-Dissektionen inguinal/pelvin, Cis/Pacli/5FU, Radiatio 61 Gy pelvin/inguinal). Aktuell bioptisch gesicherte Hautmetastasen linker Oberschenkel (10.04.2025). MTB: Pembro + Sacituzumab govitecan, Kostenübernahme abgelehnt.\nDiagnose: Metastasiertes Peniskarzinom (Plattenepithelkarzinom) mit Hautmetastasen\nStadium: metastasiert (Hautmetastasen), mehrfach vorbehandelt\nTNM (klinisch): T:unknown N:unknown M:M1\nTNM (pathologisch): T:pT2 N:pN2\nNebendiagnosen: SARS-CoV-2 2024, Ablatio testis links (Leydig-Zell-Tumor 03/2018), Thrombophlebitis, arterielle Hypertonie\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Der Patient stellt sich mit einem fortschreitenden, metastasierten Peniskarzinom (Plattenepithelkarzinom) als führende und behandlungsbedürftige Hauptdiagnose vor. Die aktuelle klinische Symptomatik (Hautmetastasen), die histologische Sicherung und die therapeutische Diskussion im Molecular Tumor Board (MTB) beziehen sich ausschließlich auf das Peniskarzinom. Zwar liegt anamnestisch ein Leydig-Zell-Tumor (Hodentumor, 2018) vor, dieser wird jedoch explizit als Nebendiagnose/Anamnese geführt und ist aktuell nicht das krankheitsbestimmende Geschehen. Die Kategorie 'polymalignancy' wird hier nicht gewählt, da das Peniskarzinom eindeutig die aktive Hauptdiagnose darstellt.",
+    "classification": "peniskarzinom",
+    "confidence": 1.0,
+    "key_indicators": [
+      "Diagnose: Metastasiertes Peniskarzinom (Plattenepithelkarzinom)",
+      "Aktuell bioptisch gesicherte Hautmetastasen",
+      "Zustand nach Penektomie",
+      "MTB-Empfehlung für Pembro + Sacituzumab govitecan",
+      "Leydig-Zell-Tumor lediglich als Nebendiagnose/Anamnese (2018)"
+    ]
+  },
+  "raw_response": "```json\n{\n    \"reasoning\": \"Der Patient stellt sich mit einem fortschreitenden, metastasierten Peniskarzinom (Plattenepithelkarzinom) als führende und behandlungsbedürftige Hauptdiagnose vor. Die aktuelle klinische Symptomatik (Hautmetastasen), die histologische Sicherung und die therapeutische Diskussion im Molecular Tumor Board (MTB) beziehen sich ausschließlich auf das Peniskarzinom. Zwar liegt anamnestisch ein Leydig-Zell-Tumor (Hodentumor, 2018) vor, dieser wird jedoch explizit als Nebendiagnose/Anamnese geführt und ist aktuell nicht das krankheitsbestimmende Geschehen. Die Kategorie 'polymalignancy' wird hier nicht gewählt, da das Peniskarzinom eindeutig die aktive Hauptdiagnose darstellt.\",\n    \"classification\": \"peniskarzinom\",\n    \"confidence\": 1.0,\n    \"key_indicators\": [\n        \"Diagnose: Metastasiertes Peniskarzinom (Plattenepithelkarzinom)\",\n        \"Aktuell bioptisch gesicherte Hautmetastasen\",\n        \"Zustand nach Penektomie\",\n        \"MTB-Empfehlung für Pembro + Sacituzumab govitecan\",\n        \"Leydig-Zell-Tumor lediglich als Nebendiagnose/Anamnese (2018)\"\n    ]\n}\n```",
+  "ground_truth": "peniskarzinom",
+  "is_correct": true,
+  "inference_time_seconds": 69.64988095799993,
+  "tokens_used": 4131,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

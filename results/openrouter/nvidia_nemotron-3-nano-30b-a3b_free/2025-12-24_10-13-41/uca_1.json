@@ -1,0 +1,46 @@
+{
+  "case_id": "uca_1",
+  "timestamp": "2025-12-24T10:13:41.835332",
+  "provider": "openrouter",
+  "model": "nvidia/nemotron-3-nano-30b-a3b:free",
+  "input_case": {
+    "case_id": "uca_1",
+    "patient": {
+      "alter_jahre": 63,
+      "geschlecht": null,
+      "ecog": null,
+      "komorbiditaet": null
+    },
+    "anamnese": null,
+    "diagnose_kurz": "Multilokuläres NMIBC-Rezidiv: nicht-invasives papilläres Urothelkarzinom low grade (pTa G1) in mehreren Lokalisationen (A–C), D/E ohne Malignität",
+    "alle_diagnosen": null,
+    "stadium": "NMIBC, low grade pTa (multifokal, Rezidiv >3 Läsionen) – Risikostratifizierung (EORTC) geplant",
+    "tnm_clinical": null,
+    "tnm_pathological": null,
+    "histologie": null,
+    "metastatic": null,
+    "nebendiagnosen": null,
+    "ground_truth": "urothelkarzinom"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 63 Jahre\nDiagnose: Multilokuläres NMIBC-Rezidiv: nicht-invasives papilläres Urothelkarzinom low grade (pTa G1) in mehreren Lokalisationen (A–C), D/E ohne Malignität\nStadium: NMIBC, low grade pTa (multifokal, Rezidiv >3 Läsionen) – Risikostratifizierung (EORTC) geplant\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Der Patient leidet an einem rezidivierenden, nicht invasiven papillären Urothelkarzinom (NMIBC) des Blasenbodens, das mehrfach lokalisiert ist (pTa G1). Die Erkrankung betrifft das Urothelium und wird im Rahmen einer Risikostratifizierung nach EORTC-Klassifikation behandelt. Es gibt keine Hinweise auf Nierenzell-, Prostata-, Hoden- oder Peniskarzinom. Daher gehört der Fall eindeutig in die Kategorie Urothelkarzinom.",
+    "classification": "urothelkarzinom",
+    "confidence": 0.99,
+    "key_indicators": [
+      "non-invasive papillary urothelial carcinoma",
+      "NMIBC",
+      "pTa G1",
+      "multifocal recurrence >3 lesions",
+      "urothelial origin"
+    ]
+  },
+  "raw_response": "{\n    \"reasoning\": \"Der Patient leidet an einem rezidivierenden, nicht invasiven papillären Urothelkarzinom (NMIBC) des Blasenbodens, das mehrfach lokalisiert ist (pTa G1). Die Erkrankung betrifft das Urothelium und wird im Rahmen einer Risikostratifizierung nach EORTC-Klassifikation behandelt. Es gibt keine Hinweise auf Nierenzell-, Prostata-, Hoden- oder Peniskarzinom. Daher gehört der Fall eindeutig in die Kategorie Urothelkarzinom.\",\n    \"classification\": \"urothelkarzinom\",\n    \"confidence\": 0.99,\n    \"key_indicators\": [\n        \"non-invasive papillary urothelial carcinoma\",\n        \"NMIBC\",\n        \"pTa G1\",\n        \"multifocal recurrence >3 lesions\",\n        \"urothelial origin\"\n    ]\n}",
+  "ground_truth": "urothelkarzinom",
+  "is_correct": true,
+  "inference_time_seconds": 11.63118808300004,
+  "tokens_used": 691,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

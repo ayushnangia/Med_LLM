@@ -1,0 +1,59 @@
+{
+  "case_id": "ncc_2",
+  "timestamp": "2025-12-24T10:16:01.365946",
+  "provider": "openrouter",
+  "model": "essentialai/rnj-1-instruct",
+  "input_case": {
+    "case_id": "ncc_2",
+    "patient": {
+      "alter_jahre": 82,
+      "geschlecht": null,
+      "ecog": 1,
+      "komorbiditaet": "hoch"
+    },
+    "anamnese": "Pat synkopiert, zur TAVI-Evaluation. TAVI indiziert. Im TAVI-CT malignomsuspekte Raumforderung linke Niere (ca. 2×3 cm). Erstdiagnose 06.11.2025, links.",
+    "diagnose_kurz": "Malignomsuspekte Raumforderung linke Niere",
+    "alle_diagnosen": null,
+    "stadium": "unbekannt (prätherapeutisch)",
+    "tnm_clinical": {
+      "T": "unknown",
+      "N": "unknown",
+      "M": "unknown",
+      "stage_group": "unknown"
+    },
+    "tnm_pathological": {
+      "T": null,
+      "N": null,
+      "M": null,
+      "stage_group": null
+    },
+    "histologie": null,
+    "metastatic": false,
+    "nebendiagnosen": [
+      "Aortenstenose hochgradig (TAVI indiziert)",
+      "KHK",
+      "CKD G3"
+    ],
+    "ground_truth": "nierenzellkarzinom"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 82 Jahre\nECOG: 1\nAnamnese: Pat synkopiert, zur TAVI-Evaluation. TAVI indiziert. Im TAVI-CT malignomsuspekte Raumforderung linke Niere (ca. 2×3 cm). Erstdiagnose 06.11.2025, links.\nDiagnose: Malignomsuspekte Raumforderung linke Niere\nStadium: unbekannt (prätherapeutisch)\nTNM (klinisch): T:unknown N:unknown M:unknown\nTNM (pathologisch): Unbekannt\nMetastasiert: Nein\nNebendiagnosen: Aortenstenose hochgradig (TAVI indiziert), KHK, CKD G3\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Die malignomsuspekte Raumforderung in der linken Niere wird im Anamnesen nicht weiter spezifiziert. Es gibt keine Hinweise auf spezifische Zelltypen oder histologische Bestimmungen, die eine Diagnose eines spezifischen Nierenkarzinoms (wie nierenzellkarzinom, urothelkarzinom) zulassen würden. Die Nebendiagnosen (Aortenstenose, KHK, CKD) sind urologische Komplikationen, aber nicht direkt mit der Raumforderung verknüpft. Ohne weitere klinische oder pathologische Information kann keine spezifische Kategorie ausgewählt werden. Daher wird 'non_urological' gewählt, da die Raumforderung nicht direkt mit einem urologischen Tumor zusammenhängt und keine spezifische Kategorie zutreffend ist.",
+    "classification": "non_urological",
+    "confidence": 0.7,
+    "key_indicators": [
+      "malignomsuspekte Raumforderung in der linken Niere",
+      "keine spezifische Zelltypenangabe",
+      "keine histologische Bestimmung",
+      "Nebendiagnosen sind urologische Komplikationen, nicht direkt mit der Raumforderung verknüpft"
+    ]
+  },
+  "raw_response": "{\n    \"reasoning\": \"Die malignomsuspekte Raumforderung in der linken Niere wird im Anamnesen nicht weiter spezifiziert. Es gibt keine Hinweise auf spezifische Zelltypen oder histologische Bestimmungen, die eine Diagnose eines spezifischen Nierenkarzinoms (wie nierenzellkarzinom, urothelkarzinom) zulassen würden. Die Nebendiagnosen (Aortenstenose, KHK, CKD) sind urologische Komplikationen, aber nicht direkt mit der Raumforderung verknüpft. Ohne weitere klinische oder pathologische Information kann keine spezifische Kategorie ausgewählt werden. Daher wird 'non_urological' gewählt, da die Raumforderung nicht direkt mit einem urologischen Tumor zusammenhängt und keine spezifische Kategorie zutreffend ist.\",\n    \"classification\": \"non_urological\",\n    \"confidence\": 0.7,\n    \"key_indicators\": [\"malignomsuspekte Raumforderung in der linken Niere\", \"keine spezifische Zelltypenangabe\", \"keine histologische Bestimmung\", \"Nebendiagnosen sind urologische Komplikationen, nicht direkt mit der Raumforderung verknüpft\"]\n}",
+  "ground_truth": "nierenzellkarzinom",
+  "is_correct": false,
+  "inference_time_seconds": 11.604331875000014,
+  "tokens_used": 648,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

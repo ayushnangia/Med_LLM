@@ -1,0 +1,63 @@
+{
+  "case_id": "penis_ca_2",
+  "timestamp": "2025-12-24T10:18:51.802431",
+  "provider": "openrouter",
+  "model": "moonshotai/kimi-k2-thinking",
+  "input_case": {
+    "case_id": "penis_ca_2",
+    "patient": {
+      "alter_jahre": 52,
+      "geschlecht": null,
+      "ecog": 1,
+      "komorbiditaet": "unknown"
+    },
+    "anamnese": "Metastasiertes Peniskarzinom (Plattenepithelkarzinom) mit komplexer Vortherapie (Penektomie, LK-Dissektionen inguinal/pelvin, Cis/Pacli/5FU, Radiatio 61 Gy pelvin/inguinal). Aktuell bioptisch gesicherte Hautmetastasen linker Oberschenkel (10.04.2025). MTB: Pembro + Sacituzumab govitecan, Kostenübernahme abgelehnt.",
+    "diagnose_kurz": "Metastasiertes Peniskarzinom (Plattenepithelkarzinom) mit Hautmetastasen",
+    "alle_diagnosen": null,
+    "stadium": "metastasiert (Hautmetastasen), mehrfach vorbehandelt",
+    "tnm_clinical": {
+      "T": "unknown",
+      "N": "unknown",
+      "M": "M1",
+      "stage_group": "unknown"
+    },
+    "tnm_pathological": {
+      "T": "pT2",
+      "N": "pN2",
+      "M": null,
+      "stage_group": null
+    },
+    "histologie": null,
+    "metastatic": null,
+    "nebendiagnosen": [
+      "SARS-CoV-2 2024",
+      "Ablatio testis links (Leydig-Zell-Tumor 03/2018)",
+      "Thrombophlebitis",
+      "arterielle Hypertonie"
+    ],
+    "ground_truth": "peniskarzinom"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 52 Jahre\nECOG: 1\nAnamnese: Metastasiertes Peniskarzinom (Plattenepithelkarzinom) mit komplexer Vortherapie (Penektomie, LK-Dissektionen inguinal/pelvin, Cis/Pacli/5FU, Radiatio 61 Gy pelvin/inguinal). Aktuell bioptisch gesicherte Hautmetastasen linker Oberschenkel (10.04.2025). MTB: Pembro + Sacituzumab govitecan, Kostenübernahme abgelehnt.\nDiagnose: Metastasiertes Peniskarzinom (Plattenepithelkarzinom) mit Hautmetastasen\nStadium: metastasiert (Hautmetastasen), mehrfach vorbehandelt\nTNM (klinisch): T:unknown N:unknown M:M1\nTNM (pathologisch): T:pT2 N:pN2\nNebendiagnosen: SARS-CoV-2 2024, Ablatio testis links (Leydig-Zell-Tumor 03/2018), Thrombophlebitis, arterielle Hypertonie\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Die aktuelle, behandlungsrelevante und leitende Diagnose ist ein metastasiertes Peniskarzinom (Plattenepithelkarzinom) mit neu aufgetretenen Hautmetastasen. Alle onkologischen Therapien (Penektomie, Lymphknotendissektion, Chemotherapie, Radiatio) und die aktuelle MTB-Empfehlung (Pembrolizumab + Sacituzumab govitecan) richten sich ausschließlich gegen das Peniskarzinom. Der Leydig-Zell-Tumor (2018) ist eine abgeschlossene Nebendiagnose nach Ablatio testis ohne Relevanz für die aktuelle Therapieentscheidung. Die Klassifikation erfolgt daher nach der dominanten, aktiven Malignität.",
+    "classification": "peniskarzinom",
+    "confidence": 0.98,
+    "key_indicators": [
+      "Metastasiertes Peniskarzinom (Plattenepithelkarzinom)",
+      "Hautmetastasen linker Oberschenkel",
+      "Penektomie in Anamnese",
+      "Lymphknotendissektionen inguinal/pelvin",
+      "Vortherapie mit Cisplatin/Paclitaxel/5-FU",
+      "Pelvine/inguinale Radiatio (61 Gy)",
+      "MTB-Empfehlung spezifisch für Peniskarzinom"
+    ]
+  },
+  "raw_response": "```json\n{\n    \"reasoning\": \"Die aktuelle, behandlungsrelevante und leitende Diagnose ist ein metastasiertes Peniskarzinom (Plattenepithelkarzinom) mit neu aufgetretenen Hautmetastasen. Alle onkologischen Therapien (Penektomie, Lymphknotendissektion, Chemotherapie, Radiatio) und die aktuelle MTB-Empfehlung (Pembrolizumab + Sacituzumab govitecan) richten sich ausschließlich gegen das Peniskarzinom. Der Leydig-Zell-Tumor (2018) ist eine abgeschlossene Nebendiagnose nach Ablatio testis ohne Relevanz für die aktuelle Therapieentscheidung. Die Klassifikation erfolgt daher nach der dominanten, aktiven Malignität.\",\n    \"classification\": \"peniskarzinom\",\n    \"confidence\": 0.98,\n    \"key_indicators\": [\n        \"Metastasiertes Peniskarzinom (Plattenepithelkarzinom)\",\n        \"Hautmetastasen linker Oberschenkel\",\n        \"Penektomie in Anamnese\",\n        \"Lymphknotendissektionen inguinal/pelvin\",\n        \"Vortherapie mit Cisplatin/Paclitaxel/5-FU\",\n        \"Pelvine/inguinale Radiatio (61 Gy)\",\n        \"MTB-Empfehlung spezifisch für Peniskarzinom\"\n    ]\n}\n```",
+  "ground_truth": "peniskarzinom",
+  "is_correct": true,
+  "inference_time_seconds": 50.22187495800006,
+  "tokens_used": 2232,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

@@ -1,0 +1,59 @@
+{
+  "case_id": "ncc_2",
+  "timestamp": "2025-12-24T10:24:14.634739",
+  "provider": "openrouter",
+  "model": "google/gemma-3-4b-it",
+  "input_case": {
+    "case_id": "ncc_2",
+    "patient": {
+      "alter_jahre": 82,
+      "geschlecht": null,
+      "ecog": 1,
+      "komorbiditaet": "hoch"
+    },
+    "anamnese": "Pat synkopiert, zur TAVI-Evaluation. TAVI indiziert. Im TAVI-CT malignomsuspekte Raumforderung linke Niere (ca. 2×3 cm). Erstdiagnose 06.11.2025, links.",
+    "diagnose_kurz": "Malignomsuspekte Raumforderung linke Niere",
+    "alle_diagnosen": null,
+    "stadium": "unbekannt (prätherapeutisch)",
+    "tnm_clinical": {
+      "T": "unknown",
+      "N": "unknown",
+      "M": "unknown",
+      "stage_group": "unknown"
+    },
+    "tnm_pathological": {
+      "T": null,
+      "N": null,
+      "M": null,
+      "stage_group": null
+    },
+    "histologie": null,
+    "metastatic": false,
+    "nebendiagnosen": [
+      "Aortenstenose hochgradig (TAVI indiziert)",
+      "KHK",
+      "CKD G3"
+    ],
+    "ground_truth": "nierenzellkarzinom"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 82 Jahre\nECOG: 1\nAnamnese: Pat synkopiert, zur TAVI-Evaluation. TAVI indiziert. Im TAVI-CT malignomsuspekte Raumforderung linke Niere (ca. 2×3 cm). Erstdiagnose 06.11.2025, links.\nDiagnose: Malignomsuspekte Raumforderung linke Niere\nStadium: unbekannt (prätherapeutisch)\nTNM (klinisch): T:unknown N:unknown M:unknown\nTNM (pathologisch): Unbekannt\nMetastasiert: Nein\nNebendiagnosen: Aortenstenose hochgradig (TAVI indiziert), KHK, CKD G3\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Die malingnomuspekte Raumforderung in der linken Niere bei einem 82-jährigen Patienten mit einer hochgradigen Aortenstenose, KHK und CKD G3 erfordert eine sorgfältige Abklärung. Obwohl die Diagnose noch nicht bestätigt ist, ist die Lokalisation in der Niere und die klinische Malignomsuspekte am ehesten auf ein Nierenzellkarzinom (RCC) hindeuten. Die anderen Optionen sind weniger wahrscheinlich, da es keine Hinweise auf eine Prostatakrebs-Anamnese, Hodentumore, Peniskarzinome oder einen nicht-urologischen Tumor vorliegen. Die Möglichkeit einer Polymalignom-Synergie kann nicht ausgeschlossen werden, sollte aber im Rahmen der weiteren Diagnostik berücksichtigt werden. Die ECOG 1 und die TAVI-Indikation sind wichtige klinische Faktoren, die die Behandlung beeinflussen, aber nicht die primäre Klassifizierung des Tumors bestimmen.",
+    "classification": "nierenzellkarzinom",
+    "confidence": 0.85,
+    "key_indicators": [
+      "Raumforderung in der linken Niere",
+      "Malignomsuspekte Befund",
+      "Alter des Patienten (82 Jahre)",
+      "Begleiterkrankungen (Aortenstenose, KHK, CKD G3)"
+    ]
+  },
+  "raw_response": "\n```json\n{\n    \"reasoning\": \"Die malingnomuspekte Raumforderung in der linken Niere bei einem 82-jährigen Patienten mit einer hochgradigen Aortenstenose, KHK und CKD G3 erfordert eine sorgfältige Abklärung. Obwohl die Diagnose noch nicht bestätigt ist, ist die Lokalisation in der Niere und die klinische Malignomsuspekte am ehesten auf ein Nierenzellkarzinom (RCC) hindeuten. Die anderen Optionen sind weniger wahrscheinlich, da es keine Hinweise auf eine Prostatakrebs-Anamnese, Hodentumore, Peniskarzinome oder einen nicht-urologischen Tumor vorliegen. Die Möglichkeit einer Polymalignom-Synergie kann nicht ausgeschlossen werden, sollte aber im Rahmen der weiteren Diagnostik berücksichtigt werden. Die ECOG 1 und die TAVI-Indikation sind wichtige klinische Faktoren, die die Behandlung beeinflussen, aber nicht die primäre Klassifizierung des Tumors bestimmen.\",\n    \"classification\": \"nierenzellkarzinom\",\n    \"confidence\": 0.85,\n    \"key_indicators\": [\"Raumforderung in der linken Niere\", \"Malignomsuspekte Befund\", \"Alter des Patienten (82 Jahre)\", \"Begleiterkrankungen (Aortenstenose, KHK, CKD G3)\"]\n}\n```",
+  "ground_truth": "nierenzellkarzinom",
+  "is_correct": true,
+  "inference_time_seconds": 6.754519624999993,
+  "tokens_used": 594,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

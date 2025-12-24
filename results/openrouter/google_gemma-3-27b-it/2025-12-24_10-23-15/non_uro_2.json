@@ -1,0 +1,48 @@
+{
+  "case_id": "non_uro_2",
+  "timestamp": "2025-12-24T10:23:15.110892",
+  "provider": "openrouter",
+  "model": "google/gemma-3-27b-it",
+  "input_case": {
+    "case_id": "non_uro_2",
+    "patient": {
+      "alter_jahre": 52,
+      "geschlecht": null,
+      "ecog": null,
+      "komorbiditaet": null
+    },
+    "anamnese": null,
+    "diagnose_kurz": "Unklare Raumforderung Harnblase (Seitenwand) – TUR-B 01.11.2025; Histologie: morphologisch/klinisch Infiltration durch bekanntes Sigmakarzinom (sekundäre Blaseninfiltration, kein primäres Urothelkarzinom beschrieben)",
+    "alle_diagnosen": [
+      "Unklare Raumforderung Harnblase (Seitenwand) – TUR-B 01.11.2025; Histologie: morphologisch/klinisch Infiltration durch bekanntes Sigmakarzinom (sekundäre Blaseninfiltration, kein primäres Urothelkarzinom beschrieben)",
+      "Hepatisch metastasiertes Sigmakarzinom (ED 01/2025), Status nach Sigmaresektion mit subperitonealer Exzision am Blasendach (12.01.2025) und Leber-lokalen Therapien/Resektionen"
+    ],
+    "stadium": "Sekundärbefall der Harnblase durch kolorektales Karzinom (Verdacht/Kommentar), genaue TNM der Blasenläsion nicht angegeben",
+    "tnm_clinical": null,
+    "tnm_pathological": null,
+    "histologie": null,
+    "metastatic": null,
+    "nebendiagnosen": null,
+    "ground_truth": "non_urological"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 52 Jahre\nDiagnose 1: Unklare Raumforderung Harnblase (Seitenwand) – TUR-B 01.11.2025; Histologie: morphologisch/klinisch Infiltration durch bekanntes Sigmakarzinom (sekundäre Blaseninfiltration, kein primäres Urothelkarzinom beschrieben)\nDiagnose 2: Hepatisch metastasiertes Sigmakarzinom (ED 01/2025), Status nach Sigmaresektion mit subperitonealer Exzision am Blasendach (12.01.2025) und Leber-lokalen Therapien/Resektionen\nStadium: Sekundärbefall der Harnblase durch kolorektales Karzinom (Verdacht/Kommentar), genaue TNM der Blasenläsion nicht angegeben\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Der Fall beschreibt eine sekundäre Infiltration der Harnblase durch ein bekanntes Sigmakarzinom (Darmkrebs). Es handelt sich *nicht* um ein primäres Urothelkarzinom (Blasenkrebs), sondern um eine Metastasierung eines kolorektalen Karzinoms in die Blase. Da die Ursache der Läsion im Urogenitaltrakt ein extra-urologischer Tumor ist, ist die korrekte Klassifizierung 'non_urological'. Die anderen Optionen sind primäre urologische Tumoren und fallen daher weg. 'Polymalignancy' wäre nur relevant, wenn mehrere unabhängige Krebserkrankungen vorliegen würden, was hier nicht der Fall ist.",
+    "classification": "non_urological",
+    "confidence": 0.95,
+    "key_indicators": [
+      "Sigmakarzinom",
+      "sekundäre Blaseninfiltration",
+      "kein primäres Urothelkarzinom",
+      "hepatische Metastasen des Sigmakarzinoms"
+    ]
+  },
+  "raw_response": ":\n```json\n{\n    \"reasoning\": \"Der Fall beschreibt eine sekundäre Infiltration der Harnblase durch ein bekanntes Sigmakarzinom (Darmkrebs). Es handelt sich *nicht* um ein primäres Urothelkarzinom (Blasenkrebs), sondern um eine Metastasierung eines kolorektalen Karzinoms in die Blase. Da die Ursache der Läsion im Urogenitaltrakt ein extra-urologischer Tumor ist, ist die korrekte Klassifizierung 'non_urological'. Die anderen Optionen sind primäre urologische Tumoren und fallen daher weg. 'Polymalignancy' wäre nur relevant, wenn mehrere unabhängige Krebserkrankungen vorliegen würden, was hier nicht der Fall ist.\",\n    \"classification\": \"non_urological\",\n    \"confidence\": 0.95,\n    \"key_indicators\": [\"Sigmakarzinom\", \"sekundäre Blaseninfiltration\", \"kein primäres Urothelkarzinom\", \"hepatische Metastasen des Sigmakarzinoms\"]\n}\n```",
+  "ground_truth": "non_urological",
+  "is_correct": true,
+  "inference_time_seconds": 36.971712667,
+  "tokens_used": 568,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

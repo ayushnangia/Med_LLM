@@ -1,0 +1,47 @@
+{
+  "case_id": "combi_2",
+  "timestamp": "2025-12-24T10:13:41.835360",
+  "provider": "openrouter",
+  "model": "nvidia/nemotron-3-nano-30b-a3b:free",
+  "input_case": {
+    "case_id": "combi_2",
+    "patient": {
+      "alter_jahre": 63,
+      "geschlecht": null,
+      "ecog": null,
+      "komorbiditaet": null
+    },
+    "anamnese": null,
+    "diagnose_kurz": "Raumforderung rechte Niere 3,6 cm (cT1a/b grenzwertig), malignitätsverdächtig (V. a. RCC/ccRCC); keine abdominelle Lymphadenopathie; CT Thorax: kleine pulmonale Rundherde <5 mm unklar",
+    "alle_diagnosen": [
+      "Raumforderung rechte Niere 3,6 cm (cT1a/b grenzwertig), malignitätsverdächtig (V. a. RCC/ccRCC); keine abdominelle Lymphadenopathie; CT Thorax: kleine pulmonale Rundherde <5 mm unklar",
+      "Prostatakarzinom: ED 2018 ISUP 2 (iPSA 12,4), Active Surveillance bis 2024; Re-Biopsie 10.10.2025: Upgrade ISUP 3 (Gleason 4+3=7) in 5/12 Stanzen"
+    ],
+    "stadium": "nicht metastasiert nicht gesichert; pulmonale Herde unklar (Verlauf empfohlen)",
+    "tnm_clinical": null,
+    "tnm_pathological": null,
+    "histologie": null,
+    "metastatic": null,
+    "nebendiagnosen": null,
+    "ground_truth": "polymalignancy"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 63 Jahre\nDiagnose 1: Raumforderung rechte Niere 3,6 cm (cT1a/b grenzwertig), malignitätsverdächtig (V. a. RCC/ccRCC); keine abdominelle Lymphadenopathie; CT Thorax: kleine pulmonale Rundherde <5 mm unklar\nDiagnose 2: Prostatakarzinom: ED 2018 ISUP 2 (iPSA 12,4), Active Surveillance bis 2024; Re-Biopsie 10.10.2025: Upgrade ISUP 3 (Gleason 4+3=7) in 5/12 Stanzen\nStadium: nicht metastasiert nicht gesichert; pulmonale Herde unklar (Verlauf empfohlen)\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Der Fall beinhaltet gleichzeitig ein malignes Nierenzellkarzinom (RCC) der rechten Niere und ein Prostatakarzinom, das im Verlauf upgegradet wurde. Da mehr als ein urologisches Malignom gleichzeitig vorliegt, entspricht dies der Kategorie \"polymalignancy\".",
+    "classification": "polymalignancy",
+    "confidence": 0.96,
+    "key_indicators": [
+      "Diagnose 1: RCC (Nierenzellkarzinom)",
+      "Diagnose 2: Prostatakarzinom mit Upgrade",
+      "Gleichzeitige Vorliegen zweier maligner Tumoren"
+    ]
+  },
+  "raw_response": "{\n    \"reasoning\": \"Der Fall beinhaltet gleichzeitig ein malignes Nierenzellkarzinom (RCC) der rechten Niere und ein Prostatakarzinom, das im Verlauf upgegradet wurde. Da mehr als ein urologisches Malignom gleichzeitig vorliegt, entspricht dies der Kategorie \\\"polymalignancy\\\".\",\n    \"classification\": \"polymalignancy\",\n    \"confidence\": 0.96,\n    \"key_indicators\": [\n        \"Diagnose 1: RCC (Nierenzellkarzinom)\",\n        \"Diagnose 2: Prostatakarzinom mit Upgrade\",\n        \"Gleichzeitige Vorliegen zweier maligner Tumoren\"\n    ]\n}",
+  "ground_truth": "polymalignancy",
+  "is_correct": true,
+  "inference_time_seconds": 10.476841124999964,
+  "tokens_used": 691,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

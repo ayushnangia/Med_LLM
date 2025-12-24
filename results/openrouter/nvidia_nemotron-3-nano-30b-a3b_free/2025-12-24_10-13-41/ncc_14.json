@@ -1,0 +1,60 @@
+{
+  "case_id": "ncc_14",
+  "timestamp": "2025-12-24T10:13:41.835259",
+  "provider": "openrouter",
+  "model": "nvidia/nemotron-3-nano-30b-a3b:free",
+  "input_case": {
+    "case_id": "ncc_14",
+    "patient": {
+      "alter_jahre": 79,
+      "geschlecht": null,
+      "ecog": 2,
+      "komorbiditaet": "hoch"
+    },
+    "anamnese": "Zufallsbefund der linken Niere (Sonographie beim Hausarzt bei Rückenschmerzen). Großer Nierentumor links ca. 9 cm. Vorerkrankungen: KHK, Z. n. Bypass 2012, CKD G2.",
+    "diagnose_kurz": "Großer Nierentumor links ca. 9,0 cm, hochgradig malignitätsverdächtig (V. a. RCC), fragliche Infiltration linke Nebenniere; CT Thorax ohne Metastasen",
+    "alle_diagnosen": null,
+    "stadium": "lokal fortgeschritten vs organbegrenzt; M0 (CT Thorax 04.12.2025)",
+    "tnm_clinical": {
+      "T": "T2",
+      "N": "N0",
+      "M": "M0",
+      "stage_group": "unknown"
+    },
+    "tnm_pathological": {
+      "T": null,
+      "N": null,
+      "M": null,
+      "stage_group": null
+    },
+    "histologie": null,
+    "metastatic": false,
+    "nebendiagnosen": [
+      "KHK",
+      "Z. n. aortokoronarer Bypass 2012",
+      "CKD G2"
+    ],
+    "ground_truth": "nierenzellkarzinom"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 79 Jahre\nECOG: 2\nAnamnese: Zufallsbefund der linken Niere (Sonographie beim Hausarzt bei Rückenschmerzen). Großer Nierentumor links ca. 9 cm. Vorerkrankungen: KHK, Z. n. Bypass 2012, CKD G2.\nDiagnose: Großer Nierentumor links ca. 9,0 cm, hochgradig malignitätsverdächtig (V. a. RCC), fragliche Infiltration linke Nebenniere; CT Thorax ohne Metastasen\nStadium: lokal fortgeschritten vs organbegrenzt; M0 (CT Thorax 04.12.2025)\nTNM (klinisch): T:T2 N:N0 M:M0\nTNM (pathologisch): Unbekannt\nMetastasiert: Nein\nNebendiagnosen: KHK, Z. n. aortokoronarer Bypass 2012, CKD G2\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Der Patient hat einen großen (ca. 9 cm) Tumor in der linken Niere, der hochgradig malignitätsverdächtig für ein renales Zellkarzinom (RCC) ist. Bildgebung zeigt keine Fernmetastasen (M0) und die klinische Einstufung ist T2N0M0, was mit einem lokal fortgeschrittenen, aber organbegrenzten RCC übereinstimmt. Es gibt keine Hinweise auf eine Erkrankung der Prostata, des Hodens, des Penis oder des Harnblasens, und es handelt sich um einen einzigen malignen Prozess.",
+    "classification": "nierenzellkarzinom",
+    "confidence": 0.97,
+    "key_indicators": [
+      "linker Nierentumor ~9 cm",
+      "hochgradig malignitätsverdächtig (RCC)",
+      "CT Thorax ohne Metastasen",
+      "T2N0M0 (klinisch)",
+      "keine Hinweise auf Prostata-, Hoden-, Penis- oder Harnblasenbeteiligung"
+    ]
+  },
+  "raw_response": "{\n    \"reasoning\": \"Der Patient hat einen großen (ca. 9 cm) Tumor in der linken Niere, der hochgradig malignitätsverdächtig für ein renales Zellkarzinom (RCC) ist. Bildgebung zeigt keine Fernmetastasen (M0) und die klinische Einstufung ist T2N0M0, was mit einem lokal fortgeschrittenen, aber organbegrenzten RCC übereinstimmt. Es gibt keine Hinweise auf eine Erkrankung der Prostata, des Hodens, des Penis oder des Harnblasens, und es handelt sich um einen einzigen malignen Prozess.\",\n    \"classification\": \"nierenzellkarzinom\",\n    \"confidence\": 0.97,\n    \"key_indicators\": [\n        \"linker Nierentumor ~9 cm\",\n        \"hochgradig malignitätsverdächtig (RCC)\",\n        \"CT Thorax ohne Metastasen\",\n        \"T2N0M0 (klinisch)\",\n        \"keine Hinweise auf Prostata-, Hoden-, Penis- oder Harnblasenbeteiligung\"\n    ]\n}",
+  "ground_truth": "nierenzellkarzinom",
+  "is_correct": true,
+  "inference_time_seconds": 8.266207291,
+  "tokens_used": 790,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

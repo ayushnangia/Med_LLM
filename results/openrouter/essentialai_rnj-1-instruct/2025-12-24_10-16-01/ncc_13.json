@@ -1,0 +1,57 @@
+{
+  "case_id": "ncc_13",
+  "timestamp": "2025-12-24T10:16:01.366604",
+  "provider": "openrouter",
+  "model": "essentialai/rnj-1-instruct",
+  "input_case": {
+    "case_id": "ncc_13",
+    "patient": {
+      "alter_jahre": 64,
+      "geschlecht": null,
+      "ecog": 0,
+      "komorbiditaet": "unknown"
+    },
+    "anamnese": "Vorstellung zur regelmäßigen Ultraschallkontrolle beim Hausarzt. Dabei Nachweis Raumforderung rechte Niere. Anschließend CT Abdomen mit Nachweis von zwei renalen Raumforderungen: rechts ca. 4,1 cm, links ca. 1,8 cm. Z. n. Kolon-OP bei Divertikulitis.",
+    "diagnose_kurz": "Beidseitige renale Raumforderungen: rechts 4,1 cm (cT1b*), links 1,8 cm (cT1a*) – malignitätsverdächtig (V. a. RCC)",
+    "alle_diagnosen": null,
+    "stadium": "bilateral, prätherapeutisch; Staging (CT Thorax) ausstehend",
+    "tnm_clinical": {
+      "T": "unknown",
+      "N": "unknown",
+      "M": "unknown",
+      "stage_group": "unknown"
+    },
+    "tnm_pathological": {
+      "T": null,
+      "N": null,
+      "M": null,
+      "stage_group": null
+    },
+    "histologie": null,
+    "metastatic": null,
+    "nebendiagnosen": [
+      "Z. n. Kolon-OP bei Divertikulitis"
+    ],
+    "ground_truth": "nierenzellkarzinom"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 64 Jahre\nECOG: 0\nAnamnese: Vorstellung zur regelmäßigen Ultraschallkontrolle beim Hausarzt. Dabei Nachweis Raumforderung rechte Niere. Anschließend CT Abdomen mit Nachweis von zwei renalen Raumforderungen: rechts ca. 4,1 cm, links ca. 1,8 cm. Z. n. Kolon-OP bei Divertikulitis.\nDiagnose: Beidseitige renale Raumforderungen: rechts 4,1 cm (cT1b*), links 1,8 cm (cT1a*) – malignitätsverdächtig (V. a. RCC)\nStadium: bilateral, prätherapeutisch; Staging (CT Thorax) ausstehend\nTNM (klinisch): T:unknown N:unknown M:unknown\nTNM (pathologisch): Unbekannt\nNebendiagnosen: Z. n. Kolon-OP bei Divertikulitis\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Die Diagnose beinhaltet beidseitige renale Raumforderungen mit einer Größe von 4,1 cm (rechts) und 1,8 cm (links), die malignitätsverdächtig sind. Da die Raumforderungen im Nierenbereich liegen und keine Hinweise auf andere Organe oder Systeme geben, handelt es sich um ein nierenzellkarzinom (RCC). Die klinische und pathologische TNM-Klassifikation ist unklar, was auf die prätherapeutische Phase hindeutet. Die Nebendiagnose einer Kolon-OP bei Divertikulitis ist nicht direkt mit dem Nierenkarzinom in Verbindung zu bringen, da es sich um eine separate, nicht nierenbezogene Erkrankung handelt.",
+    "classification": "nierenzellkarzinom",
+    "confidence": 0.95,
+    "key_indicators": [
+      "Beidseitige renale Raumforderungen",
+      "Malignitätsverdächtig",
+      "CT-Abdomen",
+      "Diagnose RCC"
+    ]
+  },
+  "raw_response": "{\n    \"reasoning\": \"Die Diagnose beinhaltet beidseitige renale Raumforderungen mit einer Größe von 4,1 cm (rechts) und 1,8 cm (links), die malignitätsverdächtig sind. Da die Raumforderungen im Nierenbereich liegen und keine Hinweise auf andere Organe oder Systeme geben, handelt es sich um ein nierenzellkarzinom (RCC). Die klinische und pathologische TNM-Klassifikation ist unklar, was auf die prätherapeutische Phase hindeutet. Die Nebendiagnose einer Kolon-OP bei Divertikulitis ist nicht direkt mit dem Nierenkarzinom in Verbindung zu bringen, da es sich um eine separate, nicht nierenbezogene Erkrankung handelt.\",\n    \"classification\": \"nierenzellkarzinom\",\n    \"confidence\": 0.95,\n    \"key_indicators\": [\"Beidseitige renale Raumforderungen\", \"Malignitätsverdächtig\", \"CT-Abdomen\", \"Diagnose RCC\"]\n}",
+  "ground_truth": "nierenzellkarzinom",
+  "is_correct": true,
+  "inference_time_seconds": 7.9937970839999934,
+  "tokens_used": 647,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

@@ -1,0 +1,44 @@
+{
+  "case_id": "non_uro_1",
+  "timestamp": "2025-12-24T10:16:18.727573",
+  "provider": "openrouter",
+  "model": "deepseek/deepseek-v3.2",
+  "input_case": {
+    "case_id": "non_uro_1",
+    "patient": {
+      "alter_jahre": 81,
+      "geschlecht": null,
+      "ecog": null,
+      "komorbiditaet": null
+    },
+    "anamnese": null,
+    "diagnose_kurz": "Aggressives B-Zell Non-Hodgkin-Lymphom (GCB-Typ nach Hans), Double-Expressor (BCL2/cMYC), EBV-negativ; große paraaortale/peritoneale Raumforderung links (ca. 12,1×8,2×13,2 cm) mit Infiltration Pankreasschwanz/IVC/li. A. iliaca communis",
+    "alle_diagnosen": null,
+    "stadium": "aggressives NHL; Staging unvollständig (CT Thorax ohne Metastasen; weitere Lymphom-Stagingdiagnostik ausstehend)",
+    "tnm_clinical": null,
+    "tnm_pathological": null,
+    "histologie": null,
+    "metastatic": null,
+    "nebendiagnosen": null,
+    "ground_truth": "non_urological"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 81 Jahre\nDiagnose: Aggressives B-Zell Non-Hodgkin-Lymphom (GCB-Typ nach Hans), Double-Expressor (BCL2/cMYC), EBV-negativ; große paraaortale/peritoneale Raumforderung links (ca. 12,1×8,2×13,2 cm) mit Infiltration Pankreasschwanz/IVC/li. A. iliaca communis\nStadium: aggressives NHL; Staging unvollständig (CT Thorax ohne Metastasen; weitere Lymphom-Stagingdiagnostik ausstehend)\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Bei dem Patienten handelt es sich um ein aggressives B-Zell-Non-Hodgkin-Lymphom, ein hämatologisches Malignom, das von den B-Lymphozyten ausgeht. Die genannten Entitäten (Nierenzellkarzinom, Prostatakarzinom, Hodentumor, Peniskarzinom, Urothelkarzinom) sind alles urologische Tumoren. Das Lymphom fällt nicht in diese Kategorie. 'Polymalignancy' wäre nur zutreffend, wenn gleichzeitig weitere unabhängige Malignome vorlägen, was im Fall nicht beschrieben ist. Daher ist die einzig passende Kategorie 'non_urological' (nicht-urologischer Tumor).",
+    "classification": "non_urological",
+    "confidence": 0.95,
+    "key_indicators": [
+      "Aggressives B-Zell Non-Hodgkin-Lymphom (GCB-Typ nach Hans)",
+      "Double-Expressor (BCL2/cMYC)",
+      "paraortale/peritoneale Raumforderung mit Infiltration Pankreas/Gefäße"
+    ]
+  },
+  "raw_response": "```json\n{\n    \"reasoning\": \"Bei dem Patienten handelt es sich um ein aggressives B-Zell-Non-Hodgkin-Lymphom, ein hämatologisches Malignom, das von den B-Lymphozyten ausgeht. Die genannten Entitäten (Nierenzellkarzinom, Prostatakarzinom, Hodentumor, Peniskarzinom, Urothelkarzinom) sind alles urologische Tumoren. Das Lymphom fällt nicht in diese Kategorie. 'Polymalignancy' wäre nur zutreffend, wenn gleichzeitig weitere unabhängige Malignome vorlägen, was im Fall nicht beschrieben ist. Daher ist die einzig passende Kategorie 'non_urological' (nicht-urologischer Tumor).\",\n    \"classification\": \"non_urological\",\n    \"confidence\": 0.95,\n    \"key_indicators\": [\"Aggressives B-Zell Non-Hodgkin-Lymphom (GCB-Typ nach Hans)\", \"Double-Expressor (BCL2/cMYC)\", \"paraortale/peritoneale Raumforderung mit Infiltration Pankreas/Gefäße\"]\n}\n```",
+  "ground_truth": "non_urological",
+  "is_correct": true,
+  "inference_time_seconds": 76.70662237499994,
+  "tokens_used": 810,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

@@ -1,0 +1,57 @@
+{
+  "case_id": "pca_1",
+  "timestamp": "2025-12-24T10:21:45.782754",
+  "provider": "openrouter",
+  "model": "google/gemini-3-pro-preview",
+  "input_case": {
+    "case_id": "pca_1",
+    "patient": {
+      "alter_jahre": 65,
+      "geschlecht": null,
+      "ecog": 1,
+      "komorbiditaet": "unknown"
+    },
+    "anamnese": "mCRPC, ossär und lymphogen metastasiert. Pat. bekannt. Mehrlinientherapie inkl. ADT, Docetaxel, Abirateron/Prednisolon, Lu-PSMA; BRCA1/2 negativ.",
+    "diagnose_kurz": "mCRPC mit ossärer und lymphonodaler Metastasierung",
+    "alle_diagnosen": null,
+    "stadium": "metastasiert, kastrationsresistent",
+    "tnm_clinical": {
+      "T": "unknown",
+      "N": "unknown",
+      "M": "M1",
+      "stage_group": "unknown"
+    },
+    "tnm_pathological": {
+      "T": null,
+      "N": null,
+      "M": null,
+      "stage_group": null
+    },
+    "histologie": null,
+    "metastatic": null,
+    "nebendiagnosen": [],
+    "ground_truth": "prostatakarzinom"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 65 Jahre\nECOG: 1\nAnamnese: mCRPC, ossär und lymphogen metastasiert. Pat. bekannt. Mehrlinientherapie inkl. ADT, Docetaxel, Abirateron/Prednisolon, Lu-PSMA; BRCA1/2 negativ.\nDiagnose: mCRPC mit ossärer und lymphonodaler Metastasierung\nStadium: metastasiert, kastrationsresistent\nTNM (klinisch): T:unknown N:unknown M:M1\nTNM (pathologisch): Unbekannt\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Der Fall beschreibt eindeutig ein Prostatakarzinom. Das Akronym 'mCRPC' steht für 'metastasiertes kastrationsresistentes Prostatakarzinom'. Die aufgeführte Therapiehistorie ist hochspezifisch für diese Entität: ADT (Androgendeprivationstherapie), Docetaxel (Chemotherapie), Abirateron (Androgenbiosynthese-Inhibitor) und insbesondere Lu-PSMA (Lutetium-PSMA-Radioligandentherapie) werden exklusiv beim Prostatakarzinom eingesetzt. Auch das Metastasierungsmuster (ossär und lymphogen) ist typisch.",
+    "classification": "prostatakarzinom",
+    "confidence": 1.0,
+    "key_indicators": [
+      "mCRPC",
+      "ADT",
+      "Docetaxel",
+      "Abirateron",
+      "Lu-PSMA",
+      "ossäre Metastasierung"
+    ]
+  },
+  "raw_response": "```json\n{\n    \"reasoning\": \"Der Fall beschreibt eindeutig ein Prostatakarzinom. Das Akronym 'mCRPC' steht für 'metastasiertes kastrationsresistentes Prostatakarzinom'. Die aufgeführte Therapiehistorie ist hochspezifisch für diese Entität: ADT (Androgendeprivationstherapie), Docetaxel (Chemotherapie), Abirateron (Androgenbiosynthese-Inhibitor) und insbesondere Lu-PSMA (Lutetium-PSMA-Radioligandentherapie) werden exklusiv beim Prostatakarzinom eingesetzt. Auch das Metastasierungsmuster (ossär und lymphogen) ist typisch.\",\n    \"classification\": \"prostatakarzinom\",\n    \"confidence\": 1.0,\n    \"key_indicators\": [\n        \"mCRPC\",\n        \"ADT\",\n        \"Docetaxel\",\n        \"Abirateron\",\n        \"Lu-PSMA\",\n        \"ossäre Metastasierung\"\n    ]\n}\n```",
+  "ground_truth": "prostatakarzinom",
+  "is_correct": true,
+  "inference_time_seconds": 32.92844920899995,
+  "tokens_used": 1592,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

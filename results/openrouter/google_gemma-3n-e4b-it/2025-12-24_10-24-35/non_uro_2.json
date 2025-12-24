@@ -1,0 +1,47 @@
+{
+  "case_id": "non_uro_2",
+  "timestamp": "2025-12-24T10:24:35.475938",
+  "provider": "openrouter",
+  "model": "google/gemma-3n-e4b-it",
+  "input_case": {
+    "case_id": "non_uro_2",
+    "patient": {
+      "alter_jahre": 52,
+      "geschlecht": null,
+      "ecog": null,
+      "komorbiditaet": null
+    },
+    "anamnese": null,
+    "diagnose_kurz": "Unklare Raumforderung Harnblase (Seitenwand) – TUR-B 01.11.2025; Histologie: morphologisch/klinisch Infiltration durch bekanntes Sigmakarzinom (sekundäre Blaseninfiltration, kein primäres Urothelkarzinom beschrieben)",
+    "alle_diagnosen": [
+      "Unklare Raumforderung Harnblase (Seitenwand) – TUR-B 01.11.2025; Histologie: morphologisch/klinisch Infiltration durch bekanntes Sigmakarzinom (sekundäre Blaseninfiltration, kein primäres Urothelkarzinom beschrieben)",
+      "Hepatisch metastasiertes Sigmakarzinom (ED 01/2025), Status nach Sigmaresektion mit subperitonealer Exzision am Blasendach (12.01.2025) und Leber-lokalen Therapien/Resektionen"
+    ],
+    "stadium": "Sekundärbefall der Harnblase durch kolorektales Karzinom (Verdacht/Kommentar), genaue TNM der Blasenläsion nicht angegeben",
+    "tnm_clinical": null,
+    "tnm_pathological": null,
+    "histologie": null,
+    "metastatic": null,
+    "nebendiagnosen": null,
+    "ground_truth": "non_urological"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 52 Jahre\nDiagnose 1: Unklare Raumforderung Harnblase (Seitenwand) – TUR-B 01.11.2025; Histologie: morphologisch/klinisch Infiltration durch bekanntes Sigmakarzinom (sekundäre Blaseninfiltration, kein primäres Urothelkarzinom beschrieben)\nDiagnose 2: Hepatisch metastasiertes Sigmakarzinom (ED 01/2025), Status nach Sigmaresektion mit subperitonealer Exzision am Blasendach (12.01.2025) und Leber-lokalen Therapien/Resektionen\nStadium: Sekundärbefall der Harnblase durch kolorektales Karzinom (Verdacht/Kommentar), genaue TNM der Blasenläsion nicht angegeben\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Der Fall beschreibt eine sekundäre Infiltration der Harnblase durch ein bekanntes Sigmakarzinom (Dickdarmkrebs).  Es wird explizit erwähnt, dass es sich nicht um ein primäres Urothelkarzinom handelt.  Der Patient hatte zuvor eine Sigmaresektion und Lebermetastasen des Dickdarmkarzinoms.  Daher ist die primäre Ursache der Blasenläsion ein kolorektales Karzinom.",
+    "classification": "polymalignancy",
+    "confidence": 0.95,
+    "key_indicators": [
+      "Sekundäre Blaseninfiltration durch bekanntes Sigmakarzinom",
+      "Vorherige Sigmaresektion und Lebermetastasen des Dickdarmkarzinoms",
+      "Kein Hinweis auf primäres Urothelkarzinom"
+    ]
+  },
+  "raw_response": "```json\n{\n    \"reasoning\": \"Der Fall beschreibt eine sekundäre Infiltration der Harnblase durch ein bekanntes Sigmakarzinom (Dickdarmkrebs).  Es wird explizit erwähnt, dass es sich nicht um ein primäres Urothelkarzinom handelt.  Der Patient hatte zuvor eine Sigmaresektion und Lebermetastasen des Dickdarmkarzinoms.  Daher ist die primäre Ursache der Blasenläsion ein kolorektales Karzinom.\",\n    \"classification\": \"polymalignancy\",\n    \"confidence\": 0.95,\n    \"key_indicators\": [\"Sekundäre Blaseninfiltration durch bekanntes Sigmakarzinom\", \"Vorherige Sigmaresektion und Lebermetastasen des Dickdarmkarzinoms\", \"Kein Hinweis auf primäres Urothelkarzinom\"]\n}\n```",
+  "ground_truth": "non_urological",
+  "is_correct": false,
+  "inference_time_seconds": 18.292132874999993,
+  "tokens_used": 533,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

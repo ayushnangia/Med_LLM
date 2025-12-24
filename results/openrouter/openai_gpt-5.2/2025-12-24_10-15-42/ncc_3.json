@@ -1,0 +1,57 @@
+{
+  "case_id": "ncc_3",
+  "timestamp": "2025-12-24T10:15:42.317756",
+  "provider": "openrouter",
+  "model": "openai/gpt-5.2",
+  "input_case": {
+    "case_id": "ncc_3",
+    "patient": {
+      "alter_jahre": 58,
+      "geschlecht": null,
+      "ecog": 0,
+      "komorbiditaet": "unknown"
+    },
+    "anamnese": "Zufallsbefund im CT wegen Nephrolithiasis. Solide Nierenraumforderung rechts (2,2 cm).",
+    "diagnose_kurz": "Solide Nierenraumforderung rechts (2,2 cm)",
+    "alle_diagnosen": null,
+    "stadium": "nicht-metastasiert (Verdacht, prätherapeutisch)",
+    "tnm_clinical": {
+      "T": "unknown",
+      "N": "unknown",
+      "M": "M0",
+      "stage_group": "unknown"
+    },
+    "tnm_pathological": {
+      "T": null,
+      "N": null,
+      "M": null,
+      "stage_group": null
+    },
+    "histologie": null,
+    "metastatic": false,
+    "nebendiagnosen": [
+      "arterielle Hypertonie"
+    ],
+    "ground_truth": "nierenzellkarzinom"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 58 Jahre\nECOG: 0\nAnamnese: Zufallsbefund im CT wegen Nephrolithiasis. Solide Nierenraumforderung rechts (2,2 cm).\nDiagnose: Solide Nierenraumforderung rechts (2,2 cm)\nStadium: nicht-metastasiert (Verdacht, prätherapeutisch)\nTNM (klinisch): T:unknown N:unknown M:M0\nTNM (pathologisch): Unbekannt\nMetastasiert: Nein\nNebendiagnosen: arterielle Hypertonie\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Solide Raumforderung in der rechten Niere (2,2 cm) als Zufallsbefund im CT; klinisch nicht-metastasiert. Das passt am ehesten zu einem (potenziellen) Nierenzellkarzinom bzw. einer malignitätsverdächtigen Nierentumor-Läsion und nicht zu Prostata-, Hoden-, Penis- oder Urothelkarzinom.",
+    "classification": "nierenzellkarzinom",
+    "confidence": 0.92,
+    "key_indicators": [
+      "solide Nierenraumforderung",
+      "Lokalisation: rechte Niere",
+      "Größe 2,2 cm (kleiner Nierentumor, cT1a-Verdacht)",
+      "prätherapeutisch nicht-metastasiert (M0)"
+    ]
+  },
+  "raw_response": "{\n  \"reasoning\": \"Solide Raumforderung in der rechten Niere (2,2 cm) als Zufallsbefund im CT; klinisch nicht-metastasiert. Das passt am ehesten zu einem (potenziellen) Nierenzellkarzinom bzw. einer malignitätsverdächtigen Nierentumor-Läsion und nicht zu Prostata-, Hoden-, Penis- oder Urothelkarzinom.\",\n  \"classification\": \"nierenzellkarzinom\",\n  \"confidence\": 0.92,\n  \"key_indicators\": [\n    \"solide Nierenraumforderung\",\n    \"Lokalisation: rechte Niere\",\n    \"Größe 2,2 cm (kleiner Nierentumor, cT1a-Verdacht)\",\n    \"prätherapeutisch nicht-metastasiert (M0)\"\n  ]\n}",
+  "ground_truth": "nierenzellkarzinom",
+  "is_correct": true,
+  "inference_time_seconds": 7.082789416999958,
+  "tokens_used": 495,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

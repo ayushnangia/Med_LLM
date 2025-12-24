@@ -1,0 +1,60 @@
+{
+  "case_id": "ncc_3",
+  "timestamp": "2025-12-24T10:18:51.801816",
+  "provider": "openrouter",
+  "model": "moonshotai/kimi-k2-thinking",
+  "input_case": {
+    "case_id": "ncc_3",
+    "patient": {
+      "alter_jahre": 58,
+      "geschlecht": null,
+      "ecog": 0,
+      "komorbiditaet": "unknown"
+    },
+    "anamnese": "Zufallsbefund im CT wegen Nephrolithiasis. Solide Nierenraumforderung rechts (2,2 cm).",
+    "diagnose_kurz": "Solide Nierenraumforderung rechts (2,2 cm)",
+    "alle_diagnosen": null,
+    "stadium": "nicht-metastasiert (Verdacht, prätherapeutisch)",
+    "tnm_clinical": {
+      "T": "unknown",
+      "N": "unknown",
+      "M": "M0",
+      "stage_group": "unknown"
+    },
+    "tnm_pathological": {
+      "T": null,
+      "N": null,
+      "M": null,
+      "stage_group": null
+    },
+    "histologie": null,
+    "metastatic": false,
+    "nebendiagnosen": [
+      "arterielle Hypertonie"
+    ],
+    "ground_truth": "nierenzellkarzinom"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 58 Jahre\nECOG: 0\nAnamnese: Zufallsbefund im CT wegen Nephrolithiasis. Solide Nierenraumforderung rechts (2,2 cm).\nDiagnose: Solide Nierenraumforderung rechts (2,2 cm)\nStadium: nicht-metastasiert (Verdacht, prätherapeutisch)\nTNM (klinisch): T:unknown N:unknown M:M0\nTNM (pathologisch): Unbekannt\nMetastasiert: Nein\nNebendiagnosen: arterielle Hypertonie\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Der Fall beschreibt eine solide Nierenraumforderung von 2,2 cm Größe bei einem 58-jährigen Patienten. Solide Nierenraumforderungen sind in über 80-90% der Fälle ein Nierenzellkarzinom (RCC). Die Lokalisation im Nierenparenchym, die Größe (T1a), das Alter (Häufigkeitsgipfel 60-70 Jahre), der zufällige Befund im CT (typisch für asymptomatische frühe RCC) und das nicht-metastasierte Stadium passen perfekt zur klinischen Präsentation eines Nierenzellkarzinoms. Urothelkarzinome entstehen typischerweise im Nierenbecken und werden selten als 'solide Nierenraumforderung' beschrieben. Alle anderen Kategorien sind aufgrund der Lokalisation ausgeschlossen.",
+    "classification": "nierenzellkarzinom",
+    "confidence": 0.96,
+    "key_indicators": [
+      "solide Nierenraumforderung",
+      "Größe 2,2 cm",
+      "Lokalisation Niere",
+      "Zufallsbefund",
+      "Alter 58 Jahre",
+      "nicht-metastasiert (M0)",
+      "ECOG 0"
+    ]
+  },
+  "raw_response": "```json\n{\n    \"reasoning\": \"Der Fall beschreibt eine solide Nierenraumforderung von 2,2 cm Größe bei einem 58-jährigen Patienten. Solide Nierenraumforderungen sind in über 80-90% der Fälle ein Nierenzellkarzinom (RCC). Die Lokalisation im Nierenparenchym, die Größe (T1a), das Alter (Häufigkeitsgipfel 60-70 Jahre), der zufällige Befund im CT (typisch für asymptomatische frühe RCC) und das nicht-metastasierte Stadium passen perfekt zur klinischen Präsentation eines Nierenzellkarzinoms. Urothelkarzinome entstehen typischerweise im Nierenbecken und werden selten als 'solide Nierenraumforderung' beschrieben. Alle anderen Kategorien sind aufgrund der Lokalisation ausgeschlossen.\",\n    \"classification\": \"nierenzellkarzinom\",\n    \"confidence\": 0.96,\n    \"key_indicators\": [\n        \"solide Nierenraumforderung\",\n        \"Größe 2,2 cm\",\n        \"Lokalisation Niere\",\n        \"Zufallsbefund\",\n        \"Alter 58 Jahre\",\n        \"nicht-metastasiert (M0)\",\n        \"ECOG 0\"\n    ]\n}\n```",
+  "ground_truth": "nierenzellkarzinom",
+  "is_correct": true,
+  "inference_time_seconds": 26.357760959000075,
+  "tokens_used": 1769,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

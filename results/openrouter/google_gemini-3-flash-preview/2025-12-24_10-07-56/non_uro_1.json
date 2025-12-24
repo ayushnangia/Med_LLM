@@ -1,0 +1,45 @@
+{
+  "case_id": "non_uro_1",
+  "timestamp": "2025-12-24T10:07:56.352887",
+  "provider": "openrouter",
+  "model": "google/gemini-3-flash-preview",
+  "input_case": {
+    "case_id": "non_uro_1",
+    "patient": {
+      "alter_jahre": 81,
+      "geschlecht": null,
+      "ecog": null,
+      "komorbiditaet": null
+    },
+    "anamnese": null,
+    "diagnose_kurz": "Aggressives B-Zell Non-Hodgkin-Lymphom (GCB-Typ nach Hans), Double-Expressor (BCL2/cMYC), EBV-negativ; große paraaortale/peritoneale Raumforderung links (ca. 12,1×8,2×13,2 cm) mit Infiltration Pankreasschwanz/IVC/li. A. iliaca communis",
+    "alle_diagnosen": null,
+    "stadium": "aggressives NHL; Staging unvollständig (CT Thorax ohne Metastasen; weitere Lymphom-Stagingdiagnostik ausstehend)",
+    "tnm_clinical": null,
+    "tnm_pathological": null,
+    "histologie": null,
+    "metastatic": null,
+    "nebendiagnosen": null,
+    "ground_truth": "non_urological"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 81 Jahre\nDiagnose: Aggressives B-Zell Non-Hodgkin-Lymphom (GCB-Typ nach Hans), Double-Expressor (BCL2/cMYC), EBV-negativ; große paraaortale/peritoneale Raumforderung links (ca. 12,1×8,2×13,2 cm) mit Infiltration Pankreasschwanz/IVC/li. A. iliaca communis\nStadium: aggressives NHL; Staging unvollständig (CT Thorax ohne Metastasen; weitere Lymphom-Stagingdiagnostik ausstehend)\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Die Diagnose ist explizit als aggressives B-Zell Non-Hodgkin-Lymphom (NHL) angegeben. Hierbei handelt es sich um eine hämatologische Systemerkrankung. Obwohl die Raumforderung im Retroperitoneum (paraaortal) lokalisiert ist und urologische Strukturen wie die Iliakalgefäße oder die Vena cava inferior (IVC) tangiert bzw. infiltriert, ist der Ursprung des Tumors nicht urologisch. Da keine der spezifischen urologischen Kategorien zutrifft und kein Hinweis auf Zweit- oder Mehrfachtumoren vorliegt, ist der Fall als 'non_urological' einzustufen.",
+    "classification": "non_urological",
+    "confidence": 1.0,
+    "key_indicators": [
+      "Aggressives B-Zell Non-Hodgkin-Lymphom",
+      "GCB-Typ nach Hans",
+      "Double-Expressor (BCL2/cMYC)",
+      "paraaortale/peritoneale Raumforderung"
+    ]
+  },
+  "raw_response": "```json\n{\n    \"reasoning\": \"Die Diagnose ist explizit als aggressives B-Zell Non-Hodgkin-Lymphom (NHL) angegeben. Hierbei handelt es sich um eine hämatologische Systemerkrankung. Obwohl die Raumforderung im Retroperitoneum (paraaortal) lokalisiert ist und urologische Strukturen wie die Iliakalgefäße oder die Vena cava inferior (IVC) tangiert bzw. infiltriert, ist der Ursprung des Tumors nicht urologisch. Da keine der spezifischen urologischen Kategorien zutrifft und kein Hinweis auf Zweit- oder Mehrfachtumoren vorliegt, ist der Fall als 'non_urological' einzustufen.\",\n    \"classification\": \"non_urological\",\n    \"confidence\": 1.0,\n    \"key_indicators\": [\n        \"Aggressives B-Zell Non-Hodgkin-Lymphom\",\n        \"GCB-Typ nach Hans\",\n        \"Double-Expressor (BCL2/cMYC)\",\n        \"paraaortale/peritoneale Raumforderung\"\n    ]\n}\n```",
+  "ground_truth": "non_urological",
+  "is_correct": true,
+  "inference_time_seconds": 21.657986917000002,
+  "tokens_used": 1313,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

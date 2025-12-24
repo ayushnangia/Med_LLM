@@ -1,0 +1,45 @@
+{
+  "case_id": "uca_2",
+  "timestamp": "2025-12-24T10:16:01.366693",
+  "provider": "openrouter",
+  "model": "essentialai/rnj-1-instruct",
+  "input_case": {
+    "case_id": "uca_2",
+    "patient": {
+      "alter_jahre": 54,
+      "geschlecht": null,
+      "ecog": null,
+      "komorbiditaet": null
+    },
+    "anamnese": null,
+    "diagnose_kurz": "Harnblasen-NMIBC: nicht-invasives papilläres Urothelkarzinom pTa, fokal high grade (G3), Hinterwand links; Detrusor nicht nachweisbar",
+    "alle_diagnosen": null,
+    "stadium": "pTa high grade (fokal) – EORTC-Risikostratifizierung geplant; Nachresektion erwägen (Detrusor fehlt)",
+    "tnm_clinical": null,
+    "tnm_pathological": null,
+    "histologie": null,
+    "metastatic": null,
+    "nebendiagnosen": null,
+    "ground_truth": "urothelkarzinom"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 54 Jahre\nDiagnose: Harnblasen-NMIBC: nicht-invasives papilläres Urothelkarzinom pTa, fokal high grade (G3), Hinterwand links; Detrusor nicht nachweisbar\nStadium: pTa high grade (fokal) – EORTC-Risikostratifizierung geplant; Nachresektion erwägen (Detrusor fehlt)\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Das gegebene Fallbeispiel handelt sich um ein nicht-invasives papilläres Urothelkarzinom, das in der Harnblase (Bladder) gefunden wurde. Urothelkarzinom ist ein Urothelkarzinom, das spezifisch für die urologische Systeme wie Harnblase, Harnröhre und Urethra ist. Es handelt sich hierbei um ein fokal hochgradiges Urothelkarzinom (pTa, G3), das nicht-invasiv ist, d.h. es hat sich nicht in die dichtere urologische Muskelfasziierung ausbreitet. Da die Diagnose direkt auf das Urogenitalsystem hindeutet und keine anderen Systeme betroffen sind, ist die Klassifizierung als urothelkarzinom korrekt.",
+    "classification": "urothelkarzinom",
+    "confidence": 0.95,
+    "key_indicators": [
+      "Harnblase",
+      "Urothelkarzinom",
+      "pTa",
+      "fokal high grade (G3)"
+    ]
+  },
+  "raw_response": "{\n    \"reasoning\": \"Das gegebene Fallbeispiel handelt sich um ein nicht-invasives papilläres Urothelkarzinom, das in der Harnblase (Bladder) gefunden wurde. Urothelkarzinom ist ein Urothelkarzinom, das spezifisch für die urologische Systeme wie Harnblase, Harnröhre und Urethra ist. Es handelt sich hierbei um ein fokal hochgradiges Urothelkarzinom (pTa, G3), das nicht-invasiv ist, d.h. es hat sich nicht in die dichtere urologische Muskelfasziierung ausbreitet. Da die Diagnose direkt auf das Urogenitalsystem hindeutet und keine anderen Systeme betroffen sind, ist die Klassifizierung als urothelkarzinom korrekt.\",\n    \"classification\": \"urothelkarzinom\",\n    \"confidence\": 0.95,\n    \"key_indicators\": [\"Harnblase\", \"Urothelkarzinom\", \"pTa\", \"fokal high grade (G3)\"]\n}",
+  "ground_truth": "urothelkarzinom",
+  "is_correct": true,
+  "inference_time_seconds": 13.517845249999993,
+  "tokens_used": 529,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

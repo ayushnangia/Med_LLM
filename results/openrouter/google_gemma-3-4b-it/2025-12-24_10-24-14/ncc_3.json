@@ -1,0 +1,57 @@
+{
+  "case_id": "ncc_3",
+  "timestamp": "2025-12-24T10:24:14.634831",
+  "provider": "openrouter",
+  "model": "google/gemma-3-4b-it",
+  "input_case": {
+    "case_id": "ncc_3",
+    "patient": {
+      "alter_jahre": 58,
+      "geschlecht": null,
+      "ecog": 0,
+      "komorbiditaet": "unknown"
+    },
+    "anamnese": "Zufallsbefund im CT wegen Nephrolithiasis. Solide Nierenraumforderung rechts (2,2 cm).",
+    "diagnose_kurz": "Solide Nierenraumforderung rechts (2,2 cm)",
+    "alle_diagnosen": null,
+    "stadium": "nicht-metastasiert (Verdacht, prätherapeutisch)",
+    "tnm_clinical": {
+      "T": "unknown",
+      "N": "unknown",
+      "M": "M0",
+      "stage_group": "unknown"
+    },
+    "tnm_pathological": {
+      "T": null,
+      "N": null,
+      "M": null,
+      "stage_group": null
+    },
+    "histologie": null,
+    "metastatic": false,
+    "nebendiagnosen": [
+      "arterielle Hypertonie"
+    ],
+    "ground_truth": "nierenzellkarzinom"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 58 Jahre\nECOG: 0\nAnamnese: Zufallsbefund im CT wegen Nephrolithiasis. Solide Nierenraumforderung rechts (2,2 cm).\nDiagnose: Solide Nierenraumforderung rechts (2,2 cm)\nStadium: nicht-metastasiert (Verdacht, prätherapeutisch)\nTNM (klinisch): T:unknown N:unknown M:M0\nTNM (pathologisch): Unbekannt\nMetastasiert: Nein\nNebendiagnosen: arterielle Hypertonie\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Basierend auf der Beschreibung eines soliden Nierenraumbefunds (2,2 cm) in einem 58-jährigen Patienten mit arterieller Hypertonie ist die wahrscheinlichste Kategorie Urothelkarzinom. Obwohl die Diagnose noch nicht pathologisch bestätigt ist, ist die Lokalisation im Nierenraum ein starker Hinweis auf einen Harnwegs-Krebs. Die ECOG 0 (körperliche Aktivität ohne Einschränkungen) deutet auf einen relativ gesunden Patienten hin. Die fehlenden Metastasen (M0) und das Fehlen anderer Krebserkrankungen schließen andere Kategorien wie Prostatakarzinom, Hodentumor oder Polymalignität aus, zumindest vorläufig.  Die 'nicht-urologische' Kategorie ist unwahrscheinlich, da es sich um einen Befund in der Niere handelt.",
+    "classification": "urothelkarzinom",
+    "confidence": 0.85,
+    "key_indicators": [
+      "Nierenraumforderung",
+      "Alter (58 Jahre)",
+      "Arterielle Hypertonie",
+      "Fehlende Metastasen"
+    ]
+  },
+  "raw_response": "\n```json\n{\n    \"reasoning\": \"Basierend auf der Beschreibung eines soliden Nierenraumbefunds (2,2 cm) in einem 58-jährigen Patienten mit arterieller Hypertonie ist die wahrscheinlichste Kategorie Urothelkarzinom. Obwohl die Diagnose noch nicht pathologisch bestätigt ist, ist die Lokalisation im Nierenraum ein starker Hinweis auf einen Harnwegs-Krebs. Die ECOG 0 (körperliche Aktivität ohne Einschränkungen) deutet auf einen relativ gesunden Patienten hin. Die fehlenden Metastasen (M0) und das Fehlen anderer Krebserkrankungen schließen andere Kategorien wie Prostatakarzinom, Hodentumor oder Polymalignität aus, zumindest vorläufig.  Die 'nicht-urologische' Kategorie ist unwahrscheinlich, da es sich um einen Befund in der Niere handelt.\",\n    \"classification\": \"urothelkarzinom\",\n    \"confidence\": 0.85,\n    \"key_indicators\": [\"Nierenraumforderung\", \"Alter (58 Jahre)\", \"Arterielle Hypertonie\", \"Fehlende Metastasen\"]\n}\n```",
+  "ground_truth": "nierenzellkarzinom",
+  "is_correct": false,
+  "inference_time_seconds": 7.0894292079999985,
+  "tokens_used": 511,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

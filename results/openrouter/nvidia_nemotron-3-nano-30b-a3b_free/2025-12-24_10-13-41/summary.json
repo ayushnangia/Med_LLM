@@ -1,0 +1,13 @@
+{
+  "model": "nvidia/nemotron-3-nano-30b-a3b:free",
+  "provider": "openrouter",
+  "timestamp": "2025-12-24T10:15:42.298182",
+  "total_cases": 26,
+  "correct": 21,
+  "incorrect": 5,
+  "errors": 0,
+  "accuracy": 0.8076923076923077,
+  "total_tokens": 83838,
+  "elapsed_seconds": 120.464228,
+  "concurrency": 10
+}

@@ -1,0 +1,57 @@
+{
+  "case_id": "penis_ca_1",
+  "timestamp": "2025-12-24T10:18:07.232166",
+  "provider": "openrouter",
+  "model": "anthropic/claude-opus-4.5",
+  "input_case": {
+    "case_id": "penis_ca_1",
+    "patient": {
+      "alter_jahre": 69,
+      "geschlecht": null,
+      "ecog": 0,
+      "komorbiditaet": "unknown"
+    },
+    "anamnese": "High-risk Peniskarzinom mit inguinalen und pelvinen LK-Metastasen. Z. n. Glansresektion 12.07.2025, offene inguinale LNE bds. 19.08.2025 (LK-Metastasen 5/12, bis 5 cm), DaV pelvine Lymphadenektomie bds. 11.09.2025. TuBo-Empfehlung 02.09.2025: pelvine LNE bds. + adjuvante Chemotherapie.",
+    "diagnose_kurz": "Peniskarzinom (Plattenepithelkarzinom) high-risk mit inguinalen und pelvinen Lymphknotenmetastasen",
+    "alle_diagnosen": null,
+    "stadium": "high-risk, mindestens pN2; nodal metastasiert (inguinal + pelvin)",
+    "tnm_clinical": {
+      "T": "unknown",
+      "N": "N2",
+      "M": "unknown",
+      "stage_group": "unknown"
+    },
+    "tnm_pathological": {
+      "T": "pT2",
+      "N": "pN2",
+      "M": null,
+      "stage_group": null
+    },
+    "histologie": null,
+    "metastatic": null,
+    "nebendiagnosen": [],
+    "ground_truth": "peniskarzinom"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 69 Jahre\nECOG: 0\nAnamnese: High-risk Peniskarzinom mit inguinalen und pelvinen LK-Metastasen. Z. n. Glansresektion 12.07.2025, offene inguinale LNE bds. 19.08.2025 (LK-Metastasen 5/12, bis 5 cm), DaV pelvine Lymphadenektomie bds. 11.09.2025. TuBo-Empfehlung 02.09.2025: pelvine LNE bds. + adjuvante Chemotherapie.\nDiagnose: Peniskarzinom (Plattenepithelkarzinom) high-risk mit inguinalen und pelvinen Lymphknotenmetastasen\nStadium: high-risk, mindestens pN2; nodal metastasiert (inguinal + pelvin)\nTNM (klinisch): T:unknown N:N2 M:unknown\nTNM (pathologisch): T:pT2 N:pN2\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Der Fall beschreibt eindeutig ein Peniskarzinom. Die Diagnose ist explizit als 'Peniskarzinom (Plattenepithelkarzinom)' angegeben. Die durchgeführten Eingriffe (Glansresektion, inguinale und pelvine Lymphadenektomie) sind typisch für die chirurgische Therapie des lokal fortgeschrittenen Peniskarzinoms. Das Plattenepithelkarzinom ist der häufigste histologische Typ des Peniskarzinoms. Das Stadium pT2 pN2 mit inguinalen und pelvinen Lymphknotenmetastasen entspricht einem high-risk Peniskarzinom, für das eine adjuvante Chemotherapie empfohlen wird.",
+    "classification": "peniskarzinom",
+    "confidence": 1.0,
+    "key_indicators": [
+      "Explizite Diagnose: Peniskarzinom (Plattenepithelkarzinom)",
+      "Glansresektion als primärer Eingriff",
+      "Inguinale Lymphknotenmetastasen (5/12 LK positiv, bis 5 cm)",
+      "Pelvine Lymphknotenmetastasen",
+      "Stadium pT2 pN2",
+      "High-risk Klassifikation"
+    ]
+  },
+  "raw_response": "```json\n{\n    \"reasoning\": \"Der Fall beschreibt eindeutig ein Peniskarzinom. Die Diagnose ist explizit als 'Peniskarzinom (Plattenepithelkarzinom)' angegeben. Die durchgeführten Eingriffe (Glansresektion, inguinale und pelvine Lymphadenektomie) sind typisch für die chirurgische Therapie des lokal fortgeschrittenen Peniskarzinoms. Das Plattenepithelkarzinom ist der häufigste histologische Typ des Peniskarzinoms. Das Stadium pT2 pN2 mit inguinalen und pelvinen Lymphknotenmetastasen entspricht einem high-risk Peniskarzinom, für das eine adjuvante Chemotherapie empfohlen wird.\",\n    \"classification\": \"peniskarzinom\",\n    \"confidence\": 1.0,\n    \"key_indicators\": [\n        \"Explizite Diagnose: Peniskarzinom (Plattenepithelkarzinom)\",\n        \"Glansresektion als primärer Eingriff\",\n        \"Inguinale Lymphknotenmetastasen (5/12 LK positiv, bis 5 cm)\",\n        \"Pelvine Lymphknotenmetastasen\",\n        \"Stadium pT2 pN2\",\n        \"High-risk Klassifikation\"\n    ]\n}\n```",
+  "ground_truth": "peniskarzinom",
+  "is_correct": true,
+  "inference_time_seconds": 30.569241833999968,
+  "tokens_used": 1166,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

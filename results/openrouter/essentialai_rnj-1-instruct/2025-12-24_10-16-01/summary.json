@@ -1,0 +1,13 @@
+{
+  "model": "essentialai/rnj-1-instruct",
+  "provider": "openrouter",
+  "timestamp": "2025-12-24T10:16:18.708636",
+  "total_cases": 26,
+  "correct": 19,
+  "incorrect": 7,
+  "errors": 0,
+  "accuracy": 0.7307692307692307,
+  "total_tokens": 15744,
+  "elapsed_seconds": 17.34309,
+  "concurrency": 10
+}

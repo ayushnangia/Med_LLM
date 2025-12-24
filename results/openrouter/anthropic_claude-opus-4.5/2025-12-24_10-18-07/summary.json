@@ -1,0 +1,13 @@
+{
+  "model": "anthropic/claude-opus-4.5",
+  "provider": "openrouter",
+  "timestamp": "2025-12-24T10:18:51.792661",
+  "total_cases": 26,
+  "correct": 25,
+  "incorrect": 1,
+  "errors": 0,
+  "accuracy": 0.9615384615384616,
+  "total_tokens": 33355,
+  "elapsed_seconds": 44.562267,
+  "concurrency": 10
+}

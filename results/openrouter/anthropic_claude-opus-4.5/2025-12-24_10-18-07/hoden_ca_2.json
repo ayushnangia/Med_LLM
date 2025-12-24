@@ -1,0 +1,47 @@
+{
+  "case_id": "hoden_ca_2",
+  "timestamp": "2025-12-24T10:18:07.232152",
+  "provider": "openrouter",
+  "model": "anthropic/claude-opus-4.5",
+  "input_case": {
+    "case_id": "hoden_ca_2",
+    "patient": {
+      "alter_jahre": 23,
+      "geschlecht": null,
+      "ecog": null,
+      "komorbiditaet": null
+    },
+    "anamnese": null,
+    "diagnose_kurz": "Seminom links (100%), kleinherdig (max. 0,2×0,5×0,1 cm) – Status nach inguinaler Ablatio testis links (19.09.2025), Rete testis infiltriert, GCNIS+",
+    "alle_diagnosen": null,
+    "stadium": "pT1 pNX (klinisches Stadium offen; Staging CT Thorax/Abdomen ausstehend)",
+    "tnm_clinical": null,
+    "tnm_pathological": null,
+    "histologie": null,
+    "metastatic": null,
+    "nebendiagnosen": null,
+    "ground_truth": "hodentumor"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 23 Jahre\nDiagnose: Seminom links (100%), kleinherdig (max. 0,2×0,5×0,1 cm) – Status nach inguinaler Ablatio testis links (19.09.2025), Rete testis infiltriert, GCNIS+\nStadium: pT1 pNX (klinisches Stadium offen; Staging CT Thorax/Abdomen ausstehend)\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Der Fall beschreibt ein Seminom, welches ein Keimzelltumor des Hodens ist. Die Diagnose wurde nach inguinaler Ablatio testis (Standardoperation bei Hodentumoren) gestellt. Weitere typische Befunde sind GCNIS (Germ Cell Neoplasia in Situ) als Vorläuferläsion und das junge Patientenalter von 23 Jahren, welches im typischen Altersgipfel für Hodentumoren liegt (15-35 Jahre). Das pT1-Stadium und die Rete testis-Infiltration sind spezifische Staging-Kriterien für Hodentumoren.",
+    "classification": "hodentumor",
+    "confidence": 1.0,
+    "key_indicators": [
+      "Seminom (100%) - reiner Keimzelltumor des Hodens",
+      "Inguinale Ablatio testis links",
+      "GCNIS+ (Germ Cell Neoplasia in Situ)",
+      "Rete testis Infiltration",
+      "Patientenalter 23 Jahre (typisch für Hodentumoren)",
+      "pT1 Staging nach Hodentumor-TNM"
+    ]
+  },
+  "raw_response": "```json\n{\n    \"reasoning\": \"Der Fall beschreibt ein Seminom, welches ein Keimzelltumor des Hodens ist. Die Diagnose wurde nach inguinaler Ablatio testis (Standardoperation bei Hodentumoren) gestellt. Weitere typische Befunde sind GCNIS (Germ Cell Neoplasia in Situ) als Vorläuferläsion und das junge Patientenalter von 23 Jahren, welches im typischen Altersgipfel für Hodentumoren liegt (15-35 Jahre). Das pT1-Stadium und die Rete testis-Infiltration sind spezifische Staging-Kriterien für Hodentumoren.\",\n    \"classification\": \"hodentumor\",\n    \"confidence\": 1.0,\n    \"key_indicators\": [\n        \"Seminom (100%) - reiner Keimzelltumor des Hodens\",\n        \"Inguinale Ablatio testis links\",\n        \"GCNIS+ (Germ Cell Neoplasia in Situ)\",\n        \"Rete testis Infiltration\",\n        \"Patientenalter 23 Jahre (typisch für Hodentumoren)\",\n        \"pT1 Staging nach Hodentumor-TNM\"\n    ]\n}\n```",
+  "ground_truth": "hodentumor",
+  "is_correct": true,
+  "inference_time_seconds": 30.54554216600002,
+  "tokens_used": 1110,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

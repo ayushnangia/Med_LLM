@@ -1,0 +1,54 @@
+{
+  "case_id": "ncc_13",
+  "timestamp": "2025-12-24T09:48:59.339899",
+  "provider": "ollama",
+  "model": "mistral:7b-instruct",
+  "input_case": {
+    "case_id": "ncc_13",
+    "patient": {
+      "alter_jahre": 64,
+      "geschlecht": null,
+      "ecog": 0,
+      "komorbiditaet": "unknown"
+    },
+    "anamnese": "Vorstellung zur regelmäßigen Ultraschallkontrolle beim Hausarzt. Dabei Nachweis Raumforderung rechte Niere. Anschließend CT Abdomen mit Nachweis von zwei renalen Raumforderungen: rechts ca. 4,1 cm, links ca. 1,8 cm. Z. n. Kolon-OP bei Divertikulitis.",
+    "diagnose_kurz": "Beidseitige renale Raumforderungen: rechts 4,1 cm (cT1b*), links 1,8 cm (cT1a*) – malignitätsverdächtig (V. a. RCC)",
+    "stadium": "bilateral, prätherapeutisch; Staging (CT Thorax) ausstehend",
+    "tnm_clinical": {
+      "T": "unknown",
+      "N": "unknown",
+      "M": "unknown",
+      "stage_group": "unknown"
+    },
+    "tnm_pathological": {
+      "T": null,
+      "N": null,
+      "M": null,
+      "stage_group": null
+    },
+    "histologie": null,
+    "metastatic": null,
+    "nebendiagnosen": [
+      "Z. n. Kolon-OP bei Divertikulitis"
+    ],
+    "ground_truth": "nierenzellkarzinom"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Analysiere den folgenden klinischen Fall und bestimme die Haupttumorentität.\n\nKLINISCHER FALL:\nPatient: 64 Jahre\nECOG: 0\nAnamnese: Vorstellung zur regelmäßigen Ultraschallkontrolle beim Hausarzt. Dabei Nachweis Raumforderung rechte Niere. Anschließend CT Abdomen mit Nachweis von zwei renalen Raumforderungen: rechts ca. 4,1 cm, links ca. 1,8 cm. Z. n. Kolon-OP bei Divertikulitis.\nDiagnose: Beidseitige renale Raumforderungen: rechts 4,1 cm (cT1b*), links 1,8 cm (cT1a*) – malignitätsverdächtig (V. a. RCC)\nStadium: bilateral, prätherapeutisch; Staging (CT Thorax) ausstehend\nTNM (klinisch): T:unknown N:unknown M:unknown\nTNM (pathologisch): Unbekannt\nNebendiagnosen: Z. n. Kolon-OP bei Divertikulitis\n\nAUFGABE:\nKlassifiziere diesen Fall in GENAU eine der folgenden Kategorien:\n- nierenzellkarzinom (Nierenkrebs/RCC)\n- prostatakarzinom (Prostatakrebs)\n- hodentumor (Hodenkrebs)\n- peniskarzinom (Peniskrebs)\n- urothelkarzinom (Blasen-/Harnwegskrebs)\n- polymalignancy (Mehrfachtumoren/Polymalignität)\n- non_urological (Nicht-urologische Tumoren)\n\nAntworte im folgenden JSON-Format:\n{\n    \"reasoning\": \"Deine schrittweise Begründung auf Deutsch\",\n    \"classification\": \"eine der obigen Kategorien\",\n    \"confidence\": 0.0 bis 1.0,\n    \"key_indicators\": [\"Indikator 1\", \"Indikator 2\"]\n}\n\nJSON-Antwort:",
+  "output": {
+    "reasoning": "Der Patient ist ein 64-jähriger Mann mit einer bilateralen (beidseitigen) Nachweis von Raumforderungen in den Nieren. Die Größe der rechten Tumorläsion ist größer als 3 cm, was auf eine malignitätsverdächtige Entität hinweist. Es gibt keine Hinweise auf andere Tumoren im urogenitalen Bereich oder an anderen Orten des Körpers. Daher kann der Fall aufgrund der klinischen Symptome und der diagnostischen Befunde als 'nierenzellkarzinom (Nierenkrebs/RCC)' klassifiziert werden.",
+    "classification": "nierenzellkarzinom",
+    "confidence": 0.95,
+    "key_indicators": [
+      "bilaterale Raumforderungen in den Nieren",
+      "malignitätsverdächtige Entität"
+    ]
+  },
+  "raw_response": " {\n    \"reasoning\": \"Der Patient ist ein 64-jähriger Mann mit einer bilateralen (beidseitigen) Nachweis von Raumforderungen in den Nieren. Die Größe der rechten Tumorläsion ist größer als 3 cm, was auf eine malignitätsverdächtige Entität hinweist. Es gibt keine Hinweise auf andere Tumoren im urogenitalen Bereich oder an anderen Orten des Körpers. Daher kann der Fall aufgrund der klinischen Symptome und der diagnostischen Befunde als 'nierenzellkarzinom (Nierenkrebs/RCC)' klassifiziert werden.\",\n    \"classification\": \"nierenzellkarzinom (Nierenkrebs/RCC)\",\n    \"confidence\": 0.95,\n    \"key_indicators\": [\"bilaterale Raumforderungen in den Nieren\", \"malignitätsverdächtige Entität\"]\n}",
+  "ground_truth": "nierenzellkarzinom",
+  "is_correct": true,
+  "inference_time_seconds": 52.418261766433716,
+  "tokens_used": 776,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

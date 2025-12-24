@@ -1,0 +1,46 @@
+{
+  "case_id": "uca_1",
+  "timestamp": "2025-12-24T10:23:15.110850",
+  "provider": "openrouter",
+  "model": "google/gemma-3-27b-it",
+  "input_case": {
+    "case_id": "uca_1",
+    "patient": {
+      "alter_jahre": 63,
+      "geschlecht": null,
+      "ecog": null,
+      "komorbiditaet": null
+    },
+    "anamnese": null,
+    "diagnose_kurz": "Multilokuläres NMIBC-Rezidiv: nicht-invasives papilläres Urothelkarzinom low grade (pTa G1) in mehreren Lokalisationen (A–C), D/E ohne Malignität",
+    "alle_diagnosen": null,
+    "stadium": "NMIBC, low grade pTa (multifokal, Rezidiv >3 Läsionen) – Risikostratifizierung (EORTC) geplant",
+    "tnm_clinical": null,
+    "tnm_pathological": null,
+    "histologie": null,
+    "metastatic": null,
+    "nebendiagnosen": null,
+    "ground_truth": "urothelkarzinom"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 63 Jahre\nDiagnose: Multilokuläres NMIBC-Rezidiv: nicht-invasives papilläres Urothelkarzinom low grade (pTa G1) in mehreren Lokalisationen (A–C), D/E ohne Malignität\nStadium: NMIBC, low grade pTa (multifokal, Rezidiv >3 Läsionen) – Risikostratifizierung (EORTC) geplant\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Der Fall beschreibt ein nicht-invasives Urothelkarzinom (NMIBC) im Blasenbereich. Die Diagnose 'Urothelkarzinom' ist explizit genannt und die Beschreibung der Läsionen (papillär, low grade, pTa) sind typisch für diese Krebsart. Die Lokalisation in der Blase (A-E) bestätigt dies. Die anderen Optionen sind entweder Krebsarten anderer Urogenitalorgane oder fallen in andere Kategorien.",
+    "classification": "urothelkarzinom",
+    "confidence": 1.0,
+    "key_indicators": [
+      "Urothelkarzinom",
+      "NMIBC",
+      "pTa",
+      "papillär",
+      "Blase (A-E)"
+    ]
+  },
+  "raw_response": "\n\n```json\n{\n    \"reasoning\": \"Der Fall beschreibt ein nicht-invasives Urothelkarzinom (NMIBC) im Blasenbereich. Die Diagnose 'Urothelkarzinom' ist explizit genannt und die Beschreibung der Läsionen (papillär, low grade, pTa) sind typisch für diese Krebsart. Die Lokalisation in der Blase (A-E) bestätigt dies. Die anderen Optionen sind entweder Krebsarten anderer Urogenitalorgane oder fallen in andere Kategorien.\",\n    \"classification\": \"urothelkarzinom\",\n    \"confidence\": 1.0,\n    \"key_indicators\": [\"Urothelkarzinom\", \"NMIBC\", \"pTa\", \"papillär\", \"Blase (A-E)\"]\n}\n```\n",
+  "ground_truth": "urothelkarzinom",
+  "is_correct": true,
+  "inference_time_seconds": 36.570541125,
+  "tokens_used": 419,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

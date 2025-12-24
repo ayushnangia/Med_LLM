@@ -1,0 +1,49 @@
+{
+  "case_id": "non_uro_2",
+  "timestamp": "2025-12-24T10:18:51.802481",
+  "provider": "openrouter",
+  "model": "moonshotai/kimi-k2-thinking",
+  "input_case": {
+    "case_id": "non_uro_2",
+    "patient": {
+      "alter_jahre": 52,
+      "geschlecht": null,
+      "ecog": null,
+      "komorbiditaet": null
+    },
+    "anamnese": null,
+    "diagnose_kurz": "Unklare Raumforderung Harnblase (Seitenwand) – TUR-B 01.11.2025; Histologie: morphologisch/klinisch Infiltration durch bekanntes Sigmakarzinom (sekundäre Blaseninfiltration, kein primäres Urothelkarzinom beschrieben)",
+    "alle_diagnosen": [
+      "Unklare Raumforderung Harnblase (Seitenwand) – TUR-B 01.11.2025; Histologie: morphologisch/klinisch Infiltration durch bekanntes Sigmakarzinom (sekundäre Blaseninfiltration, kein primäres Urothelkarzinom beschrieben)",
+      "Hepatisch metastasiertes Sigmakarzinom (ED 01/2025), Status nach Sigmaresektion mit subperitonealer Exzision am Blasendach (12.01.2025) und Leber-lokalen Therapien/Resektionen"
+    ],
+    "stadium": "Sekundärbefall der Harnblase durch kolorektales Karzinom (Verdacht/Kommentar), genaue TNM der Blasenläsion nicht angegeben",
+    "tnm_clinical": null,
+    "tnm_pathological": null,
+    "histologie": null,
+    "metastatic": null,
+    "nebendiagnosen": null,
+    "ground_truth": "non_urological"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 52 Jahre\nDiagnose 1: Unklare Raumforderung Harnblase (Seitenwand) – TUR-B 01.11.2025; Histologie: morphologisch/klinisch Infiltration durch bekanntes Sigmakarzinom (sekundäre Blaseninfiltration, kein primäres Urothelkarzinom beschrieben)\nDiagnose 2: Hepatisch metastasiertes Sigmakarzinom (ED 01/2025), Status nach Sigmaresektion mit subperitonealer Exzision am Blasendach (12.01.2025) und Leber-lokalen Therapien/Resektionen\nStadium: Sekundärbefall der Harnblase durch kolorektales Karzinom (Verdacht/Kommentar), genaue TNM der Blasenläsion nicht angegeben\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Der Patient hat ein primäres, hepatisch metastasiertes Sigmakarzinom (kolorektales Karzinom). Die Raumforderung in der Harnblase ist histologisch eindeutig als Infiltration/Manifestation dieses bekannten kolorektalen Karzinoms identifiziert worden, nicht als primäres Urothelkarzinom. Es handelt sich somit um eine Metastase eines nicht-urologischen Malignoms in die Harnblase. Die Kategorie 'polymalignancy' ist nicht zutreffend, da nur ein Primärtumor vorliegt. Alle urologischen Primärtumor-Kategorien (Urothelkarzinom, Nierenzellkarzinom, etc.) sind ausgeschlossen, da die Histologie keinen urologischen Primärtumor bestätigt.",
+    "classification": "non_urological",
+    "confidence": 0.99,
+    "key_indicators": [
+      "Primärdiagnose: Sigmakarzinom (kolorektales Karzinom)",
+      "Histologie: 'Infiltration durch bekanntes Sigmakarzinom'",
+      "Explizit: 'kein primäres Urothelkarzinom beschrieben'",
+      "Sekundärbefall der Harnblase durch kolorektales Karzinom",
+      "Hepatische Metastasierung desselben Primärtumors"
+    ]
+  },
+  "raw_response": "```json\n{\n    \"reasoning\": \"Der Patient hat ein primäres, hepatisch metastasiertes Sigmakarzinom (kolorektales Karzinom). Die Raumforderung in der Harnblase ist histologisch eindeutig als Infiltration/Manifestation dieses bekannten kolorektalen Karzinoms identifiziert worden, nicht als primäres Urothelkarzinom. Es handelt sich somit um eine Metastase eines nicht-urologischen Malignoms in die Harnblase. Die Kategorie 'polymalignancy' ist nicht zutreffend, da nur ein Primärtumor vorliegt. Alle urologischen Primärtumor-Kategorien (Urothelkarzinom, Nierenzellkarzinom, etc.) sind ausgeschlossen, da die Histologie keinen urologischen Primärtumor bestätigt.\",\n    \"classification\": \"non_urological\",\n    \"confidence\": 0.99,\n    \"key_indicators\": [\n        \"Primärdiagnose: Sigmakarzinom (kolorektales Karzinom)\",\n        \"Histologie: 'Infiltration durch bekanntes Sigmakarzinom'\",\n        \"Explizit: 'kein primäres Urothelkarzinom beschrieben'\",\n        \"Sekundärbefall der Harnblase durch kolorektales Karzinom\",\n        \"Hepatische Metastasierung desselben Primärtumors\"\n    ]\n}\n```",
+  "ground_truth": "non_urological",
+  "is_correct": true,
+  "inference_time_seconds": 146.12150499999996,
+  "tokens_used": 1532,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

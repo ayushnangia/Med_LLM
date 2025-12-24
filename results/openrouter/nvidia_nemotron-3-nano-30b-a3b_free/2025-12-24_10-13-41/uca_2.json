@@ -1,0 +1,47 @@
+{
+  "case_id": "uca_2",
+  "timestamp": "2025-12-24T10:13:41.835341",
+  "provider": "openrouter",
+  "model": "nvidia/nemotron-3-nano-30b-a3b:free",
+  "input_case": {
+    "case_id": "uca_2",
+    "patient": {
+      "alter_jahre": 54,
+      "geschlecht": null,
+      "ecog": null,
+      "komorbiditaet": null
+    },
+    "anamnese": null,
+    "diagnose_kurz": "Harnblasen-NMIBC: nicht-invasives papilläres Urothelkarzinom pTa, fokal high grade (G3), Hinterwand links; Detrusor nicht nachweisbar",
+    "alle_diagnosen": null,
+    "stadium": "pTa high grade (fokal) – EORTC-Risikostratifizierung geplant; Nachresektion erwägen (Detrusor fehlt)",
+    "tnm_clinical": null,
+    "tnm_pathological": null,
+    "histologie": null,
+    "metastatic": null,
+    "nebendiagnosen": null,
+    "ground_truth": "urothelkarzinom"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 54 Jahre\nDiagnose: Harnblasen-NMIBC: nicht-invasives papilläres Urothelkarzinom pTa, fokal high grade (G3), Hinterwand links; Detrusor nicht nachweisbar\nStadium: pTa high grade (fokal) – EORTC-Risikostratifizierung geplant; Nachresektion erwägen (Detrusor fehlt)\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Der Patient leidet an einem nicht invasiven, hochgradigen (G3) papillären Urothelkarzinom der Harnblase (pTa, fokales Geschehen an der hinteren linken Wand). Die Erkrankung ist eindeutig eine maligne Neoplasie der Harnwege, die im Bereich der Urothel (Blasenmukosa) entsteht. Es gibt keine Hinweise auf Nierenzell-, Prostatakarzinom, Hodentumor oder Peniskarzinom. Daher passt die Klassifikation am besten zu \"Urothelkarzinom\".",
+    "classification": "urothelkarzinom",
+    "confidence": 0.99,
+    "key_indicators": [
+      "Harnblasen-NMIBC",
+      "pTa",
+      "high grade (G3)",
+      "fokal",
+      "links",
+      "kein Detrusormuskel"
+    ]
+  },
+  "raw_response": "{\n    \"reasoning\": \"Der Patient leidet an einem nicht invasiven, hochgradigen (G3) papillären Urothelkarzinom der Harnblase (pTa, fokales Geschehen an der hinteren linken Wand). Die Erkrankung ist eindeutig eine maligne Neoplasie der Harnwege, die im Bereich der Urothel (Blasenmukosa) entsteht. Es gibt keine Hinweise auf Nierenzell-, Prostatakarzinom, Hodentumor oder Peniskarzinom. Daher passt die Klassifikation am besten zu \\\"Urothelkarzinom\\\".\",\n    \"classification\": \"urothelkarzinom\",\n    \"confidence\": 0.99,\n    \"key_indicators\": [\n        \"Harnblasen-NMIBC\",\n        \"pTa\",\n        \"high grade (G3)\",\n        \"fokal\",\n        \"links\",\n        \"kein Detrusormuskel\"\n    ]\n}",
+  "ground_truth": "urothelkarzinom",
+  "is_correct": true,
+  "inference_time_seconds": 11.774085375000027,
+  "tokens_used": 674,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

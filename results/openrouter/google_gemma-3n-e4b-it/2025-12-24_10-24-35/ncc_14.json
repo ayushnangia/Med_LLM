@@ -1,0 +1,60 @@
+{
+  "case_id": "ncc_14",
+  "timestamp": "2025-12-24T10:24:35.475808",
+  "provider": "openrouter",
+  "model": "google/gemma-3n-e4b-it",
+  "input_case": {
+    "case_id": "ncc_14",
+    "patient": {
+      "alter_jahre": 79,
+      "geschlecht": null,
+      "ecog": 2,
+      "komorbiditaet": "hoch"
+    },
+    "anamnese": "Zufallsbefund der linken Niere (Sonographie beim Hausarzt bei Rückenschmerzen). Großer Nierentumor links ca. 9 cm. Vorerkrankungen: KHK, Z. n. Bypass 2012, CKD G2.",
+    "diagnose_kurz": "Großer Nierentumor links ca. 9,0 cm, hochgradig malignitätsverdächtig (V. a. RCC), fragliche Infiltration linke Nebenniere; CT Thorax ohne Metastasen",
+    "alle_diagnosen": null,
+    "stadium": "lokal fortgeschritten vs organbegrenzt; M0 (CT Thorax 04.12.2025)",
+    "tnm_clinical": {
+      "T": "T2",
+      "N": "N0",
+      "M": "M0",
+      "stage_group": "unknown"
+    },
+    "tnm_pathological": {
+      "T": null,
+      "N": null,
+      "M": null,
+      "stage_group": null
+    },
+    "histologie": null,
+    "metastatic": false,
+    "nebendiagnosen": [
+      "KHK",
+      "Z. n. aortokoronarer Bypass 2012",
+      "CKD G2"
+    ],
+    "ground_truth": "nierenzellkarzinom"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 79 Jahre\nECOG: 2\nAnamnese: Zufallsbefund der linken Niere (Sonographie beim Hausarzt bei Rückenschmerzen). Großer Nierentumor links ca. 9 cm. Vorerkrankungen: KHK, Z. n. Bypass 2012, CKD G2.\nDiagnose: Großer Nierentumor links ca. 9,0 cm, hochgradig malignitätsverdächtig (V. a. RCC), fragliche Infiltration linke Nebenniere; CT Thorax ohne Metastasen\nStadium: lokal fortgeschritten vs organbegrenzt; M0 (CT Thorax 04.12.2025)\nTNM (klinisch): T:T2 N:N0 M:M0\nTNM (pathologisch): Unbekannt\nMetastasiert: Nein\nNebendiagnosen: KHK, Z. n. aortokoronarer Bypass 2012, CKD G2\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Der Fall beschreibt einen großen Nierentumor mit hoher Malignitätsverdacht (wahrscheinlich ein Nierenzellkarzinom - RCC). Die klinische TNM-Klassifikation (T2, N0, M0) deutet auf eine lokale Erkrankung hin, wobei die Möglichkeit einer Infiltration der Nebenniere besteht.  Die Anamnese mit KHK und CKD G2 sind relevante Begleiterkrankungen, beeinflussen aber die Klassifizierung des Tumors selbst nicht. Da das CT des Thorax keine Metastasen zeigt (M0), wird der Tumor derzeit als lokal fortgeschritten oder organbegrenzt eingestuft.  Die pathologische Klassifizierung ist noch nicht verfügbar, aber die klinischen Befunde und die Wahrscheinlichkeit eines RCC dominieren die aktuelle Einschätzung.",
+    "classification": "nierenzellkarzinom",
+    "confidence": 0.95,
+    "key_indicators": [
+      "Großer Nierentumor (9 cm)",
+      "Hochgradig malignitätsverdächtig (V. a. RCC)",
+      "M0 (keine Metastasen im Thorax)",
+      "Klinische TNM-Klassifikation (T2, N0, M0)",
+      "CKD G2"
+    ]
+  },
+  "raw_response": "```json\n{\n    \"reasoning\": \"Der Fall beschreibt einen großen Nierentumor mit hoher Malignitätsverdacht (wahrscheinlich ein Nierenzellkarzinom - RCC). Die klinische TNM-Klassifikation (T2, N0, M0) deutet auf eine lokale Erkrankung hin, wobei die Möglichkeit einer Infiltration der Nebenniere besteht.  Die Anamnese mit KHK und CKD G2 sind relevante Begleiterkrankungen, beeinflussen aber die Klassifizierung des Tumors selbst nicht. Da das CT des Thorax keine Metastasen zeigt (M0), wird der Tumor derzeit als lokal fortgeschritten oder organbegrenzt eingestuft.  Die pathologische Klassifizierung ist noch nicht verfügbar, aber die klinischen Befunde und die Wahrscheinlichkeit eines RCC dominieren die aktuelle Einschätzung.\",\n    \"classification\": \"nierenzellkarzinom\",\n    \"confidence\": 0.95,\n    \"key_indicators\": [\"Großer Nierentumor (9 cm)\", \"Hochgradig malignitätsverdächtig (V. a. RCC)\", \"M0 (keine Metastasen im Thorax)\", \"Klinische TNM-Klassifikation (T2, N0, M0)\", \"CKD G2\"]\n}\n```",
+  "ground_truth": "nierenzellkarzinom",
+  "is_correct": true,
+  "inference_time_seconds": 13.782562375000012,
+  "tokens_used": 646,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

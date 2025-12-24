@@ -1,0 +1,42 @@
+{
+  "case_id": "combi_2",
+  "timestamp": "2025-12-24T09:57:06.505159",
+  "provider": "ollama",
+  "model": "mistral:7b-instruct",
+  "input_case": {
+    "case_id": "combi_2",
+    "patient": {
+      "alter_jahre": 63,
+      "geschlecht": null,
+      "ecog": null,
+      "komorbiditaet": null
+    },
+    "anamnese": null,
+    "diagnose_kurz": "Raumforderung rechte Niere 3,6 cm (cT1a/b grenzwertig), malignitätsverdächtig (V. a. RCC/ccRCC); keine abdominelle Lymphadenopathie; CT Thorax: kleine pulmonale Rundherde <5 mm unklar",
+    "stadium": "nicht metastasiert nicht gesichert; pulmonale Herde unklar (Verlauf empfohlen)",
+    "tnm_clinical": null,
+    "tnm_pathological": null,
+    "histologie": null,
+    "metastatic": null,
+    "nebendiagnosen": null,
+    "ground_truth": "polymalignancy"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Analysiere den folgenden klinischen Fall und bestimme die Haupttumorentität.\n\nKLINISCHER FALL:\nPatient: 63 Jahre\nDiagnose: Raumforderung rechte Niere 3,6 cm (cT1a/b grenzwertig), malignitätsverdächtig (V. a. RCC/ccRCC); keine abdominelle Lymphadenopathie; CT Thorax: kleine pulmonale Rundherde <5 mm unklar\nStadium: nicht metastasiert nicht gesichert; pulmonale Herde unklar (Verlauf empfohlen)\n\nAUFGABE:\nKlassifiziere diesen Fall in GENAU eine der folgenden Kategorien:\n- nierenzellkarzinom (Nierenkrebs/RCC)\n- prostatakarzinom (Prostatakrebs)\n- hodentumor (Hodenkrebs)\n- peniskarzinom (Peniskrebs)\n- urothelkarzinom (Blasen-/Harnwegskrebs)\n- polymalignancy (Mehrfachtumoren/Polymalignität)\n- non_urological (Nicht-urologische Tumoren)\n\nAntworte im folgenden JSON-Format:\n{\n    \"reasoning\": \"Deine schrittweise Begründung auf Deutsch\",\n    \"classification\": \"eine der obigen Kategorien\",\n    \"confidence\": 0.0 bis 1.0,\n    \"key_indicators\": [\"Indikator 1\", \"Indikator 2\"]\n}\n\nJSON-Antwort:",
+  "output": {
+    "reasoning": "Der Patient ist ein 63-jähriger Mann mit einer Raumforderung der rechten Niere, die malignitätsverdächtig ist und sich im Stadium T1a/b befindet. Zudem gibt es keine abdominelle Lymphadenopathie. Diese Symptome und Befunde deuten auf ein Nierenzellkarzinom (RCC) hin. Die kleine pulmonale Rundherde im Thorax ist unklar, was den Fall als nicht gesichert metastasiert beurteilt wird.",
+    "classification": "nierenzellkarzinom",
+    "confidence": 0.95,
+    "key_indicators": [
+      "Raumforderung der rechten Niere",
+      "malignitätsverdächtig"
+    ]
+  },
+  "raw_response": " {\n    \"reasoning\": \"Der Patient ist ein 63-jähriger Mann mit einer Raumforderung der rechten Niere, die malignitätsverdächtig ist und sich im Stadium T1a/b befindet. Zudem gibt es keine abdominelle Lymphadenopathie. Diese Symptome und Befunde deuten auf ein Nierenzellkarzinom (RCC) hin. Die kleine pulmonale Rundherde im Thorax ist unklar, was den Fall als nicht gesichert metastasiert beurteilt wird.\",\n    \"classification\": \"nierenzellkarzinom (RCC)\",\n    \"confidence\": 0.95,\n    \"key_indicators\": [\"Raumforderung der rechten Niere\", \"malignitätsverdächtig\"]\n}",
+  "ground_truth": "polymalignancy",
+  "is_correct": false,
+  "inference_time_seconds": 39.498591899871826,
+  "tokens_used": 615,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

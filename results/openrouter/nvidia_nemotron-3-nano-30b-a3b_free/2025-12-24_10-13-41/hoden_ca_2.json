@@ -1,0 +1,47 @@
+{
+  "case_id": "hoden_ca_2",
+  "timestamp": "2025-12-24T10:13:41.835300",
+  "provider": "openrouter",
+  "model": "nvidia/nemotron-3-nano-30b-a3b:free",
+  "input_case": {
+    "case_id": "hoden_ca_2",
+    "patient": {
+      "alter_jahre": 23,
+      "geschlecht": null,
+      "ecog": null,
+      "komorbiditaet": null
+    },
+    "anamnese": null,
+    "diagnose_kurz": "Seminom links (100%), kleinherdig (max. 0,2×0,5×0,1 cm) – Status nach inguinaler Ablatio testis links (19.09.2025), Rete testis infiltriert, GCNIS+",
+    "alle_diagnosen": null,
+    "stadium": "pT1 pNX (klinisches Stadium offen; Staging CT Thorax/Abdomen ausstehend)",
+    "tnm_clinical": null,
+    "tnm_pathological": null,
+    "histologie": null,
+    "metastatic": null,
+    "nebendiagnosen": null,
+    "ground_truth": "hodentumor"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 23 Jahre\nDiagnose: Seminom links (100%), kleinherdig (max. 0,2×0,5×0,1 cm) – Status nach inguinaler Ablatio testis links (19.09.2025), Rete testis infiltriert, GCNIS+\nStadium: pT1 pNX (klinisches Stadium offen; Staging CT Thorax/Abdomen ausstehend)\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Der Patient ist ein junger Mann (23 Jahre) mit einer Diagnose von Seminom im linken Hoden, das nach einer orchiectomie im linken Leistenbereich entfernt wurde. Histologisch sind das Rete testis infiltriert und das Vorläuferkarzinom (GCNIS) ist positiv. Die Tumorgröße ist sehr klein (maximal 0,2×0,5×0,1 cm) und der pathologische Befund lautet pT1 pNX. Diese Befunde sind typisch für ein primäres Hodenkarzinom (Seminom) im frühen Stadium.",
+    "classification": "hodentumor",
+    "confidence": 0.99,
+    "key_indicators": [
+      "Seminom links",
+      "linker Hodentumor",
+      "Orchiectomie links",
+      "Rete testis infiltriert",
+      "GCNIS positiv",
+      "pT1 pNX"
+    ]
+  },
+  "raw_response": "{\n    \"reasoning\": \"Der Patient ist ein junger Mann (23 Jahre) mit einer Diagnose von Seminom im linken Hoden, das nach einer orchiectomie im linken Leistenbereich entfernt wurde. Histologisch sind das Rete testis infiltriert und das Vorläuferkarzinom (GCNIS) ist positiv. Die Tumorgröße ist sehr klein (maximal 0,2×0,5×0,1 cm) und der pathologische Befund lautet pT1 pNX. Diese Befunde sind typisch für ein primäres Hodenkarzinom (Seminom) im frühen Stadium.\",\n    \"classification\": \"hodentumor\",\n    \"confidence\": 0.99,\n    \"key_indicators\": [\n        \"Seminom links\",\n        \"linker Hodentumor\",\n        \"Orchiectomie links\",\n        \"Rete testis infiltriert\",\n        \"GCNIS positiv\",\n        \"pT1 pNX\"\n    ]\n}",
+  "ground_truth": "hodentumor",
+  "is_correct": true,
+  "inference_time_seconds": 10.53438804199999,
+  "tokens_used": 664,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

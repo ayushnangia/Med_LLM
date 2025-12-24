@@ -1,0 +1,57 @@
+{
+  "case_id": "ncc_3",
+  "timestamp": "2025-12-24T10:07:56.351702",
+  "provider": "openrouter",
+  "model": "google/gemini-3-flash-preview",
+  "input_case": {
+    "case_id": "ncc_3",
+    "patient": {
+      "alter_jahre": 58,
+      "geschlecht": null,
+      "ecog": 0,
+      "komorbiditaet": "unknown"
+    },
+    "anamnese": "Zufallsbefund im CT wegen Nephrolithiasis. Solide Nierenraumforderung rechts (2,2 cm).",
+    "diagnose_kurz": "Solide Nierenraumforderung rechts (2,2 cm)",
+    "alle_diagnosen": null,
+    "stadium": "nicht-metastasiert (Verdacht, prätherapeutisch)",
+    "tnm_clinical": {
+      "T": "unknown",
+      "N": "unknown",
+      "M": "M0",
+      "stage_group": "unknown"
+    },
+    "tnm_pathological": {
+      "T": null,
+      "N": null,
+      "M": null,
+      "stage_group": null
+    },
+    "histologie": null,
+    "metastatic": false,
+    "nebendiagnosen": [
+      "arterielle Hypertonie"
+    ],
+    "ground_truth": "nierenzellkarzinom"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 58 Jahre\nECOG: 0\nAnamnese: Zufallsbefund im CT wegen Nephrolithiasis. Solide Nierenraumforderung rechts (2,2 cm).\nDiagnose: Solide Nierenraumforderung rechts (2,2 cm)\nStadium: nicht-metastasiert (Verdacht, prätherapeutisch)\nTNM (klinisch): T:unknown N:unknown M:M0\nTNM (pathologisch): Unbekannt\nMetastasiert: Nein\nNebendiagnosen: arterielle Hypertonie\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Der Patient präsentiert sich mit einer soliden Nierenraumforderung (2,2 cm), die als Zufallsbefund im CT entdeckt wurde. Bei einer soliden Masse dieser Größe im Nierenparenchym ist die klinische Arbeitsdiagnose bis zum Beweis des Gegenteils ein Nierenzellkarzinom (RCC). Die Lokalisation und die Bildmorphologie schließen andere urologische Tumoren wie Prostatakarzinom oder Hodentumoren primär aus. Ein Urothelkarzinom des Nierenbeckens ist bei einer soliden Parenchymraumforderung weniger wahrscheinlich als ein RCC.",
+    "classification": "nierenzellkarzinom",
+    "confidence": 0.95,
+    "key_indicators": [
+      "Solide Nierenraumforderung",
+      "2,2 cm Durchmesser",
+      "Zufallsbefund im CT",
+      "Lokalisation Niere rechts"
+    ]
+  },
+  "raw_response": "```json\n{\n    \"reasoning\": \"Der Patient präsentiert sich mit einer soliden Nierenraumforderung (2,2 cm), die als Zufallsbefund im CT entdeckt wurde. Bei einer soliden Masse dieser Größe im Nierenparenchym ist die klinische Arbeitsdiagnose bis zum Beweis des Gegenteils ein Nierenzellkarzinom (RCC). Die Lokalisation und die Bildmorphologie schließen andere urologische Tumoren wie Prostatakarzinom oder Hodentumoren primär aus. Ein Urothelkarzinom des Nierenbeckens ist bei einer soliden Parenchymraumforderung weniger wahrscheinlich als ein RCC.\",\n    \"classification\": \"nierenzellkarzinom\",\n    \"confidence\": 0.95,\n    \"key_indicators\": [\n        \"Solide Nierenraumforderung\",\n        \"2,2 cm Durchmesser\",\n        \"Zufallsbefund im CT\",\n        \"Lokalisation Niere rechts\"\n    ]\n}\n```",
+  "ground_truth": "nierenzellkarzinom",
+  "is_correct": true,
+  "inference_time_seconds": 7.258775833,
+  "tokens_used": 1023,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

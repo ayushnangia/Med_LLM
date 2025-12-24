@@ -1,0 +1,45 @@
+{
+  "case_id": "uca_1",
+  "timestamp": "2025-12-24T10:16:18.727533",
+  "provider": "openrouter",
+  "model": "deepseek/deepseek-v3.2",
+  "input_case": {
+    "case_id": "uca_1",
+    "patient": {
+      "alter_jahre": 63,
+      "geschlecht": null,
+      "ecog": null,
+      "komorbiditaet": null
+    },
+    "anamnese": null,
+    "diagnose_kurz": "Multilokuläres NMIBC-Rezidiv: nicht-invasives papilläres Urothelkarzinom low grade (pTa G1) in mehreren Lokalisationen (A–C), D/E ohne Malignität",
+    "alle_diagnosen": null,
+    "stadium": "NMIBC, low grade pTa (multifokal, Rezidiv >3 Läsionen) – Risikostratifizierung (EORTC) geplant",
+    "tnm_clinical": null,
+    "tnm_pathological": null,
+    "histologie": null,
+    "metastatic": null,
+    "nebendiagnosen": null,
+    "ground_truth": "urothelkarzinom"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 63 Jahre\nDiagnose: Multilokuläres NMIBC-Rezidiv: nicht-invasives papilläres Urothelkarzinom low grade (pTa G1) in mehreren Lokalisationen (A–C), D/E ohne Malignität\nStadium: NMIBC, low grade pTa (multifokal, Rezidiv >3 Läsionen) – Risikostratifizierung (EORTC) geplant\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Die Diagnose beschreibt ein nicht-muskelinvasives papilläres Urothelkarzinom low grade (pTa G1) in der Harnblase, klassifiziert als NMIBC (non-muscle invasive bladder cancer). Der Begriff 'Urothelkarzinom' ist spezifisch für Tumoren des Urothels, das die Harnwege auskleidet. Die anderen Optionen (Nierenzellkarzinom, Prostatakarzinom, Hodentumor, Peniskarzinom) betreffen andere anatomische Strukturen und sind nicht zutreffend. 'Polymalignancy' wäre nur relevant, wenn mehrere Primärtumoren vorlägen, was nicht beschrieben ist. 'Non_urological' passt nicht, da es sich um einen urologischen Tumor handelt.",
+    "classification": "urothelkarzinom",
+    "confidence": 1.0,
+    "key_indicators": [
+      "NMIBC-Rezidiv",
+      "nicht-invasives papilläres Urothelkarzinom low grade (pTa G1)",
+      "multifokal",
+      "Risikostratifizierung (EORTC) geplant"
+    ]
+  },
+  "raw_response": "{\n    \"reasoning\": \"Die Diagnose beschreibt ein nicht-muskelinvasives papilläres Urothelkarzinom low grade (pTa G1) in der Harnblase, klassifiziert als NMIBC (non-muscle invasive bladder cancer). Der Begriff 'Urothelkarzinom' ist spezifisch für Tumoren des Urothels, das die Harnwege auskleidet. Die anderen Optionen (Nierenzellkarzinom, Prostatakarzinom, Hodentumor, Peniskarzinom) betreffen andere anatomische Strukturen und sind nicht zutreffend. 'Polymalignancy' wäre nur relevant, wenn mehrere Primärtumoren vorlägen, was nicht beschrieben ist. 'Non_urological' passt nicht, da es sich um einen urologischen Tumor handelt.\",\n    \"classification\": \"urothelkarzinom\",\n    \"confidence\": 1.0,\n    \"key_indicators\": [\"NMIBC-Rezidiv\", \"nicht-invasives papilläres Urothelkarzinom low grade (pTa G1)\", \"multifokal\", \"Risikostratifizierung (EORTC) geplant\"]\n}",
+  "ground_truth": "urothelkarzinom",
+  "is_correct": true,
+  "inference_time_seconds": 53.404206666999926,
+  "tokens_used": 742,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

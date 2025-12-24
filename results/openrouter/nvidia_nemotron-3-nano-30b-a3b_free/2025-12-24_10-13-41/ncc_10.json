@@ -1,0 +1,61 @@
+{
+  "case_id": "ncc_10",
+  "timestamp": "2025-12-24T10:13:41.835036",
+  "provider": "openrouter",
+  "model": "nvidia/nemotron-3-nano-30b-a3b:free",
+  "input_case": {
+    "case_id": "ncc_10",
+    "patient": {
+      "alter_jahre": 75,
+      "geschlecht": null,
+      "ecog": 2,
+      "komorbiditaet": "hoch"
+    },
+    "anamnese": "Großer Tumor rechte Niere 7,5 cm (cT2a). Vorerkrankungen: CKD G3, arterielle Hypertonie, Vorhofflimmern (DOAK). Z. n. TUR-B 2019 ohne Malignität.",
+    "diagnose_kurz": "Großer Nierentumor rechts (Oberpol) ca. 7,5 × 6,5 cm, V. a. RCC (cT2a, prätherapeutisch)",
+    "alle_diagnosen": null,
+    "stadium": "cT2a, Staging inkomplett (CT Thorax ausstehend)",
+    "tnm_clinical": {
+      "T": "T2",
+      "N": "unknown",
+      "M": "unknown",
+      "stage_group": "unknown"
+    },
+    "tnm_pathological": {
+      "T": null,
+      "N": null,
+      "M": null,
+      "stage_group": null
+    },
+    "histologie": null,
+    "metastatic": null,
+    "nebendiagnosen": [
+      "CKD G3",
+      "arterielle Hypertonie",
+      "Vorhofflimmern (Antikoagulation mit DOAK)",
+      "Z. n. TUR-B 2019 (ohne Malignität)"
+    ],
+    "ground_truth": "nierenzellkarzinom"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 75 Jahre\nECOG: 2\nAnamnese: Großer Tumor rechte Niere 7,5 cm (cT2a). Vorerkrankungen: CKD G3, arterielle Hypertonie, Vorhofflimmern (DOAK). Z. n. TUR-B 2019 ohne Malignität.\nDiagnose: Großer Nierentumor rechts (Oberpol) ca. 7,5 × 6,5 cm, V. a. RCC (cT2a, prätherapeutisch)\nStadium: cT2a, Staging inkomplett (CT Thorax ausstehend)\nTNM (klinisch): T:T2 N:unknown M:unknown\nTNM (pathologisch): Unbekannt\nNebendiagnosen: CKD G3, arterielle Hypertonie, Vorhofflimmern (Antikoagulation mit DOAK), Z. n. TUR-B 2019 (ohne Malignität)\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Der Patient zeigt einen großen Tumor im rechten Nierenbereich (cT2a) mit histologischer Verdachtsdiagnose von RCC (renal cell carcinoma). Es bestehen keine Hinweise auf Prostatakarzinom, Hodentumor, Peniskarzinom oder Harnwegskarzinom. Die einzigen relevanten Begleiterkrankungen sind CKD, Hypertonie und Vorhofflimmern, die die Einordnung nicht beeinflussen. Damit gehört der Befund eindeutig in die Kategorie \"nierenzellkarzinom\".",
+    "classification": "nierenzellkarzinom",
+    "confidence": 0.96,
+    "key_indicators": [
+      "großer Tumor im rechten Nierenoberpol (7,5 × 6,5 cm)",
+      "histologische Verdachtsdiagnose RCC",
+      "klinisches Stadium cT2a",
+      "männlicher Patient ohne Hinweise auf Prostata-, Hoden- oder Penistumor",
+      "vorhandene CKD und arterielle Hypertonie als Begleiterkrankungen"
+    ]
+  },
+  "raw_response": "{\n    \"reasoning\": \"Der Patient zeigt einen großen Tumor im rechten Nierenbereich (cT2a) mit histologischer Verdachtsdiagnose von RCC (renal cell carcinoma). Es bestehen keine Hinweise auf Prostatakarzinom, Hodentumor, Peniskarzinom oder Harnwegskarzinom. Die einzigen relevanten Begleiterkrankungen sind CKD, Hypertonie und Vorhofflimmern, die die Einordnung nicht beeinflussen. Damit gehört der Befund eindeutig in die Kategorie \\\"nierenzellkarzinom\\\".\",\n    \"classification\": \"nierenzellkarzinom\",\n    \"confidence\": 0.96,\n    \"key_indicators\": [\n        \"großer Tumor im rechten Nierenoberpol (7,5 × 6,5 cm)\",\n        \"histologische Verdachtsdiagnose RCC\",\n        \"klinisches Stadium cT2a\",\n        \"männlicher Patient ohne Hinweise auf Prostata-, Hoden- oder Penistumor\",\n        \"vorhandene CKD und arterielle Hypertonie als Begleiterkrankungen\"\n    ]\n}",
+  "ground_truth": "nierenzellkarzinom",
+  "is_correct": true,
+  "inference_time_seconds": 5.225233166999999,
+  "tokens_used": 812,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}
