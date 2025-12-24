@@ -1,8 +1,0 @@
-{
-  "provider": "ollama",
-  "model": "mistral:7b-instruct",
-  "model_input": "mistral:7b-instruct",
-  "temperature": 0.1,
-  "timestamp": "2025-12-24T09:40:40.556251",
-  "total_cases": 26
-}
