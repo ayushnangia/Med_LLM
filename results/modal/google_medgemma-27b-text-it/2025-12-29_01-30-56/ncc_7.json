@@ -1,0 +1,54 @@
+{
+  "case_id": "ncc_7",
+  "timestamp": "2025-12-29_01-30-56",
+  "provider": "modal",
+  "model": "google/medgemma-27b-text-it",
+  "input_case": {
+    "case_id": "ncc_7",
+    "patient": {
+      "alter_jahre": 43,
+      "geschlecht": null,
+      "ecog": 0,
+      "komorbiditaet": "unknown"
+    },
+    "anamnese": "Nierentumor rechts 1,9 cm, endophytisch. CT-graphisch V. a. Nierenbeckentumor rechts ca. 1×1 cm. Z. n. Ureterorenoskopie rechts 11/2023.",
+    "diagnose_kurz": "Unklare Raumforderung Nierenbecken rechts ca. 1×1 cm (CT 11.11.2025), V. a. Nierenbeckentumor; dd: RCC endophytisch 1,9 cm",
+    "alle_diagnosen": null,
+    "stadium": "unbekannt (prätherapeutisch)",
+    "tnm_clinical": {
+      "T": "unknown",
+      "N": "unknown",
+      "M": "unknown",
+      "stage_group": "unknown"
+    },
+    "tnm_pathological": {
+      "T": null,
+      "N": null,
+      "M": null,
+      "stage_group": null
+    },
+    "histologie": null,
+    "metastatic": false,
+    "nebendiagnosen": [],
+    "ground_truth": "nierenzellkarzinom"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 43 Jahre\nECOG: 0\nAnamnese: Nierentumor rechts 1,9 cm, endophytisch. CT-graphisch V. a. Nierenbeckentumor rechts ca. 1×1 cm. Z. n. Ureterorenoskopie rechts 11/2023.\nDiagnose: Unklare Raumforderung Nierenbecken rechts ca. 1×1 cm (CT 11.11.2025), V. a. Nierenbeckentumor; dd: RCC endophytisch 1,9 cm\nStadium: unbekannt (prätherapeutisch)\nTNM (klinisch): T:unknown N:unknown M:unknown\nMetastasiert: Nein\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Der Patient hat eine Raumforderung im Nierenbecken rechts, die als Nierenbeckentumor verdächtigt wird. Nierenbeckentumoren sind typischerweise Urothelkarzinome. Obwohl ein endophytisches Nierenzellkarzinom (RCC) als Differentialdiagnose genannt wird, ist die Lokalisation im Nierenbecken ein starker Hinweis auf ein Urothelkarzinom. Die Anamnese einer Ureterorenoskopie rechts könnte im Zusammenhang mit der Untersuchung der Raumforderung stehen. Da die Raumforderung im Nierenbecken lokalisiert ist, ist Urothelkarzinom die wahrscheinlichste Diagnose.",
+    "classification": "urothelkarzinom",
+    "confidence": 0.85,
+    "key_indicators": [
+      "Raumforderung Nierenbecken rechts",
+      "V. a. Nierenbeckentumor",
+      "Ureterorenoskopie rechts"
+    ]
+  },
+  "raw_response": "{\"reasoning\": \"Der Patient hat eine Raumforderung im Nierenbecken rechts, die als Nierenbeckentumor verdächtigt wird. Nierenbeckentumoren sind typischerweise Urothelkarzinome. Obwohl ein endophytisches Nierenzellkarzinom (RCC) als Differentialdiagnose genannt wird, ist die Lokalisation im Nierenbecken ein starker Hinweis auf ein Urothelkarzinom. Die Anamnese einer Ureterorenoskopie rechts könnte im Zusammenhang mit der Untersuchung der Raumforderung stehen. Da die Raumforderung im Nierenbecken lokalisiert ist, ist Urothelkarzinom die wahrscheinlichste Diagnose.\",\n    \"classification\": \"urothelkarzinom\",\n    \"confidence\": 0.85,\n    \"key_indicators\": [\"Raumforderung Nierenbecken rechts\", \"V. a. Nierenbeckentumor\", \"Ureterorenoskopie rechts\"]}",
+  "ground_truth": "nierenzellkarzinom",
+  "is_correct": false,
+  "inference_time_seconds": 1.0597605796960683,
+  "tokens_used": 200,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

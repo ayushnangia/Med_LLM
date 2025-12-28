@@ -1,0 +1,55 @@
+{
+  "case_id": "ncc_5",
+  "timestamp": "2025-12-29_01-25-54",
+  "provider": "modal",
+  "model": "OpenMeditron/Meditron3-Qwen2.5-7B",
+  "input_case": {
+    "case_id": "ncc_5",
+    "patient": {
+      "alter_jahre": 47,
+      "geschlecht": null,
+      "ecog": 0,
+      "komorbiditaet": "unknown"
+    },
+    "anamnese": "Zystische Läsion Bosniak IV (2,5 cm) an der rechten Niere. Keine relevanten Vorerkrankungen.",
+    "diagnose_kurz": "Zystische Läsion Bosniak IV, 2,5 cm, rechte Niere",
+    "alle_diagnosen": null,
+    "stadium": "nicht-metastasiert (Verdacht, prätherapeutisch)",
+    "tnm_clinical": {
+      "T": "unknown",
+      "N": "unknown",
+      "M": "M0",
+      "stage_group": "unknown"
+    },
+    "tnm_pathological": {
+      "T": null,
+      "N": null,
+      "M": null,
+      "stage_group": null
+    },
+    "histologie": null,
+    "metastatic": false,
+    "nebendiagnosen": [],
+    "ground_truth": "nierenzellkarzinom"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 47 Jahre\nECOG: 0\nAnamnese: Zystische Läsion Bosniak IV (2,5 cm) an der rechten Niere. Keine relevanten Vorerkrankungen.\nDiagnose: Zystische Läsion Bosniak IV, 2,5 cm, rechte Niere\nStadium: nicht-metastasiert (Verdacht, prätherapeutisch)\nTNM (klinisch): T:unknown N:unknown M:M0\nMetastasiert: Nein\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Die Patientin ist 47 Jahre alt und hat eine zystische Läsion Bosniak IV an der rechten Niere. Bosniak IV ist eine Klassifikation für Läsionen der Niere, die eine hohe Wahrscheinlichkeit für maligne Läsionen (z.B. Nierenzellkarzinom) haben. Die Patientin hat keine relevanten Vorerkrankungen und ist klinisch nicht metastasiert. Daher ist die Wahrscheinlichkeit, dass es sich um ein Nierenzellkarzinom handelt, sehr hoch.",
+    "classification": "nierenzellkarzinom",
+    "confidence": 0.9,
+    "key_indicators": [
+      "Bosniak IV Läsion",
+      "47 Jahre alt",
+      "keine Vorerkrankungen",
+      "klinisch nicht metastasiert"
+    ]
+  },
+  "raw_response": "{\n    \"reasoning\": \"Die Patientin ist 47 Jahre alt und hat eine zystische Läsion Bosniak IV an der rechten Niere. Bosniak IV ist eine Klassifikation für Läsionen der Niere, die eine hohe Wahrscheinlichkeit für maligne Läsionen (z.B. Nierenzellkarzinom) haben. Die Patientin hat keine relevanten Vorerkrankungen und ist klinisch nicht metastasiert. Daher ist die Wahrscheinlichkeit, dass es sich um ein Nierenzellkarzinom handelt, sehr hoch.\",\n    \"classification\": \"nierenzellkarzinom\",\n    \"confidence\": 0.9,\n    \"key_indicators\": [\"Bosniak IV Läsion\", \"47 Jahre alt\", \"keine Vorerkrankungen\", \"klinisch nicht metastasiert\"]\n}",
+  "ground_truth": "nierenzellkarzinom",
+  "is_correct": true,
+  "inference_time_seconds": 0.34737188999469465,
+  "tokens_used": 192,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

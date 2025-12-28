@@ -1,0 +1,50 @@
+{
+  "case_id": "combi_1",
+  "timestamp": "2025-12-29_01-40-45",
+  "provider": "modal",
+  "model": "google/gemma-3-27b-it",
+  "input_case": {
+    "case_id": "combi_1",
+    "patient": {
+      "alter_jahre": 67,
+      "geschlecht": null,
+      "ecog": null,
+      "komorbiditaet": null
+    },
+    "anamnese": null,
+    "diagnose_kurz": "Prostatakarzinom (ED 2019 ISUP 4, iPSA 32) – Z. n. RPE 01/2020 (pT3a R1 pN0), biochemisches Rezidiv 2025; PSMA-PET/CT 11/2025: 1 PSMA-positiver pelviner LK rechts obturatorisch (8×6 mm, SUVmax 7,4), sonst kein PSMA-positiver Befund",
+    "alle_diagnosen": [
+      "Prostatakarzinom (ED 2019 ISUP 4, iPSA 32) – Z. n. RPE 01/2020 (pT3a R1 pN0), biochemisches Rezidiv 2025; PSMA-PET/CT 11/2025: 1 PSMA-positiver pelviner LK rechts obturatorisch (8×6 mm, SUVmax 7,4), sonst kein PSMA-positiver Befund",
+      "NMIBC (UCA): ED 06/2024 pTa high grade + fokal pTis; BCG-Induktion 08/2024 abgebrochen (NW). Rezidiv 10/2025: pTa high grade, Detrusor vorhanden und tumorfrei"
+    ],
+    "stadium": "BCR nach RPE + oligometastatische pelvine LK-Metastase (1 LK, PSMA-positiv)",
+    "tnm_clinical": null,
+    "tnm_pathological": null,
+    "histologie": null,
+    "metastatic": null,
+    "nebendiagnosen": null,
+    "ground_truth": "polymalignancy"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 67 Jahre\nDiagnose 1: Prostatakarzinom (ED 2019 ISUP 4, iPSA 32) – Z. n. RPE 01/2020 (pT3a R1 pN0), biochemisches Rezidiv 2025; PSMA-PET/CT 11/2025: 1 PSMA-positiver pelviner LK rechts obturatorisch (8×6 mm, SUVmax 7,4), sonst kein PSMA-positiver Befund\nDiagnose 2: NMIBC (UCA): ED 06/2024 pTa high grade + fokal pTis; BCG-Induktion 08/2024 abgebrochen (NW). Rezidiv 10/2025: pTa high grade, Detrusor vorhanden und tumorfrei\nStadium: BCR nach RPE + oligometastatische pelvine LK-Metastase (1 LK, PSMA-positiv)\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Der Fall beschreibt eindeutig ein Prostatakarzinom mit einem biochemischen Rezidiv nach radikaler Prostatektomie (RPE) und einer oligometastatischen Ausbreitung in einen pelvinen Lymphknoten. Zusätzlich liegt ein nicht-muskelinvasives Blasenkarzinom (NMIBC) vor, jedoch ist das Prostatakarzinom die dominierende und fortgeschrittene Erkrankung. Die Diagnose 1 und die Beschreibung des Rezidivs sowie der PSMA-PET/CT-Befund weisen klar auf ein Prostatakarzinom hin.",
+    "classification": "prostatakarzinom",
+    "confidence": 0.95,
+    "key_indicators": [
+      "Prostatakarzinom",
+      "RPE",
+      "iPSA",
+      "PSMA-PET/CT",
+      "biochemisches Rezidiv",
+      "pelvine LK-Metastase"
+    ]
+  },
+  "raw_response": "{\"reasoning\": \"Der Fall beschreibt eindeutig ein Prostatakarzinom mit einem biochemischen Rezidiv nach radikaler Prostatektomie (RPE) und einer oligometastatischen Ausbreitung in einen pelvinen Lymphknoten. Zusätzlich liegt ein nicht-muskelinvasives Blasenkarzinom (NMIBC) vor, jedoch ist das Prostatakarzinom die dominierende und fortgeschrittene Erkrankung. Die Diagnose 1 und die Beschreibung des Rezidivs sowie der PSMA-PET/CT-Befund weisen klar auf ein Prostatakarzinom hin.\",\n    \"classification\": \"prostatakarzinom\",\n    \"confidence\": 0.95,\n    \"key_indicators\": [\"Prostatakarzinom\", \"RPE\", \"iPSA\", \"PSMA-PET/CT\", \"biochemisches Rezidiv\", \"pelvine LK-Metastase\"]}",
+  "ground_truth": "polymalignancy",
+  "is_correct": false,
+  "inference_time_seconds": 1.3942316312056322,
+  "tokens_used": 201,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

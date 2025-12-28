@@ -1,0 +1,59 @@
+{
+  "case_id": "ncc_2",
+  "timestamp": "2025-12-29_01-30-56",
+  "provider": "modal",
+  "model": "google/medgemma-27b-text-it",
+  "input_case": {
+    "case_id": "ncc_2",
+    "patient": {
+      "alter_jahre": 82,
+      "geschlecht": null,
+      "ecog": 1,
+      "komorbiditaet": "hoch"
+    },
+    "anamnese": "Pat synkopiert, zur TAVI-Evaluation. TAVI indiziert. Im TAVI-CT malignomsuspekte Raumforderung linke Niere (ca. 2×3 cm). Erstdiagnose 06.11.2025, links.",
+    "diagnose_kurz": "Malignomsuspekte Raumforderung linke Niere",
+    "alle_diagnosen": null,
+    "stadium": "unbekannt (prätherapeutisch)",
+    "tnm_clinical": {
+      "T": "unknown",
+      "N": "unknown",
+      "M": "unknown",
+      "stage_group": "unknown"
+    },
+    "tnm_pathological": {
+      "T": null,
+      "N": null,
+      "M": null,
+      "stage_group": null
+    },
+    "histologie": null,
+    "metastatic": false,
+    "nebendiagnosen": [
+      "Aortenstenose hochgradig (TAVI indiziert)",
+      "KHK",
+      "CKD G3"
+    ],
+    "ground_truth": "nierenzellkarzinom"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 82 Jahre\nECOG: 1\nAnamnese: Pat synkopiert, zur TAVI-Evaluation. TAVI indiziert. Im TAVI-CT malignomsuspekte Raumforderung linke Niere (ca. 2×3 cm). Erstdiagnose 06.11.2025, links.\nDiagnose: Malignomsuspekte Raumforderung linke Niere\nStadium: unbekannt (prätherapeutisch)\nTNM (klinisch): T:unknown N:unknown M:unknown\nMetastasiert: Nein\nNebendiagnosen: Aortenstenose hochgradig (TAVI indiziert), KHK, CKD G3\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Die Raumforderung in der linken Niere bei einem 82-jährigen Patienten ist hochgradig suspekt für ein Nierenzellkarzinom (RCC). Obwohl eine definitive Diagnose noch aussteht (Erstdiagnose, prätherapeutisch), ist dies die häufigste maligne Neoplasie der Niere bei Erwachsenen. Die anderen urologischen Malignome (Prostatakarzinom, Hodentumor, Peniskarzinom, Urothelkarzinom) sind weniger wahrscheinlich, da die Läsion spezifisch in der Niere lokalisiert ist. Polymalignancy ist nicht gegeben, da nur eine maligne Läsion bekannt ist. Non_urological ist falsch, da die Läsion im urologischen Bereich (Niere) liegt.",
+    "classification": "nierenzellkarzinom",
+    "confidence": 0.85,
+    "key_indicators": [
+      "Raumforderung linke Niere",
+      "malignomsuspekt",
+      "82 Jahre",
+      "Erstdiagnose"
+    ]
+  },
+  "raw_response": "{\"reasoning\": \"Die Raumforderung in der linken Niere bei einem 82-jährigen Patienten ist hochgradig suspekt für ein Nierenzellkarzinom (RCC). Obwohl eine definitive Diagnose noch aussteht (Erstdiagnose, prätherapeutisch), ist dies die häufigste maligne Neoplasie der Niere bei Erwachsenen. Die anderen urologischen Malignome (Prostatakarzinom, Hodentumor, Peniskarzinom, Urothelkarzinom) sind weniger wahrscheinlich, da die Läsion spezifisch in der Niere lokalisiert ist. Polymalignancy ist nicht gegeben, da nur eine maligne Läsion bekannt ist. Non_urological ist falsch, da die Läsion im urologischen Bereich (Niere) liegt.\",\n    \"classification\": \"nierenzellkarzinom\",\n    \"confidence\": 0.85,\n    \"key_indicators\": [\"Raumforderung linke Niere\", \"malignomsuspekt\", \"82 Jahre\", \"Erstdiagnose\"]\n}",
+  "ground_truth": "nierenzellkarzinom",
+  "is_correct": true,
+  "inference_time_seconds": 1.0597605796960683,
+  "tokens_used": 226,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

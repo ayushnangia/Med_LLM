@@ -1,0 +1,58 @@
+{
+  "case_id": "ncc_9",
+  "timestamp": "2025-12-29_01-25-54",
+  "provider": "modal",
+  "model": "OpenMeditron/Meditron3-Qwen2.5-7B",
+  "input_case": {
+    "case_id": "ncc_9",
+    "patient": {
+      "alter_jahre": 61,
+      "geschlecht": null,
+      "ecog": 0,
+      "komorbiditaet": "unknown"
+    },
+    "anamnese": "Nierentumor links 4,6 cm (cT1b). Raucher: ex 15 PY. Z. n. Cholezystektomie.",
+    "diagnose_kurz": "Nierentumor links (Oberpol) 4,6 cm, malignitätsverdächtig (cT1b), keine Metastasen im CT-Staging",
+    "alle_diagnosen": null,
+    "stadium": "cT1b, M0 (radiologisch), prätherapeutisch",
+    "tnm_clinical": {
+      "T": "T1",
+      "N": "N0",
+      "M": "M0",
+      "stage_group": "unknown"
+    },
+    "tnm_pathological": {
+      "T": null,
+      "N": null,
+      "M": null,
+      "stage_group": null
+    },
+    "histologie": null,
+    "metastatic": false,
+    "nebendiagnosen": [
+      "Ex-Raucher (15 PY)",
+      "Z. n. Cholezystektomie"
+    ],
+    "ground_truth": "nierenzellkarzinom"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 61 Jahre\nECOG: 0\nAnamnese: Nierentumor links 4,6 cm (cT1b). Raucher: ex 15 PY. Z. n. Cholezystektomie.\nDiagnose: Nierentumor links (Oberpol) 4,6 cm, malignitätsverdächtig (cT1b), keine Metastasen im CT-Staging\nStadium: cT1b, M0 (radiologisch), prätherapeutisch\nTNM (klinisch): T:T1 N:N0 M:M0\nMetastasiert: Nein\nNebendiagnosen: Ex-Raucher (15 PY), Z. n. Cholezystektomie\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Der Patient hat einen Nierentumor links mit einem Durchmesser von 4,6 cm, der als malignitätsverdächtig klassifiziert wird. Die Tumordiagnose ist cT1b, was bedeutet, dass der Tumor die Oberpol des Nierenstammes erreicht hat, aber noch nicht in den Nierenstamm hineingewachsen ist. Es gibt keine Metastasen im CT-Staging, sodass das Stadium cT1b, M0 (radiologisch) ist. Die TNM-Klassifikation ist T:T1 N:N0 M:M0, was ebenfalls darauf hindeutet, dass es sich um einen Nierentumor handelt. Die Nebendiagnosen, wie der ex-Raucherstatus und die Cholezystektomie, sind nicht relevant für die Tumordiagnose. Die Tumordiagnose ist also ein Nierenzellkarzinom.",
+    "classification": "nierenzellkarzinom",
+    "confidence": 1.0,
+    "key_indicators": [
+      "Nierentumor links",
+      "cT1b",
+      "M0 (radiologisch)",
+      "T:T1 N:N0 M:M0"
+    ]
+  },
+  "raw_response": "{\n    \"reasoning\": \"Der Patient hat einen Nierentumor links mit einem Durchmesser von 4,6 cm, der als malignitätsverdächtig klassifiziert wird. Die Tumordiagnose ist cT1b, was bedeutet, dass der Tumor die Oberpol des Nierenstammes erreicht hat, aber noch nicht in den Nierenstamm hineingewachsen ist. Es gibt keine Metastasen im CT-Staging, sodass das Stadium cT1b, M0 (radiologisch) ist. Die TNM-Klassifikation ist T:T1 N:N0 M:M0, was ebenfalls darauf hindeutet, dass es sich um einen Nierentumor handelt. Die Nebendiagnosen, wie der ex-Raucherstatus und die Cholezystektomie, sind nicht relevant für die Tumordiagnose. Die Tumordiagnose ist also ein Nierenzellkarzinom.\",\n    \"classification\": \"nierenzellkarzinom\",\n    \"confidence\": 1.0,\n    \"key_indicators\": [\"Nierentumor links\", \"cT1b\", \"M0 (radiologisch)\", \"T:T1 N:N0 M:M0\"]\n}",
+  "ground_truth": "nierenzellkarzinom",
+  "is_correct": true,
+  "inference_time_seconds": 0.34737188999469465,
+  "tokens_used": 273,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

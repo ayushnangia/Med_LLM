@@ -1,0 +1,44 @@
+{
+  "case_id": "uca_1",
+  "timestamp": "2025-12-29_01-45-51",
+  "provider": "modal",
+  "model": "allenai/Olmo-3.1-32B-Instruct",
+  "input_case": {
+    "case_id": "uca_1",
+    "patient": {
+      "alter_jahre": 63,
+      "geschlecht": null,
+      "ecog": null,
+      "komorbiditaet": null
+    },
+    "anamnese": null,
+    "diagnose_kurz": "Multilokuläres NMIBC-Rezidiv: nicht-invasives papilläres Urothelkarzinom low grade (pTa G1) in mehreren Lokalisationen (A–C), D/E ohne Malignität",
+    "alle_diagnosen": null,
+    "stadium": "NMIBC, low grade pTa (multifokal, Rezidiv >3 Läsionen) – Risikostratifizierung (EORTC) geplant",
+    "tnm_clinical": null,
+    "tnm_pathological": null,
+    "histologie": null,
+    "metastatic": null,
+    "nebendiagnosen": null,
+    "ground_truth": "urothelkarzinom"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 63 Jahre\nDiagnose: Multilokuläres NMIBC-Rezidiv: nicht-invasives papilläres Urothelkarzinom low grade (pTa G1) in mehreren Lokalisationen (A–C), D/E ohne Malignität\nStadium: NMIBC, low grade pTa (multifokal, Rezidiv >3 Läsionen) – Risikostratifizierung (EORTC) geplant\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Der Patient hat ein nicht-invasives, papilläres Urothelkarzinom der Blase (NMIBC) mit mehreren Läsionen (multifokal) und einer niedrigen Grad (low grade pTa). Es handelt sich um eine Urothelkarzinome-Indikation, nicht um Karzinome der Niere, Prostata, Hoden, Penis oder eine polymaligne Erkrankung. Es gibt keine Hinweise auf nicht-urologische Karzinome.",
+    "classification": "urothelkarzinom",
+    "confidence": 1.0,
+    "key_indicators": [
+      "multilokuläres NMIBC",
+      "urothelkarzinom",
+      "low grade pTa"
+    ]
+  },
+  "raw_response": "{\"reasoning\": \"Der Patient hat ein nicht-invasives, papilläres Urothelkarzinom der Blase (NMIBC) mit mehreren Läsionen (multifokal) und einer niedrigen Grad (low grade pTa). Es handelt sich um eine Urothelkarzinome-Indikation, nicht um Karzinome der Niere, Prostata, Hoden, Penis oder eine polymaligne Erkrankung. Es gibt keine Hinweise auf nicht-urologische Karzinome.\", \"classification\": \"urothelkarzinom\", \"confidence\": 1.0, \"key_indicators\": [\"multilokuläres NMIBC\", \"urothelkarzinom\", \"low grade pTa\"]}",
+  "ground_truth": "urothelkarzinom",
+  "is_correct": true,
+  "inference_time_seconds": 0.8329100058628962,
+  "tokens_used": 166,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

@@ -1,0 +1,46 @@
+{
+  "case_id": "hoden_ca_2",
+  "timestamp": "2025-12-29_01-25-54",
+  "provider": "modal",
+  "model": "OpenMeditron/Meditron3-Qwen2.5-7B",
+  "input_case": {
+    "case_id": "hoden_ca_2",
+    "patient": {
+      "alter_jahre": 23,
+      "geschlecht": null,
+      "ecog": null,
+      "komorbiditaet": null
+    },
+    "anamnese": null,
+    "diagnose_kurz": "Seminom links (100%), kleinherdig (max. 0,2×0,5×0,1 cm) – Status nach inguinaler Ablatio testis links (19.09.2025), Rete testis infiltriert, GCNIS+",
+    "alle_diagnosen": null,
+    "stadium": "pT1 pNX (klinisches Stadium offen; Staging CT Thorax/Abdomen ausstehend)",
+    "tnm_clinical": null,
+    "tnm_pathological": null,
+    "histologie": null,
+    "metastatic": null,
+    "nebendiagnosen": null,
+    "ground_truth": "hodentumor"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 23 Jahre\nDiagnose: Seminom links (100%), kleinherdig (max. 0,2×0,5×0,1 cm) – Status nach inguinaler Ablatio testis links (19.09.2025), Rete testis infiltriert, GCNIS+\nStadium: pT1 pNX (klinisches Stadium offen; Staging CT Thorax/Abdomen ausstehend)\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Der Patient ist 23 Jahre alt und hat einen Seminom links mit einem maximalen Durchmesser von 0,2×0,5×0,1 cm. Der Hodentumor ist infiltriert und die GCNIS (Gross Cell Nephroblastoma Infiltration Score) ist positiv. Das Stadium ist pT1 pNX, was bedeutet, dass es sich um einen frühen Stadium mit keiner Metastasierung handelt. Die Diagnose ist ein Hodentumor, da Seminom ein typisches Hodentumor ist.",
+    "classification": "hodentumor",
+    "confidence": 1.0,
+    "key_indicators": [
+      "Seminom",
+      "Hodentumor",
+      "pT1 pNX",
+      "GCNIS+",
+      "23 Jahre"
+    ]
+  },
+  "raw_response": "{\n    \"reasoning\": \"Der Patient ist 23 Jahre alt und hat einen Seminom links mit einem maximalen Durchmesser von 0,2×0,5×0,1 cm. Der Hodentumor ist infiltriert und die GCNIS (Gross Cell Nephroblastoma Infiltration Score) ist positiv. Das Stadium ist pT1 pNX, was bedeutet, dass es sich um einen frühen Stadium mit keiner Metastasierung handelt. Die Diagnose ist ein Hodentumor, da Seminom ein typisches Hodentumor ist.\",\n    \"classification\": \"hodentumor\",\n    \"confidence\": 1.0,\n    \"key_indicators\": [\"Seminom\", \"Hodentumor\", \"pT1 pNX\", \"GCNIS+\", \"23 Jahre\"]\n}",
+  "ground_truth": "hodentumor",
+  "is_correct": true,
+  "inference_time_seconds": 0.34737188999469465,
+  "tokens_used": 182,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

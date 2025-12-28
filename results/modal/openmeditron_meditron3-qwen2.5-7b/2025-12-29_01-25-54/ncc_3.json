@@ -1,0 +1,57 @@
+{
+  "case_id": "ncc_3",
+  "timestamp": "2025-12-29_01-25-54",
+  "provider": "modal",
+  "model": "OpenMeditron/Meditron3-Qwen2.5-7B",
+  "input_case": {
+    "case_id": "ncc_3",
+    "patient": {
+      "alter_jahre": 58,
+      "geschlecht": null,
+      "ecog": 0,
+      "komorbiditaet": "unknown"
+    },
+    "anamnese": "Zufallsbefund im CT wegen Nephrolithiasis. Solide Nierenraumforderung rechts (2,2 cm).",
+    "diagnose_kurz": "Solide Nierenraumforderung rechts (2,2 cm)",
+    "alle_diagnosen": null,
+    "stadium": "nicht-metastasiert (Verdacht, prätherapeutisch)",
+    "tnm_clinical": {
+      "T": "unknown",
+      "N": "unknown",
+      "M": "M0",
+      "stage_group": "unknown"
+    },
+    "tnm_pathological": {
+      "T": null,
+      "N": null,
+      "M": null,
+      "stage_group": null
+    },
+    "histologie": null,
+    "metastatic": false,
+    "nebendiagnosen": [
+      "arterielle Hypertonie"
+    ],
+    "ground_truth": "nierenzellkarzinom"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 58 Jahre\nECOG: 0\nAnamnese: Zufallsbefund im CT wegen Nephrolithiasis. Solide Nierenraumforderung rechts (2,2 cm).\nDiagnose: Solide Nierenraumforderung rechts (2,2 cm)\nStadium: nicht-metastasiert (Verdacht, prätherapeutisch)\nTNM (klinisch): T:unknown N:unknown M:M0\nMetastasiert: Nein\nNebendiagnosen: arterielle Hypertonie\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Der Patient ist 58 Jahre alt und hat eine solide Nierenraumforderung rechts (2,2 cm) gefunden, die klinisch nicht metastasiert ist. Es gibt keinen Hinweis auf eine maligne Ursache für die Nierenraumforderung, wie z.B. Nierenzellkarzinom, Prostatakarzinom, Hodentumor, Peniskarzinom oder Urothelkarzinom. Die Nebendiagnose arterielle Hypertonie ist nicht relevant für die Klassifizierung. Daher ist es wahrscheinlich, dass es sich um eine benignere Erkrankung handelt, wie z.B. eine Nierenzyste oder eine Nierenfistel. Es gibt keine Hinweise auf eine polymale oder nicht-urologische Erkrankung.",
+    "classification": "non_urological",
+    "confidence": 0.9,
+    "key_indicators": [
+      "solide Nierenraumforderung",
+      "nicht metastasiert",
+      "keine maligne Ursache",
+      "arterielle Hypertonie"
+    ]
+  },
+  "raw_response": "{\n    \"reasoning\": \"Der Patient ist 58 Jahre alt und hat eine solide Nierenraumforderung rechts (2,2 cm) gefunden, die klinisch nicht metastasiert ist. Es gibt keinen Hinweis auf eine maligne Ursache für die Nierenraumforderung, wie z.B. Nierenzellkarzinom, Prostatakarzinom, Hodentumor, Peniskarzinom oder Urothelkarzinom. Die Nebendiagnose arterielle Hypertonie ist nicht relevant für die Klassifizierung. Daher ist es wahrscheinlich, dass es sich um eine benignere Erkrankung handelt, wie z.B. eine Nierenzyste oder eine Nierenfistel. Es gibt keine Hinweise auf eine polymale oder nicht-urologische Erkrankung.\",\n    \"classification\": \"non_urological\",\n    \"confidence\": 0.9,\n    \"key_indicators\": [\"solide Nierenraumforderung\", \"nicht metastasiert\", \"keine maligne Ursache\", \"arterielle Hypertonie\"]\n}",
+  "ground_truth": "nierenzellkarzinom",
+  "is_correct": false,
+  "inference_time_seconds": 0.34737188999469465,
+  "tokens_used": 243,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

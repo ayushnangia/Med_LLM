@@ -1,0 +1,57 @@
+{
+  "case_id": "ncc_13",
+  "timestamp": "2025-12-29_01-25-54",
+  "provider": "modal",
+  "model": "OpenMeditron/Meditron3-Qwen2.5-7B",
+  "input_case": {
+    "case_id": "ncc_13",
+    "patient": {
+      "alter_jahre": 64,
+      "geschlecht": null,
+      "ecog": 0,
+      "komorbiditaet": "unknown"
+    },
+    "anamnese": "Vorstellung zur regelmäßigen Ultraschallkontrolle beim Hausarzt. Dabei Nachweis Raumforderung rechte Niere. Anschließend CT Abdomen mit Nachweis von zwei renalen Raumforderungen: rechts ca. 4,1 cm, links ca. 1,8 cm. Z. n. Kolon-OP bei Divertikulitis.",
+    "diagnose_kurz": "Beidseitige renale Raumforderungen: rechts 4,1 cm (cT1b*), links 1,8 cm (cT1a*) – malignitätsverdächtig (V. a. RCC)",
+    "alle_diagnosen": null,
+    "stadium": "bilateral, prätherapeutisch; Staging (CT Thorax) ausstehend",
+    "tnm_clinical": {
+      "T": "unknown",
+      "N": "unknown",
+      "M": "unknown",
+      "stage_group": "unknown"
+    },
+    "tnm_pathological": {
+      "T": null,
+      "N": null,
+      "M": null,
+      "stage_group": null
+    },
+    "histologie": null,
+    "metastatic": null,
+    "nebendiagnosen": [
+      "Z. n. Kolon-OP bei Divertikulitis"
+    ],
+    "ground_truth": "nierenzellkarzinom"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 64 Jahre\nECOG: 0\nAnamnese: Vorstellung zur regelmäßigen Ultraschallkontrolle beim Hausarzt. Dabei Nachweis Raumforderung rechte Niere. Anschließend CT Abdomen mit Nachweis von zwei renalen Raumforderungen: rechts ca. 4,1 cm, links ca. 1,8 cm. Z. n. Kolon-OP bei Divertikulitis.\nDiagnose: Beidseitige renale Raumforderungen: rechts 4,1 cm (cT1b*), links 1,8 cm (cT1a*) – malignitätsverdächtig (V. a. RCC)\nStadium: bilateral, prätherapeutisch; Staging (CT Thorax) ausstehend\nTNM (klinisch): T:unknown N:unknown M:unknown\nNebendiagnosen: Z. n. Kolon-OP bei Divertikulitis\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Der Patient hat eine malignitätsverdächtige Raumforderung rechter Niere mit einem Durchmesser von 4,1 cm (cT1b*) und eine malignitätsverdächtige Raumforderung linker Niere mit einem Durchmesser von 1,8 cm (cT1a*). Die Raumforderungen sind in der Niere lokalisiert und es gibt keine Hinweise auf eine Metastasierung. Die Diagnose ist nierenzellkarzinom (RCC). Die Nebendiagnose ist eine Z. n. Kolon-OP bei Divertikulitis.",
+    "classification": "nierenzellkarzinom",
+    "confidence": 1.0,
+    "key_indicators": [
+      "malignitätsverdächtige Raumforderung rechter Niere",
+      "malignitätsverdächtige Raumforderung linker Niere",
+      "Niere lokalisiert",
+      "RCC"
+    ]
+  },
+  "raw_response": "{\n    \"reasoning\": \"Der Patient hat eine malignitätsverdächtige Raumforderung rechter Niere mit einem Durchmesser von 4,1 cm (cT1b*) und eine malignitätsverdächtige Raumforderung linker Niere mit einem Durchmesser von 1,8 cm (cT1a*). Die Raumforderungen sind in der Niere lokalisiert und es gibt keine Hinweise auf eine Metastasierung. Die Diagnose ist nierenzellkarzinom (RCC). Die Nebendiagnose ist eine Z. n. Kolon-OP bei Divertikulitis.\",\n    \"classification\": \"nierenzellkarzinom\",\n    \"confidence\": 1.0,\n    \"key_indicators\": [\"malignitätsverdächtige Raumforderung rechter Niere\", \"malignitätsverdächtige Raumforderung linker Niere\", \"Niere lokalisiert\", \"RCC\"]\n}",
+  "ground_truth": "nierenzellkarzinom",
+  "is_correct": true,
+  "inference_time_seconds": 0.34737188999469465,
+  "tokens_used": 208,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

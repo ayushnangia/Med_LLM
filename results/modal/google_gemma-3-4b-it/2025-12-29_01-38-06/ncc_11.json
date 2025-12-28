@@ -1,0 +1,57 @@
+{
+  "case_id": "ncc_11",
+  "timestamp": "2025-12-29_01-38-06",
+  "provider": "modal",
+  "model": "google/gemma-3-4b-it",
+  "input_case": {
+    "case_id": "ncc_11",
+    "patient": {
+      "alter_jahre": 55,
+      "geschlecht": null,
+      "ecog": 0,
+      "komorbiditaet": "unknown"
+    },
+    "anamnese": "Im Rahmen TAVI-Abklärung Zufallsbefund: Nierentumor links (ca. 7,8 cm) mit V. a. Infiltration/Tumorthrombus in die V. cava inferior. Vorerkrankung: arterielle Hypertonie.",
+    "diagnose_kurz": "Großer Nierentumor links ca. 7,8 × 6,9 cm mit subdiaphragmaler Infiltration/Tumorthrombus V. cava inferior (cT3b?); CT Thorax ohne Metastasen",
+    "alle_diagnosen": null,
+    "stadium": "lokal fortgeschritten (V. cava-Beteiligung), M0 (CT Thorax 07.12.2025)",
+    "tnm_clinical": {
+      "T": "T3",
+      "N": "unknown",
+      "M": "M0",
+      "stage_group": "unknown"
+    },
+    "tnm_pathological": {
+      "T": null,
+      "N": null,
+      "M": null,
+      "stage_group": null
+    },
+    "histologie": null,
+    "metastatic": false,
+    "nebendiagnosen": [
+      "arterielle Hypertonie"
+    ],
+    "ground_truth": "nierenzellkarzinom"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 55 Jahre\nECOG: 0\nAnamnese: Im Rahmen TAVI-Abklärung Zufallsbefund: Nierentumor links (ca. 7,8 cm) mit V. a. Infiltration/Tumorthrombus in die V. cava inferior. Vorerkrankung: arterielle Hypertonie.\nDiagnose: Großer Nierentumor links ca. 7,8 × 6,9 cm mit subdiaphragmaler Infiltration/Tumorthrombus V. cava inferior (cT3b?); CT Thorax ohne Metastasen\nStadium: lokal fortgeschritten (V. cava-Beteiligung), M0 (CT Thorax 07.12.2025)\nTNM (klinisch): T:T3 N:unknown M:M0\nMetastasiert: Nein\nNebendiagnosen: arterielle Hypertonie\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Der Patient präsentiert sich mit einem großen Nierentumor, der die V. cava inferior infiltriert. Dies deutet auf einen fortgeschrittenen Tumor hin, der lokal fortgeschritten ist. Die Diagnose ist ein Nierentumor, und es gibt keine Hinweise auf Fernmetastasen. Die V. cava-Infiltration ist ein kritischer Faktor, der die Behandlung beeinflusst. Die Klassifizierung als Nierenzellkarzinom ist am wahrscheinlichsten, da dies die häufigste Form von Nierentumoren ist. Die V. cava-Beteiligung deutet auf eine aggressive Erkrankung hin.",
+    "classification": "nierenzellkarzinom",
+    "confidence": 0.95,
+    "key_indicators": [
+      "Großer Nierentumor",
+      "V. cava inferior Infiltration",
+      "lokal fortgeschritten",
+      "Nierenzellkarzinom"
+    ]
+  },
+  "raw_response": "{\"reasoning\": \"Der Patient präsentiert sich mit einem großen Nierentumor, der die V. cava inferior infiltriert. Dies deutet auf einen fortgeschrittenen Tumor hin, der lokal fortgeschritten ist. Die Diagnose ist ein Nierentumor, und es gibt keine Hinweise auf Fernmetastasen. Die V. cava-Infiltration ist ein kritischer Faktor, der die Behandlung beeinflusst. Die Klassifizierung als Nierenzellkarzinom ist am wahrscheinlichsten, da dies die häufigste Form von Nierentumoren ist. Die V. cava-Beteiligung deutet auf eine aggressive Erkrankung hin.\",\n    \"classification\": \"nierenzellkarzinom\",\n    \"confidence\": 0.95,\n    \"key_indicators\": [\"Großer Nierentumor\", \"V. cava inferior Infiltration\", \"lokal fortgeschritten\", \"Nierenzellkarzinom\"]\n}",
+  "ground_truth": "nierenzellkarzinom",
+  "is_correct": true,
+  "inference_time_seconds": 1.1168497984225934,
+  "tokens_used": 196,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

@@ -1,0 +1,59 @@
+{
+  "case_id": "ncc_14",
+  "timestamp": "2025-12-29_01-45-51",
+  "provider": "modal",
+  "model": "allenai/Olmo-3.1-32B-Instruct",
+  "input_case": {
+    "case_id": "ncc_14",
+    "patient": {
+      "alter_jahre": 79,
+      "geschlecht": null,
+      "ecog": 2,
+      "komorbiditaet": "hoch"
+    },
+    "anamnese": "Zufallsbefund der linken Niere (Sonographie beim Hausarzt bei Rückenschmerzen). Großer Nierentumor links ca. 9 cm. Vorerkrankungen: KHK, Z. n. Bypass 2012, CKD G2.",
+    "diagnose_kurz": "Großer Nierentumor links ca. 9,0 cm, hochgradig malignitätsverdächtig (V. a. RCC), fragliche Infiltration linke Nebenniere; CT Thorax ohne Metastasen",
+    "alle_diagnosen": null,
+    "stadium": "lokal fortgeschritten vs organbegrenzt; M0 (CT Thorax 04.12.2025)",
+    "tnm_clinical": {
+      "T": "T2",
+      "N": "N0",
+      "M": "M0",
+      "stage_group": "unknown"
+    },
+    "tnm_pathological": {
+      "T": null,
+      "N": null,
+      "M": null,
+      "stage_group": null
+    },
+    "histologie": null,
+    "metastatic": false,
+    "nebendiagnosen": [
+      "KHK",
+      "Z. n. aortokoronarer Bypass 2012",
+      "CKD G2"
+    ],
+    "ground_truth": "nierenzellkarzinom"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 79 Jahre\nECOG: 2\nAnamnese: Zufallsbefund der linken Niere (Sonographie beim Hausarzt bei Rückenschmerzen). Großer Nierentumor links ca. 9 cm. Vorerkrankungen: KHK, Z. n. Bypass 2012, CKD G2.\nDiagnose: Großer Nierentumor links ca. 9,0 cm, hochgradig malignitätsverdächtig (V. a. RCC), fragliche Infiltration linke Nebenniere; CT Thorax ohne Metastasen\nStadium: lokal fortgeschritten vs organbegrenzt; M0 (CT Thorax 04.12.2025)\nTNM (klinisch): T:T2 N:N0 M:M0\nMetastasiert: Nein\nNebendiagnosen: KHK, Z. n. aortokoronarer Bypass 2012, CKD G2\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Der Patient hat einen großen Tumor in der linken Niere, der als vermutlich malign und hochgradig verdächtig eingestuft wird (RCC = renaler Zellkarzinom). Die CT zeigt keine Metastasen, die Lokalisation und Größe sprechen für ein Nierenzellkarzinom. Es gibt keine Hinweise auf Prostata-, Hoden-, Penis- oder Urethratumoren. Polymalignant oder nicht-urologische Kategorisierung ist nicht angemessen.",
+    "classification": "nierenzellkarzinom",
+    "confidence": 1.0,
+    "key_indicators": [
+      "Großer Tumor in der Niere",
+      "hochgradig malignitätsverdächtig (vermutlich RCC)",
+      "keine Metastasen",
+      "keine Hinweise auf andere Karzinome"
+    ]
+  },
+  "raw_response": "{\"reasoning\": \"Der Patient hat einen großen Tumor in der linken Niere, der als vermutlich malign und hochgradig verdächtig eingestuft wird (RCC = renaler Zellkarzinom). Die CT zeigt keine Metastasen, die Lokalisation und Größe sprechen für ein Nierenzellkarzinom. Es gibt keine Hinweise auf Prostata-, Hoden-, Penis- oder Urethratumoren. Polymalignant oder nicht-urologische Kategorisierung ist nicht angemessen.\", \"classification\": \"nierenzellkarzinom\", \"confidence\": 1.0, \"key_indicators\": [\"Großer Tumor in der Niere\", \"hochgradig malignitätsverdächtig (vermutlich RCC)\", \"keine Metastasen\", \"keine Hinweise auf andere Karzinome\"]}",
+  "ground_truth": "nierenzellkarzinom",
+  "is_correct": true,
+  "inference_time_seconds": 0.8329100058628962,
+  "tokens_used": 192,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

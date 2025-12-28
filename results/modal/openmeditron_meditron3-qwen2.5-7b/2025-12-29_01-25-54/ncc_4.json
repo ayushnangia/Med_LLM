@@ -1,0 +1,57 @@
+{
+  "case_id": "ncc_4",
+  "timestamp": "2025-12-29_01-25-54",
+  "provider": "modal",
+  "model": "OpenMeditron/Meditron3-Qwen2.5-7B",
+  "input_case": {
+    "case_id": "ncc_4",
+    "patient": {
+      "alter_jahre": 66,
+      "geschlecht": null,
+      "ecog": 1,
+      "komorbiditaet": "unknown"
+    },
+    "anamnese": "Kleiner Nierentumor links 2,8 cm (cT1a). Vorerkrankungen: Z. n. Appendektomie; COPD GOLD I (Raucher 20 PY).",
+    "diagnose_kurz": "Kleiner Nierentumor links 2,8 cm (cT1a), malignitätsverdächtig",
+    "alle_diagnosen": null,
+    "stadium": "cT1a, nicht-metastasiert (prätherapeutisch)",
+    "tnm_clinical": {
+      "T": "T1",
+      "N": "unknown",
+      "M": "M0",
+      "stage_group": "unknown"
+    },
+    "tnm_pathological": {
+      "T": null,
+      "N": null,
+      "M": null,
+      "stage_group": null
+    },
+    "histologie": null,
+    "metastatic": false,
+    "nebendiagnosen": [
+      "Z. n. Appendektomie",
+      "COPD GOLD I (Raucher 20 PY)"
+    ],
+    "ground_truth": "nierenzellkarzinom"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 66 Jahre\nECOG: 1\nAnamnese: Kleiner Nierentumor links 2,8 cm (cT1a). Vorerkrankungen: Z. n. Appendektomie; COPD GOLD I (Raucher 20 PY).\nDiagnose: Kleiner Nierentumor links 2,8 cm (cT1a), malignitätsverdächtig\nStadium: cT1a, nicht-metastasiert (prätherapeutisch)\nTNM (klinisch): T:T1 N:unknown M:M0\nMetastasiert: Nein\nNebendiagnosen: Z. n. Appendektomie, COPD GOLD I (Raucher 20 PY)\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Der Patient hat einen kleineren Nierentumor links mit einem Durchmesser von 2,8 cm, der als malignitätsverdächtig klassifiziert wird. Die TNM-Klassifikation zeigt, dass es sich um einen T1a-Tumor handelt, der nicht metastasiert ist. Die Vorerkrankungen des Patienten (Z. n. Appendektomie und COPD) sind nicht relevant für die Klassifizierung des Nierentumors. Die Diagnose des Nierentumors ist die einzige relevante Information, die zur Klassifizierung führt.",
+    "classification": "nierenzellkarzinom",
+    "confidence": 1.0,
+    "key_indicators": [
+      "Nierentumor links",
+      "cT1a",
+      "malignitätsverdächtig"
+    ]
+  },
+  "raw_response": "{\n    \"reasoning\": \"Der Patient hat einen kleineren Nierentumor links mit einem Durchmesser von 2,8 cm, der als malignitätsverdächtig klassifiziert wird. Die TNM-Klassifikation zeigt, dass es sich um einen T1a-Tumor handelt, der nicht metastasiert ist. Die Vorerkrankungen des Patienten (Z. n. Appendektomie und COPD) sind nicht relevant für die Klassifizierung des Nierentumors. Die Diagnose des Nierentumors ist die einzige relevante Information, die zur Klassifizierung führt.\",\n    \"classification\": \"nierenzellkarzinom\",\n    \"confidence\": 1.0,\n    \"key_indicators\": [\"Nierentumor links\", \"cT1a\", \"malignitätsverdächtig\"]\n}",
+  "ground_truth": "nierenzellkarzinom",
+  "is_correct": true,
+  "inference_time_seconds": 0.34737188999469465,
+  "tokens_used": 194,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

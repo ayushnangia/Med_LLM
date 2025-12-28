@@ -1,0 +1,40 @@
+{
+  "case_id": "non_uro_2",
+  "timestamp": "2025-12-29_00-55-59",
+  "provider": "modal",
+  "model": "OpenMeditron/Meditron3-Qwen2.5-7B",
+  "input_case": {
+    "case_id": "non_uro_2",
+    "patient": {
+      "alter_jahre": 52,
+      "geschlecht": null,
+      "ecog": null,
+      "komorbiditaet": null
+    },
+    "anamnese": null,
+    "diagnose_kurz": "Unklare Raumforderung Harnblase (Seitenwand) – TUR-B 01.11.2025; Histologie: morphologisch/klinisch Infiltration durch bekanntes Sigmakarzinom (sekundäre Blaseninfiltration, kein primäres Urothelkarzinom beschrieben)",
+    "alle_diagnosen": [
+      "Unklare Raumforderung Harnblase (Seitenwand) – TUR-B 01.11.2025; Histologie: morphologisch/klinisch Infiltration durch bekanntes Sigmakarzinom (sekundäre Blaseninfiltration, kein primäres Urothelkarzinom beschrieben)",
+      "Hepatisch metastasiertes Sigmakarzinom (ED 01/2025), Status nach Sigmaresektion mit subperitonealer Exzision am Blasendach (12.01.2025) und Leber-lokalen Therapien/Resektionen"
+    ],
+    "stadium": "Sekundärbefall der Harnblase durch kolorektales Karzinom (Verdacht/Kommentar), genaue TNM der Blasenläsion nicht angegeben",
+    "tnm_clinical": null,
+    "tnm_pathological": null,
+    "histologie": null,
+    "metastatic": null,
+    "nebendiagnosen": null,
+    "ground_truth": "non_urological"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 52 Jahre\nDiagnose 1: Unklare Raumforderung Harnblase (Seitenwand) – TUR-B 01.11.2025; Histologie: morphologisch/klinisch Infiltration durch bekanntes Sigmakarzinom (sekundäre Blaseninfiltration, kein primäres Urothelkarzinom beschrieben)\nDiagnose 2: Hepatisch metastasiertes Sigmakarzinom (ED 01/2025), Status nach Sigmaresektion mit subperitonealer Exzision am Blasendach (12.01.2025) und Leber-lokalen Therapien/Resektionen\nStadium: Sekundärbefall der Harnblase durch kolorektales Karzinom (Verdacht/Kommentar), genaue TNM der Blasenläsion nicht angegeben\n\nKlassifiziere in GENAU eine Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntworte NUR mit dem Kategorienamen:",
+  "output": {
+    "classification": "urothelkarzinom"
+  },
+  "raw_response": "{\"classification\": \"urothelkarzinom\"}",
+  "ground_truth": "non_urological",
+  "is_correct": false,
+  "inference_time_seconds": 0.15121815754817083,
+  "tokens_used": 14,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

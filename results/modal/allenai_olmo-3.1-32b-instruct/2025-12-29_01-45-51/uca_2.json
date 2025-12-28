@@ -1,0 +1,44 @@
+{
+  "case_id": "uca_2",
+  "timestamp": "2025-12-29_01-45-51",
+  "provider": "modal",
+  "model": "allenai/Olmo-3.1-32B-Instruct",
+  "input_case": {
+    "case_id": "uca_2",
+    "patient": {
+      "alter_jahre": 54,
+      "geschlecht": null,
+      "ecog": null,
+      "komorbiditaet": null
+    },
+    "anamnese": null,
+    "diagnose_kurz": "Harnblasen-NMIBC: nicht-invasives papilläres Urothelkarzinom pTa, fokal high grade (G3), Hinterwand links; Detrusor nicht nachweisbar",
+    "alle_diagnosen": null,
+    "stadium": "pTa high grade (fokal) – EORTC-Risikostratifizierung geplant; Nachresektion erwägen (Detrusor fehlt)",
+    "tnm_clinical": null,
+    "tnm_pathological": null,
+    "histologie": null,
+    "metastatic": null,
+    "nebendiagnosen": null,
+    "ground_truth": "urothelkarzinom"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 54 Jahre\nDiagnose: Harnblasen-NMIBC: nicht-invasives papilläres Urothelkarzinom pTa, fokal high grade (G3), Hinterwand links; Detrusor nicht nachweisbar\nStadium: pTa high grade (fokal) – EORTC-Risikostratifizierung geplant; Nachresektion erwägen (Detrusor fehlt)\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Der Patient hat eine Diagnose von Harnblasen-NMIBC, was als nicht-invasives papilläres Urothelkarzinom (pTa) bezeichnet wird. Es handelt sich also um ein Urothelkarzinom, spezifisch im Harnblasebereich. Die Angabe 'urothelkarzinom' ist die passende Kategorie. Die Angabe 'high grade' und die geplante Risikoklassifizierung sind relevante Details, jedoch beeinflussen sie die Klassifikation nicht. Es gibt keine Hinweise auf Nierengeschwulst, Prostata, Hoden, Penis oder Polyneoplasie. Die Diagnose ist eindeutig urologisch und betreffen das Urothel.",
+    "classification": "urothelkarzinom",
+    "confidence": 1.0,
+    "key_indicators": [
+      "Harnblasen-NMIBC",
+      "pTa",
+      "urothelkarzinom"
+    ]
+  },
+  "raw_response": "{\"reasoning\": \"Der Patient hat eine Diagnose von Harnblasen-NMIBC, was als nicht-invasives papilläres Urothelkarzinom (pTa) bezeichnet wird. Es handelt sich also um ein Urothelkarzinom, spezifisch im Harnblasebereich. Die Angabe 'urothelkarzinom' ist die passende Kategorie. Die Angabe 'high grade' und die geplante Risikoklassifizierung sind relevante Details, jedoch beeinflussen sie die Klassifikation nicht. Es gibt keine Hinweise auf Nierengeschwulst, Prostata, Hoden, Penis oder Polyneoplasie. Die Diagnose ist eindeutig urologisch und betreffen das Urothel.\", \"classification\": \"urothelkarzinom\", \"confidence\": 1.0, \"key_indicators\": [\"Harnblasen-NMIBC\", \"pTa\", \"urothelkarzinom\"]}",
+  "ground_truth": "urothelkarzinom",
+  "is_correct": true,
+  "inference_time_seconds": 0.8329100058628962,
+  "tokens_used": 225,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

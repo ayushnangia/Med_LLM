@@ -1,0 +1,59 @@
+{
+  "case_id": "ncc_6",
+  "timestamp": "2025-12-29_01-30-56",
+  "provider": "modal",
+  "model": "google/medgemma-27b-text-it",
+  "input_case": {
+    "case_id": "ncc_6",
+    "patient": {
+      "alter_jahre": 77,
+      "geschlecht": null,
+      "ecog": 2,
+      "komorbiditaet": "hoch"
+    },
+    "anamnese": "Zufallsbefund: Nierentumor links 2,1 cm bei Urolithiasis. Vorerkrankungen: KHK (Z. n. Stent 2016), CKD G3b, arterielle Hypertonie. Z. n. Hüft-TEP.",
+    "diagnose_kurz": "Unklare Raumforderung linke Niere (Oberpol) 2,1 cm, malignitätskriterien vorhanden",
+    "alle_diagnosen": null,
+    "stadium": "nicht-metastasiert (Verdacht, prätherapeutisch)",
+    "tnm_clinical": {
+      "T": "unknown",
+      "N": "unknown",
+      "M": "M0",
+      "stage_group": "unknown"
+    },
+    "tnm_pathological": {
+      "T": null,
+      "N": null,
+      "M": null,
+      "stage_group": null
+    },
+    "histologie": null,
+    "metastatic": false,
+    "nebendiagnosen": [
+      "KHK (Z. n. Stent 2016)",
+      "CKD G3b",
+      "arterielle Hypertonie",
+      "Z. n. Hüft-TEP"
+    ],
+    "ground_truth": "nierenzellkarzinom"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 77 Jahre\nECOG: 2\nAnamnese: Zufallsbefund: Nierentumor links 2,1 cm bei Urolithiasis. Vorerkrankungen: KHK (Z. n. Stent 2016), CKD G3b, arterielle Hypertonie. Z. n. Hüft-TEP.\nDiagnose: Unklare Raumforderung linke Niere (Oberpol) 2,1 cm, malignitätskriterien vorhanden\nStadium: nicht-metastasiert (Verdacht, prätherapeutisch)\nTNM (klinisch): T:unknown N:unknown M:M0\nMetastasiert: Nein\nNebendiagnosen: KHK (Z. n. Stent 2016), CKD G3b, arterielle Hypertonie, Z. n. Hüft-TEP\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Der Fall beschreibt einen Nierentumor bei einem 77-jährigen Patienten. Die Diagnose lautet 'Unklare Raumforderung linke Niere (Oberpol) 2,1 cm, malignitätskriterien vorhanden'. Dies deutet stark auf ein Nierenzellkarzinom hin, da dies der häufigste maligne Tumor der Niere bei Erwachsenen ist. Die anderen Optionen sind weniger wahrscheinlich: Prostatakarzinom und Hodentumor sind primäre Tumore anderer Organe. Peniskarzinom ist ebenfalls ein Tumor eines anderen Organs. Urothelkarzinom betrifft die Harnröhre, den Blasenboden, das Becken und die Ureter, nicht primär die Niere. Polymalignancy ist nicht gegeben, da nur ein Tumor beschrieben wird. Non_urological ist falsch, da der Tumor in einem urologischen Organ (Niere) lokalisiert ist.",
+    "classification": "nierenzellkarzinom",
+    "confidence": 0.95,
+    "key_indicators": [
+      "Nierentumor links",
+      "Raumforderung linke Niere",
+      "malignitätskriterien vorhanden"
+    ]
+  },
+  "raw_response": "{\"reasoning\": \"Der Fall beschreibt einen Nierentumor bei einem 77-jährigen Patienten. Die Diagnose lautet 'Unklare Raumforderung linke Niere (Oberpol) 2,1 cm, malignitätskriterien vorhanden'. Dies deutet stark auf ein Nierenzellkarzinom hin, da dies der häufigste maligne Tumor der Niere bei Erwachsenen ist. Die anderen Optionen sind weniger wahrscheinlich: Prostatakarzinom und Hodentumor sind primäre Tumore anderer Organe. Peniskarzinom ist ebenfalls ein Tumor eines anderen Organs. Urothelkarzinom betrifft die Harnröhre, den Blasenboden, das Becken und die Ureter, nicht primär die Niere. Polymalignancy ist nicht gegeben, da nur ein Tumor beschrieben wird. Non_urological ist falsch, da der Tumor in einem urologischen Organ (Niere) lokalisiert ist.\",\n    \"classification\": \"nierenzellkarzinom\",\n    \"confidence\": 0.95,\n    \"key_indicators\": [\"Nierentumor links\", \"Raumforderung linke Niere\", \"malignitätskriterien vorhanden\"]\n}",
+  "ground_truth": "nierenzellkarzinom",
+  "is_correct": true,
+  "inference_time_seconds": 1.0597605796960683,
+  "tokens_used": 252,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

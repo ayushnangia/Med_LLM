@@ -1,0 +1,12 @@
+{
+  "model": "google/medgemma-27b-text-it",
+  "provider": "modal",
+  "timestamp": "2025-12-29_01-30-56",
+  "total_cases": 26,
+  "correct": 24,
+  "incorrect": 2,
+  "errors": 0,
+  "accuracy": 0.9230769230769231,
+  "total_time": 27.55377507209778,
+  "batch_invariance": true
+}

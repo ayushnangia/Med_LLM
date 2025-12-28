@@ -1,0 +1,46 @@
+{
+  "case_id": "hoden_ca_2",
+  "timestamp": "2025-12-29_01-30-56",
+  "provider": "modal",
+  "model": "google/medgemma-27b-text-it",
+  "input_case": {
+    "case_id": "hoden_ca_2",
+    "patient": {
+      "alter_jahre": 23,
+      "geschlecht": null,
+      "ecog": null,
+      "komorbiditaet": null
+    },
+    "anamnese": null,
+    "diagnose_kurz": "Seminom links (100%), kleinherdig (max. 0,2×0,5×0,1 cm) – Status nach inguinaler Ablatio testis links (19.09.2025), Rete testis infiltriert, GCNIS+",
+    "alle_diagnosen": null,
+    "stadium": "pT1 pNX (klinisches Stadium offen; Staging CT Thorax/Abdomen ausstehend)",
+    "tnm_clinical": null,
+    "tnm_pathological": null,
+    "histologie": null,
+    "metastatic": null,
+    "nebendiagnosen": null,
+    "ground_truth": "hodentumor"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 23 Jahre\nDiagnose: Seminom links (100%), kleinherdig (max. 0,2×0,5×0,1 cm) – Status nach inguinaler Ablatio testis links (19.09.2025), Rete testis infiltriert, GCNIS+\nStadium: pT1 pNX (klinisches Stadium offen; Staging CT Thorax/Abdomen ausstehend)\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Der Patient hat eine Diagnose von Seminom links, was eine Art von Hodentumor ist. Die Diagnose wurde nach einer inguinalen Ablatio testis links gestellt, was eine Operation zur Entfernung des Hodens ist. Die Angabe 'kleinherdig' und die Größe des Tumors (0,2×0,5×0,1 cm) sowie die Infiltration der Rete testis und das Vorhandensein von GCNIS (Germ Cell Neoplasia in situ) sind spezifische Merkmale von Hodentumoren. Das klinische Stadium ist noch offen, aber die primäre Diagnose bezieht sich eindeutig auf das Hoden.",
+    "classification": "hodentumor",
+    "confidence": 1.0,
+    "key_indicators": [
+      "Seminom links",
+      "inguinale Ablatio testis links",
+      "kleinherdig",
+      "Rete testis infiltriert",
+      "GCNIS+"
+    ]
+  },
+  "raw_response": "{\"reasoning\": \"Der Patient hat eine Diagnose von Seminom links, was eine Art von Hodentumor ist. Die Diagnose wurde nach einer inguinalen Ablatio testis links gestellt, was eine Operation zur Entfernung des Hodens ist. Die Angabe 'kleinherdig' und die Größe des Tumors (0,2×0,5×0,1 cm) sowie die Infiltration der Rete testis und das Vorhandensein von GCNIS (Germ Cell Neoplasia in situ) sind spezifische Merkmale von Hodentumoren. Das klinische Stadium ist noch offen, aber die primäre Diagnose bezieht sich eindeutig auf das Hoden.\",\n    \"classification\": \"hodentumor\",\n    \"confidence\": 1.0,\n    \"key_indicators\": [\"Seminom links\", \"inguinale Ablatio testis links\", \"kleinherdig\", \"Rete testis infiltriert\", \"GCNIS+\"]\n}",
+  "ground_truth": "hodentumor",
+  "is_correct": true,
+  "inference_time_seconds": 1.0597605796960683,
+  "tokens_used": 197,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

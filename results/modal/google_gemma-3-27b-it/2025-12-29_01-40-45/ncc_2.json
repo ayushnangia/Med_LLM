@@ -1,0 +1,57 @@
+{
+  "case_id": "ncc_2",
+  "timestamp": "2025-12-29_01-40-45",
+  "provider": "modal",
+  "model": "google/gemma-3-27b-it",
+  "input_case": {
+    "case_id": "ncc_2",
+    "patient": {
+      "alter_jahre": 82,
+      "geschlecht": null,
+      "ecog": 1,
+      "komorbiditaet": "hoch"
+    },
+    "anamnese": "Pat synkopiert, zur TAVI-Evaluation. TAVI indiziert. Im TAVI-CT malignomsuspekte Raumforderung linke Niere (ca. 2×3 cm). Erstdiagnose 06.11.2025, links.",
+    "diagnose_kurz": "Malignomsuspekte Raumforderung linke Niere",
+    "alle_diagnosen": null,
+    "stadium": "unbekannt (prätherapeutisch)",
+    "tnm_clinical": {
+      "T": "unknown",
+      "N": "unknown",
+      "M": "unknown",
+      "stage_group": "unknown"
+    },
+    "tnm_pathological": {
+      "T": null,
+      "N": null,
+      "M": null,
+      "stage_group": null
+    },
+    "histologie": null,
+    "metastatic": false,
+    "nebendiagnosen": [
+      "Aortenstenose hochgradig (TAVI indiziert)",
+      "KHK",
+      "CKD G3"
+    ],
+    "ground_truth": "nierenzellkarzinom"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 82 Jahre\nECOG: 1\nAnamnese: Pat synkopiert, zur TAVI-Evaluation. TAVI indiziert. Im TAVI-CT malignomsuspekte Raumforderung linke Niere (ca. 2×3 cm). Erstdiagnose 06.11.2025, links.\nDiagnose: Malignomsuspekte Raumforderung linke Niere\nStadium: unbekannt (prätherapeutisch)\nTNM (klinisch): T:unknown N:unknown M:unknown\nMetastasiert: Nein\nNebendiagnosen: Aortenstenose hochgradig (TAVI indiziert), KHK, CKD G3\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Der Fall beschreibt eine malignomsuspekte Raumforderung in der linken Niere. Dies ist der primäre Befund, der zur Klassifizierung herangezogen werden muss. Die anderen Informationen (Alter, ECOG, Begleiterkrankungen) sind relevant für die Therapieplanung, aber nicht für die Klassifizierung des Tumors. Da der Tumor in der Niere lokalisiert ist, ist die wahrscheinlichste Diagnose ein Nierenzellkarzinom.",
+    "classification": "nierenzellkarzinom",
+    "confidence": 0.95,
+    "key_indicators": [
+      "Raumforderung linke Niere",
+      "malignomsuspekt"
+    ]
+  },
+  "raw_response": "{\"reasoning\": \"Der Fall beschreibt eine malignomsuspekte Raumforderung in der linken Niere. Dies ist der primäre Befund, der zur Klassifizierung herangezogen werden muss. Die anderen Informationen (Alter, ECOG, Begleiterkrankungen) sind relevant für die Therapieplanung, aber nicht für die Klassifizierung des Tumors. Da der Tumor in der Niere lokalisiert ist, ist die wahrscheinlichste Diagnose ein Nierenzellkarzinom.\",\n    \"classification\": \"nierenzellkarzinom\",\n    \"confidence\": 0.95,\n    \"key_indicators\": [\"Raumforderung linke Niere\", \"malignomsuspekt\"]\n}",
+  "ground_truth": "nierenzellkarzinom",
+  "is_correct": true,
+  "inference_time_seconds": 1.3942316312056322,
+  "tokens_used": 145,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

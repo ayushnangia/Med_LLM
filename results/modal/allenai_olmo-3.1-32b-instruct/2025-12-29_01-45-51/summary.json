@@ -1,0 +1,12 @@
+{
+  "model": "allenai/Olmo-3.1-32B-Instruct",
+  "provider": "modal",
+  "timestamp": "2025-12-29_01-45-51",
+  "total_cases": 26,
+  "correct": 20,
+  "incorrect": 6,
+  "errors": 0,
+  "accuracy": 0.7692307692307693,
+  "total_time": 21.655660152435303,
+  "batch_invariance": true
+}

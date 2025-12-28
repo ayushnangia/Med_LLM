@@ -1,0 +1,44 @@
+{
+  "case_id": "uca_1",
+  "timestamp": "2025-12-29_01-30-56",
+  "provider": "modal",
+  "model": "google/medgemma-27b-text-it",
+  "input_case": {
+    "case_id": "uca_1",
+    "patient": {
+      "alter_jahre": 63,
+      "geschlecht": null,
+      "ecog": null,
+      "komorbiditaet": null
+    },
+    "anamnese": null,
+    "diagnose_kurz": "Multilokuläres NMIBC-Rezidiv: nicht-invasives papilläres Urothelkarzinom low grade (pTa G1) in mehreren Lokalisationen (A–C), D/E ohne Malignität",
+    "alle_diagnosen": null,
+    "stadium": "NMIBC, low grade pTa (multifokal, Rezidiv >3 Läsionen) – Risikostratifizierung (EORTC) geplant",
+    "tnm_clinical": null,
+    "tnm_pathological": null,
+    "histologie": null,
+    "metastatic": null,
+    "nebendiagnosen": null,
+    "ground_truth": "urothelkarzinom"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 63 Jahre\nDiagnose: Multilokuläres NMIBC-Rezidiv: nicht-invasives papilläres Urothelkarzinom low grade (pTa G1) in mehreren Lokalisationen (A–C), D/E ohne Malignität\nStadium: NMIBC, low grade pTa (multifokal, Rezidiv >3 Läsionen) – Risikostratifizierung (EORTC) geplant\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Der Patient hat eine Diagnose von nicht-invasivem papillärem Urothelkarzinom (NMIBC) in der Blase. Urothelkarzinom ist ein Krebs, der in der Urothelialschicht beginnt, die die Blase, die Harnleiter, die Nierenbecken und einen Teil der Harnröhre auskleidet. Die Diagnose bezieht sich explizit auf das Urothelkarzinom.",
+    "classification": "urothelkarzinom",
+    "confidence": 1.0,
+    "key_indicators": [
+      "nicht-invasives papilläres Urothelkarzinom",
+      "NMIBC",
+      "Blase"
+    ]
+  },
+  "raw_response": "{\"reasoning\": \"Der Patient hat eine Diagnose von nicht-invasivem papillärem Urothelkarzinom (NMIBC) in der Blase. Urothelkarzinom ist ein Krebs, der in der Urothelialschicht beginnt, die die Blase, die Harnleiter, die Nierenbecken und einen Teil der Harnröhre auskleidet. Die Diagnose bezieht sich explizit auf das Urothelkarzinom.\",\n\"classification\": \"urothelkarzinom\",\n\"confidence\": 1.0,\n\"key_indicators\": [\"nicht-invasives papilläres Urothelkarzinom\", \"NMIBC\", \"Blase\"]}",
+  "ground_truth": "urothelkarzinom",
+  "is_correct": true,
+  "inference_time_seconds": 1.0597605796960683,
+  "tokens_used": 147,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

@@ -1,0 +1,56 @@
+{
+  "case_id": "ncc_3",
+  "timestamp": "2025-12-29_01-40-45",
+  "provider": "modal",
+  "model": "google/gemma-3-27b-it",
+  "input_case": {
+    "case_id": "ncc_3",
+    "patient": {
+      "alter_jahre": 58,
+      "geschlecht": null,
+      "ecog": 0,
+      "komorbiditaet": "unknown"
+    },
+    "anamnese": "Zufallsbefund im CT wegen Nephrolithiasis. Solide Nierenraumforderung rechts (2,2 cm).",
+    "diagnose_kurz": "Solide Nierenraumforderung rechts (2,2 cm)",
+    "alle_diagnosen": null,
+    "stadium": "nicht-metastasiert (Verdacht, prätherapeutisch)",
+    "tnm_clinical": {
+      "T": "unknown",
+      "N": "unknown",
+      "M": "M0",
+      "stage_group": "unknown"
+    },
+    "tnm_pathological": {
+      "T": null,
+      "N": null,
+      "M": null,
+      "stage_group": null
+    },
+    "histologie": null,
+    "metastatic": false,
+    "nebendiagnosen": [
+      "arterielle Hypertonie"
+    ],
+    "ground_truth": "nierenzellkarzinom"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 58 Jahre\nECOG: 0\nAnamnese: Zufallsbefund im CT wegen Nephrolithiasis. Solide Nierenraumforderung rechts (2,2 cm).\nDiagnose: Solide Nierenraumforderung rechts (2,2 cm)\nStadium: nicht-metastasiert (Verdacht, prätherapeutisch)\nTNM (klinisch): T:unknown N:unknown M:M0\nMetastasiert: Nein\nNebendiagnosen: arterielle Hypertonie\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Der Fall beschreibt eine solide Nierenraumforderung. Dies ist ein typischer Befund bei Nierenkrebs. Die Anamnese, das Alter des Patienten und das Fehlen von Metastasen passen ebenfalls zu einem Nierenzellkarzinom. Die anderen Optionen sind weniger wahrscheinlich, da die Raumforderung in der Niere lokalisiert ist.",
+    "classification": "nierenzellkarzinom",
+    "confidence": 0.95,
+    "key_indicators": [
+      "solide Nierenraumforderung",
+      "Niere",
+      "keine Metastasen"
+    ]
+  },
+  "raw_response": "{\"reasoning\": \"Der Fall beschreibt eine solide Nierenraumforderung. Dies ist ein typischer Befund bei Nierenkrebs. Die Anamnese, das Alter des Patienten und das Fehlen von Metastasen passen ebenfalls zu einem Nierenzellkarzinom. Die anderen Optionen sind weniger wahrscheinlich, da die Raumforderung in der Niere lokalisiert ist.\",\n    \"classification\": \"nierenzellkarzinom\",\n    \"confidence\": 0.95,\n    \"key_indicators\": [\"solide Nierenraumforderung\", \"Niere\", \"keine Metastasen\"]\n}",
+  "ground_truth": "nierenzellkarzinom",
+  "is_correct": true,
+  "inference_time_seconds": 1.3942316312056322,
+  "tokens_used": 128,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

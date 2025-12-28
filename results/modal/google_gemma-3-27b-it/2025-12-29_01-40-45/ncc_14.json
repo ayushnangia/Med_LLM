@@ -1,0 +1,59 @@
+{
+  "case_id": "ncc_14",
+  "timestamp": "2025-12-29_01-40-45",
+  "provider": "modal",
+  "model": "google/gemma-3-27b-it",
+  "input_case": {
+    "case_id": "ncc_14",
+    "patient": {
+      "alter_jahre": 79,
+      "geschlecht": null,
+      "ecog": 2,
+      "komorbiditaet": "hoch"
+    },
+    "anamnese": "Zufallsbefund der linken Niere (Sonographie beim Hausarzt bei Rückenschmerzen). Großer Nierentumor links ca. 9 cm. Vorerkrankungen: KHK, Z. n. Bypass 2012, CKD G2.",
+    "diagnose_kurz": "Großer Nierentumor links ca. 9,0 cm, hochgradig malignitätsverdächtig (V. a. RCC), fragliche Infiltration linke Nebenniere; CT Thorax ohne Metastasen",
+    "alle_diagnosen": null,
+    "stadium": "lokal fortgeschritten vs organbegrenzt; M0 (CT Thorax 04.12.2025)",
+    "tnm_clinical": {
+      "T": "T2",
+      "N": "N0",
+      "M": "M0",
+      "stage_group": "unknown"
+    },
+    "tnm_pathological": {
+      "T": null,
+      "N": null,
+      "M": null,
+      "stage_group": null
+    },
+    "histologie": null,
+    "metastatic": false,
+    "nebendiagnosen": [
+      "KHK",
+      "Z. n. aortokoronarer Bypass 2012",
+      "CKD G2"
+    ],
+    "ground_truth": "nierenzellkarzinom"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 79 Jahre\nECOG: 2\nAnamnese: Zufallsbefund der linken Niere (Sonographie beim Hausarzt bei Rückenschmerzen). Großer Nierentumor links ca. 9 cm. Vorerkrankungen: KHK, Z. n. Bypass 2012, CKD G2.\nDiagnose: Großer Nierentumor links ca. 9,0 cm, hochgradig malignitätsverdächtig (V. a. RCC), fragliche Infiltration linke Nebenniere; CT Thorax ohne Metastasen\nStadium: lokal fortgeschritten vs organbegrenzt; M0 (CT Thorax 04.12.2025)\nTNM (klinisch): T:T2 N:N0 M:M0\nMetastasiert: Nein\nNebendiagnosen: KHK, Z. n. aortokoronarer Bypass 2012, CKD G2\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Der Fall beschreibt einen Tumor in der Niere, der als Nierenzellkarzinom (RCC) verdächtigt wird. Die Anamnese, die Bildgebungsergebnisse (CT-Thorax ohne Fernmetastasen) und die TNM-Klassifizierung (T2 N0 M0) unterstützen diese Diagnose. Die anderen Optionen sind nicht passend, da der Tumor nicht in Prostata, Hoden, Penis oder Harnblase lokalisiert ist und es sich nicht um mehrere bösartige Erkrankungen handelt.",
+    "classification": "nierenzellkarzinom",
+    "confidence": 0.95,
+    "key_indicators": [
+      "Nierentumor",
+      "V. a. RCC",
+      "T2 N0 M0",
+      "CT Thorax ohne Metastasen"
+    ]
+  },
+  "raw_response": "{\"reasoning\": \"Der Fall beschreibt einen Tumor in der Niere, der als Nierenzellkarzinom (RCC) verdächtigt wird. Die Anamnese, die Bildgebungsergebnisse (CT-Thorax ohne Fernmetastasen) und die TNM-Klassifizierung (T2 N0 M0) unterstützen diese Diagnose. Die anderen Optionen sind nicht passend, da der Tumor nicht in Prostata, Hoden, Penis oder Harnblase lokalisiert ist und es sich nicht um mehrere bösartige Erkrankungen handelt.\",\n    \"classification\": \"nierenzellkarzinom\",\n    \"confidence\": 0.95,\n    \"key_indicators\": [\"Nierentumor\", \"V. a. RCC\", \"T2 N0 M0\", \"CT Thorax ohne Metastasen\"]}",
+  "ground_truth": "nierenzellkarzinom",
+  "is_correct": true,
+  "inference_time_seconds": 1.3942316312056322,
+  "tokens_used": 174,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

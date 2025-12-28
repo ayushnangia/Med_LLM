@@ -1,0 +1,58 @@
+{
+  "case_id": "ncc_3",
+  "timestamp": "2025-12-29_01-45-51",
+  "provider": "modal",
+  "model": "allenai/Olmo-3.1-32B-Instruct",
+  "input_case": {
+    "case_id": "ncc_3",
+    "patient": {
+      "alter_jahre": 58,
+      "geschlecht": null,
+      "ecog": 0,
+      "komorbiditaet": "unknown"
+    },
+    "anamnese": "Zufallsbefund im CT wegen Nephrolithiasis. Solide Nierenraumforderung rechts (2,2 cm).",
+    "diagnose_kurz": "Solide Nierenraumforderung rechts (2,2 cm)",
+    "alle_diagnosen": null,
+    "stadium": "nicht-metastasiert (Verdacht, prätherapeutisch)",
+    "tnm_clinical": {
+      "T": "unknown",
+      "N": "unknown",
+      "M": "M0",
+      "stage_group": "unknown"
+    },
+    "tnm_pathological": {
+      "T": null,
+      "N": null,
+      "M": null,
+      "stage_group": null
+    },
+    "histologie": null,
+    "metastatic": false,
+    "nebendiagnosen": [
+      "arterielle Hypertonie"
+    ],
+    "ground_truth": "nierenzellkarzinom"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 58 Jahre\nECOG: 0\nAnamnese: Zufallsbefund im CT wegen Nephrolithiasis. Solide Nierenraumforderung rechts (2,2 cm).\nDiagnose: Solide Nierenraumforderung rechts (2,2 cm)\nStadium: nicht-metastasiert (Verdacht, prätherapeutisch)\nTNM (klinisch): T:unknown N:unknown M:M0\nMetastasiert: Nein\nNebendiagnosen: arterielle Hypertonie\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Der Patient ist männlich, 58 Jahre alt und es wurde eine solide Nierenraumforderung bei Untersuchung für Nephrolithiasis festgestellt. Nierenzellkarzinome sind die häufigsten primären Nierentumoren bei Erwachsenen und können als solide Fokussbildung auftreten. Weitere klinische Daten wie ECOG 0, keine metastatische Ausbreitung und keine Nebendiagnose von Onkologie-relevanten Erkrankungen sprechen zunächst nicht für eine Metastasierung oder eine secundäre Tumorform wie z.B. Hodentumor oder Prostatakarzinom. Peniskarzinome wären untypisch für eine Nierenraumfokussierung. Urothelkarzinome betreffen üblicherweise den Harntrakt und nicht die Niere. Polymalignom oder non-urological können ausgeschlossen werden, solange keine weiteren Tumorevidenzen vorhanden sind. Die Kombination aus klinischer Präsentation, Alter und Tumorlokalisierung spricht für eine nierenzellkarzinom.",
+    "classification": "nierenzellkarzinom",
+    "confidence": 0.85,
+    "key_indicators": [
+      "männlich",
+      "58 Jahre",
+      "solide Nierenraumfokussierung",
+      "keine metastatischen Anzeichen",
+      "ECOG 0"
+    ]
+  },
+  "raw_response": "{\"reasoning\": \"Der Patient ist männlich, 58 Jahre alt und es wurde eine solide Nierenraumforderung bei Untersuchung für Nephrolithiasis festgestellt. Nierenzellkarzinome sind die häufigsten primären Nierentumoren bei Erwachsenen und können als solide Fokussbildung auftreten. Weitere klinische Daten wie ECOG 0, keine metastatische Ausbreitung und keine Nebendiagnose von Onkologie-relevanten Erkrankungen sprechen zunächst nicht für eine Metastasierung oder eine secundäre Tumorform wie z.B. Hodentumor oder Prostatakarzinom. Peniskarzinome wären untypisch für eine Nierenraumfokussierung. Urothelkarzinome betreffen üblicherweise den Harntrakt und nicht die Niere. Polymalignom oder non-urological können ausgeschlossen werden, solange keine weiteren Tumorevidenzen vorhanden sind. Die Kombination aus klinischer Präsentation, Alter und Tumorlokalisierung spricht für eine nierenzellkarzinom.\", \"classification\": \"nierenzellkarzinom\", \"confidence\": 0.85, \"key_indicators\": [\"männlich\", \"58 Jahre\", \"solide Nierenraumfokussierung\", \"keine metastatischen Anzeichen\", \"ECOG 0\"]}",
+  "ground_truth": "nierenzellkarzinom",
+  "is_correct": true,
+  "inference_time_seconds": 0.8329100058628962,
+  "tokens_used": 315,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

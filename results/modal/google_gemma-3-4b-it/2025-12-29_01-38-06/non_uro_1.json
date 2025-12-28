@@ -1,0 +1,45 @@
+{
+  "case_id": "non_uro_1",
+  "timestamp": "2025-12-29_01-38-06",
+  "provider": "modal",
+  "model": "google/gemma-3-4b-it",
+  "input_case": {
+    "case_id": "non_uro_1",
+    "patient": {
+      "alter_jahre": 81,
+      "geschlecht": null,
+      "ecog": null,
+      "komorbiditaet": null
+    },
+    "anamnese": null,
+    "diagnose_kurz": "Aggressives B-Zell Non-Hodgkin-Lymphom (GCB-Typ nach Hans), Double-Expressor (BCL2/cMYC), EBV-negativ; große paraaortale/peritoneale Raumforderung links (ca. 12,1×8,2×13,2 cm) mit Infiltration Pankreasschwanz/IVC/li. A. iliaca communis",
+    "alle_diagnosen": null,
+    "stadium": "aggressives NHL; Staging unvollständig (CT Thorax ohne Metastasen; weitere Lymphom-Stagingdiagnostik ausstehend)",
+    "tnm_clinical": null,
+    "tnm_pathological": null,
+    "histologie": null,
+    "metastatic": null,
+    "nebendiagnosen": null,
+    "ground_truth": "non_urological"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 81 Jahre\nDiagnose: Aggressives B-Zell Non-Hodgkin-Lymphom (GCB-Typ nach Hans), Double-Expressor (BCL2/cMYC), EBV-negativ; große paraaortale/peritoneale Raumforderung links (ca. 12,1×8,2×13,2 cm) mit Infiltration Pankreasschwanz/IVC/li. A. iliaca communis\nStadium: aggressives NHL; Staging unvollständig (CT Thorax ohne Metastasen; weitere Lymphom-Stagingdiagnostik ausstehend)\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Der Patient leidet an einem aggressiven B-Zell Non-Hodgkin-Lymphom, das sich in paraaortale und peritonale Räume ausgebreitet hat und in den Pankreas, die IVC und die linke Ilium-Arter eindringt. Die Diagnose ist ein aggressives B-Zell Non-Hodgkin-Lymphom (NHL) mit einer ungünstigen Genexpression (BCL2/cMYC). Obwohl der Patient 81 Jahre alt ist, ist die primäre Diagnose ein Lymphom, das in die Kategorie 'non_urological' fällt. Die weiteren Untersuchungen zur vollständigen Staging sind wichtig, um die Ausbreitung des Lymphoms zu beurteilen.",
+    "classification": "non_urological",
+    "confidence": 0.95,
+    "key_indicators": [
+      "Aggressives B-Zell Non-Hodgkin-Lymphom",
+      "BCL2/cMYC",
+      "paraaortale/peritoneale Raumforderung",
+      "Infiltration Pankreasschwanz/IVC/li. A. iliaca communis"
+    ]
+  },
+  "raw_response": "{\"reasoning\": \"Der Patient leidet an einem aggressiven B-Zell Non-Hodgkin-Lymphom, das sich in paraaortale und peritonale Räume ausgebreitet hat und in den Pankreas, die IVC und die linke Ilium-Arter eindringt. Die Diagnose ist ein aggressives B-Zell Non-Hodgkin-Lymphom (NHL) mit einer ungünstigen Genexpression (BCL2/cMYC). Obwohl der Patient 81 Jahre alt ist, ist die primäre Diagnose ein Lymphom, das in die Kategorie 'non_urological' fällt. Die weiteren Untersuchungen zur vollständigen Staging sind wichtig, um die Ausbreitung des Lymphoms zu beurteilen.\",\n    \"classification\": \"non_urological\",\n    \"confidence\": 0.95,\n    \"key_indicators\": [\"Aggressives B-Zell Non-Hodgkin-Lymphom\", \"BCL2/cMYC\", \"paraaortale/peritoneale Raumforderung\", \"Infiltration Pankreasschwanz/IVC/li. A. iliaca communis\"]\n}",
+  "ground_truth": "non_urological",
+  "is_correct": true,
+  "inference_time_seconds": 1.1168497984225934,
+  "tokens_used": 244,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

@@ -1,0 +1,44 @@
+{
+  "case_id": "uca_1",
+  "timestamp": "2025-12-29_01-06-52",
+  "provider": "modal",
+  "model": "allenai/Olmo-3.1-32B-Think",
+  "input_case": {
+    "case_id": "uca_1",
+    "patient": {
+      "alter_jahre": 63,
+      "geschlecht": null,
+      "ecog": null,
+      "komorbiditaet": null
+    },
+    "anamnese": null,
+    "diagnose_kurz": "Multilokuläres NMIBC-Rezidiv: nicht-invasives papilläres Urothelkarzinom low grade (pTa G1) in mehreren Lokalisationen (A–C), D/E ohne Malignität",
+    "alle_diagnosen": null,
+    "stadium": "NMIBC, low grade pTa (multifokal, Rezidiv >3 Läsionen) – Risikostratifizierung (EORTC) geplant",
+    "tnm_clinical": null,
+    "tnm_pathological": null,
+    "histologie": null,
+    "metastatic": null,
+    "nebendiagnosen": null,
+    "ground_truth": "urothelkarzinom"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 63 Jahre\nDiagnose: Multilokuläres NMIBC-Rezidiv: nicht-invasives papilläres Urothelkarzinom low grade (pTa G1) in mehreren Lokalisationen (A–C), D/E ohne Malignität\nStadium: NMIBC, low grade pTa (multifokal, Rezidiv >3 Läsionen) – Risikostratifizierung (EORTC) geplant\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Begründung",
+    "classification": "urothelkarzinom",
+    "confidence": 1.0,
+    "key_indicators": [
+      "Multilokuläres NMIBC-Rezidiv",
+      "papilläres Urothelkarzinom low grade (pTa G1)",
+      "mehrerfahrungen Lokalisationen"
+    ]
+  },
+  "raw_response": "{\"reasoning\": \"Begründung\", \"classification\": \"urothelkarzinom\", \"confidence\": 1.0, \"key_indicators\": [\"Multilokuläres NMIBC-Rezidiv\", \"papilläres Urothelkarzinom low grade (pTa G1)\", \"mehrerfahrungen Lokalisationen\"]}",
+  "ground_truth": "urothelkarzinom",
+  "is_correct": true,
+  "inference_time_seconds": 0.4803312191596398,
+  "tokens_used": 81,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

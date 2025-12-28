@@ -1,0 +1,58 @@
+{
+  "case_id": "ncc_4",
+  "timestamp": "2025-12-29_01-40-45",
+  "provider": "modal",
+  "model": "google/gemma-3-27b-it",
+  "input_case": {
+    "case_id": "ncc_4",
+    "patient": {
+      "alter_jahre": 66,
+      "geschlecht": null,
+      "ecog": 1,
+      "komorbiditaet": "unknown"
+    },
+    "anamnese": "Kleiner Nierentumor links 2,8 cm (cT1a). Vorerkrankungen: Z. n. Appendektomie; COPD GOLD I (Raucher 20 PY).",
+    "diagnose_kurz": "Kleiner Nierentumor links 2,8 cm (cT1a), malignitätsverdächtig",
+    "alle_diagnosen": null,
+    "stadium": "cT1a, nicht-metastasiert (prätherapeutisch)",
+    "tnm_clinical": {
+      "T": "T1",
+      "N": "unknown",
+      "M": "M0",
+      "stage_group": "unknown"
+    },
+    "tnm_pathological": {
+      "T": null,
+      "N": null,
+      "M": null,
+      "stage_group": null
+    },
+    "histologie": null,
+    "metastatic": false,
+    "nebendiagnosen": [
+      "Z. n. Appendektomie",
+      "COPD GOLD I (Raucher 20 PY)"
+    ],
+    "ground_truth": "nierenzellkarzinom"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 66 Jahre\nECOG: 1\nAnamnese: Kleiner Nierentumor links 2,8 cm (cT1a). Vorerkrankungen: Z. n. Appendektomie; COPD GOLD I (Raucher 20 PY).\nDiagnose: Kleiner Nierentumor links 2,8 cm (cT1a), malignitätsverdächtig\nStadium: cT1a, nicht-metastasiert (prätherapeutisch)\nTNM (klinisch): T:T1 N:unknown M:M0\nMetastasiert: Nein\nNebendiagnosen: Z. n. Appendektomie, COPD GOLD I (Raucher 20 PY)\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Der Fall beschreibt einen Tumor in der Niere. Die Anamnese und die Diagnose deuten eindeutig auf einen Nierentumor hin. Die Größe des Tumors (2,8 cm) und das klinische Stadium (cT1a, M0) werden ebenfalls angegeben. Die anderen Optionen sind nicht relevant, da sie sich auf andere Urogenitalorgane beziehen.",
+    "classification": "nierenzellkarzinom",
+    "confidence": 0.99,
+    "key_indicators": [
+      "Nierentumor",
+      "cT1a",
+      "M0",
+      "2,8 cm"
+    ]
+  },
+  "raw_response": "{\"reasoning\": \"Der Fall beschreibt einen Tumor in der Niere. Die Anamnese und die Diagnose deuten eindeutig auf einen Nierentumor hin. Die Größe des Tumors (2,8 cm) und das klinische Stadium (cT1a, M0) werden ebenfalls angegeben. Die anderen Optionen sind nicht relevant, da sie sich auf andere Urogenitalorgane beziehen.\",\n    \"classification\": \"nierenzellkarzinom\",\n    \"confidence\": 0.99,\n    \"key_indicators\": [\"Nierentumor\", \"cT1a\", \"M0\", \"2,8 cm\"]\n}",
+  "ground_truth": "nierenzellkarzinom",
+  "is_correct": true,
+  "inference_time_seconds": 1.3942316312056322,
+  "tokens_used": 138,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

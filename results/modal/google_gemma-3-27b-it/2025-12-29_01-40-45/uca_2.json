@@ -1,0 +1,45 @@
+{
+  "case_id": "uca_2",
+  "timestamp": "2025-12-29_01-40-45",
+  "provider": "modal",
+  "model": "google/gemma-3-27b-it",
+  "input_case": {
+    "case_id": "uca_2",
+    "patient": {
+      "alter_jahre": 54,
+      "geschlecht": null,
+      "ecog": null,
+      "komorbiditaet": null
+    },
+    "anamnese": null,
+    "diagnose_kurz": "Harnblasen-NMIBC: nicht-invasives papilläres Urothelkarzinom pTa, fokal high grade (G3), Hinterwand links; Detrusor nicht nachweisbar",
+    "alle_diagnosen": null,
+    "stadium": "pTa high grade (fokal) – EORTC-Risikostratifizierung geplant; Nachresektion erwägen (Detrusor fehlt)",
+    "tnm_clinical": null,
+    "tnm_pathological": null,
+    "histologie": null,
+    "metastatic": null,
+    "nebendiagnosen": null,
+    "ground_truth": "urothelkarzinom"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 54 Jahre\nDiagnose: Harnblasen-NMIBC: nicht-invasives papilläres Urothelkarzinom pTa, fokal high grade (G3), Hinterwand links; Detrusor nicht nachweisbar\nStadium: pTa high grade (fokal) – EORTC-Risikostratifizierung geplant; Nachresektion erwägen (Detrusor fehlt)\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Der Fall beschreibt ein nicht-invasives papilläres Urothelkarzinom der Harnblase. Urothelkarzinome sind Krebsarten, die im Urothel, der Auskleidung der Harnblase, des Harnleiters, des Nierenbeckens und der Harnröhre, entstehen. Die Diagnose 'Harnblasen-NMIBC' (nicht-muskelinvasiver Blasenkrebs) und die Erwähnung des Urothels bestätigen dies.",
+    "classification": "urothelkarzinom",
+    "confidence": 1.0,
+    "key_indicators": [
+      "Harnblasen-NMIBC",
+      "Urothelkarzinom",
+      "Harnblase",
+      "Urothel"
+    ]
+  },
+  "raw_response": "{\"reasoning\": \"Der Fall beschreibt ein nicht-invasives papilläres Urothelkarzinom der Harnblase. Urothelkarzinome sind Krebsarten, die im Urothel, der Auskleidung der Harnblase, des Harnleiters, des Nierenbeckens und der Harnröhre, entstehen. Die Diagnose 'Harnblasen-NMIBC' (nicht-muskelinvasiver Blasenkrebs) und die Erwähnung des Urothels bestätigen dies.\",\n    \"classification\": \"urothelkarzinom\",\n    \"confidence\": 1.0,\n    \"key_indicators\": [\"Harnblasen-NMIBC\", \"Urothelkarzinom\", \"Harnblase\", \"Urothel\"]}",
+  "ground_truth": "urothelkarzinom",
+  "is_correct": true,
+  "inference_time_seconds": 1.3942316312056322,
+  "tokens_used": 169,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

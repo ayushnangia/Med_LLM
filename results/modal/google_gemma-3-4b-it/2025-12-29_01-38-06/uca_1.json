@@ -1,0 +1,45 @@
+{
+  "case_id": "uca_1",
+  "timestamp": "2025-12-29_01-38-06",
+  "provider": "modal",
+  "model": "google/gemma-3-4b-it",
+  "input_case": {
+    "case_id": "uca_1",
+    "patient": {
+      "alter_jahre": 63,
+      "geschlecht": null,
+      "ecog": null,
+      "komorbiditaet": null
+    },
+    "anamnese": null,
+    "diagnose_kurz": "Multilokuläres NMIBC-Rezidiv: nicht-invasives papilläres Urothelkarzinom low grade (pTa G1) in mehreren Lokalisationen (A–C), D/E ohne Malignität",
+    "alle_diagnosen": null,
+    "stadium": "NMIBC, low grade pTa (multifokal, Rezidiv >3 Läsionen) – Risikostratifizierung (EORTC) geplant",
+    "tnm_clinical": null,
+    "tnm_pathological": null,
+    "histologie": null,
+    "metastatic": null,
+    "nebendiagnosen": null,
+    "ground_truth": "urothelkarzinom"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 63 Jahre\nDiagnose: Multilokuläres NMIBC-Rezidiv: nicht-invasives papilläres Urothelkarzinom low grade (pTa G1) in mehreren Lokalisationen (A–C), D/E ohne Malignität\nStadium: NMIBC, low grade pTa (multifokal, Rezidiv >3 Läsionen) – Risikostratifizierung (EORTC) geplant\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Der Patient hat ein nicht-invasives papilläres Urothelkarzinom, das sich in mehreren Lokalisationen des Harntrakts manifestiert und ein Rezidiv aufweist. Dies deutet eindeutig auf ein Urothelkarzinom hin.",
+    "classification": "urothelkarzinom",
+    "confidence": 0.99,
+    "key_indicators": [
+      "nicht-invasives papilläres Urothelkarzinom",
+      "multilokuläres Rezidiv",
+      "pTa G1",
+      "Harntracks"
+    ]
+  },
+  "raw_response": "{\"reasoning\": \"Der Patient hat ein nicht-invasives papilläres Urothelkarzinom, das sich in mehreren Lokalisationen des Harntrakts manifestiert und ein Rezidiv aufweist. Dies deutet eindeutig auf ein Urothelkarzinom hin.\",\n    \"classification\": \"urothelkarzinom\",\n    \"confidence\": 0.99,\n    \"key_indicators\": [\"nicht-invasives papilläres Urothelkarzinom\", \"multilokuläres Rezidiv\", \"pTa G1\", \"Harntracks\"]\n}",
+  "ground_truth": "urothelkarzinom",
+  "is_correct": true,
+  "inference_time_seconds": 1.1168497984225934,
+  "tokens_used": 131,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

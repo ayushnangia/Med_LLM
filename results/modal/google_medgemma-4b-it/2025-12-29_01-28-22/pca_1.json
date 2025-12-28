@@ -1,0 +1,54 @@
+{
+  "case_id": "pca_1",
+  "timestamp": "2025-12-29_01-28-22",
+  "provider": "modal",
+  "model": "google/medgemma-4b-it",
+  "input_case": {
+    "case_id": "pca_1",
+    "patient": {
+      "alter_jahre": 65,
+      "geschlecht": null,
+      "ecog": 1,
+      "komorbiditaet": "unknown"
+    },
+    "anamnese": "mCRPC, ossär und lymphogen metastasiert. Pat. bekannt. Mehrlinientherapie inkl. ADT, Docetaxel, Abirateron/Prednisolon, Lu-PSMA; BRCA1/2 negativ.",
+    "diagnose_kurz": "mCRPC mit ossärer und lymphonodaler Metastasierung",
+    "alle_diagnosen": null,
+    "stadium": "metastasiert, kastrationsresistent",
+    "tnm_clinical": {
+      "T": "unknown",
+      "N": "unknown",
+      "M": "M1",
+      "stage_group": "unknown"
+    },
+    "tnm_pathological": {
+      "T": null,
+      "N": null,
+      "M": null,
+      "stage_group": null
+    },
+    "histologie": null,
+    "metastatic": null,
+    "nebendiagnosen": [],
+    "ground_truth": "prostatakarzinom"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 65 Jahre\nECOG: 1\nAnamnese: mCRPC, ossär und lymphogen metastasiert. Pat. bekannt. Mehrlinientherapie inkl. ADT, Docetaxel, Abirateron/Prednisolon, Lu-PSMA; BRCA1/2 negativ.\nDiagnose: mCRPC mit ossärer und lymphonodaler Metastasierung\nStadium: metastasiert, kastrationsresistent\nTNM (klinisch): T:unknown N:unknown M:M1\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Der Patient hat eine mCRPC mit ossärer und lymphonodaler Metastasierung. Dies ist eine metastasierte, kastrationsresistente Prostatakrebs.",
+    "classification": "prostatakarzinom",
+    "confidence": 0.95,
+    "key_indicators": [
+      "mCRPC",
+      "metastasiert",
+      "kastrationsresistent"
+    ]
+  },
+  "raw_response": "{\"reasoning\": \"Der Patient hat eine mCRPC mit ossärer und lymphonodaler Metastasierung. Dies ist eine metastasierte, kastrationsresistente Prostatakrebs.\", \"classification\": \"prostatakarzinom\", \"confidence\": 0.95, \"key_indicators\": [\"mCRPC\", \"metastasiert\", \"kastrationsresistent\"]}",
+  "ground_truth": "prostatakarzinom",
+  "is_correct": true,
+  "inference_time_seconds": 0.940959957929758,
+  "tokens_used": 81,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

@@ -1,0 +1,47 @@
+{
+  "case_id": "ncc_5",
+  "timestamp": "2025-12-29_00-55-59",
+  "provider": "modal",
+  "model": "OpenMeditron/Meditron3-Qwen2.5-7B",
+  "input_case": {
+    "case_id": "ncc_5",
+    "patient": {
+      "alter_jahre": 47,
+      "geschlecht": null,
+      "ecog": 0,
+      "komorbiditaet": "unknown"
+    },
+    "anamnese": "Zystische Läsion Bosniak IV (2,5 cm) an der rechten Niere. Keine relevanten Vorerkrankungen.",
+    "diagnose_kurz": "Zystische Läsion Bosniak IV, 2,5 cm, rechte Niere",
+    "alle_diagnosen": null,
+    "stadium": "nicht-metastasiert (Verdacht, prätherapeutisch)",
+    "tnm_clinical": {
+      "T": "unknown",
+      "N": "unknown",
+      "M": "M0",
+      "stage_group": "unknown"
+    },
+    "tnm_pathological": {
+      "T": null,
+      "N": null,
+      "M": null,
+      "stage_group": null
+    },
+    "histologie": null,
+    "metastatic": false,
+    "nebendiagnosen": [],
+    "ground_truth": "nierenzellkarzinom"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 47 Jahre\nECOG: 0\nAnamnese: Zystische Läsion Bosniak IV (2,5 cm) an der rechten Niere. Keine relevanten Vorerkrankungen.\nDiagnose: Zystische Läsion Bosniak IV, 2,5 cm, rechte Niere\nStadium: nicht-metastasiert (Verdacht, prätherapeutisch)\nTNM (klinisch): T:unknown N:unknown M:M0\nMetastasiert: Nein\n\nKlassifiziere in GENAU eine Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntworte NUR mit dem Kategorienamen:",
+  "output": {
+    "classification": "nierenzellkarzinom"
+  },
+  "raw_response": "{\"classification\": \"nierenzellkarzinom\"}",
+  "ground_truth": "nierenzellkarzinom",
+  "is_correct": true,
+  "inference_time_seconds": 0.15121815754817083,
+  "tokens_used": 14,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

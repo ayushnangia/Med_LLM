@@ -1,0 +1,45 @@
+{
+  "case_id": "uca_2",
+  "timestamp": "2025-12-29_01-25-54",
+  "provider": "modal",
+  "model": "OpenMeditron/Meditron3-Qwen2.5-7B",
+  "input_case": {
+    "case_id": "uca_2",
+    "patient": {
+      "alter_jahre": 54,
+      "geschlecht": null,
+      "ecog": null,
+      "komorbiditaet": null
+    },
+    "anamnese": null,
+    "diagnose_kurz": "Harnblasen-NMIBC: nicht-invasives papilläres Urothelkarzinom pTa, fokal high grade (G3), Hinterwand links; Detrusor nicht nachweisbar",
+    "alle_diagnosen": null,
+    "stadium": "pTa high grade (fokal) – EORTC-Risikostratifizierung geplant; Nachresektion erwägen (Detrusor fehlt)",
+    "tnm_clinical": null,
+    "tnm_pathological": null,
+    "histologie": null,
+    "metastatic": null,
+    "nebendiagnosen": null,
+    "ground_truth": "urothelkarzinom"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 54 Jahre\nDiagnose: Harnblasen-NMIBC: nicht-invasives papilläres Urothelkarzinom pTa, fokal high grade (G3), Hinterwand links; Detrusor nicht nachweisbar\nStadium: pTa high grade (fokal) – EORTC-Risikostratifizierung geplant; Nachresektion erwägen (Detrusor fehlt)\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Der Patient hat eine Diagnose von Harnblasen-NMIBC (nicht-invasives papilläres Urothelkarzinom pTa, fokal high grade (G3), Hinterwand links) gestellt. Dies ist ein Tumor des Urothels, das die Harnblase bedeckt. Die Klassifizierung erfolgt daher unter die Kategorie 'urothelkarzinom'.",
+    "classification": "urothelkarzinom",
+    "confidence": 1.0,
+    "key_indicators": [
+      "Harnblasen-NMIBC",
+      "pTa",
+      "high grade (G3)",
+      "Hinterwand links"
+    ]
+  },
+  "raw_response": "{\n    \"reasoning\": \"Der Patient hat eine Diagnose von Harnblasen-NMIBC (nicht-invasives papilläres Urothelkarzinom pTa, fokal high grade (G3), Hinterwand links) gestellt. Dies ist ein Tumor des Urothels, das die Harnblase bedeckt. Die Klassifizierung erfolgt daher unter die Kategorie 'urothelkarzinom'.\",\n    \"classification\": \"urothelkarzinom\",\n    \"confidence\": 1.0,\n    \"key_indicators\": [\"Harnblasen-NMIBC\", \"pTa\", \"high grade (G3)\", \"Hinterwand links\"]\n}",
+  "ground_truth": "urothelkarzinom",
+  "is_correct": true,
+  "inference_time_seconds": 0.34737188999469465,
+  "tokens_used": 157,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

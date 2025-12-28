@@ -1,0 +1,12 @@
+{
+  "model": "allenai/Olmo-3.1-32B-Think",
+  "provider": "modal",
+  "timestamp": "2025-12-29_01-06-52",
+  "total_cases": 26,
+  "correct": 16,
+  "incorrect": 10,
+  "errors": 0,
+  "accuracy": 0.6153846153846154,
+  "total_time": 12.488611698150635,
+  "batch_invariance": true
+}

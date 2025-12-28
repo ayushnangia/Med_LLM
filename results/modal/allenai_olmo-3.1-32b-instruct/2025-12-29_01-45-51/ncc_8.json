@@ -1,0 +1,58 @@
+{
+  "case_id": "ncc_8",
+  "timestamp": "2025-12-29_01-45-51",
+  "provider": "modal",
+  "model": "allenai/Olmo-3.1-32B-Instruct",
+  "input_case": {
+    "case_id": "ncc_8",
+    "patient": {
+      "alter_jahre": 70,
+      "geschlecht": null,
+      "ecog": 1,
+      "komorbiditaet": "unknown"
+    },
+    "anamnese": "Kleiner Nierentumor links 2,7 cm, hilusnah. Vorerkrankungen: DM Typ 2, arterielle Hypertonie, Hyperlipidämie.",
+    "diagnose_kurz": "Kleiner Nierentumor links 2,7 cm, hilusnah",
+    "alle_diagnosen": null,
+    "stadium": "nicht-metastasiert (Verdacht, prätherapeutisch)",
+    "tnm_clinical": {
+      "T": "unknown",
+      "N": "unknown",
+      "M": "M0",
+      "stage_group": "unknown"
+    },
+    "tnm_pathological": {
+      "T": null,
+      "N": null,
+      "M": null,
+      "stage_group": null
+    },
+    "histologie": null,
+    "metastatic": false,
+    "nebendiagnosen": [
+      "Diabetes mellitus Typ 2",
+      "arterielle Hypertonie",
+      "Hyperlipidämie"
+    ],
+    "ground_truth": "nierenzellkarzinom"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 70 Jahre\nECOG: 1\nAnamnese: Kleiner Nierentumor links 2,7 cm, hilusnah. Vorerkrankungen: DM Typ 2, arterielle Hypertonie, Hyperlipidämie.\nDiagnose: Kleiner Nierentumor links 2,7 cm, hilusnah\nStadium: nicht-metastasiert (Verdacht, prätherapeutisch)\nTNM (klinisch): T:unknown N:unknown M:M0\nMetastasiert: Nein\nNebendiagnosen: Diabetes mellitus Typ 2, arterielle Hypertonie, Hyperlipidämie\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Der Patient ist männlich (daraus geht der Begriff 'Nierentumor' in Kombination mit der lateralen Lokalisation), hat einen Kleiner Tumor im linken Nierenhalm (hilusnah). Nierentumoren bei Männern sind meist Nierenzellkarzinome. Keine Anzeichen von Prostata- oder Urethekarzinom (keine Urinkomplikationen, keine Befunde im Beckenboden, Prostata nicht erwähnt). Hodentumoren wären selten im Nierenhalm. Es gibt auch keine Hinweise auf eine Polyneoplasie oder nicht-urologische Ursache. Die Diagnose ist ein nicht-metastasierender Tumor des linken Nierenhalses, also Nierenzellkarzinom.",
+    "classification": "nierenzellkarzinom",
+    "confidence": 0.99,
+    "key_indicators": [
+      "Kleiner Tumor im linken Nierenhalm",
+      "männlicher Patient",
+      "keine Hinweise auf andere Karzinome"
+    ]
+  },
+  "raw_response": "{\"reasoning\": \"Der Patient ist männlich (daraus geht der Begriff 'Nierentumor' in Kombination mit der lateralen Lokalisation), hat einen Kleiner Tumor im linken Nierenhalm (hilusnah). Nierentumoren bei Männern sind meist Nierenzellkarzinome. Keine Anzeichen von Prostata- oder Urethekarzinom (keine Urinkomplikationen, keine Befunde im Beckenboden, Prostata nicht erwähnt). Hodentumoren wären selten im Nierenhalm. Es gibt auch keine Hinweise auf eine Polyneoplasie oder nicht-urologische Ursache. Die Diagnose ist ein nicht-metastasierender Tumor des linken Nierenhalses, also Nierenzellkarzinom.\", \"classification\": \"nierenzellkarzinom\", \"confidence\": 0.99, \"key_indicators\": [\"Kleiner Tumor im linken Nierenhalm\", \"männlicher Patient\", \"keine Hinweise auf andere Karzinome\"]}",
+  "ground_truth": "nierenzellkarzinom",
+  "is_correct": true,
+  "inference_time_seconds": 0.8329100058628962,
+  "tokens_used": 244,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

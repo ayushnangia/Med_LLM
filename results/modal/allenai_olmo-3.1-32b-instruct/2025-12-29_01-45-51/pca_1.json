@@ -1,0 +1,55 @@
+{
+  "case_id": "pca_1",
+  "timestamp": "2025-12-29_01-45-51",
+  "provider": "modal",
+  "model": "allenai/Olmo-3.1-32B-Instruct",
+  "input_case": {
+    "case_id": "pca_1",
+    "patient": {
+      "alter_jahre": 65,
+      "geschlecht": null,
+      "ecog": 1,
+      "komorbiditaet": "unknown"
+    },
+    "anamnese": "mCRPC, ossär und lymphogen metastasiert. Pat. bekannt. Mehrlinientherapie inkl. ADT, Docetaxel, Abirateron/Prednisolon, Lu-PSMA; BRCA1/2 negativ.",
+    "diagnose_kurz": "mCRPC mit ossärer und lymphonodaler Metastasierung",
+    "alle_diagnosen": null,
+    "stadium": "metastasiert, kastrationsresistent",
+    "tnm_clinical": {
+      "T": "unknown",
+      "N": "unknown",
+      "M": "M1",
+      "stage_group": "unknown"
+    },
+    "tnm_pathological": {
+      "T": null,
+      "N": null,
+      "M": null,
+      "stage_group": null
+    },
+    "histologie": null,
+    "metastatic": null,
+    "nebendiagnosen": [],
+    "ground_truth": "prostatakarzinom"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 65 Jahre\nECOG: 1\nAnamnese: mCRPC, ossär und lymphogen metastasiert. Pat. bekannt. Mehrlinientherapie inkl. ADT, Docetaxel, Abirateron/Prednisolon, Lu-PSMA; BRCA1/2 negativ.\nDiagnose: mCRPC mit ossärer und lymphonodaler Metastasierung\nStadium: metastasiert, kastrationsresistent\nTNM (klinisch): T:unknown N:unknown M:M1\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Der Patient ist 65 Jahre alt und wurde mit mCRPC (metastasiertes, castrationresistentes Prostatakarzinom) diagnoziert. Die klinische und anamnestische Auswertung zeigt, dass es sich um einen Prostatakarzinom mit metastasierender Verbreitung in Knochen und Lymphknoten handelt. Die Therapiegeschichte mit typischen Substanzen für Prostatakarzinom (z.B. Abirateron, Docetaxel, Lu-PSMA) sowie die negativen BRCA1/2-Test ergänzen diese Diagnose. Keine Hinweise auf andere Karzinome oder maligne Erkrankungen außerhalb des Prostataskarzinoms.",
+    "classification": "prostatakarzinom",
+    "confidence": 1.0,
+    "key_indicators": [
+      "mCRPC",
+      "metastasiert",
+      "Prostatakarzinom-therapie (Abirateron, Docetaxel, Lu-PSMA)",
+      "BRCA1/2 negativ"
+    ]
+  },
+  "raw_response": "{\n\n    \"reasoning\": \"Der Patient ist 65 Jahre alt und wurde mit mCRPC (metastasiertes, castrationresistentes Prostatakarzinom) diagnoziert. Die klinische und anamnestische Auswertung zeigt, dass es sich um einen Prostatakarzinom mit metastasierender Verbreitung in Knochen und Lymphknoten handelt. Die Therapiegeschichte mit typischen Substanzen für Prostatakarzinom (z.B. Abirateron, Docetaxel, Lu-PSMA) sowie die negativen BRCA1/2-Test ergänzen diese Diagnose. Keine Hinweise auf andere Karzinome oder maligne Erkrankungen außerhalb des Prostataskarzinoms.\",\n    \"classification\": \"prostatakarzinom\",\n    \"confidence\": 1.0,\n    \"key_indicators\": [\"mCRPC\", \"metastasiert\", \"Prostatakarzinom-therapie (Abirateron, Docetaxel, Lu-PSMA)\", \"BRCA1/2 negativ\"]\n}",
+  "ground_truth": "prostatakarzinom",
+  "is_correct": true,
+  "inference_time_seconds": 0.8329100058628962,
+  "tokens_used": 250,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

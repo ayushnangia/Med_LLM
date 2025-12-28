@@ -1,0 +1,12 @@
+{
+  "model": "OpenMeditron/Meditron3-Qwen2.5-7B",
+  "provider": "modal",
+  "timestamp": "2025-12-29_01-25-54",
+  "total_cases": 26,
+  "correct": 23,
+  "incorrect": 3,
+  "errors": 0,
+  "accuracy": 0.8846153846153846,
+  "total_time": 9.03166913986206,
+  "batch_invariance": true
+}
