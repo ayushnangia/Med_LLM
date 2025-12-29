@@ -1,0 +1,55 @@
+{
+  "case_id": "ncc_5",
+  "timestamp": "2025-12-29_14-59-58",
+  "provider": "modal",
+  "model": "google/gemma-3-4b-it",
+  "input_case": {
+    "case_id": "ncc_5",
+    "patient": {
+      "alter_jahre": 47,
+      "geschlecht": null,
+      "ecog": 0,
+      "komorbiditaet": "unknown"
+    },
+    "anamnese": "Zystische Läsion Bosniak IV (2,5 cm) an der rechten Niere. Keine relevanten Vorerkrankungen.",
+    "diagnose_kurz": "Zystische Läsion Bosniak IV, 2,5 cm, rechte Niere",
+    "alle_diagnosen": null,
+    "stadium": "nicht-metastasiert (Verdacht, prätherapeutisch)",
+    "tnm_clinical": {
+      "T": "unknown",
+      "N": "unknown",
+      "M": "M0",
+      "stage_group": "unknown"
+    },
+    "tnm_pathological": {
+      "T": null,
+      "N": null,
+      "M": null,
+      "stage_group": null
+    },
+    "histologie": null,
+    "metastatic": false,
+    "nebendiagnosen": [],
+    "ground_truth": "nierenzellkarzinom"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 47 Jahre\nECOG: 0\nAnamnese: Zystische Läsion Bosniak IV (2,5 cm) an der rechten Niere. Keine relevanten Vorerkrankungen.\nDiagnose: Zystische Läsion Bosniak IV, 2,5 cm, rechte Niere\nStadium: nicht-metastasiert (Verdacht, prätherapeutisch)\nTNM (klinisch): T:unknown N:unknown M:M0\nMetastasiert: Nein\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Die Patientin hat eine Bosniak IV Zysten an der Niere. Bosniak IV Zysten haben ein hohes Risiko für Malignität und erfordern eine Biopsie oder chirurgische Entfernung, um die Diagnose zu bestätigen. Da die Patientin keine relevanten Vorerkrankungen hat und die Läsion nicht metastasiert ist, ist es wichtig, die Möglichkeit eines malignen Prozesses zu berücksichtigen. Die Klassifizierung als Urothelkarzinom ist aufgrund der Lokalisation der Läsion am wahrscheinlichsten, obwohl andere Malignome nicht ausgeschlossen werden können. Die ECOG 0 und das Alter des Patienten deuten auf eine gute allgemeine Gesundheit hin.",
+    "classification": "urothelkarzinom",
+    "confidence": 0.85,
+    "key_indicators": [
+      "Zystische Läsion Bosniak IV",
+      "rechte Niere",
+      "keine relevanten Vorerkrankungen",
+      "nicht-metastasiert"
+    ]
+  },
+  "raw_response": "{\"reasoning\": \"Die Patientin hat eine Bosniak IV Zysten an der Niere. Bosniak IV Zysten haben ein hohes Risiko für Malignität und erfordern eine Biopsie oder chirurgische Entfernung, um die Diagnose zu bestätigen. Da die Patientin keine relevanten Vorerkrankungen hat und die Läsion nicht metastasiert ist, ist es wichtig, die Möglichkeit eines malignen Prozesses zu berücksichtigen. Die Klassifizierung als Urothelkarzinom ist aufgrund der Lokalisation der Läsion am wahrscheinlichsten, obwohl andere Malignome nicht ausgeschlossen werden können. Die ECOG 0 und das Alter des Patienten deuten auf eine gute allgemeine Gesundheit hin.\",\n    \"classification\": \"urothelkarzinom\",\n    \"confidence\": 0.85,\n    \"key_indicators\": [\"Zystische Läsion Bosniak IV\", \"rechte Niere\", \"keine relevanten Vorerkrankungen\", \"nicht-metastasiert\"]\n}",
+  "ground_truth": "nierenzellkarzinom",
+  "is_correct": false,
+  "inference_time_seconds": 0.9987154832253089,
+  "tokens_used": 214,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

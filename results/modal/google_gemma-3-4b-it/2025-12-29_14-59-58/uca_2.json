@@ -1,0 +1,44 @@
+{
+  "case_id": "uca_2",
+  "timestamp": "2025-12-29_14-59-58",
+  "provider": "modal",
+  "model": "google/gemma-3-4b-it",
+  "input_case": {
+    "case_id": "uca_2",
+    "patient": {
+      "alter_jahre": 54,
+      "geschlecht": null,
+      "ecog": null,
+      "komorbiditaet": null
+    },
+    "anamnese": null,
+    "diagnose_kurz": "Harnblasen-NMIBC: nicht-invasives papilläres Urothelkarzinom pTa, fokal high grade (G3), Hinterwand links; Detrusor nicht nachweisbar",
+    "alle_diagnosen": null,
+    "stadium": "pTa high grade (fokal) – EORTC-Risikostratifizierung geplant; Nachresektion erwägen (Detrusor fehlt)",
+    "tnm_clinical": null,
+    "tnm_pathological": null,
+    "histologie": null,
+    "metastatic": null,
+    "nebendiagnosen": null,
+    "ground_truth": "urothelkarzinom"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 54 Jahre\nDiagnose: Harnblasen-NMIBC: nicht-invasives papilläres Urothelkarzinom pTa, fokal high grade (G3), Hinterwand links; Detrusor nicht nachweisbar\nStadium: pTa high grade (fokal) – EORTC-Risikostratifizierung geplant; Nachresektion erwägen (Detrusor fehlt)\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Der Patient wurde mit einem nicht-invasiven papillären Urothelkarzinom der Harnblase diagnostiziert. Dies ist eine Form von Karzinom, die im Urogenitalsystem auftritt. Die anderen Optionen sind nicht relevant für die Diagnose.",
+    "classification": "urothelkarzinom",
+    "confidence": 0.95,
+    "key_indicators": [
+      "Harnblasen-NMIBC",
+      "nicht-invasives papilläres Urothelkarzinom",
+      "Urothelkarzinom"
+    ]
+  },
+  "raw_response": "{\"reasoning\": \"Der Patient wurde mit einem nicht-invasiven papillären Urothelkarzinom der Harnblase diagnostiziert. Dies ist eine Form von Karzinom, die im Urogenitalsystem auftritt. Die anderen Optionen sind nicht relevant für die Diagnose.\",\n    \"classification\": \"urothelkarzinom\",\n    \"confidence\": 0.95,\n    \"key_indicators\": [\"Harnblasen-NMIBC\", \"nicht-invasives papilläres Urothelkarzinom\", \"Urothelkarzinom\"]}",
+  "ground_truth": "urothelkarzinom",
+  "is_correct": true,
+  "inference_time_seconds": 0.9987154832253089,
+  "tokens_used": 122,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

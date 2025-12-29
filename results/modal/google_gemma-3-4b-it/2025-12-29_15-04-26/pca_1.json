@@ -1,0 +1,56 @@
+{
+  "case_id": "pca_1",
+  "timestamp": "2025-12-29_15-04-26",
+  "provider": "modal",
+  "model": "google/gemma-3-4b-it",
+  "input_case": {
+    "case_id": "pca_1",
+    "patient": {
+      "alter_jahre": 65,
+      "geschlecht": null,
+      "ecog": 1,
+      "komorbiditaet": "unknown"
+    },
+    "anamnese": "mCRPC, ossär und lymphogen metastasiert. Pat. bekannt. Mehrlinientherapie inkl. ADT, Docetaxel, Abirateron/Prednisolon, Lu-PSMA; BRCA1/2 negativ.",
+    "diagnose_kurz": "mCRPC mit ossärer und lymphonodaler Metastasierung",
+    "alle_diagnosen": null,
+    "stadium": "metastasiert, kastrationsresistent",
+    "tnm_clinical": {
+      "T": "unknown",
+      "N": "unknown",
+      "M": "M1",
+      "stage_group": "unknown"
+    },
+    "tnm_pathological": {
+      "T": null,
+      "N": null,
+      "M": null,
+      "stage_group": null
+    },
+    "histologie": null,
+    "metastatic": null,
+    "nebendiagnosen": [],
+    "ground_truth": "prostatakarzinom"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 65 Jahre\nECOG: 1\nAnamnese: mCRPC, ossär und lymphogen metastasiert. Pat. bekannt. Mehrlinientherapie inkl. ADT, Docetaxel, Abirateron/Prednisolon, Lu-PSMA; BRCA1/2 negativ.\nDiagnose: mCRPC mit ossärer und lymphonodaler Metastasierung\nStadium: metastasiert, kastrationsresistent\nTNM (klinisch): T:unknown N:unknown M:M1\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Der Patient leidet an metastasiertem kastrationsresistentem Prostatakarzinom (mCRPC) mit ossären und lymphogenen Metastasen. Die Anamnese umfasst bereits mehrere Therapien, die auf einen bekannten Prostatakrebs hindeuten. Die BRCA1/2-Negativität ist ebenfalls ein wichtiger Faktor bei der Klassifizierung.",
+    "classification": "prostatakarzinom",
+    "confidence": 0.95,
+    "key_indicators": [
+      "mCRPC",
+      "Prostatakarzinom",
+      "ADT",
+      "Lu-PSMA",
+      "BRCA1/2 negativ"
+    ]
+  },
+  "raw_response": "{\"reasoning\": \"Der Patient leidet an metastasiertem kastrationsresistentem Prostatakarzinom (mCRPC) mit ossären und lymphogenen Metastasen. Die Anamnese umfasst bereits mehrere Therapien, die auf einen bekannten Prostatakrebs hindeuten. Die BRCA1/2-Negativität ist ebenfalls ein wichtiger Faktor bei der Klassifizierung.\",\n    \"classification\": \"prostatakarzinom\",\n    \"confidence\": 0.95,\n    \"key_indicators\": [\"mCRPC\", \"Prostatakarzinom\", \"ADT\", \"Lu-PSMA\", \"BRCA1/2 negativ\"]}",
+  "ground_truth": "prostatakarzinom",
+  "is_correct": true,
+  "inference_time_seconds": 1.0532008042702308,
+  "tokens_used": 139,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}

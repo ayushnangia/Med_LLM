@@ -1,0 +1,12 @@
+{
+  "model": "google/gemma-3-4b-it",
+  "provider": "modal",
+  "timestamp": "2025-12-29_14-59-58",
+  "total_cases": 26,
+  "correct": 19,
+  "incorrect": 7,
+  "errors": 0,
+  "accuracy": 0.7307692307692307,
+  "total_time": 25.966602563858032,
+  "batch_invariance": false
+}

@@ -1,0 +1,58 @@
+{
+  "case_id": "ncc_8",
+  "timestamp": "2025-12-29_15-04-26",
+  "provider": "modal",
+  "model": "google/gemma-3-4b-it",
+  "input_case": {
+    "case_id": "ncc_8",
+    "patient": {
+      "alter_jahre": 70,
+      "geschlecht": null,
+      "ecog": 1,
+      "komorbiditaet": "unknown"
+    },
+    "anamnese": "Kleiner Nierentumor links 2,7 cm, hilusnah. Vorerkrankungen: DM Typ 2, arterielle Hypertonie, Hyperlipidämie.",
+    "diagnose_kurz": "Kleiner Nierentumor links 2,7 cm, hilusnah",
+    "alle_diagnosen": null,
+    "stadium": "nicht-metastasiert (Verdacht, prätherapeutisch)",
+    "tnm_clinical": {
+      "T": "unknown",
+      "N": "unknown",
+      "M": "M0",
+      "stage_group": "unknown"
+    },
+    "tnm_pathological": {
+      "T": null,
+      "N": null,
+      "M": null,
+      "stage_group": null
+    },
+    "histologie": null,
+    "metastatic": false,
+    "nebendiagnosen": [
+      "Diabetes mellitus Typ 2",
+      "arterielle Hypertonie",
+      "Hyperlipidämie"
+    ],
+    "ground_truth": "nierenzellkarzinom"
+  },
+  "prompt_text": "Du bist ein erfahrener medizinischer Onkologe. Klassifiziere den folgenden Fall.\n\nFALL:\nPatient: 70 Jahre\nECOG: 1\nAnamnese: Kleiner Nierentumor links 2,7 cm, hilusnah. Vorerkrankungen: DM Typ 2, arterielle Hypertonie, Hyperlipidämie.\nDiagnose: Kleiner Nierentumor links 2,7 cm, hilusnah\nStadium: nicht-metastasiert (Verdacht, prätherapeutisch)\nTNM (klinisch): T:unknown N:unknown M:M0\nMetastasiert: Nein\nNebendiagnosen: Diabetes mellitus Typ 2, arterielle Hypertonie, Hyperlipidämie\n\nKlassifiziere in EINE Kategorie:\n- nierenzellkarzinom\n- prostatakarzinom\n- hodentumor\n- peniskarzinom\n- urothelkarzinom\n- polymalignancy\n- non_urological\n\nAntwort als JSON:\n{\n    \"reasoning\": \"Begründung\",\n    \"classification\": \"kategorie\",\n    \"confidence\": 0.0-1.0,\n    \"key_indicators\": [\"...\"]\n}",
+  "output": {
+    "reasoning": "Der Patient hat einen Nierentumor, der als Nierenzellkarzinom klassifiziert werden muss, da er aus Nierenzellen stammt. Die anderen Optionen sind weniger wahrscheinlich, da keine Hinweise auf eine Prostatakrebs, ein Hirntumor, ein Peniskrebs, ein Urothelkarzinom oder eine Polymalignität vorliegen. Die Nebendiagnosen Diabetes und Hypertonie sind relevant, aber nicht entscheidend für die Klassifizierung des Tumors.",
+    "classification": "nierenzellkarzinom",
+    "confidence": 0.95,
+    "key_indicators": [
+      "Nierentumor",
+      "Nierenzellen",
+      "prätherapeutisch"
+    ]
+  },
+  "raw_response": "{\"reasoning\": \"Der Patient hat einen Nierentumor, der als Nierenzellkarzinom klassifiziert werden muss, da er aus Nierenzellen stammt. Die anderen Optionen sind weniger wahrscheinlich, da keine Hinweise auf eine Prostatakrebs, ein Hirntumor, ein Peniskrebs, ein Urothelkarzinom oder eine Polymalignität vorliegen. Die Nebendiagnosen Diabetes und Hypertonie sind relevant, aber nicht entscheidend für die Klassifizierung des Tumors.\",\n    \"classification\": \"nierenzellkarzinom\",\n    \"confidence\": 0.95,\n    \"key_indicators\": [\"Nierentumor\", \"Nierenzellen\", \"prätherapeutisch\"]\n}",
+  "ground_truth": "nierenzellkarzinom",
+  "is_correct": true,
+  "inference_time_seconds": 1.0532008042702308,
+  "tokens_used": 158,
+  "reasoning_tokens": 0,
+  "success": true,
+  "error_message": null
+}
