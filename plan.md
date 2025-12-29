@@ -14,7 +14,7 @@ This project evaluates Large Language Models for German medical oncology decisio
 | Pipeline | Purpose | Best Result | Status |
 |----------|---------|-------------|--------|
 | **Classification** | 7-class cancer type detection | 100% accuracy (MiMo v2) | ✅ Complete |
-| **Treatment Prediction** | NCC therapy recommendation | 100% metastatic, 28.6% therapy match | ✅ Complete |
+| **Treatment Prediction** | NCC therapy recommendation | 100% metastatic, 28.6% therapy match (Gemma-3-27B) | ✅ Complete |
 
 **Current Blockers:**
 1. JSON Schema Bug - Cases 15-35 missing ECOG/Karnofsky data (Dr. Radu changed schema)
