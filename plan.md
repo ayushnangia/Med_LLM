@@ -13,7 +13,7 @@ This project evaluates Large Language Models for German medical oncology decisio
 
 | Pipeline | Purpose | Best Result | Status |
 |----------|---------|-------------|--------|
-| **Classification** | 7-class cancer type detection | 88.46% accuracy (Mistral-7B) | ✅ Complete |
+| **Classification** | 7-class cancer type detection | 100% accuracy (MiMo v2) | ✅ Complete |
 | **Treatment Prediction** | NCC therapy recommendation | 100% metastatic, 28.6% therapy match | ✅ Complete |
 
 **Current Blockers:**
@@ -89,19 +89,27 @@ Cases 1-14 and 15-35 have different structures:
 6. `polymalignancy` (COMBI) - Combined/Multiple
 7. `non_urological` (NON_URO) - Non-Urological
 
-### Results
+### Results (14 models tested on 26 cases via OpenRouter)
 
-| Model | Accuracy | Notes |
-|-------|----------|-------|
-| mistral:7b-instruct | **88.46%** | Best local performer |
-| gemma3:4b | 84.62% | Fast, excellent accuracy |
-| llama3:8b | 76.92% | Good balance |
-| qwen3:latest | 69.23% | Slow (thinking mode) |
+| Rank | Model | Accuracy | Response Time |
+|------|-------|----------|---------------|
+| 1 | MiMo v2 (Free) | **100.0%** | 1.54s |
+| 2 | Kimi K2 | 96.2% | 5.62s |
+| 3 | Gemini 3 Pro | 96.2% | 2.68s |
+| 4 | Claude Opus 4.5 | 96.2% | 1.71s |
+| 5 | GPT-5.2 | 96.2% | 0.73s |
+| 6 | DeepSeek v3.2 | 96.2% | 4.17s |
+| 7 | Gemma 3 (12B) | 92.3% | 0.79s |
+| 8 | Gemma 3 (27B) | 92.3% | 1.50s |
+| 9 | Gemma 3 (4B) | 84.6% | 0.80s |
+
+**Full report:** `findings/SUMMARY_REPORT.md`
 
 ### Running Classification
 ```bash
 source venv/bin/activate
-python scripts/classify_cases.py --model mistral:7b-instruct
+export OPENROUTER_API_KEY="your-key"
+python scripts/classify_openrouter.py --model MODEL_NAME
 python scripts/evaluate_results.py
 ```
 
