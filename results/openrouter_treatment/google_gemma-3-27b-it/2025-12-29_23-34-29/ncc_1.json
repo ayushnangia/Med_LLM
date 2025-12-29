@@ -1,0 +1,61 @@
+{
+  "case_id": "ncc_1",
+  "timestamp": "2025-12-29T23:34:55.058339",
+  "provider": "openrouter",
+  "model": "google/gemma-3-27b-it",
+  "input_case": {
+    "case_id": "ncc_1",
+    "patient_name": "Turtle, Ninja",
+    "age": 52,
+    "ecog": 0,
+    "anamnese": "Met. pap. RCC. Z. n. Nephrektomie links 2014 (papilläres RCC pT3b, Nx, L0, V0, Pn0, G3, Rx). Z. n. offener Resektion eines Lokalrezidivs 2024. Aktuell multiple Rezidive (pulmonal, lymphonodal, hepatisch).",
+    "diagnose_kurz": "Metastasiertes papilläres RCC",
+    "stadium": "metastasiert (pulmonal, lymphonodal, hepatisch)",
+    "tnm_clinical": {
+      "T": "unknown",
+      "T_sub": "unknown",
+      "N": "unknown",
+      "M": "M1",
+      "stage_group": "unknown"
+    },
+    "histologie_subtyp": "papillär",
+    "histologie_klarzellig": false,
+    "bildgebung": [
+      {
+        "modalitaet": "CT",
+        "region": "Ganzkörper",
+        "datum": "2025-11-03",
+        "befund_kurz": "Multiple Rezidive/Metastasen pulmonal, lymphonodal, hepatisch.",
+        "quelle": "Erforderliche Bildgebung"
+      }
+    ],
+    "nebendiagnosen": [
+      "obstruktive Kardiomyopathie",
+      "Z. n. Hyperthyreose 2021",
+      "arterielle Hypertonie",
+      "Diabetes mellitus",
+      "Z. n. LAE",
+      "Hyperlipidämie"
+    ],
+    "ground_truth_metastatic": true,
+    "ground_truth_therapy": "Einleitung palliative Systemtherapie TKI/IO (z.B. Nivolumab/Cabozantinib)."
+  },
+  "prompt_text": "Du bist ein erfahrener Onkologe, spezialisiert auf Nierenzellkarzinom (RCC).\nAnalysiere den folgenden klinischen Fall und erstelle eine strukturierte Therapieempfehlung.\n\n=== KLINISCHER FALL ===\nPatient: Turtle, Ninja, 52 Jahre\nECOG: 0, Karnofsky: ?%\nKomorbidität: unknown\n\nDiagnose: Metastasiertes papilläres RCC\nStadium: metastasiert (pulmonal, lymphonodal, hepatisch)\nTNM: cTNM: Tunknown Nunknown MM1 | pTNM: TT3b NNX MNone\n\nHISTOLOGIE: Subtyp: papillär, Klarzellig: Nein\n\nAnamnese: Met. pap. RCC. Z. n. Nephrektomie links 2014 (papilläres RCC pT3b, Nx, L0, V0, Pn0, G3, Rx). Z. n. offener Resektion eines Lokalrezidivs 2024. Aktuell multiple Rezidive (pulmonal, lymphonodal, hepatisch).\n\nNebendiagnosen: obstruktive Kardiomyopathie, Z. n. Hyperthyreose 2021, arterielle Hypertonie, Diabetes mellitus, Z. n. LAE, Hyperlipidämie\n\nBildgebung:\n  - CT Ganzkörper (2025-11-03): Multiple Rezidive/Metastasen pulmonal, lymphonodal, hepatisch.\n\nVorherige Systemtherapien: Keine\n\n=== THERAPIE-LEITLINIEN ===\n\nMETASTASIERTES KLARZELLIGES RCC - THERAPIE-ALGORITHMUS:\n\nIMDC-RISIKOSTRATIFIZIERUNG:\n- Günstig (0 Risikofaktoren)\n- Intermediär (1-2 Risikofaktoren)\n- Ungünstig (≥3 Risikofaktoren)\n\nRisikofaktoren: Karnofsky <80%, Zeit bis Systemtherapie <1 Jahr, Hämoglobin↓, Calcium↑, Neutrophile↑, Thrombozyten↑\n\nERSTLINIE (wenn ICI-Kombination möglich):\n- Günstig: NIVO+CABO (A), PEMBRO+AXI (A), PEMBRO+LEN (A), AVELU+AXI (B)\n- Intermediär: NIVO+CABO (A), NIVO+IPI (A), PEMBRO+AXI (A), PEMBRO+LEN (A)\n- Ungünstig: NIVO+CABO (A), NIVO+IPI (A), PEMBRO+AXI (A), PEMBRO+LEN (A)\n\nERSTLINIE (wenn ICI-Kombination NICHT möglich):\n- Günstig: Pazopanib (A), Sunitinib (A), Tivozanib (A), BEV+IFN (A)\n- Intermediär: Cabozantinib (B), Pazopanib (B), Sunitinib (B)\n- Ungünstig: Cabozantinib (B), Sunitinib (B), Temsirolimus (0)\n\nZWEITLINIE nach ICI-Kombination: Cabozantinib (A), Lenvatinib+Everolimus (A), Sunitinib (A)\nZWEITLINIE nach VEGF/R-Monotherapie: Cabozantinib (A), Nivolumab (A)\n\n---\n\nNICHT-METASTASIERTES RCC - THERAPIE-ALGORITHMUS:\n\n1. AKTIVE ÜBERWACHUNG (GoR 0): Kleine Tumoren + hohe Komorbidität/begrenzte Lebenserwartung\n2. ABLATION (GoR 0): Kleine Tumoren + hohe Komorbidität/begrenzte Lebenserwartung\n3. NIERENTEILRESEKTION: cT1 (≤7cm) SOLL durchgeführt werden (GoR A)\n4. RADIKALE NEPHREKTOMIE: Wenn Teilresektion nicht möglich (GoR A)\n\nLegende: A=starke Empfehlung, B=schwache Empfehlung, 0=Option\n\n\n=== AUFGABE ===\nAnalysiere den Fall schrittweise:\n1. METASTASIERUNG: Ist der Patient metastasiert? (basierend auf TNM, Anamnese, Bildgebung)\n2. HISTOLOGIE: Klarzellig vs. nicht-klarzellig?\n3. RISIKO: Falls metastasiert + klarzellig, IMDC-Risiko?\n4. THERAPIE: Empfehlung nach Leitlinie\n\nAntwort als JSON:\n{\n    \"is_metastatic\": true/false,\n    \"metastatic_reasoning\": \"Begründung...\",\n    \"imdc_risk\": \"guenstig/intermediaer/unguenstig/nicht_anwendbar\",\n    \"imdc_reasoning\": \"IMDC-Berechnung...\",\n    \"treatment_reasoning\": \"Schrittweise Begründung...\",\n    \"recommended_therapy\": \"Konkrete Empfehlung\",\n    \"therapy_category\": \"IO+TKI/TKI mono/Surgery/Surveillance/etc.\",\n    \"confidence\": 0.0-1.0\n}",
+  "output": {
+    "is_metastatic": true,
+    "metastatic_reasoning": "Der Patient zeigt multiple Rezidive/Metastasen in Lunge, Lymphknoten und Leber (CT-Befund vom 2025-11-03). Die Anamnese erwähnt bereits eine Nephrektomie 2014 und eine Resektion eines Lokalrezidivs 2024, was auf eine fortschreitende Erkrankung hindeutet. Der pTNM von 2014 (T3b) deutet auf eine fortgeschrittene lokale Erkrankung hin, die nun metastasiert ist.",
+    "imdc_risk": "unguenstig",
+    "imdc_reasoning": "Die IMDC-Risiko-Stratifizierung erfordert die Bewertung von Karnofsky-Performance-Status, Zeit bis zur Systemtherapie, Hämoglobin, Calcium, Neutrophile und Thrombozyten. Der Karnofsky-Status ist unbekannt, wird aber aufgrund der multiplen Metastasen und der Komorbiditäten wahrscheinlich unter 80% liegen. Die Zeit bis zur Systemtherapie ist kurz, da der Patient bereits Rezidive nach der Nephrektomie und der Resektion des Lokalrezidivs hat. Die Komorbiditäten (obstruktive Kardiomyopathie, Hyperthyreose, arterielle Hypertonie, Diabetes mellitus, LAE, Hyperlipidämie) erhöhen das Risiko weiter. Da mindestens drei Risikofaktoren vorliegen, wird der Patient als 'ungünstig' eingestuft.",
+    "treatment_reasoning": "Der Patient hat ein metastasiertes, nicht-klarzelliges (papilläres) Nierenzellkarzinom. Die Leitlinien sind primär für klarzellige RCC formuliert. Da der Patient bereits eine Nephrektomie und eine Resektion eines Lokalrezidivs hinter sich hat und nun multiple Metastasen aufweist, ist eine systemische Therapie indiziert. Die Leitlinien empfehlen für metastasiertes, nicht-klarzelliges RCC (papilläres) in der Erstlinie eine Immuncheckpoint-Inhibitor (ICI)-basierte Kombination, falls möglich. Da keine vorherigen Systemtherapien durchgeführt wurden, handelt es sich um die Erstlinie. Aufgrund des ungünstigen IMDC-Risikos sind Nivo+Cabo, Nivo+Ipi, Pembro+Axi und Pembro+Len Optionen. Cabozantinib und Sunitinib sind Alternativen, wenn eine ICI-Kombination nicht möglich ist. Angesichts der Komorbiditäten und des Alters des Patienten ist eine sorgfältige Nutzen-Risiko-Abwägung erforderlich. Die obstruktive Kardiomyopathie könnte die Verträglichkeit einiger Therapien beeinträchtigen.",
+    "recommended_therapy": "Nivolumab in Kombination mit Cabozantinib (NIVO+CABO)",
+    "therapy_category": "IO+TKI",
+    "confidence": 0.8
+  },
+  "raw_response": "\n```json\n{\n    \"is_metastatic\": true,\n    \"metastatic_reasoning\": \"Der Patient zeigt multiple Rezidive/Metastasen in Lunge, Lymphknoten und Leber (CT-Befund vom 2025-11-03). Die Anamnese erwähnt bereits eine Nephrektomie 2014 und eine Resektion eines Lokalrezidivs 2024, was auf eine fortschreitende Erkrankung hindeutet. Der pTNM von 2014 (T3b) deutet auf eine fortgeschrittene lokale Erkrankung hin, die nun metastasiert ist.\",\n    \"imdc_risk\": \"unguenstig\",\n    \"imdc_reasoning\": \"Die IMDC-Risiko-Stratifizierung erfordert die Bewertung von Karnofsky-Performance-Status, Zeit bis zur Systemtherapie, Hämoglobin, Calcium, Neutrophile und Thrombozyten. Der Karnofsky-Status ist unbekannt, wird aber aufgrund der multiplen Metastasen und der Komorbiditäten wahrscheinlich unter 80% liegen. Die Zeit bis zur Systemtherapie ist kurz, da der Patient bereits Rezidive nach der Nephrektomie und der Resektion des Lokalrezidivs hat. Die Komorbiditäten (obstruktive Kardiomyopathie, Hyperthyreose, arterielle Hypertonie, Diabetes mellitus, LAE, Hyperlipidämie) erhöhen das Risiko weiter. Da mindestens drei Risikofaktoren vorliegen, wird der Patient als 'ungünstig' eingestuft.\",\n    \"treatment_reasoning\": \"Der Patient hat ein metastasiertes, nicht-klarzelliges (papilläres) Nierenzellkarzinom. Die Leitlinien sind primär für klarzellige RCC formuliert. Da der Patient bereits eine Nephrektomie und eine Resektion eines Lokalrezidivs hinter sich hat und nun multiple Metastasen aufweist, ist eine systemische Therapie indiziert. Die Leitlinien empfehlen für metastasiertes, nicht-klarzelliges RCC (papilläres) in der Erstlinie eine Immuncheckpoint-Inhibitor (ICI)-basierte Kombination, falls möglich. Da keine vorherigen Systemtherapien durchgeführt wurden, handelt es sich um die Erstlinie. Aufgrund des ungünstigen IMDC-Risikos sind Nivo+Cabo, Nivo+Ipi, Pembro+Axi und Pembro+Len Optionen. Cabozantinib und Sunitinib sind Alternativen, wenn eine ICI-Kombination nicht möglich ist. Angesichts der Komorbiditäten und des Alters des Patienten ist eine sorgfältige Nutzen-Risiko-Abwägung erforderlich. Die obstruktive Kardiomyopathie könnte die Verträglichkeit einiger Therapien beeinträchtigen.\",\n    \"recommended_therapy\": \"Nivolumab in Kombination mit Cabozantinib (NIVO+CABO)\",\n    \"therapy_category\": \"IO+TKI\",\n    \"confidence\": 0.8\n}\n```",
+  "ground_truth_metastatic": true,
+  "ground_truth_therapy": "Einleitung palliative Systemtherapie TKI/IO (z.B. Nivolumab/Cabozantinib).",
+  "metastatic_correct": true,
+  "inference_time_seconds": 25.534486055374146,
+  "tokens_used": 1802,
+  "success": true
+}

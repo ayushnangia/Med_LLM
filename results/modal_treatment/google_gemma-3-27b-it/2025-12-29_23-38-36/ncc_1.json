@@ -1,0 +1,96 @@
+{
+  "case_id": "ncc_1",
+  "timestamp": "2025-12-29_23-38-36",
+  "provider": "modal",
+  "model": "google/gemma-3-27b-it",
+  "input_case": {
+    "case_id": "ncc_1",
+    "patient_name": "Turtle, Ninja",
+    "age": 52,
+    "ecog": 0,
+    "karnofsky": null,
+    "comorbidity": "unknown",
+    "life_expectancy": "unknown",
+    "anamnese": "Met. pap. RCC. Z. n. Nephrektomie links 2014 (papilläres RCC pT3b, Nx, L0, V0, Pn0, G3, Rx). Z. n. offener Resektion eines Lokalrezidivs 2024. Aktuell multiple Rezidive (pulmonal, lymphonodal, hepatisch).",
+    "diagnose_kurz": "Metastasiertes papilläres RCC",
+    "stadium": "metastasiert (pulmonal, lymphonodal, hepatisch)",
+    "tnm_clinical": {
+      "T": "unknown",
+      "T_sub": "unknown",
+      "N": "unknown",
+      "M": "M1",
+      "stage_group": "unknown"
+    },
+    "tnm_pathological": {
+      "T": "T3b",
+      "T_sub": null,
+      "N": "NX",
+      "M": null,
+      "stage_group": null
+    },
+    "histologie_subtyp": "papillär",
+    "histologie_klarzellig": false,
+    "bildgebung": [
+      {
+        "modalitaet": "CT",
+        "region": "Ganzkörper",
+        "datum": "2025-11-03",
+        "befund_kurz": "Multiple Rezidive/Metastasen pulmonal, lymphonodal, hepatisch.",
+        "quelle": "Erforderliche Bildgebung"
+      }
+    ],
+    "nebendiagnosen": [
+      "obstruktive Kardiomyopathie",
+      "Z. n. Hyperthyreose 2021",
+      "arterielle Hypertonie",
+      "Diabetes mellitus",
+      "Z. n. LAE",
+      "Hyperlipidämie"
+    ],
+    "medikation": [
+      {
+        "wirkstoff_oder_klasse": "Betablocker",
+        "details": null
+      },
+      {
+        "wirkstoff_oder_klasse": "Statin",
+        "details": null
+      },
+      {
+        "wirkstoff_oder_klasse": "Metformin",
+        "details": null
+      },
+      {
+        "wirkstoff_oder_klasse": "DOAK",
+        "details": "bei LAE"
+      }
+    ],
+    "ici_durchfuehrbar": null,
+    "prior_therapies": [],
+    "ground_truth_metastatic": true,
+    "ground_truth_imdc": null,
+    "ground_truth_therapy": "Einleitung palliative Systemtherapie TKI/IO (z.B. Nivolumab/Cabozantinib)."
+  },
+  "prompt_text": "Du bist ein erfahrener Onkologe, spezialisiert auf Nierenzellkarzinom (RCC).\nAnalysiere den folgenden klinischen Fall und erstelle eine strukturierte Therapieempfehlung.\n\n=== KLINISCHER FALL ===\nPatient: Turtle, Ninja, 52 Jahre\nECOG: 0, Karnofsky: ?%\nKomorbidität: unknown\nLebenserwartung: unknown\n\nDiagnose: Metastasiertes papilläres RCC\nStadium: metastasiert (pulmonal, lymphonodal, hepatisch)\ncTNM: Tunknown Nunknown MM1 | pTNM: TT3b NNX MNone\n\nHISTOLOGIE (WICHTIG für Therapieentscheidung):\nSubtyp: papillär, Klarzellig: Nein, Grading: G3\n\nAnamnese:\nMet. pap. RCC. Z. n. Nephrektomie links 2014 (papilläres RCC pT3b, Nx, L0, V0, Pn0, G3, Rx). Z. n. offener Resektion eines Lokalrezidivs 2024. Aktuell multiple Rezidive (pulmonal, lymphonodal, hepatisch).\n\nNebendiagnosen: obstruktive Kardiomyopathie, Z. n. Hyperthyreose 2021, arterielle Hypertonie, Diabetes mellitus, Z. n. LAE, Hyperlipidämie\n\nAktuelle Medikation: Betablocker, Statin, Metformin, DOAK (bei LAE)\n\nBildgebung:\n  - CT Ganzkörper (...",
+  "prediction": {
+    "is_metastatic": true,
+    "metastatic_reasoning": "Der Patient weist multiple Rezidive in Lunge, Lymphknoten und Leber auf, was eindeutig für eine Metastasierung spricht. Die Anamnese einer Nephrektomie 2014 und einer Resektion eines Lokalrezidivs 2024 unterstützt dies zusätzlich.",
+    "imdc_risk": "unguenstig",
+    "imdc_reasoning": "Da der Patient ein Rezidiv nach Nephrektomie und Lokalrezidiv-Resektion hat, sowie multiple Metastasen, ist das Risiko als ungünstig einzustufen. Die genauen IMDC-Risikofaktoren (Karnofsky, Zeit bis Systemtherapie, Hämoglobin, Calcium, Neutrophile, Thrombozyten) sind nicht dokumentiert, aber aufgrund der Anamnese und des Stadiums ist eine ungünstige Risikostratifizierung wahrscheinlich. Da es sich um ein nicht-klarzelliges RCC handelt, ist die IMDC-Risikostratifizierung nicht validiert, wird aber zur Orientierung herangezogen.",
+    "treatment_reasoning": "Der Patient hat ein metastasiertes, papilläres RCC. Die Leitlinien legen für nicht-klarzelliges RCC eine TKI-Monotherapie nahe. Da der Patient bereits eine offene Resektion eines Lokalrezidivs hatte und aktuell multiple Rezidive vorliegen, ist eine systemische Therapie indiziert. Cabozantinib und Sunitinib sind Optionen, wobei Cabozantinib aufgrund seiner höheren Wirksamkeit und seines günstigeren Nebenwirkungsprofils bevorzugt wird. Die Komorbiditäten (obstruktive Kardiomyopathie, Hyperthyreose, arterielle Hypertonie, Diabetes mellitus, LAE, Hyperlipidämie) müssen bei der Therapieentscheidung berücksichtigt werden. DOAK-Therapie bei LAE muss beachtet werden und mögliche Interaktionen mit der gewählten Therapie berücksichtigt werden.",
+    "recommended_therapy": "Cabozantinib 60mg p.o. täglich",
+    "therapy_category": "TKI mono",
+    "recommendation_strength": "B",
+    "confidence": 0.85
+  },
+  "raw_response": "{\"is_metastatic\": true,\n    \"metastatic_reasoning\": \"Der Patient weist multiple Rezidive in Lunge, Lymphknoten und Leber auf, was eindeutig für eine Metastasierung spricht. Die Anamnese einer Nephrektomie 2014 und einer Resektion eines Lokalrezidivs 2024 unterstützt dies zusätzlich.\",\n    \"imdc_risk\": \"unguenstig\",\n    \"imdc_reasoning\": \"Da der Patient ein Rezidiv nach Nephrektomie und Lokalrezidiv-Resektion hat, sowie multiple Metastasen, ist das Risiko als ungünstig einzustufen. Die genauen IMDC-Risikofaktoren (Karnofsky, Zeit bis Systemtherapie, Hämoglobin, Calcium, Neutrophile, Thrombozyten) sind nicht dokumentiert, aber aufgrund der Anamnese und des Stadiums ist eine ungünstige Risikostratifizierung wahrscheinlich. Da es sich um ein nicht-klarzelliges RCC handelt, ist die IMDC-Risikostratifizierung nicht validiert, wird aber zur Orientierung herangezogen.\",\n    \"treatment_reasoning\": \"Der Patient hat ein metastasiertes, papilläres RCC. Die Leitlinien legen für nicht-klarzelliges RCC eine TKI-Monotherapie nahe. Da der Patient bereits eine offene Resektion eines Lokalrezidivs hatte und aktuell multiple Rezidive vorliegen, ist eine systemische Therapie indiziert. Cabozantinib und Sunitinib sind Optionen, wobei Cabozantinib aufgrund seiner höheren Wirksamkeit und seines günstigeren Nebenwirkungsprofils bevorzugt wird. Die Komorbiditäten (obstruktive Kardiomyopathie, Hyperthyreose, arterielle Hypertonie, Diabetes mellitus, LAE, Hyperlipidämie) müssen bei der Therapieentscheidung berücksichtigt werden. DOAK-Therapie bei LAE muss beachtet werden und mögliche Interaktionen mit der gewählten Therapie berücksichtigt werden.\",\n    \"recommended_therapy\": \"Cabozantinib 60mg p.o. täglich\",\n    \"therapy_category\": \"TKI mono\",\n    \"recommendation_strength\": \"B\",\n    \"confidence\": 0.85\n}",
+  "ground_truth_metastatic": true,
+  "ground_truth_therapy": "Einleitung palliative Systemtherapie TKI/IO (z.B. Nivolumab/Cabozantinib).",
+  "metastatic_correct": true,
+  "therapy_exact_match": true,
+  "therapy_clinically_acceptable": true,
+  "inference_time_seconds": 3.12081674848284,
+  "tokens_used": 475,
+  "success": true,
+  "error_message": null
+}

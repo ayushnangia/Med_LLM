@@ -1,0 +1,86 @@
+{
+  "case_id": "ncc_3",
+  "timestamp": "2025-12-29_23-04-37",
+  "provider": "modal",
+  "model": "OpenMeditron/Meditron3-Qwen2.5-7B",
+  "input_case": {
+    "case_id": "ncc_3",
+    "patient_name": "Muster, Alpha",
+    "age": 58,
+    "ecog": 0,
+    "karnofsky": null,
+    "comorbidity": "unknown",
+    "life_expectancy": "unknown",
+    "anamnese": "Zufallsbefund im CT wegen Nephrolithiasis. Solide Nierenraumforderung rechts (2,2 cm).",
+    "diagnose_kurz": "Solide Nierenraumforderung rechts (2,2 cm)",
+    "stadium": "nicht-metastasiert (Verdacht, prätherapeutisch)",
+    "tnm_clinical": {
+      "T": "unknown",
+      "T_sub": "unknown",
+      "N": "unknown",
+      "M": "M0",
+      "stage_group": "unknown"
+    },
+    "tnm_pathological": {
+      "T": null,
+      "T_sub": null,
+      "N": null,
+      "M": null,
+      "stage_group": null
+    },
+    "histologie_subtyp": null,
+    "histologie_klarzellig": null,
+    "bildgebung": [
+      {
+        "modalitaet": "CT",
+        "region": "Abdomen/Niere",
+        "datum": null,
+        "befund_kurz": "Zufallsbefund: solide Nierenraumforderung rechts (2,2 cm) im Rahmen CT wegen Nephrolithiasis.",
+        "quelle": "Anamnese"
+      },
+      {
+        "modalitaet": "MRT",
+        "region": "Niere mit KM",
+        "datum": "2025-12-01",
+        "befund_kurz": "Solide Nierenraumforderung rechts, 2,2 cm; malignomsuspekt (Malignitätskriterien: ja).",
+        "quelle": "Erforderliche Bildgebung"
+      }
+    ],
+    "nebendiagnosen": [
+      "arterielle Hypertonie"
+    ],
+    "medikation": [
+      {
+        "wirkstoff_oder_klasse": "Ramipril",
+        "details": null
+      }
+    ],
+    "ici_durchfuehrbar": null,
+    "prior_therapies": [],
+    "ground_truth_metastatic": false,
+    "ground_truth_imdc": null,
+    "ground_truth_therapy": "Aktive Überwachung vs. Nierenteilresektion vs. Ablation (je nach Lage/RENAL-Score); Biopsie ja/nein?"
+  },
+  "prompt_text": "Du bist ein erfahrener Onkologe, spezialisiert auf Nierenzellkarzinom (RCC).\nAnalysiere den folgenden klinischen Fall und erstelle eine strukturierte Therapieempfehlung.\n\n=== KLINISCHER FALL ===\nPatient: Muster, Alpha, 58 Jahre\nECOG: 0, Karnofsky: ?%\nKomorbidität: unknown\nLebenserwartung: unknown\n\nDiagnose: Solide Nierenraumforderung rechts (2,2 cm)\nStadium: nicht-metastasiert (Verdacht, prätherapeutisch)\ncTNM: Tunknown Nunknown MM0\n\nHISTOLOGIE (WICHTIG für Therapieentscheidung):\nNicht dokumentiert\n\nAnamnese:\nZufallsbefund im CT wegen Nephrolithiasis. Solide Nierenraumforderung rechts (2,2 cm).\n\nNebendiagnosen: arterielle Hypertonie\n\nAktuelle Medikation: Ramipril\n\nBildgebung:\n  - CT Abdomen/Niere: Zufallsbefund: solide Nierenraumforderung rechts (2,2 cm) im Rahmen CT wegen Nephrolithiasis.\n  - MRT Niere mit KM (2025-12-01): Solide Nierenraumforderung rechts, 2,2 cm; malignomsuspekt (Malignitätskriterien: ja).\n\nIMDC-Risikofaktoren: Nicht dokumentiert\nICI-Kombination durchführbar: Nicht ...",
+  "prediction": {
+    "is_metastatic": false,
+    "metastatic_reasoning": "Der Patient hat keine Metastasen, da der Tumor nicht-metastasiert ist (cTNM: Tunknown Nunknown MM0).",
+    "imdc_risk": "nicht_anwendbar",
+    "imdc_reasoning": "Da der Patient nicht-metastasiert ist, ist die IMDC-Risikostratifizierung nicht anwendbar.",
+    "treatment_reasoning": "Da der Patient nicht-metastasiert ist, wird die Therapieempfehlung für nicht-metastasiertes RCC angewendet.",
+    "recommended_therapy": "Nierenenteilresektion (Nephron-sparing Surgery) oder radikale Nierenteilresection (Radikale Nephrectomy) basierend auf Tumorgröße und Komorbidität.",
+    "therapy_category": "Surgery",
+    "recommendation_strength": "A",
+    "confidence": 1.0
+  },
+  "raw_response": "{\n    \"is_metastatic\": false,\n    \"metastatic_reasoning\": \"Der Patient hat keine Metastasen, da der Tumor nicht-metastasiert ist (cTNM: Tunknown Nunknown MM0).\",\n    \"imdc_risk\": \"nicht_anwendbar\",\n    \"imdc_reasoning\": \"Da der Patient nicht-metastasiert ist, ist die IMDC-Risikostratifizierung nicht anwendbar.\",\n    \"treatment_reasoning\": \"Da der Patient nicht-metastasiert ist, wird die Therapieempfehlung für nicht-metastasiertes RCC angewendet.\",\n    \"recommended_therapy\": \"Nierenenteilresektion (Nephron-sparing Surgery) oder radikale Nierenteilresection (Radikale Nephrectomy) basierend auf Tumorgröße und Komorbidität.\",\n    \"therapy_category\": \"Surgery\",\n    \"recommendation_strength\": \"A\",\n    \"confidence\": 1.0\n}",
+  "ground_truth_metastatic": false,
+  "ground_truth_therapy": "Aktive Überwachung vs. Nierenteilresektion vs. Ablation (je nach Lage/RENAL-Score); Biopsie ja/nein?",
+  "metastatic_correct": true,
+  "therapy_exact_match": false,
+  "therapy_clinically_acceptable": true,
+  "inference_time_seconds": 0.25036321367536274,
+  "tokens_used": 224,
+  "success": true,
+  "error_message": null
+}

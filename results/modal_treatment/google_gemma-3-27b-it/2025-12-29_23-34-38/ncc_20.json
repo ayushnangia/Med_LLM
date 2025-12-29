@@ -1,0 +1,62 @@
+{
+  "case_id": "ncc_20",
+  "timestamp": "2025-12-29_23-34-38",
+  "provider": "modal",
+  "model": "google/gemma-3-27b-it",
+  "input_case": {
+    "case_id": "ncc_20",
+    "patient_name": "Beispiel, Ralf",
+    "age": 65,
+    "ecog": null,
+    "karnofsky": null,
+    "comorbidity": null,
+    "life_expectancy": null,
+    "anamnese": "Vorstellung mit CT-Staging vom 04.10.2025: große Raumforderung der linken Niere sowie multiple bilaterale pulmonale Metastasen. Z. n. Nierenbiopsie am 15.10.2025 zur histologischen Sicherung. Vorerkrankung: Z. n. Hüft-TEP.",
+    "diagnose_kurz": "Metastasiertes klarzelliges Nierenzellkarzinom (mRCC, ccRCC) links mit multiplen pulmonalen Metastasen; CT 04.10.2025: große linke Nierenraumforderung 9,4×8,1×7,6 cm, kein Tumorthrombus; IMDC günstig/low risk (0 Faktoren)",
+    "stadium": "mRCC (pulmonal), IMDC low risk (0 Faktoren)",
+    "tnm_clinical": null,
+    "tnm_pathological": null,
+    "histologie_subtyp": null,
+    "histologie_klarzellig": null,
+    "bildgebung": [
+      {
+        "datum": "2025-10-04",
+        "modalitaet": "CT",
+        "region": "Staging Thorax/Abdomen/Becken",
+        "befund": "Linke Niere: große solide heterogen kontrastmittelaufnehmende Raumforderung am Mittel-/Unterpol links ca. 9,4×8,1×7,6 cm, malignitätsverdächtig; Kontakt zur Nierenkapsel, kein sicherer Nachweis einer Infiltration benachbarter Organe. Nierenvenen/VCI: linke Nierenvene frei, kein sicherer Tumorthrombus. Lymphknoten: keine sicher pathologisch vergrößerten abdominellen LK (max. paraaortal 9 mm kurze Achse). Leber/Nebennieren/Pankreas unauffällig, kein Aszites. Thorax: multiple bilaterale pulmonale Rundherde metastasenverdächtig (RLL subpleural 14 mm, RML 9 mm, LUL 11 mm, weitere 3–6 mm beidseits). Kein Pleuraerguss. Keine sicher pathologisch vergrößerten mediastinal/hilären LK. Skelett: kein sicherer Hinweis auf ossäre Metastasen.",
+        "quelle": "Erforderlicher Befund"
+      }
+    ],
+    "nebendiagnosen": [
+      "Z. n. Hüft-TEP"
+    ],
+    "medikation": [],
+    "ici_durchfuehrbar": null,
+    "prior_therapies": [],
+    "ground_truth_metastatic": null,
+    "ground_truth_imdc": null,
+    "ground_truth_therapy": null
+  },
+  "prompt_text": "Du bist ein erfahrener Onkologe, spezialisiert auf Nierenzellkarzinom (RCC).\nAnalysiere den folgenden klinischen Fall und erstelle eine strukturierte Therapieempfehlung.\n\n=== KLINISCHER FALL ===\nPatient: Beispiel, Ralf, 65 Jahre\nECOG: None, Karnofsky: ?%\nKomorbidität: None\nLebenserwartung: None\n\nDiagnose: Metastasiertes klarzelliges Nierenzellkarzinom (mRCC, ccRCC) links mit multiplen pulmonalen Metastasen; CT 04.10.2025: große linke Nierenraumforderung 9,4×8,1×7,6 cm, kein Tumorthrombus; IMDC günstig/low risk (0 Faktoren)\nStadium: mRCC (pulmonal), IMDC low risk (0 Faktoren)\nTNM: nicht dokumentiert\n\nHISTOLOGIE (WICHTIG für Therapieentscheidung):\nGrading: WHO/ISUP Grad 2\n\nAnamnese:\nVorstellung mit CT-Staging vom 04.10.2025: große Raumforderung der linken Niere sowie multiple bilaterale pulmonale Metastasen. Z. n. Nierenbiopsie am 15.10.2025 zur histologischen Sicherung. Vorerkrankung: Z. n. Hüft-TEP.\n\nNebendiagnosen: Z. n. Hüft-TEP\n\nAktuelle Medikation: Keine dokumentiert\n\nBildgebung:\n ...",
+  "prediction": {
+    "is_metastatic": true,
+    "metastatic_reasoning": "Der Patient weist multiple bilaterale pulmonale Metastasen auf, wie durch das CT-Staging vom 04.10.2025 dokumentiert. Dies definiert einen M1-Status und somit eine Metastasierung.",
+    "imdc_risk": "guenstig",
+    "imdc_reasoning": "Der Patient hat 0 IMDC-Risikofaktoren. Es liegen keine Informationen über Karnofsky-Score, Zeit bis zur Systemtherapie, Hämoglobin, Calcium, Neutrophile oder Thrombozyten vor, die auf eine ungünstige Risikostratifizierung hindeuten würden. Daher wird der Patient als IMDC-günstig eingestuft.",
+    "treatment_reasoning": "Der Patient hat ein metastasiertes klarzelliges Nierenzellkarzinom (mRCC) und wird als IMDC-günstig eingestuft. Gemäß den Therapie-Leitlinien ist für Patienten mit mRCC und günstigem IMDC-Risiko eine Erstlinientherapie mit einer ICI-Kombination oder einer TKI-Monotherapie indiziert. Da die Durchführbarkeit einer ICI-Kombination nicht dokumentiert ist, werden beide Optionen betrachtet. Da der Patient keinen dokumentierten ECOG-Score hat, wird davon ausgegangen, dass er einen guten Performance Status hat. In diesem Fall ist eine ICI-Kombination vorzuziehen. Da keine weiteren Informationen vorliegen, werden mehrere Optionen mit starker Empfehlung (A) genannt.",
+    "recommended_therapy": "Nivolumab in Kombination mit Cabozantinib (NIVO+CABO)",
+    "therapy_category": "IO+TKI",
+    "recommendation_strength": "A",
+    "confidence": 0.9
+  },
+  "raw_response": "{\"is_metastatic\": true,\n    \"metastatic_reasoning\": \"Der Patient weist multiple bilaterale pulmonale Metastasen auf, wie durch das CT-Staging vom 04.10.2025 dokumentiert. Dies definiert einen M1-Status und somit eine Metastasierung.\",\n    \"imdc_risk\": \"guenstig\",\n    \"imdc_reasoning\": \"Der Patient hat 0 IMDC-Risikofaktoren. Es liegen keine Informationen über Karnofsky-Score, Zeit bis zur Systemtherapie, Hämoglobin, Calcium, Neutrophile oder Thrombozyten vor, die auf eine ungünstige Risikostratifizierung hindeuten würden. Daher wird der Patient als IMDC-günstig eingestuft.\",\n    \"treatment_reasoning\": \"Der Patient hat ein metastasiertes klarzelliges Nierenzellkarzinom (mRCC) und wird als IMDC-günstig eingestuft. Gemäß den Therapie-Leitlinien ist für Patienten mit mRCC und günstigem IMDC-Risiko eine Erstlinientherapie mit einer ICI-Kombination oder einer TKI-Monotherapie indiziert. Da die Durchführbarkeit einer ICI-Kombination nicht dokumentiert ist, werden beide Optionen betrachtet. Da der Patient keinen dokumentierten ECOG-Score hat, wird davon ausgegangen, dass er einen guten Performance Status hat. In diesem Fall ist eine ICI-Kombination vorzuziehen. Da keine weiteren Informationen vorliegen, werden mehrere Optionen mit starker Empfehlung (A) genannt.\",\n    \"recommended_therapy\": \"Nivolumab in Kombination mit Cabozantinib (NIVO+CABO)\",\n    \"therapy_category\": \"IO+TKI\",\n    \"recommendation_strength\": \"A\",\n    \"confidence\": 0.9}",
+  "ground_truth_metastatic": null,
+  "ground_truth_therapy": null,
+  "metastatic_correct": null,
+  "therapy_exact_match": null,
+  "therapy_clinically_acceptable": null,
+  "inference_time_seconds": 3.6213891778673446,
+  "tokens_used": 397,
+  "success": true,
+  "error_message": null
+}

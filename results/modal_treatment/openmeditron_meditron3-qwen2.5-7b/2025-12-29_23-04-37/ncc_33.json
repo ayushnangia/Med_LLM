@@ -1,0 +1,144 @@
+{
+  "case_id": "ncc_33",
+  "timestamp": "2025-12-29_23-04-37",
+  "provider": "modal",
+  "model": "OpenMeditron/Meditron3-Qwen2.5-7B",
+  "input_case": {
+    "case_id": "ncc_33",
+    "patient_name": "Beispiel, Bora",
+    "age": 71,
+    "ecog": 2,
+    "karnofsky": 70,
+    "comorbidity": "unknown",
+    "life_expectancy": "unknown",
+    "anamnese": "Metastasiertes Nierenzellkarzinom (mRCC), mehrfach vorbehandelt. Progress unter 3. Linie (Tivozanib) im CT-Staging 05.12.2025. Vorgeschichte: Z. n. Lungenarterienembolie (LAE) mit dauerhafter Antikoagulation. Z. n. Hysterektomie 2016.",
+    "diagnose_kurz": "Metastasiertes Nierenzellkarzinom (mRCC) mit systemischem Progress unter Tivozanib (3. Linie).",
+    "stadium": "metastasiert; Therapielinie: nach 3 Vorlinien",
+    "tnm_clinical": null,
+    "tnm_pathological": null,
+    "histologie_subtyp": null,
+    "histologie_klarzellig": null,
+    "bildgebung": [
+      {
+        "modalitaet": "CT",
+        "region": "Thorax/Abdomen/Becken",
+        "datum": "2025-12-05",
+        "befund_kurz": "Systemischer Progress: Thorax mit Zunahme pulmonaler Metastasen (RLL 15 mm vorher 11 mm; LUL 10 mm vorher 7 mm), kein Pleuraerguss. Abdomen mit neuer Lebermetastase Segment VI 18 mm und Progress bekannter Leberläsion Segment VII 22→30 mm. Retroperitoneum: paraaortaler LK 18→26 mm. Skelett: neue osteolytische Läsion BWK11 14 mm.",
+        "quelle": "Erforderlicher Befund",
+        "detailstruktur": {
+          "thorax": {
+            "pulmonale_metastasen": [
+              {
+                "lokalisation": "RLL",
+                "groesse_mm": 15,
+                "vorher_mm": 11,
+                "bewertung": "progredient"
+              },
+              {
+                "lokalisation": "LUL",
+                "groesse_mm": 10,
+                "vorher_mm": 7,
+                "bewertung": "progredient"
+              }
+            ],
+            "pleuraerguss": false,
+            "mediastinale_hilaere_lk": "keine_sicheren_pathologisch_vergroesserten"
+          },
+          "abdomen": {
+            "leber": [
+              {
+                "segment": "VI",
+                "groesse_mm": 18,
+                "vorher_mm": null,
+                "bewertung": "neu_metastasenverdaechtig"
+              },
+              {
+                "segment": "VII",
+                "groesse_mm": 30,
+                "vorher_mm": 22,
+                "bewertung": "progredient"
+              }
+            ],
+            "lokalrezidiv": "unknown",
+            "aszetes": false
+          },
+          "retroperitoneum": {
+            "lymphknoten": [
+              {
+                "lokalisation": "paraaortal",
+                "groesse_mm": 26,
+                "vorher_mm": 18,
+                "bewertung": "progredient"
+              }
+            ]
+          },
+          "skelett": {
+            "ossäre_laesionen": [
+              {
+                "lokalisation": "BWK11",
+                "typ": "osteolytisch",
+                "groesse_mm": 14,
+                "vorher_mm": null,
+                "bewertung": "neu_metastasenverdaechtig"
+              }
+            ]
+          }
+        },
+        "beurteilung": "Systemischer Progress (Lunge + Leber + LK, neu ossär) unter Tivozanib; Therapieumstellung indiziert."
+      }
+    ],
+    "nebendiagnosen": [
+      {
+        "diagnose": "Zustand nach Lungenarterienembolie (LAE)",
+        "details": "dauerhaft antikoaguliert"
+      }
+    ],
+    "medikation": [
+      {
+        "wirkstoff": "Apixaban",
+        "dosierung": null,
+        "schema": null,
+        "hinweis": "DOAK (Dauertherapie nach LAE)"
+      },
+      {
+        "wirkstoff": "Pantoprazol",
+        "dosierung": null,
+        "schema": null,
+        "hinweis": null
+      },
+      {
+        "wirkstoff": "Analgetika",
+        "dosierung": null,
+        "schema": null,
+        "hinweis": "bei Bedarf"
+      }
+    ],
+    "ici_durchfuehrbar": null,
+    "prior_therapies": [],
+    "ground_truth_metastatic": null,
+    "ground_truth_imdc": null,
+    "ground_truth_therapy": "Abwägung 4. Linie (Belzutifan, falls verfügbar/geeignet) vs. Best supportive care (BSC). | Supportiv: Analgesie, Knochenprotektion nach Standard, engmaschige Laborkontrollen (Hb/Ca). | Studiensuche und Vorstellung im molekularen Tumorboard."
+  },
+  "prompt_text": "Du bist ein erfahrener Onkologe, spezialisiert auf Nierenzellkarzinom (RCC).\nAnalysiere den folgenden klinischen Fall und erstelle eine strukturierte Therapieempfehlung.\n\n=== KLINISCHER FALL ===\nPatient: Beispiel, Bora, 71 Jahre\nECOG: 2, Karnofsky: 70%\nKomorbidität: unknown\nLebenserwartung: unknown\n\nDiagnose: Metastasiertes Nierenzellkarzinom (mRCC) mit systemischem Progress unter Tivozanib (3. Linie).\nStadium: metastasiert; Therapielinie: nach 3 Vorlinien\nTNM: nicht dokumentiert\n\nHISTOLOGIE (WICHTIG für Therapieentscheidung):\nNicht dokumentiert\n\nAnamnese:\nMetastasiertes Nierenzellkarzinom (mRCC), mehrfach vorbehandelt. Progress unter 3. Linie (Tivozanib) im CT-Staging 05.12.2025. Vorgeschichte: Z. n. Lungenarterienembolie (LAE) mit dauerhafter Antikoagulation. Z. n. Hysterektomie 2016.\n\nNebendiagnosen: Zustand nach Lungenarterienembolie (LAE)\n\nAktuelle Medikation: , , \n\nBildgebung:\n  - CT Thorax/Abdomen/Becken (2025-12-05): Systemischer Progress: Thorax mit Zunahme pulmonaler Metastas...",
+  "prediction": {
+    "is_metastatic": true,
+    "metastatic_reasoning": "Der Patient hat eine systemische Progression unter Tivozanib, was auf eine Metastasierung des Nierenzellkarzinoms hinweist.",
+    "imdc_risk": "nicht dokumentiert",
+    "imdc_reasoning": "Da der Patient nicht-metastasiert ist, ist die IMDC-Risikostratifizierung nicht anwendbar.",
+    "treatment_reasoning": "Da der Patient nicht-metastasiert ist, wird die Therapieempfehlung für nicht-metastasiertes Nierenzellkarzinom angewendet.",
+    "recommended_therapy": "Nephron-sparing Surgery oder Radikale Nephrectomie",
+    "therapy_category": "Surgery",
+    "recommendation_strength": "A",
+    "confidence": 1.0
+  },
+  "raw_response": "{\n    \"is_metastatic\": true,\n    \"metastatic_reasoning\": \"Der Patient hat eine systemische Progression unter Tivozanib, was auf eine Metastasierung des Nierenzellkarzinoms hinweist.\",\n    \"imdc_risk\": \"nicht dokumentiert\",\n    \"imdc_reasoning\": \"Da der Patient nicht-metastasiert ist, ist die IMDC-Risikostratifizierung nicht anwendbar.\",\n    \"treatment_reasoning\": \"Da der Patient nicht-metastasiert ist, wird die Therapieempfehlung für nicht-metastasiertes Nierenzellkarzinom angewendet.\",\n    \"recommended_therapy\": \"Nephron-sparing Surgery oder Radikale Nephrectomie\",\n    \"therapy_category\": \"Surgery\",\n    \"recommendation_strength\": \"A\",\n    \"confidence\": 1.0\n}",
+  "ground_truth_metastatic": null,
+  "ground_truth_therapy": "Abwägung 4. Linie (Belzutifan, falls verfügbar/geeignet) vs. Best supportive care (BSC). | Supportiv: Analgesie, Knochenprotektion nach Standard, engmaschige Laborkontrollen (Hb/Ca). | Studiensuche und Vorstellung im molekularen Tumorboard.",
+  "metastatic_correct": null,
+  "therapy_exact_match": false,
+  "therapy_clinically_acceptable": null,
+  "inference_time_seconds": 0.25036321367536274,
+  "tokens_used": 197,
+  "success": true,
+  "error_message": null
+}

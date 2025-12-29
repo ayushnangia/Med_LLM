@@ -1,0 +1,122 @@
+{
+  "case_id": "ncc_27",
+  "timestamp": "2025-12-29_23-38-36",
+  "provider": "modal",
+  "model": "google/gemma-3-27b-it",
+  "input_case": {
+    "case_id": "ncc_27",
+    "patient_name": "Beispiel, Mustermann",
+    "age": 73,
+    "ecog": null,
+    "karnofsky": null,
+    "comorbidity": null,
+    "life_expectancy": null,
+    "anamnese": "Z. n. Nephrektomie rechts 11/2022 bei klarzelligem RCC mit sarkomatoider Differenzierung. Aktuelle Vorstellung zur Befund- und Therapieentscheidung anhand CT Staging 18.11.2025 mit pulmonaler, hepatischer und ossärer Metastasierung. Vorerkrankungen/VOP: Z. n. Cholezystektomie, Z. n. Leistenhernien-OP beidseits. Medikation: Candesartan, Amlodipin, Marcumar.",
+    "diagnose_kurz": "Metastasiertes klarzelliges Nierenzellkarzinom (ccRCC) mit sarkomatoider Differenzierung nach Nephrektomie rechts 11/2022; CT 18.11.2025 mit pulmonaler, hepatischer und ossärer Metastasierung.",
+    "stadium": "mRCC; IMDC high risk; Metastasen: Lunge + Leber + Knochen; sarkomatoide Komponente",
+    "tnm_clinical": null,
+    "tnm_pathological": null,
+    "histologie_subtyp": null,
+    "histologie_klarzellig": null,
+    "bildgebung": [
+      {
+        "modalitaet": "CT",
+        "region": "Thorax/Abdomen/Becken",
+        "datum": "2025-11-18",
+        "befund_kurz": "Pulmonale, hepatische und ossäre Metastasierung.",
+        "quelle": "CT Staging 18.11.2025",
+        "details": {
+          "thorax": {
+            "lungen_metastasen": [
+              {
+                "lokalisation": "RLL",
+                "groesse_mm": 11,
+                "beschreibung": "Rundherd metastasenverdächtig"
+              },
+              {
+                "lokalisation": "LUL",
+                "groesse_mm": 7,
+                "beschreibung": "Rundherd metastasenverdächtig"
+              },
+              {
+                "lokalisation": "beidseits",
+                "groesse_mm": "3-5",
+                "beschreibung": "weitere kleine Rundherde"
+              }
+            ],
+            "pleuraerguss": "nein",
+            "mediastinale_hilaere_lk": "keine sicher pathologisch vergrößerten LK"
+          },
+          "abdomen_becken": {
+            "op_status": "Status nach Nephrektomie rechts",
+            "leber_metastasen": [
+              {
+                "segment": "VII",
+                "groesse_mm": 26,
+                "beschreibung": "metastasenverdächtig"
+              },
+              {
+                "segment": "IVa",
+                "groesse_mm": 14,
+                "beschreibung": "metastasenverdächtig"
+              }
+            ],
+            "aszites": "nein"
+          },
+          "skelett": {
+            "ossaere_metastasen": [
+              {
+                "lokalisation": "BWK9",
+                "groesse_mm": 17,
+                "typ": "osteolytisch",
+                "beschreibung": "metastasenverdächtig"
+              },
+              {
+                "lokalisation": "rechtes Os ilium",
+                "groesse_mm": 21,
+                "typ": "osteolytisch",
+                "beschreibung": "metastasenverdächtig"
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "nebendiagnosen": [
+      "status_nach_cholezystektomie",
+      "status_nach_leistenhernien_op"
+    ],
+    "medikation": [
+      "Candesartan",
+      "Amlodipin",
+      "Marcumar"
+    ],
+    "ici_durchfuehrbar": null,
+    "prior_therapies": [],
+    "ground_truth_metastatic": null,
+    "ground_truth_imdc": null,
+    "ground_truth_therapy": "Einleitung einer geeigneten Systemtherapie (IO-basiert) + Supportivmaßnahmen (Knochenprotektion/Analgesie, engmaschiges Labor-/Tox-Monitoring)."
+  },
+  "prompt_text": "Du bist ein erfahrener Onkologe, spezialisiert auf Nierenzellkarzinom (RCC).\nAnalysiere den folgenden klinischen Fall und erstelle eine strukturierte Therapieempfehlung.\n\n=== KLINISCHER FALL ===\nPatient: Beispiel, Mustermann, 73 Jahre\nECOG: None, Karnofsky: ?%\nKomorbidität: None\nLebenserwartung: None\n\nDiagnose: Metastasiertes klarzelliges Nierenzellkarzinom (ccRCC) mit sarkomatoider Differenzierung nach Nephrektomie rechts 11/2022; CT 18.11.2025 mit pulmonaler, hepatischer und ossärer Metastasierung.\nStadium: mRCC; IMDC high risk; Metastasen: Lunge + Leber + Knochen; sarkomatoide Komponente\nTNM: nicht dokumentiert\n\nHISTOLOGIE (WICHTIG für Therapieentscheidung):\nNicht dokumentiert\n\nAnamnese:\nZ. n. Nephrektomie rechts 11/2022 bei klarzelligem RCC mit sarkomatoider Differenzierung. Aktuelle Vorstellung zur Befund- und Therapieentscheidung anhand CT Staging 18.11.2025 mit pulmonaler, hepatischer und ossärer Metastasierung. Vorerkrankungen/VOP: Z. n. Cholezystektomie, Z. n. Leistenhernien-O...",
+  "prediction": {
+    "is_metastatic": true,
+    "metastatic_reasoning": "Der Patient zeigt anhand des CT-Thorax/Abdomen/Becken vom 18.11.2025 pulmonale, hepatische und ossäre Metastasen. Die Anamnese bestätigt eine Nephrektomie im Jahr 2022 aufgrund von RCC und die aktuelle Vorstellung dient der Therapieentscheidung bei metastasiertem RCC.",
+    "imdc_risk": "unguenstig",
+    "imdc_reasoning": "Aufgrund der Metastasierung in Lunge, Leber und Knochen sowie der sarkomatoider Differenzierung (was als ungünstiger prognostischer Faktor gilt) wird der Patient als 'ungünstig' im IMDC-Risikoprofil eingestuft. Da die genauen IMDC-Risikofaktoren (Karnofsky, Zeit bis Therapie, Hb, Ca, Neutrophile, Thrombozyten) nicht dokumentiert sind, wird die ungünstige Einstufung aufgrund der vorliegenden Informationen getroffen.",
+    "treatment_reasoning": "Der Patient hat ein metastasiertes klarzelliges Nierenzellkarzinom (ccRCC). Da keine vorherige systemische Therapie erfolgt ist, wird eine Erstlinientherapie indiziert. Die sarkomatoide Differenzierung deutet auf eine aggressive Erkrankung hin, was die Wahl einer Kombinationstherapie unterstützt. Da die Durchführbarkeit einer ICI-Kombination nicht dokumentiert ist, werden beide Szenarien betrachtet. Wenn ICI-Kombination möglich ist, sind Nivo+Cabo, Pembo+Axi, Pembo+Len und Avelu+Axi Optionen. Wenn ICI-Kombination nicht möglich ist, sind Cabozantinib, Sunitinib und Temsirolimus Optionen. Aufgrund der ungünstigen Risikostratifizierung und der sarkomatoider Differenzierung wird Cabozantinib bevorzugt, da es in Studien mit ungünstigen Risikofaktoren und sarkomatoider Differenzierung eine gute Wirksamkeit gezeigt hat.",
+    "recommended_therapy": "Cabozantinib",
+    "therapy_category": "TKI mono",
+    "recommendation_strength": "B",
+    "confidence": 0.8
+  },
+  "raw_response": "{\"is_metastatic\": true,\n    \"metastatic_reasoning\": \"Der Patient zeigt anhand des CT-Thorax/Abdomen/Becken vom 18.11.2025 pulmonale, hepatische und ossäre Metastasen. Die Anamnese bestätigt eine Nephrektomie im Jahr 2022 aufgrund von RCC und die aktuelle Vorstellung dient der Therapieentscheidung bei metastasiertem RCC.\",\n    \"imdc_risk\": \"unguenstig\",\n    \"imdc_reasoning\": \"Aufgrund der Metastasierung in Lunge, Leber und Knochen sowie der sarkomatoider Differenzierung (was als ungünstiger prognostischer Faktor gilt) wird der Patient als 'ungünstig' im IMDC-Risikoprofil eingestuft. Da die genauen IMDC-Risikofaktoren (Karnofsky, Zeit bis Therapie, Hb, Ca, Neutrophile, Thrombozyten) nicht dokumentiert sind, wird die ungünstige Einstufung aufgrund der vorliegenden Informationen getroffen.\",\n    \"treatment_reasoning\": \"Der Patient hat ein metastasiertes klarzelliges Nierenzellkarzinom (ccRCC). Da keine vorherige systemische Therapie erfolgt ist, wird eine Erstlinientherapie indiziert. Die sarkomatoide Differenzierung deutet auf eine aggressive Erkrankung hin, was die Wahl einer Kombinationstherapie unterstützt. Da die Durchführbarkeit einer ICI-Kombination nicht dokumentiert ist, werden beide Szenarien betrachtet. Wenn ICI-Kombination möglich ist, sind Nivo+Cabo, Pembo+Axi, Pembo+Len und Avelu+Axi Optionen. Wenn ICI-Kombination nicht möglich ist, sind Cabozantinib, Sunitinib und Temsirolimus Optionen. Aufgrund der ungünstigen Risikostratifizierung und der sarkomatoider Differenzierung wird Cabozantinib bevorzugt, da es in Studien mit ungünstigen Risikofaktoren und sarkomatoider Differenzierung eine gute Wirksamkeit gezeigt hat.\",\n    \"recommended_therapy\": \"Cabozantinib\",\n    \"therapy_category\": \"TKI mono\",\n    \"recommendation_strength\": \"B\",\n    \"confidence\": 0.8}",
+  "ground_truth_metastatic": null,
+  "ground_truth_therapy": "Einleitung einer geeigneten Systemtherapie (IO-basiert) + Supportivmaßnahmen (Knochenprotektion/Analgesie, engmaschiges Labor-/Tox-Monitoring).",
+  "metastatic_correct": null,
+  "therapy_exact_match": false,
+  "therapy_clinically_acceptable": null,
+  "inference_time_seconds": 3.12081674848284,
+  "tokens_used": 489,
+  "success": true,
+  "error_message": null
+}

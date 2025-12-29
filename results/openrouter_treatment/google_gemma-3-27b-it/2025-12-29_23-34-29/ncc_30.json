@@ -1,0 +1,51 @@
+{
+  "case_id": "ncc_30",
+  "timestamp": "2025-12-29T23:42:34.736717",
+  "provider": "openrouter",
+  "model": "google/gemma-3-27b-it",
+  "input_case": {
+    "case_id": "ncc_30",
+    "patient_name": "Muster, Ada",
+    "age": 60,
+    "ecog": null,
+    "anamnese": "Erstdiagnose metastasiertes RCC am 10.10.2022. Systemtherapien: 2022 Ipilimumab + Nivolumab, 2024 Cabozantinib, aktuell Lenvatinib + Everolimus. Vorerkrankung: arterielle Hypertonie (Ramipril). CT Staging 10.12.2025 mit Progress ossär und lymphonodal.",
+    "diagnose_kurz": "Metastasiertes Nierenzellkarzinom (mRCC), Erstdiagnose metastasiert 10.10.2022; vorbehandelt (Ipi/Nivo 2022, Cabozantinib 2024), aktuell Lenvatinib + Everolimus; CT 10.12.2025: Progress ossär + lymphonodal.",
+    "stadium": "mRCC; Progress unter aktueller Therapie; geplante 4. Linie",
+    "tnm_clinical": null,
+    "histologie_subtyp": null,
+    "histologie_klarzellig": null,
+    "bildgebung": [
+      {
+        "modalitaet": "CT",
+        "region": "Thorax/Abdomen/Becken",
+        "datum": "2025-12-10",
+        "befund_kurz": "Progress der bekannten ossären und lymphonodalen Metastasen.",
+        "quelle": "CT Staging 10.12.2025",
+        "details": "Größenzunahme retroperitonealer Lymphknoten sowie Zunahme/Neueintritt ossärer Läsionen (quantitative Maße nicht angegeben)."
+      }
+    ],
+    "nebendiagnosen": [
+      "arterielle_hypertonie"
+    ],
+    "ground_truth_metastatic": null,
+    "ground_truth_therapy": "Wechsel der Systemtherapie (z. B. Pazopanib oder Tivozanib oder Sunitinib) je nach Vorbehandlung/Verträglichkeit."
+  },
+  "prompt_text": "Du bist ein erfahrener Onkologe, spezialisiert auf Nierenzellkarzinom (RCC).\nAnalysiere den folgenden klinischen Fall und erstelle eine strukturierte Therapieempfehlung.\n\n=== KLINISCHER FALL ===\nPatient: Muster, Ada, 60 Jahre\nECOG: None, Karnofsky: ?%\nKomorbidität: None\n\nDiagnose: Metastasiertes Nierenzellkarzinom (mRCC), Erstdiagnose metastasiert 10.10.2022; vorbehandelt (Ipi/Nivo 2022, Cabozantinib 2024), aktuell Lenvatinib + Everolimus; CT 10.12.2025: Progress ossär + lymphonodal.\nStadium: mRCC; Progress unter aktueller Therapie; geplante 4. Linie\nTNM: nicht dokumentiert\n\nHISTOLOGIE: Nicht dokumentiert\n\nAnamnese: Erstdiagnose metastasiertes RCC am 10.10.2022. Systemtherapien: 2022 Ipilimumab + Nivolumab, 2024 Cabozantinib, aktuell Lenvatinib + Everolimus. Vorerkrankung: arterielle Hypertonie (Ramipril). CT Staging 10.12.2025 mit Progress ossär und lymphonodal.\n\nNebendiagnosen: arterielle_hypertonie\n\nBildgebung:\n  - CT Thorax/Abdomen/Becken (2025-12-10): Progress der bekannten ossären und lymphonodalen Metastasen.\n\nVorherige Systemtherapien: Keine\n\n=== THERAPIE-LEITLINIEN ===\n\nMETASTASIERTES KLARZELLIGES RCC - THERAPIE-ALGORITHMUS:\n\nIMDC-RISIKOSTRATIFIZIERUNG:\n- Günstig (0 Risikofaktoren)\n- Intermediär (1-2 Risikofaktoren)\n- Ungünstig (≥3 Risikofaktoren)\n\nRisikofaktoren: Karnofsky <80%, Zeit bis Systemtherapie <1 Jahr, Hämoglobin↓, Calcium↑, Neutrophile↑, Thrombozyten↑\n\nERSTLINIE (wenn ICI-Kombination möglich):\n- Günstig: NIVO+CABO (A), PEMBRO+AXI (A), PEMBRO+LEN (A), AVELU+AXI (B)\n- Intermediär: NIVO+CABO (A), NIVO+IPI (A), PEMBRO+AXI (A), PEMBRO+LEN (A)\n- Ungünstig: NIVO+CABO (A), NIVO+IPI (A), PEMBRO+AXI (A), PEMBRO+LEN (A)\n\nERSTLINIE (wenn ICI-Kombination NICHT möglich):\n- Günstig: Pazopanib (A), Sunitinib (A), Tivozanib (A), BEV+IFN (A)\n- Intermediär: Cabozantinib (B), Pazopanib (B), Sunitinib (B)\n- Ungünstig: Cabozantinib (B), Sunitinib (B), Temsirolimus (0)\n\nZWEITLINIE nach ICI-Kombination: Cabozantinib (A), Lenvatinib+Everolimus (A), Sunitinib (A)\nZWEITLINIE nach VEGF/R-Monotherapie: Cabozantinib (A), Nivolumab (A)\n\n---\n\nNICHT-METASTASIERTES RCC - THERAPIE-ALGORITHMUS:\n\n1. AKTIVE ÜBERWACHUNG (GoR 0): Kleine Tumoren + hohe Komorbidität/begrenzte Lebenserwartung\n2. ABLATION (GoR 0): Kleine Tumoren + hohe Komorbidität/begrenzte Lebenserwartung\n3. NIERENTEILRESEKTION: cT1 (≤7cm) SOLL durchgeführt werden (GoR A)\n4. RADIKALE NEPHREKTOMIE: Wenn Teilresektion nicht möglich (GoR A)\n\nLegende: A=starke Empfehlung, B=schwache Empfehlung, 0=Option\n\n\n=== AUFGABE ===\nAnalysiere den Fall schrittweise:\n1. METASTASIERUNG: Ist der Patient metastasiert? (basierend auf TNM, Anamnese, Bildgebung)\n2. HISTOLOGIE: Klarzellig vs. nicht-klarzellig?\n3. RISIKO: Falls metastasiert + klarzellig, IMDC-Risiko?\n4. THERAPIE: Empfehlung nach Leitlinie\n\nAntwort als JSON:\n{\n    \"is_metastatic\": true/false,\n    \"metastatic_reasoning\": \"Begründung...\",\n    \"imdc_risk\": \"guenstig/intermediaer/unguenstig/nicht_anwendbar\",\n    \"imdc_reasoning\": \"IMDC-Berechnung...\",\n    \"treatment_reasoning\": \"Schrittweise Begründung...\",\n    \"recommended_therapy\": \"Konkrete Empfehlung\",\n    \"therapy_category\": \"IO+TKI/TKI mono/Surgery/Surveillance/etc.\",\n    \"confidence\": 0.0-1.0\n}",
+  "output": {
+    "is_metastatic": true,
+    "metastatic_reasoning": "Der Patient wurde initial mit metastasiertem Nierenzellkarzinom diagnostiziert (10.10.2022) und das aktuelle CT (10.12.2025) zeigt eine Progression der ossären und lymphonodalen Metastasen.",
+    "imdc_risk": "intermediaer",
+    "imdc_reasoning": "Um das IMDC-Risiko zu bestimmen, benötigen wir den Karnofsky-Performance-Status und Informationen zu Hämoglobin, Calcium, Neutrophilen und Thrombozyten. Da der Karnofsky-Status fehlt, schätzen wir ihn als >=80% basierend auf dem ECOG 0.  Die Zeit bis zur Systemtherapie beträgt weniger als ein Jahr (da die Erstdiagnose 2022 war und die aktuelle Therapie 2025 läuft). Die Hypertonie ist eine Komorbidität, die aber kein direkter Risikofaktor im IMDC ist.  Ohne weitere Laborwerte gehen wir von einem intermediären Risiko aus (1-2 Risikofaktoren: Zeit bis zur Therapie < 1 Jahr + geschätzter Karnofsky >=80%).",
+    "treatment_reasoning": "Der Patient hat bereits eine Erstlinienbehandlung mit Ipilimumab + Nivolumab und eine Zweitlinienbehandlung mit Cabozantinib erhalten. Aktuell erhält er Lenvatinib + Everolimus, welches nun Progression zeigt. Dies ist die vierte Linie. Nach einer ICI-Kombination und anschliessendem Cabozantinib, ist Lenvatinib+Everolimus die nächste Therapieoption. Da diese nun ebenfalls versagt hat, müssen wir andere Optionen in Betracht ziehen. Die Leitlinien empfehlen nach Versagen von Lenvatinib+Everolimus in der 4. Linie keine spezifische Therapie. Da der Patient bereits mehrere Therapien erhalten hat, ist die Wahrscheinlichkeit für ein Ansprechen auf weitere Standardtherapien gering. Eine klinische Studie sollte daher in Betracht gezogen werden.",
+    "recommended_therapy": "Einschluß in eine klinische Studie mit neuartigen Wirkstoffen oder Therapieansätzen. Alternativ, falls keine geeignete Studie verfügbar ist, sollte eine palliative Behandlung zur Symptomkontrolle in Betracht gezogen werden.",
+    "therapy_category": "Klinische Studie/Palliative Therapie",
+    "confidence": 0.7
+  },
+  "raw_response": "\n```json\n{\n    \"is_metastatic\": true,\n    \"metastatic_reasoning\": \"Der Patient wurde initial mit metastasiertem Nierenzellkarzinom diagnostiziert (10.10.2022) und das aktuelle CT (10.12.2025) zeigt eine Progression der ossären und lymphonodalen Metastasen.\",\n    \"imdc_risk\": \"intermediaer\",\n    \"imdc_reasoning\": \"Um das IMDC-Risiko zu bestimmen, benötigen wir den Karnofsky-Performance-Status und Informationen zu Hämoglobin, Calcium, Neutrophilen und Thrombozyten. Da der Karnofsky-Status fehlt, schätzen wir ihn als >=80% basierend auf dem ECOG 0.  Die Zeit bis zur Systemtherapie beträgt weniger als ein Jahr (da die Erstdiagnose 2022 war und die aktuelle Therapie 2025 läuft). Die Hypertonie ist eine Komorbidität, die aber kein direkter Risikofaktor im IMDC ist.  Ohne weitere Laborwerte gehen wir von einem intermediären Risiko aus (1-2 Risikofaktoren: Zeit bis zur Therapie < 1 Jahr + geschätzter Karnofsky >=80%).\",\n    \"treatment_reasoning\": \"Der Patient hat bereits eine Erstlinienbehandlung mit Ipilimumab + Nivolumab und eine Zweitlinienbehandlung mit Cabozantinib erhalten. Aktuell erhält er Lenvatinib + Everolimus, welches nun Progression zeigt. Dies ist die vierte Linie. Nach einer ICI-Kombination und anschliessendem Cabozantinib, ist Lenvatinib+Everolimus die nächste Therapieoption. Da diese nun ebenfalls versagt hat, müssen wir andere Optionen in Betracht ziehen. Die Leitlinien empfehlen nach Versagen von Lenvatinib+Everolimus in der 4. Linie keine spezifische Therapie. Da der Patient bereits mehrere Therapien erhalten hat, ist die Wahrscheinlichkeit für ein Ansprechen auf weitere Standardtherapien gering. Eine klinische Studie sollte daher in Betracht gezogen werden.\",\n    \"recommended_therapy\": \"Einschluß in eine klinische Studie mit neuartigen Wirkstoffen oder Therapieansätzen. Alternativ, falls keine geeignete Studie verfügbar ist, sollte eine palliative Behandlung zur Symptomkontrolle in Betracht gezogen werden.\",\n    \"therapy_category\": \"Klinische Studie/Palliative Therapie\",\n    \"confidence\": 0.7\n}\n```",
+  "ground_truth_metastatic": null,
+  "ground_truth_therapy": "Wechsel der Systemtherapie (z. B. Pazopanib oder Tivozanib oder Sunitinib) je nach Vorbehandlung/Verträglichkeit.",
+  "metastatic_correct": null,
+  "inference_time_seconds": 8.28217101097107,
+  "tokens_used": 1718,
+  "success": true
+}

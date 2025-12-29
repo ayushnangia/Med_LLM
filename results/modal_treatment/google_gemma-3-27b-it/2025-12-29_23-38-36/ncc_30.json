@@ -1,0 +1,65 @@
+{
+  "case_id": "ncc_30",
+  "timestamp": "2025-12-29_23-38-36",
+  "provider": "modal",
+  "model": "google/gemma-3-27b-it",
+  "input_case": {
+    "case_id": "ncc_30",
+    "patient_name": "Muster, Ada",
+    "age": 60,
+    "ecog": null,
+    "karnofsky": null,
+    "comorbidity": null,
+    "life_expectancy": null,
+    "anamnese": "Erstdiagnose metastasiertes RCC am 10.10.2022. Systemtherapien: 2022 Ipilimumab + Nivolumab, 2024 Cabozantinib, aktuell Lenvatinib + Everolimus. Vorerkrankung: arterielle Hypertonie (Ramipril). CT Staging 10.12.2025 mit Progress ossär und lymphonodal.",
+    "diagnose_kurz": "Metastasiertes Nierenzellkarzinom (mRCC), Erstdiagnose metastasiert 10.10.2022; vorbehandelt (Ipi/Nivo 2022, Cabozantinib 2024), aktuell Lenvatinib + Everolimus; CT 10.12.2025: Progress ossär + lymphonodal.",
+    "stadium": "mRCC; Progress unter aktueller Therapie; geplante 4. Linie",
+    "tnm_clinical": null,
+    "tnm_pathological": null,
+    "histologie_subtyp": null,
+    "histologie_klarzellig": null,
+    "bildgebung": [
+      {
+        "modalitaet": "CT",
+        "region": "Thorax/Abdomen/Becken",
+        "datum": "2025-12-10",
+        "befund_kurz": "Progress der bekannten ossären und lymphonodalen Metastasen.",
+        "quelle": "CT Staging 10.12.2025",
+        "details": "Größenzunahme retroperitonealer Lymphknoten sowie Zunahme/Neueintritt ossärer Läsionen (quantitative Maße nicht angegeben)."
+      }
+    ],
+    "nebendiagnosen": [
+      "arterielle_hypertonie"
+    ],
+    "medikation": [
+      "Ramipril"
+    ],
+    "ici_durchfuehrbar": null,
+    "prior_therapies": [],
+    "ground_truth_metastatic": null,
+    "ground_truth_imdc": null,
+    "ground_truth_therapy": "Wechsel der Systemtherapie (z. B. Pazopanib oder Tivozanib oder Sunitinib) je nach Vorbehandlung/Verträglichkeit."
+  },
+  "prompt_text": "Du bist ein erfahrener Onkologe, spezialisiert auf Nierenzellkarzinom (RCC).\nAnalysiere den folgenden klinischen Fall und erstelle eine strukturierte Therapieempfehlung.\n\n=== KLINISCHER FALL ===\nPatient: Muster, Ada, 60 Jahre\nECOG: None, Karnofsky: ?%\nKomorbidität: None\nLebenserwartung: None\n\nDiagnose: Metastasiertes Nierenzellkarzinom (mRCC), Erstdiagnose metastasiert 10.10.2022; vorbehandelt (Ipi/Nivo 2022, Cabozantinib 2024), aktuell Lenvatinib + Everolimus; CT 10.12.2025: Progress ossär + lymphonodal.\nStadium: mRCC; Progress unter aktueller Therapie; geplante 4. Linie\nTNM: nicht dokumentiert\n\nHISTOLOGIE (WICHTIG für Therapieentscheidung):\nNicht dokumentiert\n\nAnamnese:\nErstdiagnose metastasiertes RCC am 10.10.2022. Systemtherapien: 2022 Ipilimumab + Nivolumab, 2024 Cabozantinib, aktuell Lenvatinib + Everolimus. Vorerkrankung: arterielle Hypertonie (Ramipril). CT Staging 10.12.2025 mit Progress ossär und lymphonodal.\n\nNebendiagnosen: arterielle_hypertonie\n\nAktuelle Medikation: Ramipr...",
+  "prediction": {
+    "is_metastatic": true,
+    "metastatic_reasoning": "Der Patient hat eine Diagnose von metastasiertem Nierenzellkarzinom (mRCC) erhalten und es liegt ein Progress der ossären und lymphonodalen Metastasen unter aktueller Therapie vor. Dies bestätigt den metastasierten Status.",
+    "imdc_risk": "nicht_anwendbar",
+    "imdc_reasoning": "Die IMDC-Risikostratifizierung ist nur für klarzelliges mRCC validiert. Der histologische Subtyp ist nicht dokumentiert. Daher kann die IMDC-Risikobewertung nicht durchgeführt werden.",
+    "treatment_reasoning": "Der Patient hat bereits mehrere Linien der Systemtherapie erhalten: Ipilimumab + Nivolumab, Cabozantinib und aktuell Lenvatinib + Everolimus. Unter der aktuellen Therapie (Lenvatinib + Everolimus) zeigt der Patient einen Progress. Da der histologische Subtyp unbekannt ist, muss man vorsichtig sein. Wenn es sich um ein nicht-klarzelliges RCC handelt, wäre eine TKI-Monotherapie eine Option. Da der Patient aber bereits mehrere TKIs erhalten hat, ist die Wahrscheinlichkeit, dass diese noch wirksam sind, gering. Da der histologische Subtyp unbekannt ist, gehe ich von einem klarzelligen RCC aus, da die Therapieempfehlungen primär dafür gelten. In der 4. Linie nach vorheriger Behandlung mit Ipi/Nivo, Cabozantinib und Lenvatinib/Everolimus gibt es keine klare Empfehlung in den Leitlinien. Eine weitere Immuntherapie ist wahrscheinlich nicht mehr sinnvoll. Eine erneute Behandlung mit einem TKI ist möglich, aber die Wahrscheinlichkeit eines Ansprechens ist gering. Eine Beteiligung an klinischen Studien sollte in Betracht gezogen werden.",
+    "recommended_therapy": "Teilnahme an einer klinischen Studie oder Sunitinib",
+    "therapy_category": "klinische Studie/TKI mono",
+    "recommendation_strength": "0",
+    "confidence": 0.6
+  },
+  "raw_response": "{\"is_metastatic\": true,\n    \"metastatic_reasoning\": \"Der Patient hat eine Diagnose von metastasiertem Nierenzellkarzinom (mRCC) erhalten und es liegt ein Progress der ossären und lymphonodalen Metastasen unter aktueller Therapie vor. Dies bestätigt den metastasierten Status.\",\n    \"imdc_risk\": \"nicht_anwendbar\",\n    \"imdc_reasoning\": \"Die IMDC-Risikostratifizierung ist nur für klarzelliges mRCC validiert. Der histologische Subtyp ist nicht dokumentiert. Daher kann die IMDC-Risikobewertung nicht durchgeführt werden.\",\n    \"treatment_reasoning\": \"Der Patient hat bereits mehrere Linien der Systemtherapie erhalten: Ipilimumab + Nivolumab, Cabozantinib und aktuell Lenvatinib + Everolimus. Unter der aktuellen Therapie (Lenvatinib + Everolimus) zeigt der Patient einen Progress. Da der histologische Subtyp unbekannt ist, muss man vorsichtig sein. Wenn es sich um ein nicht-klarzelliges RCC handelt, wäre eine TKI-Monotherapie eine Option. Da der Patient aber bereits mehrere TKIs erhalten hat, ist die Wahrscheinlichkeit, dass diese noch wirksam sind, gering. Da der histologische Subtyp unbekannt ist, gehe ich von einem klarzelligen RCC aus, da die Therapieempfehlungen primär dafür gelten. In der 4. Linie nach vorheriger Behandlung mit Ipi/Nivo, Cabozantinib und Lenvatinib/Everolimus gibt es keine klare Empfehlung in den Leitlinien. Eine weitere Immuntherapie ist wahrscheinlich nicht mehr sinnvoll. Eine erneute Behandlung mit einem TKI ist möglich, aber die Wahrscheinlichkeit eines Ansprechens ist gering. Eine Beteiligung an klinischen Studien sollte in Betracht gezogen werden.\",\n    \"recommended_therapy\": \"Teilnahme an einer klinischen Studie oder Sunitinib\",\n    \"therapy_category\": \"klinische Studie/TKI mono\",\n    \"recommendation_strength\": \"0\",\n    \"confidence\": 0.6\n}",
+  "ground_truth_metastatic": null,
+  "ground_truth_therapy": "Wechsel der Systemtherapie (z. B. Pazopanib oder Tivozanib oder Sunitinib) je nach Vorbehandlung/Verträglichkeit.",
+  "metastatic_correct": null,
+  "therapy_exact_match": true,
+  "therapy_clinically_acceptable": null,
+  "inference_time_seconds": 3.12081674848284,
+  "tokens_used": 447,
+  "success": true,
+  "error_message": null
+}

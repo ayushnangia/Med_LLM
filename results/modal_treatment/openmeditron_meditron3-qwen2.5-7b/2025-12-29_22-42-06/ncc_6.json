@@ -1,0 +1,39 @@
+{
+  "case_id": "ncc_6",
+  "timestamp": "2025-12-29_22-42-06",
+  "provider": "modal",
+  "model": "OpenMeditron/Meditron3-Qwen2.5-7B",
+  "input_case": {
+    "case_id": "ncc_6",
+    "patient_name": "Beispiel, Daniel",
+    "age": 77,
+    "ecog": 2,
+    "anamnese": "Zufallsbefund: Nierentumor links 2,1 cm bei Urolithiasis. Vorerkrankungen: KHK (Z. n. Stent 2016), CKD G3b, arterielle Hypertonie. Z. n. Hüft-TEP.",
+    "diagnose_kurz": "Unklare Raumforderung linke Niere (Oberpol) 2,1 cm, malignitätskriterien vorhanden",
+    "stadium": "nicht-metastasiert (Verdacht, prätherapeutisch)",
+    "ground_truth_metastatic": false,
+    "ground_truth_therapy": "OP vs Ablation vs Überwachung; Überwachung wegen Alter und Komorbiditäten bevorzugt; Intervention nur bei Progress; erneute Bildgebung in 6 Monaten."
+  },
+  "prompt_text": "Du bist ein erfahrener Onkologe, spezialisiert auf Nierenzellkarzinom (RCC).\nAnalysiere den folgenden klinischen Fall und erstelle eine strukturierte Therapieempfehlung.\n\n=== KLINISCHER FALL ===\nPatient: Beispiel, Daniel, 77 Jahre\nECOG: 2, Karnofsky: None%\nKomorbidität: hoch\nLebenserwartung: unknown\n\nDiagnose: Unklare Raumforderung linke Niere (Oberpol) 2,1 cm, malignitätskriterien vorhanden\nStadium: nicht-metastasiert (Verdacht, prätherapeutisch)\ncTNM: Tunknown Nunknown MM0\n\nAnamnese:\nZufallsbefund: Nierentumor links 2,1 cm bei Urolithiasis. Vorerkrankungen: KHK (Z. n. Stent 2016), CKD G3b, arterielle Hypertonie. Z. n. Hüft-TEP.\n\nNebendiagnosen: KHK (Z. n. Stent 2016), CKD G3b, arterielle Hypertonie, Z. n. Hüft-TEP\n\nVorherige Systemtherapien: Keine\n\n=== THERAPIE-LEITLINIEN ===\n\n\nMETASTASIERTES KLARZELLIGES RCC - THERAPIE-ALGORITHMUS:\n\nIMDC-RISIKOSTRATIFIZIERUNG:\n- Günstig (0 Risikofaktoren)\n- Intermediär (1-2 Risikofaktoren)\n- Ungünstig (≥3 Risikofaktoren)\n\nRisikofaktoren: Karnofsky <...",
+  "prediction": {
+    "is_metastatic": false,
+    "metastatic_reasoning": "Der Patient hat keine bekannten Metastasen. Die Diagnose ist eine unklare Raumforderung linke Niere (Oberpol) 2,1 cm, malignitätskriterien vorhanden, aber keine Metastasen sind erwähnt. Die TNM-Status ist M0, was darauf hindeutet, dass es sich um ein nicht-metastasiertes RCC handelt.",
+    "imdc_risk": "nicht_anwendbar",
+    "imdc_reasoning": "Da der Patient nicht-metastasiert ist, ist die IMDC-Risikostratifikation nicht anwendbar.",
+    "treatment_reasoning": "Für nicht-metastasierte RCC gibt es verschiedene Therapieoptionen, abhängig von der Tumorsize und der Komorbidität. Da der Patient 77 Jahre alt ist und eine hohe Komorbidität hat, ist die Therapieoption der Nierenteilresektion (Nephron-sparing Surgery) eine Option.",
+    "recommended_therapy": "Nierenteilresektion (Nephron-sparing Surgery)",
+    "therapy_category": "Surgery",
+    "recommendation_strength": "A",
+    "confidence": 0.9
+  },
+  "raw_response": "{\n    \"is_metastatic\": false,\n    \"metastatic_reasoning\": \"Der Patient hat keine bekannten Metastasen. Die Diagnose ist eine unklare Raumforderung linke Niere (Oberpol) 2,1 cm, malignitätskriterien vorhanden, aber keine Metastasen sind erwähnt. Die TNM-Status ist M0, was darauf hindeutet, dass es sich um ein nicht-metastasiertes RCC handelt.\",\n    \"imdc_risk\": \"nicht_anwendbar\",\n    \"imdc_reasoning\": \"Da der Patient nicht-metastasiert ist, ist die IMDC-Risikostratifikation nicht anwendbar.\",\n    \"treatment_reasoning\": \"Für nicht-metastasierte RCC gibt es verschiedene Therapieoptionen, abhängig von der Tumorsize und der Komorbidität. Da der Patient 77 Jahre alt ist und eine hohe Komorbidität hat, ist die Therapieoption der Nierenteilresektion (Nephron-sparing Surgery) eine Option.\",\n    \"recommended_therapy\": \"Nierenteilresektion (Nephron-sparing Surgery)\",\n    \"therapy_category\": \"Surgery\",\n    \"recommendation_strength\": \"A\",\n    \"confidence\": 0.9\n}",
+  "ground_truth_metastatic": false,
+  "ground_truth_therapy": "OP vs Ablation vs Überwachung; Überwachung wegen Alter und Komorbiditäten bevorzugt; Intervention nur bei Progress; erneute Bildgebung in 6 Monaten.",
+  "metastatic_correct": true,
+  "therapy_exact_match": false,
+  "therapy_clinically_acceptable": true,
+  "inference_time_seconds": 0.3030806473323277,
+  "tokens_used": 293,
+  "success": true,
+  "error_message": null
+}

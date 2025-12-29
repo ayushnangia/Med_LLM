@@ -1,0 +1,75 @@
+{
+  "case_id": "ncc_9",
+  "timestamp": "2025-12-29_23-38-36",
+  "provider": "modal",
+  "model": "google/gemma-3-27b-it",
+  "input_case": {
+    "case_id": "ncc_9",
+    "patient_name": "Muster, Georg",
+    "age": 61,
+    "ecog": 0,
+    "karnofsky": null,
+    "comorbidity": "unknown",
+    "life_expectancy": "unknown",
+    "anamnese": "Nierentumor links 4,6 cm (cT1b). Raucher: ex 15 PY. Z. n. Cholezystektomie.",
+    "diagnose_kurz": "Nierentumor links (Oberpol) 4,6 cm, malignitätsverdächtig (cT1b), keine Metastasen im CT-Staging",
+    "stadium": "cT1b, M0 (radiologisch), prätherapeutisch",
+    "tnm_clinical": {
+      "T": "T1",
+      "T_sub": "T1b",
+      "N": "N0",
+      "M": "M0",
+      "stage_group": "unknown"
+    },
+    "tnm_pathological": {
+      "T": null,
+      "T_sub": null,
+      "N": null,
+      "M": null,
+      "stage_group": null
+    },
+    "histologie_subtyp": null,
+    "histologie_klarzellig": null,
+    "bildgebung": [
+      {
+        "modalitaet": "CT",
+        "region": "Staging Thorax/Abdomen",
+        "datum": "2025-10-11",
+        "befund_kurz": "Unklare Raumforderung linke Niere (Oberpol) ca. 4,6 cm (cT1b), malignitätsverdächtig. Kein Hinweis auf Filiae/Metastasen.",
+        "quelle": "Erforderlicher Befund"
+      }
+    ],
+    "nebendiagnosen": [
+      "Ex-Raucher (15 PY)",
+      "Z. n. Cholezystektomie"
+    ],
+    "medikation": [],
+    "ici_durchfuehrbar": null,
+    "prior_therapies": [],
+    "ground_truth_metastatic": false,
+    "ground_truth_imdc": null,
+    "ground_truth_therapy": "Partielle vs. radikale Nephrektomie je nach Lage/Komplexität."
+  },
+  "prompt_text": "Du bist ein erfahrener Onkologe, spezialisiert auf Nierenzellkarzinom (RCC).\nAnalysiere den folgenden klinischen Fall und erstelle eine strukturierte Therapieempfehlung.\n\n=== KLINISCHER FALL ===\nPatient: Muster, Georg, 61 Jahre\nECOG: 0, Karnofsky: ?%\nKomorbidität: unknown\nLebenserwartung: unknown\n\nDiagnose: Nierentumor links (Oberpol) 4,6 cm, malignitätsverdächtig (cT1b), keine Metastasen im CT-Staging\nStadium: cT1b, M0 (radiologisch), prätherapeutisch\ncTNM: TT1 NN0 MM0\n\nHISTOLOGIE (WICHTIG für Therapieentscheidung):\nNicht dokumentiert\n\nAnamnese:\nNierentumor links 4,6 cm (cT1b). Raucher: ex 15 PY. Z. n. Cholezystektomie.\n\nNebendiagnosen: Ex-Raucher (15 PY), Z. n. Cholezystektomie\n\nAktuelle Medikation: Keine dokumentiert\n\nBildgebung:\n  - CT Staging Thorax/Abdomen (2025-10-11): Unklare Raumforderung linke Niere (Oberpol) ca. 4,6 cm (cT1b), malignitätsverdächtig. Kein Hinweis auf Filiae/Metastasen.\n\nIMDC-Risikofaktoren: Nicht dokumentiert\nICI-Kombination durchführbar: Nicht dokumentiert\nV...",
+  "prediction": {
+    "is_metastatic": false,
+    "metastatic_reasoning": "Der Patient hat einen cT1b N0 M0 Status, was bedeutet, dass keine Hinweise auf Fernmetastasen im CT-Staging vorliegen. Die Anamnese und die Bildgebung bestätigen dies.",
+    "imdc_risk": "nicht_anwendbar",
+    "imdc_reasoning": "Die IMDC-Risikostratifizierung ist nur für metastasiertes, klarzelliges RCC validiert. Dieser Patient hat kein metastasiertes RCC.",
+    "treatment_reasoning": "Der Patient hat einen cT1b N0 M0 Tumor. Laut den Therapie-Leitlinien für nicht-metastasiertes RCC ist die Nephron-sparing Surgery (Teilresektion) die Therapie der Wahl für cT1 Tumoren (≤7cm) mit einer starken Empfehlung (GoR A). Da der Tumor 4,6 cm groß ist, fällt er in die Kategorie cT1b und sollte durchgeführt werden. Die Leitlinien empfehlen, wenn eine Teilresektion nicht möglich ist, eine radikale Nephrektomie (GoR A).",
+    "recommended_therapy": "Nephron-sparing Surgery (Teilresektion)",
+    "therapy_category": "Surgery",
+    "recommendation_strength": "A",
+    "confidence": 0.95
+  },
+  "raw_response": "{\"is_metastatic\": false,\n    \"metastatic_reasoning\": \"Der Patient hat einen cT1b N0 M0 Status, was bedeutet, dass keine Hinweise auf Fernmetastasen im CT-Staging vorliegen. Die Anamnese und die Bildgebung bestätigen dies.\",\n    \"imdc_risk\": \"nicht_anwendbar\",\n    \"imdc_reasoning\": \"Die IMDC-Risikostratifizierung ist nur für metastasiertes, klarzelliges RCC validiert. Dieser Patient hat kein metastasiertes RCC.\",\n    \"treatment_reasoning\": \"Der Patient hat einen cT1b N0 M0 Tumor. Laut den Therapie-Leitlinien für nicht-metastasiertes RCC ist die Nephron-sparing Surgery (Teilresektion) die Therapie der Wahl für cT1 Tumoren (≤7cm) mit einer starken Empfehlung (GoR A). Da der Tumor 4,6 cm groß ist, fällt er in die Kategorie cT1b und sollte durchgeführt werden. Die Leitlinien empfehlen, wenn eine Teilresektion nicht möglich ist, eine radikale Nephrektomie (GoR A).\",\n    \"recommended_therapy\": \"Nephron-sparing Surgery (Teilresektion)\",\n    \"therapy_category\": \"Surgery\",\n    \"recommendation_strength\": \"A\",\n    \"confidence\": 0.95\n}",
+  "ground_truth_metastatic": false,
+  "ground_truth_therapy": "Partielle vs. radikale Nephrektomie je nach Lage/Komplexität.",
+  "metastatic_correct": true,
+  "therapy_exact_match": false,
+  "therapy_clinically_acceptable": true,
+  "inference_time_seconds": 3.12081674848284,
+  "tokens_used": 301,
+  "success": true,
+  "error_message": null
+}

@@ -1,0 +1,39 @@
+{
+  "case_id": "ncc_5",
+  "timestamp": "2025-12-29_22-42-06",
+  "provider": "modal",
+  "model": "OpenMeditron/Meditron3-Qwen2.5-7B",
+  "input_case": {
+    "case_id": "ncc_5",
+    "patient_name": "Muster, Clara",
+    "age": 47,
+    "ecog": 0,
+    "anamnese": "Zystische Läsion Bosniak IV (2,5 cm) an der rechten Niere. Keine relevanten Vorerkrankungen.",
+    "diagnose_kurz": "Zystische Läsion Bosniak IV, 2,5 cm, rechte Niere",
+    "stadium": "nicht-metastasiert (Verdacht, prätherapeutisch)",
+    "ground_truth_metastatic": false,
+    "ground_truth_therapy": "Nierenteilresektion robotisch vs. laparoskopisch vs. offen vs. Ablation."
+  },
+  "prompt_text": "Du bist ein erfahrener Onkologe, spezialisiert auf Nierenzellkarzinom (RCC).\nAnalysiere den folgenden klinischen Fall und erstelle eine strukturierte Therapieempfehlung.\n\n=== KLINISCHER FALL ===\nPatient: Muster, Clara, 47 Jahre\nECOG: 0, Karnofsky: None%\nKomorbidität: unknown\nLebenserwartung: unknown\n\nDiagnose: Zystische Läsion Bosniak IV, 2,5 cm, rechte Niere\nStadium: nicht-metastasiert (Verdacht, prätherapeutisch)\ncTNM: Tunknown Nunknown MM0\n\nAnamnese:\nZystische Läsion Bosniak IV (2,5 cm) an der rechten Niere. Keine relevanten Vorerkrankungen.\n\nNebendiagnosen: Keine dokumentiert\n\nVorherige Systemtherapien: Keine\n\n=== THERAPIE-LEITLINIEN ===\n\n\nMETASTASIERTES KLARZELLIGES RCC - THERAPIE-ALGORITHMUS:\n\nIMDC-RISIKOSTRATIFIZIERUNG:\n- Günstig (0 Risikofaktoren)\n- Intermediär (1-2 Risikofaktoren)\n- Ungünstig (≥3 Risikofaktoren)\n\nRisikofaktoren: Karnofsky <80%, Zeit bis Systemtherapie <1 Jahr, Hämoglobin↓, Calcium↑, Neutrophile↑, Thrombozyten↑\n\nERSTLINIE (wenn ICI-Kombination möglich):\n- Günst...",
+  "prediction": {
+    "is_metastatic": false,
+    "metastatic_reasoning": "Der Patient hat keine Metastasen, da der Tumor nicht-metastasiert ist (Verdacht, prätherapeutisch) und keine Metastasen dokumentiert sind.",
+    "imdc_risk": "guenstig",
+    "imdc_reasoning": "Der Patient hat keine Risikofaktoren (Karnofsky: None%, Zeit bis Systemtherapie: unknown, Hämoglobin: unknown, Calcium: unknown, Neutrophile: unknown, Thrombozyten: unknown). Daher ist er günstig riskiert.",
+    "treatment_reasoning": "Da der Patient nicht-metastasiert ist, wird die Therapieempfehlung nach dem Nicht-Metastasiertes RCC-Therapie-Algorithmus erfolgen.",
+    "recommended_therapy": "Nephron-sparing Surgery (Nephron-sparing Surgery)",
+    "therapy_category": "Surgery",
+    "recommendation_strength": "A",
+    "confidence": 1.0
+  },
+  "raw_response": "{\n    \"is_metastatic\": false,\n    \"metastatic_reasoning\": \"Der Patient hat keine Metastasen, da der Tumor nicht-metastasiert ist (Verdacht, prätherapeutisch) und keine Metastasen dokumentiert sind.\",\n    \"imdc_risk\": \"guenstig\",\n    \"imdc_reasoning\": \"Der Patient hat keine Risikofaktoren (Karnofsky: None%, Zeit bis Systemtherapie: unknown, Hämoglobin: unknown, Calcium: unknown, Neutrophile: unknown, Thrombozyten: unknown). Daher ist er günstig riskiert.\",\n    \"treatment_reasoning\": \"Da der Patient nicht-metastasiert ist, wird die Therapieempfehlung nach dem Nicht-Metastasiertes RCC-Therapie-Algorithmus erfolgen.\",\n    \"recommended_therapy\": \"Nephron-sparing Surgery (Nephron-sparing Surgery)\",\n    \"therapy_category\": \"Surgery\",\n    \"recommendation_strength\": \"A\",\n    \"confidence\": 1.0\n}",
+  "ground_truth_metastatic": false,
+  "ground_truth_therapy": "Nierenteilresektion robotisch vs. laparoskopisch vs. offen vs. Ablation.",
+  "metastatic_correct": true,
+  "therapy_exact_match": false,
+  "therapy_clinically_acceptable": true,
+  "inference_time_seconds": 0.3030806473323277,
+  "tokens_used": 240,
+  "success": true,
+  "error_message": null
+}

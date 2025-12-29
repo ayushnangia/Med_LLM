@@ -1,0 +1,63 @@
+{
+  "case_id": "ncc_3",
+  "timestamp": "2025-12-29T23:35:19.579674",
+  "provider": "openrouter",
+  "model": "google/gemma-3-27b-it",
+  "input_case": {
+    "case_id": "ncc_3",
+    "patient_name": "Muster, Alpha",
+    "age": 58,
+    "ecog": 0,
+    "anamnese": "Zufallsbefund im CT wegen Nephrolithiasis. Solide Nierenraumforderung rechts (2,2 cm).",
+    "diagnose_kurz": "Solide Nierenraumforderung rechts (2,2 cm)",
+    "stadium": "nicht-metastasiert (Verdacht, prätherapeutisch)",
+    "tnm_clinical": {
+      "T": "unknown",
+      "T_sub": "unknown",
+      "N": "unknown",
+      "M": "M0",
+      "stage_group": "unknown"
+    },
+    "histologie_subtyp": null,
+    "histologie_klarzellig": null,
+    "bildgebung": [
+      {
+        "modalitaet": "CT",
+        "region": "Abdomen/Niere",
+        "datum": null,
+        "befund_kurz": "Zufallsbefund: solide Nierenraumforderung rechts (2,2 cm) im Rahmen CT wegen Nephrolithiasis.",
+        "quelle": "Anamnese"
+      },
+      {
+        "modalitaet": "MRT",
+        "region": "Niere mit KM",
+        "datum": "2025-12-01",
+        "befund_kurz": "Solide Nierenraumforderung rechts, 2,2 cm; malignomsuspekt (Malignitätskriterien: ja).",
+        "quelle": "Erforderliche Bildgebung"
+      }
+    ],
+    "nebendiagnosen": [
+      "arterielle Hypertonie"
+    ],
+    "ground_truth_metastatic": false,
+    "ground_truth_therapy": "Aktive Überwachung vs. Nierenteilresektion vs. Ablation (je nach Lage/RENAL-Score); Biopsie ja/nein?"
+  },
+  "prompt_text": "Du bist ein erfahrener Onkologe, spezialisiert auf Nierenzellkarzinom (RCC).\nAnalysiere den folgenden klinischen Fall und erstelle eine strukturierte Therapieempfehlung.\n\n=== KLINISCHER FALL ===\nPatient: Muster, Alpha, 58 Jahre\nECOG: 0, Karnofsky: ?%\nKomorbidität: unknown\n\nDiagnose: Solide Nierenraumforderung rechts (2,2 cm)\nStadium: nicht-metastasiert (Verdacht, prätherapeutisch)\nTNM: cTNM: Tunknown Nunknown MM0\n\nHISTOLOGIE: Nicht dokumentiert\n\nAnamnese: Zufallsbefund im CT wegen Nephrolithiasis. Solide Nierenraumforderung rechts (2,2 cm).\n\nNebendiagnosen: arterielle Hypertonie\n\nBildgebung:\n  - CT Abdomen/Niere (None): Zufallsbefund: solide Nierenraumforderung rechts (2,2 cm) im Rahmen CT wegen Nephrolithiasis.\n  - MRT Niere mit KM (2025-12-01): Solide Nierenraumforderung rechts, 2,2 cm; malignomsuspekt (Malignitätskriterien: ja).\n\nVorherige Systemtherapien: Keine\n\n=== THERAPIE-LEITLINIEN ===\n\nMETASTASIERTES KLARZELLIGES RCC - THERAPIE-ALGORITHMUS:\n\nIMDC-RISIKOSTRATIFIZIERUNG:\n- Günstig (0 Risikofaktoren)\n- Intermediär (1-2 Risikofaktoren)\n- Ungünstig (≥3 Risikofaktoren)\n\nRisikofaktoren: Karnofsky <80%, Zeit bis Systemtherapie <1 Jahr, Hämoglobin↓, Calcium↑, Neutrophile↑, Thrombozyten↑\n\nERSTLINIE (wenn ICI-Kombination möglich):\n- Günstig: NIVO+CABO (A), PEMBRO+AXI (A), PEMBRO+LEN (A), AVELU+AXI (B)\n- Intermediär: NIVO+CABO (A), NIVO+IPI (A), PEMBRO+AXI (A), PEMBRO+LEN (A)\n- Ungünstig: NIVO+CABO (A), NIVO+IPI (A), PEMBRO+AXI (A), PEMBRO+LEN (A)\n\nERSTLINIE (wenn ICI-Kombination NICHT möglich):\n- Günstig: Pazopanib (A), Sunitinib (A), Tivozanib (A), BEV+IFN (A)\n- Intermediär: Cabozantinib (B), Pazopanib (B), Sunitinib (B)\n- Ungünstig: Cabozantinib (B), Sunitinib (B), Temsirolimus (0)\n\nZWEITLINIE nach ICI-Kombination: Cabozantinib (A), Lenvatinib+Everolimus (A), Sunitinib (A)\nZWEITLINIE nach VEGF/R-Monotherapie: Cabozantinib (A), Nivolumab (A)\n\n---\n\nNICHT-METASTASIERTES RCC - THERAPIE-ALGORITHMUS:\n\n1. AKTIVE ÜBERWACHUNG (GoR 0): Kleine Tumoren + hohe Komorbidität/begrenzte Lebenserwartung\n2. ABLATION (GoR 0): Kleine Tumoren + hohe Komorbidität/begrenzte Lebenserwartung\n3. NIERENTEILRESEKTION: cT1 (≤7cm) SOLL durchgeführt werden (GoR A)\n4. RADIKALE NEPHREKTOMIE: Wenn Teilresektion nicht möglich (GoR A)\n\nLegende: A=starke Empfehlung, B=schwache Empfehlung, 0=Option\n\n\n=== AUFGABE ===\nAnalysiere den Fall schrittweise:\n1. METASTASIERUNG: Ist der Patient metastasiert? (basierend auf TNM, Anamnese, Bildgebung)\n2. HISTOLOGIE: Klarzellig vs. nicht-klarzellig?\n3. RISIKO: Falls metastasiert + klarzellig, IMDC-Risiko?\n4. THERAPIE: Empfehlung nach Leitlinie\n\nAntwort als JSON:\n{\n    \"is_metastatic\": true/false,\n    \"metastatic_reasoning\": \"Begründung...\",\n    \"imdc_risk\": \"guenstig/intermediaer/unguenstig/nicht_anwendbar\",\n    \"imdc_reasoning\": \"IMDC-Berechnung...\",\n    \"treatment_reasoning\": \"Schrittweise Begründung...\",\n    \"recommended_therapy\": \"Konkrete Empfehlung\",\n    \"therapy_category\": \"IO+TKI/TKI mono/Surgery/Surveillance/etc.\",\n    \"confidence\": 0.0-1.0\n}",
+  "output": {
+    "is_metastatic": false,
+    "metastatic_reasoning": "Der TNM-Status gibt M0 an, was bedeutet, dass keine Fernmetastasen vorliegen. Die Anamnese und die Bildgebung bestätigen dies ebenfalls, da keine Hinweise auf Metastasen genannt werden.",
+    "imdc_risk": "nicht_anwendbar",
+    "imdc_reasoning": "Die IMDC-Risikostratifizierung ist nur für metastasiertes Nierenzellkarzinom relevant. Da der Patient nicht metastasiert ist, ist die IMDC-Risikobewertung nicht anwendbar.",
+    "treatment_reasoning": "Der Patient präsentiert sich mit einer soliden Nierenraumforderung von 2,2 cm. Die MRT-Untersuchung ist malignitätsverdächtig. Da keine Komorbiditäten bekannt sind, die eine konservative Behandlung nahelegen würden, und die Raumforderung klein ist, ist die Nierenteilresektion die Therapie der Wahl. Eine radikale Nephrektomie wäre eine Alternative, wenn eine Teilresektion technisch nicht möglich ist. Aktive Überwachung oder Ablation sind bei einem malignitätsverdächtigen Befund und fehlenden Kontraindikationen für eine Operation weniger geeignet.",
+    "recommended_therapy": "Nierenteilresektion",
+    "therapy_category": "Surgery",
+    "confidence": 0.9
+  },
+  "raw_response": "```json\n{\n    \"is_metastatic\": false,\n    \"metastatic_reasoning\": \"Der TNM-Status gibt M0 an, was bedeutet, dass keine Fernmetastasen vorliegen. Die Anamnese und die Bildgebung bestätigen dies ebenfalls, da keine Hinweise auf Metastasen genannt werden.\",\n    \"imdc_risk\": \"nicht_anwendbar\",\n    \"imdc_reasoning\": \"Die IMDC-Risikostratifizierung ist nur für metastasiertes Nierenzellkarzinom relevant. Da der Patient nicht metastasiert ist, ist die IMDC-Risikobewertung nicht anwendbar.\",\n    \"treatment_reasoning\": \"Der Patient präsentiert sich mit einer soliden Nierenraumforderung von 2,2 cm. Die MRT-Untersuchung ist malignitätsverdächtig. Da keine Komorbiditäten bekannt sind, die eine konservative Behandlung nahelegen würden, und die Raumforderung klein ist, ist die Nierenteilresektion die Therapie der Wahl. Eine radikale Nephrektomie wäre eine Alternative, wenn eine Teilresektion technisch nicht möglich ist. Aktive Überwachung oder Ablation sind bei einem malignitätsverdächtigen Befund und fehlenden Kontraindikationen für eine Operation weniger geeignet.\",\n    \"recommended_therapy\": \"Nierenteilresektion\",\n    \"therapy_category\": \"Surgery\",\n    \"confidence\": 0.9\n}\n```",
+  "ground_truth_metastatic": false,
+  "ground_truth_therapy": "Aktive Überwachung vs. Nierenteilresektion vs. Ablation (je nach Lage/RENAL-Score); Biopsie ja/nein?",
+  "metastatic_correct": true,
+  "inference_time_seconds": 7.962617874145508,
+  "tokens_used": 1403,
+  "success": true
+}

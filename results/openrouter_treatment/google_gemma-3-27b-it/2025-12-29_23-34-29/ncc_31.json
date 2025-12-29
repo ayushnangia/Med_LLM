@@ -1,0 +1,105 @@
+{
+  "case_id": "ncc_31",
+  "timestamp": "2025-12-29T23:42:56.052763",
+  "provider": "openrouter",
+  "model": "google/gemma-3-27b-it",
+  "input_case": {
+    "case_id": "ncc_31",
+    "patient_name": "Muster, Felix",
+    "age": 77,
+    "ecog": null,
+    "anamnese": "Erstdiagnose metastasiertes RCC 03.03.2021. Systemtherapien: 2021 Nivolumab+Ipilimumab; 2023 Sunitinib. Vorerkrankungen: KHK, Status nach Leistenhernien-OP. Medikation: Candesartan, Marcumar.",
+    "diagnose_kurz": "Metastasiertes RCC (ED 03.03.2021), vorbehandelt: 2021 Nivolumab+Ipilimumab, 2023 Sunitinib; CT 22.11.2025 mit Progress v. a. hepatisch + ossär; pulmonale Mikronoduli stabil; paraaortaler LK neu/grenzwertig.",
+    "stadium": "mRCC; vorbehandelt (2. Linie abgeschlossen); Progress 11/2025: Leber + Knochen (+ grenzwertig paraaortal); Lunge stabil",
+    "tnm_clinical": null,
+    "histologie_subtyp": null,
+    "histologie_klarzellig": null,
+    "bildgebung": [
+      {
+        "modalitaet": "CT",
+        "region": "Thorax/Abdomen/Becken",
+        "datum": "2025-11-22",
+        "befund_kurz": "Progress v. a. hepatisch + ossär; pulmonale Mikronoduli stabil; paraaortaler LK neu/grenzwertig.",
+        "quelle": "CT Staging 22.11.2025",
+        "details": {
+          "thorax": {
+            "pleuraerguss": "nein",
+            "lungen_herde_stabil": [
+              {
+                "lokalisation": "RLL",
+                "groesse_mm": 5,
+                "beschreibung": "stabil"
+              },
+              {
+                "lokalisation": "LUL",
+                "groesse_mm": 4,
+                "beschreibung": "stabil"
+              }
+            ]
+          },
+          "abdomen": {
+            "leber_metastasen_neu": [
+              {
+                "segment": "VII",
+                "groesse_mm": 24,
+                "beschreibung": "neu/metastasenverdächtig"
+              },
+              {
+                "segment": "II",
+                "groesse_mm": 11,
+                "beschreibung": "neu/metastasenverdächtig"
+              }
+            ],
+            "retroperitoneale_lk": [
+              {
+                "lokalisation": "paraaortal",
+                "groesse_mm_kurze_achse": 12,
+                "beschreibung": "neu/grenzwertig, metastasenverdächtig"
+              }
+            ]
+          },
+          "skelett": {
+            "ossaere_metastasen_neu": [
+              {
+                "lokalisation": "LWK3",
+                "groesse_mm": 19,
+                "typ": "osteolytisch",
+                "beschreibung": "neu/metastasenverdächtig"
+              },
+              {
+                "lokalisation": "rechtes Os ilium",
+                "groesse_mm": 23,
+                "typ": "osteolytisch",
+                "beschreibung": "neu/metastasenverdächtig"
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "nebendiagnosen": [
+      "koronare_herzkrankheit",
+      "status_nach_leistenhernien_op"
+    ],
+    "ground_truth_metastatic": null,
+    "ground_truth_therapy": "Start 3. Linie (z. B. Lenvatinib + Everolimus oder alternative Sequenz je nach Vorbehandlung/Komorbidität). Supportiv: Analgesie, Knochenprotektion nach Standard, engmaschige Laborkontrollen."
+  },
+  "prompt_text": "Du bist ein erfahrener Onkologe, spezialisiert auf Nierenzellkarzinom (RCC).\nAnalysiere den folgenden klinischen Fall und erstelle eine strukturierte Therapieempfehlung.\n\n=== KLINISCHER FALL ===\nPatient: Muster, Felix, 77 Jahre\nECOG: None, Karnofsky: ?%\nKomorbidität: None\n\nDiagnose: Metastasiertes RCC (ED 03.03.2021), vorbehandelt: 2021 Nivolumab+Ipilimumab, 2023 Sunitinib; CT 22.11.2025 mit Progress v. a. hepatisch + ossär; pulmonale Mikronoduli stabil; paraaortaler LK neu/grenzwertig.\nStadium: mRCC; vorbehandelt (2. Linie abgeschlossen); Progress 11/2025: Leber + Knochen (+ grenzwertig paraaortal); Lunge stabil\nTNM: nicht dokumentiert\n\nHISTOLOGIE: Nicht dokumentiert\n\nAnamnese: Erstdiagnose metastasiertes RCC 03.03.2021. Systemtherapien: 2021 Nivolumab+Ipilimumab; 2023 Sunitinib. Vorerkrankungen: KHK, Status nach Leistenhernien-OP. Medikation: Candesartan, Marcumar.\n\nNebendiagnosen: koronare_herzkrankheit, status_nach_leistenhernien_op\n\nBildgebung:\n  - CT Thorax/Abdomen/Becken (2025-11-22): Progress v. a. hepatisch + ossär; pulmonale Mikronoduli stabil; paraaortaler LK neu/grenzwertig.\n\nVorherige Systemtherapien: Keine\n\n=== THERAPIE-LEITLINIEN ===\n\nMETASTASIERTES KLARZELLIGES RCC - THERAPIE-ALGORITHMUS:\n\nIMDC-RISIKOSTRATIFIZIERUNG:\n- Günstig (0 Risikofaktoren)\n- Intermediär (1-2 Risikofaktoren)\n- Ungünstig (≥3 Risikofaktoren)\n\nRisikofaktoren: Karnofsky <80%, Zeit bis Systemtherapie <1 Jahr, Hämoglobin↓, Calcium↑, Neutrophile↑, Thrombozyten↑\n\nERSTLINIE (wenn ICI-Kombination möglich):\n- Günstig: NIVO+CABO (A), PEMBRO+AXI (A), PEMBRO+LEN (A), AVELU+AXI (B)\n- Intermediär: NIVO+CABO (A), NIVO+IPI (A), PEMBRO+AXI (A), PEMBRO+LEN (A)\n- Ungünstig: NIVO+CABO (A), NIVO+IPI (A), PEMBRO+AXI (A), PEMBRO+LEN (A)\n\nERSTLINIE (wenn ICI-Kombination NICHT möglich):\n- Günstig: Pazopanib (A), Sunitinib (A), Tivozanib (A), BEV+IFN (A)\n- Intermediär: Cabozantinib (B), Pazopanib (B), Sunitinib (B)\n- Ungünstig: Cabozantinib (B), Sunitinib (B), Temsirolimus (0)\n\nZWEITLINIE nach ICI-Kombination: Cabozantinib (A), Lenvatinib+Everolimus (A), Sunitinib (A)\nZWEITLINIE nach VEGF/R-Monotherapie: Cabozantinib (A), Nivolumab (A)\n\n---\n\nNICHT-METASTASIERTES RCC - THERAPIE-ALGORITHMUS:\n\n1. AKTIVE ÜBERWACHUNG (GoR 0): Kleine Tumoren + hohe Komorbidität/begrenzte Lebenserwartung\n2. ABLATION (GoR 0): Kleine Tumoren + hohe Komorbidität/begrenzte Lebenserwartung\n3. NIERENTEILRESEKTION: cT1 (≤7cm) SOLL durchgeführt werden (GoR A)\n4. RADIKALE NEPHREKTOMIE: Wenn Teilresektion nicht möglich (GoR A)\n\nLegende: A=starke Empfehlung, B=schwache Empfehlung, 0=Option\n\n\n=== AUFGABE ===\nAnalysiere den Fall schrittweise:\n1. METASTASIERUNG: Ist der Patient metastasiert? (basierend auf TNM, Anamnese, Bildgebung)\n2. HISTOLOGIE: Klarzellig vs. nicht-klarzellig?\n3. RISIKO: Falls metastasiert + klarzellig, IMDC-Risiko?\n4. THERAPIE: Empfehlung nach Leitlinie\n\nAntwort als JSON:\n{\n    \"is_metastatic\": true/false,\n    \"metastatic_reasoning\": \"Begründung...\",\n    \"imdc_risk\": \"guenstig/intermediaer/unguenstig/nicht_anwendbar\",\n    \"imdc_reasoning\": \"IMDC-Berechnung...\",\n    \"treatment_reasoning\": \"Schrittweise Begründung...\",\n    \"recommended_therapy\": \"Konkrete Empfehlung\",\n    \"therapy_category\": \"IO+TKI/TKI mono/Surgery/Surveillance/etc.\",\n    \"confidence\": 0.0-1.0\n}",
+  "output": {
+    "is_metastatic": true,
+    "metastatic_reasoning": "Der Patient hat eine Diagnose eines metastasierten Nierenzellkarzinoms (RCC) vom 03.03.2021. Das aktuelle CT vom 22.11.2025 zeigt eine Progression der Erkrankung in Leber und Knochen, was eindeutig für Metastasen spricht.",
+    "imdc_risk": "intermediaer",
+    "imdc_reasoning": "Die IMDC-Risikostratifizierung erfordert die folgenden Informationen, von denen einige fehlen. Wir gehen von folgenden Werten aus:\n\n*   **Karnofsky Performance Status:** Da ECOG 0 angegeben ist, nehmen wir an, dass der Karnofsky Status >80% beträgt. (Annahme, da nicht explizit angegeben)\n*   **Zeit bis zur systemischen Therapie:** Die Zeit von Diagnose (03.03.2021) bis zur ersten Therapie (Nivolumab+Ipilimumab, 2021) ist kurz, aber die Zeit von der ersten zur zweiten Therapie (Sunitinib, 2023) ist länger. Da die Progression jetzt (11/2025) nach Sunitinib erfolgt, ist die Zeit seit der letzten Therapie < 1 Jahr.\n*   **Hämoglobin:** Nicht dokumentiert, daher neutral.\n*   **Calcium:** Nicht dokumentiert, daher neutral.\n*   **Neutrophile:** Nicht dokumentiert, daher neutral.\n*   **Thrombozyten:** Nicht dokumentiert, daher neutral.\n\nBasierend auf diesen Annahmen und der Tatsache, dass die Zeit seit der letzten Therapie < 1 Jahr ist, weist der Patient 1 Risikofaktor auf und wird somit als intermediäres Risiko eingestuft.",
+    "treatment_reasoning": "Der Patient hat bereits zwei Linien der systemischen Therapie (Nivolumab+Ipilimumab und Sunitinib) erhalten und zeigt nun eine Progression unter Sunitinib. Die Leitlinien empfehlen nach einer ICI-Kombination in der Zweitlinie Cabozantinib oder Lenvatinib+Everolimus oder Sunitinib. Da Sunitinib bereits eingesetzt wurde und die Progression unter Sunitinib aufgetreten ist, ist Cabozantinib oder Lenvatinib+Everolimus die bevorzugte Option. Aufgrund der KHK und der Marcumar-Therapie ist die Verträglichkeit von Lenvatinib+Everolimus möglicherweise problematischer (Erhöhtes Blutungsrisiko). Daher ist Cabozantinib die bevorzugte Wahl.",
+    "recommended_therapy": "Cabozantinib",
+    "therapy_category": "TKI mono",
+    "confidence": 0.8
+  },
+  "raw_response": "\n```json\n{\n    \"is_metastatic\": true,\n    \"metastatic_reasoning\": \"Der Patient hat eine Diagnose eines metastasierten Nierenzellkarzinoms (RCC) vom 03.03.2021. Das aktuelle CT vom 22.11.2025 zeigt eine Progression der Erkrankung in Leber und Knochen, was eindeutig für Metastasen spricht.\",\n    \"imdc_risk\": \"intermediaer\",\n    \"imdc_reasoning\": \"Die IMDC-Risikostratifizierung erfordert die folgenden Informationen, von denen einige fehlen. Wir gehen von folgenden Werten aus:\\n\\n*   **Karnofsky Performance Status:** Da ECOG 0 angegeben ist, nehmen wir an, dass der Karnofsky Status >80% beträgt. (Annahme, da nicht explizit angegeben)\\n*   **Zeit bis zur systemischen Therapie:** Die Zeit von Diagnose (03.03.2021) bis zur ersten Therapie (Nivolumab+Ipilimumab, 2021) ist kurz, aber die Zeit von der ersten zur zweiten Therapie (Sunitinib, 2023) ist länger. Da die Progression jetzt (11/2025) nach Sunitinib erfolgt, ist die Zeit seit der letzten Therapie < 1 Jahr.\\n*   **Hämoglobin:** Nicht dokumentiert, daher neutral.\\n*   **Calcium:** Nicht dokumentiert, daher neutral.\\n*   **Neutrophile:** Nicht dokumentiert, daher neutral.\\n*   **Thrombozyten:** Nicht dokumentiert, daher neutral.\\n\\nBasierend auf diesen Annahmen und der Tatsache, dass die Zeit seit der letzten Therapie < 1 Jahr ist, weist der Patient 1 Risikofaktor auf und wird somit als intermediäres Risiko eingestuft.\",\n    \"treatment_reasoning\": \"Der Patient hat bereits zwei Linien der systemischen Therapie (Nivolumab+Ipilimumab und Sunitinib) erhalten und zeigt nun eine Progression unter Sunitinib. Die Leitlinien empfehlen nach einer ICI-Kombination in der Zweitlinie Cabozantinib oder Lenvatinib+Everolimus oder Sunitinib. Da Sunitinib bereits eingesetzt wurde und die Progression unter Sunitinib aufgetreten ist, ist Cabozantinib oder Lenvatinib+Everolimus die bevorzugte Option. Aufgrund der KHK und der Marcumar-Therapie ist die Verträglichkeit von Lenvatinib+Everolimus möglicherweise problematischer (Erhöhtes Blutungsrisiko). Daher ist Cabozantinib die bevorzugte Wahl.\",\n    \"recommended_therapy\": \"Cabozantinib\",\n    \"therapy_category\": \"TKI mono\",\n    \"confidence\": 0.8\n}\n```",
+  "ground_truth_metastatic": null,
+  "ground_truth_therapy": "Start 3. Linie (z. B. Lenvatinib + Everolimus oder alternative Sequenz je nach Vorbehandlung/Komorbidität). Supportiv: Analgesie, Knochenprotektion nach Standard, engmaschige Laborkontrollen.",
+  "metastatic_correct": null,
+  "inference_time_seconds": 21.312472105026245,
+  "tokens_used": 1829,
+  "success": true
+}

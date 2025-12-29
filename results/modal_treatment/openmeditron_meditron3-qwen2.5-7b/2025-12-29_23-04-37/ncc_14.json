@@ -1,0 +1,96 @@
+{
+  "case_id": "ncc_14",
+  "timestamp": "2025-12-29_23-04-37",
+  "provider": "modal",
+  "model": "OpenMeditron/Meditron3-Qwen2.5-7B",
+  "input_case": {
+    "case_id": "ncc_14",
+    "patient_name": "Beispiel, Leon",
+    "age": 79,
+    "ecog": 2,
+    "karnofsky": null,
+    "comorbidity": "hoch",
+    "life_expectancy": "unknown",
+    "anamnese": "Zufallsbefund der linken Niere (Sonographie beim Hausarzt bei Rückenschmerzen). Großer Nierentumor links ca. 9 cm. Vorerkrankungen: KHK, Z. n. Bypass 2012, CKD G2.",
+    "diagnose_kurz": "Großer Nierentumor links ca. 9,0 cm, hochgradig malignitätsverdächtig (V. a. RCC), fragliche Infiltration linke Nebenniere; CT Thorax ohne Metastasen",
+    "stadium": "lokal fortgeschritten vs organbegrenzt; M0 (CT Thorax 04.12.2025)",
+    "tnm_clinical": {
+      "T": "T2",
+      "T_sub": "T2a",
+      "N": "N0",
+      "M": "M0",
+      "stage_group": "unknown"
+    },
+    "tnm_pathological": {
+      "T": null,
+      "T_sub": null,
+      "N": null,
+      "M": null,
+      "stage_group": null
+    },
+    "histologie_subtyp": null,
+    "histologie_klarzellig": null,
+    "bildgebung": [
+      {
+        "modalitaet": "CT",
+        "region": "Abdomen mit KM",
+        "datum": "2025-12-04",
+        "befund_kurz": "Linksseitige große renale Raumforderung, max. ca. 9,0 cm, hochgradig malignitätsverdächtig (V. a. RCC). In enger Nachbarschaft zur linken Nebenniere mit fraglicher Infiltration; sichere Abgrenzung nicht eindeutig möglich. Rechte Niere ohne fokale Läsion. Keine abdominelle Lymphadenopathie, keine Aszites, übrige Organe (inkl. Pankreas/Leber/Milz/Gallenwege) unauffällig.",
+        "quelle": "Erforderlicher Befund"
+      },
+      {
+        "modalitaet": "CT",
+        "region": "Thorax",
+        "datum": "2025-12-04",
+        "befund_kurz": "Kein Nachweis pulmonaler Rundherde oder suspekter Infiltrate. Keine Pleuraergüsse. Keine pathologisch vergrößerten mediastinalen/hilären Lymphknoten. Kein Hinweis auf ossäre Metastasen. Beurteilung: Kein Hinweis auf thorakale Metastasierung.",
+        "quelle": "Erforderlicher Befund"
+      }
+    ],
+    "nebendiagnosen": [
+      "KHK",
+      "Z. n. aortokoronarer Bypass 2012",
+      "CKD G2"
+    ],
+    "medikation": [
+      {
+        "wirkstoff_oder_klasse": "ASS",
+        "details": null
+      },
+      {
+        "wirkstoff_oder_klasse": "Statin",
+        "details": null
+      },
+      {
+        "wirkstoff_oder_klasse": "Betablocker",
+        "details": null
+      }
+    ],
+    "ici_durchfuehrbar": null,
+    "prior_therapies": [],
+    "ground_truth_metastatic": false,
+    "ground_truth_imdc": null,
+    "ground_truth_therapy": "Nephrektomie mit Adrenalektomie links; Einschätzung des perioperativen Risikos."
+  },
+  "prompt_text": "Du bist ein erfahrener Onkologe, spezialisiert auf Nierenzellkarzinom (RCC).\nAnalysiere den folgenden klinischen Fall und erstelle eine strukturierte Therapieempfehlung.\n\n=== KLINISCHER FALL ===\nPatient: Beispiel, Leon, 79 Jahre\nECOG: 2, Karnofsky: ?%\nKomorbidität: hoch\nLebenserwartung: unknown\n\nDiagnose: Großer Nierentumor links ca. 9,0 cm, hochgradig malignitätsverdächtig (V. a. RCC), fragliche Infiltration linke Nebenniere; CT Thorax ohne Metastasen\nStadium: lokal fortgeschritten vs organbegrenzt; M0 (CT Thorax 04.12.2025)\ncTNM: TT2 NN0 MM0\n\nHISTOLOGIE (WICHTIG für Therapieentscheidung):\nNicht dokumentiert\n\nAnamnese:\nZufallsbefund der linken Niere (Sonographie beim Hausarzt bei Rückenschmerzen). Großer Nierentumor links ca. 9 cm. Vorerkrankungen: KHK, Z. n. Bypass 2012, CKD G2.\n\nNebendiagnosen: KHK, Z. n. aortokoronarer Bypass 2012, CKD G2\n\nAktuelle Medikation: ASS, Statin, Betablocker\n\nBildgebung:\n  - CT Abdomen mit KM (2025-12-04): Linksseitige große renale Raumforderung, max. ca....",
+  "prediction": {
+    "is_metastatic": true,
+    "metastatic_reasoning": "Keine Metastasen im Thorax nach CT, aber hohe Wahrscheinlichkeit für Metastasierung in der Nebenniere.",
+    "imdc_risk": "nicht_anwendbar",
+    "imdc_reasoning": "Der Patient ist nicht-metastasiert und nicht klarzellig, sodass die IMDC-Risikostratifizierung nicht anwendbar ist.",
+    "treatment_reasoning": "Da der Patient nicht-metastasiert und nicht-klarzellig ist, wird die Therapieempfehlung für nicht-metastasiertes RCC angewendet.",
+    "recommended_therapy": "Nephron-sparing Surgery (T1a/T1b) oder Radikale Nephrectomy (T2a/T2b/T3/T4) basierend auf Tumorgröße und Komorbidität.",
+    "therapy_category": "Surgery",
+    "recommendation_strength": "A",
+    "confidence": 0.9
+  },
+  "raw_response": "{\n    \"is_metastatic\": true,\n    \"metastatic_reasoning\": \"Keine Metastasen im Thorax nach CT, aber hohe Wahrscheinlichkeit für Metastasierung in der Nebenniere.\",\n    \"imdc_risk\": \"nicht_anwendbar\",\n    \"imdc_reasoning\": \"Der Patient ist nicht-metastasiert und nicht klarzellig, sodass die IMDC-Risikostratifizierung nicht anwendbar ist.\",\n    \"treatment_reasoning\": \"Da der Patient nicht-metastasiert und nicht-klarzellig ist, wird die Therapieempfehlung für nicht-metastasiertes RCC angewendet.\",\n    \"recommended_therapy\": \"Nephron-sparing Surgery (T1a/T1b) oder Radikale Nephrectomy (T2a/T2b/T3/T4) basierend auf Tumorgröße und Komorbidität.\",\n    \"therapy_category\": \"Surgery\",\n    \"recommendation_strength\": \"A\",\n    \"confidence\": 0.9\n}",
+  "ground_truth_metastatic": false,
+  "ground_truth_therapy": "Nephrektomie mit Adrenalektomie links; Einschätzung des perioperativen Risikos.",
+  "metastatic_correct": false,
+  "therapy_exact_match": false,
+  "therapy_clinically_acceptable": true,
+  "inference_time_seconds": 0.25036321367536274,
+  "tokens_used": 234,
+  "success": true,
+  "error_message": null
+}

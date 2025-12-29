@@ -1,0 +1,58 @@
+{
+  "case_id": "ncc_2",
+  "timestamp": "2025-12-29T23:35:11.606049",
+  "provider": "openrouter",
+  "model": "google/gemma-3-27b-it",
+  "input_case": {
+    "case_id": "ncc_2",
+    "patient_name": "Ninja, Son",
+    "age": 82,
+    "ecog": 1,
+    "anamnese": "Pat synkopiert, zur TAVI-Evaluation. TAVI indiziert. Im TAVI-CT malignomsuspekte Raumforderung linke Niere (ca. 2×3 cm). Erstdiagnose 06.11.2025, links.",
+    "diagnose_kurz": "Malignomsuspekte Raumforderung linke Niere",
+    "stadium": "unbekannt (prätherapeutisch)",
+    "tnm_clinical": {
+      "T": "unknown",
+      "T_sub": "unknown",
+      "N": "unknown",
+      "M": "unknown",
+      "stage_group": "unknown"
+    },
+    "histologie_subtyp": null,
+    "histologie_klarzellig": null,
+    "bildgebung": [
+      {
+        "modalitaet": "CT",
+        "region": "Ganzkörper (TAVI-CT/Staging)",
+        "datum": "2025-11-06",
+        "befund_kurz": "Malignomsuspekte Raumforderung linke Niere, ca. 2×3 cm.",
+        "quelle": "Erforderliche Bildgebung"
+      }
+    ],
+    "nebendiagnosen": [
+      "Aortenstenose hochgradig (TAVI indiziert)",
+      "KHK",
+      "CKD G3"
+    ],
+    "ground_truth_metastatic": false,
+    "ground_truth_therapy": "Weiteres Procedere (Intervention vs Surveillance) unter Berücksichtigung TAVI-Priorität."
+  },
+  "prompt_text": "Du bist ein erfahrener Onkologe, spezialisiert auf Nierenzellkarzinom (RCC).\nAnalysiere den folgenden klinischen Fall und erstelle eine strukturierte Therapieempfehlung.\n\n=== KLINISCHER FALL ===\nPatient: Ninja, Son, 82 Jahre\nECOG: 1, Karnofsky: ?%\nKomorbidität: hoch\n\nDiagnose: Malignomsuspekte Raumforderung linke Niere\nStadium: unbekannt (prätherapeutisch)\nTNM: cTNM: Tunknown Nunknown Munknown\n\nHISTOLOGIE: Nicht dokumentiert\n\nAnamnese: Pat synkopiert, zur TAVI-Evaluation. TAVI indiziert. Im TAVI-CT malignomsuspekte Raumforderung linke Niere (ca. 2×3 cm). Erstdiagnose 06.11.2025, links.\n\nNebendiagnosen: Aortenstenose hochgradig (TAVI indiziert), KHK, CKD G3\n\nBildgebung:\n  - CT Ganzkörper (TAVI-CT/Staging) (2025-11-06): Malignomsuspekte Raumforderung linke Niere, ca. 2×3 cm.\n\nVorherige Systemtherapien: Keine\n\n=== THERAPIE-LEITLINIEN ===\n\nMETASTASIERTES KLARZELLIGES RCC - THERAPIE-ALGORITHMUS:\n\nIMDC-RISIKOSTRATIFIZIERUNG:\n- Günstig (0 Risikofaktoren)\n- Intermediär (1-2 Risikofaktoren)\n- Ungünstig (≥3 Risikofaktoren)\n\nRisikofaktoren: Karnofsky <80%, Zeit bis Systemtherapie <1 Jahr, Hämoglobin↓, Calcium↑, Neutrophile↑, Thrombozyten↑\n\nERSTLINIE (wenn ICI-Kombination möglich):\n- Günstig: NIVO+CABO (A), PEMBRO+AXI (A), PEMBRO+LEN (A), AVELU+AXI (B)\n- Intermediär: NIVO+CABO (A), NIVO+IPI (A), PEMBRO+AXI (A), PEMBRO+LEN (A)\n- Ungünstig: NIVO+CABO (A), NIVO+IPI (A), PEMBRO+AXI (A), PEMBRO+LEN (A)\n\nERSTLINIE (wenn ICI-Kombination NICHT möglich):\n- Günstig: Pazopanib (A), Sunitinib (A), Tivozanib (A), BEV+IFN (A)\n- Intermediär: Cabozantinib (B), Pazopanib (B), Sunitinib (B)\n- Ungünstig: Cabozantinib (B), Sunitinib (B), Temsirolimus (0)\n\nZWEITLINIE nach ICI-Kombination: Cabozantinib (A), Lenvatinib+Everolimus (A), Sunitinib (A)\nZWEITLINIE nach VEGF/R-Monotherapie: Cabozantinib (A), Nivolumab (A)\n\n---\n\nNICHT-METASTASIERTES RCC - THERAPIE-ALGORITHMUS:\n\n1. AKTIVE ÜBERWACHUNG (GoR 0): Kleine Tumoren + hohe Komorbidität/begrenzte Lebenserwartung\n2. ABLATION (GoR 0): Kleine Tumoren + hohe Komorbidität/begrenzte Lebenserwartung\n3. NIERENTEILRESEKTION: cT1 (≤7cm) SOLL durchgeführt werden (GoR A)\n4. RADIKALE NEPHREKTOMIE: Wenn Teilresektion nicht möglich (GoR A)\n\nLegende: A=starke Empfehlung, B=schwache Empfehlung, 0=Option\n\n\n=== AUFGABE ===\nAnalysiere den Fall schrittweise:\n1. METASTASIERUNG: Ist der Patient metastasiert? (basierend auf TNM, Anamnese, Bildgebung)\n2. HISTOLOGIE: Klarzellig vs. nicht-klarzellig?\n3. RISIKO: Falls metastasiert + klarzellig, IMDC-Risiko?\n4. THERAPIE: Empfehlung nach Leitlinie\n\nAntwort als JSON:\n{\n    \"is_metastatic\": true/false,\n    \"metastatic_reasoning\": \"Begründung...\",\n    \"imdc_risk\": \"guenstig/intermediaer/unguenstig/nicht_anwendbar\",\n    \"imdc_reasoning\": \"IMDC-Berechnung...\",\n    \"treatment_reasoning\": \"Schrittweise Begründung...\",\n    \"recommended_therapy\": \"Konkrete Empfehlung\",\n    \"therapy_category\": \"IO+TKI/TKI mono/Surgery/Surveillance/etc.\",\n    \"confidence\": 0.0-1.0\n}",
+  "output": {
+    "is_metastatic": false,
+    "metastatic_reasoning": "Der Fall beschreibt eine Raumforderung in der Niere, aber es gibt keine Hinweise auf Fernmetastasen im CT-Ganzkörper. Das TNM ist unbekannt, aber da keine Metastasen beschrieben werden, gehen wir von einem nicht-metastasierten Stadium aus. Die Aussage 'malignomsuspekte Raumforderung' impliziert nicht automatisch Metastasen.",
+    "imdc_risk": "nicht_anwendbar",
+    "imdc_reasoning": "Die IMDC-Risikostratifizierung ist nur für metastasiertes Nierenzellkarzinom relevant. Da wir von einem nicht-metastasierten Fall ausgehen, ist die IMDC-Risikobewertung nicht anwendbar.",
+    "treatment_reasoning": "Der Patient ist 82 Jahre alt mit signifikanter Komorbidität (Aortenstenose, KHK, CKD G3) und einem ECOG-Performance-Status von 1. Die Raumforderung ist mit 2x3cm relativ klein. Eine radikale Nephrektomie oder Nierenteilresektion wäre angesichts des Alters, der Komorbiditäten und des ECOG-Status mit einem erheblichen operativen Risiko verbunden. Aktive Überwachung oder eine ablative Therapie sind daher die bevorzugten Optionen. Da der Patient eine TAVI benötigt, ist eine zeitnahe definitive Behandlung der Nierenraumforderung wichtig, um mögliche Komplikationen während oder nach der TAVI zu vermeiden. Eine Ablation könnte in diesem Fall eine gute Option sein, um die Raumforderung zu behandeln, ohne eine größere Operation durchführen zu müssen. Eine aktive Überwachung ist ebenfalls eine Option, sollte der Patient jedoch eine rasche Progression der Raumforderung zeigen, muss eine andere Therapie in Betracht gezogen werden.",
+    "recommended_therapy": "Ablation der Nierenraumforderung oder Aktive Überwachung mit engmaschiger Bildgebung.",
+    "therapy_category": "Ablation/Surveillance",
+    "confidence": 0.8
+  },
+  "raw_response": "\n```json\n{\n    \"is_metastatic\": false,\n    \"metastatic_reasoning\": \"Der Fall beschreibt eine Raumforderung in der Niere, aber es gibt keine Hinweise auf Fernmetastasen im CT-Ganzkörper. Das TNM ist unbekannt, aber da keine Metastasen beschrieben werden, gehen wir von einem nicht-metastasierten Stadium aus. Die Aussage 'malignomsuspekte Raumforderung' impliziert nicht automatisch Metastasen.\",\n    \"imdc_risk\": \"nicht_anwendbar\",\n    \"imdc_reasoning\": \"Die IMDC-Risikostratifizierung ist nur für metastasiertes Nierenzellkarzinom relevant. Da wir von einem nicht-metastasierten Fall ausgehen, ist die IMDC-Risikobewertung nicht anwendbar.\",\n    \"treatment_reasoning\": \"Der Patient ist 82 Jahre alt mit signifikanter Komorbidität (Aortenstenose, KHK, CKD G3) und einem ECOG-Performance-Status von 1. Die Raumforderung ist mit 2x3cm relativ klein. Eine radikale Nephrektomie oder Nierenteilresektion wäre angesichts des Alters, der Komorbiditäten und des ECOG-Status mit einem erheblichen operativen Risiko verbunden. Aktive Überwachung oder eine ablative Therapie sind daher die bevorzugten Optionen. Da der Patient eine TAVI benötigt, ist eine zeitnahe definitive Behandlung der Nierenraumforderung wichtig, um mögliche Komplikationen während oder nach der TAVI zu vermeiden. Eine Ablation könnte in diesem Fall eine gute Option sein, um die Raumforderung zu behandeln, ohne eine größere Operation durchführen zu müssen. Eine aktive Überwachung ist ebenfalls eine Option, sollte der Patient jedoch eine rasche Progression der Raumforderung zeigen, muss eine andere Therapie in Betracht gezogen werden.\",\n    \"recommended_therapy\": \"Ablation der Nierenraumforderung oder Aktive Überwachung mit engmaschiger Bildgebung.\",\n    \"therapy_category\": \"Ablation/Surveillance\",\n    \"confidence\": 0.8\n}\n```",
+  "ground_truth_metastatic": false,
+  "ground_truth_therapy": "Weiteres Procedere (Intervention vs Surveillance) unter Berücksichtigung TAVI-Priorität.",
+  "metastatic_correct": true,
+  "inference_time_seconds": 16.538420915603638,
+  "tokens_used": 1539,
+  "success": true
+}

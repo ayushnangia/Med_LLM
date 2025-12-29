@@ -1,0 +1,123 @@
+{
+  "case_id": "ncc_35",
+  "timestamp": "2025-12-29_23-04-37",
+  "provider": "modal",
+  "model": "OpenMeditron/Meditron3-Qwen2.5-7B",
+  "input_case": {
+    "case_id": "ncc_35",
+    "patient_name": "Beispiel, Dimo",
+    "age": 63,
+    "ecog": 2,
+    "karnofsky": 70,
+    "comorbidity": "unknown",
+    "life_expectancy": "unknown",
+    "anamnese": "Chromophobes RCC, metastasiert. Therapiesequenz geplant/bisher: 1L Sunitinib, 2L Cabozantinib, 3L Diskussion: Nivolumab (off-label je nach Setting/MTB) vs Studie. Komorbiditäten: arterielle Hypertonie; Z. n. Nabelhernien-OP. Aktuell Progress lymphonodal/peritoneal im CT 08.12.2025; mögliche neue ossäre Läsion.",
+    "diagnose_kurz": "Metastasiertes chromophobes Nierenzellkarzinom (non-ccRCC) mit Progress lymphonodal/peritoneal im CT 08.12.2025 und DD neuer ossärer Läsion.",
+    "stadium": "metastasiert; non-ccRCC (chromophob); nach TKI-Vortherapien; 3.-Linie/Studie in Diskussion",
+    "tnm_clinical": null,
+    "tnm_pathological": null,
+    "histologie_subtyp": null,
+    "histologie_klarzellig": null,
+    "bildgebung": [
+      {
+        "modalitaet": "CT",
+        "region": "Thorax/Abdomen/Becken",
+        "datum": "2025-12-08",
+        "befund_kurz": "Thorax: stabile geringe Lungenherde, jedoch neu mediastinaler LK (subcarinal 17 mm) metastasenverdächtig. Abdomen: Progress retroperitoneal (interaortokaval 14 → 22 mm) und neu peritonealer Herd 13 mm; Leber ohne sichere Metastasen. Skelett: neue osteoblastische Läsion rechtes Acetabulum 12 mm (DD Metastase) – Korrelation/MRT erwägen.",
+        "quelle": "Erforderlicher Befund",
+        "detailstruktur": {
+          "thorax": {
+            "pulmonale_herde": "stabil_gering",
+            "pleuraerguss": false,
+            "mediastinale_hilaere_lk": [
+              {
+                "lokalisation": "subcarinal",
+                "groesse_mm_kurze_achse": 17,
+                "bewertung": "metastasenverdaechtig_neu"
+              }
+            ]
+          },
+          "abdomen": {
+            "retroperitoneum": {
+              "lymphknoten": [
+                {
+                  "lokalisation": "interaortokaval",
+                  "groesse_mm_kurze_achse": 22,
+                  "vorher_mm_kurze_achse": 14,
+                  "bewertung": "progredient"
+                }
+              ]
+            },
+            "peritoneum": [
+              {
+                "lokalisation": "peritoneal",
+                "groesse_mm": 13,
+                "bewertung": "neu_metastasenverdaechtig"
+              }
+            ],
+            "leber": "keine_sicheren_metastasen"
+          },
+          "skelett": {
+            "ossäre_laesionen": [
+              {
+                "lokalisation": "rechtes Acetabulum",
+                "typ": "osteoblastisch",
+                "groesse_mm": 12,
+                "bewertung": "DD_metastase",
+                "empfehlung": "MRT_Korrelation"
+              }
+            ]
+          }
+        },
+        "beurteilung": "Progress lymphonodal/peritoneal; mögliche neue ossäre Läsion."
+      }
+    ],
+    "nebendiagnosen": [
+      {
+        "diagnose": "Arterielle Hypertonie",
+        "details": null
+      }
+    ],
+    "medikation": [
+      {
+        "wirkstoff": "Candesartan",
+        "dosierung": null,
+        "schema": null,
+        "hinweis": null
+      },
+      {
+        "wirkstoff": "Amlodipin",
+        "dosierung": null,
+        "schema": null,
+        "hinweis": null
+      }
+    ],
+    "ici_durchfuehrbar": null,
+    "prior_therapies": [],
+    "ground_truth_metastatic": null,
+    "ground_truth_imdc": null,
+    "ground_truth_therapy": "Entscheidung 3. Linie im MTB: Nivolumab (off-label je nach Setting) vs alternative Sequenz vs Studie. | Supportiv: Blutdruckkontrollen, Nierenfunktion/Metabolik unter weiterer Therapie, Schmerzassessment (Becken); ggf. MRT zur Abklärung ossärer Läsion."
+  },
+  "prompt_text": "Du bist ein erfahrener Onkologe, spezialisiert auf Nierenzellkarzinom (RCC).\nAnalysiere den folgenden klinischen Fall und erstelle eine strukturierte Therapieempfehlung.\n\n=== KLINISCHER FALL ===\nPatient: Beispiel, Dimo, 63 Jahre\nECOG: 2, Karnofsky: 70%\nKomorbidität: unknown\nLebenserwartung: unknown\n\nDiagnose: Metastasiertes chromophobes Nierenzellkarzinom (non-ccRCC) mit Progress lymphonodal/peritoneal im CT 08.12.2025 und DD neuer ossärer Läsion.\nStadium: metastasiert; non-ccRCC (chromophob); nach TKI-Vortherapien; 3.-Linie/Studie in Diskussion\nTNM: nicht dokumentiert\n\nHISTOLOGIE (WICHTIG für Therapieentscheidung):\nNicht dokumentiert\n\nAnamnese:\nChromophobes RCC, metastasiert. Therapiesequenz geplant/bisher: 1L Sunitinib, 2L Cabozantinib, 3L Diskussion: Nivolumab (off-label je nach Setting/MTB) vs Studie. Komorbiditäten: arterielle Hypertonie; Z. n. Nabelhernien-OP. Aktuell Progress lymphonodal/peritoneal im CT 08.12.2025; mögliche neue ossäre Läsion.\n\nNebendiagnosen: Arterielle Hypert...",
+  "prediction": {
+    "is_metastatic": true,
+    "metastatic_reasoning": "Der Patient hat eine Metastasierung in der Lunge (mediastinaler LK) und im Abdomen (retroperitoneal und peritoneal), sowie eine osteoblastische Läsion im rechten Acetabulum.",
+    "imdc_risk": "nicht_anwendbar",
+    "imdc_reasoning": "Der Patient ist nicht-metastasiert, daher ist die IMDC-Risikostratifizierung nicht anwendbar.",
+    "treatment_reasoning": "Da der Patient nicht-metastasiert ist, wird die Therapieempfehlung für nicht-metastasierte Nierenzellkarzinom (RCC) angewendet. Da der Patient nicht-klarzelliger Histologie ist, wird die Therapieempfehlung für nicht-klarzelliges RCC angewendet.",
+    "recommended_therapy": "Nebenresection",
+    "therapy_category": "Surgery",
+    "recommendation_strength": "A",
+    "confidence": 1.0
+  },
+  "raw_response": "{\n    \"is_metastatic\": true,\n    \"metastatic_reasoning\": \"Der Patient hat eine Metastasierung in der Lunge (mediastinaler LK) und im Abdomen (retroperitoneal und peritoneal), sowie eine osteoblastische Läsion im rechten Acetabulum.\",\n    \"imdc_risk\": \"nicht_anwendbar\",\n    \"imdc_reasoning\": \"Der Patient ist nicht-metastasiert, daher ist die IMDC-Risikostratifizierung nicht anwendbar.\",\n    \"treatment_reasoning\": \"Da der Patient nicht-metastasiert ist, wird die Therapieempfehlung für nicht-metastasierte Nierenzellkarzinom (RCC) angewendet. Da der Patient nicht-klarzelliger Histologie ist, wird die Therapieempfehlung für nicht-klarzelliges RCC angewendet.\",\n    \"recommended_therapy\": \"Nebenresection\",\n    \"therapy_category\": \"Surgery\",\n    \"recommendation_strength\": \"A\",\n    \"confidence\": 1.0\n}",
+  "ground_truth_metastatic": null,
+  "ground_truth_therapy": "Entscheidung 3. Linie im MTB: Nivolumab (off-label je nach Setting) vs alternative Sequenz vs Studie. | Supportiv: Blutdruckkontrollen, Nierenfunktion/Metabolik unter weiterer Therapie, Schmerzassessment (Becken); ggf. MRT zur Abklärung ossärer Läsion.",
+  "metastatic_correct": null,
+  "therapy_exact_match": false,
+  "therapy_clinically_acceptable": null,
+  "inference_time_seconds": 0.25036321367536274,
+  "tokens_used": 249,
+  "success": true,
+  "error_message": null
+}

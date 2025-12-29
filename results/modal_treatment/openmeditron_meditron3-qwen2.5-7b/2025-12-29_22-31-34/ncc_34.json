@@ -1,0 +1,39 @@
+{
+  "case_id": "ncc_34",
+  "timestamp": "2025-12-29_22-31-34",
+  "provider": "modal",
+  "model": "OpenMeditron/Meditron3-Qwen2.5-7B",
+  "input_case": {
+    "case_id": "ncc_34",
+    "patient_name": "Muster, Cora",
+    "age": 74,
+    "ecog": 3,
+    "anamnese": "mRCC mit deutlich reduziertem Allgemeinzustand (ECOG 3), massiver Gewichtsabnahme und tumorassoziierten Schmerzen. Vortherapien: 1. Linie Ipilimumab + Nivolumab; 2. Linie Cabozantinib; aktuell Lenvatinib + Everolimus. Komorbiditäten: CKD G4, KHK (Z. n. Stent), COPD GOLD II. Z. n. Appendektomie.",
+    "diagnose_kurz": "Metastasiertes Nierenzellkarzinom (mRCC) mit deutlichem systemischem Progress unter aktueller Therapie (Lenvatinib + Everolimus) bei ECOG 3.",
+    "stadium": "metastasiert; mehrfach vorbehandelt (>=3 Therapielinien); klinisch palliatives Setting",
+    "ground_truth_metastatic": null,
+    "ground_truth_therapy": [
+      "Best supportive care im Vordergrund.",
+      "Optimierung Analgesieschema (WHO-Stufen, ggf. Palliativdienst).",
+      "Palliative Radiotherapie schmerzhafter Knochenläsionen (z. B. Becken/LWS).",
+      "Supportiv: Antiemese, Ernährung/Cachexie-Support, CKD-gerechte Therapie."
+    ]
+  },
+  "prompt_text": "Du bist ein erfahrener Onkologe, spezialisiert auf Nierenzellkarzinom (RCC).\nAnalysiere den folgenden klinischen Fall und erstelle eine strukturierte Therapieempfehlung.\n\n=== KLINISCHER FALL ===\nPatient: Muster, Cora, 74 Jahre\nECOG: 3, Karnofsky: 50%\nKomorbidität: unknown\nLebenserwartung: unknown\n\nDiagnose: Metastasiertes Nierenzellkarzinom (mRCC) mit deutlichem systemischem Progress unter aktueller Therapie (Lenvatinib + Everolimus) bei ECOG 3.\nStadium: metastasiert; mehrfach vorbehandelt (>=3 Therapielinien); klinisch palliatives Setting\ncTNM: T? N? M?\n\nAnamnese:\nmRCC mit deutlich reduziertem Allgemeinzustand (ECOG 3), massiver Gewichtsabnahme und tumorassoziierten Schmerzen. Vortherapien: 1. Linie Ipilimumab + Nivolumab; 2. Linie Cabozantinib; aktuell Lenvatinib + Everolimus. Komorbiditäten: CKD G4, KHK (Z. n. Stent), COPD GOLD II. Z. n. Appendektomie.\n\nNebendiagnosen: Chronische Niereninsuffizienz (CKD) G4, Koronare Herzkrankheit (KHK), COPD GOLD II, Tumorkachexie / massive Gewicht...",
+  "prediction": null,
+  "raw_response": "",
+  "ground_truth_metastatic": null,
+  "ground_truth_therapy": [
+    "Best supportive care im Vordergrund.",
+    "Optimierung Analgesieschema (WHO-Stufen, ggf. Palliativdienst).",
+    "Palliative Radiotherapie schmerzhafter Knochenläsionen (z. B. Becken/LWS).",
+    "Supportiv: Antiemese, Ernährung/Cachexie-Support, CKD-gerechte Therapie."
+  ],
+  "metastatic_correct": null,
+  "therapy_exact_match": null,
+  "therapy_clinically_acceptable": null,
+  "inference_time_seconds": 0.02179856300354004,
+  "tokens_used": 1,
+  "success": false,
+  "error_message": null
+}

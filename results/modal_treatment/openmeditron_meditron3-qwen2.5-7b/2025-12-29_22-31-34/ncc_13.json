@@ -1,0 +1,29 @@
+{
+  "case_id": "ncc_13",
+  "timestamp": "2025-12-29_22-31-34",
+  "provider": "modal",
+  "model": "OpenMeditron/Meditron3-Qwen2.5-7B",
+  "input_case": {
+    "case_id": "ncc_13",
+    "patient_name": "Muster, Karl",
+    "age": 64,
+    "ecog": 0,
+    "anamnese": "Vorstellung zur regelmäßigen Ultraschallkontrolle beim Hausarzt. Dabei Nachweis Raumforderung rechte Niere. Anschließend CT Abdomen mit Nachweis von zwei renalen Raumforderungen: rechts ca. 4,1 cm, links ca. 1,8 cm. Z. n. Kolon-OP bei Divertikulitis.",
+    "diagnose_kurz": "Beidseitige renale Raumforderungen: rechts 4,1 cm (cT1b*), links 1,8 cm (cT1a*) – malignitätsverdächtig (V. a. RCC)",
+    "stadium": "bilateral, prätherapeutisch; Staging (CT Thorax) ausstehend",
+    "ground_truth_metastatic": null,
+    "ground_truth_therapy": "Nierenteilresektion beidseits: zuerst rechts, 8 Wochen später links. Komplettierung des Stagings mittels CT Thorax."
+  },
+  "prompt_text": "Du bist ein erfahrener Onkologe, spezialisiert auf Nierenzellkarzinom (RCC).\nAnalysiere den folgenden klinischen Fall und erstelle eine strukturierte Therapieempfehlung.\n\n=== KLINISCHER FALL ===\nPatient: Muster, Karl, 64 Jahre\nECOG: 0, Karnofsky: None%\nKomorbidität: unknown\nLebenserwartung: unknown\n\nDiagnose: Beidseitige renale Raumforderungen: rechts 4,1 cm (cT1b*), links 1,8 cm (cT1a*) – malignitätsverdächtig (V. a. RCC)\nStadium: bilateral, prätherapeutisch; Staging (CT Thorax) ausstehend\ncTNM: Tunknown Nunknown Munknown\n\nAnamnese:\nVorstellung zur regelmäßigen Ultraschallkontrolle beim Hausarzt. Dabei Nachweis Raumforderung rechte Niere. Anschließend CT Abdomen mit Nachweis von zwei renalen Raumforderungen: rechts ca. 4,1 cm, links ca. 1,8 cm. Z. n. Kolon-OP bei Divertikulitis.\n\nNebendiagnosen: Z. n. Kolon-OP bei Divertikulitis\n\nVorherige Systemtherapien: Keine\n\n=== THERAPIE-LEITLINIEN ===\n\n\nMETASTASIERTES KLARZELLIGES RCC - THERAPIE-ALGORITHMUS:\n\nIMDC-RISIKOSTRATIFIZIERUNG:\n- Günsti...",
+  "prediction": null,
+  "raw_response": "",
+  "ground_truth_metastatic": null,
+  "ground_truth_therapy": "Nierenteilresektion beidseits: zuerst rechts, 8 Wochen später links. Komplettierung des Stagings mittels CT Thorax.",
+  "metastatic_correct": null,
+  "therapy_exact_match": null,
+  "therapy_clinically_acceptable": null,
+  "inference_time_seconds": 0.02179856300354004,
+  "tokens_used": 1,
+  "success": false,
+  "error_message": null
+}

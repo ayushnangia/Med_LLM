@@ -1,0 +1,64 @@
+{
+  "case_id": "ncc_22",
+  "timestamp": "2025-12-29_23-34-38",
+  "provider": "modal",
+  "model": "google/gemma-3-27b-it",
+  "input_case": {
+    "case_id": "ncc_22",
+    "patient_name": "Beispiel, Timo",
+    "age": 70,
+    "ecog": null,
+    "karnofsky": null,
+    "comorbidity": null,
+    "life_expectancy": null,
+    "anamnese": "Z. n. Nephrektomie links 2023 bei Nierenzellkarzinom mit sarkomatoider Komponente. Aktuelle Vorstellung zur Befund- und Therapieentscheidung anhand CT-Staging vom 01.12.2025. Raucheranamnese: 30 PY, COPD. Z. n. Appendektomie.",
+    "diagnose_kurz": "Metastasiertes Nierenzellkarzinom nach Nephrektomie links 2023 (sarkomatoide Komponente). CT 01.12.2025: retroperitoneale Lymphknotenmetastasen und ossäre Metastasen. IMDC intermediate (2 Faktoren: Hb niedrig, korr. Calcium erhöht).",
+    "stadium": "mRCC (lymphonodal retroperitoneal + ossär), IMDC intermediate (2 Faktoren)",
+    "tnm_clinical": null,
+    "tnm_pathological": null,
+    "histologie_subtyp": null,
+    "histologie_klarzellig": null,
+    "bildgebung": [
+      {
+        "datum": "2025-12-01",
+        "modalitaet": "CT",
+        "region": "Staging Thorax/Abdomen/Becken",
+        "befund": "Thorax: Kein Pleuraerguss. Keine sicher pathologisch vergrößerten mediastinal/hilären Lymphknoten. Kein sicherer Nachweis pulmonaler Rundherde. Abdomen/Retroperitoneum: Mehrere retroperitoneale Lymphknoten metastasenverdächtig (paraaortal links 21×15 mm, interaortokaval 17×12 mm, weitere bis 10–12 mm). Leber, Nebennieren, Pankreas ohne fokale Läsionen. Kein Aszites. OP-Loge links ohne sicheren Hinweis auf Lokalrezidiv. Skelett: Osteolytische Läsionen metastasenverdächtig (rechter Beckenkamm/Os ilium 24 mm; BWK12 15 mm, kortikale Mitbeteiligung geringgradig, keine Spinalkanalstenose im CT).",
+        "quelle": "Erforderlicher Befund"
+      }
+    ],
+    "nebendiagnosen": [
+      "COPD",
+      "Raucheranamnese 30 PY",
+      "Z. n. Appendektomie"
+    ],
+    "medikation": [],
+    "ici_durchfuehrbar": null,
+    "prior_therapies": [],
+    "ground_truth_metastatic": null,
+    "ground_truth_imdc": null,
+    "ground_truth_therapy": "Systemtherapie: IO + IO vs. IO + TKI (unter Berücksichtigung sarkomatoider Komponente, IMDC intermediate, Komorbiditäten). Anämieabklärung/Supportivtherapie. Knochenprotektion (Denosumab/Bisphosphonat + Ca/Vit-D, Zahnarztstatus) und ggf. lokale Maßnahmen (Radiatio/OP) bei Risiko-Läsionen."
+  },
+  "prompt_text": "Du bist ein erfahrener Onkologe, spezialisiert auf Nierenzellkarzinom (RCC).\nAnalysiere den folgenden klinischen Fall und erstelle eine strukturierte Therapieempfehlung.\n\n=== KLINISCHER FALL ===\nPatient: Beispiel, Timo, 70 Jahre\nECOG: None, Karnofsky: ?%\nKomorbidität: None\nLebenserwartung: None\n\nDiagnose: Metastasiertes Nierenzellkarzinom nach Nephrektomie links 2023 (sarkomatoide Komponente). CT 01.12.2025: retroperitoneale Lymphknotenmetastasen und ossäre Metastasen. IMDC intermediate (2 Faktoren: Hb niedrig, korr. Calcium erhöht).\nStadium: mRCC (lymphonodal retroperitoneal + ossär), IMDC intermediate (2 Faktoren)\nTNM: nicht dokumentiert\n\nHISTOLOGIE (WICHTIG für Therapieentscheidung):\nNicht dokumentiert\n\nAnamnese:\nZ. n. Nephrektomie links 2023 bei Nierenzellkarzinom mit sarkomatoider Komponente. Aktuelle Vorstellung zur Befund- und Therapieentscheidung anhand CT-Staging vom 01.12.2025. Raucheranamnese: 30 PY, COPD. Z. n. Appendektomie.\n\nNebendiagnosen: COPD, Raucheranamnese 30 PY, Z....",
+  "prediction": {
+    "is_metastatic": true,
+    "metastatic_reasoning": "Der Patient zeigt retroperitoneale Lymphknotenmetastasen und ossäre Metastasen im CT vom 01.12.2025. Er hatte bereits eine Nephrektomie links in 2023, was auf ein fortgeschrittenes Stadium hindeutet.",
+    "imdc_risk": "intermediaer",
+    "imdc_reasoning": "Der Patient hat 2 IMDC-Risikofaktoren: niedriges Hämoglobin und erhöhtes korrigiertes Calcium. Dies klassifiziert ihn als intermediäres Risiko.",
+    "treatment_reasoning": "Der Patient hat ein metastasiertes, klarzelliges Nierenzellkarzinom (angenommen, da keine andere Histologie angegeben ist) mit intermediärem IMDC-Risiko. Da die ICI-Kombination durchführbar ist (nicht ausgeschlossen), wird zunächst eine ICI+TKI-Kombination empfohlen. Die Leitlinie empfiehlt für intermediäres Risiko NIVO+CABO, NIVO+IPI, PEMBRO+AXI oder PEMBRO+LEN. Cabozantinib hat eine gute Evidenz und wird hier bevorzugt.",
+    "recommended_therapy": "Nivolumab in Kombination mit Cabozantinib",
+    "therapy_category": "IO+TKI",
+    "recommendation_strength": "A",
+    "confidence": 0.9
+  },
+  "raw_response": "{\"is_metastatic\": true,\n    \"metastatic_reasoning\": \"Der Patient zeigt retroperitoneale Lymphknotenmetastasen und ossäre Metastasen im CT vom 01.12.2025. Er hatte bereits eine Nephrektomie links in 2023, was auf ein fortgeschrittenes Stadium hindeutet.\",\n    \"imdc_risk\": \"intermediaer\",\n    \"imdc_reasoning\": \"Der Patient hat 2 IMDC-Risikofaktoren: niedriges Hämoglobin und erhöhtes korrigiertes Calcium. Dies klassifiziert ihn als intermediäres Risiko.\",\n    \"treatment_reasoning\": \"Der Patient hat ein metastasiertes, klarzelliges Nierenzellkarzinom (angenommen, da keine andere Histologie angegeben ist) mit intermediärem IMDC-Risiko. Da die ICI-Kombination durchführbar ist (nicht ausgeschlossen), wird zunächst eine ICI+TKI-Kombination empfohlen. Die Leitlinie empfiehlt für intermediäres Risiko NIVO+CABO, NIVO+IPI, PEMBRO+AXI oder PEMBRO+LEN. Cabozantinib hat eine gute Evidenz und wird hier bevorzugt.\",\n    \"recommended_therapy\": \"Nivolumab in Kombination mit Cabozantinib\",\n    \"therapy_category\": \"IO+TKI\",\n    \"recommendation_strength\": \"A\",\n    \"confidence\": 0.9}",
+  "ground_truth_metastatic": null,
+  "ground_truth_therapy": "Systemtherapie: IO + IO vs. IO + TKI (unter Berücksichtigung sarkomatoider Komponente, IMDC intermediate, Komorbiditäten). Anämieabklärung/Supportivtherapie. Knochenprotektion (Denosumab/Bisphosphonat + Ca/Vit-D, Zahnarztstatus) und ggf. lokale Maßnahmen (Radiatio/OP) bei Risiko-Läsionen.",
+  "metastatic_correct": null,
+  "therapy_exact_match": false,
+  "therapy_clinically_acceptable": null,
+  "inference_time_seconds": 3.6213891778673446,
+  "tokens_used": 321,
+  "success": true,
+  "error_message": null
+}

@@ -1,0 +1,64 @@
+{
+  "case_id": "ncc_25",
+  "timestamp": "2025-12-29_23-38-36",
+  "provider": "modal",
+  "model": "google/gemma-3-27b-it",
+  "input_case": {
+    "case_id": "ncc_25",
+    "patient_name": "Beispiel, Xaver",
+    "age": 65,
+    "ecog": null,
+    "karnofsky": null,
+    "comorbidity": null,
+    "life_expectancy": null,
+    "anamnese": "Z. n. Nephrektomie 08/2024 bei papillärem Nierenzellkarzinom. Aktuelle Vorstellung zur Therapieentscheidung anhand CT-Staging vom 10.10.2025. Vorerkrankungen: Diabetes mellitus Typ 2, arterielle Hypertonie, Z. n. Cholezystektomie.",
+    "diagnose_kurz": "Metastasiertes papilläres Nierenzellkarzinom (papRCC) nach Nephrektomie 08/2024. CT 10.10.2025: multiple ossäre Metastasen; kein Hinweis auf viszerale Metastasen. IMDC: Thrombozyten erhöht (Karnofsky nicht angegeben).",
+    "stadium": "mRCC (ossär), IMDC: mindestens 1 Faktor (Thrombozyten erhöht); genaue Risikoklasse abhängig von Karnofsky/Hb/Ca/Intervall",
+    "tnm_clinical": null,
+    "tnm_pathological": null,
+    "histologie_subtyp": null,
+    "histologie_klarzellig": null,
+    "bildgebung": [
+      {
+        "datum": "2025-10-10",
+        "modalitaet": "CT",
+        "region": "Staging Thorax/Abdomen/Becken",
+        "befund": "Thorax: Kein Pleuraerguss. Kein sicherer Nachweis pulmonaler Rundherde. Keine sicher pathologisch vergrößerten mediastinal/hilären Lymphknoten. Abdomen/Becken: Status nach Nephrektomie (OP-Loge) ohne sicheren Hinweis auf Lokalrezidiv. Leber, Nebennieren, Pankreas ohne fokale Läsionen. Keine abdominelle/pelvine Lymphadenopathie. Kein Aszites. Skelett: Multiple ossäre Läsionen metastasenverdächtig (BWK8 osteolytisch 14 mm; LWK3 osteolytisch 18 mm; rechtes Os ilium 22 mm; linkes Femur proximal 16 mm, kein Frakturzeichen). Keine Spinalkanalstenose im CT.",
+        "quelle": "Erforderlicher Befund"
+      }
+    ],
+    "nebendiagnosen": [
+      "Diabetes mellitus Typ 2",
+      "Arterielle Hypertonie",
+      "Z. n. Cholezystektomie"
+    ],
+    "medikation": [],
+    "ici_durchfuehrbar": null,
+    "prior_therapies": [],
+    "ground_truth_metastatic": null,
+    "ground_truth_imdc": null,
+    "ground_truth_therapy": "Einleitung einer Systemtherapie im metastasierten Setting (papRCC) unter Berücksichtigung Komorbiditäten (DM2, aHT) und Supportivmaßnahmen (z. B. Analgesie, Knochenprotektion nach Standard, ggf. lokale Therapie bei Risiko-Läsionen)."
+  },
+  "prompt_text": "Du bist ein erfahrener Onkologe, spezialisiert auf Nierenzellkarzinom (RCC).\nAnalysiere den folgenden klinischen Fall und erstelle eine strukturierte Therapieempfehlung.\n\n=== KLINISCHER FALL ===\nPatient: Beispiel, Xaver, 65 Jahre\nECOG: None, Karnofsky: ?%\nKomorbidität: None\nLebenserwartung: None\n\nDiagnose: Metastasiertes papilläres Nierenzellkarzinom (papRCC) nach Nephrektomie 08/2024. CT 10.10.2025: multiple ossäre Metastasen; kein Hinweis auf viszerale Metastasen. IMDC: Thrombozyten erhöht (Karnofsky nicht angegeben).\nStadium: mRCC (ossär), IMDC: mindestens 1 Faktor (Thrombozyten erhöht); genaue Risikoklasse abhängig von Karnofsky/Hb/Ca/Intervall\nTNM: nicht dokumentiert\n\nHISTOLOGIE (WICHTIG für Therapieentscheidung):\nNicht dokumentiert\n\nAnamnese:\nZ. n. Nephrektomie 08/2024 bei papillärem Nierenzellkarzinom. Aktuelle Vorstellung zur Therapieentscheidung anhand CT-Staging vom 10.10.2025. Vorerkrankungen: Diabetes mellitus Typ 2, arterielle Hypertonie, Z. n. Cholezystektomie.\n\nNebendiag...",
+  "prediction": {
+    "is_metastatic": true,
+    "metastatic_reasoning": "Der Patient zeigt multiple ossäre Metastasen im CT-Staging vom 10.10.2025, was einen M1-Status (Metastasierung) bestätigt. Die Anamnese gibt eine erfolgte Nephrektomie an, was den Fall weiter in die Kategorie des metastasierten RCC einordnet.",
+    "imdc_risk": "intermediaer",
+    "imdc_reasoning": "Der Patient hat mindestens einen ungünstigen Risikofaktor (erhöhte Thrombozyten). Der Karnofsky-Status ist nicht bekannt, wird aber aufgrund des ECOG 0 als gut angenommen.  Daher wird der IMDC-Risikofaktor als intermediär eingestuft. Ohne Hb, Ca und Intervall kann keine genauere Risikoeinstufung erfolgen.",
+    "treatment_reasoning": "Der Patient hat ein papilläres Nierenzellkarzinom, welches nicht-klarzellig ist. Gemäß der Therapie-Leitlinien ist bei nicht-klarzelligem RCC oft eine TKI-Monotherapie bevorzugt. Da der Patient ein intermediäres Risiko hat, kommen Cabozantinib, Pazopanib oder Sunitinib in Frage. Cabozantinib hat in Studien bei fortgeschrittenem RCC eine gute Wirksamkeit gezeigt und wird daher bevorzugt. Die Komorbiditäten (Diabetes mellitus Typ 2 und arterielle Hypertonie) müssen bei der Auswahl und Dosierung der TKI-Therapie berücksichtigt werden.",
+    "recommended_therapy": "Cabozantinib 60mg p.o. täglich",
+    "therapy_category": "TKI mono",
+    "recommendation_strength": "B",
+    "confidence": 0.85
+  },
+  "raw_response": "{\"is_metastatic\": true,\n    \"metastatic_reasoning\": \"Der Patient zeigt multiple ossäre Metastasen im CT-Staging vom 10.10.2025, was einen M1-Status (Metastasierung) bestätigt. Die Anamnese gibt eine erfolgte Nephrektomie an, was den Fall weiter in die Kategorie des metastasierten RCC einordnet.\",\n    \"imdc_risk\": \"intermediaer\",\n    \"imdc_reasoning\": \"Der Patient hat mindestens einen ungünstigen Risikofaktor (erhöhte Thrombozyten). Der Karnofsky-Status ist nicht bekannt, wird aber aufgrund des ECOG 0 als gut angenommen.  Daher wird der IMDC-Risikofaktor als intermediär eingestuft. Ohne Hb, Ca und Intervall kann keine genauere Risikoeinstufung erfolgen.\",\n    \"treatment_reasoning\": \"Der Patient hat ein papilläres Nierenzellkarzinom, welches nicht-klarzellig ist. Gemäß der Therapie-Leitlinien ist bei nicht-klarzelligem RCC oft eine TKI-Monotherapie bevorzugt. Da der Patient ein intermediäres Risiko hat, kommen Cabozantinib, Pazopanib oder Sunitinib in Frage. Cabozantinib hat in Studien bei fortgeschrittenem RCC eine gute Wirksamkeit gezeigt und wird daher bevorzugt. Die Komorbiditäten (Diabetes mellitus Typ 2 und arterielle Hypertonie) müssen bei der Auswahl und Dosierung der TKI-Therapie berücksichtigt werden.\",\n    \"recommended_therapy\": \"Cabozantinib 60mg p.o. täglich\",\n    \"therapy_category\": \"TKI mono\",\n    \"recommendation_strength\": \"B\",\n    \"confidence\": 0.85\n}",
+  "ground_truth_metastatic": null,
+  "ground_truth_therapy": "Einleitung einer Systemtherapie im metastasierten Setting (papRCC) unter Berücksichtigung Komorbiditäten (DM2, aHT) und Supportivmaßnahmen (z. B. Analgesie, Knochenprotektion nach Standard, ggf. lokale Therapie bei Risiko-Läsionen).",
+  "metastatic_correct": null,
+  "therapy_exact_match": false,
+  "therapy_clinically_acceptable": null,
+  "inference_time_seconds": 3.12081674848284,
+  "tokens_used": 390,
+  "success": true,
+  "error_message": null
+}

@@ -1,0 +1,43 @@
+{
+  "judge_model": "qwen/qwq-32b",
+  "judge_config": {
+    "temperature": 0.6,
+    "top_p": 0.95,
+    "max_tokens": 8192,
+    "thinking_mode": true,
+    "structured_output": false
+  },
+  "timestamp": "2025-12-29_23-00-47",
+  "source_results_dir": "results/modal_treatment/openmeditron_meditron3-qwen2.5-7b/2025-12-29_22-42-06",
+  "total_cases": 1,
+  "evaluated_cases": 1,
+  "failed_evaluations": 0,
+  "metrics": {
+    "therapy_semantic_match_rate": 1.0,
+    "therapy_semantic_match_count": 1,
+    "avg_therapy_semantic_score": 1.0,
+    "clinical_appropriateness_rate": 1.0,
+    "clinical_appropriateness_count": 1,
+    "avg_clinical_score": 1.0,
+    "avg_reasoning_quality": 0.7,
+    "avg_overall_score": 0.94
+  },
+  "evaluations": [
+    {
+      "case_id": "ncc_1",
+      "evaluation": {
+        "therapy_semantic_match": true,
+        "therapy_semantic_score": 1.0,
+        "clinical_appropriateness": true,
+        "clinical_appropriateness_score": 1.0,
+        "reasoning_quality": 0.7,
+        "reasoning_critique": "Die IMDC-Begründung enthält einen Widerspruch zwischen ECOG 0 und Karnofsky <80% (welches ECOG ≥1 entspricht). Die korrekte IMDC-Klassifikation wird dadurch gefährdet.",
+        "overall_score": 0.94,
+        "judge_reasoning": "Die Therapieempfehlung (NIVO+CABO) ist semantisch korrekt und klinisch leitlinienkonform. Die Begründung ist grundsätzlich logisch, aber fehlerhaft in der IMDC-Klassifikation durch einen Widerspruch zwischen ECOG und Karnofsky. Die Kriteriumserfüllung (mehrere Metastasen, labile Risikofaktoren) rechtfertigt jedoch die Empfehlung."
+      },
+      "raw_response": "{\n    \"therapy_semantic_match\": true,\n    \"therapy_semantic_score\": 1.0,\n    \"clinical_appropriateness\": true,\n    \"clinical_appropriateness_score\": 1.0,\n    \"reasoning_quality\": 0.7,\n    \"reasoning_critique\": \"Die IMDC-Begründung enthält einen Widerspruch zwischen ECOG 0 und Karnofsky <80% (welches ECOG ≥1 entspricht). Die korrekte IMDC-Klassifikation wird dadurch gefährdet.\",\n    \"overall_score\": 0.94,\n    \"judge_reasoning\": \"Die Therapieempfehlung (NIVO+CABO) ist semantisch korrekt und klinisch leitlinienkonform. Die Begründung ist grundsätzlich logisch, aber fehlerhaft in der IMDC-Klassifikation durch einen Widerspruch zwischen ECOG und Karnofsky. Die Kriteriumserfüllung (mehrere Metastasen, labile Risikofaktoren) rechtfertigt jedoch die Empfehlung.\"\n}",
+      "error": null,
+      "inference_time_seconds": 68.63186573982239
+    }
+  ]
+}

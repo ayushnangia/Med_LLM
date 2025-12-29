@@ -1,0 +1,14 @@
+{
+  "model": "google/gemma-3-27b-it",
+  "provider": "modal",
+  "timestamp": "2025-12-30_00-02-19",
+  "total_cases": 35,
+  "metastatic_accuracy": 1.0,
+  "metastatic_correct": 11,
+  "therapy_exact_match_rate": 0.2857142857142857,
+  "therapy_exact_matches": 10,
+  "therapy_acceptable_rate": 0.2857142857142857,
+  "therapy_acceptable": 10,
+  "total_time": 122.24953818321228,
+  "errors": 0
+}

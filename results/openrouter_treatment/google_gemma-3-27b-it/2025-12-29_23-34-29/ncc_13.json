@@ -1,0 +1,56 @@
+{
+  "case_id": "ncc_13",
+  "timestamp": "2025-12-29T23:37:32.965070",
+  "provider": "openrouter",
+  "model": "google/gemma-3-27b-it",
+  "input_case": {
+    "case_id": "ncc_13",
+    "patient_name": "Muster, Karl",
+    "age": 64,
+    "ecog": 0,
+    "anamnese": "Vorstellung zur regelmäßigen Ultraschallkontrolle beim Hausarzt. Dabei Nachweis Raumforderung rechte Niere. Anschließend CT Abdomen mit Nachweis von zwei renalen Raumforderungen: rechts ca. 4,1 cm, links ca. 1,8 cm. Z. n. Kolon-OP bei Divertikulitis.",
+    "diagnose_kurz": "Beidseitige renale Raumforderungen: rechts 4,1 cm (cT1b*), links 1,8 cm (cT1a*) – malignitätsverdächtig (V. a. RCC)",
+    "stadium": "bilateral, prätherapeutisch; Staging (CT Thorax) ausstehend",
+    "tnm_clinical": {
+      "T": "unknown",
+      "T_sub": "unknown",
+      "N": "unknown",
+      "M": "unknown",
+      "stage_group": "unknown"
+    },
+    "histologie_subtyp": null,
+    "histologie_klarzellig": null,
+    "bildgebung": [
+      {
+        "modalitaet": "CT",
+        "region": "Abdomen",
+        "datum": "2025-12-03",
+        "befund_kurz": "Beidseitige renale Raumforderungen: rechts ca. 4,1 cm, links ca. 1,8 cm. Malignitätsverdächtig, vereinbar mit V. a. Nierenzellkarzinom. Pankreas unauffällig.",
+        "quelle": "Erforderlicher Befund"
+      }
+    ],
+    "nebendiagnosen": [
+      "Z. n. Kolon-OP bei Divertikulitis"
+    ],
+    "ground_truth_metastatic": null,
+    "ground_truth_therapy": "Nierenteilresektion beidseits: zuerst rechts, 8 Wochen später links. Komplettierung des Stagings mittels CT Thorax."
+  },
+  "prompt_text": "Du bist ein erfahrener Onkologe, spezialisiert auf Nierenzellkarzinom (RCC).\nAnalysiere den folgenden klinischen Fall und erstelle eine strukturierte Therapieempfehlung.\n\n=== KLINISCHER FALL ===\nPatient: Muster, Karl, 64 Jahre\nECOG: 0, Karnofsky: ?%\nKomorbidität: unknown\n\nDiagnose: Beidseitige renale Raumforderungen: rechts 4,1 cm (cT1b*), links 1,8 cm (cT1a*) – malignitätsverdächtig (V. a. RCC)\nStadium: bilateral, prätherapeutisch; Staging (CT Thorax) ausstehend\nTNM: cTNM: Tunknown Nunknown Munknown\n\nHISTOLOGIE: Nicht dokumentiert\n\nAnamnese: Vorstellung zur regelmäßigen Ultraschallkontrolle beim Hausarzt. Dabei Nachweis Raumforderung rechte Niere. Anschließend CT Abdomen mit Nachweis von zwei renalen Raumforderungen: rechts ca. 4,1 cm, links ca. 1,8 cm. Z. n. Kolon-OP bei Divertikulitis.\n\nNebendiagnosen: Z. n. Kolon-OP bei Divertikulitis\n\nBildgebung:\n  - CT Abdomen (2025-12-03): Beidseitige renale Raumforderungen: rechts ca. 4,1 cm, links ca. 1,8 cm. Malignitätsverdächtig, vereinbar mit V. a. Nierenzellkarzinom. Pankreas unauffällig.\n\nVorherige Systemtherapien: Keine\n\n=== THERAPIE-LEITLINIEN ===\n\nMETASTASIERTES KLARZELLIGES RCC - THERAPIE-ALGORITHMUS:\n\nIMDC-RISIKOSTRATIFIZIERUNG:\n- Günstig (0 Risikofaktoren)\n- Intermediär (1-2 Risikofaktoren)\n- Ungünstig (≥3 Risikofaktoren)\n\nRisikofaktoren: Karnofsky <80%, Zeit bis Systemtherapie <1 Jahr, Hämoglobin↓, Calcium↑, Neutrophile↑, Thrombozyten↑\n\nERSTLINIE (wenn ICI-Kombination möglich):\n- Günstig: NIVO+CABO (A), PEMBRO+AXI (A), PEMBRO+LEN (A), AVELU+AXI (B)\n- Intermediär: NIVO+CABO (A), NIVO+IPI (A), PEMBRO+AXI (A), PEMBRO+LEN (A)\n- Ungünstig: NIVO+CABO (A), NIVO+IPI (A), PEMBRO+AXI (A), PEMBRO+LEN (A)\n\nERSTLINIE (wenn ICI-Kombination NICHT möglich):\n- Günstig: Pazopanib (A), Sunitinib (A), Tivozanib (A), BEV+IFN (A)\n- Intermediär: Cabozantinib (B), Pazopanib (B), Sunitinib (B)\n- Ungünstig: Cabozantinib (B), Sunitinib (B), Temsirolimus (0)\n\nZWEITLINIE nach ICI-Kombination: Cabozantinib (A), Lenvatinib+Everolimus (A), Sunitinib (A)\nZWEITLINIE nach VEGF/R-Monotherapie: Cabozantinib (A), Nivolumab (A)\n\n---\n\nNICHT-METASTASIERTES RCC - THERAPIE-ALGORITHMUS:\n\n1. AKTIVE ÜBERWACHUNG (GoR 0): Kleine Tumoren + hohe Komorbidität/begrenzte Lebenserwartung\n2. ABLATION (GoR 0): Kleine Tumoren + hohe Komorbidität/begrenzte Lebenserwartung\n3. NIERENTEILRESEKTION: cT1 (≤7cm) SOLL durchgeführt werden (GoR A)\n4. RADIKALE NEPHREKTOMIE: Wenn Teilresektion nicht möglich (GoR A)\n\nLegende: A=starke Empfehlung, B=schwache Empfehlung, 0=Option\n\n\n=== AUFGABE ===\nAnalysiere den Fall schrittweise:\n1. METASTASIERUNG: Ist der Patient metastasiert? (basierend auf TNM, Anamnese, Bildgebung)\n2. HISTOLOGIE: Klarzellig vs. nicht-klarzellig?\n3. RISIKO: Falls metastasiert + klarzellig, IMDC-Risiko?\n4. THERAPIE: Empfehlung nach Leitlinie\n\nAntwort als JSON:\n{\n    \"is_metastatic\": true/false,\n    \"metastatic_reasoning\": \"Begründung...\",\n    \"imdc_risk\": \"guenstig/intermediaer/unguenstig/nicht_anwendbar\",\n    \"imdc_reasoning\": \"IMDC-Berechnung...\",\n    \"treatment_reasoning\": \"Schrittweise Begründung...\",\n    \"recommended_therapy\": \"Konkrete Empfehlung\",\n    \"therapy_category\": \"IO+TKI/TKI mono/Surgery/Surveillance/etc.\",\n    \"confidence\": 0.0-1.0\n}",
+  "output": {
+    "is_metastatic": false,
+    "metastatic_reasoning": "Der Patient präsentiert sich mit bilateralen renalen Raumforderungen, aber es liegen keine Hinweise auf Fernmetastasen vor. Das CT Thorax zur Beurteilung der Fernmetastasen ist ausstehend, aber bis dahin ist von einem nicht-metastasierten Stadium auszugehen. Die Raumforderungen sind beidseitig, was die Situation komplexer macht, aber nicht automatisch metastasiert bedeutet.",
+    "imdc_risk": "nicht_anwendbar",
+    "imdc_reasoning": "Die IMDC-Risikostratifizierung ist nur für metastasiertes Nierenzellkarzinom relevant. Da der Patient aktuell als nicht-metastasiert eingestuft wird, ist die IMDC-Risikobewertung nicht anwendbar.",
+    "treatment_reasoning": "Der Patient hat beidseitige, malingitätsverdächtige Raumforderungen in beiden Nieren. Die Größe der Raumforderungen (4,1 cm und 1,8 cm) fällt in das cT1b und cT1a Stadium. Da keine Metastasen vorliegen (zumindest bis zum Abschluss des CT Thorax), ist die primäre Behandlungsoption die chirurgische Resektion. Aufgrund der bilateralen Beteiligung und der Größe der Raumforderungen ist eine radikale Nephrektomie auf einer Seite und eine Teilnephrektomie auf der anderen Seite eine mögliche Option. Die Entscheidung hängt von der Lage der Tumoren, der Nierenfunktion und den Komorbiditäten des Patienten ab. Die Vorgeschichte einer Kolon-OP bei Divertikulitis muss bei der Operationsplanung berücksichtigt werden. Eine aktive Überwachung ist aufgrund der Größe der Raumforderungen und des Verdachts auf Malignität nicht angemessen. Eine Ablation ist bei dieser Tumorgröße und Bilateralität ebenfalls weniger geeignet.",
+    "recommended_therapy": "Radikale Nephrektomie rechts und partielle Nephrektomie links, nach ausführlicher präoperativer Bildgebung und Beurteilung der Nierenfunktion.",
+    "therapy_category": "Surgery",
+    "confidence": 0.85
+  },
+  "raw_response": "\n```json\n{\n    \"is_metastatic\": false,\n    \"metastatic_reasoning\": \"Der Patient präsentiert sich mit bilateralen renalen Raumforderungen, aber es liegen keine Hinweise auf Fernmetastasen vor. Das CT Thorax zur Beurteilung der Fernmetastasen ist ausstehend, aber bis dahin ist von einem nicht-metastasierten Stadium auszugehen. Die Raumforderungen sind beidseitig, was die Situation komplexer macht, aber nicht automatisch metastasiert bedeutet.\",\n    \"imdc_risk\": \"nicht_anwendbar\",\n    \"imdc_reasoning\": \"Die IMDC-Risikostratifizierung ist nur für metastasiertes Nierenzellkarzinom relevant. Da der Patient aktuell als nicht-metastasiert eingestuft wird, ist die IMDC-Risikobewertung nicht anwendbar.\",\n    \"treatment_reasoning\": \"Der Patient hat beidseitige, malingitätsverdächtige Raumforderungen in beiden Nieren. Die Größe der Raumforderungen (4,1 cm und 1,8 cm) fällt in das cT1b und cT1a Stadium. Da keine Metastasen vorliegen (zumindest bis zum Abschluss des CT Thorax), ist die primäre Behandlungsoption die chirurgische Resektion. Aufgrund der bilateralen Beteiligung und der Größe der Raumforderungen ist eine radikale Nephrektomie auf einer Seite und eine Teilnephrektomie auf der anderen Seite eine mögliche Option. Die Entscheidung hängt von der Lage der Tumoren, der Nierenfunktion und den Komorbiditäten des Patienten ab. Die Vorgeschichte einer Kolon-OP bei Divertikulitis muss bei der Operationsplanung berücksichtigt werden. Eine aktive Überwachung ist aufgrund der Größe der Raumforderungen und des Verdachts auf Malignität nicht angemessen. Eine Ablation ist bei dieser Tumorgröße und Bilateralität ebenfalls weniger geeignet.\",\n    \"recommended_therapy\": \"Radikale Nephrektomie rechts und partielle Nephrektomie links, nach ausführlicher präoperativer Bildgebung und Beurteilung der Nierenfunktion.\",\n    \"therapy_category\": \"Surgery\",\n    \"confidence\": 0.85\n}\n```",
+  "ground_truth_metastatic": null,
+  "ground_truth_therapy": "Nierenteilresektion beidseits: zuerst rechts, 8 Wochen später links. Komplettierung des Stagings mittels CT Thorax.",
+  "metastatic_correct": null,
+  "inference_time_seconds": 14.939970970153809,
+  "tokens_used": 1630,
+  "success": true
+}

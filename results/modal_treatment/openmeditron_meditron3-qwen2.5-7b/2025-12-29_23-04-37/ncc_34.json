@@ -1,0 +1,181 @@
+{
+  "case_id": "ncc_34",
+  "timestamp": "2025-12-29_23-04-37",
+  "provider": "modal",
+  "model": "OpenMeditron/Meditron3-Qwen2.5-7B",
+  "input_case": {
+    "case_id": "ncc_34",
+    "patient_name": "Muster, Cora",
+    "age": 74,
+    "ecog": 3,
+    "karnofsky": 50,
+    "comorbidity": "unknown",
+    "life_expectancy": "unknown",
+    "anamnese": "mRCC mit deutlich reduziertem Allgemeinzustand (ECOG 3), massiver Gewichtsabnahme und tumorassoziierten Schmerzen. Vortherapien: 1. Linie Ipilimumab + Nivolumab; 2. Linie Cabozantinib; aktuell Lenvatinib + Everolimus. Komorbiditäten: CKD G4, KHK (Z. n. Stent), COPD GOLD II. Z. n. Appendektomie.",
+    "diagnose_kurz": "Metastasiertes Nierenzellkarzinom (mRCC) mit deutlichem systemischem Progress unter aktueller Therapie (Lenvatinib + Everolimus) bei ECOG 3.",
+    "stadium": "metastasiert; mehrfach vorbehandelt (>=3 Therapielinien); klinisch palliatives Setting",
+    "tnm_clinical": null,
+    "tnm_pathological": null,
+    "histologie_subtyp": null,
+    "histologie_klarzellig": null,
+    "bildgebung": [
+      {
+        "modalitaet": "CT",
+        "region": "Thorax/Abdomen/Becken",
+        "datum": "2025-12-02",
+        "befund_kurz": "Deutlicher systemischer Progress: Thorax mit progredienten bilateralen pulmonalen Metastasen (RLL 18 mm, LUL 14 mm, multiple neue 4–7 mm) und kleinem Pleuraerguss rechts. Abdomen mit progredienten Lebermetastasen (Seg. VIII 34 mm, Seg. II 19 mm) und neu geringem Aszites. Retroperitoneal paraaortale LK-Konglomerate bis 32 mm. Skelett: multiple osteolytische Metastasen (LWK2 22 mm; linkes Os ilium 28 mm) korrelierend mit Schmerzen.",
+        "quelle": "Erforderlicher Befund",
+        "detailstruktur": {
+          "thorax": {
+            "pulmonale_metastasen": [
+              {
+                "lokalisation": "RLL",
+                "groesse_mm": 18,
+                "vorher_mm": null,
+                "bewertung": "progredient"
+              },
+              {
+                "lokalisation": "LUL",
+                "groesse_mm": 14,
+                "vorher_mm": null,
+                "bewertung": "progredient"
+              }
+            ],
+            "weitere_herde_mm": "multiple neu 4–7 mm",
+            "pleuraerguss": true,
+            "pleuraerguss_seite": "rechts_klein",
+            "mediastinale_hilaere_lk": "keine_sicheren_pathologisch_vergroesserten"
+          },
+          "abdomen": {
+            "leber": [
+              {
+                "segment": "VIII",
+                "groesse_mm": 34,
+                "vorher_mm": null,
+                "bewertung": "progredient"
+              },
+              {
+                "segment": "II",
+                "groesse_mm": 19,
+                "vorher_mm": null,
+                "bewertung": "progredient"
+              }
+            ],
+            "aszetes": true,
+            "aszetes_ausmass": "gering"
+          },
+          "retroperitoneum": {
+            "lymphknoten": [
+              {
+                "lokalisation": "paraaortal",
+                "groesse_mm": 32,
+                "vorher_mm": null,
+                "bewertung": "konglomerat_progredient"
+              }
+            ]
+          },
+          "skelett": {
+            "ossäre_laesionen": [
+              {
+                "lokalisation": "LWK2",
+                "typ": "osteolytisch",
+                "groesse_mm": 22,
+                "vorher_mm": null,
+                "bewertung": "metastasenverdaechtig"
+              },
+              {
+                "lokalisation": "linkes Os ilium",
+                "typ": "osteolytisch",
+                "groesse_mm": 28,
+                "vorher_mm": null,
+                "bewertung": "metastasenverdaechtig"
+              }
+            ]
+          }
+        },
+        "beurteilung": "Deutlicher systemischer Progress (viszeral + ossär + LK) bei schlechtem Allgemeinzustand."
+      }
+    ],
+    "nebendiagnosen": [
+      {
+        "diagnose": "Chronische Niereninsuffizienz (CKD) G4",
+        "details": null
+      },
+      {
+        "diagnose": "Koronare Herzkrankheit (KHK)",
+        "details": "Z. n. Stent"
+      },
+      {
+        "diagnose": "COPD GOLD II",
+        "details": null
+      },
+      {
+        "diagnose": "Tumorkachexie / massive Gewichtsabnahme",
+        "details": "klinisch"
+      },
+      {
+        "diagnose": "Tumorassoziierte Schmerzen",
+        "details": "v. a. ossär korrelierend"
+      }
+    ],
+    "medikation": [
+      {
+        "wirkstoff": "Bisoprolol",
+        "dosierung": null,
+        "schema": null,
+        "hinweis": null
+      },
+      {
+        "wirkstoff": "ASS",
+        "dosierung": null,
+        "schema": null,
+        "hinweis": null
+      },
+      {
+        "wirkstoff": "Torasemid",
+        "dosierung": null,
+        "schema": null,
+        "hinweis": null
+      },
+      {
+        "wirkstoff": "LAMA/LABA inhalativ",
+        "dosierung": null,
+        "schema": null,
+        "hinweis": "COPD"
+      },
+      {
+        "wirkstoff": "Oxycodon",
+        "dosierung": null,
+        "schema": null,
+        "hinweis": "bei Bedarf"
+      }
+    ],
+    "ici_durchfuehrbar": null,
+    "prior_therapies": [],
+    "ground_truth_metastatic": null,
+    "ground_truth_imdc": null,
+    "ground_truth_therapy": "Best supportive care im Vordergrund. | Optimierung Analgesieschema (WHO-Stufen, ggf. Palliativdienst). | Palliative Radiotherapie schmerzhafter Knochenläsionen (z. B. Becken/LWS). | Supportiv: Antiemese, Ernährung/Cachexie-Support, CKD-gerechte Therapie."
+  },
+  "prompt_text": "Du bist ein erfahrener Onkologe, spezialisiert auf Nierenzellkarzinom (RCC).\nAnalysiere den folgenden klinischen Fall und erstelle eine strukturierte Therapieempfehlung.\n\n=== KLINISCHER FALL ===\nPatient: Muster, Cora, 74 Jahre\nECOG: 3, Karnofsky: 50%\nKomorbidität: unknown\nLebenserwartung: unknown\n\nDiagnose: Metastasiertes Nierenzellkarzinom (mRCC) mit deutlichem systemischem Progress unter aktueller Therapie (Lenvatinib + Everolimus) bei ECOG 3.\nStadium: metastasiert; mehrfach vorbehandelt (>=3 Therapielinien); klinisch palliatives Setting\nTNM: nicht dokumentiert\n\nHISTOLOGIE (WICHTIG für Therapieentscheidung):\nNicht dokumentiert\n\nAnamnese:\nmRCC mit deutlich reduziertem Allgemeinzustand (ECOG 3), massiver Gewichtsabnahme und tumorassoziierten Schmerzen. Vortherapien: 1. Linie Ipilimumab + Nivolumab; 2. Linie Cabozantinib; aktuell Lenvatinib + Everolimus. Komorbiditäten: CKD G4, KHK (Z. n. Stent), COPD GOLD II. Z. n. Appendektomie.\n\nNebendiagnosen: Chronische Niereninsuffizienz (CKD) G4,...",
+  "prediction": {
+    "is_metastatic": true,
+    "metastatic_reasoning": "Der Patient hat deutliche systemische Progression mit Thoraxmetastasen, Lebermetastasen, osteolytischen Metastasen und Aszites, was den Metastasierungsstatus bestätigt.",
+    "imdc_risk": "unguenstig",
+    "imdc_reasoning": "Der Patient hat eine Karnofsky-Score von 50%, was als Risikofaktor angesehen wird. Die Anamnese zeigt keine weitere Risikofaktoren.",
+    "treatment_reasoning": "Da der Patient metastasiert und klarzellig ist, wird der Therapiealgorithmus für metastasiertes klarzelliges RCC angewendet. Da die IMDC-Risikostratifizierung als ungünstig gilt, wird die Empfehlung für eine IO+TKI-Kombination angewendet.",
+    "recommended_therapy": "NIVO+CABO",
+    "therapy_category": "IO+TKI",
+    "recommendation_strength": "A",
+    "confidence": 0.9
+  },
+  "raw_response": "{\n    \"is_metastatic\": true,\n    \"metastatic_reasoning\": \"Der Patient hat deutliche systemische Progression mit Thoraxmetastasen, Lebermetastasen, osteolytischen Metastasen und Aszites, was den Metastasierungsstatus bestätigt.\",\n    \"imdc_risk\": \"unguenstig\",\n    \"imdc_reasoning\": \"Der Patient hat eine Karnofsky-Score von 50%, was als Risikofaktor angesehen wird. Die Anamnese zeigt keine weitere Risikofaktoren.\",\n    \"treatment_reasoning\": \"Da der Patient metastasiert und klarzellig ist, wird der Therapiealgorithmus für metastasiertes klarzelliges RCC angewendet. Da die IMDC-Risikostratifizierung als ungünstig gilt, wird die Empfehlung für eine IO+TKI-Kombination angewendet.\",\n    \"recommended_therapy\": \"NIVO+CABO\",\n    \"therapy_category\": \"IO+TKI\",\n    \"recommendation_strength\": \"A\",\n    \"confidence\": 0.9\n}",
+  "ground_truth_metastatic": null,
+  "ground_truth_therapy": "Best supportive care im Vordergrund. | Optimierung Analgesieschema (WHO-Stufen, ggf. Palliativdienst). | Palliative Radiotherapie schmerzhafter Knochenläsionen (z. B. Becken/LWS). | Supportiv: Antiemese, Ernährung/Cachexie-Support, CKD-gerechte Therapie.",
+  "metastatic_correct": null,
+  "therapy_exact_match": false,
+  "therapy_clinically_acceptable": null,
+  "inference_time_seconds": 0.25036321367536274,
+  "tokens_used": 248,
+  "success": true,
+  "error_message": null
+}

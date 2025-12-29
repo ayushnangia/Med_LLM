@@ -1,0 +1,65 @@
+{
+  "case_id": "ncc_24",
+  "timestamp": "2025-12-29_23-38-36",
+  "provider": "modal",
+  "model": "google/gemma-3-27b-it",
+  "input_case": {
+    "case_id": "ncc_24",
+    "patient_name": "Beispiel, Valeria",
+    "age": 57,
+    "ecog": null,
+    "karnofsky": null,
+    "comorbidity": null,
+    "life_expectancy": null,
+    "anamnese": "Z. n. Nephrektomie links am 06.06.2025 bei papillärem Nierenzellkarzinom. Aktuelle Vorstellung zur Befund- und Therapieentscheidung anhand CT-Staging vom 10.10.2025. Komorbiditäten: COPD GOLD I (Raucher), Adipositas per magna. Z. n. Nabelhernien-OP.",
+    "diagnose_kurz": "Metastasiertes papilläres Nierenzellkarzinom (papRCC) nach Nephrektomie links 06.06.2025. CT 10.10.2025: multiple pulmonale Metastasen und Lokalrezidiv in der OP-Loge. IMDC intermediate (2 Faktoren: Diagnose→Therapie <12 Monate, Neutrophile erhöht).",
+    "stadium": "mRCC (pulmonal + Lokalrezidiv), IMDC intermediate (2 Faktoren)",
+    "tnm_clinical": null,
+    "tnm_pathological": null,
+    "histologie_subtyp": null,
+    "histologie_klarzellig": null,
+    "bildgebung": [
+      {
+        "datum": "2025-10-10",
+        "modalitaet": "CT",
+        "region": "Staging Thorax/Abdomen/Becken",
+        "befund": "Thorax: Multiple bilaterale pulmonale Rundherde metastasenverdächtig (rechter Unterlappen 12 mm, rechter Oberlappen 8 mm, linker Unterlappen 10 mm, weitere Herde beidseits 3–6 mm). Kein Pleuraerguss. Keine sicher pathologisch vergrößerten mediastinal/hilären Lymphknoten. Abdomen/Becken: Status nach Nephrektomie links. In der OP-Loge links weichteildichte Läsion 22×18 mm mit Kontrastmittelaufnahme, vereinbar mit Lokalrezidiv. Retroperitoneal keine sicher pathologisch vergrößerten Lymphknoten (max. 9 mm kurze Achse). Leber, Nebennieren, Pankreas ohne fokale Läsionen. Kein Aszites. Skelett: Kein sicherer Hinweis auf ossäre Metastasen im CT.",
+        "quelle": "Erforderlicher Befund"
+      }
+    ],
+    "nebendiagnosen": [
+      "COPD GOLD I",
+      "Raucher",
+      "Adipositas per magna",
+      "Z. n. Nabelhernien-OP"
+    ],
+    "medikation": [],
+    "ici_durchfuehrbar": null,
+    "prior_therapies": [],
+    "ground_truth_metastatic": null,
+    "ground_truth_imdc": null,
+    "ground_truth_therapy": "Einleitung einer Systemtherapie im metastasierten Setting (papRCC, IMDC intermediate) unter Berücksichtigung Komorbiditäten (COPD, Adipositas) und erforderlichem Nebenwirkungs-/Supportivmanagement."
+  },
+  "prompt_text": "Du bist ein erfahrener Onkologe, spezialisiert auf Nierenzellkarzinom (RCC).\nAnalysiere den folgenden klinischen Fall und erstelle eine strukturierte Therapieempfehlung.\n\n=== KLINISCHER FALL ===\nPatient: Beispiel, Valeria, 57 Jahre\nECOG: None, Karnofsky: ?%\nKomorbidität: None\nLebenserwartung: None\n\nDiagnose: Metastasiertes papilläres Nierenzellkarzinom (papRCC) nach Nephrektomie links 06.06.2025. CT 10.10.2025: multiple pulmonale Metastasen und Lokalrezidiv in der OP-Loge. IMDC intermediate (2 Faktoren: Diagnose→Therapie <12 Monate, Neutrophile erhöht).\nStadium: mRCC (pulmonal + Lokalrezidiv), IMDC intermediate (2 Faktoren)\nTNM: nicht dokumentiert\n\nHISTOLOGIE (WICHTIG für Therapieentscheidung):\nNicht dokumentiert\n\nAnamnese:\nZ. n. Nephrektomie links am 06.06.2025 bei papillärem Nierenzellkarzinom. Aktuelle Vorstellung zur Befund- und Therapieentscheidung anhand CT-Staging vom 10.10.2025. Komorbiditäten: COPD GOLD I (Raucher), Adipositas per magna. Z. n. Nabelhernien-OP.\n\nNebendiagnosen:...",
+  "prediction": {
+    "is_metastatic": true,
+    "metastatic_reasoning": "Der Patient zeigt multiple pulmonale Metastasen und ein Lokalrezidiv in der OP-Loge, wie durch das CT-Staging vom 10.10.2025 dokumentiert. Dies deutet eindeutig auf eine Metastasierung hin.",
+    "imdc_risk": "intermediaer",
+    "imdc_reasoning": "Der Patient erfüllt 2 IMDC-Risikofaktoren: Diagnose→Therapie <12 Monate (da die Metastasen kurz nach der Nephrektomie diagnostiziert wurden) und erhöhte Neutrophile (im CT-Bericht nicht explizit, aber in der Aufgabenstellung angegeben).",
+    "treatment_reasoning": "Der Patient hat ein metastasiertes papilläres Nierenzellkarzinom. Die Leitlinien weisen darauf hin, dass bei nicht-klarzelligen RCCs oft eine TKI-Monotherapie bevorzugt wird. Da der Patient jedoch ein intermediäres Risikoprofil aufweist und die ICI-Kombination durchführbar ist (nicht ausgeschlossen), sollte zunächst eine ICI+TKI Kombination in Betracht gezogen werden. Da der histologische Subtyp papilläres RCC ist, ist die Anwendung der Leitlinien für das klarzellige RCC mit Vorsicht zu genießen. Die Leitlinien für nicht-klarzellige RCC sind nicht explizit gegeben, daher wird hier die Anwendung der klarzelligen Leitlinien als Ausgangspunkt genommen, mit der Berücksichtigung der Besonderheiten des papillären Subtyps. Die COPD GOLD I und Adipositas per magna müssen bei der Auswahl der Therapie berücksichtigt werden, da diese die Verträglichkeit beeinflussen können.",
+    "recommended_therapy": "Nivolumab in Kombination mit Cabozantinib",
+    "therapy_category": "IO+TKI",
+    "recommendation_strength": "A",
+    "confidence": 0.8
+  },
+  "raw_response": "{\"is_metastatic\": true,\n    \"metastatic_reasoning\": \"Der Patient zeigt multiple pulmonale Metastasen und ein Lokalrezidiv in der OP-Loge, wie durch das CT-Staging vom 10.10.2025 dokumentiert. Dies deutet eindeutig auf eine Metastasierung hin.\",\n    \"imdc_risk\": \"intermediaer\",\n    \"imdc_reasoning\": \"Der Patient erfüllt 2 IMDC-Risikofaktoren: Diagnose→Therapie <12 Monate (da die Metastasen kurz nach der Nephrektomie diagnostiziert wurden) und erhöhte Neutrophile (im CT-Bericht nicht explizit, aber in der Aufgabenstellung angegeben).\",\n    \"treatment_reasoning\": \"Der Patient hat ein metastasiertes papilläres Nierenzellkarzinom. Die Leitlinien weisen darauf hin, dass bei nicht-klarzelligen RCCs oft eine TKI-Monotherapie bevorzugt wird. Da der Patient jedoch ein intermediäres Risikoprofil aufweist und die ICI-Kombination durchführbar ist (nicht ausgeschlossen), sollte zunächst eine ICI+TKI Kombination in Betracht gezogen werden. Da der histologische Subtyp papilläres RCC ist, ist die Anwendung der Leitlinien für das klarzellige RCC mit Vorsicht zu genießen. Die Leitlinien für nicht-klarzellige RCC sind nicht explizit gegeben, daher wird hier die Anwendung der klarzelligen Leitlinien als Ausgangspunkt genommen, mit der Berücksichtigung der Besonderheiten des papillären Subtyps. Die COPD GOLD I und Adipositas per magna müssen bei der Auswahl der Therapie berücksichtigt werden, da diese die Verträglichkeit beeinflussen können.\",\n    \"recommended_therapy\": \"Nivolumab in Kombination mit Cabozantinib\",\n    \"therapy_category\": \"IO+TKI\",\n    \"recommendation_strength\": \"A\",\n    \"confidence\": 0.8}",
+  "ground_truth_metastatic": null,
+  "ground_truth_therapy": "Einleitung einer Systemtherapie im metastasierten Setting (papRCC, IMDC intermediate) unter Berücksichtigung Komorbiditäten (COPD, Adipositas) und erforderlichem Nebenwirkungs-/Supportivmanagement.",
+  "metastatic_correct": null,
+  "therapy_exact_match": false,
+  "therapy_clinically_acceptable": null,
+  "inference_time_seconds": 3.12081674848284,
+  "tokens_used": 419,
+  "success": true,
+  "error_message": null
+}

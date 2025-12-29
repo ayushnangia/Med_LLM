@@ -1,0 +1,59 @@
+{
+  "case_id": "ncc_10",
+  "timestamp": "2025-12-29T23:36:37.805111",
+  "provider": "openrouter",
+  "model": "google/gemma-3-27b-it",
+  "input_case": {
+    "case_id": "ncc_10",
+    "patient_name": "Beispiel, Hanna",
+    "age": 75,
+    "ecog": 2,
+    "anamnese": "Großer Tumor rechte Niere 7,5 cm (cT2a). Vorerkrankungen: CKD G3, arterielle Hypertonie, Vorhofflimmern (DOAK). Z. n. TUR-B 2019 ohne Malignität.",
+    "diagnose_kurz": "Großer Nierentumor rechts (Oberpol) ca. 7,5 × 6,5 cm, V. a. RCC (cT2a, prätherapeutisch)",
+    "stadium": "cT2a, Staging inkomplett (CT Thorax ausstehend)",
+    "tnm_clinical": {
+      "T": "T2",
+      "T_sub": "T2a",
+      "N": "unknown",
+      "M": "unknown",
+      "stage_group": "unknown"
+    },
+    "histologie_subtyp": null,
+    "histologie_klarzellig": null,
+    "bildgebung": [
+      {
+        "modalitaet": "CT",
+        "region": "Abdomen",
+        "datum": "2025-12-09",
+        "befund_kurz": "V. a. Nierenzellkarzinom rechte Niere am Oberpol ca. 7,5 × 6,5 cm (cT2a).",
+        "quelle": "Erforderlicher Befund"
+      }
+    ],
+    "nebendiagnosen": [
+      "CKD G3",
+      "arterielle Hypertonie",
+      "Vorhofflimmern (Antikoagulation mit DOAK)",
+      "Z. n. TUR-B 2019 (ohne Malignität)"
+    ],
+    "ground_truth_metastatic": null,
+    "ground_truth_therapy": "Perioperatives Antikoagulationsmanagement; Komplettierung Staging mittels CT Thorax; sofern keine Metastasen: radikale Nephrektomie rechts."
+  },
+  "prompt_text": "Du bist ein erfahrener Onkologe, spezialisiert auf Nierenzellkarzinom (RCC).\nAnalysiere den folgenden klinischen Fall und erstelle eine strukturierte Therapieempfehlung.\n\n=== KLINISCHER FALL ===\nPatient: Beispiel, Hanna, 75 Jahre\nECOG: 2, Karnofsky: ?%\nKomorbidität: hoch\n\nDiagnose: Großer Nierentumor rechts (Oberpol) ca. 7,5 × 6,5 cm, V. a. RCC (cT2a, prätherapeutisch)\nStadium: cT2a, Staging inkomplett (CT Thorax ausstehend)\nTNM: cTNM: TT2 Nunknown Munknown\n\nHISTOLOGIE: Nicht dokumentiert\n\nAnamnese: Großer Tumor rechte Niere 7,5 cm (cT2a). Vorerkrankungen: CKD G3, arterielle Hypertonie, Vorhofflimmern (DOAK). Z. n. TUR-B 2019 ohne Malignität.\n\nNebendiagnosen: CKD G3, arterielle Hypertonie, Vorhofflimmern (Antikoagulation mit DOAK), Z. n. TUR-B 2019 (ohne Malignität)\n\nBildgebung:\n  - CT Abdomen (2025-12-09): V. a. Nierenzellkarzinom rechte Niere am Oberpol ca. 7,5 × 6,5 cm (cT2a).\n\nVorherige Systemtherapien: Keine\n\n=== THERAPIE-LEITLINIEN ===\n\nMETASTASIERTES KLARZELLIGES RCC - THERAPIE-ALGORITHMUS:\n\nIMDC-RISIKOSTRATIFIZIERUNG:\n- Günstig (0 Risikofaktoren)\n- Intermediär (1-2 Risikofaktoren)\n- Ungünstig (≥3 Risikofaktoren)\n\nRisikofaktoren: Karnofsky <80%, Zeit bis Systemtherapie <1 Jahr, Hämoglobin↓, Calcium↑, Neutrophile↑, Thrombozyten↑\n\nERSTLINIE (wenn ICI-Kombination möglich):\n- Günstig: NIVO+CABO (A), PEMBRO+AXI (A), PEMBRO+LEN (A), AVELU+AXI (B)\n- Intermediär: NIVO+CABO (A), NIVO+IPI (A), PEMBRO+AXI (A), PEMBRO+LEN (A)\n- Ungünstig: NIVO+CABO (A), NIVO+IPI (A), PEMBRO+AXI (A), PEMBRO+LEN (A)\n\nERSTLINIE (wenn ICI-Kombination NICHT möglich):\n- Günstig: Pazopanib (A), Sunitinib (A), Tivozanib (A), BEV+IFN (A)\n- Intermediär: Cabozantinib (B), Pazopanib (B), Sunitinib (B)\n- Ungünstig: Cabozantinib (B), Sunitinib (B), Temsirolimus (0)\n\nZWEITLINIE nach ICI-Kombination: Cabozantinib (A), Lenvatinib+Everolimus (A), Sunitinib (A)\nZWEITLINIE nach VEGF/R-Monotherapie: Cabozantinib (A), Nivolumab (A)\n\n---\n\nNICHT-METASTASIERTES RCC - THERAPIE-ALGORITHMUS:\n\n1. AKTIVE ÜBERWACHUNG (GoR 0): Kleine Tumoren + hohe Komorbidität/begrenzte Lebenserwartung\n2. ABLATION (GoR 0): Kleine Tumoren + hohe Komorbidität/begrenzte Lebenserwartung\n3. NIERENTEILRESEKTION: cT1 (≤7cm) SOLL durchgeführt werden (GoR A)\n4. RADIKALE NEPHREKTOMIE: Wenn Teilresektion nicht möglich (GoR A)\n\nLegende: A=starke Empfehlung, B=schwache Empfehlung, 0=Option\n\n\n=== AUFGABE ===\nAnalysiere den Fall schrittweise:\n1. METASTASIERUNG: Ist der Patient metastasiert? (basierend auf TNM, Anamnese, Bildgebung)\n2. HISTOLOGIE: Klarzellig vs. nicht-klarzellig?\n3. RISIKO: Falls metastasiert + klarzellig, IMDC-Risiko?\n4. THERAPIE: Empfehlung nach Leitlinie\n\nAntwort als JSON:\n{\n    \"is_metastatic\": true/false,\n    \"metastatic_reasoning\": \"Begründung...\",\n    \"imdc_risk\": \"guenstig/intermediaer/unguenstig/nicht_anwendbar\",\n    \"imdc_reasoning\": \"IMDC-Berechnung...\",\n    \"treatment_reasoning\": \"Schrittweise Begründung...\",\n    \"recommended_therapy\": \"Konkrete Empfehlung\",\n    \"therapy_category\": \"IO+TKI/TKI mono/Surgery/Surveillance/etc.\",\n    \"confidence\": 0.0-1.0\n}",
+  "output": {
+    "is_metastatic": false,
+    "metastatic_reasoning": "Der Patient hat ein cT2a Nunknown Munknown Stadium. Das bedeutet, dass es keine Hinweise auf Fernmetastasen gibt (M0 wird angenommen, da nicht dokumentiert). Das CT Thorax steht noch aus, aber basierend auf den vorliegenden Informationen ist der Patient aktuell nicht als metastasiert einzustufen. Die Anamnese deutet auf einen lokal begrenzten Tumor hin.",
+    "imdc_risk": "nicht_anwendbar",
+    "imdc_reasoning": "Die IMDC-Risikostratifizierung ist nur bei metastasiertem Nierenzellkarzinom relevant. Da der Patient aktuell nicht als metastasiert eingestuft wird, ist die IMDC-Risikobewertung nicht anwendbar.",
+    "treatment_reasoning": "Der Patient hat einen cT2a Tumor von 7,5 cm Größe. Eine radikale Nephrektomie oder eine Teilnephrektomie sind Optionen. Aufgrund des Alters des Patienten (75 Jahre) und der relevanten Komorbiditäten (CKD G3, arterielle Hypertonie, Vorhofflimmern) sowie des ECOG Performance Status von 2, ist eine radikale Nephrektomie mit erhöhtem Risiko verbunden. Eine Teilnephrektomie wäre potenziell schonend, muss aber hinsichtlich der Tumorlokalisation und der Nierenfunktion evaluiert werden. Aktive Überwachung ist aufgrund der Tumorgröße (7,5cm) und des potenziellen Risikos einer Progression weniger geeignet. Da die Histologie noch nicht vorliegt, muss diese zwingend vor einer definitiven Therapieentscheidung abgewartet werden. Sollte die Histologie ein klarzelliges Nierenzellkarzinom ergeben, ist eine radikale oder partielle Nephrektomie die Therapie der Wahl. Bei anderen Histologien muss die Therapie entsprechend angepasst werden.",
+    "recommended_therapy": "Abwarten der Histologie. Anschließend Evaluation zur Durchführbarkeit einer Teilnephrektomie. Falls keine Teilnephrektomie möglich, radikale Nephrektomie in Betracht ziehen. Alternativ, bei hoher Komorbidität und begrenzter Lebenserwartung, aktive Überwachung.",
+    "therapy_category": "Surgery",
+    "confidence": 0.8
+  },
+  "raw_response": "\n```json\n{\n    \"is_metastatic\": false,\n    \"metastatic_reasoning\": \"Der Patient hat ein cT2a Nunknown Munknown Stadium. Das bedeutet, dass es keine Hinweise auf Fernmetastasen gibt (M0 wird angenommen, da nicht dokumentiert). Das CT Thorax steht noch aus, aber basierend auf den vorliegenden Informationen ist der Patient aktuell nicht als metastasiert einzustufen. Die Anamnese deutet auf einen lokal begrenzten Tumor hin.\",\n    \"imdc_risk\": \"nicht_anwendbar\",\n    \"imdc_reasoning\": \"Die IMDC-Risikostratifizierung ist nur bei metastasiertem Nierenzellkarzinom relevant. Da der Patient aktuell nicht als metastasiert eingestuft wird, ist die IMDC-Risikobewertung nicht anwendbar.\",\n    \"treatment_reasoning\": \"Der Patient hat einen cT2a Tumor von 7,5 cm Größe. Eine radikale Nephrektomie oder eine Teilnephrektomie sind Optionen. Aufgrund des Alters des Patienten (75 Jahre) und der relevanten Komorbiditäten (CKD G3, arterielle Hypertonie, Vorhofflimmern) sowie des ECOG Performance Status von 2, ist eine radikale Nephrektomie mit erhöhtem Risiko verbunden. Eine Teilnephrektomie wäre potenziell schonend, muss aber hinsichtlich der Tumorlokalisation und der Nierenfunktion evaluiert werden. Aktive Überwachung ist aufgrund der Tumorgröße (7,5cm) und des potenziellen Risikos einer Progression weniger geeignet. Da die Histologie noch nicht vorliegt, muss diese zwingend vor einer definitiven Therapieentscheidung abgewartet werden. Sollte die Histologie ein klarzelliges Nierenzellkarzinom ergeben, ist eine radikale oder partielle Nephrektomie die Therapie der Wahl. Bei anderen Histologien muss die Therapie entsprechend angepasst werden.\",\n    \"recommended_therapy\": \"Abwarten der Histologie. Anschließend Evaluation zur Durchführbarkeit einer Teilnephrektomie. Falls keine Teilnephrektomie möglich, radikale Nephrektomie in Betracht ziehen. Alternativ, bei hoher Komorbidität und begrenzter Lebenserwartung, aktive Überwachung.\",\n    \"therapy_category\": \"Surgery\",\n    \"confidence\": 0.8\n}\n```",
+  "ground_truth_metastatic": null,
+  "ground_truth_therapy": "Perioperatives Antikoagulationsmanagement; Komplettierung Staging mittels CT Thorax; sofern keine Metastasen: radikale Nephrektomie rechts.",
+  "metastatic_correct": null,
+  "inference_time_seconds": 15.753347158432007,
+  "tokens_used": 1668,
+  "success": true
+}

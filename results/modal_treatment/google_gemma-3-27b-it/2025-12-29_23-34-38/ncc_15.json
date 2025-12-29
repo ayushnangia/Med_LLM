@@ -1,0 +1,60 @@
+{
+  "case_id": "ncc_15",
+  "timestamp": "2025-12-29_23-34-38",
+  "provider": "modal",
+  "model": "google/gemma-3-27b-it",
+  "input_case": {
+    "case_id": "ncc_15",
+    "patient_name": "Muster, Mira",
+    "age": 59,
+    "ecog": null,
+    "karnofsky": null,
+    "comorbidity": null,
+    "life_expectancy": null,
+    "anamnese": "Diagnose: metastasiertes klarzelliges Nierenzellkarzinom (mRCC, ccRCC). Z. n. Nephrektomie rechts 2023 (pT2a R0; N-Status nicht angegeben). CT-Staging 12.12.2025 mit multiplen bilateralen pulmonalen Metastasen. IMDC: günstiges Risiko (0 Risikofaktoren).",
+    "diagnose_kurz": "Metastasiertes klarzelliges Nierenzellkarzinom (mRCC, ccRCC) – Z. n. Nephrektomie rechts 2023 (pT2a R0); CT Staging 12.12.2025: multiple bilaterale pulmonale Metastasen",
+    "stadium": "mRCC, IMDC günstig (0 Risikofaktoren)",
+    "tnm_clinical": null,
+    "tnm_pathological": null,
+    "histologie_subtyp": null,
+    "histologie_klarzellig": null,
+    "bildgebung": [
+      {
+        "datum": "2025-12-12",
+        "modalitaet": "CT",
+        "region": "Staging Thorax/Abdomen/Becken",
+        "befund": "Thorax: multiple bilaterale pulmonale Metastasen (z.B. RLL 12 mm, LUL 9 mm, weitere 3–6 mm), keine Pleuraergüsse, keine sicheren mediastinal/hilären Lymphknoten. Abdomen/Becken: ohne Lokalrezidiv, keine abdominelle Lymphknotenvergrößerung.",
+        "quelle": "Erforderlicher Befund"
+      }
+    ],
+    "nebendiagnosen": [],
+    "medikation": [],
+    "ici_durchfuehrbar": null,
+    "prior_therapies": [],
+    "ground_truth_metastatic": null,
+    "ground_truth_imdc": null,
+    "ground_truth_therapy": "Start Nivolumab + Cabozantinib (IO+TKI), klinisches/Labor-Monitoring, Re-Staging nach 8–12 Wochen."
+  },
+  "prompt_text": "Du bist ein erfahrener Onkologe, spezialisiert auf Nierenzellkarzinom (RCC).\nAnalysiere den folgenden klinischen Fall und erstelle eine strukturierte Therapieempfehlung.\n\n=== KLINISCHER FALL ===\nPatient: Muster, Mira, 59 Jahre\nECOG: None, Karnofsky: ?%\nKomorbidität: None\nLebenserwartung: None\n\nDiagnose: Metastasiertes klarzelliges Nierenzellkarzinom (mRCC, ccRCC) – Z. n. Nephrektomie rechts 2023 (pT2a R0); CT Staging 12.12.2025: multiple bilaterale pulmonale Metastasen\nStadium: mRCC, IMDC günstig (0 Risikofaktoren)\nTNM: nicht dokumentiert\n\nHISTOLOGIE (WICHTIG für Therapieentscheidung):\nNicht dokumentiert\n\nAnamnese:\nDiagnose: metastasiertes klarzelliges Nierenzellkarzinom (mRCC, ccRCC). Z. n. Nephrektomie rechts 2023 (pT2a R0; N-Status nicht angegeben). CT-Staging 12.12.2025 mit multiplen bilateralen pulmonalen Metastasen. IMDC: günstiges Risiko (0 Risikofaktoren).\n\nNebendiagnosen: Keine dokumentiert\n\nAktuelle Medikation: Keine dokumentiert\n\nBildgebung:\n  - CT Staging Thorax/Abdomen/Bec...",
+  "prediction": {
+    "is_metastatic": true,
+    "metastatic_reasoning": "Der Patient zeigt multiple bilaterale pulmonale Metastasen im CT-Staging vom 12.12.2025, was eindeutig für eine Metastasierung spricht. Die Vorgeschichte einer Nephrektomie rechts im Jahr 2023 bestätigt die Diagnose eines Nierenzellkarzinoms, welches nun metastasiert ist.",
+    "imdc_risk": "guenstig",
+    "imdc_reasoning": "Der Patient wird als IMDC-günstiges Risiko eingestuft, da in der Anamnese explizit angegeben ist, dass 0 Risikofaktoren vorliegen. Die relevanten Risikofaktoren sind Karnofsky <80%, Zeit bis Systemtherapie <1 Jahr, Hämoglobin↓, Calcium↑, Neutrophile↑, Thrombozyten↑. Da keine dieser Faktoren vorliegen, ist das Risiko günstig.",
+    "treatment_reasoning": "Der Patient hat ein metastasiertes klarzelliges Nierenzellkarzinom (mRCC) mit günstigem IMDC-Risiko. Gemäß den Therapie-Leitlinien ist für Patienten mit günstigem Risiko und der Möglichkeit einer ICI-Kombination die Erstlinientherapie mit Nivo+Cabo, Pembro+Axi, Pembro+Len oder Avelu+Axi empfohlen. Da die Durchführbarkeit einer ICI-Kombination nicht dokumentiert ist, gehe ich zunächst von der Möglichkeit aus. Wenn die ICI-Kombination nicht möglich ist, wären Pazopanib, Sunitinib oder Tivozanib Optionen.",
+    "recommended_therapy": "Nivolumab in Kombination mit Cabozantinib",
+    "therapy_category": "IO+TKI",
+    "recommendation_strength": "A",
+    "confidence": 0.9
+  },
+  "raw_response": "{\"is_metastatic\": true,\n    \"metastatic_reasoning\": \"Der Patient zeigt multiple bilaterale pulmonale Metastasen im CT-Staging vom 12.12.2025, was eindeutig für eine Metastasierung spricht. Die Vorgeschichte einer Nephrektomie rechts im Jahr 2023 bestätigt die Diagnose eines Nierenzellkarzinoms, welches nun metastasiert ist.\",\n    \"imdc_risk\": \"guenstig\",\n    \"imdc_reasoning\": \"Der Patient wird als IMDC-günstiges Risiko eingestuft, da in der Anamnese explizit angegeben ist, dass 0 Risikofaktoren vorliegen. Die relevanten Risikofaktoren sind Karnofsky <80%, Zeit bis Systemtherapie <1 Jahr, Hämoglobin↓, Calcium↑, Neutrophile↑, Thrombozyten↑. Da keine dieser Faktoren vorliegen, ist das Risiko günstig.\",\n    \"treatment_reasoning\": \"Der Patient hat ein metastasiertes klarzelliges Nierenzellkarzinom (mRCC) mit günstigem IMDC-Risiko. Gemäß den Therapie-Leitlinien ist für Patienten mit günstigem Risiko und der Möglichkeit einer ICI-Kombination die Erstlinientherapie mit Nivo+Cabo, Pembro+Axi, Pembro+Len oder Avelu+Axi empfohlen. Da die Durchführbarkeit einer ICI-Kombination nicht dokumentiert ist, gehe ich zunächst von der Möglichkeit aus. Wenn die ICI-Kombination nicht möglich ist, wären Pazopanib, Sunitinib oder Tivozanib Optionen.\",\n    \"recommended_therapy\": \"Nivolumab in Kombination mit Cabozantinib\",\n    \"therapy_category\": \"IO+TKI\",\n    \"recommendation_strength\": \"A\",\n    \"confidence\": 0.9}",
+  "ground_truth_metastatic": null,
+  "ground_truth_therapy": "Start Nivolumab + Cabozantinib (IO+TKI), klinisches/Labor-Monitoring, Re-Staging nach 8–12 Wochen.",
+  "metastatic_correct": null,
+  "therapy_exact_match": true,
+  "therapy_clinically_acceptable": null,
+  "inference_time_seconds": 3.6213891778673446,
+  "tokens_used": 407,
+  "success": true,
+  "error_message": null
+}

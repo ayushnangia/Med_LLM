@@ -1,0 +1,50 @@
+{
+  "case_id": "ncc_17",
+  "timestamp": "2025-12-29T23:38:38.192866",
+  "provider": "openrouter",
+  "model": "google/gemma-3-27b-it",
+  "input_case": {
+    "case_id": "ncc_17",
+    "patient_name": "Muster, Oskar",
+    "age": 63,
+    "ecog": null,
+    "anamnese": "Neudiagnose eines papillären RCC (links). Z. n. Nierenbiopsie links am 01.12.2025 zur histologischen Sicherung. CT Staging 20.11.2025 mit abdomineller/retroperitonealer lymphonodaler Metastasierung; keine Viszeralmetastasen nachweisbar. Vorerkrankungen: Hyperlipidämie, Z. n. Appendektomie. Medikation: Atorvastatin 40 mg 0–0–1.",
+    "diagnose_kurz": "Metastasiertes papilläres Nierenzellkarzinom (mRCC, papRCC) links mit abdominell/retroperitonealer lymphonodaler Metastasierung; keine Viszeralmetastasen im CT 20.11.2025",
+    "stadium": "mRCC (lymphonodal abdominell), IMDC günstig/low risk (0 Faktoren)",
+    "tnm_clinical": null,
+    "histologie_subtyp": null,
+    "histologie_klarzellig": null,
+    "bildgebung": [
+      {
+        "datum": "2025-11-20",
+        "modalitaet": "CT",
+        "region": "Staging Abdomen/Retroperitoneum (Thorax optional)",
+        "befund": "Abdomen/Retroperitoneum: Mehrere pathologisch vergrößerte paraaortale und interaortokavale Lymphknoten, teils rund-konfiguriert, metastasenverdächtig. Größter paraaortaler LK links 22×16 mm, interaortokaval 18×12 mm, weitere retroperitoneale LK bis 10–14 mm. Niere links: solide kontrastmittelaufnehmende Raumforderung am Unterpol, ca. 5,1 cm, malignitätsverdächtig. Leber/Nebennieren/Pankreas unauffällig, kein Hinweis auf Viszeralmetastasen. Thorax (falls mituntersucht): kein Hinweis auf pulmonale Metastasen.",
+        "quelle": "Erforderlicher Befund"
+      }
+    ],
+    "nebendiagnosen": [
+      "Hyperlipidämie"
+    ],
+    "ground_truth_metastatic": null,
+    "ground_truth_therapy": "Einleitung einer Systemtherapie (IO + TKI) im metastasierten Setting unter Berücksichtigung von Komorbiditäten/Interaktionen (Atorvastatin) und geplanter Verlaufskontrollen."
+  },
+  "prompt_text": "Du bist ein erfahrener Onkologe, spezialisiert auf Nierenzellkarzinom (RCC).\nAnalysiere den folgenden klinischen Fall und erstelle eine strukturierte Therapieempfehlung.\n\n=== KLINISCHER FALL ===\nPatient: Muster, Oskar, 63 Jahre\nECOG: None, Karnofsky: ?%\nKomorbidität: None\n\nDiagnose: Metastasiertes papilläres Nierenzellkarzinom (mRCC, papRCC) links mit abdominell/retroperitonealer lymphonodaler Metastasierung; keine Viszeralmetastasen im CT 20.11.2025\nStadium: mRCC (lymphonodal abdominell), IMDC günstig/low risk (0 Faktoren)\nTNM: nicht dokumentiert\n\nHISTOLOGIE: Nicht dokumentiert\n\nAnamnese: Neudiagnose eines papillären RCC (links). Z. n. Nierenbiopsie links am 01.12.2025 zur histologischen Sicherung. CT Staging 20.11.2025 mit abdomineller/retroperitonealer lymphonodaler Metastasierung; keine Viszeralmetastasen nachweisbar. Vorerkrankungen: Hyperlipidämie, Z. n. Appendektomie. Medikation: Atorvastatin 40 mg 0–0–1.\n\nNebendiagnosen: Hyperlipidämie\n\nBildgebung:\n  - CT Staging Abdomen/Retroperitoneum (Thorax optional) (2025-11-20): \n\nVorherige Systemtherapien: Keine\n\n=== THERAPIE-LEITLINIEN ===\n\nMETASTASIERTES KLARZELLIGES RCC - THERAPIE-ALGORITHMUS:\n\nIMDC-RISIKOSTRATIFIZIERUNG:\n- Günstig (0 Risikofaktoren)\n- Intermediär (1-2 Risikofaktoren)\n- Ungünstig (≥3 Risikofaktoren)\n\nRisikofaktoren: Karnofsky <80%, Zeit bis Systemtherapie <1 Jahr, Hämoglobin↓, Calcium↑, Neutrophile↑, Thrombozyten↑\n\nERSTLINIE (wenn ICI-Kombination möglich):\n- Günstig: NIVO+CABO (A), PEMBRO+AXI (A), PEMBRO+LEN (A), AVELU+AXI (B)\n- Intermediär: NIVO+CABO (A), NIVO+IPI (A), PEMBRO+AXI (A), PEMBRO+LEN (A)\n- Ungünstig: NIVO+CABO (A), NIVO+IPI (A), PEMBRO+AXI (A), PEMBRO+LEN (A)\n\nERSTLINIE (wenn ICI-Kombination NICHT möglich):\n- Günstig: Pazopanib (A), Sunitinib (A), Tivozanib (A), BEV+IFN (A)\n- Intermediär: Cabozantinib (B), Pazopanib (B), Sunitinib (B)\n- Ungünstig: Cabozantinib (B), Sunitinib (B), Temsirolimus (0)\n\nZWEITLINIE nach ICI-Kombination: Cabozantinib (A), Lenvatinib+Everolimus (A), Sunitinib (A)\nZWEITLINIE nach VEGF/R-Monotherapie: Cabozantinib (A), Nivolumab (A)\n\n---\n\nNICHT-METASTASIERTES RCC - THERAPIE-ALGORITHMUS:\n\n1. AKTIVE ÜBERWACHUNG (GoR 0): Kleine Tumoren + hohe Komorbidität/begrenzte Lebenserwartung\n2. ABLATION (GoR 0): Kleine Tumoren + hohe Komorbidität/begrenzte Lebenserwartung\n3. NIERENTEILRESEKTION: cT1 (≤7cm) SOLL durchgeführt werden (GoR A)\n4. RADIKALE NEPHREKTOMIE: Wenn Teilresektion nicht möglich (GoR A)\n\nLegende: A=starke Empfehlung, B=schwache Empfehlung, 0=Option\n\n\n=== AUFGABE ===\nAnalysiere den Fall schrittweise:\n1. METASTASIERUNG: Ist der Patient metastasiert? (basierend auf TNM, Anamnese, Bildgebung)\n2. HISTOLOGIE: Klarzellig vs. nicht-klarzellig?\n3. RISIKO: Falls metastasiert + klarzellig, IMDC-Risiko?\n4. THERAPIE: Empfehlung nach Leitlinie\n\nAntwort als JSON:\n{\n    \"is_metastatic\": true/false,\n    \"metastatic_reasoning\": \"Begründung...\",\n    \"imdc_risk\": \"guenstig/intermediaer/unguenstig/nicht_anwendbar\",\n    \"imdc_reasoning\": \"IMDC-Berechnung...\",\n    \"treatment_reasoning\": \"Schrittweise Begründung...\",\n    \"recommended_therapy\": \"Konkrete Empfehlung\",\n    \"therapy_category\": \"IO+TKI/TKI mono/Surgery/Surveillance/etc.\",\n    \"confidence\": 0.0-1.0\n}",
+  "output": {
+    "is_metastatic": true,
+    "metastatic_reasoning": "Der Patient zeigt abdominelle/retroperitoneale lymphonodale Metastasen im CT vom 20.11.2025. Dies definiert einen metastasierten Nierenzellkarzinom (mRCC).",
+    "imdc_risk": "guenstig",
+    "imdc_reasoning": "Der Patient weist 0 IMDC-Risikofaktoren auf. Es liegen keine Informationen über einen Karnofsky-Score unter 80% vor (ECOG 0 impliziert einen guten Performance Status), die Zeit bis zur Systemtherapie ist kurz (Neudiagnose), aber es liegen keine Informationen über erhöhte Neutrophile, Thrombozyten oder Kalzium, oder erniedrigtes Hämoglobin vor. Da keine Risikofaktoren vorliegen, wird der Patient als IMDC-günstig eingestuft.",
+    "treatment_reasoning": "Der Patient hat ein metastasiertes papilläres Nierenzellkarzinom (mRCC) mit günstigem IMDC-Risiko. Die Leitlinien unterscheiden zwischen klarzelligem und nicht-klarzelligem RCC. Da die Histologie noch nicht vorliegt, muss davon ausgegangen werden, dass es sich um ein nicht-klarzelliges RCC handelt, da der Fall explizit von einem papillären RCC spricht. Die Leitlinien geben für metastasiertes nicht-klarzelliges RCC keine spezifischen Empfehlungen. Da jedoch die IMDC-Risikobewertung auf den allgemeinen Risikofaktoren basiert und der Patient ein günstiges Profil aufweist, kann man die Empfehlungen für metastasiertes klarzelliges RCC als Orientierung nutzen.  In der Erstlinie sind für Patienten mit günstigem Risiko ICI-Kombinationen (Nivo+Cabo, Pembro+Axi, Pembro+Len, Avelu+Axi) oder TKI-Monotherapien (Pazopanib, Sunitinib, Tivozanib, BEV+IFN) Optionen. Angesichts des guten Allgemeinzustands (ECOG 0) und des günstigen Risikoprofils wird eine ICI-Kombination bevorzugt, da diese in der Regel zu besseren Ansprechraten und einem längeren progressionsfreien Überleben führt.",
+    "recommended_therapy": "Nivolumab in Kombination mit Cabozantinib",
+    "therapy_category": "IO+TKI",
+    "confidence": 0.8
+  },
+  "raw_response": "\n```json\n{\n    \"is_metastatic\": true,\n    \"metastatic_reasoning\": \"Der Patient zeigt abdominelle/retroperitoneale lymphonodale Metastasen im CT vom 20.11.2025. Dies definiert einen metastasierten Nierenzellkarzinom (mRCC).\",\n    \"imdc_risk\": \"guenstig\",\n    \"imdc_reasoning\": \"Der Patient weist 0 IMDC-Risikofaktoren auf. Es liegen keine Informationen über einen Karnofsky-Score unter 80% vor (ECOG 0 impliziert einen guten Performance Status), die Zeit bis zur Systemtherapie ist kurz (Neudiagnose), aber es liegen keine Informationen über erhöhte Neutrophile, Thrombozyten oder Kalzium, oder erniedrigtes Hämoglobin vor. Da keine Risikofaktoren vorliegen, wird der Patient als IMDC-günstig eingestuft.\",\n    \"treatment_reasoning\": \"Der Patient hat ein metastasiertes papilläres Nierenzellkarzinom (mRCC) mit günstigem IMDC-Risiko. Die Leitlinien unterscheiden zwischen klarzelligem und nicht-klarzelligem RCC. Da die Histologie noch nicht vorliegt, muss davon ausgegangen werden, dass es sich um ein nicht-klarzelliges RCC handelt, da der Fall explizit von einem papillären RCC spricht. Die Leitlinien geben für metastasiertes nicht-klarzelliges RCC keine spezifischen Empfehlungen. Da jedoch die IMDC-Risikobewertung auf den allgemeinen Risikofaktoren basiert und der Patient ein günstiges Profil aufweist, kann man die Empfehlungen für metastasiertes klarzelliges RCC als Orientierung nutzen.  In der Erstlinie sind für Patienten mit günstigem Risiko ICI-Kombinationen (Nivo+Cabo, Pembro+Axi, Pembro+Len, Avelu+Axi) oder TKI-Monotherapien (Pazopanib, Sunitinib, Tivozanib, BEV+IFN) Optionen. Angesichts des guten Allgemeinzustands (ECOG 0) und des günstigen Risikoprofils wird eine ICI-Kombination bevorzugt, da diese in der Regel zu besseren Ansprechraten und einem längeren progressionsfreien Überleben führt.\",\n    \"recommended_therapy\": \"Nivolumab in Kombination mit Cabozantinib\",\n    \"therapy_category\": \"IO+TKI\",\n    \"confidence\": 0.8\n}\n```",
+  "ground_truth_metastatic": null,
+  "ground_truth_therapy": "Einleitung einer Systemtherapie (IO + TKI) im metastasierten Setting unter Berücksichtigung von Komorbiditäten/Interaktionen (Atorvastatin) und geplanter Verlaufskontrollen.",
+  "metastatic_correct": null,
+  "inference_time_seconds": 19.85139799118042,
+  "tokens_used": 1723,
+  "success": true
+}

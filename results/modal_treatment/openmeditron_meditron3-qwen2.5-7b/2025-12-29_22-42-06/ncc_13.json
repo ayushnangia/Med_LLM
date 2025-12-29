@@ -1,0 +1,39 @@
+{
+  "case_id": "ncc_13",
+  "timestamp": "2025-12-29_22-42-06",
+  "provider": "modal",
+  "model": "OpenMeditron/Meditron3-Qwen2.5-7B",
+  "input_case": {
+    "case_id": "ncc_13",
+    "patient_name": "Muster, Karl",
+    "age": 64,
+    "ecog": 0,
+    "anamnese": "Vorstellung zur regelmäßigen Ultraschallkontrolle beim Hausarzt. Dabei Nachweis Raumforderung rechte Niere. Anschließend CT Abdomen mit Nachweis von zwei renalen Raumforderungen: rechts ca. 4,1 cm, links ca. 1,8 cm. Z. n. Kolon-OP bei Divertikulitis.",
+    "diagnose_kurz": "Beidseitige renale Raumforderungen: rechts 4,1 cm (cT1b*), links 1,8 cm (cT1a*) – malignitätsverdächtig (V. a. RCC)",
+    "stadium": "bilateral, prätherapeutisch; Staging (CT Thorax) ausstehend",
+    "ground_truth_metastatic": null,
+    "ground_truth_therapy": "Nierenteilresektion beidseits: zuerst rechts, 8 Wochen später links. Komplettierung des Stagings mittels CT Thorax."
+  },
+  "prompt_text": "Du bist ein erfahrener Onkologe, spezialisiert auf Nierenzellkarzinom (RCC).\nAnalysiere den folgenden klinischen Fall und erstelle eine strukturierte Therapieempfehlung.\n\n=== KLINISCHER FALL ===\nPatient: Muster, Karl, 64 Jahre\nECOG: 0, Karnofsky: None%\nKomorbidität: unknown\nLebenserwartung: unknown\n\nDiagnose: Beidseitige renale Raumforderungen: rechts 4,1 cm (cT1b*), links 1,8 cm (cT1a*) – malignitätsverdächtig (V. a. RCC)\nStadium: bilateral, prätherapeutisch; Staging (CT Thorax) ausstehend\ncTNM: Tunknown Nunknown Munknown\n\nAnamnese:\nVorstellung zur regelmäßigen Ultraschallkontrolle beim Hausarzt. Dabei Nachweis Raumforderung rechte Niere. Anschließend CT Abdomen mit Nachweis von zwei renalen Raumforderungen: rechts ca. 4,1 cm, links ca. 1,8 cm. Z. n. Kolon-OP bei Divertikulitis.\n\nNebendiagnosen: Z. n. Kolon-OP bei Divertikulitis\n\nVorherige Systemtherapien: Keine\n\n=== THERAPIE-LEITLINIEN ===\n\n\nMETASTASIERTES KLARZELLIGES RCC - THERAPIE-ALGORITHMUS:\n\nIMDC-RISIKOSTRATIFIZIERUNG:\n- Günsti...",
+  "prediction": {
+    "is_metastatic": true,
+    "metastatic_reasoning": "Der Patient hat eine bilaterale Raumforderung, wobei beide Raumforderungen größer als 1 cm sind. Da es sich um eine renale Raumforderung handelt, ist es wahrscheinlich, dass es sich um ein Nierenzellkarzinom (RCC) handelt. Die Raumforderungen sind groß genug, um als metastasiert zu betrachten, da sie größer als 1 cm sind.",
+    "imdc_risk": "intermediär",
+    "imdc_reasoning": "Der Patient hat keine bekannten Risikofaktoren (Karnofsky > 80%, Zeit bis Systemtherapie > 1 Jahr, Hämoglobin > 9 g/dL, Calcium < 10 mg/dL, Neutrophile < 1.5 x 10^9/L, Thrombozyten < 450 x 10^9/L). Daher ist der IMDC-Risiko-Status intermediär.",
+    "treatment_reasoning": "Da der Patient metastasiert ist und das IMDC-Risiko intermediär ist, ist eine IO+TKI-Kombination die Empfehlung nach der Leitlinie. Die IO+TKI-Kombination ist die erste Wahl für Patienten mit intermediärer Risikostratifizierung.",
+    "recommended_therapy": "NIVO+CABO",
+    "therapy_category": "IO+TKI",
+    "recommendation_strength": "A",
+    "confidence": 0.9
+  },
+  "raw_response": "{\n    \"is_metastatic\": true,\n    \"metastatic_reasoning\": \"Der Patient hat eine bilaterale Raumforderung, wobei beide Raumforderungen größer als 1 cm sind. Da es sich um eine renale Raumforderung handelt, ist es wahrscheinlich, dass es sich um ein Nierenzellkarzinom (RCC) handelt. Die Raumforderungen sind groß genug, um als metastasiert zu betrachten, da sie größer als 1 cm sind.\",\n    \"imdc_risk\": \"intermediär\",\n    \"imdc_reasoning\": \"Der Patient hat keine bekannten Risikofaktoren (Karnofsky > 80%, Zeit bis Systemtherapie > 1 Jahr, Hämoglobin > 9 g/dL, Calcium < 10 mg/dL, Neutrophile < 1.5 x 10^9/L, Thrombozyten < 450 x 10^9/L). Daher ist der IMDC-Risiko-Status intermediär.\",\n    \"treatment_reasoning\": \"Da der Patient metastasiert ist und das IMDC-Risiko intermediär ist, ist eine IO+TKI-Kombination die Empfehlung nach der Leitlinie. Die IO+TKI-Kombination ist die erste Wahl für Patienten mit intermediärer Risikostratifizierung.\",\n    \"recommended_therapy\": \"NIVO+CABO\",\n    \"therapy_category\": \"IO+TKI\",\n    \"recommendation_strength\": \"A\",\n    \"confidence\": 0.9\n}",
+  "ground_truth_metastatic": null,
+  "ground_truth_therapy": "Nierenteilresektion beidseits: zuerst rechts, 8 Wochen später links. Komplettierung des Stagings mittels CT Thorax.",
+  "metastatic_correct": null,
+  "therapy_exact_match": false,
+  "therapy_clinically_acceptable": null,
+  "inference_time_seconds": 0.3030806473323277,
+  "tokens_used": 345,
+  "success": true,
+  "error_message": null
+}

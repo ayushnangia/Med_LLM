@@ -1,0 +1,39 @@
+{
+  "case_id": "ncc_3",
+  "timestamp": "2025-12-29_22-42-06",
+  "provider": "modal",
+  "model": "OpenMeditron/Meditron3-Qwen2.5-7B",
+  "input_case": {
+    "case_id": "ncc_3",
+    "patient_name": "Muster, Alpha",
+    "age": 58,
+    "ecog": 0,
+    "anamnese": "Zufallsbefund im CT wegen Nephrolithiasis. Solide Nierenraumforderung rechts (2,2 cm).",
+    "diagnose_kurz": "Solide Nierenraumforderung rechts (2,2 cm)",
+    "stadium": "nicht-metastasiert (Verdacht, prätherapeutisch)",
+    "ground_truth_metastatic": false,
+    "ground_truth_therapy": "Aktive Überwachung vs. Nierenteilresektion vs. Ablation (je nach Lage/RENAL-Score); Biopsie ja/nein?"
+  },
+  "prompt_text": "Du bist ein erfahrener Onkologe, spezialisiert auf Nierenzellkarzinom (RCC).\nAnalysiere den folgenden klinischen Fall und erstelle eine strukturierte Therapieempfehlung.\n\n=== KLINISCHER FALL ===\nPatient: Muster, Alpha, 58 Jahre\nECOG: 0, Karnofsky: None%\nKomorbidität: unknown\nLebenserwartung: unknown\n\nDiagnose: Solide Nierenraumforderung rechts (2,2 cm)\nStadium: nicht-metastasiert (Verdacht, prätherapeutisch)\ncTNM: Tunknown Nunknown MM0\n\nAnamnese:\nZufallsbefund im CT wegen Nephrolithiasis. Solide Nierenraumforderung rechts (2,2 cm).\n\nNebendiagnosen: arterielle Hypertonie\n\nVorherige Systemtherapien: Keine\n\n=== THERAPIE-LEITLINIEN ===\n\n\nMETASTASIERTES KLARZELLIGES RCC - THERAPIE-ALGORITHMUS:\n\nIMDC-RISIKOSTRATIFIZIERUNG:\n- Günstig (0 Risikofaktoren)\n- Intermediär (1-2 Risikofaktoren)\n- Ungünstig (≥3 Risikofaktoren)\n\nRisikofaktoren: Karnofsky <80%, Zeit bis Systemtherapie <1 Jahr, Hämoglobin↓, Calcium↑, Neutrophile↑, Thrombozyten↑\n\nERSTLINIE (wenn ICI-Kombination möglich):\n- Günstig: NIVO+C...",
+  "prediction": {
+    "is_metastatic": false,
+    "metastatic_reasoning": "Der Patient hat eine solide Nierenraumforderung rechts (2,2 cm) ohne Metastasen nach Bildgebung.",
+    "imdc_risk": "guenstig",
+    "imdc_reasoning": "Der Patient hat keine Risikofaktoren (Karnofsky: None%, Zeit bis Systemtherapie unbekannt, Hämoglobin unbekannt, Calcium unbekannt, Neutrophile unbekannt, Thrombozyten unbekannt).",
+    "treatment_reasoning": "Da der Patient nicht-metastasiert ist und keine Risikofaktoren hat, wird eine Nierenteilresektion empfohlen.",
+    "recommended_therapy": "Nierenteilresektion",
+    "therapy_category": "Surgery",
+    "recommendation_strength": "A",
+    "confidence": 1.0
+  },
+  "raw_response": "{\n    \"is_metastatic\": false,\n    \"metastatic_reasoning\": \"Der Patient hat eine solide Nierenraumforderung rechts (2,2 cm) ohne Metastasen nach Bildgebung.\",\n    \"imdc_risk\": \"guenstig\",\n    \"imdc_reasoning\": \"Der Patient hat keine Risikofaktoren (Karnofsky: None%, Zeit bis Systemtherapie unbekannt, Hämoglobin unbekannt, Calcium unbekannt, Neutrophile unbekannt, Thrombozyten unbekannt).\",\n    \"treatment_reasoning\": \"Da der Patient nicht-metastasiert ist und keine Risikofaktoren hat, wird eine Nierenteilresektion empfohlen.\",\n    \"recommended_therapy\": \"Nierenteilresektion\",\n    \"therapy_category\": \"Surgery\",\n    \"recommendation_strength\": \"A\",\n    \"confidence\": 1.0\n}",
+  "ground_truth_metastatic": false,
+  "ground_truth_therapy": "Aktive Überwachung vs. Nierenteilresektion vs. Ablation (je nach Lage/RENAL-Score); Biopsie ja/nein?",
+  "metastatic_correct": true,
+  "therapy_exact_match": true,
+  "therapy_clinically_acceptable": true,
+  "inference_time_seconds": 0.3030806473323277,
+  "tokens_used": 208,
+  "success": true,
+  "error_message": null
+}

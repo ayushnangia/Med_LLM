@@ -1,0 +1,39 @@
+{
+  "case_id": "ncc_24",
+  "timestamp": "2025-12-29_22-42-06",
+  "provider": "modal",
+  "model": "OpenMeditron/Meditron3-Qwen2.5-7B",
+  "input_case": {
+    "case_id": "ncc_24",
+    "patient_name": ", ",
+    "age": null,
+    "ecog": null,
+    "anamnese": "",
+    "diagnose_kurz": "",
+    "stadium": "",
+    "ground_truth_metastatic": null,
+    "ground_truth_therapy": null
+  },
+  "prompt_text": "Du bist ein erfahrener Onkologe, spezialisiert auf Nierenzellkarzinom (RCC).\nAnalysiere den folgenden klinischen Fall und erstelle eine strukturierte Therapieempfehlung.\n\n=== KLINISCHER FALL ===\nPatient: , , None Jahre\nECOG: None, Karnofsky: None%\nKomorbidität: None\nLebenserwartung: None\n\nDiagnose: \nStadium: \ncTNM: T? N? M?\n\nAnamnese:\n\n\nNebendiagnosen: Keine dokumentiert\n\nVorherige Systemtherapien: Keine\n\n=== THERAPIE-LEITLINIEN ===\n\n\nMETASTASIERTES KLARZELLIGES RCC - THERAPIE-ALGORITHMUS:\n\nIMDC-RISIKOSTRATIFIZIERUNG:\n- Günstig (0 Risikofaktoren)\n- Intermediär (1-2 Risikofaktoren)\n- Ungünstig (≥3 Risikofaktoren)\n\nRisikofaktoren: Karnofsky <80%, Zeit bis Systemtherapie <1 Jahr, Hämoglobin↓, Calcium↑, Neutrophile↑, Thrombozyten↑\n\nERSTLINIE (wenn ICI-Kombination möglich):\n- Günstig: NIVO+CABO (A), PEMBRO+AXI (A), PEMBRO+LEN (A), AVELU+AXI (B)\n- Intermediär: NIVO+CABO (A), NIVO+IPI (A), PEMBRO+AXI (A), PEMBRO+LEN (A)\n- Ungünstig: NIVO+CABO (A), NIVO+IPI (A), PEMBRO+AXI (A), PEMBRO+LEN (A)\n...",
+  "prediction": {
+    "is_metastatic": true,
+    "metastatic_reasoning": "Der Patient hat eine Metastasierung, da der cTNM Status nicht angegeben ist, aber eine Metastasierung anzunehmen ist, da er nicht-metastasiert ist.",
+    "imdc_risk": "guenstig",
+    "imdc_reasoning": "Der Patient hat keine Risikofaktoren, da er keine der folgenden hat: Karnofsky <80%, Zeit bis Systemtherapie <1 Jahr, Hämoglobin↓, Calcium↑, Neutrophile↑, Thrombozyten↑.",
+    "treatment_reasoning": "Da der Patient günstig ist und eine Metastasierung hat, sollte eine ICI-Kombination empfohlen werden.",
+    "recommended_therapy": "NIVO+CABO (A)",
+    "therapy_category": "IO+TKI",
+    "recommendation_strength": "A",
+    "confidence": 1.0
+  },
+  "raw_response": "{\n    \"is_metastatic\": true,\n    \"metastatic_reasoning\": \"Der Patient hat eine Metastasierung, da der cTNM Status nicht angegeben ist, aber eine Metastasierung anzunehmen ist, da er nicht-metastasiert ist.\",\n    \"imdc_risk\": \"guenstig\",\n    \"imdc_reasoning\": \"Der Patient hat keine Risikofaktoren, da er keine der folgenden hat: Karnofsky <80%, Zeit bis Systemtherapie <1 Jahr, Hämoglobin↓, Calcium↑, Neutrophile↑, Thrombozyten↑.\",\n    \"treatment_reasoning\": \"Da der Patient günstig ist und eine Metastasierung hat, sollte eine ICI-Kombination empfohlen werden.\",\n    \"recommended_therapy\": \"NIVO+CABO (A)\",\n    \"therapy_category\": \"IO+TKI\",\n    \"recommendation_strength\": \"A\",\n    \"confidence\": 1.0\n}",
+  "ground_truth_metastatic": null,
+  "ground_truth_therapy": null,
+  "metastatic_correct": null,
+  "therapy_exact_match": null,
+  "therapy_clinically_acceptable": null,
+  "inference_time_seconds": 0.3030806473323277,
+  "tokens_used": 219,
+  "success": true,
+  "error_message": null
+}

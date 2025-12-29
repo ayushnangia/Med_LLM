@@ -1,0 +1,29 @@
+{
+  "case_id": "ncc_12",
+  "timestamp": "2025-12-29_22-31-34",
+  "provider": "modal",
+  "model": "OpenMeditron/Meditron3-Qwen2.5-7B",
+  "input_case": {
+    "case_id": "ncc_12",
+    "patient_name": "Beispiel, Julia",
+    "age": 67,
+    "ecog": 1,
+    "anamnese": "Zufallsbefund: Raumforderung linke Niere ca. 5,2 × 4,5 cm im Rahmen Abklärung von Rückenschmerzen. COPD GOLD II, Raucher 30 PY.",
+    "diagnose_kurz": "Raumforderung linke Niere ca. 5,2 × 4,5 cm, V. a. RCC (prätherapeutisch)",
+    "stadium": "Staging inkomplett (CT Thorax ausstehend)",
+    "ground_truth_metastatic": null,
+    "ground_truth_therapy": "Komplettierung des Stagings mittels CT Thorax; bei fehlender Metastasierung: Nierenteilresektion vs Nephrektomie; pulmonale Prä-OP-Evaluierung."
+  },
+  "prompt_text": "Du bist ein erfahrener Onkologe, spezialisiert auf Nierenzellkarzinom (RCC).\nAnalysiere den folgenden klinischen Fall und erstelle eine strukturierte Therapieempfehlung.\n\n=== KLINISCHER FALL ===\nPatient: Beispiel, Julia, 67 Jahre\nECOG: 1, Karnofsky: None%\nKomorbidität: unknown\nLebenserwartung: unknown\n\nDiagnose: Raumforderung linke Niere ca. 5,2 × 4,5 cm, V. a. RCC (prätherapeutisch)\nStadium: Staging inkomplett (CT Thorax ausstehend)\ncTNM: TT1 Nunknown Munknown\n\nAnamnese:\nZufallsbefund: Raumforderung linke Niere ca. 5,2 × 4,5 cm im Rahmen Abklärung von Rückenschmerzen. COPD GOLD II, Raucher 30 PY.\n\nNebendiagnosen: COPD GOLD II, Raucher (30 PY)\n\nVorherige Systemtherapien: Keine\n\n=== THERAPIE-LEITLINIEN ===\n\n\nMETASTASIERTES KLARZELLIGES RCC - THERAPIE-ALGORITHMUS:\n\nIMDC-RISIKOSTRATIFIZIERUNG:\n- Günstig (0 Risikofaktoren)\n- Intermediär (1-2 Risikofaktoren)\n- Ungünstig (≥3 Risikofaktoren)\n\nRisikofaktoren: Karnofsky <80%, Zeit bis Systemtherapie <1 Jahr, Hämoglobin↓, Calcium↑, Neutrophile↑,...",
+  "prediction": null,
+  "raw_response": "",
+  "ground_truth_metastatic": null,
+  "ground_truth_therapy": "Komplettierung des Stagings mittels CT Thorax; bei fehlender Metastasierung: Nierenteilresektion vs Nephrektomie; pulmonale Prä-OP-Evaluierung.",
+  "metastatic_correct": null,
+  "therapy_exact_match": null,
+  "therapy_clinically_acceptable": null,
+  "inference_time_seconds": 0.02179856300354004,
+  "tokens_used": 1,
+  "success": false,
+  "error_message": null
+}

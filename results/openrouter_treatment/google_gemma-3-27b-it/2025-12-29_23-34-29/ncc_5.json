@@ -1,0 +1,54 @@
+{
+  "case_id": "ncc_5",
+  "timestamp": "2025-12-29T23:35:43.552168",
+  "provider": "openrouter",
+  "model": "google/gemma-3-27b-it",
+  "input_case": {
+    "case_id": "ncc_5",
+    "patient_name": "Muster, Clara",
+    "age": 47,
+    "ecog": 0,
+    "anamnese": "Zystische Läsion Bosniak IV (2,5 cm) an der rechten Niere. Keine relevanten Vorerkrankungen.",
+    "diagnose_kurz": "Zystische Läsion Bosniak IV, 2,5 cm, rechte Niere",
+    "stadium": "nicht-metastasiert (Verdacht, prätherapeutisch)",
+    "tnm_clinical": {
+      "T": "unknown",
+      "T_sub": "unknown",
+      "N": "unknown",
+      "M": "M0",
+      "stage_group": "unknown"
+    },
+    "histologie_subtyp": null,
+    "histologie_klarzellig": null,
+    "bildgebung": [
+      {
+        "modalitaet": "MRT",
+        "region": "Niere",
+        "datum": "2025-12-01",
+        "befund_kurz": "Zystische Läsion Bosniak IV, 2,5 cm, rechte Niere.",
+        "quelle": "Erforderliche Bildgebung"
+      }
+    ],
+    "nebendiagnosen": [],
+    "ground_truth_metastatic": false,
+    "ground_truth_therapy": "Nierenteilresektion robotisch vs. laparoskopisch vs. offen vs. Ablation."
+  },
+  "prompt_text": "Du bist ein erfahrener Onkologe, spezialisiert auf Nierenzellkarzinom (RCC).\nAnalysiere den folgenden klinischen Fall und erstelle eine strukturierte Therapieempfehlung.\n\n=== KLINISCHER FALL ===\nPatient: Muster, Clara, 47 Jahre\nECOG: 0, Karnofsky: ?%\nKomorbidität: unknown\n\nDiagnose: Zystische Läsion Bosniak IV, 2,5 cm, rechte Niere\nStadium: nicht-metastasiert (Verdacht, prätherapeutisch)\nTNM: cTNM: Tunknown Nunknown MM0\n\nHISTOLOGIE: Nicht dokumentiert\n\nAnamnese: Zystische Läsion Bosniak IV (2,5 cm) an der rechten Niere. Keine relevanten Vorerkrankungen.\n\nNebendiagnosen: Keine\n\nBildgebung:\n  - MRT Niere (2025-12-01): Zystische Läsion Bosniak IV, 2,5 cm, rechte Niere.\n\nVorherige Systemtherapien: Keine\n\n=== THERAPIE-LEITLINIEN ===\n\nMETASTASIERTES KLARZELLIGES RCC - THERAPIE-ALGORITHMUS:\n\nIMDC-RISIKOSTRATIFIZIERUNG:\n- Günstig (0 Risikofaktoren)\n- Intermediär (1-2 Risikofaktoren)\n- Ungünstig (≥3 Risikofaktoren)\n\nRisikofaktoren: Karnofsky <80%, Zeit bis Systemtherapie <1 Jahr, Hämoglobin↓, Calcium↑, Neutrophile↑, Thrombozyten↑\n\nERSTLINIE (wenn ICI-Kombination möglich):\n- Günstig: NIVO+CABO (A), PEMBRO+AXI (A), PEMBRO+LEN (A), AVELU+AXI (B)\n- Intermediär: NIVO+CABO (A), NIVO+IPI (A), PEMBRO+AXI (A), PEMBRO+LEN (A)\n- Ungünstig: NIVO+CABO (A), NIVO+IPI (A), PEMBRO+AXI (A), PEMBRO+LEN (A)\n\nERSTLINIE (wenn ICI-Kombination NICHT möglich):\n- Günstig: Pazopanib (A), Sunitinib (A), Tivozanib (A), BEV+IFN (A)\n- Intermediär: Cabozantinib (B), Pazopanib (B), Sunitinib (B)\n- Ungünstig: Cabozantinib (B), Sunitinib (B), Temsirolimus (0)\n\nZWEITLINIE nach ICI-Kombination: Cabozantinib (A), Lenvatinib+Everolimus (A), Sunitinib (A)\nZWEITLINIE nach VEGF/R-Monotherapie: Cabozantinib (A), Nivolumab (A)\n\n---\n\nNICHT-METASTASIERTES RCC - THERAPIE-ALGORITHMUS:\n\n1. AKTIVE ÜBERWACHUNG (GoR 0): Kleine Tumoren + hohe Komorbidität/begrenzte Lebenserwartung\n2. ABLATION (GoR 0): Kleine Tumoren + hohe Komorbidität/begrenzte Lebenserwartung\n3. NIERENTEILRESEKTION: cT1 (≤7cm) SOLL durchgeführt werden (GoR A)\n4. RADIKALE NEPHREKTOMIE: Wenn Teilresektion nicht möglich (GoR A)\n\nLegende: A=starke Empfehlung, B=schwache Empfehlung, 0=Option\n\n\n=== AUFGABE ===\nAnalysiere den Fall schrittweise:\n1. METASTASIERUNG: Ist der Patient metastasiert? (basierend auf TNM, Anamnese, Bildgebung)\n2. HISTOLOGIE: Klarzellig vs. nicht-klarzellig?\n3. RISIKO: Falls metastasiert + klarzellig, IMDC-Risiko?\n4. THERAPIE: Empfehlung nach Leitlinie\n\nAntwort als JSON:\n{\n    \"is_metastatic\": true/false,\n    \"metastatic_reasoning\": \"Begründung...\",\n    \"imdc_risk\": \"guenstig/intermediaer/unguenstig/nicht_anwendbar\",\n    \"imdc_reasoning\": \"IMDC-Berechnung...\",\n    \"treatment_reasoning\": \"Schrittweise Begründung...\",\n    \"recommended_therapy\": \"Konkrete Empfehlung\",\n    \"therapy_category\": \"IO+TKI/TKI mono/Surgery/Surveillance/etc.\",\n    \"confidence\": 0.0-1.0\n}",
+  "output": {
+    "is_metastatic": false,
+    "metastatic_reasoning": "Der TNM-Status gibt M0 an, was bedeutet, dass keine Fernmetastasen vorliegen. Die Anamnese und die Bildgebung bestätigen dies ebenfalls, da keine Metastasen erwähnt werden.",
+    "imdc_risk": "nicht_anwendbar",
+    "imdc_reasoning": "Die IMDC-Risikostratifizierung ist nur für metastasiertes Nierenzellkarzinom relevant. Da der Patient nicht metastasiert ist, ist die IMDC-Risikobewertung nicht anwendbar.",
+    "treatment_reasoning": "Die Patientin präsentiert sich mit einer Bosniak IV Läsion von 2,5 cm in der rechten Niere. Bosniak IV Läsionen haben ein hohes Malignitätsrisiko und erfordern eine definitive Behandlung. Da die Patientin einen ECOG-Status von 0 hat und keine bekannten Komorbiditäten vorliegen, ist sie für eine interventionelle Therapie geeignet. Gemäß den Leitlinien ist die Nierenteilresektion die bevorzugte Option für cT1 Tumoren (≤7cm), und die radikale Nephrektomie sollte in Betracht gezogen werden, wenn eine Teilresektion nicht möglich ist. Da die Größe der Läsion 2,5 cm beträgt, fällt sie in die Kategorie cT1. Eine aktive Überwachung oder Ablation sind weniger geeignet, da die Läsion Bosniak IV ist und somit ein hohes Malignitätsrisiko aufweist.",
+    "recommended_therapy": "Nierenteilresektion",
+    "therapy_category": "Surgery",
+    "confidence": 0.95
+  },
+  "raw_response": "```json\n{\n    \"is_metastatic\": false,\n    \"metastatic_reasoning\": \"Der TNM-Status gibt M0 an, was bedeutet, dass keine Fernmetastasen vorliegen. Die Anamnese und die Bildgebung bestätigen dies ebenfalls, da keine Metastasen erwähnt werden.\",\n    \"imdc_risk\": \"nicht_anwendbar\",\n    \"imdc_reasoning\": \"Die IMDC-Risikostratifizierung ist nur für metastasiertes Nierenzellkarzinom relevant. Da der Patient nicht metastasiert ist, ist die IMDC-Risikobewertung nicht anwendbar.\",\n    \"treatment_reasoning\": \"Die Patientin präsentiert sich mit einer Bosniak IV Läsion von 2,5 cm in der rechten Niere. Bosniak IV Läsionen haben ein hohes Malignitätsrisiko und erfordern eine definitive Behandlung. Da die Patientin einen ECOG-Status von 0 hat und keine bekannten Komorbiditäten vorliegen, ist sie für eine interventionelle Therapie geeignet. Gemäß den Leitlinien ist die Nierenteilresektion die bevorzugte Option für cT1 Tumoren (≤7cm), und die radikale Nephrektomie sollte in Betracht gezogen werden, wenn eine Teilresektion nicht möglich ist. Da die Größe der Läsion 2,5 cm beträgt, fällt sie in die Kategorie cT1. Eine aktive Überwachung oder Ablation sind weniger geeignet, da die Läsion Bosniak IV ist und somit ein hohes Malignitätsrisiko aufweist.\",\n    \"recommended_therapy\": \"Nierenteilresektion\",\n    \"therapy_category\": \"Surgery\",\n    \"confidence\": 0.95\n}\n```",
+  "ground_truth_metastatic": false,
+  "ground_truth_therapy": "Nierenteilresektion robotisch vs. laparoskopisch vs. offen vs. Ablation.",
+  "metastatic_correct": true,
+  "inference_time_seconds": 8.597680807113647,
+  "tokens_used": 1426,
+  "success": true
+}

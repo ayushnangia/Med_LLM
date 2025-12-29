@@ -1,0 +1,68 @@
+{
+  "case_id": "ncc_1",
+  "patient_name": "Turtle, Ninja",
+  "age": 52,
+  "ecog": 0,
+  "karnofsky": null,
+  "comorbidity": "unknown",
+  "life_expectancy": "unknown",
+  "anamnese": "Met. pap. RCC. Z. n. Nephrektomie links 2014 (papilläres RCC pT3b, Nx, L0, V0, Pn0, G3, Rx). Z. n. offener Resektion eines Lokalrezidivs 2024. Aktuell multiple Rezidive (pulmonal, lymphonodal, hepatisch).",
+  "diagnose_kurz": "Metastasiertes papilläres RCC",
+  "stadium": "metastasiert (pulmonal, lymphonodal, hepatisch)",
+  "tnm_clinical": {
+    "T": "unknown",
+    "T_sub": "unknown",
+    "N": "unknown",
+    "M": "M1",
+    "stage_group": "unknown"
+  },
+  "tnm_pathological": {
+    "T": "T3b",
+    "T_sub": null,
+    "N": "NX",
+    "M": null,
+    "stage_group": null
+  },
+  "histologie_subtyp": "papillär",
+  "histologie_klarzellig": false,
+  "bildgebung": [
+    {
+      "modalitaet": "CT",
+      "region": "Ganzkörper",
+      "datum": "2025-11-03",
+      "befund_kurz": "Multiple Rezidive/Metastasen pulmonal, lymphonodal, hepatisch.",
+      "quelle": "Erforderliche Bildgebung"
+    }
+  ],
+  "nebendiagnosen": [
+    "obstruktive Kardiomyopathie",
+    "Z. n. Hyperthyreose 2021",
+    "arterielle Hypertonie",
+    "Diabetes mellitus",
+    "Z. n. LAE",
+    "Hyperlipidämie"
+  ],
+  "medikation": [
+    {
+      "wirkstoff_oder_klasse": "Betablocker",
+      "details": null
+    },
+    {
+      "wirkstoff_oder_klasse": "Statin",
+      "details": null
+    },
+    {
+      "wirkstoff_oder_klasse": "Metformin",
+      "details": null
+    },
+    {
+      "wirkstoff_oder_klasse": "DOAK",
+      "details": "bei LAE"
+    }
+  ],
+  "ici_durchfuehrbar": null,
+  "prior_therapies": [],
+  "ground_truth_metastatic": true,
+  "ground_truth_imdc": null,
+  "ground_truth_therapy": "Einleitung palliative Systemtherapie TKI/IO (z.B. Nivolumab/Cabozantinib)."
+}

@@ -1,0 +1,39 @@
+{
+  "case_id": "ncc_35",
+  "timestamp": "2025-12-29_22-42-06",
+  "provider": "modal",
+  "model": "OpenMeditron/Meditron3-Qwen2.5-7B",
+  "input_case": {
+    "case_id": "ncc_35",
+    "patient_name": "Beispiel, Dimo",
+    "age": 63,
+    "ecog": 2,
+    "anamnese": "Chromophobes RCC, metastasiert. Therapiesequenz geplant/bisher: 1L Sunitinib, 2L Cabozantinib, 3L Diskussion: Nivolumab (off-label je nach Setting/MTB) vs Studie. Komorbiditäten: arterielle Hypertonie; Z. n. Nabelhernien-OP. Aktuell Progress lymphonodal/peritoneal im CT 08.12.2025; mögliche neue ossäre Läsion.",
+    "diagnose_kurz": "Metastasiertes chromophobes Nierenzellkarzinom (non-ccRCC) mit Progress lymphonodal/peritoneal im CT 08.12.2025 und DD neuer ossärer Läsion.",
+    "stadium": "metastasiert; non-ccRCC (chromophob); nach TKI-Vortherapien; 3.-Linie/Studie in Diskussion",
+    "ground_truth_metastatic": null,
+    "ground_truth_therapy": "Entscheidung 3. Linie im MTB: Nivolumab (off-label je nach Setting) vs alternative Sequenz vs Studie. | Supportiv: Blutdruckkontrollen, Nierenfunktion/Metabolik unter weiterer Therapie, Schmerzassessment (Becken); ggf. MRT zur Abklärung ossärer Läsion."
+  },
+  "prompt_text": "Du bist ein erfahrener Onkologe, spezialisiert auf Nierenzellkarzinom (RCC).\nAnalysiere den folgenden klinischen Fall und erstelle eine strukturierte Therapieempfehlung.\n\n=== KLINISCHER FALL ===\nPatient: Beispiel, Dimo, 63 Jahre\nECOG: 2, Karnofsky: 70%\nKomorbidität: unknown\nLebenserwartung: unknown\n\nDiagnose: Metastasiertes chromophobes Nierenzellkarzinom (non-ccRCC) mit Progress lymphonodal/peritoneal im CT 08.12.2025 und DD neuer ossärer Läsion.\nStadium: metastasiert; non-ccRCC (chromophob); nach TKI-Vortherapien; 3.-Linie/Studie in Diskussion\ncTNM: T? N? M?\n\nAnamnese:\nChromophobes RCC, metastasiert. Therapiesequenz geplant/bisher: 1L Sunitinib, 2L Cabozantinib, 3L Diskussion: Nivolumab (off-label je nach Setting/MTB) vs Studie. Komorbiditäten: arterielle Hypertonie; Z. n. Nabelhernien-OP. Aktuell Progress lymphonodal/peritoneal im CT 08.12.2025; mögliche neue ossäre Läsion.\n\nNebendiagnosen: Arterielle Hypertonie\n\nVorherige Systemtherapien: Keine\n\n=== THERAPIE-LEITLINIEN ===\n\n\nMETAST...",
+  "prediction": {
+    "is_metastatic": true,
+    "metastatic_reasoning": "Der Patient hat eine Metastasierung des Nierenzellkarzinoms nach der Bildgebung (lymphonodal/peritoneal) und der Anamnese (neue ossäre Läsion).",
+    "imdc_risk": "intermediär",
+    "imdc_reasoning": "Der Patient hat 2 Risikofaktoren (Karnofsky <80%, Zeit bis Systemtherapie <1 Jahr).",
+    "treatment_reasoning": "Da der Patient im 3. Therapie-Stadium und intermadiär ist, wird eine IO+TKI-Kombination empfohlen.",
+    "recommended_therapy": "NIVO+CABO",
+    "therapy_category": "IO+TKI",
+    "recommendation_strength": "A",
+    "confidence": 0.9
+  },
+  "raw_response": "{\n    \"is_metastatic\": true,\n    \"metastatic_reasoning\": \"Der Patient hat eine Metastasierung des Nierenzellkarzinoms nach der Bildgebung (lymphonodal/peritoneal) und der Anamnese (neue ossäre Läsion).\",\n    \"imdc_risk\": \"intermediär\",\n    \"imdc_reasoning\": \"Der Patient hat 2 Risikofaktoren (Karnofsky <80%, Zeit bis Systemtherapie <1 Jahr).\",\n    \"treatment_reasoning\": \"Da der Patient im 3. Therapie-Stadium und intermadiär ist, wird eine IO+TKI-Kombination empfohlen.\",\n    \"recommended_therapy\": \"NIVO+CABO\",\n    \"therapy_category\": \"IO+TKI\",\n    \"recommendation_strength\": \"A\",\n    \"confidence\": 0.9\n}",
+  "ground_truth_metastatic": null,
+  "ground_truth_therapy": "Entscheidung 3. Linie im MTB: Nivolumab (off-label je nach Setting) vs alternative Sequenz vs Studie. | Supportiv: Blutdruckkontrollen, Nierenfunktion/Metabolik unter weiterer Therapie, Schmerzassessment (Becken); ggf. MRT zur Abklärung ossärer Läsion.",
+  "metastatic_correct": null,
+  "therapy_exact_match": false,
+  "therapy_clinically_acceptable": null,
+  "inference_time_seconds": 0.3030806473323277,
+  "tokens_used": 197,
+  "success": true,
+  "error_message": null
+}

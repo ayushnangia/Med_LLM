@@ -1,0 +1,104 @@
+{
+  "case_id": "ncc_28",
+  "timestamp": "2025-12-29_23-34-38",
+  "provider": "modal",
+  "model": "google/gemma-3-27b-it",
+  "input_case": {
+    "case_id": "ncc_28",
+    "patient_name": "Muster, Lukas",
+    "age": 78,
+    "ecog": null,
+    "karnofsky": null,
+    "comorbidity": null,
+    "life_expectancy": null,
+    "anamnese": "Z. n. Nephrektomie links 03/2021 bei papillärem RCC Typ 2. Aktuelle Vorstellung zur Befund- und Therapieentscheidung anhand CT Staging 04.11.2025. Vorerkrankungen/VOP: Z. n. Appendektomie, Z. n. Nabelhernien-OP. Medikation: Amlodipin, Candesartan.",
+    "diagnose_kurz": "Metastasiertes papilläres Nierenzellkarzinom (papRCC Typ 2) nach Nephrektomie links 03/2021; CT 04.11.2025 mit hepatischer und ossärer Metastasierung; keine sicheren pulmonalen Metastasen.",
+    "stadium": "mRCC; IMDC high risk; Metastasen: Leber + Knochen; keine sicheren Lungenmetastasen",
+    "tnm_clinical": null,
+    "tnm_pathological": null,
+    "histologie_subtyp": null,
+    "histologie_klarzellig": null,
+    "bildgebung": [
+      {
+        "modalitaet": "CT",
+        "region": "Thorax/Abdomen/Becken",
+        "datum": "2025-11-04",
+        "befund_kurz": "Hepatische und ossäre Metastasierung; keine sicheren pulmonalen Metastasen.",
+        "quelle": "CT Staging 04.11.2025",
+        "details": {
+          "thorax": {
+            "pleuraerguss": "nein",
+            "mediastinale_hilaere_lk": "keine sicher pathologisch vergrößerten LK",
+            "lungen": "keine eindeutigen pulmonalen Metastasen"
+          },
+          "abdomen_becken": {
+            "op_status": "Status nach Nephrektomie links",
+            "leber_metastasen": [
+              {
+                "segment": "VI",
+                "groesse_mm": 22,
+                "beschreibung": "metastasenverdächtig"
+              },
+              {
+                "segment": "II",
+                "groesse_mm": 13,
+                "beschreibung": "metastasenverdächtig"
+              }
+            ]
+          },
+          "skelett": {
+            "ossaere_metastasen": [
+              {
+                "lokalisation": "LWK1",
+                "groesse_mm": 16,
+                "typ": "osteolytisch/unspezifiziert",
+                "beschreibung": "metastasenverdächtig"
+              },
+              {
+                "lokalisation": "rechtes Os pubis",
+                "groesse_mm": 18,
+                "typ": "osteolytisch/unspezifiziert",
+                "beschreibung": "metastasenverdächtig"
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "nebendiagnosen": [
+      "status_nach_appendektomie",
+      "status_nach_nabelhernien_op"
+    ],
+    "medikation": [
+      "Amlodipin",
+      "Candesartan"
+    ],
+    "ici_durchfuehrbar": null,
+    "prior_therapies": [],
+    "ground_truth_metastatic": null,
+    "ground_truth_imdc": null,
+    "ground_truth_therapy": "Einleitung Systemtherapie im metastasierten Setting + Supportiv (Knochenprotektion/Analgesie, Laborkontrollen)."
+  },
+  "prompt_text": "Du bist ein erfahrener Onkologe, spezialisiert auf Nierenzellkarzinom (RCC).\nAnalysiere den folgenden klinischen Fall und erstelle eine strukturierte Therapieempfehlung.\n\n=== KLINISCHER FALL ===\nPatient: Muster, Lukas, 78 Jahre\nECOG: None, Karnofsky: ?%\nKomorbidität: None\nLebenserwartung: None\n\nDiagnose: Metastasiertes papilläres Nierenzellkarzinom (papRCC Typ 2) nach Nephrektomie links 03/2021; CT 04.11.2025 mit hepatischer und ossärer Metastasierung; keine sicheren pulmonalen Metastasen.\nStadium: mRCC; IMDC high risk; Metastasen: Leber + Knochen; keine sicheren Lungenmetastasen\nTNM: nicht dokumentiert\n\nHISTOLOGIE (WICHTIG für Therapieentscheidung):\nNicht dokumentiert\n\nAnamnese:\nZ. n. Nephrektomie links 03/2021 bei papillärem RCC Typ 2. Aktuelle Vorstellung zur Befund- und Therapieentscheidung anhand CT Staging 04.11.2025. Vorerkrankungen/VOP: Z. n. Appendektomie, Z. n. Nabelhernien-OP. Medikation: Amlodipin, Candesartan.\n\nNebendiagnosen: status_nach_appendektomie, status_nach_nabelhe...",
+  "prediction": {
+    "is_metastatic": true,
+    "metastatic_reasoning": "Der Patient zeigt hepatische und ossäre Metastasen, wie durch das CT vom 04.11.2025 dokumentiert. Dies in Kombination mit der Vorgeschichte einer Nephrektomie im Jahr 2021 bestätigt den metastasierten Status.",
+    "imdc_risk": "unguenstig",
+    "imdc_reasoning": "Der Patient weist mindestens drei ungünstige Risikofaktoren auf: metastasiertes Stadium, Zeit bis zur Systemtherapie < 1 Jahr (da die Diagnose erst jetzt gestellt wird, aber die Nephrektomie 2021 war) und wahrscheinlich ein schlechter Karnofsky-Status (da ECOG 0 angegeben ist, aber der Karnofsky-Status fehlt, gehe ich von einem Wert unter 80% aus). Da der Patient 78 Jahre alt ist, ist die Lebenserwartung ebenfalls begrenzt.",
+    "treatment_reasoning": "Der Patient hat ein metastasiertes papilläres Nierenzellkarzinom Typ 2. Da es sich um ein nicht-klarzelliges RCC handelt, ist gemäß der Leitlinien eine TKI-Monotherapie oft bevorzugt. Da der IMDC-Risiko-Score ungünstig ist, wird Cabozantinib als Erstlinientherapie empfohlen. Eine ICI-Kombination ist zwar eine Option, aber bei nicht-klarzelligen Tumoren weniger etabliert. Da der Patient 78 Jahre alt ist, muss die Verträglichkeit der Therapie sorgfältig abgewogen werden.",
+    "recommended_therapy": "Cabozantinib",
+    "therapy_category": "TKI mono",
+    "recommendation_strength": "B",
+    "confidence": 0.85
+  },
+  "raw_response": "{\"is_metastatic\": true,\n    \"metastatic_reasoning\": \"Der Patient zeigt hepatische und ossäre Metastasen, wie durch das CT vom 04.11.2025 dokumentiert. Dies in Kombination mit der Vorgeschichte einer Nephrektomie im Jahr 2021 bestätigt den metastasierten Status.\",\n    \"imdc_risk\": \"unguenstig\",\n    \"imdc_reasoning\": \"Der Patient weist mindestens drei ungünstige Risikofaktoren auf: metastasiertes Stadium, Zeit bis zur Systemtherapie < 1 Jahr (da die Diagnose erst jetzt gestellt wird, aber die Nephrektomie 2021 war) und wahrscheinlich ein schlechter Karnofsky-Status (da ECOG 0 angegeben ist, aber der Karnofsky-Status fehlt, gehe ich von einem Wert unter 80% aus). Da der Patient 78 Jahre alt ist, ist die Lebenserwartung ebenfalls begrenzt.\",\n    \"treatment_reasoning\": \"Der Patient hat ein metastasiertes papilläres Nierenzellkarzinom Typ 2. Da es sich um ein nicht-klarzelliges RCC handelt, ist gemäß der Leitlinien eine TKI-Monotherapie oft bevorzugt. Da der IMDC-Risiko-Score ungünstig ist, wird Cabozantinib als Erstlinientherapie empfohlen. Eine ICI-Kombination ist zwar eine Option, aber bei nicht-klarzelligen Tumoren weniger etabliert. Da der Patient 78 Jahre alt ist, muss die Verträglichkeit der Therapie sorgfältig abgewogen werden.\",\n    \"recommended_therapy\": \"Cabozantinib\",\n    \"therapy_category\": \"TKI mono\",\n    \"recommendation_strength\": \"B\",\n    \"confidence\": 0.85\n}",
+  "ground_truth_metastatic": null,
+  "ground_truth_therapy": "Einleitung Systemtherapie im metastasierten Setting + Supportiv (Knochenprotektion/Analgesie, Laborkontrollen).",
+  "metastatic_correct": null,
+  "therapy_exact_match": false,
+  "therapy_clinically_acceptable": null,
+  "inference_time_seconds": 3.6213891778673446,
+  "tokens_used": 389,
+  "success": true,
+  "error_message": null
+}

@@ -1,0 +1,109 @@
+{
+  "case_id": "ncc_26",
+  "timestamp": "2025-12-29_23-38-36",
+  "provider": "modal",
+  "model": "google/gemma-3-27b-it",
+  "input_case": {
+    "case_id": "ncc_26",
+    "patient_name": "Muster, Yara",
+    "age": 76,
+    "ecog": null,
+    "karnofsky": null,
+    "comorbidity": null,
+    "life_expectancy": null,
+    "anamnese": "Z. n. Nephrektomie links 2000 bei Nierenzellkarzinom. Aktuelle Vorstellung zur Befund- und Therapieentscheidung anhand CT Staging 04.11.2025. Vorerkrankungen: KHK, CKD G3. IMDC high risk (Karnofsky 70%, Hb 10,4 g/dl, korr. Ca 2,74 mmol/l; Diagnose→Therapie >24 Monate; Neutro/Thrombo normal).",
+    "diagnose_kurz": "Metastasiertes Nierenzellkarzinom (mRCC) nach Nephrektomie links 2000; CT 04.11.2025 mit hepatischer und ossärer Metastasierung; keine sicheren pulmonalen Metastasen.",
+    "stadium": "mRCC; IMDC high risk; Metastasen: Leber + Knochen",
+    "tnm_clinical": null,
+    "tnm_pathological": null,
+    "histologie_subtyp": null,
+    "histologie_klarzellig": null,
+    "bildgebung": [
+      {
+        "modalitaet": "CT",
+        "region": "Thorax/Abdomen/Becken",
+        "datum": "2025-11-04",
+        "befund_kurz": "Hepatische Metastasen (mehrere Läsionen) und ossäre Metastasen; keine sicheren pulmonalen Metastasen; keine abdominelle Lymphadenopathie.",
+        "quelle": "CT Staging 04.11.2025",
+        "details": {
+          "thorax": {
+            "pleuraerguss": "nein",
+            "mediastinale_hilaere_lk": "keine sicher pathologisch vergrößerten LK",
+            "lungen": "keine eindeutigen pulmonalen Rundherde; ggf. unspezifische Mikronoduli <4 mm ohne sicheren Metastasencharakter"
+          },
+          "abdomen_becken": {
+            "op_status": "Status nach Nephrektomie links, OP-Loge ohne sicheren Hinweis auf Lokalrezidiv",
+            "leber_metastasen": [
+              {
+                "segment": "VII",
+                "groesse_mm": 28,
+                "beschreibung": "hypodens, KM-aufnehmend, metastasenverdächtig"
+              },
+              {
+                "segment": "IVa",
+                "groesse_mm": 16,
+                "beschreibung": "hypodens, KM-aufnehmend, metastasenverdächtig"
+              },
+              {
+                "segment": "II",
+                "groesse_mm": 12,
+                "beschreibung": "hypodens, KM-aufnehmend, metastasenverdächtig"
+              }
+            ],
+            "nebennieren_pankreas": "unauffällig",
+            "abdominelle_lk": "kein sicher pathologisch vergrößerter LK (max. 9 mm kurze Achse)",
+            "aszites": "nein"
+          },
+          "skelett": {
+            "ossaere_metastasen": [
+              {
+                "lokalisation": "LWK2",
+                "groesse_mm": 20,
+                "typ": "osteolytisch",
+                "zusatz": "keine Spinalkanalstenose im CT"
+              },
+              {
+                "lokalisation": "rechtes Os ilium",
+                "groesse_mm": 24,
+                "typ": "osteolytisch",
+                "zusatz": "keine Frakturzeichen"
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "nebendiagnosen": [
+      "koronare_herzkrankheit",
+      "ckd_g3"
+    ],
+    "medikation": [],
+    "ici_durchfuehrbar": null,
+    "prior_therapies": [],
+    "ground_truth_metastatic": null,
+    "ground_truth_imdc": null,
+    "ground_truth_therapy": "Einleitung einer geeigneten Systemtherapie im metastasierten Setting (Auswahl abhängig von IMDC high risk, Nierenfunktion/CKD, kardialer Situation, Komedikation und gewünschtem Nebenwirkungsprofil). Supportiv: Knochenprotektion nach Standard + Analgesie/Frakturrisiko-Assessment; engmaschiges Monitoring (BB, Elektrolyte inkl. Ca, Nierenwerte, Leberwerte)."
+  },
+  "prompt_text": "Du bist ein erfahrener Onkologe, spezialisiert auf Nierenzellkarzinom (RCC).\nAnalysiere den folgenden klinischen Fall und erstelle eine strukturierte Therapieempfehlung.\n\n=== KLINISCHER FALL ===\nPatient: Muster, Yara, 76 Jahre\nECOG: None, Karnofsky: ?%\nKomorbidität: None\nLebenserwartung: None\n\nDiagnose: Metastasiertes Nierenzellkarzinom (mRCC) nach Nephrektomie links 2000; CT 04.11.2025 mit hepatischer und ossärer Metastasierung; keine sicheren pulmonalen Metastasen.\nStadium: mRCC; IMDC high risk; Metastasen: Leber + Knochen\nTNM: nicht dokumentiert\n\nHISTOLOGIE (WICHTIG für Therapieentscheidung):\nNicht dokumentiert\n\nAnamnese:\nZ. n. Nephrektomie links 2000 bei Nierenzellkarzinom. Aktuelle Vorstellung zur Befund- und Therapieentscheidung anhand CT Staging 04.11.2025. Vorerkrankungen: KHK, CKD G3. IMDC high risk (Karnofsky 70%, Hb 10,4 g/dl, korr. Ca 2,74 mmol/l; Diagnose→Therapie >24 Monate; Neutro/Thrombo normal).\n\nNebendiagnosen: koronare_herzkrankheit, ckd_g3\n\nAktuelle Medikation: Kein...",
+  "prediction": {
+    "is_metastatic": true,
+    "metastatic_reasoning": "Der Patient zeigt hepatische und ossäre Metastasen, wie durch das CT vom 04.11.2025 dokumentiert. Die Anamnese erwähnt eine frühere Nephrektomie, was auf ein fortgeschrittenes Stadium hindeutet.",
+    "imdc_risk": "unguenstig",
+    "imdc_reasoning": "Die IMDC-Risikofaktoren sind: Karnofsky 70% (<80%), Hb 10,4 g/dl (↓), korr. Ca 2,74 mmol/l (↑), Diagnose→Therapie >24 Monate (kein Risikofaktor), Neutro/Thrombo normal (kein Risikofaktor). Da 3 Risikofaktoren vorliegen, wird der Patient als 'ungünstig' eingestuft.",
+    "treatment_reasoning": "Der Patient hat ein metastasiertes, klarzelliges Nierenzellkarzinom (angenommen, da Histologie nicht dokumentiert, aber die Leitlinien primär für klarzelliges RCC gelten). Aufgrund des 'ungünstigen' IMDC-Risikos und der Tatsache, dass keine vorherigen Systemtherapien durchgeführt wurden, wird eine Erstlinientherapie mit einer ICI-Kombination oder einem TKI in Betracht gezogen. Da die Durchführbarkeit einer ICI-Kombination nicht dokumentiert ist, werden beide Optionen betrachtet. Die Leitlinie empfiehlt für 'ungünstiges' Risiko NIVO+CABO, NIVO+IPI, PEMBRO+AXI oder PEMBRO+LEN als Erstlinientherapie, wenn eine ICI-Kombination möglich ist. Wenn keine ICI-Kombination möglich ist, werden Cabozantinib, Sunitinib oder Temsirolimus empfohlen. Aufgrund der Komorbiditäten (KHK, CKD G3) und des Alters des Patienten wird Cabozantinib aufgrund seines günstigeren Nebenwirkungsprofils gegenüber Sunitinib und Temsirolimus bevorzugt.",
+    "recommended_therapy": "Cabozantinib",
+    "therapy_category": "TKI mono",
+    "recommendation_strength": "B",
+    "confidence": 0.8
+  },
+  "raw_response": "{\"is_metastatic\": true,\n    \"metastatic_reasoning\": \"Der Patient zeigt hepatische und ossäre Metastasen, wie durch das CT vom 04.11.2025 dokumentiert. Die Anamnese erwähnt eine frühere Nephrektomie, was auf ein fortgeschrittenes Stadium hindeutet.\",\n    \"imdc_risk\": \"unguenstig\",\n    \"imdc_reasoning\": \"Die IMDC-Risikofaktoren sind: Karnofsky 70% (<80%), Hb 10,4 g/dl (↓), korr. Ca 2,74 mmol/l (↑), Diagnose→Therapie >24 Monate (kein Risikofaktor), Neutro/Thrombo normal (kein Risikofaktor). Da 3 Risikofaktoren vorliegen, wird der Patient als 'ungünstig' eingestuft.\",\n    \"treatment_reasoning\": \"Der Patient hat ein metastasiertes, klarzelliges Nierenzellkarzinom (angenommen, da Histologie nicht dokumentiert, aber die Leitlinien primär für klarzelliges RCC gelten). Aufgrund des 'ungünstigen' IMDC-Risikos und der Tatsache, dass keine vorherigen Systemtherapien durchgeführt wurden, wird eine Erstlinientherapie mit einer ICI-Kombination oder einem TKI in Betracht gezogen. Da die Durchführbarkeit einer ICI-Kombination nicht dokumentiert ist, werden beide Optionen betrachtet. Die Leitlinie empfiehlt für 'ungünstiges' Risiko NIVO+CABO, NIVO+IPI, PEMBRO+AXI oder PEMBRO+LEN als Erstlinientherapie, wenn eine ICI-Kombination möglich ist. Wenn keine ICI-Kombination möglich ist, werden Cabozantinib, Sunitinib oder Temsirolimus empfohlen. Aufgrund der Komorbiditäten (KHK, CKD G3) und des Alters des Patienten wird Cabozantinib aufgrund seines günstigeren Nebenwirkungsprofils gegenüber Sunitinib und Temsirolimus bevorzugt.\",\n    \"recommended_therapy\": \"Cabozantinib\",\n    \"therapy_category\": \"TKI mono\",\n    \"recommendation_strength\": \"B\",\n    \"confidence\": 0.8}",
+  "ground_truth_metastatic": null,
+  "ground_truth_therapy": "Einleitung einer geeigneten Systemtherapie im metastasierten Setting (Auswahl abhängig von IMDC high risk, Nierenfunktion/CKD, kardialer Situation, Komedikation und gewünschtem Nebenwirkungsprofil). Supportiv: Knochenprotektion nach Standard + Analgesie/Frakturrisiko-Assessment; engmaschiges Monitoring (BB, Elektrolyte inkl. Ca, Nierenwerte, Leberwerte).",
+  "metastatic_correct": null,
+  "therapy_exact_match": false,
+  "therapy_clinically_acceptable": null,
+  "inference_time_seconds": 3.12081674848284,
+  "tokens_used": 492,
+  "success": true,
+  "error_message": null
+}

@@ -1,0 +1,64 @@
+{
+  "case_id": "ncc_17",
+  "timestamp": "2025-12-29_23-38-36",
+  "provider": "modal",
+  "model": "google/gemma-3-27b-it",
+  "input_case": {
+    "case_id": "ncc_17",
+    "patient_name": "Muster, Oskar",
+    "age": 63,
+    "ecog": null,
+    "karnofsky": null,
+    "comorbidity": null,
+    "life_expectancy": null,
+    "anamnese": "Neudiagnose eines papillären RCC (links). Z. n. Nierenbiopsie links am 01.12.2025 zur histologischen Sicherung. CT Staging 20.11.2025 mit abdomineller/retroperitonealer lymphonodaler Metastasierung; keine Viszeralmetastasen nachweisbar. Vorerkrankungen: Hyperlipidämie, Z. n. Appendektomie. Medikation: Atorvastatin 40 mg 0–0–1.",
+    "diagnose_kurz": "Metastasiertes papilläres Nierenzellkarzinom (mRCC, papRCC) links mit abdominell/retroperitonealer lymphonodaler Metastasierung; keine Viszeralmetastasen im CT 20.11.2025",
+    "stadium": "mRCC (lymphonodal abdominell), IMDC günstig/low risk (0 Faktoren)",
+    "tnm_clinical": null,
+    "tnm_pathological": null,
+    "histologie_subtyp": null,
+    "histologie_klarzellig": null,
+    "bildgebung": [
+      {
+        "datum": "2025-11-20",
+        "modalitaet": "CT",
+        "region": "Staging Abdomen/Retroperitoneum (Thorax optional)",
+        "befund": "Abdomen/Retroperitoneum: Mehrere pathologisch vergrößerte paraaortale und interaortokavale Lymphknoten, teils rund-konfiguriert, metastasenverdächtig. Größter paraaortaler LK links 22×16 mm, interaortokaval 18×12 mm, weitere retroperitoneale LK bis 10–14 mm. Niere links: solide kontrastmittelaufnehmende Raumforderung am Unterpol, ca. 5,1 cm, malignitätsverdächtig. Leber/Nebennieren/Pankreas unauffällig, kein Hinweis auf Viszeralmetastasen. Thorax (falls mituntersucht): kein Hinweis auf pulmonale Metastasen.",
+        "quelle": "Erforderlicher Befund"
+      }
+    ],
+    "nebendiagnosen": [
+      "Hyperlipidämie"
+    ],
+    "medikation": [
+      "Atorvastatin 40 mg 0-0-1"
+    ],
+    "ici_durchfuehrbar": null,
+    "prior_therapies": [],
+    "ground_truth_metastatic": null,
+    "ground_truth_imdc": null,
+    "ground_truth_therapy": "Einleitung einer Systemtherapie (IO + TKI) im metastasierten Setting unter Berücksichtigung von Komorbiditäten/Interaktionen (Atorvastatin) und geplanter Verlaufskontrollen."
+  },
+  "prompt_text": "Du bist ein erfahrener Onkologe, spezialisiert auf Nierenzellkarzinom (RCC).\nAnalysiere den folgenden klinischen Fall und erstelle eine strukturierte Therapieempfehlung.\n\n=== KLINISCHER FALL ===\nPatient: Muster, Oskar, 63 Jahre\nECOG: None, Karnofsky: ?%\nKomorbidität: None\nLebenserwartung: None\n\nDiagnose: Metastasiertes papilläres Nierenzellkarzinom (mRCC, papRCC) links mit abdominell/retroperitonealer lymphonodaler Metastasierung; keine Viszeralmetastasen im CT 20.11.2025\nStadium: mRCC (lymphonodal abdominell), IMDC günstig/low risk (0 Faktoren)\nTNM: nicht dokumentiert\n\nHISTOLOGIE (WICHTIG für Therapieentscheidung):\nGrading: WHO/ISUP Grad 2\n\nAnamnese:\nNeudiagnose eines papillären RCC (links). Z. n. Nierenbiopsie links am 01.12.2025 zur histologischen Sicherung. CT Staging 20.11.2025 mit abdomineller/retroperitonealer lymphonodaler Metastasierung; keine Viszeralmetastasen nachweisbar. Vorerkrankungen: Hyperlipidämie, Z. n. Appendektomie. Medikation: Atorvastatin 40 mg 0–0–1.\n\nNebendiagn...",
+  "prediction": {
+    "is_metastatic": true,
+    "metastatic_reasoning": "Der Patient zeigt eine abdominelle/retroperitoneale lymphonodale Metastasierung im CT vom 20.11.2025, was einen M1-Status impliziert.",
+    "imdc_risk": "guenstig",
+    "imdc_reasoning": "Der Patient hat 0 IMDC-Risikofaktoren (laut Fallbeschreibung). Karnofsky-Status ist nicht bekannt, wird aber als gut angenommen (ECOG 0). Es liegen keine Hinweise auf eine kurze Zeit bis zur Systemtherapie, Hämoglobinabfall, erhöhte Calciumwerte, Neutrophilie oder Thrombozytose vor.",
+    "treatment_reasoning": "Der Patient hat ein metastasiertes papilläres Nierenzellkarzinom. Die Leitlinien betonen, dass bei nicht-klarzelligem RCC (wie hier papillär) oft eine TKI-Monotherapie bevorzugt wird. Da der IMDC-Risikofaktor günstig ist, kommen TKI-Monotherapien in Frage. Die Leitlinien geben für das metastasierte klarzellige RCC eine klare Empfehlung für die Erstlinientherapie. Da es sich um ein papilläres RCC handelt, muss die Empfehlung angepasst werden. Da keine ICI-Kombination durchführbar ist, wird eine TKI-Monotherapie empfohlen. Die Leitlinien nennen Pazopanib, Sunitinib und Tivozanib als Optionen mit Empfehlungsgrad A.",
+    "recommended_therapy": "Pazopanib",
+    "therapy_category": "TKI mono",
+    "recommendation_strength": "A",
+    "confidence": 0.85
+  },
+  "raw_response": "{\"is_metastatic\": true,\n    \"metastatic_reasoning\": \"Der Patient zeigt eine abdominelle/retroperitoneale lymphonodale Metastasierung im CT vom 20.11.2025, was einen M1-Status impliziert.\",\n    \"imdc_risk\": \"guenstig\",\n    \"imdc_reasoning\": \"Der Patient hat 0 IMDC-Risikofaktoren (laut Fallbeschreibung). Karnofsky-Status ist nicht bekannt, wird aber als gut angenommen (ECOG 0). Es liegen keine Hinweise auf eine kurze Zeit bis zur Systemtherapie, Hämoglobinabfall, erhöhte Calciumwerte, Neutrophilie oder Thrombozytose vor.\",\n    \"treatment_reasoning\": \"Der Patient hat ein metastasiertes papilläres Nierenzellkarzinom. Die Leitlinien betonen, dass bei nicht-klarzelligem RCC (wie hier papillär) oft eine TKI-Monotherapie bevorzugt wird. Da der IMDC-Risikofaktor günstig ist, kommen TKI-Monotherapien in Frage. Die Leitlinien geben für das metastasierte klarzellige RCC eine klare Empfehlung für die Erstlinientherapie. Da es sich um ein papilläres RCC handelt, muss die Empfehlung angepasst werden. Da keine ICI-Kombination durchführbar ist, wird eine TKI-Monotherapie empfohlen. Die Leitlinien nennen Pazopanib, Sunitinib und Tivozanib als Optionen mit Empfehlungsgrad A.\",\n    \"recommended_therapy\": \"Pazopanib\",\n    \"therapy_category\": \"TKI mono\",\n    \"recommendation_strength\": \"A\",\n    \"confidence\": 0.85\n}",
+  "ground_truth_metastatic": null,
+  "ground_truth_therapy": "Einleitung einer Systemtherapie (IO + TKI) im metastasierten Setting unter Berücksichtigung von Komorbiditäten/Interaktionen (Atorvastatin) und geplanter Verlaufskontrollen.",
+  "metastatic_correct": null,
+  "therapy_exact_match": false,
+  "therapy_clinically_acceptable": null,
+  "inference_time_seconds": 3.12081674848284,
+  "tokens_used": 375,
+  "success": true,
+  "error_message": null
+}

@@ -1,0 +1,96 @@
+{
+  "case_id": "ncc_1",
+  "timestamp": "2025-12-29_23-04-37",
+  "provider": "modal",
+  "model": "OpenMeditron/Meditron3-Qwen2.5-7B",
+  "input_case": {
+    "case_id": "ncc_1",
+    "patient_name": "Turtle, Ninja",
+    "age": 52,
+    "ecog": 0,
+    "karnofsky": null,
+    "comorbidity": "unknown",
+    "life_expectancy": "unknown",
+    "anamnese": "Met. pap. RCC. Z. n. Nephrektomie links 2014 (papilläres RCC pT3b, Nx, L0, V0, Pn0, G3, Rx). Z. n. offener Resektion eines Lokalrezidivs 2024. Aktuell multiple Rezidive (pulmonal, lymphonodal, hepatisch).",
+    "diagnose_kurz": "Metastasiertes papilläres RCC",
+    "stadium": "metastasiert (pulmonal, lymphonodal, hepatisch)",
+    "tnm_clinical": {
+      "T": "unknown",
+      "T_sub": "unknown",
+      "N": "unknown",
+      "M": "M1",
+      "stage_group": "unknown"
+    },
+    "tnm_pathological": {
+      "T": "T3b",
+      "T_sub": null,
+      "N": "NX",
+      "M": null,
+      "stage_group": null
+    },
+    "histologie_subtyp": "papillär",
+    "histologie_klarzellig": false,
+    "bildgebung": [
+      {
+        "modalitaet": "CT",
+        "region": "Ganzkörper",
+        "datum": "2025-11-03",
+        "befund_kurz": "Multiple Rezidive/Metastasen pulmonal, lymphonodal, hepatisch.",
+        "quelle": "Erforderliche Bildgebung"
+      }
+    ],
+    "nebendiagnosen": [
+      "obstruktive Kardiomyopathie",
+      "Z. n. Hyperthyreose 2021",
+      "arterielle Hypertonie",
+      "Diabetes mellitus",
+      "Z. n. LAE",
+      "Hyperlipidämie"
+    ],
+    "medikation": [
+      {
+        "wirkstoff_oder_klasse": "Betablocker",
+        "details": null
+      },
+      {
+        "wirkstoff_oder_klasse": "Statin",
+        "details": null
+      },
+      {
+        "wirkstoff_oder_klasse": "Metformin",
+        "details": null
+      },
+      {
+        "wirkstoff_oder_klasse": "DOAK",
+        "details": "bei LAE"
+      }
+    ],
+    "ici_durchfuehrbar": null,
+    "prior_therapies": [],
+    "ground_truth_metastatic": true,
+    "ground_truth_imdc": null,
+    "ground_truth_therapy": "Einleitung palliative Systemtherapie TKI/IO (z.B. Nivolumab/Cabozantinib)."
+  },
+  "prompt_text": "Du bist ein erfahrener Onkologe, spezialisiert auf Nierenzellkarzinom (RCC).\nAnalysiere den folgenden klinischen Fall und erstelle eine strukturierte Therapieempfehlung.\n\n=== KLINISCHER FALL ===\nPatient: Turtle, Ninja, 52 Jahre\nECOG: 0, Karnofsky: ?%\nKomorbidität: unknown\nLebenserwartung: unknown\n\nDiagnose: Metastasiertes papilläres RCC\nStadium: metastasiert (pulmonal, lymphonodal, hepatisch)\ncTNM: Tunknown Nunknown MM1 | pTNM: TT3b NNX MNone\n\nHISTOLOGIE (WICHTIG für Therapieentscheidung):\nSubtyp: papillär, Klarzellig: Nein, Grading: G3\n\nAnamnese:\nMet. pap. RCC. Z. n. Nephrektomie links 2014 (papilläres RCC pT3b, Nx, L0, V0, Pn0, G3, Rx). Z. n. offener Resektion eines Lokalrezidivs 2024. Aktuell multiple Rezidive (pulmonal, lymphonodal, hepatisch).\n\nNebendiagnosen: obstruktive Kardiomyopathie, Z. n. Hyperthyreose 2021, arterielle Hypertonie, Diabetes mellitus, Z. n. LAE, Hyperlipidämie\n\nAktuelle Medikation: Betablocker, Statin, Metformin, DOAK (bei LAE)\n\nBildgebung:\n  - CT Ganzkörper (...",
+  "prediction": {
+    "is_metastatic": true,
+    "metastatic_reasoning": "Der Patient hat multiple Rezidive/Metastasen pulmonal, lymphonodal, hepatisch.",
+    "imdc_risk": "nicht_anwendbar",
+    "imdc_reasoning": "Der Patient ist nicht-metastasiert, daher ist die IMDC-Risikostratifizierung nicht anwendbar.",
+    "treatment_reasoning": "Da der Patient nicht-metastasiert ist, wird die Therapieempfehlung für nicht-metastasiertes RCC angewendet.",
+    "recommended_therapy": "Nephron-sparing Surgery oder Radikale Nephrektomie",
+    "therapy_category": "Surgery",
+    "recommendation_strength": "A",
+    "confidence": 0.9
+  },
+  "raw_response": "{\n    \"is_metastatic\": true,\n    \"metastatic_reasoning\": \"Der Patient hat multiple Rezidive/Metastasen pulmonal, lymphonodal, hepatisch.\",\n    \"imdc_risk\": \"nicht_anwendbar\",\n    \"imdc_reasoning\": \"Der Patient ist nicht-metastasiert, daher ist die IMDC-Risikostratifizierung nicht anwendbar.\",\n    \"treatment_reasoning\": \"Da der Patient nicht-metastasiert ist, wird die Therapieempfehlung für nicht-metastasiertes RCC angewendet.\",\n    \"recommended_therapy\": \"Nephron-sparing Surgery oder Radikale Nephrektomie\",\n    \"therapy_category\": \"Surgery\",\n    \"recommendation_strength\": \"A\",\n    \"confidence\": 0.9\n}",
+  "ground_truth_metastatic": true,
+  "ground_truth_therapy": "Einleitung palliative Systemtherapie TKI/IO (z.B. Nivolumab/Cabozantinib).",
+  "metastatic_correct": true,
+  "therapy_exact_match": false,
+  "therapy_clinically_acceptable": false,
+  "inference_time_seconds": 0.25036321367536274,
+  "tokens_used": 186,
+  "success": true,
+  "error_message": null
+}

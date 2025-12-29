@@ -1,0 +1,72 @@
+{
+  "case_id": "ncc_5",
+  "timestamp": "2025-12-29_23-04-37",
+  "provider": "modal",
+  "model": "OpenMeditron/Meditron3-Qwen2.5-7B",
+  "input_case": {
+    "case_id": "ncc_5",
+    "patient_name": "Muster, Clara",
+    "age": 47,
+    "ecog": 0,
+    "karnofsky": null,
+    "comorbidity": "unknown",
+    "life_expectancy": "unknown",
+    "anamnese": "Zystische Läsion Bosniak IV (2,5 cm) an der rechten Niere. Keine relevanten Vorerkrankungen.",
+    "diagnose_kurz": "Zystische Läsion Bosniak IV, 2,5 cm, rechte Niere",
+    "stadium": "nicht-metastasiert (Verdacht, prätherapeutisch)",
+    "tnm_clinical": {
+      "T": "unknown",
+      "T_sub": "unknown",
+      "N": "unknown",
+      "M": "M0",
+      "stage_group": "unknown"
+    },
+    "tnm_pathological": {
+      "T": null,
+      "T_sub": null,
+      "N": null,
+      "M": null,
+      "stage_group": null
+    },
+    "histologie_subtyp": null,
+    "histologie_klarzellig": null,
+    "bildgebung": [
+      {
+        "modalitaet": "MRT",
+        "region": "Niere",
+        "datum": "2025-12-01",
+        "befund_kurz": "Zystische Läsion Bosniak IV, 2,5 cm, rechte Niere.",
+        "quelle": "Erforderliche Bildgebung"
+      }
+    ],
+    "nebendiagnosen": [],
+    "medikation": [],
+    "ici_durchfuehrbar": null,
+    "prior_therapies": [],
+    "ground_truth_metastatic": false,
+    "ground_truth_imdc": null,
+    "ground_truth_therapy": "Nierenteilresektion robotisch vs. laparoskopisch vs. offen vs. Ablation."
+  },
+  "prompt_text": "Du bist ein erfahrener Onkologe, spezialisiert auf Nierenzellkarzinom (RCC).\nAnalysiere den folgenden klinischen Fall und erstelle eine strukturierte Therapieempfehlung.\n\n=== KLINISCHER FALL ===\nPatient: Muster, Clara, 47 Jahre\nECOG: 0, Karnofsky: ?%\nKomorbidität: unknown\nLebenserwartung: unknown\n\nDiagnose: Zystische Läsion Bosniak IV, 2,5 cm, rechte Niere\nStadium: nicht-metastasiert (Verdacht, prätherapeutisch)\ncTNM: Tunknown Nunknown MM0\n\nHISTOLOGIE (WICHTIG für Therapieentscheidung):\nNicht dokumentiert\n\nAnamnese:\nZystische Läsion Bosniak IV (2,5 cm) an der rechten Niere. Keine relevanten Vorerkrankungen.\n\nNebendiagnosen: Keine dokumentiert\n\nAktuelle Medikation: Keine dokumentiert\n\nBildgebung:\n  - MRT Niere (2025-12-01): Zystische Läsion Bosniak IV, 2,5 cm, rechte Niere.\n\nIMDC-Risikofaktoren: Nicht dokumentiert\nICI-Kombination durchführbar: Nicht dokumentiert\nVorherige Systemtherapien: Keine\n\n=== THERAPIE-LEITLINIEN ===\n\n\nMETASTASIERTES KLARZELLIGES RCC - THERAPIE-ALGORITHMUS:\n\nIMDC-...",
+  "prediction": {
+    "is_metastatic": false,
+    "metastatic_reasoning": "Der Patient hat keine Metastasen, da der Tumor nicht-metastasiert ist (Verdacht, prätherapeutisch).",
+    "imdc_risk": "nicht-anwendbar",
+    "imdc_reasoning": "Da der Patient nicht-metastasiert ist, ist die IMDC-Risikostratifizierung nicht anwendbar.",
+    "treatment_reasoning": "Da der Patient nicht-metastasiert ist, wird die Therapieempfehlung für nicht-metastasiertes RCC angewendet.",
+    "recommended_therapy": "Nephron-sparing Surgery",
+    "therapy_category": "Surgery",
+    "recommendation_strength": "A",
+    "confidence": 1.0
+  },
+  "raw_response": "{\n    \"is_metastatic\": false,\n    \"metastatic_reasoning\": \"Der Patient hat keine Metastasen, da der Tumor nicht-metastasiert ist (Verdacht, prätherapeutisch).\",\n    \"imdc_risk\": \"nicht-anwendbar\",\n    \"imdc_reasoning\": \"Da der Patient nicht-metastasiert ist, ist die IMDC-Risikostratifizierung nicht anwendbar.\",\n    \"treatment_reasoning\": \"Da der Patient nicht-metastasiert ist, wird die Therapieempfehlung für nicht-metastasiertes RCC angewendet.\",\n    \"recommended_therapy\": \"Nephron-sparing Surgery\",\n    \"therapy_category\": \"Surgery\",\n    \"recommendation_strength\": \"A\",\n    \"confidence\": 1.0\n}",
+  "ground_truth_metastatic": false,
+  "ground_truth_therapy": "Nierenteilresektion robotisch vs. laparoskopisch vs. offen vs. Ablation.",
+  "metastatic_correct": true,
+  "therapy_exact_match": false,
+  "therapy_clinically_acceptable": true,
+  "inference_time_seconds": 0.25036321367536274,
+  "tokens_used": 184,
+  "success": true,
+  "error_message": null
+}

@@ -1,0 +1,65 @@
+{
+  "case_id": "ncc_21",
+  "timestamp": "2025-12-29_23-38-36",
+  "provider": "modal",
+  "model": "google/gemma-3-27b-it",
+  "input_case": {
+    "case_id": "ncc_21",
+    "patient_name": "Muster, Sara",
+    "age": 62,
+    "ecog": null,
+    "karnofsky": null,
+    "comorbidity": null,
+    "life_expectancy": null,
+    "anamnese": "Z. n. Nephrektomie links 04/2025 bei ccRCC. Aktuell Vorstellung zur Therapieentscheidung anhand CT-Staging vom 10.11.2025. Vorerkrankung: arterielle Hypertonie. Medikation: Candesartan, Amlodipin.",
+    "diagnose_kurz": "Metastasiertes klarzelliges Nierenzellkarzinom (mRCC, ccRCC) – Z. n. Nephrektomie links 04/2025; CT 10.11.2025 mit pulmonalen Metastasenherden und retroperitonealer lymphonodaler Metastasierung; IMDC intermediate (1 Faktor: Diagnose→Therapie <12 Monate)",
+    "stadium": "mRCC (pulmonal + retroperitoneal lymphonodal), IMDC intermediate (1 Faktor)",
+    "tnm_clinical": null,
+    "tnm_pathological": null,
+    "histologie_subtyp": null,
+    "histologie_klarzellig": null,
+    "bildgebung": [
+      {
+        "datum": "2025-11-10",
+        "modalitaet": "CT",
+        "region": "Staging Thorax/Abdomen/Becken",
+        "befund": "Thorax: Zwei pulmonale Rundherde metastasenverdächtig (rechter Unterlappen 10 mm, linker Oberlappen 6 mm). Kein Pleuraerguss. Keine sicher pathologisch vergrößerten mediastinal/hilären Lymphknoten. Abdomen/Becken: Status nach Nephrektomie links, OP-Loge ohne sicheren Hinweis auf Lokalrezidiv. Retroperitoneal paraaortaler Lymphknoten links 14 mm (kurze Achse), metastasenverdächtig. Leber, Nebennieren, Pankreas ohne fokale Läsionen. Kein Aszites. Skelett: kein sicherer Hinweis auf ossäre Metastasen im CT.",
+        "quelle": "Erforderlicher Befund"
+      }
+    ],
+    "nebendiagnosen": [
+      "Arterielle Hypertonie"
+    ],
+    "medikation": [
+      "Candesartan",
+      "Amlodipin"
+    ],
+    "ici_durchfuehrbar": null,
+    "prior_therapies": [],
+    "ground_truth_metastatic": null,
+    "ground_truth_imdc": null,
+    "ground_truth_therapy": "Einleitung einer Systemtherapie: IO + IO vs. IO + TKI (unter Berücksichtigung IMDC intermediate, Komorbiditäten und Verträglichkeit)."
+  },
+  "prompt_text": "Du bist ein erfahrener Onkologe, spezialisiert auf Nierenzellkarzinom (RCC).\nAnalysiere den folgenden klinischen Fall und erstelle eine strukturierte Therapieempfehlung.\n\n=== KLINISCHER FALL ===\nPatient: Muster, Sara, 62 Jahre\nECOG: None, Karnofsky: ?%\nKomorbidität: None\nLebenserwartung: None\n\nDiagnose: Metastasiertes klarzelliges Nierenzellkarzinom (mRCC, ccRCC) – Z. n. Nephrektomie links 04/2025; CT 10.11.2025 mit pulmonalen Metastasenherden und retroperitonealer lymphonodaler Metastasierung; IMDC intermediate (1 Faktor: Diagnose→Therapie <12 Monate)\nStadium: mRCC (pulmonal + retroperitoneal lymphonodal), IMDC intermediate (1 Faktor)\nTNM: nicht dokumentiert\n\nHISTOLOGIE (WICHTIG für Therapieentscheidung):\nNicht dokumentiert\n\nAnamnese:\nZ. n. Nephrektomie links 04/2025 bei ccRCC. Aktuell Vorstellung zur Therapieentscheidung anhand CT-Staging vom 10.11.2025. Vorerkrankung: arterielle Hypertonie. Medikation: Candesartan, Amlodipin.\n\nNebendiagnosen: Arterielle Hypertonie\n\nAktuelle Medikati...",
+  "prediction": {
+    "is_metastatic": true,
+    "metastatic_reasoning": "Der Patient zeigt pulmonale Metastasen und retroperitoneale Lymphknotenmetastasen im CT-Staging vom 10.11.2025. Dies belegt einen M1-Status und somit eine Metastasierung.",
+    "imdc_risk": "intermediaer",
+    "imdc_reasoning": "Der Patient hat einen IMDC-Risikofaktor: Diagnose→Therapie <12 Monate. Da die Nephrektomie im April 2025 erfolgte und die Vorstellung zur Therapieentscheidung im November 2025 stattfand, beträgt die Zeitspanne weniger als 12 Monate. Dies entspricht einem intermediären Risikoprofil.",
+    "treatment_reasoning": "Der Patient hat ein metastasiertes, klarzelliges Nierenzellkarzinom (mRCC) mit intermediärem Risikoprofil. Die Leitlinie empfiehlt für mRCC mit intermediärem Risiko und der Möglichkeit einer ICI-Kombination folgende Optionen der ersten Linie: NIVO+CABO, NIVO+IPI, PEMBRO+AXI, PEMBRO+LEN. Da die Durchführbarkeit einer ICI-Kombination nicht dokumentiert ist, gehe ich zunächst von der Möglichkeit aus. Cabozantinib ist eine weitere Option, wenn eine ICI-Kombination nicht möglich ist. Aufgrund der guten Verträglichkeit und der Datenlage ist NIVO+CABO eine gute Wahl.",
+    "recommended_therapy": "Nivolumab in Kombination mit Cabozantinib",
+    "therapy_category": "IO+TKI",
+    "recommendation_strength": "A",
+    "confidence": 0.9
+  },
+  "raw_response": "{\"is_metastatic\": true,\n    \"metastatic_reasoning\": \"Der Patient zeigt pulmonale Metastasen und retroperitoneale Lymphknotenmetastasen im CT-Staging vom 10.11.2025. Dies belegt einen M1-Status und somit eine Metastasierung.\",\n    \"imdc_risk\": \"intermediaer\",\n    \"imdc_reasoning\": \"Der Patient hat einen IMDC-Risikofaktor: Diagnose→Therapie <12 Monate. Da die Nephrektomie im April 2025 erfolgte und die Vorstellung zur Therapieentscheidung im November 2025 stattfand, beträgt die Zeitspanne weniger als 12 Monate. Dies entspricht einem intermediären Risikoprofil.\",\n    \"treatment_reasoning\": \"Der Patient hat ein metastasiertes, klarzelliges Nierenzellkarzinom (mRCC) mit intermediärem Risikoprofil. Die Leitlinie empfiehlt für mRCC mit intermediärem Risiko und der Möglichkeit einer ICI-Kombination folgende Optionen der ersten Linie: NIVO+CABO, NIVO+IPI, PEMBRO+AXI, PEMBRO+LEN. Da die Durchführbarkeit einer ICI-Kombination nicht dokumentiert ist, gehe ich zunächst von der Möglichkeit aus. Cabozantinib ist eine weitere Option, wenn eine ICI-Kombination nicht möglich ist. Aufgrund der guten Verträglichkeit und der Datenlage ist NIVO+CABO eine gute Wahl.\",\n    \"recommended_therapy\": \"Nivolumab in Kombination mit Cabozantinib\",\n    \"therapy_category\": \"IO+TKI\",\n    \"recommendation_strength\": \"A\",\n    \"confidence\": 0.9}",
+  "ground_truth_metastatic": null,
+  "ground_truth_therapy": "Einleitung einer Systemtherapie: IO + IO vs. IO + TKI (unter Berücksichtigung IMDC intermediate, Komorbiditäten und Verträglichkeit).",
+  "metastatic_correct": null,
+  "therapy_exact_match": false,
+  "therapy_clinically_acceptable": null,
+  "inference_time_seconds": 3.12081674848284,
+  "tokens_used": 378,
+  "success": true,
+  "error_message": null
+}

@@ -1,0 +1,29 @@
+{
+  "case_id": "ncc_14",
+  "timestamp": "2025-12-29_22-31-34",
+  "provider": "modal",
+  "model": "OpenMeditron/Meditron3-Qwen2.5-7B",
+  "input_case": {
+    "case_id": "ncc_14",
+    "patient_name": "Beispiel, Leon",
+    "age": 79,
+    "ecog": 2,
+    "anamnese": "Zufallsbefund der linken Niere (Sonographie beim Hausarzt bei Rückenschmerzen). Großer Nierentumor links ca. 9 cm. Vorerkrankungen: KHK, Z. n. Bypass 2012, CKD G2.",
+    "diagnose_kurz": "Großer Nierentumor links ca. 9,0 cm, hochgradig malignitätsverdächtig (V. a. RCC), fragliche Infiltration linke Nebenniere; CT Thorax ohne Metastasen",
+    "stadium": "lokal fortgeschritten vs organbegrenzt; M0 (CT Thorax 04.12.2025)",
+    "ground_truth_metastatic": false,
+    "ground_truth_therapy": "Nephrektomie mit Adrenalektomie links; Einschätzung des perioperativen Risikos."
+  },
+  "prompt_text": "Du bist ein erfahrener Onkologe, spezialisiert auf Nierenzellkarzinom (RCC).\nAnalysiere den folgenden klinischen Fall und erstelle eine strukturierte Therapieempfehlung.\n\n=== KLINISCHER FALL ===\nPatient: Beispiel, Leon, 79 Jahre\nECOG: 2, Karnofsky: None%\nKomorbidität: hoch\nLebenserwartung: unknown\n\nDiagnose: Großer Nierentumor links ca. 9,0 cm, hochgradig malignitätsverdächtig (V. a. RCC), fragliche Infiltration linke Nebenniere; CT Thorax ohne Metastasen\nStadium: lokal fortgeschritten vs organbegrenzt; M0 (CT Thorax 04.12.2025)\ncTNM: TT2 NN0 MM0\n\nAnamnese:\nZufallsbefund der linken Niere (Sonographie beim Hausarzt bei Rückenschmerzen). Großer Nierentumor links ca. 9 cm. Vorerkrankungen: KHK, Z. n. Bypass 2012, CKD G2.\n\nNebendiagnosen: KHK, Z. n. aortokoronarer Bypass 2012, CKD G2\n\nVorherige Systemtherapien: Keine\n\n=== THERAPIE-LEITLINIEN ===\n\n\nMETASTASIERTES KLARZELLIGES RCC - THERAPIE-ALGORITHMUS:\n\nIMDC-RISIKOSTRATIFIZIERUNG:\n- Günstig (0 Risikofaktoren)\n- Intermediär (1-2 Risikofakto...",
+  "prediction": null,
+  "raw_response": "",
+  "ground_truth_metastatic": false,
+  "ground_truth_therapy": "Nephrektomie mit Adrenalektomie links; Einschätzung des perioperativen Risikos.",
+  "metastatic_correct": null,
+  "therapy_exact_match": null,
+  "therapy_clinically_acceptable": null,
+  "inference_time_seconds": 0.02179856300354004,
+  "tokens_used": 1,
+  "success": false,
+  "error_message": null
+}
