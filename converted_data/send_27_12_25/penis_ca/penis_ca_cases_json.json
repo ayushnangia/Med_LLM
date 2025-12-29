@@ -1,0 +1,334 @@
+{
+  "schema_version": "1.1",
+  "cases": [
+    {
+      "case_meta": {
+        "fallnummer": "13435632561",
+        "datum_vorstellung": null,
+        "tumorboard": null,
+        "diskussionstyp": null
+      },
+      "patient": {
+        "nachname": "Bruno",
+        "vorname": "Brandon",
+        "geburtsdatum": "1945-03-19",
+        "alter_jahre": 69,
+        "performance_status": {
+          "ecog": 0,
+          "karnofsky_prozent": null
+        },
+        "komorbiditaet_level": "unknown",
+        "lebenserwartung": "unknown",
+        "sonstige_fachkliniken_bereiche": []
+      },
+      "anmeldung": {
+        "anmeldender_arzt": {
+          "name": "Balemo",
+          "abteilung": "Uro"
+        }
+      },
+      "fragestellung": "Weitere Therapie?",
+      "anamnese_freitext": "High-risk Peniskarzinom mit inguinalen und pelvinen LK-Metastasen. Z. n. Glansresektion 12.07.2025, offene inguinale LNE bds. 19.08.2025 (LK-Metastasen 5/12, bis 5 cm), DaV pelvine Lymphadenektomie bds. 11.09.2025. TuBo-Empfehlung 02.09.2025: pelvine LNE bds. + adjuvante Chemotherapie.",
+      "nebendiagnosen": [],
+      "medikation": [],
+      "entitaeten": [
+        {
+          "entity_id": "E1",
+          "entitaet_typ": "peniskarzinom",
+          "diagnose_kurz": "Peniskarzinom (Plattenepithelkarzinom) high-risk mit inguinalen und pelvinen Lymphknotenmetastasen",
+          "stadium_oder_risikoklasse": "high-risk, mindestens pN2; nodal metastasiert (inguinal + pelvin)",
+          "klassifikation": {
+            "tnm_clinical": {
+              "T": "unknown",
+              "T_sub": "unknown",
+              "N": "N2",
+              "M": "unknown",
+              "stage_group": "unknown"
+            },
+            "tnm_pathological": {
+              "T": "pT2",
+              "T_sub": null,
+              "N": "pN2",
+              "M": null,
+              "stage_group": null
+            },
+            "isup_gleason": null,
+            "grad": "G2",
+            "icd": null,
+            "icdo": null
+          },
+          "molekular": {
+            "brca": null,
+            "pd_l1": null,
+            "sonstige": []
+          },
+          "marker_oder_labor": {
+            "psa": {
+              "initial": null,
+              "verlauf": [],
+              "einheit": "ng/ml"
+            },
+            "tumormarker": {
+              "hodenmarker": {
+                "afp": {
+                  "initial": null,
+                  "verlauf": [],
+                  "einheit": "ng/ml"
+                },
+                "bhcg": {
+                  "initial": null,
+                  "verlauf": [],
+                  "einheit": "IU/l"
+                },
+                "ldh": {
+                  "initial": null,
+                  "verlauf": [],
+                  "einheit": "U/l"
+                }
+              }
+            },
+            "sonstige": []
+          },
+          "therapien_und_eingriffe": [
+            {
+              "datum": "2025-07-12",
+              "typ": "Operation",
+              "beschreibung": "Glansresektion",
+              "intent": "kurativ/lokal",
+              "details": null
+            },
+            {
+              "datum": "2025-08-19",
+              "typ": "Operation",
+              "beschreibung": "Offene inguinale Lymphknotenexstirpation beidseits",
+              "intent": "kurativ/lokal-regional",
+              "details": "LK-Metastasen (5/12), bis ca. 5 cm"
+            },
+            {
+              "datum": "2025-09-11",
+              "typ": "Operation",
+              "beschreibung": "DaV pelvine Lymphadenektomie beidseits",
+              "intent": "kurativ/lokal-regional",
+              "details": null
+            }
+          ],
+          "bildgebung": [
+            {
+              "modalitaet": "CT",
+              "region": "Staging Thorax/Abdomen",
+              "datum": null,
+              "befund_kurz": "Metastasensuspekte LK beidseits inguinal.",
+              "quelle": "Anamnese"
+            }
+          ],
+          "pathologie": [
+            {
+              "datum": "2025-09-11",
+              "material": "Pelvine Lymphknotenexzision (bds.)",
+              "diagnose": "Metastasen eines bekannten Peniskarzinoms (Plattenepithelkarzinom) in 3/8 Lymphknoten; fokal extranodales Wachstum",
+              "details": {
+                "makro": "8 pelvine LK (0,6–2,1 cm), teils grau-weißlich/teils narbig",
+                "mikro": "solide epitheliale Tumorverbände mit Plattenepithelmorphologie, teils keratinisierend; teilweise Ersetzung des LK-Parenchyms",
+                "metastasen": {
+                  "positive_lk": 3,
+                  "gesamt_lk": 8,
+                  "groesster_metastasenherd_mm": 18,
+                  "weitere_metastasenherde_mm": [
+                    6,
+                    4
+                  ],
+                  "groesster_befallener_lk_cm": 2.1,
+                  "extranodales_wachstum": "fokal vorhanden"
+                },
+                "ihc_optional": [
+                  "p40 positiv",
+                  "CK5/6 positiv"
+                ]
+              }
+            }
+          ],
+          "kommentar": "Empfehlung: adjuvante Chemotherapie bei inguinalen + pelvinen LK-Metastasen. Extranodales Wachstum vorhanden."
+        }
+      ],
+      "geplantes_therapiekonzept": "Peniskarzinom mit inguinalen und pelvinen LK-Metastasen → Empfehlung adjuvante Chemotherapie.",
+      "erforderliche_befunde": {
+        "bildgebung": [],
+        "pathologie": [
+          "Pelvine Lymphknoten (Histologie 11.09.2025, 3/8 positiv, extranodal fokal)"
+        ],
+        "labor": [],
+        "sonstiges": []
+      }
+    },
+    {
+      "case_meta": {
+        "fallnummer": "134453254680",
+        "datum_vorstellung": null,
+        "tumorboard": null,
+        "diskussionstyp": null
+      },
+      "patient": {
+        "nachname": "Schlummer",
+        "vorname": "Ninja",
+        "geburtsdatum": "1975-03-21",
+        "alter_jahre": 52,
+        "performance_status": {
+          "ecog": 1,
+          "karnofsky_prozent": null
+        },
+        "komorbiditaet_level": "unknown",
+        "lebenserwartung": "unknown",
+        "sonstige_fachkliniken_bereiche": []
+      },
+      "anmeldung": {
+        "anmeldender_arzt": {
+          "name": "Malmovici",
+          "abteilung": "Uro"
+        }
+      },
+      "fragestellung": "Therapieempfehlung?",
+      "anamnese_freitext": "Metastasiertes Peniskarzinom (Plattenepithelkarzinom) mit komplexer Vortherapie (Penektomie, LK-Dissektionen inguinal/pelvin, Cis/Pacli/5FU, Radiatio 61 Gy pelvin/inguinal). Aktuell bioptisch gesicherte Hautmetastasen linker Oberschenkel (10.04.2025). MTB: Pembro + Sacituzumab govitecan, Kostenübernahme abgelehnt.",
+      "nebendiagnosen": [
+        "SARS-CoV-2 2024",
+        "Ablatio testis links (Leydig-Zell-Tumor 03/2018)",
+        "Thrombophlebitis",
+        "arterielle Hypertonie"
+      ],
+      "medikation": [],
+      "entitaeten": [
+        {
+          "entity_id": "E1",
+          "entitaet_typ": "peniskarzinom_metastasiert",
+          "diagnose_kurz": "Metastasiertes Peniskarzinom (Plattenepithelkarzinom) mit Hautmetastasen",
+          "stadium_oder_risikoklasse": "metastasiert (Hautmetastasen), mehrfach vorbehandelt",
+          "klassifikation": {
+            "tnm_clinical": {
+              "T": "unknown",
+              "T_sub": "unknown",
+              "N": "unknown",
+              "M": "M1",
+              "stage_group": "unknown"
+            },
+            "tnm_pathological": {
+              "T": "pT2",
+              "T_sub": null,
+              "N": "pN2",
+              "M": null,
+              "stage_group": null
+            },
+            "isup_gleason": null,
+            "grad": "G3",
+            "icd": null,
+            "icdo": null
+          },
+          "molekular": {
+            "brca": null,
+            "pd_l1": null,
+            "sonstige": []
+          },
+          "marker_oder_labor": {
+            "psa": {
+              "initial": null,
+              "verlauf": [],
+              "einheit": "ng/ml"
+            },
+            "tumormarker": {
+              "hodenmarker": {
+                "afp": {
+                  "initial": null,
+                  "verlauf": [],
+                  "einheit": "ng/ml"
+                },
+                "bhcg": {
+                  "initial": null,
+                  "verlauf": [],
+                  "einheit": "IU/l"
+                },
+                "ldh": {
+                  "initial": null,
+                  "verlauf": [],
+                  "einheit": "U/l"
+                }
+              }
+            },
+            "sonstige": []
+          },
+          "therapien_und_eingriffe": [
+            {
+              "datum": "2023-06-30",
+              "typ": "Operation",
+              "beschreibung": "Glansektomie/Pseudoglans",
+              "intent": "kurativ/lokal",
+              "details": "pT1a L1 V0 R0 G2"
+            },
+            {
+              "datum": "2024-03-16",
+              "typ": "Operation",
+              "beschreibung": "Inguinale LK-Dissektion beidseits",
+              "intent": "kurativ/lokal-regional",
+              "details": "pN2 (7/18)"
+            },
+            {
+              "datum": "2024-04-29",
+              "typ": "Operation",
+              "beschreibung": "Pelvine Lymphadenektomie",
+              "intent": "kurativ/lokal-regional",
+              "details": null
+            },
+            {
+              "datum": "2025-01-19",
+              "typ": "Operation",
+              "beschreibung": "Penektomie + Boutonnière",
+              "intent": "kurativ/lokal",
+              "details": "pT2 pNx V0 L0 Pn1 G3"
+            },
+            {
+              "datum": "2025-02-02",
+              "typ": "Operation",
+              "beschreibung": "Inguinale LNE links + Revision Boutonnière mit Rest-Penektomie",
+              "intent": "kurativ/lokal-regional",
+              "details": null
+            },
+            {
+              "datum": null,
+              "typ": "Chemotherapie",
+              "beschreibung": "Cisplatin + Paclitaxel + 5-FU, 4 Zyklen",
+              "intent": "palliativ/systemisch",
+              "details": null
+            },
+            {
+              "datum": "2025-07-01",
+              "typ": "Radiotherapie",
+              "beschreibung": "Radiatio LK-Rezidiv pelvin/inguinal 61 Gy",
+              "intent": "lokal/palliativ",
+              "details": "07–09/2025"
+            }
+          ],
+          "bildgebung": [],
+          "pathologie": [
+            {
+              "datum": "2025-04-10",
+              "material": "Biopsie Hautläsion linker Oberschenkel",
+              "diagnose": "Hautmetastasen (bioptisch gesichert)",
+              "details": null
+            }
+          ],
+          "kommentar": "MTB-Empfehlung Pembro + Sacituzumab govitecan, Kostenübernahme abgelehnt. Aktueller Plan: Sacituzumab govitecan; alternativ palliative Chemo (Taxan + Carbo); Re-Staging empfohlen."
+        }
+      ],
+      "geplantes_therapiekonzept": "Empfehlung Sacituzumab govitecan; alternativ palliative Chemotherapie (Taxan + Carbo). Erneuerung des Stagings.",
+      "erforderliche_befunde": {
+        "bildgebung": [
+          "Erneuerung Staging (Modalität/Datum offen)"
+        ],
+        "pathologie": [
+          "Biopsie Hautmetastasen 10.04.2025"
+        ],
+        "labor": [],
+        "sonstiges": [
+          "Kostenübernahme/MTB-Entscheidung zu Sacituzumab govitecan / Immuntherapie"
+        ]
+      }
+    }
+  ]
+}

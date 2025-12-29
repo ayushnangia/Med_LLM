@@ -1,0 +1,4 @@
+Nr. ,Cases,Classes : tumor entity _ real,Therapy line,json,json_ver,urological/non_urological
+,,,,,,
+1.0,"Test, Testovoci, 26.02.1968",Prostatakarzinom,"mCRPC: doce, rechall doce, Lu-PSMA, Abi",True,1.1.,True
+2.0,"Mustermann, Muster, 21.01.1960",Prostatakarzinom,Intermediate Risk,True,1.1.,True

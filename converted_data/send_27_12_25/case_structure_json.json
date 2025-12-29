@@ -1,0 +1,336 @@
+{
+  "schema_version": "1.2",
+  "hinweis_missing_values": "Nicht vorhandene/fehlende Informationen werden als null (oder leere Liste []) eingetragen.",
+  "cases": [
+    {
+      "schema_version": "1.1",
+      "hinweis_missing_values": "Nicht vorhandene/fehlende Informationen werden als null (oder leere Liste []) eingetragen.",
+      "case_template": {
+        "case_meta": {
+          "fallnummer": null,
+          "datum_vorstellung": null,
+          "tumorboard": null,
+          "diskussionstyp": null
+        },
+        "patient": {
+          "nachname": null,
+          "vorname": null,
+          "geburtsdatum": null,
+          "alter_jahre": null,
+          "performance_status": {
+            "ecog": null,
+            "karnofsky_prozent": null
+          },
+          "komorbiditaet_level": "unknown",
+          "lebenserwartung": "unknown",
+          "sonstige_fachkliniken_bereiche": []
+        },
+        "anmeldung": {
+          "anmeldender_arzt": {
+            "name": null,
+            "abteilung": null
+          }
+        },
+        "fragestellung": null,
+        "anamnese_freitext": null,
+        "nebendiagnosen": [],
+        "medikation": [],
+        "entitaeten": [
+          {
+            "entity_id": "E1",
+            "entitaet_typ": null,
+            "diagnose_kurz": null,
+            "stadium_oder_risikoklasse": null,
+            "klassifikation": {
+              "tnm_clinical": {
+                "T": "unknown",
+                "T_sub": "unknown",
+                "N": "unknown",
+                "M": "unknown",
+                "stage_group": "unknown"
+              },
+              "tnm_pathological": {
+                "T": null,
+                "T_sub": null,
+                "N": null,
+                "M": null,
+                "stage_group": null
+              },
+              "isup_gleason": null,
+              "grad": null,
+              "icd": null,
+              "icdo": null
+            },
+            "quick_access": {
+              "metastatic": null,
+              "rcc_histologie_klarzellig": null,
+              "imdc_risiko": null,
+              "ici_kombination_durchfuehrbar": null,
+              "vorherige_systemtherapien": []
+            },
+            "schema_inputs": {
+              "schema1_mccrcc": {
+                "anwendbar": null,
+                "imdc_risiko": null,
+                "ici_kombination_durchfuehrbar": null,
+                "vorherige_systemtherapien": []
+              },
+              "schema2_nmrcc": {
+                "anwendbar": null,
+                "patient": {
+                  "age_years": null,
+                  "comorbidity_level": "unknown",
+                  "life_expectancy": "unknown"
+                },
+                "tumor": {
+                  "metastatic": false,
+                  "tumor_size_cm": null,
+                  "tumor_confined_to_kidney": "unknown",
+                  "local_extension": {
+                    "major_veins_or_perinephric_tissues_involved": "unknown",
+                    "beyond_gerotas_fascia": "unknown",
+                    "ipsilateral_adrenal_gland_invasion_contiguous": "unknown"
+                  },
+                  "venous_involvement": {
+                    "renal_vein_involved": "unknown",
+                    "renal_sinus_fat_involved": "unknown",
+                    "inferior_vena_cava_involved": "unknown",
+                    "ivc_level": "unknown"
+                  },
+                  "regional_nodes": {
+                    "status": "unknown",
+                    "suspicious_or_enlarged_lymph_nodes": "unknown"
+                  },
+                  "distant_metastases": {
+                    "status": "unknown"
+                  },
+                  "clinical_T_category": "unknown",
+                  "clinical_T_subcategory": "unknown",
+                  "clinical_N_category": "unknown",
+                  "clinical_M_category": "unknown",
+                  "clinical_stage_group": "unknown",
+                  "tumor_size_category": "unknown",
+                  "nephron_sparing_technically_possible": "unknown",
+                  "local_findings_allow_minimally_invasive": "unknown",
+                  "adrenal_suspicion_imaging_or_intraop": "unknown"
+                },
+                "surgery_context": {
+                  "planned_procedure": "unknown",
+                  "approach_preference": "unknown",
+                  "surgeon_experience_drives_choice": true,
+                  "ischemia_expected": "unknown"
+                },
+                "pathology_postop": {
+                  "margin_status": "unknown",
+                  "tumor_bed_macroscopically_unremarkable": "unknown"
+                }
+              }
+            },
+            "rcc_spezifisch": {
+              "histologie": {
+                "subtyp": null,
+                "klarzellig": null,
+                "sarcomatoid": null,
+                "rhabdoid": null,
+                "grading_system": null,
+                "grading_value": null
+              },
+              "imdc": {
+                "kategorie": null,
+                "risikofaktoren_structured": {
+                  "karnofsky_prozent": null,
+                  "intervall_diagnose_bis_systemtherapie_monate": null,
+                  "haemoglobin_unter_norm": null,
+                  "korrigiertes_calcium_ueber_norm": null,
+                  "neutrophile_ueber_norm": null,
+                  "thrombozyten_ueber_norm": null
+                },
+                "laborwerte_optional": {
+                  "haemoglobin": {
+                    "wert": null,
+                    "einheit": "g/dl",
+                    "datum": null,
+                    "flag_unter_norm": null
+                  },
+                  "calcium_korrigiert": {
+                    "wert": null,
+                    "einheit": "mmol/l",
+                    "datum": null,
+                    "flag_ueber_norm": null
+                  },
+                  "neutrophile": {
+                    "wert": null,
+                    "einheit": "G/l",
+                    "datum": null,
+                    "flag_ueber_norm": null
+                  },
+                  "thrombozyten": {
+                    "wert": null,
+                    "einheit": "G/l",
+                    "datum": null,
+                    "flag_ueber_norm": null
+                  }
+                }
+              },
+              "systemtherapie_kontext": {
+                "ici_kombination_durchfuehrbar": null,
+                "gruende_wenn_nein": [],
+                "vorherige_systemtherapien": [],
+                "therapielinien": []
+              }
+            },
+            "molekular": {
+              "brca": null,
+              "pd_l1": null,
+              "sonstige": []
+            },
+            "marker_oder_labor": {
+              "psa": {
+                "initial": null,
+                "verlauf": [],
+                "einheit": "ng/ml"
+              },
+              "tumormarker": {
+                "hodenmarker": {
+                  "afp": {
+                    "initial": null,
+                    "verlauf": [],
+                    "einheit": "ng/ml"
+                  },
+                  "bhcg": {
+                    "initial": null,
+                    "verlauf": [],
+                    "einheit": "IU/l"
+                  },
+                  "ldh": {
+                    "initial": null,
+                    "verlauf": [],
+                    "einheit": "U/l"
+                  }
+                }
+              },
+              "labor_allgemein": [],
+              "sonstige": []
+            },
+            "bildgebung": [],
+            "pathologie": [],
+            "therapien_und_eingriffe": [],
+            "kommentar": null
+          }
+        ],
+        "geplantes_therapiekonzept": null,
+        "erforderliche_befunde": {
+          "bildgebung": [],
+          "pathologie": [],
+          "labor": [],
+          "sonstiges": []
+        }
+      }
+    },
+    {
+      "schema_version": "1.2",
+      "hinweis_missing_values": "Nicht vorhandene/fehlende Informationen werden als null (oder leere Liste []) eingetragen.",
+      "hinweis_imdc_addendum": {
+        "purpose": "IMDC wird im Schema primär zur Erstlinien-Entscheidung bei therapienaiven mRCC-Patienten genutzt.",
+        "rule": "Bei vorbehandelten Patienten (z.B. 2./3./4. Linie) IMDC als nicht anwendbar markieren: applicable=false und reason_if_not_applicable ausfüllen; Werte können dann null bleiben."
+      },
+      "case_template": {
+        "patient": {
+          "nachname": null,
+          "vorname": null,
+          "geburtsdatum": null,
+          "alter_jahre": null,
+          "fallnummer": null,
+          "ecog": null,
+          "sonstige_fachkliniken_bereiche": []
+        },
+        "anmeldung": {
+          "anmeldender_arzt": {
+            "name": null,
+            "abteilung": null
+          },
+          "diskussionstyp": null
+        },
+        "entitaeten": [
+          {
+            "entitaet_typ": null,
+            "diagnose_kurz": null,
+            "stadium_oder_risikoklasse": null,
+            "klassifikation": {
+              "tnm": null,
+              "isup_gleason": null,
+              "grad": null,
+              "icd": null,
+              "icdo": null
+            },
+            "molekular": {
+              "brca": null,
+              "pd_l1": null,
+              "sonstige": []
+            },
+            "marker_oder_labor": {
+              "psa": {
+                "initial": null,
+                "verlauf": [],
+                "einheit": "ng/ml"
+              },
+              "tumormarker": {
+                "hodenmarker": {
+                  "afp": {
+                    "initial": null,
+                    "verlauf": [],
+                    "einheit": "ng/ml"
+                  },
+                  "bhcg": {
+                    "initial": null,
+                    "verlauf": [],
+                    "einheit": "IU/l"
+                  },
+                  "ldh": {
+                    "initial": null,
+                    "verlauf": [],
+                    "einheit": "U/l"
+                  }
+                }
+              },
+              "sonstige": []
+            },
+            "risikomodelle": {
+              "imdc": {
+                "applicable": null,
+                "reason_if_not_applicable": null,
+                "risk_category": null,
+                "factors_count": null,
+                "factors_positive": [],
+                "values": {
+                  "karnofsky_prozent": null,
+                  "diagnose_bis_systemtherapie_monate": null,
+                  "haemoglobin_g_dl": null,
+                  "korr_calcium_mmol_l": null,
+                  "neutrophile_x10e9_l": null,
+                  "thrombozyten_x10e9_l": null
+                },
+                "note": "Bei therapienaivem mRCC: applicable=true und Werte ausfüllen. Bei vorbehandeltem Fall: applicable=false + reason_if_not_applicable."
+              }
+            },
+            "therapien_und_eingriffe": [],
+            "pathologie": [],
+            "bildgebung": [],
+            "kommentar": null
+          }
+        ],
+        "anamnese_freitext": null,
+        "nebendiagnosen": [],
+        "medikation": [],
+        "fragestellung": null,
+        "geplantes_therapiekonzept": null,
+        "erforderliche_befunde": {
+          "bildgebung": [],
+          "pathologie": [],
+          "labor": [],
+          "sonstiges": []
+        }
+      }
+    }
+  ]
+}

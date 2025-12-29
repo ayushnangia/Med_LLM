@@ -1,0 +1,370 @@
+{
+  "schema_version": "1.0",
+  "hinweis_missing_values": "Nicht vorhandene/fehlende Informationen werden als null (oder leere Liste []) eingetragen.",
+  "cases": [
+    {
+      "schema_version": "1.0",
+      "hinweis_missing_values": "Nicht vorhandene/fehlende Informationen werden als null (oder leere Liste []) eingetragen.",
+      "case_template": {
+        "patient": {
+          "nachname": "Draco",
+          "vorname": "Severus",
+          "geburtsdatum": "1958-03-03",
+          "alter_jahre": 67,
+          "fallnummer": null,
+          "ecog": 1,
+          "sonstige_fachkliniken_bereiche": [
+            "NU",
+            "RA",
+            "Onko"
+          ]
+        },
+        "anmeldung": {
+          "anmeldender_arzt": {
+            "name": "Arzt 1",
+            "abteilung": "Uro"
+          },
+          "diskussionstyp": null
+        },
+        "entitaeten": [
+          {
+            "entitaet_typ": "prostatakarzinom",
+            "diagnose_kurz": "Prostatakarzinom (ED 2019 ISUP 4, iPSA 32) – Z. n. RPE 01/2020 (pT3a R1 pN0), biochemisches Rezidiv 2025; PSMA-PET/CT 11/2025: 1 PSMA-positiver pelviner LK rechts obturatorisch (8×6 mm, SUVmax 7,4), sonst kein PSMA-positiver Befund",
+            "stadium_oder_risikoklasse": "BCR nach RPE + oligometastatische pelvine LK-Metastase (1 LK, PSMA-positiv)",
+            "klassifikation": {
+              "tnm": "postop: pT3a R1 pN0 (01/2020); aktuell: cN1 (pelvin, 1 LK) cM0 (PSMA-PET/CT)",
+              "isup_gleason": "ISUP 4 (Gleason 4+4)",
+              "grad": null,
+              "icd": null,
+              "icdo": null
+            },
+            "molekular": {
+              "brca": null,
+              "pd_l1": null,
+              "sonstige": []
+            },
+            "marker_oder_labor": {
+              "psa": {
+                "initial": 32.0,
+                "verlauf": [
+                  {
+                    "datum": "2025-03",
+                    "wert": 0.18,
+                    "einheit": "ng/ml"
+                  },
+                  {
+                    "datum": null,
+                    "wert": 0.44,
+                    "einheit": "ng/ml",
+                    "kommentar": "PSA-Verlauf 03–11/2025"
+                  },
+                  {
+                    "datum": "2025-11",
+                    "wert": 1.02,
+                    "einheit": "ng/ml"
+                  }
+                ],
+                "einheit": "ng/ml"
+              },
+              "tumormarker": {
+                "hodenmarker": {
+                  "afp": {
+                    "initial": null,
+                    "verlauf": [],
+                    "einheit": "ng/ml"
+                  },
+                  "bhcg": {
+                    "initial": null,
+                    "verlauf": [],
+                    "einheit": "IU/l"
+                  },
+                  "ldh": {
+                    "initial": null,
+                    "verlauf": [],
+                    "einheit": "U/l"
+                  }
+                }
+              },
+              "sonstige": []
+            },
+            "therapien_und_eingriffe": [
+              {
+                "datum": "2020-01",
+                "typ": "Operation",
+                "beschreibung": "Radikale Prostatektomie",
+                "details": "pT3a R1 pN0"
+              }
+            ],
+            "pathologie": [],
+            "bildgebung": [
+              {
+                "datum": "2025-11-01",
+                "modalitaet": "PSMA-PET/CT",
+                "region": "Ganzkörper",
+                "befund": "Ein PSMA-avid anreichernder pelviner Lymphknoten rechts obturatorisch (8×6 mm, kurze Achse 6 mm), SUVmax 7,4, vereinbar mit LK-Metastase. Kein sicherer Hinweis auf lokales Rezidiv im Prostatabett. Kein weiterer PSMA-positiver Befund (LK/Skelett/Viszera).",
+                "quelle": "Erforderlicher Befund"
+              }
+            ],
+            "kommentar": "Fragestellung PCA: 'Progress?' – PSMA-PET/CT 11/2025 zeigt oligometastatische pelvine LK-Metastase bei BCR; sonst kein Progress im Sinne weiterer PSMA-positiver Läsionen."
+          },
+          {
+            "entitaet_typ": "urothelkarzinom_harnblase_nmibc",
+            "diagnose_kurz": "NMIBC (UCA): ED 06/2024 pTa high grade + fokal pTis; BCG-Induktion 08/2024 abgebrochen (NW). Rezidiv 10/2025: pTa high grade, Detrusor vorhanden und tumorfrei",
+            "stadium_oder_risikoklasse": "NMIBC high grade, BCG-unverträglich; Rezidiv pTa high grade (10/2025) mit Detrusor im Präparat",
+            "klassifikation": {
+              "tnm": "pTa high grade (10/2025); Vorgeschichte: pTa high grade + fokal pTis (06/2024)",
+              "isup_gleason": null,
+              "grad": "high grade",
+              "icd": null,
+              "icdo": null
+            },
+            "molekular": {
+              "brca": null,
+              "pd_l1": null,
+              "sonstige": []
+            },
+            "marker_oder_labor": {
+              "psa": {
+                "initial": null,
+                "verlauf": [],
+                "einheit": "ng/ml"
+              },
+              "tumormarker": {
+                "hodenmarker": {
+                  "afp": {
+                    "initial": null,
+                    "verlauf": [],
+                    "einheit": "ng/ml"
+                  },
+                  "bhcg": {
+                    "initial": null,
+                    "verlauf": [],
+                    "einheit": "IU/l"
+                  },
+                  "ldh": {
+                    "initial": null,
+                    "verlauf": [],
+                    "einheit": "U/l"
+                  }
+                }
+              },
+              "sonstige": []
+            },
+            "therapien_und_eingriffe": [
+              {
+                "datum": "2024-08",
+                "typ": "Intravesikale Therapie",
+                "beschreibung": "BCG-Induktion",
+                "details": "Abbruch wegen Nebenwirkungen"
+              },
+              {
+                "datum": "2025-10",
+                "typ": "Operation",
+                "beschreibung": "TUR-B (Rezidiv)",
+                "details": "Lokalisation: Seitenwand rechts"
+              }
+            ],
+            "pathologie": [
+              {
+                "datum": "2025-10-01",
+                "material": "Harnblase, TUR-B, Seitenwand rechts (Rezidiv)",
+                "befund": "Hochgradiges nicht-invasives papilläres Urothelkarzinom (pTa). Keine Invasion in Lamina propria. Muscularis propria (Detrusor) im Resektat enthalten und tumorfrei. Kein Hinweis auf CIS in den beurteilbaren Arealen.",
+                "details": {
+                  "makroskopie": "Mehrere Gewebespäne, zusammen ca. 2 cm, grau-weißlich bis bräunlich",
+                  "mikroskopie": "papillär konfigurierte urotheliale Neoplasie mit deutlicher zytologischer Atypie, häufigen Mitosen, architektonischer Desorganisation; keine LP-Invasion",
+                  "detrusor": "vorhanden, tumorfrei"
+                }
+              }
+            ],
+            "bildgebung": [],
+            "kommentar": "Fragestellung UCA: 'Malignität?' – ja: pTa high grade (nicht-invasiv) in TUR-B 10/2025; Detrusor vorhanden und tumorfrei."
+          }
+        ],
+        "anamnese_freitext": "PCA: ED 2019 ISUP 4 (Gleason 4+4), iPSA 32 ng/ml; RPE 01/2020 pT3a R1 pN0; BCR 03–11/2025 (0,18→0,44→1,02). PSMA-PET/CT 11/2025: 1 pelviner LK rechts obturator positiv. NMIBC: ED 06/2024 pTa high grade + fokal pTis; BCG 08/2024 abgebrochen; Rezidiv 10/2025 pTa high grade, Detrusor vorhanden.",
+        "nebendiagnosen": [],
+        "medikation": [],
+        "fragestellung": "UCA: Malignität in der Histologie 10/2025? PCA: Progress im PSMA-PET/CT 11/2025?",
+        "geplantes_therapiekonzept": "UCA: Salvage intravesikal (Gem/Doc oder HIVEC) vs frühe Zystektomie. PCA: Salvage-RT Prostatabett/LK + Kurzzeit-ADT (PSMA-positiver LK). Priorisierung Therapieablauf (BCG-unverträglich vs PSA-Dynamik).",
+        "erforderliche_befunde": {
+          "bildgebung": [
+            "PSMA-PET/CT 11/2025 (1 LK rechts obturatorisch PSMA-positiv)"
+          ],
+          "pathologie": [
+            "TUR-B Histologie 10/2025 (pTa high grade, Detrusor vorhanden/tumorfrei)"
+          ],
+          "labor": [
+            "PSA-Verlauf (03–11/2025: 0,18 → 0,44 → 1,02 ng/ml)"
+          ],
+          "sonstiges": []
+        }
+      }
+    },
+    {
+      "schema_version": "1.0",
+      "hinweis_missing_values": "Nicht vorhandene/fehlende Informationen werden als null (oder leere Liste []) eingetragen.",
+      "case_template": {
+        "patient": {
+          "nachname": "Vega",
+          "vorname": "Orion",
+          "geburtsdatum": "1962-08-14",
+          "alter_jahre": 63,
+          "fallnummer": null,
+          "ecog": 0,
+          "sonstige_fachkliniken_bereiche": [
+            "NU",
+            "Onko"
+          ]
+        },
+        "anmeldung": {
+          "anmeldender_arzt": {
+            "name": "Mustermann",
+            "abteilung": "Uro"
+          },
+          "diskussionstyp": null
+        },
+        "entitaeten": [
+          {
+            "entitaet_typ": "nierenzellkarzinom_verdacht",
+            "diagnose_kurz": "Raumforderung rechte Niere 3,6 cm (cT1a/b grenzwertig), malignitätsverdächtig (V. a. RCC/ccRCC); keine abdominelle Lymphadenopathie; CT Thorax: kleine pulmonale Rundherde <5 mm unklar",
+            "stadium_oder_risikoklasse": "nicht metastasiert nicht gesichert; pulmonale Herde unklar (Verlauf empfohlen)",
+            "klassifikation": {
+              "tnm": "klinisch: cT1a/b (grenzwertig, 3,6 cm) cN0 (keine LK) cM0/unklar (pulmonale Herde unklar)",
+              "isup_gleason": null,
+              "grad": null,
+              "icd": null,
+              "icdo": null
+            },
+            "molekular": {
+              "brca": null,
+              "pd_l1": null,
+              "sonstige": [
+                "Verdacht auf klarzelliges RCC (ccRCC) laut Anamnese"
+              ]
+            },
+            "marker_oder_labor": {
+              "psa": {
+                "initial": null,
+                "verlauf": [],
+                "einheit": "ng/ml"
+              },
+              "tumormarker": {
+                "hodenmarker": {
+                  "afp": {
+                    "initial": null,
+                    "verlauf": [],
+                    "einheit": "ng/ml"
+                  },
+                  "bhcg": {
+                    "initial": null,
+                    "verlauf": [],
+                    "einheit": "IU/l"
+                  },
+                  "ldh": {
+                    "initial": null,
+                    "verlauf": [],
+                    "einheit": "U/l"
+                  }
+                }
+              },
+              "sonstige": []
+            },
+            "therapien_und_eingriffe": [],
+            "pathologie": [],
+            "bildgebung": [
+              {
+                "datum": "2025-09-05",
+                "modalitaet": "CT",
+                "region": "Abdomen",
+                "befund": "Zufallsbefund einer Raumforderung der rechten Niere, ca. 3,6 cm, malignitätsverdächtig (V. a. Nierenzellkarzinom); cT1a/b grenzwertig. Keine abdominelle Lymphadenopathie, keine freie Flüssigkeit, sonst kein sicher pathologischer intraabdomineller Befund.",
+                "quelle": "Erforderlicher Befund"
+              },
+              {
+                "datum": "2025-09-06",
+                "modalitaet": "CT",
+                "region": "Thorax",
+                "befund": "Mehrere kleine pulmonale Rundherde unklarer Dignität (<5 mm). Keine Pleuraergüsse. Keine mediastinal/hilär pathologisch vergrößerten Lymphknoten. Metastasenverdacht nicht gesichert; Verlaufskontrolle empfohlen.",
+                "quelle": "Erforderlicher Befund"
+              }
+            ],
+            "kommentar": "CT-Abdomen erfüllt Malignitätskriterien (solide RF, malignitätsverdächtig). Pulmonale Herde <5 mm sind unklar; Metastasierung im CT Thorax nicht gesichert."
+          },
+          {
+            "entitaet_typ": "prostatakarzinom",
+            "diagnose_kurz": "Prostatakarzinom: ED 2018 ISUP 2 (iPSA 12,4), Active Surveillance bis 2024; Re-Biopsie 10.10.2025: Upgrade ISUP 3 (Gleason 4+3=7) in 5/12 Stanzen",
+            "stadium_oder_risikoklasse": "mindestens intermediäres Risiko (ISUP 3; genaue Risikoklassifikation abhängig von PSA, cT, Bildgebung)",
+            "klassifikation": {
+              "tnm": "klinisch: unbekannt; Histologie 10.10.2025: ISUP 3 (Gleason 4+3=7) 5/12",
+              "isup_gleason": "ISUP 3 (Gleason 4+3=7)",
+              "grad": null,
+              "icd": null,
+              "icdo": null
+            },
+            "molekular": {
+              "brca": null,
+              "pd_l1": null,
+              "sonstige": []
+            },
+            "marker_oder_labor": {
+              "psa": {
+                "initial": 12.4,
+                "verlauf": [],
+                "einheit": "ng/ml"
+              },
+              "tumormarker": {
+                "hodenmarker": {
+                  "afp": {
+                    "initial": null,
+                    "verlauf": [],
+                    "einheit": "ng/ml"
+                  },
+                  "bhcg": {
+                    "initial": null,
+                    "verlauf": [],
+                    "einheit": "IU/l"
+                  },
+                  "ldh": {
+                    "initial": null,
+                    "verlauf": [],
+                    "einheit": "U/l"
+                  }
+                }
+              },
+              "sonstige": []
+            },
+            "therapien_und_eingriffe": [],
+            "pathologie": [
+              {
+                "datum": "2025-10-10",
+                "material": "Systematische Prostatastanzbiopsien (12 Stanzen)",
+                "befund": "Adenokarzinom der Prostata, ISUP-Gradgruppe 3 (Gleason 4+3=7) in 5/12 Stanzen; überwiegend kribriform-/fusioniertes Muster 4, geringer Anteil Muster 3; kein sicherer Hinweis auf perineurale Invasion; keine duktale/neuroendokrine Differenzierung.",
+                "klassifikation": "ISUP 3 (Gleason 4+3=7), 5/12 Stanzen"
+              }
+            ],
+            "bildgebung": [],
+            "kommentar": "Fragestellung Histologie 10.10.2025: Malignität ja (Adenokarzinom). Kurative Therapieoptionen OP vs Radiatio+ADT; Timing abhängig von RCC-Management."
+          }
+        ],
+        "anamnese_freitext": "RCC (Verdacht ccRCC): Zufallsbefund 09/2025 Raumforderung rechte Niere 3,6 cm (cT1a/b grenzwertig). CT Thorax: mehrere kleine pulmonale Rundherde <5 mm unklar. PCA: ED 2018 ISUP 2, iPSA 12,4; Active Surveillance bis 2024; Re-Biopsie 10.10.2025 Upgrade ISUP 3 (4+3) in 5/12 Stanzen.",
+        "nebendiagnosen": [],
+        "medikation": [],
+        "fragestellung": "Malignität in der Histologie 10.10.2025? Malignitätskriterien im CT Abdomen 05.09.2025? Metastasen im CT Thorax 06.09.2025?",
+        "geplantes_therapiekonzept": "RCC: Nierenteilresektion vs Ablation vs Überwachung. PCA: kurative Therapie (OP vs Radiatio+ ADT), Timing abhängig von RCC-OP. Pulmonale Herde: Metastasen? Verlaufskontrolle vs PET/CT.",
+        "erforderliche_befunde": {
+          "bildgebung": [
+            "CT Abdomen 05.09.2025 (RF rechte Niere 3,6 cm, malignitätsverdächtig)",
+            "CT Thorax 06.09.2025 (pulmonale Rundherde <5 mm unklar)"
+          ],
+          "pathologie": [
+            "Prostatabiopsie 10.10.2025 (ISUP 3, 5/12 Stanzen)"
+          ],
+          "labor": [
+            "PSA-Verlauf (mind. iPSA 12,4 in 2018; aktueller PSA-Wert nicht angegeben)"
+          ],
+          "sonstiges": [
+            "Planung/Entscheidung Verlaufskontrolle vs PET/CT für pulmonale Herde"
+          ]
+        }
+      }
+    }
+  ]
+}

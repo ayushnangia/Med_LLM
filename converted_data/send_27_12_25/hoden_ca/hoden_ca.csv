@@ -1,0 +1,4 @@
+Nr. ,Cases,Classes : tumor entity _ real,urological/non_urological,Therapy line,json,json_ver
+,,,,,,
+1.0,"Test, Test1, 12.01.1995",Hodenkarzinom,True,"nicht seminom, IIA",True,1.1.
+2.0,"Bruno, Brunovici, 03.01.1995",Hodenkarzinom,True,seminom I,True,1.1.

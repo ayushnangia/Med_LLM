@@ -1,0 +1,246 @@
+{
+  "schema_version": "1.0",
+  "hinweis_missing_values": "Nicht vorhandene/fehlende Informationen werden als null (oder leere Liste []) eingetragen.",
+  "cases": [
+    {
+      "schema_version": "1.0",
+      "hinweis_missing_values": "Nicht vorhandene/fehlende Informationen werden als null (oder leere Liste []) eingetragen.",
+      "case_template": {
+        "patient": {
+          "nachname": "Horatium",
+          "vorname": "Burdon",
+          "geburtsdatum": "1965-01-09",
+          "alter_jahre": 63,
+          "fallnummer": "1363181591",
+          "ecog": 1,
+          "sonstige_fachkliniken_bereiche": []
+        },
+        "anmeldung": {
+          "anmeldender_arzt": {
+            "name": "Alexa",
+            "abteilung": "URO"
+          },
+          "diskussionstyp": null
+        },
+        "entitaeten": [
+          {
+            "entitaet_typ": "urothelkarzinom_harnblase_nmibc",
+            "diagnose_kurz": "Multilokuläres NMIBC-Rezidiv: nicht-invasives papilläres Urothelkarzinom low grade (pTa G1) in mehreren Lokalisationen (A–C), D/E ohne Malignität",
+            "stadium_oder_risikoklasse": "NMIBC, low grade pTa (multifokal, Rezidiv >3 Läsionen) – Risikostratifizierung (EORTC) geplant",
+            "klassifikation": {
+              "tnm": "pTa (Low Grade G1)",
+              "isup_gleason": null,
+              "grad": "G1 low grade",
+              "icd": null,
+              "icdo": "C67.9 M9230/11"
+            },
+            "molekular": {
+              "brca": null,
+              "pd_l1": null,
+              "sonstige": []
+            },
+            "marker_oder_labor": {
+              "psa": {
+                "initial": null,
+                "verlauf": [],
+                "einheit": "ng/ml"
+              },
+              "tumormarker": {
+                "hodenmarker": {
+                  "afp": {
+                    "initial": null,
+                    "verlauf": [],
+                    "einheit": "ng/ml"
+                  },
+                  "bhcg": {
+                    "initial": null,
+                    "verlauf": [],
+                    "einheit": "IU/l"
+                  },
+                  "ldh": {
+                    "initial": null,
+                    "verlauf": [],
+                    "einheit": "U/l"
+                  }
+                }
+              },
+              "sonstige": []
+            },
+            "therapien_und_eingriffe": [
+              {
+                "datum": "2023-08",
+                "typ": "Operation",
+                "beschreibung": "TUR-Blase (Krankenhaus Bukarest)",
+                "details": "pTa G1 low grade; DJ links für 3 Monate bei ostiumnaher Resektion"
+              },
+              {
+                "datum": "2025-09-29",
+                "typ": "Operation",
+                "beschreibung": "TUR-B + MMC-Instillation",
+                "details": "multilokuläres Rezidiv (>3)"
+              }
+            ],
+            "pathologie": [
+              {
+                "datum": "2025-12-03",
+                "material": "Resektat Harnblase (A–E, verschiedene Lokalisationen)",
+                "befund": "A–C: nicht-invasives papilläres Urothelkarzinom low grade (pTa G1), Detrusor in A und C nachweisbar. D: Detrusor nachweisbar, reaktiv verändertes Urothel, kein Malignitätskorrelat. E: kein Anhalt für Malignität, Detrusor nicht eindeutig nachweisbar.",
+                "klassifikation": "TNM (8. Aufl.): Low Grade G1 pTa; ICD-O-2: C67.9 M9230/11",
+                "details": {
+                  "proben": {
+                    "A-C": {
+                      "lokalisationen": [
+                        "Blasendach",
+                        "Blasenhinterwand",
+                        "Blasenboden",
+                        "Blasenseitenwand links"
+                      ],
+                      "diagnose": "nicht-invasives papilläres Urothelkarzinom low grade (pTa G1)",
+                      "detrusor_nachweis": {
+                        "A": true,
+                        "B": false,
+                        "C": true
+                      }
+                    },
+                    "D": {
+                      "lokalisation": "Tiefe PE Blasenboden",
+                      "diagnose": "kein Malignitätskorrelat; reaktiv verändertes Urothel",
+                      "detrusor_nachweis": true
+                    },
+                    "E": {
+                      "lokalisation": "Rötung Blasenhinterwand",
+                      "diagnose": "kein Anhalt für Malignität",
+                      "detrusor_nachweis": "unklar/kein eindeutiger Nachweis"
+                    }
+                  }
+                }
+              }
+            ],
+            "bildgebung": [],
+            "kommentar": "Fragestellung 'Malignität?' ist in A–C bejaht (pTa low grade). D/E ohne Malignität. Aufgrund Multifokalität/Rezidiv EORTC-Risikoeinteilung geplant; bei intermediate risk Instillationstherapie vorgesehen."
+          }
+        ],
+        "anamnese_freitext": "Multilokuläres Blasentumorrezidiv (>3). TUR-B + MMC am 29.09.2025. Z. n. TUR-Blase 08/2023 (Bukarest) pTa G1 low grade; DJ links 3 Monate bei ostiumnaher Resektion. Histologie 03.12.2025: pTa low grade in A–C.",
+        "nebendiagnosen": [],
+        "medikation": [],
+        "fragestellung": "Malignität in der Histologie vom 03.12.2025?",
+        "geplantes_therapiekonzept": "Abklärung des oberen Harntraktes mittels CT-Urogramm (KM + Ausscheidungsphase). EORTC-Einteilung; bei intermediate risk intravesikale Instillationstherapie.",
+        "erforderliche_befunde": {
+          "bildgebung": [
+            "CT-Urogramm (KM + Ausscheidungsphase) zur Abklärung des oberen Harntraktes"
+          ],
+          "pathologie": [
+            "Histologie Resektat Harnblase 03.12.2025 (pTa low grade in A–C; D/E ohne Malignität)"
+          ],
+          "labor": [],
+          "sonstiges": [
+            "EORTC-Risikostratifizierung (intermediate risk?)"
+          ]
+        }
+      }
+    },
+    {
+      "schema_version": "1.0",
+      "hinweis_missing_values": "Nicht vorhandene/fehlende Informationen werden als null (oder leere Liste []) eingetragen.",
+      "case_template": {
+        "patient": {
+          "nachname": "Holman",
+          "vorname": "Elisa",
+          "geburtsdatum": "1951-01-22",
+          "alter_jahre": 54,
+          "fallnummer": "1346525656",
+          "ecog": 1,
+          "sonstige_fachkliniken_bereiche": []
+        },
+        "anmeldung": {
+          "anmeldender_arzt": {
+            "name": "Mandora",
+            "abteilung": "Uro"
+          },
+          "diskussionstyp": null
+        },
+        "entitaeten": [
+          {
+            "entitaet_typ": "urothelkarzinom_harnblase_nmibc",
+            "diagnose_kurz": "Harnblasen-NMIBC: nicht-invasives papilläres Urothelkarzinom pTa, fokal high grade (G3), Hinterwand links; Detrusor nicht nachweisbar",
+            "stadium_oder_risikoklasse": "pTa high grade (fokal) – EORTC-Risikostratifizierung geplant; Nachresektion erwägen (Detrusor fehlt)",
+            "klassifikation": {
+              "tnm": "pTa High Grade (G3)",
+              "isup_gleason": null,
+              "grad": "G3 high grade (fokal)",
+              "icd": null,
+              "icdo": "C67.5 M9121/3"
+            },
+            "molekular": {
+              "brca": null,
+              "pd_l1": null,
+              "sonstige": []
+            },
+            "marker_oder_labor": {
+              "psa": {
+                "initial": null,
+                "verlauf": [],
+                "einheit": "ng/ml"
+              },
+              "tumormarker": {
+                "hodenmarker": {
+                  "afp": {
+                    "initial": null,
+                    "verlauf": [],
+                    "einheit": "ng/ml"
+                  },
+                  "bhcg": {
+                    "initial": null,
+                    "verlauf": [],
+                    "einheit": "IU/l"
+                  },
+                  "ldh": {
+                    "initial": null,
+                    "verlauf": [],
+                    "einheit": "U/l"
+                  }
+                }
+              },
+              "sonstige": []
+            },
+            "therapien_und_eingriffe": [
+              {
+                "datum": "2024-10-20",
+                "typ": "Operation",
+                "beschreibung": "TUR-B",
+                "details": "bei zystoskopisch gesichertem Harnblasentumor"
+              }
+            ],
+            "pathologie": [
+              {
+                "datum": "2024-10-20",
+                "material": "Blasenresektat (Blasentumor Hinterwand links)",
+                "befund": "Nicht-invasives papilläres Urothelkarzinom, fokal high grade (G3); kein invasives Karzinom; keine Detrusormuskulatur nachweisbar; ausgeprägte chronisch-floride Entzündung.",
+                "klassifikation": "TNM (8. Aufl.): High Grade G3 pTa; ICD-O-3: C67.5 M9121/3"
+              }
+            ],
+            "bildgebung": [],
+            "kommentar": "Fragestellung 'Malignität?' ist bejaht (pTa, fokal high grade). Detrusor fehlt -> Nachresektion (4–6 Wochen) im Rahmen EORTC-/Risikokonzept diskutiert."
+          }
+        ],
+        "anamnese_freitext": "Z. n. TUR-B am 20.10.2024 bei zystoskopisch gesichertem Harnblasentumor. Raucheranamnese negativ, Arbeitsanamnese unauffällig. Vorerkrankung: arterielle Hypertonie. Histologie 20.10.2024: pTa, fokal high grade (G3), Detrusor nicht nachweisbar, kein invasives Karzinom.",
+        "nebendiagnosen": [
+          "arterielle Hypertonie"
+        ],
+        "medikation": [],
+        "fragestellung": "Malignität in der Histologie vom 20.10.2024?",
+        "geplantes_therapiekonzept": "Einteilung nach EORTC. Bei intermediate risk Nachresektion in 4–6 Wochen.",
+        "erforderliche_befunde": {
+          "bildgebung": [],
+          "pathologie": [
+            "Blasenresektat / Histologie 20.10.2024 (pTa, fokal high grade, Detrusor fehlt)"
+          ],
+          "labor": [],
+          "sonstiges": [
+            "EORTC-Risikostratifizierung; Planung Nachresektion (4–6 Wochen)"
+          ]
+        }
+      }
+    }
+  ]
+}

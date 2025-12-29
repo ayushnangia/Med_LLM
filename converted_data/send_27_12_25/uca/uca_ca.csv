@@ -1,0 +1,4 @@
+Nr. ,Cases,Classes : tumor entity _ real,urological/non_urological,Therapy line,json,json_ver
+,,,,,,
+1.0,"Horatium, Burdon, 09.01.1965",Urothelkarzinom ,True,EORTC intermediate,True,1.1.
+2.0,"Holman, Elisa, 22.01.1951",Urothelkarzinom ,True,"EORTC intermediate, fehldene Detrusor, Nachres",True,1.1.

@@ -1,0 +1,24 @@
+223.12.2025
+
+As report: 
+I managed to create a standard JSON structure for our cases (case_structure_json_v_1_1). 
+I also created the JSON therapy structure based on the guidelines (therapy_structure_ncc_metatastic_json_flow_chart_12_2025_S3_ln; therapy_structure_ncc_non_metastatic_json_12_2025_S3_ln) with the information the LLM needs in his  decision of the therapy for cases with kidney cancer (Nierenkarzinom). 
+Then I created per class, based on the standard JSON structure,  2 cases, and for the kidney cancer 14 cases. 
+Moreover, I gathered 30 cases per category (they are not yet in JSON format). 
+I added also a list with models that I would be open to test (feel free to recommend something else). 
+
+To do for the next meeting: 
+add per clas at least 10 extra cases
+First results regarding the detection between classes
+
+26.12.2025: 
+I added in total 35 cases in the ncc class, to test further the model for the ncc class. 
+Updated the JSON vs. 1.2. For the case classification
+27.12.2025
+Next we need to classify the field below, along with locally vs metastatic diseases: 
+geplantes_therapiekonzept (Classification) (This is more important) 
+Probably need LLM as judge to verify the correctness / accuracy 
+We need to use Therapy structure JSON for both metastatic and Local disease for models to know the structure. 
+Add more cases to other cases (not the kidney ones but other ones) 
+Need to verify if we need more cases for kidney based on the results
+- selection of the 5 models - open source/offline
