@@ -6,285 +6,211 @@
 **Goal:** Develop and evaluate LLMs for medical case classification and therapy recommendation
 **Domain:** German urological oncology (tumor board discussions)
 
-### Current Status (Dec 23, 2025)
-- ✅ JSON schema standardized (v1.1)
-- ✅ Therapy decision trees created (mRCC, NMRCC)
-- ✅ 26 cases converted to JSON format
-- ⏳ ~210 raw cases pending conversion
-- ⏳ Classification pipeline pending
+### Current Status (Dec 30, 2025)
+
+| Component | Status | Details |
+|-----------|--------|---------|
+| Data Preparation | ✅ Done | JSON/CSV conversion complete |
+| Classification Pipeline | ✅ Done | 7-class cancer type classification |
+| Treatment Prediction | ✅ Done | NCC therapy recommendation system |
+| LLM-as-Judge | ✅ Done | Semantic + clinical evaluation |
+| Documentation | ✅ Done | Comprehensive docs for medical review |
 
 ---
 
-## Phase 1: Data Preparation ✅ COMPLETED
+## Completed Work
 
-### Accomplished
-- Converted all DOCX files to JSON/TXT
-- Converted all XLSX files to CSV
-- Created standardized folder structure
-- Verified data integrity (no corruption)
+### Phase 1: Data Preparation ✅
 
-### Output
+- Converted DOCX files to JSON/TXT
+- Converted XLSX files to CSV
+- Standardized folder structure
+- 35 NCC cases available (14 schema v1.1 + 21 schema v1.2)
+
+### Phase 2: Classification Pipeline ✅
+
+**7-class cancer type classification**
+
+| Model | Accuracy | Notes |
+|-------|----------|-------|
+| mistral:7b-instruct | 88.46% | Best local performer |
+| gemma3:4b | 84.62% | Fast, excellent accuracy |
+| llama3:8b | 76.92% | Good balance |
+
+Results in: `findings/` and `results/ollama/`
+
+### Phase 3: Treatment Prediction (NCC) ✅
+
+**Therapy recommendation for kidney cancer cases**
+
+| Platform | Model | Metastatic Acc | Therapy Match | Time |
+|----------|-------|----------------|---------------|------|
+| Modal (vLLM) | Gemma-3-27B | 100% | 28.6% | 122s |
+| OpenRouter | Gemma-3-27B | 100% | 28.6% | 540s |
+
+Scripts:
+- `scripts/modal_treatment_predict.py` - Modal serverless GPU
+- `scripts/treatment_openrouter.py` - OpenRouter API
+- `scripts/evaluate_treatment_llm_judge.py` - LLM-as-Judge evaluation
+
+Results in: `results/modal_treatment/` and `results/openrouter_treatment/`
+
+### Phase 4: Documentation ✅
+
+Created comprehensive documentation in `documentation/`:
+
 ```
-converted_data/send_23_12_25/
-├── ncc/           # 14 kidney cancer cases
-├── pca/           # 2 prostate cancer cases
-├── hoden_ca/      # 2 testicular cancer cases
-├── penis_ca/      # 2 penile cancer cases
-├── uca/           # 2 urothelial cancer cases
-├── combi/         # 2 combined cases
-└── non_uro/       # 2 non-urological cases
+documentation/
+├── README.md
+├── 01_technical/          # Technical points of contention
+├── 02_medical/            # Medical questions for expert
+├── 03_prompts/            # Full prompts (German + English)
+├── 04_examples/           # Complete input/output examples
+├── 05_results/            # Latest comparison and metrics
+└── 06_action_items/       # Todo lists (technical + medical)
 ```
 
 ---
 
-## Phase 2: Dataset Expansion
+## Open Issues
 
-### Goal
-Add at least 10 cases per class (as requested by Dr. Radu)
+### Technical (Developer)
 
-### Tasks
-1. Convert remaining ~210 raw cases from XLSX to JSON
-2. Validate each case against schema v1.1
-3. Ensure balanced class distribution
-4. Quality check with medical accuracy review
+| Issue | Priority | Status |
+|-------|----------|--------|
+| JSON Schema Bug (Cases 15-35 ECOG=null) | CRITICAL | Needs fix |
+| OpenRouter no seed support | LOW | Document limitation |
 
-### Target Distribution
-| Class | Current | Target | Description |
-|-------|---------|--------|-------------|
-| NCC | 14 | 40+ | Kidney Cancer |
-| PCA | 2 | 12+ | Prostate Cancer |
-| HODEN_CA | 2 | 12+ | Testicular Cancer |
-| PENIS_CA | 2 | 12+ | Penile Cancer |
-| UCA | 2 | 12+ | Urothelial Cancer |
-| COMBI | 2 | 12+ | Polymalignancy |
-| NON_URO | 2 | 12+ | Non-Urological |
+Fix required in:
+- `scripts/modal_treatment_predict.py` (lines 272-273)
+- `scripts/treatment_openrouter.py` (lines 505-506)
 
----
-
-## Phase 3: Classification Pipeline
-
-### Objective
-Multi-class classification: Given a clinical case, predict the cancer type.
-
-### Classes (7)
-1. `nierenzellkarzinom` (NCC) - Kidney Cancer
-2. `prostatakarzinom` (PCA) - Prostate Cancer
-3. `hodentumor` (HODEN) - Testicular Cancer
-4. `peniskarzinom` (PENIS) - Penile Cancer
-5. `urothelkarzinom` (UCA) - Urothelial Cancer
-6. `polymalignancy` (COMBI) - Combined/Multiple
-7. `non_urological` (NON_URO) - Non-Urological
-
-### Prompt Template
-```
-Du bist ein medizinischer Experte für Onkologie. Analysiere den folgenden klinischen Fall und klassifiziere die Tumorentität.
-
-FALL:
-Patient: {nachname}, {vorname}, {alter_jahre} Jahre
-Anamnese: {anamnese_freitext}
-Diagnose: {diagnose_kurz}
-TNM: {tnm_staging}
-Befunde: {bildgebung}
-
-KLASSIFIZIERE in eine der folgenden Kategorien:
-- nierenzellkarzinom (Nierenkrebs/RCC)
-- prostatakarzinom (Prostatakrebs)
-- hodentumor (Hodenkrebs)
-- peniskarzinom (Peniskrebs)
-- urothelkarzinom (Blasen-/Harnwegskrebs)
-- polymalignancy (Mehrfachtumoren)
-- non_urological (Nicht-urologisch)
-
-Antwort (nur die Kategorie):
-```
-
-### Inference with Ollama
-
-**API Endpoint:** `http://localhost:11434/api/generate`
-
-**Python Implementation:**
 ```python
-import requests
-import json
+# Current (broken):
+"ecog": patient.get("performance_status", {}).get("ecog"),
 
-def classify_case(case_json: dict, model: str = "gemma3:27b") -> str:
-    prompt = build_prompt(case_json)
-
-    response = requests.post(
-        "http://localhost:11434/api/generate",
-        json={
-            "model": model,
-            "prompt": prompt,
-            "stream": False,
-            "options": {
-                "temperature": 0.1,  # Low for classification
-                "num_predict": 50    # Short response
-            }
-        }
-    )
-
-    result = response.json()["response"]
-    return parse_classification(result)
+# Required fix:
+"ecog": patient.get("ecog") or patient.get("performance_status", {}).get("ecog"),
 ```
+
+### Medical (Dr. Radu)
+
+See `documentation/06_action_items/medical_questions.md`:
+
+1. Ground truth definition (tumor board vs actual treatment?)
+2. IMDC handling for non-clear-cell RCC
+3. ICI eligibility criteria
+4. Clinical acceptability validation
+5. JSON schema standardization (he changed schema between cases)
 
 ---
 
-## Phase 4: Model Evaluation
+## Project Structure
 
-### Models to Test
-
-**General Models (Installed):**
-| Model | Size | Type |
-|-------|------|------|
-| gemma3:27b | 27B | General |
-| gemma3:12b | 12B | General |
-| qwen3:30b | 30B | General |
-| qwen3:8b | 8B | General |
-| llama3:8b | 8B | General |
-| mistral:7b-instruct | 7B | General |
-
-**Medical Models (To Install):**
-| Model | Size | Specialty |
-|-------|------|-----------|
-| m42-health/Llama3-Med42-8B | 8B | Medical |
-| ClinicalBERT | - | Clinical NLP |
-| II-Medical-8B | 8B | Medical |
-
-### Evaluation Metrics
-
-1. **Overall Accuracy**: Correct predictions / Total cases
-2. **Per-Class Metrics**:
-   - Precision: TP / (TP + FP)
-   - Recall: TP / (TP + FN)
-   - F1-Score: 2 × (Precision × Recall) / (Precision + Recall)
-3. **Confusion Matrix**: Visualize misclassifications
-
-### Evaluation Script
-```python
-from sklearn.metrics import classification_report, confusion_matrix
-import matplotlib.pyplot as plt
-import seaborn as sns
-
-def evaluate_model(predictions, ground_truth, model_name):
-    # Classification report
-    report = classification_report(
-        ground_truth, predictions,
-        target_names=CLASS_NAMES,
-        output_dict=True
-    )
-
-    # Confusion matrix
-    cm = confusion_matrix(ground_truth, predictions)
-
-    # Visualization
-    plt.figure(figsize=(10, 8))
-    sns.heatmap(cm, annot=True, fmt='d',
-                xticklabels=CLASS_NAMES,
-                yticklabels=CLASS_NAMES)
-    plt.title(f'Confusion Matrix - {model_name}')
-    plt.savefig(f'results/{model_name}_confusion.png')
-
-    return report
-```
-
----
-
-## Phase 5: Results Presentation
-
-### Report Structure
-
-#### 1. Executive Summary
-- Best performing model
-- Overall accuracy achieved
-- Key findings
-
-#### 2. Model Comparison Table
-| Model | Accuracy | F1 (macro) | Inference Time |
-|-------|----------|------------|----------------|
-| gemma3:27b | XX% | X.XX | Xs/case |
-| qwen3:30b | XX% | X.XX | Xs/case |
-| Med42-8B | XX% | X.XX | Xs/case |
-
-#### 3. Per-Class Performance
-| Class | Best Model | Precision | Recall | F1 |
-|-------|------------|-----------|--------|-----|
-| NCC | | | | |
-| PCA | | | | |
-| ... | | | | |
-
-#### 4. Confusion Matrix Visualizations
-- One per model tested
-- Highlight common misclassifications
-
-#### 5. Recommendations
-- Recommended model for production
-- Suggested improvements
-- Next steps
-
-### Output Files
-```
-results/
-├── summary_report.md
-├── model_comparison.csv
-├── gemma3_27b_confusion.png
-├── qwen3_30b_confusion.png
-├── med42_8b_confusion.png
-└── per_class_metrics.csv
-```
-
----
-
-## Technical Implementation
-
-### Project Structure
 ```
 Med_LLM/
-├── CLAUDE.md
-├── plan.md                    # This file
-├── venv/                      # Python environment
+├── CLAUDE.md                    # Development instructions
+├── plan.md                      # This file
+├── venv/                        # Python environment
 ├── scripts/
 │   ├── convert_to_open_formats.py
 │   ├── verify_data_integrity.py
-│   ├── inference_ollama.py    # NEW: Ollama wrapper
-│   ├── classify_cases.py      # NEW: Classification pipeline
-│   └── evaluate_results.py    # NEW: Evaluation & visualization
-├── data_llm/                  # Original data (DOCX, XLSX)
-├── converted_data/            # Converted data (JSON, CSV)
-└── results/                   # NEW: Evaluation results
-```
-
-### Dependencies
-```bash
-pip install requests scikit-learn matplotlib seaborn pandas
-```
-
-### Running the Pipeline
-```bash
-# 1. Ensure Ollama is running
-ollama serve
-
-# 2. Run classification
-python scripts/classify_cases.py --model gemma3:27b
-
-# 3. Evaluate results
-python scripts/evaluate_results.py
-
-# 4. Generate report
-python scripts/generate_report.py
+│   ├── inference_ollama.py
+│   ├── inference_openrouter.py
+│   ├── classify_cases.py
+│   ├── classify_openrouter.py
+│   ├── run_all_models.py
+│   ├── evaluate_results.py
+│   ├── modal_treatment_predict.py   # Treatment prediction (Modal)
+│   ├── treatment_openrouter.py      # Treatment prediction (OpenRouter)
+│   └── evaluate_treatment_llm_judge.py  # LLM-as-Judge
+├── data_llm/                    # Original data (DOCX, XLSX)
+├── converted_data/              # Converted data (JSON, CSV)
+├── results/
+│   ├── ollama/                  # Classification results
+│   ├── openrouter/              # Classification results
+│   ├── modal_treatment/         # Treatment prediction (Modal)
+│   └── openrouter_treatment/    # Treatment prediction (OpenRouter)
+├── findings/                    # Quick access results
+└── documentation/               # Comprehensive documentation
 ```
 
 ---
 
-## Timeline
+## Running the Pipeline
 
-| Phase | Status | Priority |
-|-------|--------|----------|
-| Phase 1: Data Prep | ✅ Done | - |
-| Phase 2: Dataset Expansion | ⏳ Pending | High |
-| Phase 3: Classification Pipeline | ⏳ Pending | High |
-| Phase 4: Model Evaluation | ⏳ Pending | Medium |
-| Phase 5: Results Presentation | ⏳ Pending | Medium |
+### Classification (7-class)
+```bash
+source venv/bin/activate
+python scripts/classify_cases.py --model mistral:7b-instruct
+python scripts/evaluate_results.py
+```
 
-### Next Meeting Deliverables (per Dr. Radu)
-1. Add 10+ cases per class
-2. First results regarding detection between classes
+### Treatment Prediction (NCC)
+```bash
+# Modal (requires modal CLI)
+modal run scripts/modal_treatment_predict.py --model gemma-3-27b
+
+# OpenRouter (requires OPENROUTER_API_KEY)
+export OPENROUTER_API_KEY="your-key"
+python scripts/treatment_openrouter.py --model gemma3:27b
+```
+
+### LLM-as-Judge Evaluation
+```bash
+python scripts/evaluate_treatment_llm_judge.py --results-dir results/modal_treatment/...
+```
+
+---
+
+## Key Metrics
+
+### Treatment Prediction (Gemma-3-27B on 35 NCC cases)
+
+| Metric | Definition | Result |
+|--------|------------|--------|
+| Metastatic Accuracy | Correctly identify metastatic cases | 100% (11/11) |
+| Therapy Exact Match | Fuzzy match to ground truth | 28.6% (10/35) |
+| Therapy Acceptable | Guideline-compliant recommendation | 28.6% (10/35) |
+
+### LLM-as-Judge Scores
+
+| Metric | Weight | Description |
+|--------|--------|-------------|
+| therapy_semantic_score | 40% | Does therapy match ground truth? |
+| clinical_appropriateness_score | 40% | Is it guideline-compliant? |
+| reasoning_quality | 20% | Is the explanation sound? |
+
+---
+
+## Next Steps
+
+1. **Dr. Radu:** Review medical questions in `documentation/06_action_items/medical_questions.md`
+2. **Technical:** Fix JSON schema extraction bug for cases 15-35
+3. **Technical:** Investigate low therapy match rate (28.6%)
+4. **Future:** Expand to other cancer types (PCA, UCA, etc.)
+
+---
+
+## Data Summary
+
+| Cancer Type | Cases | Status |
+|-------------|-------|--------|
+| NCC (Kidney) | 35 | ✅ Treatment prediction complete |
+| PCA (Prostate) | 2 | Classification only |
+| HODEN_CA (Testicular) | 2 | Classification only |
+| PENIS_CA (Penile) | 2 | Classification only |
+| UCA (Urothelial) | 2 | Classification only |
+| COMBI (Combined) | 2 | Classification only |
+| NON_URO (Non-Urological) | 2 | Classification only |
+
+---
+
+## Hyperparameters (Aligned)
+
+| Parameter | Value | Notes |
+|-----------|-------|-------|
+| temperature | 0.3 | Low for consistency |
+| top_p | 0.95 | Standard |
+| max_tokens | 32768 | Full reasoning |
+| seed | 42 | Modal only (OpenRouter N/A) |
