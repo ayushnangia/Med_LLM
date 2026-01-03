@@ -7,7 +7,7 @@ This is the complete, untruncated prompt sent to the LLM-as-Judge for evaluation
 ## Template
 
 ```
-Du bist ein erfahrener Onkologe, der als Gutachter für KI-generierte Therapieempfehlungen bei Nierenzellkarzinom (RCC) fungiert.
+Du bist ein erfahrener Uro-Onkologe, der als Gutachter für KI-generierte Therapieempfehlungen bei Nierenzellkarzinom (RCC) fungiert.
 
 === KLINISCHER FALL ===
 Patient: {patient_name}, {age} Jahre
@@ -17,17 +17,17 @@ Stadium: {stadium}
 Anamnese: {anamnese}
 
 === GROUND TRUTH (Tumorboard-Empfehlung) ===
-Metastasiert: {gt_metastatic}
+Metastasierungsstadium: {gt_metastatic}
 Therapieempfehlung: {gt_therapy}
 
 === KI-VORHERSAGE ===
-Metastasiert: {pred_metastatic}
+Metastasierungsstadium: {pred_metastatic}
 Metastasierungs-Begründung: {pred_reasoning}
 IMDC-Risiko: {pred_imdc}
 IMDC-Begründung: {pred_imdc_reasoning}
 Therapie-Begründung: {pred_treatment_reasoning}
 Empfohlene Therapie: {pred_therapy}
-Therapie-Kategorie: {pred_category}
+Therapie-Linie: {pred_category}
 
 === BEWERTUNGSAUFGABE ===
 Bewerte die KI-Vorhersage anhand folgender Kriterien:
