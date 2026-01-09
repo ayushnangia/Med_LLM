@@ -3,8 +3,9 @@
 Export Modal/OpenRouter treatment prediction results to CSV for medical review.
 
 Usage:
-    python scripts/export_results_csv.py --results-dir results/modal_treatment/google_gemma-3-27b-it/2025-12-30_00-02-19/
-    python scripts/export_results_csv.py --all  # Export all runs
+    python scripts/export_results_csv.py --all --latest   # Latest run per model (recommended)
+    python scripts/export_results_csv.py --all            # All runs
+    python scripts/export_results_csv.py --results-dir PATH
 
 Output: to_be_reviewed_results/{model}_treatment_{dd-mm-yy}.csv
 """
@@ -337,42 +338,38 @@ def main():
     parser.add_argument(
         "--all",
         action="store_true",
-        help="Export all results from results/modal_treatment/"
+        help="Export results from results/modal_treatment/"
     )
     parser.add_argument(
         "--latest",
         action="store_true",
-        help="Export only the latest run for each model (recommended)"
+        help="With --all: export only the latest run per model (recommended)"
     )
     parser.add_argument(
         "--base-dir",
         type=Path,
         default=Path("results/modal_treatment"),
-        help="Base directory for --all/--latest mode (default: results/modal_treatment)"
+        help="Base directory for --all mode (default: results/modal_treatment)"
     )
 
     args = parser.parse_args()
 
-    if args.latest:
-        # Export only latest results per model
-        results_dirs = find_latest_results_dirs(args.base_dir)
-        if not results_dirs:
-            print(f"No results directories found in {args.base_dir}")
-            return
+    if args.all:
+        if args.latest:
+            # Export only latest results per model
+            results_dirs = find_latest_results_dirs(args.base_dir)
+            if not results_dirs:
+                print(f"No results directories found in {args.base_dir}")
+                return
+            print(f"Found {len(results_dirs)} models (latest run each)")
+        else:
+            # Export all results directories
+            results_dirs = find_all_results_dirs(args.base_dir)
+            if not results_dirs:
+                print(f"No results directories found in {args.base_dir}")
+                return
+            print(f"Found {len(results_dirs)} results directories (all runs)")
 
-        print(f"Found {len(results_dirs)} models (latest run each)")
-        for results_dir in results_dirs:
-            print(f"\nProcessing: {results_dir}")
-            process_results_dir(results_dir)
-
-    elif args.all:
-        # Export all results directories
-        results_dirs = find_all_results_dirs(args.base_dir)
-        if not results_dirs:
-            print(f"No results directories found in {args.base_dir}")
-            return
-
-        print(f"Found {len(results_dirs)} results directories")
         for results_dir in results_dirs:
             print(f"\nProcessing: {results_dir}")
             process_results_dir(results_dir)
@@ -384,7 +381,7 @@ def main():
     else:
         parser.print_help()
         print("\nExample usage:")
-        print("  python scripts/export_results_csv.py --latest                # Latest run per model (recommended)")
+        print("  python scripts/export_results_csv.py --all --latest          # Latest run per model (recommended)")
         print("  python scripts/export_results_csv.py --all                   # All runs")
         print("  python scripts/export_results_csv.py --results-dir PATH      # Specific run")
         print("\nOutput: to_be_reviewed_results/{model}_treatment_{dd-mm-yy}.csv")
