@@ -5,15 +5,21 @@ Export Modal/OpenRouter treatment prediction results to CSV for medical review.
 Usage:
     python scripts/export_results_csv.py --results-dir results/modal_treatment/google_gemma-3-27b-it/2025-12-30_00-02-19/
     python scripts/export_results_csv.py --all  # Export all runs
-    python scripts/export_results_csv.py --results-dir PATH --output custom_output.csv
+
+Output: to_be_reviewed_results/{model}_treatment_{dd-mm-yy}.csv
 """
 
 import argparse
 import csv
 import json
 import re
+from datetime import datetime
 from pathlib import Path
-from typing import Dict, List, Optional
+from typing import Dict, List, Optional, Tuple
+
+
+# Output folder for all review CSVs
+REVIEWED_RESULTS_DIR = Path("to_be_reviewed_results")
 
 
 # CSV column order (for readability in Excel)
@@ -217,12 +223,41 @@ def merge_judge_data(cases: List[dict], judge_data: Optional[Dict[str, dict]]) -
 
 def export_to_csv(cases: List[dict], output_path: Path):
     """Export cases to CSV with UTF-8 BOM for Excel compatibility."""
+    # Ensure output directory exists
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+
     with open(output_path, "w", encoding="utf-8-sig", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=CSV_COLUMNS, extrasaction="ignore")
         writer.writeheader()
         writer.writerows(cases)
 
     print(f"Exported {len(cases)} cases to {output_path}")
+
+
+def generate_output_filename(results_dir: Path) -> Path:
+    """
+    Generate output filename: {model}_treatment_{dd-mm-yy}.csv
+
+    Example: gemma-3-27b-it_treatment_30-12-25.csv
+    """
+    # Extract model name from path (e.g., google_gemma-3-27b-it -> gemma-3-27b-it)
+    model_dir = results_dir.parent.name  # e.g., "google_gemma-3-27b-it"
+    model_name = model_dir.replace("google_", "").replace("openmeditron_", "")
+
+    # Extract timestamp from path (e.g., 2025-12-30_00-02-19)
+    timestamp_str = results_dir.name  # e.g., "2025-12-30_00-02-19"
+
+    # Parse and reformat date to dd-mm-yy
+    try:
+        dt = datetime.strptime(timestamp_str.split("_")[0], "%Y-%m-%d")
+        date_str = dt.strftime("%d-%m-%y")
+    except ValueError:
+        date_str = timestamp_str[:10].replace("-", "")
+
+    # Build filename
+    filename = f"{model_name}_treatment_{date_str}.csv"
+
+    return REVIEWED_RESULTS_DIR / filename
 
 
 def process_results_dir(results_dir: Path, output_path: Optional[Path] = None):
@@ -245,9 +280,9 @@ def process_results_dir(results_dir: Path, output_path: Optional[Path] = None):
     else:
         print("No judge evaluation found (judge columns will be empty)")
 
-    # Determine output path
+    # Determine output path using naming scheme
     if output_path is None:
-        output_path = results_dir / "results_review.csv"
+        output_path = generate_output_filename(results_dir)
 
     # Export
     export_to_csv(cases, output_path)
@@ -315,6 +350,7 @@ def main():
         print("\nExample usage:")
         print("  python scripts/export_results_csv.py --results-dir results/modal_treatment/google_gemma-3-27b-it/2025-12-30_00-02-19/")
         print("  python scripts/export_results_csv.py --all")
+        print("\nOutput: to_be_reviewed_results/{model}_treatment_{dd-mm-yy}.csv")
 
 
 if __name__ == "__main__":
