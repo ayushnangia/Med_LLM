@@ -77,6 +77,17 @@ JUDGE_MODELS: Dict[str, Dict[str, Any]] = {
         "max_tokens": 2048,
         "supports_json_schema": True,
     },
+    # GPT-5.2 - latest OpenAI with reasoning tokens
+    "gpt-5.2": {
+        "openrouter_id": "openai/gpt-5.2",
+        "temperature": 0.3,
+        "top_p": 1.0,
+        "max_tokens": 4096,
+        "supports_json_schema": True,
+        "reasoning": {
+            "effort": "high"
+        },
+    },
     # Claude - supports structured output
     "claude-sonnet": {
         "openrouter_id": "anthropic/claude-sonnet-4",
@@ -109,6 +120,17 @@ JUDGE_MODELS: Dict[str, Dict[str, Any]] = {
 class JudgeEvaluation(BaseModel):
     """Structured evaluation from judge LLM with validation."""
 
+    # Binary correctness verdict
+    is_correct: bool = Field(
+        ...,
+        description="True if prediction matches ground truth or acceptable alternative"
+    )
+    correctness_reason: str = Field(
+        ...,
+        description="Why prediction is correct or incorrect"
+    )
+
+    # Detailed scoring (kept for analysis)
     therapy_semantic_match: bool = Field(
         ...,
         description="True if predicted therapy is semantically equivalent to ground truth"
@@ -164,6 +186,7 @@ class EvaluationResult(BaseModel):
     case_id: str
     evaluation: Optional[JudgeEvaluation] = None
     raw_response: str = ""
+    reasoning_output: Optional[str] = None
     error: Optional[str] = None
     inference_time_seconds: float = 0.0
 
@@ -179,6 +202,14 @@ def build_judge_prompt(case_result: dict) -> str:
     prediction = case_result.get("prediction", {})
     gt_metastatic = case_result.get("ground_truth_metastatic")
     gt_therapy = case_result.get("ground_truth_therapy", "")
+    gt_alternatives = case_result.get("ground_truth_alternatives", [])
+
+    # Build alternatives section if available
+    alternatives_text = ""
+    if gt_alternatives:
+        alternatives_text = "\nAkzeptable Alternativen:\n" + "\n".join(
+            f"  - {alt}" for alt in gt_alternatives
+        )
 
     # Format prediction
     if prediction:
@@ -209,7 +240,7 @@ Anamnese: {input_case.get('anamnese', '')[:500]}
 
 === GROUND TRUTH (Tumorboard-Empfehlung) ===
 Metastasiert: {gt_metastatic}
-Therapieempfehlung: {gt_therapy}
+Primäre Therapieempfehlung: {gt_therapy}{alternatives_text}
 
 === KI-VORHERSAGE ===
 Metastasiert: {pred_metastatic}
@@ -223,13 +254,29 @@ Therapie-Kategorie: {pred_category}
 === BEWERTUNGSAUFGABE ===
 Bewerte die KI-Vorhersage anhand folgender Kriterien:
 
-1. **Therapie Semantische Übereinstimmung** (therapy_semantic_match, therapy_semantic_score):
+1. **BINÄRE KORREKTHEIT** (is_correct) - WICHTIGSTE BEWERTUNG:
+   is_correct = TRUE wenn:
+     - Empfohlene Therapie semantisch der primären Ground Truth entspricht (Score ≥ 0.8)
+     - ODER Therapie einer der akzeptablen Alternativen entspricht
+
+   is_correct = FALSE wenn:
+     - Therapie weder Ground Truth noch Alternative entspricht
+     - AUCH WENN sie klinisch leitlinienkonform ist
+
+   Beispiele:
+     Ground Truth: "NIVO+CABO", Alternativen: ["PEMBRO+AXI", "NIVO+IPI"]
+     - "Nivolumab + Cabozantinib" → is_correct: TRUE (semantisch gleich)
+     - "Pembrolizumab + Axitinib" → is_correct: TRUE (Alternative)
+     - "Cabozantinib mono" → is_correct: FALSE (nicht in Liste)
+     - "Pazopanib" → is_correct: FALSE (leitlinienkonform aber nicht akzeptiert)
+
+2. **Therapie Semantische Übereinstimmung** (therapy_semantic_match, therapy_semantic_score):
    - "NIVO+CABO" = "Nivolumab/Cabozantinib" = "Nivolumab + Cabozantinib" → TRUE, 1.0
    - "TKI/IO Kombination" wenn spezifische IO+TKI empfohlen → TRUE, 0.9
    - Gleiche Wirkstoffklasse aber anderes Medikament → FALSE, 0.5-0.7
    - Komplett unterschiedlich → FALSE, 0.0-0.3
 
-2. **Klinische Angemessenheit** (clinical_appropriateness, clinical_appropriateness_score):
+3. **Klinische Angemessenheit** (clinical_appropriateness, clinical_appropriateness_score):
    - Metastasiert + ICI möglich: IO+TKI (Nivo+Cabo, Pembro+Axi, Pembro+Len) oder IO+IO (Nivo+Ipi)
    - Metastasiert + ICI nicht möglich: TKI mono (Pazopanib, Sunitinib, Cabozantinib)
    - Nicht-metastasiert: Chirurgie (Nephrektomie, Teilresektion) oder Überwachung
@@ -237,16 +284,18 @@ Bewerte die KI-Vorhersage anhand folgender Kriterien:
    - Akzeptabel aber nicht erste Wahl → TRUE, 0.6-0.8
    - Nicht leitlinienkonform → FALSE, 0.0-0.5
 
-3. **Begründungsqualität** (reasoning_quality):
+4. **Begründungsqualität** (reasoning_quality):
    - Vollständig, logisch, medizinisch korrekt → 0.8-1.0
    - Größtenteils korrekt mit kleinen Mängeln → 0.5-0.7
    - Unvollständig oder fehlerhaft → 0.0-0.4
 
-4. **Gesamtbewertung** (overall_score):
+5. **Gesamtbewertung** (overall_score):
    - Gewichteter Durchschnitt: 40% Semantik, 40% Klinik, 20% Begründung
 
 Antworte NUR mit einem validen JSON-Objekt (keine Erklärung davor oder danach):
 {{
+    "is_correct": true/false,
+    "correctness_reason": "Kurze Begründung warum korrekt/inkorrekt...",
     "therapy_semantic_match": true/false,
     "therapy_semantic_score": 0.0-1.0,
     "clinical_appropriateness": true/false,
@@ -268,12 +317,12 @@ def call_openrouter(
     prompt: str,
     model_key: str = "qwq-32b",
     retry_count: int = 3
-) -> tuple[Optional[str], float]:
+) -> tuple[Optional[str], float, Optional[str]]:
     """
     Call OpenRouter API with model-specific hyperparameters.
 
     Returns:
-        Tuple of (response_text, inference_time_seconds)
+        Tuple of (response_text, inference_time_seconds, reasoning_output)
     """
     import requests
 
@@ -302,6 +351,10 @@ def call_openrouter(
         "max_tokens": cfg.get("max_tokens", 2048),
     }
 
+    # Add reasoning configuration if model supports it
+    if cfg.get("reasoning"):
+        data["reasoning"] = cfg["reasoning"]
+
     # Add JSON schema for models that support it (structured output)
     if cfg.get("supports_json_schema") and not cfg.get("thinking"):
         data["response_format"] = {
@@ -326,8 +379,18 @@ def call_openrouter(
 
             if response.status_code == 200:
                 result = response.json()
-                content = result["choices"][0]["message"]["content"]
-                return content, inference_time
+                message = result["choices"][0]["message"]
+                content = message["content"]
+                # Extract reasoning if present (OpenRouter reasoning tokens)
+                reasoning = message.get("reasoning")
+                if not reasoning and message.get("reasoning_details"):
+                    # Combine reasoning_details into single string
+                    reasoning = "\n".join(
+                        d.get("text", d.get("summary", ""))
+                        for d in message.get("reasoning_details", [])
+                        if d.get("text") or d.get("summary")
+                    )
+                return content, inference_time, reasoning
             elif response.status_code == 429:
                 # Rate limited - wait and retry
                 wait_time = (attempt + 1) * 5
@@ -347,7 +410,7 @@ def call_openrouter(
             if attempt < retry_count - 1:
                 time.sleep(2)
 
-    return None, 0.0
+    return None, 0.0, None
 
 
 # =============================================================================
@@ -448,6 +511,7 @@ def evaluate_results(
     print(f"Max Tokens: {cfg.get('max_tokens', 2048)}")
     print(f"Thinking Mode: {is_thinking}")
     print(f"Structured Output: {cfg.get('supports_json_schema', False)}")
+    print(f"Reasoning Effort: {cfg.get('reasoning', {}).get('effort', 'None')}")
     print(f"Cases: {len(case_files)}")
     print("-" * 60)
 
@@ -462,11 +526,12 @@ def evaluate_results(
 
         # Build prompt and call judge
         prompt = build_judge_prompt(case_result)
-        response, inference_time = call_openrouter(prompt, model_key)
+        response, inference_time, reasoning = call_openrouter(prompt, model_key)
 
         eval_result = EvaluationResult(
             case_id=case_id,
-            inference_time_seconds=inference_time
+            inference_time_seconds=inference_time,
+            reasoning_output=reasoning
         )
 
         if response:
@@ -474,7 +539,9 @@ def evaluate_results(
             if evaluation:
                 eval_result.evaluation = evaluation
                 eval_result.raw_response = response
-                print(f"✓ Score: {evaluation.overall_score:.2f} (Sem: {evaluation.therapy_semantic_score:.2f}, Clin: {evaluation.clinical_appropriateness_score:.2f})")
+                # Show binary verdict prominently
+                status = "✓ CORRECT" if evaluation.is_correct else "✗ INCORRECT"
+                print(f"{status} | Score: {evaluation.overall_score:.2f} (Sem: {evaluation.therapy_semantic_score:.2f}, Clin: {evaluation.clinical_appropriateness_score:.2f})")
             else:
                 eval_result.raw_response = response
                 eval_result.error = "parse_failed"
@@ -492,6 +559,11 @@ def evaluate_results(
     valid_evals = [e for e in evaluations if e.evaluation is not None]
 
     if valid_evals:
+        # Binary accuracy (NEW)
+        correct_count = sum(1 for e in valid_evals if e.evaluation.is_correct)
+        accuracy = correct_count / len(valid_evals)
+
+        # Existing metrics
         avg_semantic = sum(e.evaluation.therapy_semantic_score for e in valid_evals) / len(valid_evals)
         avg_clinical = sum(e.evaluation.clinical_appropriateness_score for e in valid_evals) / len(valid_evals)
         avg_reasoning = sum(e.evaluation.reasoning_quality for e in valid_evals) / len(valid_evals)
@@ -500,6 +572,8 @@ def evaluate_results(
         semantic_match_count = sum(1 for e in valid_evals if e.evaluation.therapy_semantic_match)
         clinical_ok_count = sum(1 for e in valid_evals if e.evaluation.clinical_appropriateness)
     else:
+        correct_count = 0
+        accuracy = 0.0
         avg_semantic = avg_clinical = avg_reasoning = avg_overall = 0.0
         semantic_match_count = clinical_ok_count = 0
 
@@ -511,6 +585,7 @@ def evaluate_results(
             "max_tokens": cfg.get("max_tokens", 2048),
             "thinking_mode": is_thinking,
             "structured_output": cfg.get("supports_json_schema", False),
+            "reasoning_effort": cfg.get("reasoning", {}).get("effort"),
         },
         "timestamp": datetime.now().strftime("%Y-%m-%d_%H-%M-%S"),
         "source_results_dir": str(results_dir),
@@ -518,6 +593,12 @@ def evaluate_results(
         "evaluated_cases": len(valid_evals),
         "failed_evaluations": len(case_files) - len(valid_evals),
         "metrics": {
+            # Binary accuracy (PRIMARY METRIC)
+            "accuracy": round(accuracy, 4),
+            "correct_count": correct_count,
+            "incorrect_count": len(valid_evals) - correct_count,
+
+            # Detailed metrics
             "therapy_semantic_match_rate": semantic_match_count / len(valid_evals) if valid_evals else 0,
             "therapy_semantic_match_count": semantic_match_count,
             "avg_therapy_semantic_score": round(avg_semantic, 4),
@@ -542,6 +623,8 @@ def evaluate_results(
     print("=" * 60)
     print(f"Judge: {cfg['openrouter_id']}")
     print(f"Evaluated: {len(valid_evals)}/{len(case_files)} cases")
+    print()
+    print(f">>> ACCURACY: {accuracy*100:.1f}% ({correct_count}/{len(valid_evals)}) <<<")
     print()
     print(f"Therapy Semantic Match: {summary['metrics']['therapy_semantic_match_rate']*100:.1f}% ({semantic_match_count}/{len(valid_evals)})")
     print(f"  Avg Score: {avg_semantic:.3f}")
