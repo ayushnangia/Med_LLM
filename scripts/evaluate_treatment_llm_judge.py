@@ -672,7 +672,7 @@ Examples:
         """
     )
     parser.add_argument("--results-dir", help="Path to results directory")
-    parser.add_argument("--model", default="qwq-32b", help="Judge model key")
+    parser.add_argument("--model", default="gpt-5.2", help="Judge model key")
     parser.add_argument("--limit", type=int, help="Limit number of cases")
     parser.add_argument("--list-models", action="store_true", help="List available models")
 
