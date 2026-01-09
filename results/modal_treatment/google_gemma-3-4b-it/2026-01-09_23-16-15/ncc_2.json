@@ -1,0 +1,93 @@
+{
+  "case_id": "ncc_2",
+  "timestamp": "2026-01-09_23-16-15",
+  "provider": "modal",
+  "model": "google/gemma-3-4b-it",
+  "input_case": {
+    "case_id": "ncc_2",
+    "patient_name": "Ninja, Son",
+    "age": 82,
+    "ecog": 1,
+    "karnofsky": null,
+    "comorbidity": "hoch",
+    "life_expectancy": "unknown",
+    "anamnese": "Pat synkopiert, zur TAVI-Evaluation. TAVI indiziert. Im TAVI-CT malignomsuspekte Raumforderung linke Niere (ca. 2×3 cm). Erstdiagnose 06.11.2025, links.",
+    "diagnose_kurz": "Malignomsuspekte Raumforderung linke Niere",
+    "stadium": "unbekannt (prätherapeutisch)",
+    "tnm_clinical": {
+      "T": "unknown",
+      "T_sub": "unknown",
+      "N": "unknown",
+      "M": "unknown",
+      "stage_group": "unknown"
+    },
+    "tnm_pathological": {
+      "T": null,
+      "T_sub": null,
+      "N": null,
+      "M": null,
+      "stage_group": null
+    },
+    "histologie_subtyp": null,
+    "histologie_klarzellig": null,
+    "bildgebung": [
+      {
+        "modalitaet": "CT",
+        "region": "Ganzkörper (TAVI-CT/Staging)",
+        "datum": "2025-11-06",
+        "befund_kurz": "Malignomsuspekte Raumforderung linke Niere, ca. 2×3 cm.",
+        "quelle": "Erforderliche Bildgebung"
+      }
+    ],
+    "nebendiagnosen": [
+      "Aortenstenose hochgradig (TAVI indiziert)",
+      "KHK",
+      "CKD G3"
+    ],
+    "medikation": [
+      {
+        "wirkstoff_oder_klasse": "ASS",
+        "details": null
+      },
+      {
+        "wirkstoff_oder_klasse": "Statin",
+        "details": null
+      },
+      {
+        "wirkstoff_oder_klasse": "ACE-Hemmer",
+        "details": null
+      },
+      {
+        "wirkstoff_oder_klasse": "Diuretikum",
+        "details": null
+      }
+    ],
+    "ici_durchfuehrbar": null,
+    "prior_therapies": [],
+    "ground_truth_metastatic": false,
+    "ground_truth_imdc": null,
+    "ground_truth_therapy": "Weiteres Procedere (Intervention vs Surveillance) unter Berücksichtigung TAVI-Priorität."
+  },
+  "prompt_text": "Du bist ein erfahrener Onkologe, spezialisiert auf Nierenzellkarzinom (RCC).\nAnalysiere den folgenden klinischen Fall und erstelle eine strukturierte Therapieempfehlung.\n\n=== KLINISCHER FALL ===\nPatient: Ninja, Son, 82 Jahre\nECOG: 1, Karnofsky: ?%\nKomorbidität: hoch\nLebenserwartung: unknown\n\nDiagnose: Malignomsuspekte Raumforderung linke Niere\nStadium: unbekannt (prätherapeutisch)\ncTNM: Tunknown Nunknown Munknown\n\nHISTOLOGIE (WICHTIG für Therapieentscheidung):\nNicht dokumentiert\n\nAnamnese:\nPat synkopiert, zur TAVI-Evaluation. TAVI indiziert. Im TAVI-CT malignomsuspekte Raumforderung linke Niere (ca. 2×3 cm). Erstdiagnose 06.11.2025, links.\n\nNebendiagnosen: Aortenstenose hochgradig (TAVI indiziert), KHK, CKD G3\n\nAktuelle Medikation: ASS, Statin, ACE-Hemmer, Diuretikum\n\nBildgebung:\n  - CT Ganzkörper (TAVI-CT/Staging) (2025-11-06): Malignomsuspekte Raumforderung linke Niere, ca. 2×3 cm.\n\nIMDC-Risikofaktoren: Nicht dokumentiert\nICI-Kombination durchführbar: Nicht dokumentiert\nVorherige Systemtherapien: Keine\n\n=== THERAPIE-LEITLINIEN ===\n\n\nMETASTASIERTES KLARZELLIGES RCC - THERAPIE-ALGORITHMUS:\n\nIMDC-RISIKOSTRATIFIZIERUNG:\n- Günstig (0 Risikofaktoren)\n- Intermediär (1-2 Risikofaktoren)\n- Ungünstig (≥3 Risikofaktoren)\n\nRisikofaktoren: Karnofsky <80%, Zeit bis Systemtherapie <1 Jahr, Hämoglobin↓, Calcium↑, Neutrophile↑, Thrombozyten↑\n\nERSTLINIE (wenn ICI-Kombination möglich):\n- Günstig: NIVO+CABO (A), PEMBRO+AXI (A), PEMBRO+LEN (A), AVELU+AXI (B)\n- Intermediär: NIVO+CABO (A), NIVO+IPI (A), PEMBRO+AXI (A), PEMBRO+LEN (A)\n- Ungünstig: NIVO+CABO (A), NIVO+IPI (A), PEMBRO+AXI (A), PEMBRO+LEN (A)\n\nERSTLINIE (wenn ICI-Kombination NICHT möglich):\n- Günstig: Pazopanib (A), Sunitinib (A), Tivozanib (A), BEV+IFN (A)\n- Intermediär: Cabozantinib (B), Pazopanib (B), Sunitinib (B)\n- Ungünstig: Cabozantinib (B), Sunitinib (B), Temsirolimus (0)\n\nZWEITLINIE nach ICI-Kombination: Cabozantinib (A), Lenvatinib+Everolimus (A), Sunitinib (A)\nZWEITLINIE nach VEGF/R-Monotherapie: Cabozantinib (A), Nivolumab (A)\n\nLegende: A=starke Empfehlung, B=schwache Empfehlung, 0=Option\n\n\n\nNICHT-METASTASIERTES RCC - THERAPIE-ALGORITHMUS:\n\nTHERAPIEOPTIONEN nach Tumorgröße/Stadium:\n\n1. AKTIVE ÜBERWACHUNG (GoR 0):\n   - Kleine Nierentumoren + hohe Komorbidität ODER begrenzte Lebenserwartung\n   - Biopsie VOR Überwachung erforderlich\n\n2. ABLATION (Kryoablation/Radiofrequenzablation) (GoR 0):\n   - Kleine Nierentumoren + hohe Komorbidität ODER begrenzte Lebenserwartung\n   - Biopsie VOR Ablation erforderlich\n\n3. NIERENTEILRESEKTION (Nephron-sparing Surgery):\n   - cT1 (≤7cm): SOLL durchgeführt werden (GoR A)\n   - >T1: SOLLTE erwogen werden wenn technisch möglich (GoR B)\n   - Zugang: offen/laparoskopisch/robotisch (chirurgische Erfahrung)\n\n4. RADIKALE NEPHREKTOMIE:\n   - Wenn Teilresektion nicht möglich (GoR A)\n   - Minimalinvasiv wenn lokale Befunde es erlauben (GoR A)\n\nPERIOPERATIVE PRINZIPIEN:\n- KEINE Adrenalektomie bei unauffälliger Bildgebung (GoR A)\n- KEINE systematische Lymphadenektomie bei unauffälliger Bildgebung (GoR A)\n- LND bei vergrößerten Lymphknoten akzeptabel\n\nTNM-STADIEN:\n- T1a: ≤4cm, auf Niere begrenzt\n- T1b: >4-7cm, auf Niere begrenzt\n- T2a: >7-10cm, auf Niere begrenzt\n- T2b: >10cm, auf Niere begrenzt\n- T3: Ausdehnung in große Venen oder perirenales Gewebe\n- T4: Über Gerota-Faszie hinaus\n\nLegende: GoR A=starke Empfehlung, GoR B=schwache Empfehlung, GoR 0=Option\n\n\nWICHTIGER HINWEIS:\n- Die Leitlinien gelten primär für KLARZELLIGES RCC\n- Bei NICHT-KLARZELLIGEM RCC (papillär, chromophob, etc.) ist TKI-Monotherapie oft bevorzugt\n- IMDC-Risikostratifizierung ist nur für klarzelliges mRCC validiert\n\n=== AUFGABE ===\nAnalysiere den Fall schrittweise:\n\n1. METASTASIERUNG: Bestimme ob der Patient metastasiert oder nicht-metastasiert ist (basierend auf TNM M-Status, Anamnese, Bildgebung).\n\n2. HISTOLOGIE: Berücksichtige den histologischen Subtyp (klarzellig vs. nicht-klarzellig).\n\n3. RISIKOSTRATIFIZIERUNG: Falls metastasiert UND klarzellig, berechne das IMDC-Risiko.\n\n4. THERAPIEEMPFEHLUNG: Folge dem entsprechenden Therapie-Algorithmus und begründe deine Empfehlung.\n\nAntworte im folgenden JSON-Format:\n{\n    \"is_metastatic\": true/false,\n    \"metastatic_reasoning\": \"Begründung für Metastasierungsstatus...\",\n    \"imdc_risk\": \"guenstig/intermediaer/unguenstig/nicht_anwendbar\",\n    \"imdc_reasoning\": \"IMDC-Berechnung oder null wenn nicht-metastasiert/nicht-klarzellig...\",\n    \"treatment_reasoning\": \"Schrittweise Begründung nach Leitlinie...\",\n    \"recommended_therapy\": \"Konkrete Therapieempfehlung\",\n    \"therapy_category\": \"IO+TKI/TKI mono/Surgery/Surveillance/Ablation/etc.\",\n    \"recommendation_strength\": \"A/B/0\",\n    \"confidence\": 0.0-1.0\n}",
+  "prediction": {
+    "is_metastatic": true,
+    "metastatic_reasoning": "Der Patient wurde bei einer TAVI-Evaluation mit einem malignomsuspektem Raumforderung in der linken Niere entdeckt. Dies deutet auf eine Metastase hin, obwohl der TNM-Status noch nicht bekannt ist. Die initiale CT-Aufnahme zeigt eine lokale Raumforderung, die als metastasiert betrachtet werden sollte, bis ein Biopsie-Ergebnis die Diagnose bestätigt.",
+    "imdc_risk": "unguenstig",
+    "imdc_reasoning": "Der Patient ist 82 Jahre alt, hat eine hohe Komorbidität (Aortenstenose, KHK, CKD G3) und eine ECOG 1. Diese Faktoren deuten auf ein hohes IMDC-Risiko hin. Obwohl die Tumorgröße noch nicht bekannt ist, sind die anderen Risikofaktoren ausreichend, um eine ungünstige Risikostufe zu bestimmen.",
+    "treatment_reasoning": "Der Patient ist aufgrund seiner hohen Komorbidität und seines Alters ein Kandidat für eine konservative Therapie. Aufgrund der Anamnese und der Bildgebung wird der Patient als metastasiertes klarzelliges RCC betrachtet. Die Therapie sollte mit einer Kombination aus Immun-Checkpoint-Inhibitoren (ICI) und einem Tyrosinkinase-Inhibitor (TKI) beginnen. Da die ICI-Kombination nicht durchführbar ist, wird eine TKI-Monotherapie als erste Option in Betracht gezogen.",
+    "recommended_therapy": "Cabozantinib (A)",
+    "therapy_category": "TKI mono",
+    "recommendation_strength": "A",
+    "confidence": 0.9
+  },
+  "raw_response": "{\"is_metastatic\": true,\n\"metastatic_reasoning\": \"Der Patient wurde bei einer TAVI-Evaluation mit einem malignomsuspektem Raumforderung in der linken Niere entdeckt. Dies deutet auf eine Metastase hin, obwohl der TNM-Status noch nicht bekannt ist. Die initiale CT-Aufnahme zeigt eine lokale Raumforderung, die als metastasiert betrachtet werden sollte, bis ein Biopsie-Ergebnis die Diagnose bestätigt.\",\n\"imdc_risk\": \"unguenstig\",\n\"imdc_reasoning\": \"Der Patient ist 82 Jahre alt, hat eine hohe Komorbidität (Aortenstenose, KHK, CKD G3) und eine ECOG 1. Diese Faktoren deuten auf ein hohes IMDC-Risiko hin. Obwohl die Tumorgröße noch nicht bekannt ist, sind die anderen Risikofaktoren ausreichend, um eine ungünstige Risikostufe zu bestimmen.\",\n\"treatment_reasoning\": \"Der Patient ist aufgrund seiner hohen Komorbidität und seines Alters ein Kandidat für eine konservative Therapie. Aufgrund der Anamnese und der Bildgebung wird der Patient als metastasiertes klarzelliges RCC betrachtet. Die Therapie sollte mit einer Kombination aus Immun-Checkpoint-Inhibitoren (ICI) und einem Tyrosinkinase-Inhibitor (TKI) beginnen. Da die ICI-Kombination nicht durchführbar ist, wird eine TKI-Monotherapie als erste Option in Betracht gezogen.\",\n\"recommended_therapy\": \"Cabozantinib (A)\",\n\"therapy_category\": \"TKI mono\",\n\"recommendation_strength\": \"A\",\n\"confidence\": 0.9}",
+  "ground_truth_metastatic": false,
+  "ground_truth_therapy": "Weiteres Procedere (Intervention vs Surveillance) unter Berücksichtigung TAVI-Priorität.",
+  "metastatic_correct": false,
+  "therapy_exact_match": false,
+  "therapy_clinically_acceptable": false,
+  "inference_time_seconds": 0.9613200664520264,
+  "tokens_used": 354,
+  "success": true,
+  "error_message": null
+}

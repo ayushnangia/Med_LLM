@@ -1,0 +1,92 @@
+{
+  "case_id": "ncc_12",
+  "timestamp": "2026-01-09_23-16-39",
+  "provider": "modal",
+  "model": "google/medgemma-27b-text-it",
+  "input_case": {
+    "case_id": "ncc_12",
+    "patient_name": "Beispiel, Julia",
+    "age": 67,
+    "ecog": 1,
+    "karnofsky": null,
+    "comorbidity": "unknown",
+    "life_expectancy": "unknown",
+    "anamnese": "Zufallsbefund: Raumforderung linke Niere ca. 5,2 × 4,5 cm im Rahmen Abklärung von Rückenschmerzen. COPD GOLD II, Raucher 30 PY.",
+    "diagnose_kurz": "Raumforderung linke Niere ca. 5,2 × 4,5 cm, V. a. RCC (prätherapeutisch)",
+    "stadium": "Staging inkomplett (CT Thorax ausstehend)",
+    "tnm_clinical": {
+      "T": "T1",
+      "T_sub": "T1b",
+      "N": "unknown",
+      "M": "unknown",
+      "stage_group": "unknown"
+    },
+    "tnm_pathological": {
+      "T": null,
+      "T_sub": null,
+      "N": null,
+      "M": null,
+      "stage_group": null
+    },
+    "histologie_subtyp": null,
+    "histologie_klarzellig": null,
+    "bildgebung": [
+      {
+        "modalitaet": "CT",
+        "region": "Abdomen",
+        "datum": "2025-11-21",
+        "befund_kurz": "Raumforderung linke Niere ca. 5,2 × 4,5 cm, V. a. Nierenzellkarzinom. Ansonsten keine pathologischen Befunde.",
+        "quelle": "Erforderlicher Befund"
+      }
+    ],
+    "nebendiagnosen": [
+      "COPD GOLD II",
+      "Raucher (30 PY)"
+    ],
+    "medikation": [
+      {
+        "wirkstoff_oder_klasse": "Amlodipin",
+        "details": null
+      },
+      {
+        "wirkstoff_oder_klasse": "Candesartan",
+        "details": null
+      },
+      {
+        "wirkstoff_oder_klasse": "Digitoxin",
+        "details": null
+      },
+      {
+        "wirkstoff_oder_klasse": "Atrovent (Ipratropium)",
+        "details": null
+      }
+    ],
+    "ici_durchfuehrbar": null,
+    "prior_therapies": [],
+    "ground_truth_metastatic": null,
+    "ground_truth_imdc": null,
+    "ground_truth_therapy": "Komplettierung des Stagings mittels CT Thorax; bei fehlender Metastasierung: Nierenteilresektion vs Nephrektomie; pulmonale Prä-OP-Evaluierung."
+  },
+  "prompt_text": "Du bist ein erfahrener Onkologe, spezialisiert auf Nierenzellkarzinom (RCC).\nAnalysiere den folgenden klinischen Fall und erstelle eine strukturierte Therapieempfehlung.\n\n=== KLINISCHER FALL ===\nPatient: Beispiel, Julia, 67 Jahre\nECOG: 1, Karnofsky: ?%\nKomorbidität: unknown\nLebenserwartung: unknown\n\nDiagnose: Raumforderung linke Niere ca. 5,2 × 4,5 cm, V. a. RCC (prätherapeutisch)\nStadium: Staging inkomplett (CT Thorax ausstehend)\ncTNM: TT1 Nunknown Munknown\n\nHISTOLOGIE (WICHTIG für Therapieentscheidung):\nNicht dokumentiert\n\nAnamnese:\nZufallsbefund: Raumforderung linke Niere ca. 5,2 × 4,5 cm im Rahmen Abklärung von Rückenschmerzen. COPD GOLD II, Raucher 30 PY.\n\nNebendiagnosen: COPD GOLD II, Raucher (30 PY)\n\nAktuelle Medikation: Amlodipin, Candesartan, Digitoxin, Atrovent (Ipratropium)\n\nBildgebung:\n  - CT Abdomen (2025-11-21): Raumforderung linke Niere ca. 5,2 × 4,5 cm, V. a. Nierenzellkarzinom. Ansonsten keine pathologischen Befunde.\n\nIMDC-Risikofaktoren: Nicht dokumentiert\nICI-Kombination durchführbar: Nicht dokumentiert\nVorherige Systemtherapien: Keine\n\n=== THERAPIE-LEITLINIEN ===\n\n\nMETASTASIERTES KLARZELLIGES RCC - THERAPIE-ALGORITHMUS:\n\nIMDC-RISIKOSTRATIFIZIERUNG:\n- Günstig (0 Risikofaktoren)\n- Intermediär (1-2 Risikofaktoren)\n- Ungünstig (≥3 Risikofaktoren)\n\nRisikofaktoren: Karnofsky <80%, Zeit bis Systemtherapie <1 Jahr, Hämoglobin↓, Calcium↑, Neutrophile↑, Thrombozyten↑\n\nERSTLINIE (wenn ICI-Kombination möglich):\n- Günstig: NIVO+CABO (A), PEMBRO+AXI (A), PEMBRO+LEN (A), AVELU+AXI (B)\n- Intermediär: NIVO+CABO (A), NIVO+IPI (A), PEMBRO+AXI (A), PEMBRO+LEN (A)\n- Ungünstig: NIVO+CABO (A), NIVO+IPI (A), PEMBRO+AXI (A), PEMBRO+LEN (A)\n\nERSTLINIE (wenn ICI-Kombination NICHT möglich):\n- Günstig: Pazopanib (A), Sunitinib (A), Tivozanib (A), BEV+IFN (A)\n- Intermediär: Cabozantinib (B), Pazopanib (B), Sunitinib (B)\n- Ungünstig: Cabozantinib (B), Sunitinib (B), Temsirolimus (0)\n\nZWEITLINIE nach ICI-Kombination: Cabozantinib (A), Lenvatinib+Everolimus (A), Sunitinib (A)\nZWEITLINIE nach VEGF/R-Monotherapie: Cabozantinib (A), Nivolumab (A)\n\nLegende: A=starke Empfehlung, B=schwache Empfehlung, 0=Option\n\n\n\nNICHT-METASTASIERTES RCC - THERAPIE-ALGORITHMUS:\n\nTHERAPIEOPTIONEN nach Tumorgröße/Stadium:\n\n1. AKTIVE ÜBERWACHUNG (GoR 0):\n   - Kleine Nierentumoren + hohe Komorbidität ODER begrenzte Lebenserwartung\n   - Biopsie VOR Überwachung erforderlich\n\n2. ABLATION (Kryoablation/Radiofrequenzablation) (GoR 0):\n   - Kleine Nierentumoren + hohe Komorbidität ODER begrenzte Lebenserwartung\n   - Biopsie VOR Ablation erforderlich\n\n3. NIERENTEILRESEKTION (Nephron-sparing Surgery):\n   - cT1 (≤7cm): SOLL durchgeführt werden (GoR A)\n   - >T1: SOLLTE erwogen werden wenn technisch möglich (GoR B)\n   - Zugang: offen/laparoskopisch/robotisch (chirurgische Erfahrung)\n\n4. RADIKALE NEPHREKTOMIE:\n   - Wenn Teilresektion nicht möglich (GoR A)\n   - Minimalinvasiv wenn lokale Befunde es erlauben (GoR A)\n\nPERIOPERATIVE PRINZIPIEN:\n- KEINE Adrenalektomie bei unauffälliger Bildgebung (GoR A)\n- KEINE systematische Lymphadenektomie bei unauffälliger Bildgebung (GoR A)\n- LND bei vergrößerten Lymphknoten akzeptabel\n\nTNM-STADIEN:\n- T1a: ≤4cm, auf Niere begrenzt\n- T1b: >4-7cm, auf Niere begrenzt\n- T2a: >7-10cm, auf Niere begrenzt\n- T2b: >10cm, auf Niere begrenzt\n- T3: Ausdehnung in große Venen oder perirenales Gewebe\n- T4: Über Gerota-Faszie hinaus\n\nLegende: GoR A=starke Empfehlung, GoR B=schwache Empfehlung, GoR 0=Option\n\n\nWICHTIGER HINWEIS:\n- Die Leitlinien gelten primär für KLARZELLIGES RCC\n- Bei NICHT-KLARZELLIGEM RCC (papillär, chromophob, etc.) ist TKI-Monotherapie oft bevorzugt\n- IMDC-Risikostratifizierung ist nur für klarzelliges mRCC validiert\n\n=== AUFGABE ===\nAnalysiere den Fall schrittweise:\n\n1. METASTASIERUNG: Bestimme ob der Patient metastasiert oder nicht-metastasiert ist (basierend auf TNM M-Status, Anamnese, Bildgebung).\n\n2. HISTOLOGIE: Berücksichtige den histologischen Subtyp (klarzellig vs. nicht-klarzellig).\n\n3. RISIKOSTRATIFIZIERUNG: Falls metastasiert UND klarzellig, berechne das IMDC-Risiko.\n\n4. THERAPIEEMPFEHLUNG: Folge dem entsprechenden Therapie-Algorithmus und begründe deine Empfehlung.\n\nAntworte im folgenden JSON-Format:\n{\n    \"is_metastatic\": true/false,\n    \"metastatic_reasoning\": \"Begründung für Metastasierungsstatus...\",\n    \"imdc_risk\": \"guenstig/intermediaer/unguenstig/nicht_anwendbar\",\n    \"imdc_reasoning\": \"IMDC-Berechnung oder null wenn nicht-metastasiert/nicht-klarzellig...\",\n    \"treatment_reasoning\": \"Schrittweise Begründung nach Leitlinie...\",\n    \"recommended_therapy\": \"Konkrete Therapieempfehlung\",\n    \"therapy_category\": \"IO+TKI/TKI mono/Surgery/Surveillance/Ablation/etc.\",\n    \"recommendation_strength\": \"A/B/0\",\n    \"confidence\": 0.0-1.0\n}",
+  "prediction": {
+    "is_metastatic": false,
+    "metastatic_reasoning": "Der Patient hat einen einzelnen Tumor in der linken Niere mit einer Größe von 5,2 x 4,5 cm (cT1b). Es gibt keine Hinweise auf Fernmetastasen in der Anamnese oder der verfügbaren Bildgebung (CT Abdomen ohne pathologische Befunde). Das CT Thorax steht noch aus, aber basierend auf den aktuellen Daten ist der Patient nicht-metastasiert (M0).",
+    "imdc_risk": "nicht_anwendbar",
+    "imdc_reasoning": "Die IMDC-Risikostratifizierung ist nur für metastasiertes, klarzelliges Nierenzellkarzinom validiert. Da der Patient aktuell nicht-metastasiert ist, ist die IMDC-Risikostratifizierung nicht anwendbar.",
+    "treatment_reasoning": "Der Patient hat einen nicht-metastasierten Nierentumor (cT1b). Gemäß den Leitlinien für nicht-metastasiertes RCC ist die Therapie der Wahl für Tumoren ≤ 7 cm die Nierenteilresektion (Nephron-sparing Surgery) mit einer starken Empfehlung (GoR A). Da der Tumor 5,2 x 4,5 cm groß ist (T1b), fällt er in diese Kategorie. Eine radikale Nephrektomie wäre nur indiziert, wenn eine Teilresektion technisch nicht möglich ist. Aktive Überwachung oder Ablation kommen in Frage, wenn der Patient eine hohe Komorbidität oder eine begrenzte Lebenserwartung hat, was hier nicht explizit dokumentiert ist, aber die COPD GOLD II und das Alter von 67 Jahren berücksichtigt werden müssen. Dennoch ist die chirurgische Resektion die Standardtherapie für einen gesunden, operablen Patienten mit einem T1b-Tumor. Die Histologie ist noch nicht dokumentiert. Sollte es sich um einen nicht-klarzelligen Tumor handeln, würde dies die Therapieentscheidung nicht grundlegend ändern, da die chirurgische Resektion auch hier die primäre Option ist. Die Leitlinien für die Systemtherapie (TKI-Monotherapie bei nicht-klarzelligen Tumoren) sind für nicht-metastasiertes Stadium nicht relevant.",
+    "recommended_therapy": "Nierenteilresektion (Nephron-sparing Surgery)",
+    "therapy_category": "Surgery",
+    "recommendation_strength": "A",
+    "confidence": 0.9
+  },
+  "raw_response": "{\"is_metastatic\": false,\n    \"metastatic_reasoning\": \"Der Patient hat einen einzelnen Tumor in der linken Niere mit einer Größe von 5,2 x 4,5 cm (cT1b). Es gibt keine Hinweise auf Fernmetastasen in der Anamnese oder der verfügbaren Bildgebung (CT Abdomen ohne pathologische Befunde). Das CT Thorax steht noch aus, aber basierend auf den aktuellen Daten ist der Patient nicht-metastasiert (M0).\",\n    \"imdc_risk\": \"nicht_anwendbar\",\n    \"imdc_reasoning\": \"Die IMDC-Risikostratifizierung ist nur für metastasiertes, klarzelliges Nierenzellkarzinom validiert. Da der Patient aktuell nicht-metastasiert ist, ist die IMDC-Risikostratifizierung nicht anwendbar.\",\n    \"treatment_reasoning\": \"Der Patient hat einen nicht-metastasierten Nierentumor (cT1b). Gemäß den Leitlinien für nicht-metastasiertes RCC ist die Therapie der Wahl für Tumoren ≤ 7 cm die Nierenteilresektion (Nephron-sparing Surgery) mit einer starken Empfehlung (GoR A). Da der Tumor 5,2 x 4,5 cm groß ist (T1b), fällt er in diese Kategorie. Eine radikale Nephrektomie wäre nur indiziert, wenn eine Teilresektion technisch nicht möglich ist. Aktive Überwachung oder Ablation kommen in Frage, wenn der Patient eine hohe Komorbidität oder eine begrenzte Lebenserwartung hat, was hier nicht explizit dokumentiert ist, aber die COPD GOLD II und das Alter von 67 Jahren berücksichtigt werden müssen. Dennoch ist die chirurgische Resektion die Standardtherapie für einen gesunden, operablen Patienten mit einem T1b-Tumor. Die Histologie ist noch nicht dokumentiert. Sollte es sich um einen nicht-klarzelligen Tumor handeln, würde dies die Therapieentscheidung nicht grundlegend ändern, da die chirurgische Resektion auch hier die primäre Option ist. Die Leitlinien für die Systemtherapie (TKI-Monotherapie bei nicht-klarzelligen Tumoren) sind für nicht-metastasiertes Stadium nicht relevant.\",\n    \"recommended_therapy\": \"Nierenteilresektion (Nephron-sparing Surgery)\",\n    \"therapy_category\": \"Surgery\",\n    \"recommendation_strength\": \"A\",\n    \"confidence\": 0.9}",
+  "ground_truth_metastatic": null,
+  "ground_truth_therapy": "Komplettierung des Stagings mittels CT Thorax; bei fehlender Metastasierung: Nierenteilresektion vs Nephrektomie; pulmonale Prä-OP-Evaluierung.",
+  "metastatic_correct": null,
+  "therapy_exact_match": true,
+  "therapy_clinically_acceptable": null,
+  "inference_time_seconds": 5.718720143181937,
+  "tokens_used": 533,
+  "success": true,
+  "error_message": null
+}

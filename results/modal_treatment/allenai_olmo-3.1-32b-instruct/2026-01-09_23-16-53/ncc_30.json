@@ -1,0 +1,65 @@
+{
+  "case_id": "ncc_30",
+  "timestamp": "2026-01-09_23-16-53",
+  "provider": "modal",
+  "model": "allenai/Olmo-3.1-32B-Instruct",
+  "input_case": {
+    "case_id": "ncc_30",
+    "patient_name": "Muster, Ada",
+    "age": 60,
+    "ecog": 2,
+    "karnofsky": null,
+    "comorbidity": null,
+    "life_expectancy": null,
+    "anamnese": "Erstdiagnose metastasiertes RCC am 10.10.2022. Systemtherapien: 2022 Ipilimumab + Nivolumab, 2024 Cabozantinib, aktuell Lenvatinib + Everolimus. Vorerkrankung: arterielle Hypertonie (Ramipril). CT Staging 10.12.2025 mit Progress ossär und lymphonodal.",
+    "diagnose_kurz": "Metastasiertes Nierenzellkarzinom (mRCC), Erstdiagnose metastasiert 10.10.2022; vorbehandelt (Ipi/Nivo 2022, Cabozantinib 2024), aktuell Lenvatinib + Everolimus; CT 10.12.2025: Progress ossär + lymphonodal.",
+    "stadium": "mRCC; Progress unter aktueller Therapie; geplante 4. Linie",
+    "tnm_clinical": null,
+    "tnm_pathological": null,
+    "histologie_subtyp": null,
+    "histologie_klarzellig": null,
+    "bildgebung": [
+      {
+        "modalitaet": "CT",
+        "region": "Thorax/Abdomen/Becken",
+        "datum": "2025-12-10",
+        "befund_kurz": "Progress der bekannten ossären und lymphonodalen Metastasen.",
+        "quelle": "CT Staging 10.12.2025",
+        "details": "Größenzunahme retroperitonealer Lymphknoten sowie Zunahme/Neueintritt ossärer Läsionen (quantitative Maße nicht angegeben)."
+      }
+    ],
+    "nebendiagnosen": [
+      "arterielle_hypertonie"
+    ],
+    "medikation": [
+      "Ramipril"
+    ],
+    "ici_durchfuehrbar": null,
+    "prior_therapies": [],
+    "ground_truth_metastatic": null,
+    "ground_truth_imdc": null,
+    "ground_truth_therapy": "Wechsel der Systemtherapie (z. B. Pazopanib oder Tivozanib oder Sunitinib) je nach Vorbehandlung/Verträglichkeit."
+  },
+  "prompt_text": "Du bist ein erfahrener Onkologe, spezialisiert auf Nierenzellkarzinom (RCC).\nAnalysiere den folgenden klinischen Fall und erstelle eine strukturierte Therapieempfehlung.\n\n=== KLINISCHER FALL ===\nPatient: Muster, Ada, 60 Jahre\nECOG: 2, Karnofsky: ?%\nKomorbidität: None\nLebenserwartung: None\n\nDiagnose: Metastasiertes Nierenzellkarzinom (mRCC), Erstdiagnose metastasiert 10.10.2022; vorbehandelt (Ipi/Nivo 2022, Cabozantinib 2024), aktuell Lenvatinib + Everolimus; CT 10.12.2025: Progress ossär + lymphonodal.\nStadium: mRCC; Progress unter aktueller Therapie; geplante 4. Linie\nTNM: nicht dokumentiert\n\nHISTOLOGIE (WICHTIG für Therapieentscheidung):\nNicht dokumentiert\n\nAnamnese:\nErstdiagnose metastasiertes RCC am 10.10.2022. Systemtherapien: 2022 Ipilimumab + Nivolumab, 2024 Cabozantinib, aktuell Lenvatinib + Everolimus. Vorerkrankung: arterielle Hypertonie (Ramipril). CT Staging 10.12.2025 mit Progress ossär und lymphonodal.\n\nNebendiagnosen: arterielle_hypertonie\n\nAktuelle Medikation: Ramipril\n\nBildgebung:\n  - CT Thorax/Abdomen/Becken (2025-12-10): Progress der bekannten ossären und lymphonodalen Metastasen.\n\nIMDC-Risikofaktoren: Nicht dokumentiert\nICI-Kombination durchführbar: Nicht dokumentiert\nVorherige Systemtherapien: Keine\n\n=== THERAPIE-LEITLINIEN ===\n\n\nMETASTASIERTES KLARZELLIGES RCC - THERAPIE-ALGORITHMUS:\n\nIMDC-RISIKOSTRATIFIZIERUNG:\n- Günstig (0 Risikofaktoren)\n- Intermediär (1-2 Risikofaktoren)\n- Ungünstig (≥3 Risikofaktoren)\n\nRisikofaktoren: Karnofsky <80%, Zeit bis Systemtherapie <1 Jahr, Hämoglobin↓, Calcium↑, Neutrophile↑, Thrombozyten↑\n\nERSTLINIE (wenn ICI-Kombination möglich):\n- Günstig: NIVO+CABO (A), PEMBRO+AXI (A), PEMBRO+LEN (A), AVELU+AXI (B)\n- Intermediär: NIVO+CABO (A), NIVO+IPI (A), PEMBRO+AXI (A), PEMBRO+LEN (A)\n- Ungünstig: NIVO+CABO (A), NIVO+IPI (A), PEMBRO+AXI (A), PEMBRO+LEN (A)\n\nERSTLINIE (wenn ICI-Kombination NICHT möglich):\n- Günstig: Pazopanib (A), Sunitinib (A), Tivozanib (A), BEV+IFN (A)\n- Intermediär: Cabozantinib (B), Pazopanib (B), Sunitinib (B)\n- Ungünstig: Cabozantinib (B), Sunitinib (B), Temsirolimus (0)\n\nZWEITLINIE nach ICI-Kombination: Cabozantinib (A), Lenvatinib+Everolimus (A), Sunitinib (A)\nZWEITLINIE nach VEGF/R-Monotherapie: Cabozantinib (A), Nivolumab (A)\n\nLegende: A=starke Empfehlung, B=schwache Empfehlung, 0=Option\n\n\n\nNICHT-METASTASIERTES RCC - THERAPIE-ALGORITHMUS:\n\nTHERAPIEOPTIONEN nach Tumorgröße/Stadium:\n\n1. AKTIVE ÜBERWACHUNG (GoR 0):\n   - Kleine Nierentumoren + hohe Komorbidität ODER begrenzte Lebenserwartung\n   - Biopsie VOR Überwachung erforderlich\n\n2. ABLATION (Kryoablation/Radiofrequenzablation) (GoR 0):\n   - Kleine Nierentumoren + hohe Komorbidität ODER begrenzte Lebenserwartung\n   - Biopsie VOR Ablation erforderlich\n\n3. NIERENTEILRESEKTION (Nephron-sparing Surgery):\n   - cT1 (≤7cm): SOLL durchgeführt werden (GoR A)\n   - >T1: SOLLTE erwogen werden wenn technisch möglich (GoR B)\n   - Zugang: offen/laparoskopisch/robotisch (chirurgische Erfahrung)\n\n4. RADIKALE NEPHREKTOMIE:\n   - Wenn Teilresektion nicht möglich (GoR A)\n   - Minimalinvasiv wenn lokale Befunde es erlauben (GoR A)\n\nPERIOPERATIVE PRINZIPIEN:\n- KEINE Adrenalektomie bei unauffälliger Bildgebung (GoR A)\n- KEINE systematische Lymphadenektomie bei unauffälliger Bildgebung (GoR A)\n- LND bei vergrößerten Lymphknoten akzeptabel\n\nTNM-STADIEN:\n- T1a: ≤4cm, auf Niere begrenzt\n- T1b: >4-7cm, auf Niere begrenzt\n- T2a: >7-10cm, auf Niere begrenzt\n- T2b: >10cm, auf Niere begrenzt\n- T3: Ausdehnung in große Venen oder perirenales Gewebe\n- T4: Über Gerota-Faszie hinaus\n\nLegende: GoR A=starke Empfehlung, GoR B=schwache Empfehlung, GoR 0=Option\n\n\nWICHTIGER HINWEIS:\n- Die Leitlinien gelten primär für KLARZELLIGES RCC\n- Bei NICHT-KLARZELLIGEM RCC (papillär, chromophob, etc.) ist TKI-Monotherapie oft bevorzugt\n- IMDC-Risikostratifizierung ist nur für klarzelliges mRCC validiert\n\n=== AUFGABE ===\nAnalysiere den Fall schrittweise:\n\n1. METASTASIERUNG: Bestimme ob der Patient metastasiert oder nicht-metastasiert ist (basierend auf TNM M-Status, Anamnese, Bildgebung).\n\n2. HISTOLOGIE: Berücksichtige den histologischen Subtyp (klarzellig vs. nicht-klarzellig).\n\n3. RISIKOSTRATIFIZIERUNG: Falls metastasiert UND klarzellig, berechne das IMDC-Risiko.\n\n4. THERAPIEEMPFEHLUNG: Folge dem entsprechenden Therapie-Algorithmus und begründe deine Empfehlung.\n\nAntworte im folgenden JSON-Format:\n{\n    \"is_metastatic\": true/false,\n    \"metastatic_reasoning\": \"Begründung für Metastasierungsstatus...\",\n    \"imdc_risk\": \"guenstig/intermediaer/unguenstig/nicht_anwendbar\",\n    \"imdc_reasoning\": \"IMDC-Berechnung oder null wenn nicht-metastasiert/nicht-klarzellig...\",\n    \"treatment_reasoning\": \"Schrittweise Begründung nach Leitlinie...\",\n    \"recommended_therapy\": \"Konkrete Therapieempfehlung\",\n    \"therapy_category\": \"IO+TKI/TKI mono/Surgery/Surveillance/Ablation/etc.\",\n    \"recommendation_strength\": \"A/B/0\",\n    \"confidence\": 0.0-1.0\n}",
+  "prediction": {
+    "is_metastatic": true,
+    "metastatic_reasoning": "Der Patient hat bereits bei Erstdiagnose metastasiertes Nierenzellkarzinom und zeigt fortschreitende metastatische Läsionen (ossäre und lymphonodale Metastasen) im CT aus dem Jahr 2025. Es gibt keine Hinweise auf eine nicht-metastatische Situation.",
+    "imdc_risk": "nicht_anwendbar",
+    "imdc_reasoning": "Das IMDC-Risikoschema ist nur für klarzelliges, metastasiertes RCC gültig. Hier ist die Histologie nicht dokumentiert. Ohne histologische Bestätigung der Klartumorseite kann das IMDC nicht zuverlässig angewendet werden.",
+    "treatment_reasoning": "Da der Patient bereits mehrere Linien-Therapien erhalten hat und nun in der 4. Linie steht, muss eine gezielte Therapie auf Grundlage verfügbare histologische Daten und vorangegangener Resistenzen gewählt werden. Da die Histologie fehlt, ist eine präzise stratifizierte Therapie schwierig. Allerdings zeigt das Tumorbild Progress unter VEGF/PI3K-Inhibitor-Kombination (Lenvatinib+Everolimus), was eine hohe Wahrscheinlichkeit von VEGF-R und mTOR-Resistenz nahelegt. Für 4. Linie nach vorangegangenen ICI+VEGF-Inhibitor und VEGF-Monotherapie sind noch folgende Optionen denkbar: \n\n- Wieder ein ICI (z.B. Pembrolizumab) in Kombination mit einem weiteren TKI (z.B. Cabozantinib) wenn PD-L1-Expression vorhanden ist oder eine Immuntherapie noch nicht erfolgt ist.\n- Einander alternierende TKI (z.B. Pazopanibib, Axitinib, Cabozantinib) oder Multitarget-TKI (z.B. Cabozantinib) als Monotherapie.\n- In seltenen Fällen: Consideration einer Immuntherapie mit Cytotoxikum (z.B. Brentuximab Vedotin) oder Clinical Trial.\n\nAufgrund fehlender Histologie und vorangegangener Therapien ist eine starke Empfehlung (A) für eine präzise Therapie schwierig, daher wird hier eine schwache Empfehlung (B) gegeben, die auf klinischer Praxis und Resistenzen abgestimmt ist.",
+    "recommended_therapy": "Cabozantinib mono (4. Linie, nach vorangegangenen ICI+VEGF-Inhibitor und VEGF/PI3K-Kombination)",
+    "therapy_category": "TKI mono",
+    "recommendation_strength": "B",
+    "confidence": 0.6
+  },
+  "raw_response": "{\n\n    \"is_metastatic\": true,\n    \"metastatic_reasoning\": \"Der Patient hat bereits bei Erstdiagnose metastasiertes Nierenzellkarzinom und zeigt fortschreitende metastatische Läsionen (ossäre und lymphonodale Metastasen) im CT aus dem Jahr 2025. Es gibt keine Hinweise auf eine nicht-metastatische Situation.\",\n    \"imdc_risk\": \"nicht_anwendbar\",\n    \"imdc_reasoning\": \"Das IMDC-Risikoschema ist nur für klarzelliges, metastasiertes RCC gültig. Hier ist die Histologie nicht dokumentiert. Ohne histologische Bestätigung der Klartumorseite kann das IMDC nicht zuverlässig angewendet werden.\",\n    \"treatment_reasoning\": \"Da der Patient bereits mehrere Linien-Therapien erhalten hat und nun in der 4. Linie steht, muss eine gezielte Therapie auf Grundlage verfügbare histologische Daten und vorangegangener Resistenzen gewählt werden. Da die Histologie fehlt, ist eine präzise stratifizierte Therapie schwierig. Allerdings zeigt das Tumorbild Progress unter VEGF/PI3K-Inhibitor-Kombination (Lenvatinib+Everolimus), was eine hohe Wahrscheinlichkeit von VEGF-R und mTOR-Resistenz nahelegt. Für 4. Linie nach vorangegangenen ICI+VEGF-Inhibitor und VEGF-Monotherapie sind noch folgende Optionen denkbar: \\n\\n- Wieder ein ICI (z.B. Pembrolizumab) in Kombination mit einem weiteren TKI (z.B. Cabozantinib) wenn PD-L1-Expression vorhanden ist oder eine Immuntherapie noch nicht erfolgt ist.\\n- Einander alternierende TKI (z.B. Pazopanibib, Axitinib, Cabozantinib) oder Multitarget-TKI (z.B. Cabozantinib) als Monotherapie.\\n- In seltenen Fällen: Consideration einer Immuntherapie mit Cytotoxikum (z.B. Brentuximab Vedotin) oder Clinical Trial.\\n\\nAufgrund fehlender Histologie und vorangegangener Therapien ist eine starke Empfehlung (A) für eine präzise Therapie schwierig, daher wird hier eine schwache Empfehlung (B) gegeben, die auf klinischer Praxis und Resistenzen abgestimmt ist.\",\n    \"recommended_therapy\": \"Cabozantinib mono (4. Linie, nach vorangegangenen ICI+VEGF-Inhibitor und VEGF/PI3K-Kombination)\",\n    \"therapy_category\": \"TKI mono\",\n    \"recommendation_strength\": \"B\",\n    \"confidence\": 0.6\n}",
+  "ground_truth_metastatic": null,
+  "ground_truth_therapy": "Wechsel der Systemtherapie (z. B. Pazopanib oder Tivozanib oder Sunitinib) je nach Vorbehandlung/Verträglichkeit.",
+  "metastatic_correct": null,
+  "therapy_exact_match": false,
+  "therapy_clinically_acceptable": null,
+  "inference_time_seconds": 1.9566810607910157,
+  "tokens_used": 659,
+  "success": true,
+  "error_message": null
+}

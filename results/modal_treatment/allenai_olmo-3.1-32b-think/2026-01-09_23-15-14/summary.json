@@ -1,0 +1,14 @@
+{
+  "model": "allenai/Olmo-3.1-32B-Think",
+  "provider": "modal",
+  "timestamp": "2026-01-09_23-15-14",
+  "total_cases": 35,
+  "metastatic_accuracy": 1.0,
+  "metastatic_correct": 11,
+  "therapy_exact_match_rate": 0.22857142857142856,
+  "therapy_exact_matches": 8,
+  "therapy_acceptable_rate": 0.22857142857142856,
+  "therapy_acceptable": 8,
+  "total_time": 1210.1608743667603,
+  "errors": 0
+}

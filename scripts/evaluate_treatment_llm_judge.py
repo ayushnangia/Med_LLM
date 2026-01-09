@@ -16,10 +16,12 @@ import argparse
 import re
 from pathlib import Path
 from datetime import datetime
-from typing import Optional, Dict, Any
+from typing import Optional, Dict, Any, List, Tuple
 from pydantic import BaseModel, Field, field_validator
 import time
 from dotenv import load_dotenv
+from concurrent.futures import ThreadPoolExecutor, as_completed
+import threading
 
 # Load .env file from project root
 load_dotenv(Path(__file__).parent.parent / ".env")
@@ -473,7 +475,8 @@ def parse_judge_response(text: str, is_thinking: bool = False) -> Optional[Judge
 def evaluate_results(
     results_dir: str,
     model_key: str = "qwq-32b",
-    limit: Optional[int] = None
+    limit: Optional[int] = None,
+    workers: int = 20
 ) -> dict:
     """
     Evaluate all results in a directory using LLM judge.
@@ -482,6 +485,7 @@ def evaluate_results(
         results_dir: Path to results directory containing ncc_*.json files
         model_key: Judge model key from JUDGE_MODELS
         limit: Optional limit on number of cases to evaluate
+        workers: Number of parallel workers for API calls (default: 5)
 
     Returns:
         Summary dict with all evaluations
@@ -516,13 +520,15 @@ def evaluate_results(
     print("-" * 60)
 
     evaluations: list[EvaluationResult] = []
+    print_lock = threading.Lock()
+    completed_count = [0]  # Use list to allow modification in closure
 
-    for i, case_file in enumerate(case_files, 1):
+    def evaluate_single_case(case_file: Path) -> EvaluationResult:
+        """Evaluate a single case - designed for parallel execution."""
         with open(case_file, 'r', encoding='utf-8') as f:
             case_result = json.load(f)
 
         case_id = case_result.get("case_id", case_file.stem)
-        print(f"[{i}/{len(case_files)}] {case_id}...", end=" ", flush=True)
 
         # Build prompt and call judge
         prompt = build_judge_prompt(case_result)
@@ -539,21 +545,44 @@ def evaluate_results(
             if evaluation:
                 eval_result.evaluation = evaluation
                 eval_result.raw_response = response
-                # Show binary verdict prominently
                 status = "✓ CORRECT" if evaluation.is_correct else "✗ INCORRECT"
-                print(f"{status} | Score: {evaluation.overall_score:.2f} (Sem: {evaluation.therapy_semantic_score:.2f}, Clin: {evaluation.clinical_appropriateness_score:.2f})")
+                result_msg = f"{status} | Score: {evaluation.overall_score:.2f} (Sem: {evaluation.therapy_semantic_score:.2f}, Clin: {evaluation.clinical_appropriateness_score:.2f})"
             else:
                 eval_result.raw_response = response
                 eval_result.error = "parse_failed"
-                print("✗ Parse failed")
+                result_msg = "✗ Parse failed"
         else:
             eval_result.error = "api_error"
-            print("✗ API error")
+            result_msg = "✗ API error"
 
-        evaluations.append(eval_result)
+        # Thread-safe printing
+        with print_lock:
+            completed_count[0] += 1
+            print(f"[{completed_count[0]}/{len(case_files)}] {case_id}... {result_msg}")
 
-        # Rate limiting between calls
-        time.sleep(0.5)
+        return eval_result
+
+    # Parallel execution with ThreadPoolExecutor
+    num_workers = workers
+    print(f"Running {len(case_files)} evaluations with {num_workers} parallel workers...")
+
+    with ThreadPoolExecutor(max_workers=num_workers) as executor:
+        # Submit all tasks
+        future_to_case = {executor.submit(evaluate_single_case, cf): cf for cf in case_files}
+
+        # Collect results as they complete
+        for future in as_completed(future_to_case):
+            try:
+                eval_result = future.result()
+                evaluations.append(eval_result)
+            except Exception as e:
+                case_file = future_to_case[future]
+                print(f"Error processing {case_file.stem}: {e}")
+                evaluations.append(EvaluationResult(
+                    case_id=case_file.stem,
+                    inference_time_seconds=0,
+                    error=str(e)
+                ))
 
     # Calculate aggregate metrics
     valid_evals = [e for e in evaluations if e.evaluation is not None]
@@ -674,6 +703,7 @@ Examples:
     parser.add_argument("--results-dir", help="Path to results directory")
     parser.add_argument("--model", default="gpt-5.2", help="Judge model key")
     parser.add_argument("--limit", type=int, help="Limit number of cases")
+    parser.add_argument("--workers", type=int, default=20, help="Number of parallel workers (default: 20)")
     parser.add_argument("--list-models", action="store_true", help="List available models")
 
     args = parser.parse_args()
@@ -685,7 +715,7 @@ Examples:
     if not args.results_dir:
         parser.error("--results-dir is required (or use --list-models)")
 
-    evaluate_results(args.results_dir, args.model, args.limit)
+    evaluate_results(args.results_dir, args.model, args.limit, args.workers)
 
 
 if __name__ == "__main__":

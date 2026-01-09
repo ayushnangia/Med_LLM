@@ -1,0 +1,696 @@
+{
+  "judge_model": "openai/gpt-5.2",
+  "judge_config": {
+    "temperature": 0.3,
+    "top_p": 1.0,
+    "max_tokens": 4096,
+    "thinking_mode": false,
+    "structured_output": true,
+    "reasoning_effort": "high"
+  },
+  "timestamp": "2026-01-10_00-12-56",
+  "source_results_dir": "/Users/fortuna/Desktop/Colab/Med_LLM/results/modal_treatment/google_gemma-3-27b-it/2026-01-09_23-16-29/",
+  "total_cases": 35,
+  "evaluated_cases": 35,
+  "failed_evaluations": 0,
+  "metrics": {
+    "accuracy": 0.6,
+    "correct_count": 21,
+    "incorrect_count": 14,
+    "therapy_semantic_match_rate": 0.5714285714285714,
+    "therapy_semantic_match_count": 20,
+    "avg_therapy_semantic_score": 0.7131,
+    "clinical_appropriateness_rate": 0.9714285714285714,
+    "clinical_appropriateness_count": 34,
+    "avg_clinical_score": 0.812,
+    "avg_reasoning_quality": 0.6189,
+    "avg_overall_score": 0.7338
+  },
+  "evaluations": [
+    {
+      "case_id": "ncc_1",
+      "evaluation": {
+        "is_correct": false,
+        "correctness_reason": "Ground Truth empfiehlt eine IO+TKI-Kombination (z.B. Nivolumab/Cabozantinib). Die KI empfiehlt Cabozantinib als Monotherapie und trifft damit weder die empfohlene Kombination noch eine explizit akzeptierte Alternative.",
+        "therapy_semantic_match": false,
+        "therapy_semantic_score": 0.55,
+        "clinical_appropriateness": true,
+        "clinical_appropriateness_score": 0.7,
+        "reasoning_quality": 0.4,
+        "reasoning_critique": "IMDC-Risikoeinstufung ist nicht valide aus den gegebenen Daten ableitbar (Grad/Rezidiv zählen nicht zu IMDC-Faktoren). Zudem werden nicht im Fall genannte Komorbiditäten/Medikationen angeführt (Halluzination). Begründung zur Leitlinienlage bei nicht-klarzelligem RCC wirkt vereinfacht/teilweise veraltet, da IO-basierte Kombinationen zunehmend bevorzugt werden, wenn möglich.",
+        "overall_score": 0.58,
+        "judge_reasoning": "Semantisch weicht die Vorhersage wesentlich ab, da statt der empfohlenen TKI/IO-Doublette nur ein TKI vorgeschlagen wird (daher is_correct = false, moderate Semantik-Teilübereinstimmung nur durch enthaltenes Cabozantinib). Klinisch ist Cabozantinib-Monotherapie beim metastasierten papillären RCC grundsätzlich eine vertretbare Option, aber bei ECOG 0 und fehlenden ICI-Kontraindikationen eher nicht die bevorzugte Erstlinie gegenüber IO+TKI. Die Begründung leidet unter fehlerhafter IMDC-Argumentation und nicht fallbasierten Zusatzannahmen."
+      },
+      "raw_response": "{\n  \"is_correct\": false,\n  \"correctness_reason\": \"Ground Truth empfiehlt eine IO+TKI-Kombination (z.B. Nivolumab/Cabozantinib). Die KI empfiehlt Cabozantinib als Monotherapie und trifft damit weder die empfohlene Kombination noch eine explizit akzeptierte Alternative.\",\n  \"therapy_semantic_match\": false,\n  \"therapy_semantic_score\": 0.55,\n  \"clinical_appropriateness\": true,\n  \"clinical_appropriateness_score\": 0.7,\n  \"reasoning_quality\": 0.4,\n  \"reasoning_critique\": \"IMDC-Risikoeinstufung ist nicht valide aus den gegebenen Daten ableitbar (Grad/Rezidiv zählen nicht zu IMDC-Faktoren). Zudem werden nicht im Fall genannte Komorbiditäten/Medikationen angeführt (Halluzination). Begründung zur Leitlinienlage bei nicht-klarzelligem RCC wirkt vereinfacht/teilweise veraltet, da IO-basierte Kombinationen zunehmend bevorzugt werden, wenn möglich.\",\n  \"overall_score\": 0.58,\n  \"judge_reasoning\": \"Semantisch weicht die Vorhersage wesentlich ab, da statt der empfohlenen TKI/IO-Doublette nur ein TKI vorgeschlagen wird (daher is_correct = false, moderate Semantik-Teilübereinstimmung nur durch enthaltenes Cabozantinib). Klinisch ist Cabozantinib-Monotherapie beim metastasierten papillären RCC grundsätzlich eine vertretbare Option, aber bei ECOG 0 und fehlenden ICI-Kontraindikationen eher nicht die bevorzugte Erstlinie gegenüber IO+TKI. Die Begründung leidet unter fehlerhafter IMDC-Argumentation und nicht fallbasierten Zusatzannahmen.\" }",
+      "reasoning_output": "",
+      "error": null,
+      "inference_time_seconds": 19.974100351333618
+    },
+    {
+      "case_id": "ncc_10",
+      "evaluation": {
+        "is_correct": false,
+        "correctness_reason": "Ground Truth empfiehlt nach Komplettierung des Stagings (CT Thorax) bei M0 eine radikale Nephrektomie rechts. Die KI empfiehlt primär Biopsie und nephronsparende Operation (Teilresektion) und nennt die radikale Nephrektomie nur als Ausweichoption; zudem fehlen Staging-Vervollständigung und perioperatives Antikoagulationsmanagement.",
+        "therapy_semantic_match": false,
+        "therapy_semantic_score": 0.45,
+        "clinical_appropriateness": true,
+        "clinical_appropriateness_score": 0.6,
+        "reasoning_quality": 0.45,
+        "reasoning_critique": "Teilweise nachvollziehbar (CKD als Argument für Nephronerhalt), aber mehrere inhaltliche Schwächen: T2a ist nicht nur „Grenze“ zu T1; präoperative Biopsie ist bei resektablem lokalisiertem Tumor meist nicht erforderlich; Hinweis auf TKI-Monotherapie bei nicht-klarzelligem RCC ist im lokalisierten Setting fehlleitend; wichtige Punkte der Ground Truth (CT-Thorax-Staging, DOAK-Management) werden nicht adressiert.",
+        "overall_score": 0.51,
+        "judge_reasoning": "Semantisch deutliche Abweichung zur Tumorboard-Strategie (radikale Nephrektomie nach komplettiertem Staging). Klinisch ist eine partielle Nephrektomie bei selektionierten T2-Tumoren und CKD zwar prinzipiell erwägbar, entspricht aber nicht der Standardempfehlung und wird hier ohne wesentliche technische Kriterien/RENAL-Score begründet; zusätzliche Empfehlungen (Biopsie, Systemtherapie-Exkurs) mindern die Qualität."
+      },
+      "raw_response": "{\n  \"is_correct\": false,\n  \"correctness_reason\": \"Ground Truth empfiehlt nach Komplettierung des Stagings (CT Thorax) bei M0 eine radikale Nephrektomie rechts. Die KI empfiehlt primär Biopsie und nephronsparende Operation (Teilresektion) und nennt die radikale Nephrektomie nur als Ausweichoption; zudem fehlen Staging-Vervollständigung und perioperatives Antikoagulationsmanagement.\",\n  \"therapy_semantic_match\": false,\n  \"therapy_semantic_score\": 0.45,\n  \"clinical_appropriateness\": true,\n  \"clinical_appropriateness_score\": 0.6,\n  \"reasoning_quality\": 0.45,\n  \"reasoning_critique\": \"Teilweise nachvollziehbar (CKD als Argument für Nephronerhalt), aber mehrere inhaltliche Schwächen: T2a ist nicht nur „Grenze“ zu T1; präoperative Biopsie ist bei resektablem lokalisiertem Tumor meist nicht erforderlich; Hinweis auf TKI-Monotherapie bei nicht-klarzelligem RCC ist im lokalisierten Setting fehlleitend; wichtige Punkte der Ground Truth (CT-Thorax-Staging, DOAK-Management) werden nicht adressiert.\",\n  \"overall_score\": 0.51,\n  \"judge_reasoning\": \"Semantisch deutliche Abweichung zur Tumorboard-Strategie (radikale Nephrektomie nach komplettiertem Staging). Klinisch ist eine partielle Nephrektomie bei selektionierten T2-Tumoren und CKD zwar prinzipiell erwägbar, entspricht aber nicht der Standardempfehlung und wird hier ohne wesentliche technische Kriterien/RENAL-Score begründet; zusätzliche Empfehlungen (Biopsie, Systemtherapie-Exkurs) mindern die Qualität.\"\n}",
+      "reasoning_output": "",
+      "error": null,
+      "inference_time_seconds": 14.931686878204346
+    },
+    {
+      "case_id": "ncc_11",
+      "evaluation": {
+        "is_correct": true,
+        "correctness_reason": "Die KI empfiehlt eine radikale Nephrektomie mit Tumorthrombektomie der V. cava inferior und trifft damit semantisch die Tumorboard-Empfehlung (offene Nephrektomie bei V.-cava-Beteiligung ggf. Thrombektomie).",
+        "therapy_semantic_match": true,
+        "therapy_semantic_score": 0.95,
+        "clinical_appropriateness": true,
+        "clinical_appropriateness_score": 0.95,
+        "reasoning_quality": 0.8,
+        "reasoning_critique": "Insgesamt logisch und leitliniengerecht; kleine Unschärfe zwischen \"Infiltration\" vs. Tumorthrombus und keine explizite Betonung des offenen Vorgehens/Thrombuslevel-abhängiger OP-Planung.",
+        "overall_score": 0.92,
+        "judge_reasoning": "Nicht-metastasiertes, lokal fortgeschrittenes RCC mit VCI-Tumorthrombus (cT3b?) wird primär chirurgisch behandelt. Die KI-Empfehlung (radikale Nephrektomie + VCI-Thrombektomie) entspricht der Board-Strategie (offene Nephrektomie, bei V.-cava-Beteiligung ggf. Thrombektomie) sehr eng und ist klinisch klar angemessen. Begründung ist schlüssig, mit nur geringen Detailmängeln."
+      },
+      "raw_response": "{\n  \"is_correct\": true,\n  \"correctness_reason\": \"Die KI empfiehlt eine radikale Nephrektomie mit Tumorthrombektomie der V. cava inferior und trifft damit semantisch die Tumorboard-Empfehlung (offene Nephrektomie bei V.-cava-Beteiligung ggf. Thrombektomie).\",\n  \"therapy_semantic_match\": true,\n  \"therapy_semantic_score\": 0.95,\n  \"clinical_appropriateness\": true,\n  \"clinical_appropriateness_score\": 0.95,\n  \"reasoning_quality\": 0.8,\n  \"reasoning_critique\": \"Insgesamt logisch und leitliniengerecht; kleine Unschärfe zwischen \\\"Infiltration\\\" vs. Tumorthrombus und keine explizite Betonung des offenen Vorgehens/Thrombuslevel-abhängiger OP-Planung.\",\n  \"overall_score\": 0.92,\n  \"judge_reasoning\": \"Nicht-metastasiertes, lokal fortgeschrittenes RCC mit VCI-Tumorthrombus (cT3b?) wird primär chirurgisch behandelt. Die KI-Empfehlung (radikale Nephrektomie + VCI-Thrombektomie) entspricht der Board-Strategie (offene Nephrektomie, bei V.-cava-Beteiligung ggf. Thrombektomie) sehr eng und ist klinisch klar angemessen. Begründung ist schlüssig, mit nur geringen Detailmängeln.\"\n}",
+      "reasoning_output": "",
+      "error": null,
+      "inference_time_seconds": 8.676668167114258
+    },
+    {
+      "case_id": "ncc_12",
+      "evaluation": {
+        "is_correct": false,
+        "correctness_reason": "Die Ground-Truth-Empfehlung priorisiert die Komplettierung des Stagings (CT Thorax) und erst danach die OP-Entscheidung (Teilresektion vs. Nephrektomie) inkl. pulmonaler Prä-OP-Evaluierung. Die KI empfiehlt primär direkt eine Teilresektion ohne diese vorgelagerte, zentrale Board-Empfehlung.",
+        "therapy_semantic_match": false,
+        "therapy_semantic_score": 0.7,
+        "clinical_appropriateness": true,
+        "clinical_appropriateness_score": 0.8,
+        "reasoning_quality": 0.6,
+        "reasoning_critique": "Grundsätzlich leitliniennah (T1b-Tumor, Nephron-sparing Surgery prinzipiell geeignet), aber wesentliche Lücke: fehlende Betonung/Einordnung des unvollständigen Stagings (CT Thorax) und der daraus resultierenden Priorisierung. Zudem unpräzise Formulierung zum M-Status („M0 (unknown)“).",
+        "overall_score": 0.72,
+        "judge_reasoning": "Semantisch deckt sich die KI nur teilweise mit der Tumorboard-Empfehlung: Teilresektion ist eine Option, aber nicht als alleinige/primäre Empfehlung ohne vorherige Staging-Komplettierung und ohne Nennung der gleichwertig diskutierten Alternative (Nephrektomie) sowie der pulmonalen Prä-OP-Abklärung. Klinisch ist eine Teilresektion bei ~5,2 cm (cT1b) bei ECOG 1 grundsätzlich angemessen, jedoch sollte das Staging (CT Thorax) und die COPD-bezogene präoperative Evaluation vorrangig adressiert werden."
+      },
+      "raw_response": "{\n  \"is_correct\": false,\n  \"correctness_reason\": \"Die Ground-Truth-Empfehlung priorisiert die Komplettierung des Stagings (CT Thorax) und erst danach die OP-Entscheidung (Teilresektion vs. Nephrektomie) inkl. pulmonaler Prä-OP-Evaluierung. Die KI empfiehlt primär direkt eine Teilresektion ohne diese vorgelagerte, zentrale Board-Empfehlung.\",\n  \"therapy_semantic_match\": false,\n  \"therapy_semantic_score\": 0.7,\n  \"clinical_appropriateness\": true,\n  \"clinical_appropriateness_score\": 0.8,\n  \"reasoning_quality\": 0.6,\n  \"reasoning_critique\": \"Grundsätzlich leitliniennah (T1b-Tumor, Nephron-sparing Surgery prinzipiell geeignet), aber wesentliche Lücke: fehlende Betonung/Einordnung des unvollständigen Stagings (CT Thorax) und der daraus resultierenden Priorisierung. Zudem unpräzise Formulierung zum M-Status („M0 (unknown)“).\",\n  \"overall_score\": 0.72,\n  \"judge_reasoning\": \"Semantisch deckt sich die KI nur teilweise mit der Tumorboard-Empfehlung: Teilresektion ist eine Option, aber nicht als alleinige/primäre Empfehlung ohne vorherige Staging-Komplettierung und ohne Nennung der gleichwertig diskutierten Alternative (Nephrektomie) sowie der pulmonalen Prä-OP-Abklärung. Klinisch ist eine Teilresektion bei ~5,2 cm (cT1b) bei ECOG 1 grundsätzlich angemessen, jedoch sollte das Staging (CT Thorax) und die COPD-bezogene präoperative Evaluation vorrangig adressiert werden.\"\n}",
+      "reasoning_output": "**Evaluating clinical decision-making**\n\nI'm considering the appropriateness of a partial nephrectomy for a 5.2cm renal mass in a fit patient with ECOG1, noting that staging is incomplete but likely still reasonable. I would score the appropriateness around 0.8, while the reasoning quality feels decent but has errors, specifically missing a CT thorax. Overall, I’m calculating scores based on the clinical inputs, trying to determine if a therapy semantic score of 0.7 is suitable, considering the missing staging details and recommendations. My final score analysis comes to around 0.74.",
+      "error": null,
+      "inference_time_seconds": 16.847907066345215
+    },
+    {
+      "case_id": "ncc_13",
+      "evaluation": {
+        "is_correct": false,
+        "correctness_reason": "Ground Truth empfiehlt beidseitige Nierenteilresektion (zuerst rechts, dann links) plus CT-Thorax-Staging. Die KI empfiehlt hingegen eine radikale Nephrektomie rechts und nur links eine Teilresektion; das entspricht nicht der primären Empfehlung und es wurde keine akzeptable Alternative vorgegeben.",
+        "therapy_semantic_match": false,
+        "therapy_semantic_score": 0.45,
+        "clinical_appropriateness": true,
+        "clinical_appropriateness_score": 0.65,
+        "reasoning_quality": 0.55,
+        "reasoning_critique": "Positiv: korrekt nicht-metastasiert angenommen, Staging (CT Thorax) adressiert. Mängel: bei bilateralem (cT1a/b) Verdacht ist nephronerhaltende Strategie besonders wichtig; die Aussage, Teilresektion rechts sei wegen >4 cm ggf. nicht ausreichend, ist so nicht begründet (T1b ist häufig partiell resektabel). Zudem ist eine „histologische Bestätigung“ vor Operation nicht zwingend erforderlich, und aktive Überwachung ist nicht per se kontraindiziert.",
+        "overall_score": 0.55,
+        "judge_reasoning": "Semantisch deutliche Abweichung, da die KI die rechte Niere radikal entfernen will statt beidseitig partiell zu resezieren (nephron-sparing). Klinisch ist chirurgisches Vorgehen grundsätzlich leitlinienkonform, jedoch ist bei bilateral kleinen Tumoren die radikale Nephrektomie rechts eher nicht erste Wahl und würde unnötig Nephronenverlust riskieren. Die Begründung ist gemischt: Staging korrekt, aber zentrale chirurgische Schlussfolgerung und einige Aussagen zur Strategie sind medizinisch schwach bzw. unpräzise."
+      },
+      "raw_response": "{\n  \"is_correct\": false,\n  \"correctness_reason\": \"Ground Truth empfiehlt beidseitige Nierenteilresektion (zuerst rechts, dann links) plus CT-Thorax-Staging. Die KI empfiehlt hingegen eine radikale Nephrektomie rechts und nur links eine Teilresektion; das entspricht nicht der primären Empfehlung und es wurde keine akzeptable Alternative vorgegeben.\",\n  \"therapy_semantic_match\": false,\n  \"therapy_semantic_score\": 0.45,\n  \"clinical_appropriateness\": true,\n  \"clinical_appropriateness_score\": 0.65,\n  \"reasoning_quality\": 0.55,\n  \"reasoning_critique\": \"Positiv: korrekt nicht-metastasiert angenommen, Staging (CT Thorax) adressiert. Mängel: bei bilateralem (cT1a/b) Verdacht ist nephronerhaltende Strategie besonders wichtig; die Aussage, Teilresektion rechts sei wegen >4 cm ggf. nicht ausreichend, ist so nicht begründet (T1b ist häufig partiell resektabel). Zudem ist eine „histologische Bestätigung“ vor Operation nicht zwingend erforderlich, und aktive Überwachung ist nicht per se kontraindiziert.\",\n  \"overall_score\": 0.55,\n  \"judge_reasoning\": \"Semantisch deutliche Abweichung, da die KI die rechte Niere radikal entfernen will statt beidseitig partiell zu resezieren (nephron-sparing). Klinisch ist chirurgisches Vorgehen grundsätzlich leitlinienkonform, jedoch ist bei bilateral kleinen Tumoren die radikale Nephrektomie rechts eher nicht erste Wahl und würde unnötig Nephronenverlust riskieren. Die Begründung ist gemischt: Staging korrekt, aber zentrale chirurgische Schlussfolgerung und einige Aussagen zur Strategie sind medizinisch schwach bzw. unpräzise.\"\n}",
+      "reasoning_output": "",
+      "error": null,
+      "inference_time_seconds": 13.270777940750122
+    },
+    {
+      "case_id": "ncc_14",
+      "evaluation": {
+        "is_correct": false,
+        "correctness_reason": "Ground Truth empfiehlt radikale Nephrektomie mit linksseitiger Adrenalektomie (bei fraglicher Infiltration). Die KI empfiehlt dagegen eine Nierenteilresektion nach präoperativer Biopsie und lässt die Adrenalektomie weg; das entspricht weder der Tumorboard-Empfehlung noch einer klar akzeptierten Alternative.",
+        "therapy_semantic_match": false,
+        "therapy_semantic_score": 0.35,
+        "clinical_appropriateness": true,
+        "clinical_appropriateness_score": 0.6,
+        "reasoning_quality": 0.55,
+        "reasoning_critique": "Positiv: erkennt M0-Situation und dass Active Surveillance/Ablation bei 9 cm unpassend sind. Schwächen: Teilresektion bei ~9 cm (cT2) ist nicht Standard und wird ohne imperative Indikation zu stark favorisiert; präoperative Biopsie ist bei geplanter kurativer Operation meist nicht erforderlich; fehlende Berücksichtigung der fraglichen Nebenniereninfiltration (Adrenalektomie/En-bloc-Resektion).",
+        "overall_score": 0.49,
+        "judge_reasoning": "Semantisch weicht die Empfehlung deutlich von der Ground Truth ab (Teilresektion vs radikale Nephrektomie + Adrenalektomie), daher is_correct = false. Klinisch ist 'Operation' grundsätzlich leitlinienkonform im nicht-metastasierten Setting, jedoch ist die konkrete Operationsart bei Tumorgröße/Adnexverdacht eher nicht First-Line, weshalb nur mittlere klinische Angemessenheit. Die Begründung ist teils plausibel, enthält aber relevante fachliche Fehlannahmen (Biopsiepflicht, operative Strategie bei cT2/Adrenalverdacht)."
+      },
+      "raw_response": "{\n  \"is_correct\": false,\n  \"correctness_reason\": \"Ground Truth empfiehlt radikale Nephrektomie mit linksseitiger Adrenalektomie (bei fraglicher Infiltration). Die KI empfiehlt dagegen eine Nierenteilresektion nach präoperativer Biopsie und lässt die Adrenalektomie weg; das entspricht weder der Tumorboard-Empfehlung noch einer klar akzeptierten Alternative.\",\n  \"therapy_semantic_match\": false,\n  \"therapy_semantic_score\": 0.35,\n  \"clinical_appropriateness\": true,\n  \"clinical_appropriateness_score\": 0.6,\n  \"reasoning_quality\": 0.55,\n  \"reasoning_critique\": \"Positiv: erkennt M0-Situation und dass Active Surveillance/Ablation bei 9 cm unpassend sind. Schwächen: Teilresektion bei ~9 cm (cT2) ist nicht Standard und wird ohne imperative Indikation zu stark favorisiert; präoperative Biopsie ist bei geplanter kurativer Operation meist nicht erforderlich; fehlende Berücksichtigung der fraglichen Nebenniereninfiltration (Adrenalektomie/En-bloc-Resektion).\",\n  \"overall_score\": 0.49,\n  \"judge_reasoning\": \"Semantisch weicht die Empfehlung deutlich von der Ground Truth ab (Teilresektion vs radikale Nephrektomie + Adrenalektomie), daher is_correct = false. Klinisch ist 'Operation' grundsätzlich leitlinienkonform im nicht-metastasierten Setting, jedoch ist die konkrete Operationsart bei Tumorgröße/Adnexverdacht eher nicht First-Line, weshalb nur mittlere klinische Angemessenheit. Die Begründung ist teils plausibel, enthält aber relevante fachliche Fehlannahmen (Biopsiepflicht, operative Strategie bei cT2/Adrenalverdacht).\"\n}",
+      "reasoning_output": "",
+      "error": null,
+      "inference_time_seconds": 15.334904670715332
+    },
+    {
+      "case_id": "ncc_15",
+      "evaluation": {
+        "is_correct": true,
+        "correctness_reason": "Die KI empfiehlt Nivolumab + Cabozantinib als Erstlinientherapie, was exakt der Tumorboard-Empfehlung entspricht.",
+        "therapy_semantic_match": true,
+        "therapy_semantic_score": 1.0,
+        "clinical_appropriateness": true,
+        "clinical_appropriateness_score": 0.95,
+        "reasoning_quality": 0.85,
+        "reasoning_critique": "Begründung insgesamt leitliniengerecht und nachvollziehbar; kleinere Schwäche: IMDC-Ableitung teils aus nicht berichteten Labor-/Klinikparametern (\"nicht angegeben\" = \"nicht vorhanden\").",
+        "overall_score": 0.95,
+        "judge_reasoning": "Therapieempfehlung entspricht in Wirkstoffen und Kombination vollständig der Ground Truth (Nivo+Cabo) und ist für mccRCC mit günstigem IMDC-Risiko eine etablierte, leitlinienkonforme Erstlinienoption. Die Argumentation benennt passende Alternativen und die Präferenz für IO+TKI bei fehlenden Kontraindikationen; leichte Unsicherheit bleibt durch fehlende dokumentierte Basisdaten (ECOG/Labore), was die IMDC-Begründung etwas schwächt."
+      },
+      "raw_response": "{\n  \"is_correct\": true,\n  \"correctness_reason\": \"Die KI empfiehlt Nivolumab + Cabozantinib als Erstlinientherapie, was exakt der Tumorboard-Empfehlung entspricht.\",\n  \"therapy_semantic_match\": true,\n  \"therapy_semantic_score\": 1.0,\n  \"clinical_appropriateness\": true,\n  \"clinical_appropriateness_score\": 0.95,\n  \"reasoning_quality\": 0.85,\n  \"reasoning_critique\": \"Begründung insgesamt leitliniengerecht und nachvollziehbar; kleinere Schwäche: IMDC-Ableitung teils aus nicht berichteten Labor-/Klinikparametern (\\\"nicht angegeben\\\" = \\\"nicht vorhanden\\\").\",\n  \"overall_score\": 0.95,\n  \"judge_reasoning\": \"Therapieempfehlung entspricht in Wirkstoffen und Kombination vollständig der Ground Truth (Nivo+Cabo) und ist für mccRCC mit günstigem IMDC-Risiko eine etablierte, leitlinienkonforme Erstlinienoption. Die Argumentation benennt passende Alternativen und die Präferenz für IO+TKI bei fehlenden Kontraindikationen; leichte Unsicherheit bleibt durch fehlende dokumentierte Basisdaten (ECOG/Labore), was die IMDC-Begründung etwas schwächt.\"\n}",
+      "reasoning_output": "",
+      "error": null,
+      "inference_time_seconds": 11.823193073272705
+    },
+    {
+      "case_id": "ncc_16",
+      "evaluation": {
+        "is_correct": true,
+        "correctness_reason": "Die Ground-Truth empfiehlt eine IO+TKI-Erstlinientherapie (Beispiel: Pembrolizumab+Lenvatinib). Nivolumab+Cabozantinib ist eine leitlinienbasierte, in der Erstlinie etablierte Alternative bei mccRCC und damit als akzeptable Alternative zu werten, auch wenn es nicht exakt der genannten Beispielkombination entspricht.",
+        "therapy_semantic_match": false,
+        "therapy_semantic_score": 0.65,
+        "clinical_appropriateness": true,
+        "clinical_appropriateness_score": 0.9,
+        "reasoning_quality": 0.7,
+        "reasoning_critique": "Begründung insgesamt plausibel, aber teils auf Annahmen gestützt (Laborwerte/Diagnose-zu-Therapie-Intervall), und der Subtyp ist im Fall bereits als klarzellig angegeben. Oligometastatisches Vorgehen (Metastasen-Lokaltherapie) wird korrekt als Option erwähnt, aber nicht klar priorisiert.",
+        "overall_score": 0.76,
+        "judge_reasoning": "Therapieempfehlung weicht von der konkret genannten Beispielkombination (Pembro+Lenva) ab, ist aber in derselben evidenzbasierten Erstlinien-Kategorie (IO+TKI) und bei IMDC-günstigem mccRCC klinisch angemessen. Daher klinisch hoch passend, semantisch nur teilweise ähnlich (andere Wirkstoffe), und die Begründung ist überwiegend korrekt mit kleineren Unschärfen."
+      },
+      "raw_response": "{\n  \"is_correct\": true,\n  \"correctness_reason\": \"Die Ground-Truth empfiehlt eine IO+TKI-Erstlinientherapie (Beispiel: Pembrolizumab+Lenvatinib). Nivolumab+Cabozantinib ist eine leitlinienbasierte, in der Erstlinie etablierte Alternative bei mccRCC und damit als akzeptable Alternative zu werten, auch wenn es nicht exakt der genannten Beispielkombination entspricht.\",\n  \"therapy_semantic_match\": false,\n  \"therapy_semantic_score\": 0.65,\n  \"clinical_appropriateness\": true,\n  \"clinical_appropriateness_score\": 0.9,\n  \"reasoning_quality\": 0.7,\n  \"reasoning_critique\": \"Begründung insgesamt plausibel, aber teils auf Annahmen gestützt (Laborwerte/Diagnose-zu-Therapie-Intervall), und der Subtyp ist im Fall bereits als klarzellig angegeben. Oligometastatisches Vorgehen (Metastasen-Lokaltherapie) wird korrekt als Option erwähnt, aber nicht klar priorisiert.\",\n  \"overall_score\": 0.76,\n  \"judge_reasoning\": \"Therapieempfehlung weicht von der konkret genannten Beispielkombination (Pembro+Lenva) ab, ist aber in derselben evidenzbasierten Erstlinien-Kategorie (IO+TKI) und bei IMDC-günstigem mccRCC klinisch angemessen. Daher klinisch hoch passend, semantisch nur teilweise ähnlich (andere Wirkstoffe), und die Begründung ist überwiegend korrekt mit kleineren Unschärfen.\"\n}",
+      "reasoning_output": "",
+      "error": null,
+      "inference_time_seconds": 22.170012950897217
+    },
+    {
+      "case_id": "ncc_17",
+      "evaluation": {
+        "is_correct": true,
+        "correctness_reason": "Die Ground-Truth-Empfehlung lautet unspezifisch auf Einleitung einer Systemtherapie im metastasierten Setting als IO+TKI; die KI empfiehlt konkret Nivolumab+Cabozantinib (IO+TKI) und trifft damit die primäre Empfehlung semantisch ausreichend.",
+        "therapy_semantic_match": true,
+        "therapy_semantic_score": 0.9,
+        "clinical_appropriateness": true,
+        "clinical_appropriateness_score": 0.85,
+        "reasoning_quality": 0.6,
+        "reasoning_critique": "Grundlogik (metastasiert, günstiges Risiko, IO+TKI möglich) ist korrekt, jedoch teils widersprüchlich (erst TKI-Mono als bevorzugt dargestellt, dann IO+TKI), unscharf bei nicht-klarzellig/papillärem RCC und ohne konkrete Einordnung von Evidenz/Leitlinien für papRCC; zudem keine echte Auseinandersetzung mit Komorbiditäten/Interaktionen (Atorvastatin) trotz Erwähnung in der Ground Truth.",
+        "overall_score": 0.82,
+        "judge_reasoning": "Semantisch passt eine konkrete IO+TKI-Kombination (Nivo+Cabo) gut zur Ground-Truth-Vorgabe 'IO+TKI einleiten' (hoher Semantik-Score). Klinisch ist Nivo+Cabo im metastasierten Setting eine leitliniennahe, praktikable Option auch für papRCC (wenn auch die Evidenzbasis für nccRCC geringer/heterogener ist), daher hoher Appropriateness-Score. Die Begründung ist insgesamt brauchbar, aber inkonsistent und nicht ausreichend spezifisch für papRCC sowie ohne Berücksichtigung von Interaktionen/Monitoring, daher nur mittelmäßige Reasoning-Bewertung."
+      },
+      "raw_response": "{\"is_correct\":true,\"correctness_reason\":\"Die Ground-Truth-Empfehlung lautet unspezifisch auf Einleitung einer Systemtherapie im metastasierten Setting als IO+TKI; die KI empfiehlt konkret Nivolumab+Cabozantinib (IO+TKI) und trifft damit die primäre Empfehlung semantisch ausreichend.\",\"therapy_semantic_match\":true,\"therapy_semantic_score\":0.9,\"clinical_appropriateness\":true,\"clinical_appropriateness_score\":0.85,\"reasoning_quality\":0.6,\"reasoning_critique\":\"Grundlogik (metastasiert, günstiges Risiko, IO+TKI möglich) ist korrekt, jedoch teils widersprüchlich (erst TKI-Mono als bevorzugt dargestellt, dann IO+TKI), unscharf bei nicht-klarzellig/papillärem RCC und ohne konkrete Einordnung von Evidenz/Leitlinien für papRCC; zudem keine echte Auseinandersetzung mit Komorbiditäten/Interaktionen (Atorvastatin) trotz Erwähnung in der Ground Truth.\",\"overall_score\":0.82,\"judge_reasoning\":\"Semantisch passt eine konkrete IO+TKI-Kombination (Nivo+Cabo) gut zur Ground-Truth-Vorgabe 'IO+TKI einleiten' (hoher Semantik-Score). Klinisch ist Nivo+Cabo im metastasierten Setting eine leitliniennahe, praktikable Option auch für papRCC (wenn auch die Evidenzbasis für nccRCC geringer/heterogener ist), daher hoher Appropriateness-Score. Die Begründung ist insgesamt brauchbar, aber inkonsistent und nicht ausreichend spezifisch für papRCC sowie ohne Berücksichtigung von Interaktionen/Monitoring, daher nur mittelmäßige Reasoning-Bewertung.\"}",
+      "reasoning_output": "",
+      "error": null,
+      "inference_time_seconds": 16.756497144699097
+    },
+    {
+      "case_id": "ncc_18",
+      "evaluation": {
+        "is_correct": true,
+        "correctness_reason": "Die Ground-Truth empfiehlt bei bestätigter Metastasierung eine Erstlinien-Systemtherapie als IO+TKI; die KI empfiehlt konkret Nivolumab+Cabozantinib (IO+TKI) und trifft damit die intendierte Therapieklasse/Strategie.",
+        "therapy_semantic_match": true,
+        "therapy_semantic_score": 0.9,
+        "clinical_appropriateness": true,
+        "clinical_appropriateness_score": 0.9,
+        "reasoning_quality": 0.65,
+        "reasoning_critique": "Begründung überwiegend leitliniengerecht, aber sie nimmt eine gesicherte Metastasierung und klarzellige Histologie an und übernimmt nicht die im Tumorboard zentrale Konditionalität (Therapiestart erst bei bestätigter Metastasierung) sowie engmaschige Kontrollen/Restaging in 3 Monaten.",
+        "overall_score": 0.85,
+        "judge_reasoning": "Semantisch passt die Empfehlung zur Ground-Truth-Strategie (IO+TKI), auch wenn die Ground-Truth nicht auf ein konkretes Regime festgelegt ist. Klinisch ist Nivo+Cabo eine anerkannte Erstlinien-Option bei mRCC mit günstigem IMDC-Risiko und ECOG 1. Abzüge bei der Begründungsqualität wegen fehlender Berücksichtigung der diagnostischen Unsicherheit (nur Metastasenverdacht) und fehlender Erwähnung des geplanten Restagings/Monitoring."
+      },
+      "raw_response": "{\"is_correct\":true,\"correctness_reason\":\"Die Ground-Truth empfiehlt bei bestätigter Metastasierung eine Erstlinien-Systemtherapie als IO+TKI; die KI empfiehlt konkret Nivolumab+Cabozantinib (IO+TKI) und trifft damit die intendierte Therapieklasse/Strategie.\",\"therapy_semantic_match\":true,\"therapy_semantic_score\":0.9,\"clinical_appropriateness\":true,\"clinical_appropriateness_score\":0.9,\"reasoning_quality\":0.65,\"reasoning_critique\":\"Begründung überwiegend leitliniengerecht, aber sie nimmt eine gesicherte Metastasierung und klarzellige Histologie an und übernimmt nicht die im Tumorboard zentrale Konditionalität (Therapiestart erst bei bestätigter Metastasierung) sowie engmaschige Kontrollen/Restaging in 3 Monaten.\",\"overall_score\":0.85,\"judge_reasoning\":\"Semantisch passt die Empfehlung zur Ground-Truth-Strategie (IO+TKI), auch wenn die Ground-Truth nicht auf ein konkretes Regime festgelegt ist. Klinisch ist Nivo+Cabo eine anerkannte Erstlinien-Option bei mRCC mit günstigem IMDC-Risiko und ECOG 1. Abzüge bei der Begründungsqualität wegen fehlender Berücksichtigung der diagnostischen Unsicherheit (nur Metastasenverdacht) und fehlender Erwähnung des geplanten Restagings/Monitoring.\"}",
+      "reasoning_output": "",
+      "error": null,
+      "inference_time_seconds": 14.527792930603027
+    },
+    {
+      "case_id": "ncc_19",
+      "evaluation": {
+        "is_correct": true,
+        "correctness_reason": "Ground Truth empfiehlt Einleitung einer Systemtherapie, beispielhaft IO+TKI. Die KI empfiehlt Nivolumab + Cabozantinib (IO+TKI) und trifft damit die primäre Empfehlungskategorie semantisch ausreichend genau.",
+        "therapy_semantic_match": true,
+        "therapy_semantic_score": 0.9,
+        "clinical_appropriateness": true,
+        "clinical_appropriateness_score": 0.9,
+        "reasoning_quality": 0.6,
+        "reasoning_critique": "Grundlogik (mRCC, IMDC günstig, Erstlinie IO+TKI) ist stimmig, jedoch mehrere fachliche/inhaltliche Schwächen: Histologie (klarzellig) wird unbegründet angenommen, IMDC-Begründung basiert auf fehlenden statt belegten Labor-/Zeitkriterien, ECOG wird implizit als 0 gesetzt, und die Aussage, sarkomatoide Komponente könne die ICI-Sensitivität reduzieren, ist tendenziell falsch (häufig eher ICI-ansprechend). Monitoring/Restaging wird nicht konkret wie im Tumorboard ausgeführt.",
+        "overall_score": 0.84,
+        "judge_reasoning": "Semantisch passt die Empfehlung (IO+TKI) gut zur Tumorboard-Aussage 'z.B. IO+TKI' und ist damit korrekt im Sinne der Bewertungsregeln. Klinisch ist Nivo+Cabo eine leitlinienkonforme Erstlinienoption bei mRCC (auch bei sarkomatoiden Anteilen). Die Begründung ist insgesamt plausibel, enthält aber relevante Annahmen und eine problematische Aussage zur sarkomatoiden Komponente, daher nur mittlere Begründungsqualität."
+      },
+      "raw_response": "{\n  \"is_correct\": true,\n  \"correctness_reason\": \"Ground Truth empfiehlt Einleitung einer Systemtherapie, beispielhaft IO+TKI. Die KI empfiehlt Nivolumab + Cabozantinib (IO+TKI) und trifft damit die primäre Empfehlungskategorie semantisch ausreichend genau.\",\n  \"therapy_semantic_match\": true,\n  \"therapy_semantic_score\": 0.9,\n  \"clinical_appropriateness\": true,\n  \"clinical_appropriateness_score\": 0.9,\n  \"reasoning_quality\": 0.6,\n  \"reasoning_critique\": \"Grundlogik (mRCC, IMDC günstig, Erstlinie IO+TKI) ist stimmig, jedoch mehrere fachliche/inhaltliche Schwächen: Histologie (klarzellig) wird unbegründet angenommen, IMDC-Begründung basiert auf fehlenden statt belegten Labor-/Zeitkriterien, ECOG wird implizit als 0 gesetzt, und die Aussage, sarkomatoide Komponente könne die ICI-Sensitivität reduzieren, ist tendenziell falsch (häufig eher ICI-ansprechend). Monitoring/Restaging wird nicht konkret wie im Tumorboard ausgeführt.\",\n  \"overall_score\": 0.84,\n  \"judge_reasoning\": \"Semantisch passt die Empfehlung (IO+TKI) gut zur Tumorboard-Aussage 'z.B. IO+TKI' und ist damit korrekt im Sinne der Bewertungsregeln. Klinisch ist Nivo+Cabo eine leitlinienkonforme Erstlinienoption bei mRCC (auch bei sarkomatoiden Anteilen). Die Begründung ist insgesamt plausibel, enthält aber relevante Annahmen und eine problematische Aussage zur sarkomatoiden Komponente, daher nur mittlere Begründungsqualität.\"\n}",
+      "reasoning_output": "",
+      "error": null,
+      "inference_time_seconds": 12.57115888595581
+    },
+    {
+      "case_id": "ncc_2",
+      "evaluation": {
+        "is_correct": true,
+        "correctness_reason": "Die KI-Empfehlung (Biopsie und dann Surveillance vs. interventionelles Vorgehen wie Ablation unter Berücksichtigung der TAVI-Priorität) entspricht inhaltlich dem Tumorboard-Votum „weiteres Procedere (Intervention vs Surveillance) unter Berücksichtigung TAVI-Priorität“.",
+        "therapy_semantic_match": true,
+        "therapy_semantic_score": 0.85,
+        "clinical_appropriateness": true,
+        "clinical_appropriateness_score": 0.9,
+        "reasoning_quality": 0.75,
+        "reasoning_critique": "Insgesamt schlüssig (kleine Raumforderung, hohes Alter/Komorbidität, TAVI-Priorität). Etwas zu kategorisch bei der Aussage, eine Biopsie sei zwingend vor der Entscheidung erforderlich, und die Subtyp-Argumentation (AS eher nur bei klarzellig) ist vereinfacht.",
+        "overall_score": 0.85,
+        "judge_reasoning": "Ground Truth fordert eine Abwägung zwischen Intervention und Surveillance mit Vorrang der kardiologischen TAVI-Planung. Die KI trifft dieselbe Grundentscheidungsebene (Surveillance vs. lokal-ablatives Vorgehen) und integriert die TAVI-Priorisierung; die zusätzliche Biopsieempfehlung ist häufig sinnvoll, aber nicht immer obligatorisch. Klinisch ist Surveillance/ablation bei einer 2–3 cm Läsion im hohen Alter mit Komorbiditäten leitliniengerecht."
+      },
+      "raw_response": "{\n  \"is_correct\": true,\n  \"correctness_reason\": \"Die KI-Empfehlung (Biopsie und dann Surveillance vs. interventionelles Vorgehen wie Ablation unter Berücksichtigung der TAVI-Priorität) entspricht inhaltlich dem Tumorboard-Votum „weiteres Procedere (Intervention vs Surveillance) unter Berücksichtigung TAVI-Priorität“.\",\n  \"therapy_semantic_match\": true,\n  \"therapy_semantic_score\": 0.85,\n  \"clinical_appropriateness\": true,\n  \"clinical_appropriateness_score\": 0.9,\n  \"reasoning_quality\": 0.75,\n  \"reasoning_critique\": \"Insgesamt schlüssig (kleine Raumforderung, hohes Alter/Komorbidität, TAVI-Priorität). Etwas zu kategorisch bei der Aussage, eine Biopsie sei zwingend vor der Entscheidung erforderlich, und die Subtyp-Argumentation (AS eher nur bei klarzellig) ist vereinfacht.\",\n  \"overall_score\": 0.85,\n  \"judge_reasoning\": \"Ground Truth fordert eine Abwägung zwischen Intervention und Surveillance mit Vorrang der kardiologischen TAVI-Planung. Die KI trifft dieselbe Grundentscheidungsebene (Surveillance vs. lokal-ablatives Vorgehen) und integriert die TAVI-Priorisierung; die zusätzliche Biopsieempfehlung ist häufig sinnvoll, aber nicht immer obligatorisch. Klinisch ist Surveillance/ablation bei einer 2–3 cm Läsion im hohen Alter mit Komorbiditäten leitliniengerecht.\"\n}",
+      "reasoning_output": "**Evaluating KI predictions**\n\nI need to evaluate the KI prediction against the ground truth. The ground truth states that we should prioritize TAVI while deciding between intervention and surveillance. The KI recommends a biopsy followed by surveillance or ablation, which introduces procedures like biopsy and ablation. They seem fairly aligned, so I’m thinking of a semantic score around 0.85. The clinical appropriateness score could be 0.9 since the recommendation fits well with the context of a small renal mass in elderly patients. The reasoning is mostly good, but there’s some unnecessary speculation about histology subtypes and biopsy requirements that aren't always applicable.**Calculating overall score**\n\nI’m calculating the overall score using a weighted average. The formula I’m using is 0.4 times the semantic score of 0.85, plus 0.4 times the clinical appropriateness score of 0.9, plus 0.2 times a reasoning score of 0.75. That gives me 0.34 for semantic, 0.36 for clinical, and 0.15 for reasoning, totaling 0.85. Since the semantic score is greater than or equal to 0.8, it's correct to consider this true. Now, I just need to provide this in JSON format.",
+      "error": null,
+      "inference_time_seconds": 14.724622011184692
+    },
+    {
+      "case_id": "ncc_20",
+      "evaluation": {
+        "is_correct": false,
+        "correctness_reason": "Die Ground-Truth-Empfehlung enthält keine primäre Therapie (None); die KI nennt Nivolumab+Cabozantinib und trifft damit keine dokumentierte Tumorboard-Empfehlung oder akzeptierte Alternative in der Vorgabe.",
+        "therapy_semantic_match": false,
+        "therapy_semantic_score": 0.1,
+        "clinical_appropriateness": true,
+        "clinical_appropriateness_score": 0.9,
+        "reasoning_quality": 0.65,
+        "reasoning_critique": "Grundsätzlich leitlinienorientiert für mRCC/IMDC-günstig (IO+TKI). Allerdings wird der IMDC-Status aus fehlenden Labor-/Zeitangaben unzulässig abgeleitet, und wichtige Aspekte (z.B. Stellenwert zytoreduktiver Nephrektomie/Sequenzierung, ICI-Kontraindikationen) werden nicht adressiert.",
+        "overall_score": 0.53,
+        "judge_reasoning": "Semantisch kein Match, da Ground Truth keine Therapie benennt. Klinisch ist Nivolumab+Cabozantinib eine anerkannte Erstlinienoption bei metastasiertem ccRCC mit günstigem Risiko und ICI-Eignung. Die Begründung ist überwiegend korrekt, aber mit Annahmen und Auslassungen, daher nur mittlere Begründungsqualität."
+      },
+      "raw_response": "{\n  \"is_correct\": false,\n  \"correctness_reason\": \"Die Ground-Truth-Empfehlung enthält keine primäre Therapie (None); die KI nennt Nivolumab+Cabozantinib und trifft damit keine dokumentierte Tumorboard-Empfehlung oder akzeptierte Alternative in der Vorgabe.\",\n  \"therapy_semantic_match\": false,\n  \"therapy_semantic_score\": 0.1,\n  \"clinical_appropriateness\": true,\n  \"clinical_appropriateness_score\": 0.9,\n  \"reasoning_quality\": 0.65,\n  \"reasoning_critique\": \"Grundsätzlich leitlinienorientiert für mRCC/IMDC-günstig (IO+TKI). Allerdings wird der IMDC-Status aus fehlenden Labor-/Zeitangaben unzulässig abgeleitet, und wichtige Aspekte (z.B. Stellenwert zytoreduktiver Nephrektomie/Sequenzierung, ICI-Kontraindikationen) werden nicht adressiert.\",\n  \"overall_score\": 0.53,\n  \"judge_reasoning\": \"Semantisch kein Match, da Ground Truth keine Therapie benennt. Klinisch ist Nivolumab+Cabozantinib eine anerkannte Erstlinienoption bei metastasiertem ccRCC mit günstigem Risiko und ICI-Eignung. Die Begründung ist überwiegend korrekt, aber mit Annahmen und Auslassungen, daher nur mittlere Begründungsqualität.\"\n}",
+      "reasoning_output": "",
+      "error": null,
+      "inference_time_seconds": 13.669415712356567
+    },
+    {
+      "case_id": "ncc_21",
+      "evaluation": {
+        "is_correct": true,
+        "correctness_reason": "Die Empfehlung Nivolumab+Cabozantinib entspricht einer IO+TKI-Erstlinientherapie und fällt damit unter die im Tumorboard genannte primäre Option „IO+TKI“ (alternativ zu IO+IO).",
+        "therapy_semantic_match": true,
+        "therapy_semantic_score": 0.9,
+        "clinical_appropriateness": true,
+        "clinical_appropriateness_score": 0.95,
+        "reasoning_quality": 0.75,
+        "reasoning_critique": "Begründung ist insgesamt schlüssig (M1, IMDC-intermediär, leitliniengerechte Regime). Allerdings wird die Präferenz für Cabo nur allgemein begründet und die Abwägung IO+IO vs. IO+TKI (inkl. Toxizitäts-/Komorbiditätsaspekte bei Hypertonie) könnte strukturierter erfolgen; zudem ist der Metastasen-Status zwar korrekt aus dem Fall, aber inkonsistent zur angegebenen Ground-Truth-Zeile „Metastasiert: None“.",
+        "overall_score": 0.89,
+        "judge_reasoning": "Semantik: Tumorboard empfiehlt Systemtherapie mit IO+IO oder IO+TKI; die KI legt sich auf eine konkrete IO+TKI-Kombination (Nivo+Cabo) fest, was klar innerhalb der Ground-Truth-Optionen liegt (hohe, aber nicht perfekte Übereinstimmung). Klinik: Für mccRCC mit IMDC intermediate und ECOG 1 ist Nivo+Cabo eine etablierte, leitlinienkonforme Erstlinientherapie. Begründung: korrekte IMDC-Einordnung und richtige Therapieklasse, jedoch begrenzte patientenspezifische Abwägung und teils pauschale Formulierungen."
+      },
+      "raw_response": "{\"is_correct\":true,\"correctness_reason\":\"Die Empfehlung Nivolumab+Cabozantinib entspricht einer IO+TKI-Erstlinientherapie und fällt damit unter die im Tumorboard genannte primäre Option „IO+TKI“ (alternativ zu IO+IO).\",\"therapy_semantic_match\":true,\"therapy_semantic_score\":0.9,\"clinical_appropriateness\":true,\"clinical_appropriateness_score\":0.95,\"reasoning_quality\":0.75,\"reasoning_critique\":\"Begründung ist insgesamt schlüssig (M1, IMDC-intermediär, leitliniengerechte Regime). Allerdings wird die Präferenz für Cabo nur allgemein begründet und die Abwägung IO+IO vs. IO+TKI (inkl. Toxizitäts-/Komorbiditätsaspekte bei Hypertonie) könnte strukturierter erfolgen; zudem ist der Metastasen-Status zwar korrekt aus dem Fall, aber inkonsistent zur angegebenen Ground-Truth-Zeile „Metastasiert: None“.\",\"overall_score\":0.89,\"judge_reasoning\":\"Semantik: Tumorboard empfiehlt Systemtherapie mit IO+IO oder IO+TKI; die KI legt sich auf eine konkrete IO+TKI-Kombination (Nivo+Cabo) fest, was klar innerhalb der Ground-Truth-Optionen liegt (hohe, aber nicht perfekte Übereinstimmung). Klinik: Für mccRCC mit IMDC intermediate und ECOG 1 ist Nivo+Cabo eine etablierte, leitlinienkonforme Erstlinientherapie. Begründung: korrekte IMDC-Einordnung und richtige Therapieklasse, jedoch begrenzte patientenspezifische Abwägung und teils pauschale Formulierungen.\"}",
+      "reasoning_output": "",
+      "error": null,
+      "inference_time_seconds": 12.975125074386597
+    },
+    {
+      "case_id": "ncc_22",
+      "evaluation": {
+        "is_correct": true,
+        "correctness_reason": "Die KI empfiehlt eine Erstlinien-Systemtherapie mit IO+IO oder IO+TKI (inkl. Nivo/Ipi sowie IO+TKI-Kombinationen) und trifft damit die Ground-Truth-Empfehlung „IO+IO vs. IO+TKI“ semantisch.",
+        "therapy_semantic_match": true,
+        "therapy_semantic_score": 0.9,
+        "clinical_appropriateness": true,
+        "clinical_appropriateness_score": 0.9,
+        "reasoning_quality": 0.65,
+        "reasoning_critique": "IMDC-Einstufung und prinzipielle Erstlinienoptionen sind korrekt; jedoch wird die sarkomatoide Komponente nicht in die Therapieabwägung integriert, die Histologie wird unnötig angenommen, und wichtige Supportivmaßnahmen aus der Ground Truth (Anämieabklärung, Knochenprotektion/ggf. lokale Maßnahmen) fehlen.",
+        "overall_score": 0.85,
+        "judge_reasoning": "Semantisch deckt die KI die in der Tumorboard-Empfehlung geforderte Bandbreite (IO+IO vs. IO+TKI) ab und nennt passende Regime für intermediäres IMDC-Risiko im mRCC. Klinisch ist dies leitlinienkonform. Abzüge bei der Begründungsqualität wegen fehlender expliziter Berücksichtigung der sarkomatoiden Komponente und fehlender Supportivtherapie-/Knochenmanagement-Empfehlungen."
+      },
+      "raw_response": "{\n  \"is_correct\": true,\n  \"correctness_reason\": \"Die KI empfiehlt eine Erstlinien-Systemtherapie mit IO+IO oder IO+TKI (inkl. Nivo/Ipi sowie IO+TKI-Kombinationen) und trifft damit die Ground-Truth-Empfehlung „IO+IO vs. IO+TKI“ semantisch.\",\n  \"therapy_semantic_match\": true,\n  \"therapy_semantic_score\": 0.9,\n  \"clinical_appropriateness\": true,\n  \"clinical_appropriateness_score\": 0.9,\n  \"reasoning_quality\": 0.65,\n  \"reasoning_critique\": \"IMDC-Einstufung und prinzipielle Erstlinienoptionen sind korrekt; jedoch wird die sarkomatoide Komponente nicht in die Therapieabwägung integriert, die Histologie wird unnötig angenommen, und wichtige Supportivmaßnahmen aus der Ground Truth (Anämieabklärung, Knochenprotektion/ggf. lokale Maßnahmen) fehlen.\",\n  \"overall_score\": 0.85,\n  \"judge_reasoning\": \"Semantisch deckt die KI die in der Tumorboard-Empfehlung geforderte Bandbreite (IO+IO vs. IO+TKI) ab und nennt passende Regime für intermediäres IMDC-Risiko im mRCC. Klinisch ist dies leitlinienkonform. Abzüge bei der Begründungsqualität wegen fehlender expliziter Berücksichtigung der sarkomatoiden Komponente und fehlender Supportivtherapie-/Knochenmanagement-Empfehlungen.\"\n}",
+      "reasoning_output": "**Evaluating AI predictions**\n\nI need to examine the AI's predictions against the ground truth. The ground truth suggests that there are no metastases, but the therapy recommendations involve various combinations of systemic therapies. The AI indicates metastatic cases are true and suggests several immunotherapy combinations. It matches the broader category since the ground truth is less specific. The clinical reasoning quality seems mostly correct, although there are some omissions regarding supportive care and specific details about tumor types. Overall, it looks fairly accurate.**Calculating overall score**\n\nI’m calculating the overall score using the formula: 0.4 times semantic, 0.4 times clinical, and 0.2 times reasoning. If I set the semantic at 0.9, clinical at 0.9, and reasoning at 0.65, my total would be 0.85. I’ll provide this information in JSON format and include reasoning and critiques. There's a note about the ground truth indicating \"None\" for metastasis, but it seems to be an ambiguous field since it's likely metastatic. I’ll craft the JSON accordingly!",
+      "error": null,
+      "inference_time_seconds": 16.16343879699707
+    },
+    {
+      "case_id": "ncc_23",
+      "evaluation": {
+        "is_correct": true,
+        "correctness_reason": "Die Empfehlung Nivolumab + Cabozantinib entspricht der in der Ground Truth genannten Erstlinien-Option \"IO+TKI\" bei mRCC mit IMDC-intermediärem Risiko (ohne Festlegung auf ein spezifisches Regime).",
+        "therapy_semantic_match": true,
+        "therapy_semantic_score": 0.9,
+        "clinical_appropriateness": true,
+        "clinical_appropriateness_score": 0.9,
+        "reasoning_quality": 0.7,
+        "reasoning_critique": "Begründung insgesamt schlüssig (Metastasierung, IMDC-Intermediate, leitliniengerechte Erstlinienoptionen), aber unnötige Annahme einer klarzelligen Histologie und fehlende/zu geringe Berücksichtigung der in der Ground Truth betonten parallelen Hyperkalzämie-Abklärung und Supportivmaßnahmen.",
+        "overall_score": 0.86,
+        "judge_reasoning": "Semantik: Ground Truth fordert Systemtherapie in Form von IO+IO oder IO+TKI; Nivo+Cabo ist eine konkrete IO+TKI-Erstlinienkombination, daher hohe Übereinstimmung (0.9). Klinik: Bei mRCC und IMDC intermediate ist Nivo+Cabo leitlinienkonform und häufige Erstlinienwahl, daher hohe Angemessenheit (0.9). Begründung: korrektes Risk-Stratifying, aber Lücken bzgl. Begleitmanagement (Hyperkalzämie/Endokrinologie) und Histologieannahme, daher moderat-gut (0.7). Gesamt: gewichteter Score 0.4*0.9 + 0.4*0.9 + 0.2*0.7 = 0.86."
+      },
+      "raw_response": "{\n  \"is_correct\": true,\n  \"correctness_reason\": \"Die Empfehlung Nivolumab + Cabozantinib entspricht der in der Ground Truth genannten Erstlinien-Option \\\"IO+TKI\\\" bei mRCC mit IMDC-intermediärem Risiko (ohne Festlegung auf ein spezifisches Regime).\",\n  \"therapy_semantic_match\": true,\n  \"therapy_semantic_score\": 0.9,\n  \"clinical_appropriateness\": true,\n  \"clinical_appropriateness_score\": 0.9,\n  \"reasoning_quality\": 0.7,\n  \"reasoning_critique\": \"Begründung insgesamt schlüssig (Metastasierung, IMDC-Intermediate, leitliniengerechte Erstlinienoptionen), aber unnötige Annahme einer klarzelligen Histologie und fehlende/zu geringe Berücksichtigung der in der Ground Truth betonten parallelen Hyperkalzämie-Abklärung und Supportivmaßnahmen.\",\n  \"overall_score\": 0.86,\n  \"judge_reasoning\": \"Semantik: Ground Truth fordert Systemtherapie in Form von IO+IO oder IO+TKI; Nivo+Cabo ist eine konkrete IO+TKI-Erstlinienkombination, daher hohe Übereinstimmung (0.9). Klinik: Bei mRCC und IMDC intermediate ist Nivo+Cabo leitlinienkonform und häufige Erstlinienwahl, daher hohe Angemessenheit (0.9). Begründung: korrektes Risk-Stratifying, aber Lücken bzgl. Begleitmanagement (Hyperkalzämie/Endokrinologie) und Histologieannahme, daher moderat-gut (0.7). Gesamt: gewichteter Score 0.4*0.9 + 0.4*0.9 + 0.2*0.7 = 0.86.\"\n}",
+      "reasoning_output": "",
+      "error": null,
+      "inference_time_seconds": 12.803851127624512
+    },
+    {
+      "case_id": "ncc_24",
+      "evaluation": {
+        "is_correct": false,
+        "correctness_reason": "Die Ground-Truth-Empfehlung ist unspezifisch („Einleitung einer Systemtherapie im metastasierten Setting“ ohne Festlegung auf ein konkretes Regime). Die KI legt sich auf Cabozantinib-Monotherapie fest; das ist keine semantisch gleichwertige Empfehlung (und es sind keine akzeptablen Alternativen definiert).",
+        "therapy_semantic_match": false,
+        "therapy_semantic_score": 0.6,
+        "clinical_appropriateness": true,
+        "clinical_appropriateness_score": 0.75,
+        "reasoning_quality": 0.6,
+        "reasoning_critique": "Grundsätzlich nachvollziehbar (mRCC papRCC → TKI-Optionen), aber mit Ungenauigkeiten (Neutrophilie „im CT erwähnt“), fehlender Abwägung von IO-basierten Optionen/Studien und unzureichender Einbindung der Komorbiditäten in die Therapieentscheidung.",
+        "overall_score": 0.66,
+        "judge_reasoning": "Semantisch nur teilweise Übereinstimmung, da die Tumorboard-Vorgabe eine generelle Systemtherapieeinleitung ohne Wirkstofffestlegung ist, während die KI ein konkretes TKI-Monoregime empfiehlt. Klinisch ist Cabozantinib bei metastasiertem papillärem RCC eine leitliniennahe/akzeptable Option, jedoch nicht zwingend „erste Wahl“ ohne Diskussion von IO/Studien und ohne klare ICI-Kontraindikation. Begründung insgesamt mittelgut mit relevanten Auslassungen."
+      },
+      "raw_response": "{\n  \"is_correct\": false,\n  \"correctness_reason\": \"Die Ground-Truth-Empfehlung ist unspezifisch („Einleitung einer Systemtherapie im metastasierten Setting“ ohne Festlegung auf ein konkretes Regime). Die KI legt sich auf Cabozantinib-Monotherapie fest; das ist keine semantisch gleichwertige Empfehlung (und es sind keine akzeptablen Alternativen definiert).\",\n  \"therapy_semantic_match\": false,\n  \"therapy_semantic_score\": 0.6,\n  \"clinical_appropriateness\": true,\n  \"clinical_appropriateness_score\": 0.75,\n  \"reasoning_quality\": 0.6,\n  \"reasoning_critique\": \"Grundsätzlich nachvollziehbar (mRCC papRCC → TKI-Optionen), aber mit Ungenauigkeiten (Neutrophilie „im CT erwähnt“), fehlender Abwägung von IO-basierten Optionen/Studien und unzureichender Einbindung der Komorbiditäten in die Therapieentscheidung.\",\n  \"overall_score\": 0.66,\n  \"judge_reasoning\": \"Semantisch nur teilweise Übereinstimmung, da die Tumorboard-Vorgabe eine generelle Systemtherapieeinleitung ohne Wirkstofffestlegung ist, während die KI ein konkretes TKI-Monoregime empfiehlt. Klinisch ist Cabozantinib bei metastasiertem papillärem RCC eine leitliniennahe/akzeptable Option, jedoch nicht zwingend „erste Wahl“ ohne Diskussion von IO/Studien und ohne klare ICI-Kontraindikation. Begründung insgesamt mittelgut mit relevanten Auslassungen.\"\n}",
+      "reasoning_output": "",
+      "error": null,
+      "inference_time_seconds": 17.70381808280945
+    },
+    {
+      "case_id": "ncc_25",
+      "evaluation": {
+        "is_correct": true,
+        "correctness_reason": "Die Ground-Truth empfiehlt eine Systemtherapie im metastasierten papRCC-Setting ohne Festlegung auf ein konkretes Regime; Nivolumab + Cabozantinib erfüllt dies als konkrete Systemtherapie-Option.",
+        "therapy_semantic_match": true,
+        "therapy_semantic_score": 0.85,
+        "clinical_appropriateness": true,
+        "clinical_appropriateness_score": 0.88,
+        "reasoning_quality": 0.6,
+        "reasoning_critique": "Grundannahme (mRCC → Systemtherapie) ist korrekt, jedoch ist die IMDC-Begründung fehlerhaft: Intervall Nephrektomie 08/2024 bis 10/2025 ist >12 Monate, der IMDC-Faktor 'Zeit <1 Jahr' ist damit nicht gegeben; zudem wird Karnofsky ohne Daten angenommen. Supportivmaßnahmen (Analgesie/Knochenprotektion) aus der Ground Truth werden nicht adressiert.",
+        "overall_score": 0.81,
+        "judge_reasoning": "Semantisch passt die KI-Empfehlung zur unspezifischen Tumorboard-Vorgabe 'Systemtherapie einleiten' (hohe, aber nicht perfekte Übereinstimmung wegen fehlender Supportivkomponente). Klinisch ist Nivo+Cabo beim metastasierten papillären/nicht-klarzelligen RCC eine leitliniennahe Option (alternativ häufig auch Cabozantinib-Mono oder andere IO-basierte Optionen), daher hohe Angemessenheit. Die Begründung weist jedoch einen wesentlichen IMDC-Fehler (Therapieintervall) und unbelegte Annahmen auf, wodurch die Reasoning-Qualität nur mittel ist."
+      },
+      "raw_response": "{\n  \"is_correct\": true,\n  \"correctness_reason\": \"Die Ground-Truth empfiehlt eine Systemtherapie im metastasierten papRCC-Setting ohne Festlegung auf ein konkretes Regime; Nivolumab + Cabozantinib erfüllt dies als konkrete Systemtherapie-Option.\",\n  \"therapy_semantic_match\": true,\n  \"therapy_semantic_score\": 0.85,\n  \"clinical_appropriateness\": true,\n  \"clinical_appropriateness_score\": 0.88,\n  \"reasoning_quality\": 0.6,\n  \"reasoning_critique\": \"Grundannahme (mRCC → Systemtherapie) ist korrekt, jedoch ist die IMDC-Begründung fehlerhaft: Intervall Nephrektomie 08/2024 bis 10/2025 ist >12 Monate, der IMDC-Faktor 'Zeit <1 Jahr' ist damit nicht gegeben; zudem wird Karnofsky ohne Daten angenommen. Supportivmaßnahmen (Analgesie/Knochenprotektion) aus der Ground Truth werden nicht adressiert.\",\n  \"overall_score\": 0.81,\n  \"judge_reasoning\": \"Semantisch passt die KI-Empfehlung zur unspezifischen Tumorboard-Vorgabe 'Systemtherapie einleiten' (hohe, aber nicht perfekte Übereinstimmung wegen fehlender Supportivkomponente). Klinisch ist Nivo+Cabo beim metastasierten papillären/nicht-klarzelligen RCC eine leitliniennahe Option (alternativ häufig auch Cabozantinib-Mono oder andere IO-basierte Optionen), daher hohe Angemessenheit. Die Begründung weist jedoch einen wesentlichen IMDC-Fehler (Therapieintervall) und unbelegte Annahmen auf, wodurch die Reasoning-Qualität nur mittel ist.\"\n}",
+      "reasoning_output": "",
+      "error": null,
+      "inference_time_seconds": 20.45833110809326
+    },
+    {
+      "case_id": "ncc_26",
+      "evaluation": {
+        "is_correct": true,
+        "correctness_reason": "Ground Truth empfiehlt im metastasierten Setting die Einleitung einer geeigneten Systemtherapie ohne Festlegung auf ein spezifisches Regime; Nivolumab+Cabozantinib ist eine etablierte Erstlinien-IO+TKI-Option bei IMDC high/poor risk und entspricht damit der intendierten Empfehlungskategorie.",
+        "therapy_semantic_match": true,
+        "therapy_semantic_score": 0.82,
+        "clinical_appropriateness": true,
+        "clinical_appropriateness_score": 0.85,
+        "reasoning_quality": 0.6,
+        "reasoning_critique": "IMDC-Argumentation ist nur teilweise sauber (Zeitkriterium im IMDC ist klassisch <1 Jahr; hier wird >24 Monate als Risikofaktor übernommen), Histologie wird unbegründet als klarzellig angenommen, und Supportivmaßnahmen/Monitoring (Knochenprotektion, Laborkontrollen) aus der Ground Truth werden nicht in die Therapieempfehlung integriert.",
+        "overall_score": 0.79,
+        "judge_reasoning": "Semantisch passt eine konkrete IO+TKI-Kombination zur unspezifischen Tumorboard-Vorgabe „geeignete Systemtherapie im metastasierten Setting“, daher hohe Übereinstimmung. Klinisch ist Nivo+Cabo leitlinienkonform als Erstlinie bei (intermediate/poor-)risk mRCC; bei ECOG 2, KHK und CKD G3 besteht jedoch erhöhter Toxizitäts-/Interaktionsbedarf, weshalb nicht Maximalscore. Die Begründung ist grundsätzlich plausibel, enthält aber IMDC-Detailfehler/Annahmen und lässt zentrale supportiv- und Monitoring-Aspekte weg."
+      },
+      "raw_response": "{\n  \"is_correct\": true,\n  \"correctness_reason\": \"Ground Truth empfiehlt im metastasierten Setting die Einleitung einer geeigneten Systemtherapie ohne Festlegung auf ein spezifisches Regime; Nivolumab+Cabozantinib ist eine etablierte Erstlinien-IO+TKI-Option bei IMDC high/poor risk und entspricht damit der intendierten Empfehlungskategorie.\",\n  \"therapy_semantic_match\": true,\n  \"therapy_semantic_score\": 0.82,\n  \"clinical_appropriateness\": true,\n  \"clinical_appropriateness_score\": 0.85,\n  \"reasoning_quality\": 0.6,\n  \"reasoning_critique\": \"IMDC-Argumentation ist nur teilweise sauber (Zeitkriterium im IMDC ist klassisch <1 Jahr; hier wird >24 Monate als Risikofaktor übernommen), Histologie wird unbegründet als klarzellig angenommen, und Supportivmaßnahmen/Monitoring (Knochenprotektion, Laborkontrollen) aus der Ground Truth werden nicht in die Therapieempfehlung integriert.\",\n  \"overall_score\": 0.79,\n  \"judge_reasoning\": \"Semantisch passt eine konkrete IO+TKI-Kombination zur unspezifischen Tumorboard-Vorgabe „geeignete Systemtherapie im metastasierten Setting“, daher hohe Übereinstimmung. Klinisch ist Nivo+Cabo leitlinienkonform als Erstlinie bei (intermediate/poor-)risk mRCC; bei ECOG 2, KHK und CKD G3 besteht jedoch erhöhter Toxizitäts-/Interaktionsbedarf, weshalb nicht Maximalscore. Die Begründung ist grundsätzlich plausibel, enthält aber IMDC-Detailfehler/Annahmen und lässt zentrale supportiv- und Monitoring-Aspekte weg.\"\n}",
+      "reasoning_output": "**Evaluating therapy options**\n\nI’m confirming that the semantic match is correct at 0.8 or higher. The ground truth indicates that starting systemic therapy is mandatory, and the combination of Nivolumab and Cabozantinib is a fitting immuno-oncology (IO) and tyrosine kinase inhibitor (TKI) option. I need to point out a mismatch in the metastasized field, but overall, the therapy choice seems appropriate. So, I’m feeling good about this conclusion.",
+      "error": null,
+      "inference_time_seconds": 31.574491024017334
+    },
+    {
+      "case_id": "ncc_27",
+      "evaluation": {
+        "is_correct": true,
+        "correctness_reason": "Die Ground-Truth-Empfehlung fordert eine IO-basierte Erstlinien-Systemtherapie (ohne konkrete Regimen-Festlegung). Nivolumab + Cabozantinib ist eine etablierte IO+TKI-Option und fällt semantisch unter eine geeignete IO-basierte Systemtherapie.",
+        "therapy_semantic_match": true,
+        "therapy_semantic_score": 0.88,
+        "clinical_appropriateness": true,
+        "clinical_appropriateness_score": 0.9,
+        "reasoning_quality": 0.6,
+        "reasoning_critique": "Therapiewahl ist plausibel, jedoch ist die IMDC-Begründung fachlich fehlerhaft (Metastasenlokalisationen sind keine IMDC-Risikofaktoren; relevante Laborparameter/Diagnose-zu-Therapie-Intervall fehlen). Supportivmaßnahmen (Knochenprotektion/Analgesie/Monitoring) werden nicht konkret in der Empfehlung adressiert.",
+        "overall_score": 0.83,
+        "judge_reasoning": "Semantisch passt die konkrete IO+TKI-Kombination zur unspezifischen Ground-Truth-Vorgabe einer IO-basierten Systemtherapie. Klinisch ist Nivo+Cabo in der Erstlinie beim metastasierten ccRCC (insb. auch bei aggressiver/sarkomatoider Komponente) leitlinienkonform. Abzüge ergeben sich aus der inkorrekten IMDC-Herleitung und der fehlenden expliziten Integration der im Tumorboard genannten Supportivmaßnahmen."
+      },
+      "raw_response": "{\n  \"is_correct\": true,\n  \"correctness_reason\": \"Die Ground-Truth-Empfehlung fordert eine IO-basierte Erstlinien-Systemtherapie (ohne konkrete Regimen-Festlegung). Nivolumab + Cabozantinib ist eine etablierte IO+TKI-Option und fällt semantisch unter eine geeignete IO-basierte Systemtherapie.\",\n  \"therapy_semantic_match\": true,\n  \"therapy_semantic_score\": 0.88,\n  \"clinical_appropriateness\": true,\n  \"clinical_appropriateness_score\": 0.9,\n  \"reasoning_quality\": 0.6,\n  \"reasoning_critique\": \"Therapiewahl ist plausibel, jedoch ist die IMDC-Begründung fachlich fehlerhaft (Metastasenlokalisationen sind keine IMDC-Risikofaktoren; relevante Laborparameter/Diagnose-zu-Therapie-Intervall fehlen). Supportivmaßnahmen (Knochenprotektion/Analgesie/Monitoring) werden nicht konkret in der Empfehlung adressiert.\",\n  \"overall_score\": 0.83,\n  \"judge_reasoning\": \"Semantisch passt die konkrete IO+TKI-Kombination zur unspezifischen Ground-Truth-Vorgabe einer IO-basierten Systemtherapie. Klinisch ist Nivo+Cabo in der Erstlinie beim metastasierten ccRCC (insb. auch bei aggressiver/sarkomatoider Komponente) leitlinienkonform. Abzüge ergeben sich aus der inkorrekten IMDC-Herleitung und der fehlenden expliziten Integration der im Tumorboard genannten Supportivmaßnahmen.\"\n}",
+      "reasoning_output": "",
+      "error": null,
+      "inference_time_seconds": 16.9199001789093
+    },
+    {
+      "case_id": "ncc_28",
+      "evaluation": {
+        "is_correct": true,
+        "correctness_reason": "Ground Truth fordert unspezifisch die Einleitung einer Systemtherapie im metastasierten Setting (plus Supportivmaßnahmen). Cabozantinib ist eine konkrete Systemtherapie-Option und erfüllt damit im Kern die Tumorboard-Aussage, auch wenn Supportivmaßnahmen nicht explizit mitempfohlen wurden.",
+        "therapy_semantic_match": true,
+        "therapy_semantic_score": 0.85,
+        "clinical_appropriateness": true,
+        "clinical_appropriateness_score": 0.78,
+        "reasoning_quality": 0.55,
+        "reasoning_critique": "IMDC-Argumentation ist teils falsch/unsicher (\"metastasiertes Stadium\" kein IMDC-Kriterium; Zeit bis Systemtherapie hier eher >1 Jahr; fehlende Laborparameter). Begründung zu Cabozantinib vermischt Erst-/Zweitlinie; Supportivtherapie bei Knochenmetastasen wird nicht als Teil der Empfehlung umgesetzt.",
+        "overall_score": 0.76,
+        "judge_reasoning": "Semantisch passt die KI-Empfehlung grundsätzlich, weil das Tumorboard keine konkrete Substanz nennt, sondern Systemtherapiestart im metastasierten Setting empfiehlt. Klinisch ist Cabozantinib bei papillärem mRCC eine leitliniennahe/akzeptierte Option, insbesondere wenn ICI-Kombinationen (bei ECOG 2/Alter/Komorbiditäten) nicht sicher durchführbar sind; allerdings wäre in vielen Settings auch eine IO-basierte Strategie zu diskutieren. Die Begründung leidet unter fehlerhafter IMDC-Herleitung und unklarer Linienzuordnung sowie fehlender expliziter Supportivempfehlung (Knochenprotektion/Analgesie/Laborkontrollen)."
+      },
+      "raw_response": "{\n  \"is_correct\": true,\n  \"correctness_reason\": \"Ground Truth fordert unspezifisch die Einleitung einer Systemtherapie im metastasierten Setting (plus Supportivmaßnahmen). Cabozantinib ist eine konkrete Systemtherapie-Option und erfüllt damit im Kern die Tumorboard-Aussage, auch wenn Supportivmaßnahmen nicht explizit mitempfohlen wurden.\",\n  \"therapy_semantic_match\": true,\n  \"therapy_semantic_score\": 0.85,\n  \"clinical_appropriateness\": true,\n  \"clinical_appropriateness_score\": 0.78,\n  \"reasoning_quality\": 0.55,\n  \"reasoning_critique\": \"IMDC-Argumentation ist teils falsch/unsicher (\\\"metastasiertes Stadium\\\" kein IMDC-Kriterium; Zeit bis Systemtherapie hier eher >1 Jahr; fehlende Laborparameter). Begründung zu Cabozantinib vermischt Erst-/Zweitlinie; Supportivtherapie bei Knochenmetastasen wird nicht als Teil der Empfehlung umgesetzt.\",\n  \"overall_score\": 0.76,\n  \"judge_reasoning\": \"Semantisch passt die KI-Empfehlung grundsätzlich, weil das Tumorboard keine konkrete Substanz nennt, sondern Systemtherapiestart im metastasierten Setting empfiehlt. Klinisch ist Cabozantinib bei papillärem mRCC eine leitliniennahe/akzeptierte Option, insbesondere wenn ICI-Kombinationen (bei ECOG 2/Alter/Komorbiditäten) nicht sicher durchführbar sind; allerdings wäre in vielen Settings auch eine IO-basierte Strategie zu diskutieren. Die Begründung leidet unter fehlerhafter IMDC-Herleitung und unklarer Linienzuordnung sowie fehlender expliziter Supportivempfehlung (Knochenprotektion/Analgesie/Laborkontrollen).\"\n}",
+      "reasoning_output": "",
+      "error": null,
+      "inference_time_seconds": 25.296319007873535
+    },
+    {
+      "case_id": "ncc_29",
+      "evaluation": {
+        "is_correct": false,
+        "correctness_reason": "Die Ground-Truth-Empfehlung lautet unspezifisch auf „Einleitung einer Systemtherapie + Supportivmaßnahmen“ (v. a. Knochenprotektion/Analgesie/Monitoring) ohne konkrete Substanz. Die KI legt sich auf Nivolumab+Cabozantinib fest und bildet zudem die expliziten Supportivmaßnahmen der Ground Truth nicht ab; damit keine semantische Übereinstimmung und keine definierte akzeptable Alternative angegeben.",
+        "therapy_semantic_match": false,
+        "therapy_semantic_score": 0.5,
+        "clinical_appropriateness": true,
+        "clinical_appropriateness_score": 0.75,
+        "reasoning_quality": 0.6,
+        "reasoning_critique": "Begründung ist grundsätzlich plausibel (metastasiert, sarkomatoide Komponente, IO-basierte Therapie erwägenswert), aber IMDC-Hochrisiko wird nur unvollständig hergeleitet, die Evidenzlage bei chromophobem RCC für IO+TKI wird nicht sauber eingeordnet, und die in der Ground Truth betonten Supportivmaßnahmen (Knochenprotektion, Analgesie, engmaschiges Ca/Hb-Monitoring, Thorax-Verlauf) fehlen in der Therapieempfehlung.",
+        "overall_score": 0.62,
+        "judge_reasoning": "Semantisch weicht die KI von der Tumorboard-Aussage ab, da diese bewusst nur „Systemtherapie einleiten“ plus konkrete Supportivmaßnahmen festhält, während die KI ein spezifisches IO+TKI-Regime nennt und Supportivmaßnahmen nicht adressiert (Semantik ~0.5). Klinisch ist Nivo+Cabo bei mRCC grundsätzlich eine leitliniennahe Option, auch wenn bei nicht-klarzelliger Histologie (chromophob) die Evidenz schwächer ist und TKI-Mono häufig ebenfalls vertretbar wäre; sarkomatoide Anteile sprechen für IO-Erwägung (Klinik ~0.75). Die Argumentation ist teils korrekt, aber lückenhaft und nicht vollständig falladaptiert (Reasoning ~0.6)."
+      },
+      "raw_response": "{\n  \"is_correct\": false,\n  \"correctness_reason\": \"Die Ground-Truth-Empfehlung lautet unspezifisch auf „Einleitung einer Systemtherapie + Supportivmaßnahmen“ (v. a. Knochenprotektion/Analgesie/Monitoring) ohne konkrete Substanz. Die KI legt sich auf Nivolumab+Cabozantinib fest und bildet zudem die expliziten Supportivmaßnahmen der Ground Truth nicht ab; damit keine semantische Übereinstimmung und keine definierte akzeptable Alternative angegeben.\",\n  \"therapy_semantic_match\": false,\n  \"therapy_semantic_score\": 0.5,\n  \"clinical_appropriateness\": true,\n  \"clinical_appropriateness_score\": 0.75,\n  \"reasoning_quality\": 0.6,\n  \"reasoning_critique\": \"Begründung ist grundsätzlich plausibel (metastasiert, sarkomatoide Komponente, IO-basierte Therapie erwägenswert), aber IMDC-Hochrisiko wird nur unvollständig hergeleitet, die Evidenzlage bei chromophobem RCC für IO+TKI wird nicht sauber eingeordnet, und die in der Ground Truth betonten Supportivmaßnahmen (Knochenprotektion, Analgesie, engmaschiges Ca/Hb-Monitoring, Thorax-Verlauf) fehlen in der Therapieempfehlung.\",\n  \"overall_score\": 0.62,\n  \"judge_reasoning\": \"Semantisch weicht die KI von der Tumorboard-Aussage ab, da diese bewusst nur „Systemtherapie einleiten“ plus konkrete Supportivmaßnahmen festhält, während die KI ein spezifisches IO+TKI-Regime nennt und Supportivmaßnahmen nicht adressiert (Semantik ~0.5). Klinisch ist Nivo+Cabo bei mRCC grundsätzlich eine leitliniennahe Option, auch wenn bei nicht-klarzelliger Histologie (chromophob) die Evidenz schwächer ist und TKI-Mono häufig ebenfalls vertretbar wäre; sarkomatoide Anteile sprechen für IO-Erwägung (Klinik ~0.75). Die Argumentation ist teils korrekt, aber lückenhaft und nicht vollständig falladaptiert (Reasoning ~0.6).\"\n}",
+      "reasoning_output": "",
+      "error": null,
+      "inference_time_seconds": 26.33994483947754
+    },
+    {
+      "case_id": "ncc_3",
+      "evaluation": {
+        "is_correct": true,
+        "correctness_reason": "Die KI empfiehlt eine Nierenteilresektion, die explizit als eine der primären Optionen in der Tumorboard-Empfehlung (aktive Überwachung vs. Teilresektion vs. Ablation je nach Lage/RENAL-Score) enthalten ist.",
+        "therapy_semantic_match": true,
+        "therapy_semantic_score": 0.85,
+        "clinical_appropriateness": true,
+        "clinical_appropriateness_score": 0.93,
+        "reasoning_quality": 0.78,
+        "reasoning_critique": "Insgesamt logisch und leitliniennah (kleiner cT1a-Tumor, nephronerhaltendes Vorgehen sinnvoll). Leichte Mängel: Biopsie wird als zwingend für aktive Überwachung/Ablation dargestellt (ist eher optional/selektiv), und die Annahme eines klarzelligen Subtyps ist prätherapeutisch nicht erforderlich; zudem fehlt die Einordnung nach Tumorlokalisation/RENAL-Score, die in der Ground Truth die Wahl der Option steuert.",
+        "overall_score": 0.87,
+        "judge_reasoning": "Semantisch passt die empfohlene Teilresektion zu einer der vom Tumorboard genannten gleichwertigen Strategien, auch wenn die Ground Truth ausdrücklich mehrere Optionen offenlässt. Klinisch ist eine partielle Nephrektomie bei 2,2 cm (cT1a) bei guter Operabilität/ECOG 0 sehr angemessen. Die Begründung ist überwiegend korrekt, aber etwas zu kategorisch bzgl. Biopsie und ohne Berücksichtigung von Lage/Komplexität, weshalb die Reasoning-Qualität leicht reduziert ist."
+      },
+      "raw_response": "{\n  \"is_correct\": true,\n  \"correctness_reason\": \"Die KI empfiehlt eine Nierenteilresektion, die explizit als eine der primären Optionen in der Tumorboard-Empfehlung (aktive Überwachung vs. Teilresektion vs. Ablation je nach Lage/RENAL-Score) enthalten ist.\",\n  \"therapy_semantic_match\": true,\n  \"therapy_semantic_score\": 0.85,\n  \"clinical_appropriateness\": true,\n  \"clinical_appropriateness_score\": 0.93,\n  \"reasoning_quality\": 0.78,\n  \"reasoning_critique\": \"Insgesamt logisch und leitliniennah (kleiner cT1a-Tumor, nephronerhaltendes Vorgehen sinnvoll). Leichte Mängel: Biopsie wird als zwingend für aktive Überwachung/Ablation dargestellt (ist eher optional/selektiv), und die Annahme eines klarzelligen Subtyps ist prätherapeutisch nicht erforderlich; zudem fehlt die Einordnung nach Tumorlokalisation/RENAL-Score, die in der Ground Truth die Wahl der Option steuert.\",\n  \"overall_score\": 0.87,\n  \"judge_reasoning\": \"Semantisch passt die empfohlene Teilresektion zu einer der vom Tumorboard genannten gleichwertigen Strategien, auch wenn die Ground Truth ausdrücklich mehrere Optionen offenlässt. Klinisch ist eine partielle Nephrektomie bei 2,2 cm (cT1a) bei guter Operabilität/ECOG 0 sehr angemessen. Die Begründung ist überwiegend korrekt, aber etwas zu kategorisch bzgl. Biopsie und ohne Berücksichtigung von Lage/Komplexität, weshalb die Reasoning-Qualität leicht reduziert ist.\"\n}",
+      "reasoning_output": "",
+      "error": null,
+      "inference_time_seconds": 13.255331039428711
+    },
+    {
+      "case_id": "ncc_30",
+      "evaluation": {
+        "is_correct": true,
+        "correctness_reason": "Die KI empfiehlt Sunitinib; dies ist in der Ground-Truth-Empfehlung explizit als mögliche Option (neben Pazopanib/Tivozanib) genannt und entspricht damit der primären Empfehlung „Wechsel der Systemtherapie“.",
+        "therapy_semantic_match": true,
+        "therapy_semantic_score": 1.0,
+        "clinical_appropriateness": true,
+        "clinical_appropriateness_score": 0.75,
+        "reasoning_quality": 0.6,
+        "reasoning_critique": "Begründung grundsätzlich nachvollziehbar (Progress unter Lenvatinib/Everolimus, weitere Linie nötig), aber teils widersprüchlich: Einerseits wird geringe Wirksamkeit weiterer TKIs betont, andererseits Sunitinib empfohlen. IMDC als „nicht anwendbar“ ist zu strikt; zudem fehlen patientenspezifische Aspekte (ECOG 2, Verträglichkeit, Sequenzierung/Alternativen wie Tivozanib, Studienoptionen) in der finalen Abwägung.",
+        "overall_score": 0.82,
+        "judge_reasoning": "Semantisch volle Übereinstimmung, da Sunitinib Bestandteil der genannten Switch-TKI-Optionen ist. Klinisch ist ein weiterer VEGFR-TKI in der 4. Linie nach ICI, Cabozantinib und Lenvatinib/Everolimus grundsätzlich vertretbar (wenn auch nicht immer erste Wahl; häufig eher Tivozanib/Studie). Die Argumentation ist überwiegend korrekt, aber mit Inkonsistenzen und fehlender Individualisierung, daher nur mittlere Begründungsqualität."
+      },
+      "raw_response": "{\n  \"is_correct\": true,\n  \"correctness_reason\": \"Die KI empfiehlt Sunitinib; dies ist in der Ground-Truth-Empfehlung explizit als mögliche Option (neben Pazopanib/Tivozanib) genannt und entspricht damit der primären Empfehlung „Wechsel der Systemtherapie“.\",\n  \"therapy_semantic_match\": true,\n  \"therapy_semantic_score\": 1.0,\n  \"clinical_appropriateness\": true,\n  \"clinical_appropriateness_score\": 0.75,\n  \"reasoning_quality\": 0.6,\n  \"reasoning_critique\": \"Begründung grundsätzlich nachvollziehbar (Progress unter Lenvatinib/Everolimus, weitere Linie nötig), aber teils widersprüchlich: Einerseits wird geringe Wirksamkeit weiterer TKIs betont, andererseits Sunitinib empfohlen. IMDC als „nicht anwendbar“ ist zu strikt; zudem fehlen patientenspezifische Aspekte (ECOG 2, Verträglichkeit, Sequenzierung/Alternativen wie Tivozanib, Studienoptionen) in der finalen Abwägung.\",\n  \"overall_score\": 0.82,\n  \"judge_reasoning\": \"Semantisch volle Übereinstimmung, da Sunitinib Bestandteil der genannten Switch-TKI-Optionen ist. Klinisch ist ein weiterer VEGFR-TKI in der 4. Linie nach ICI, Cabozantinib und Lenvatinib/Everolimus grundsätzlich vertretbar (wenn auch nicht immer erste Wahl; häufig eher Tivozanib/Studie). Die Argumentation ist überwiegend korrekt, aber mit Inkonsistenzen und fehlender Individualisierung, daher nur mittlere Begründungsqualität.\"\n}",
+      "reasoning_output": "",
+      "error": null,
+      "inference_time_seconds": 15.867473840713501
+    },
+    {
+      "case_id": "ncc_31",
+      "evaluation": {
+        "is_correct": false,
+        "correctness_reason": "Ground Truth empfiehlt als 3.-Linie v. a. Lenvatinib+Everolimus (oder Sequenz-Alternative). Die KI empfiehlt Cabozantinib-Monotherapie; das ist nicht semantisch äquivalent zur genannten Primärempfehlung und keine explizit akzeptierte Alternative in der Vorgabe.",
+        "therapy_semantic_match": false,
+        "therapy_semantic_score": 0.6,
+        "clinical_appropriateness": true,
+        "clinical_appropriateness_score": 0.85,
+        "reasoning_quality": 0.45,
+        "reasoning_critique": "Mehrere inhaltliche Fehler/Annahmen: IMDC ist nicht vom histologischen Subtyp abhängig und kann oft trotzdem genutzt werden; aus 'Histologie unbekannt' auf nicht-klarzellig zu schließen ist falsch. Zudem wird Cabozantinib als 'Zweitlinie nach ICI-Kombination' begründet, obwohl der Patient bereits eine TKI-Linie (Sunitinib) hatte; Cabozantinib kann zwar als spätere Linie passen, die Begründung ist aber inkonsistent.",
+        "overall_score": 0.67,
+        "judge_reasoning": "Semantisch weicht Cabozantinib mono deutlich von der Tumorboard-Referenz (Lenvatinib+Everolimus als prototypische 3.-Linie) ab, daher keine Übereinstimmung und binär inkorrekt. Klinisch ist Cabozantinib nach ICI und VEGFR-TKI grundsätzlich eine leitlinienkonforme Option (v. a. bei Komorbidität/ECOG 2), daher hohe klinische Angemessenheit. Die Argumentation der KI enthält jedoch fehlerhafte Prämissen (Histologie/IMDC) und eine unpräzise Linien-Logik, weshalb die Begründungsqualität nur moderat ist."
+      },
+      "raw_response": "{\n  \"is_correct\": false,\n  \"correctness_reason\": \"Ground Truth empfiehlt als 3.-Linie v. a. Lenvatinib+Everolimus (oder Sequenz-Alternative). Die KI empfiehlt Cabozantinib-Monotherapie; das ist nicht semantisch äquivalent zur genannten Primärempfehlung und keine explizit akzeptierte Alternative in der Vorgabe.\",\n  \"therapy_semantic_match\": false,\n  \"therapy_semantic_score\": 0.6,\n  \"clinical_appropriateness\": true,\n  \"clinical_appropriateness_score\": 0.85,\n  \"reasoning_quality\": 0.45,\n  \"reasoning_critique\": \"Mehrere inhaltliche Fehler/Annahmen: IMDC ist nicht vom histologischen Subtyp abhängig und kann oft trotzdem genutzt werden; aus 'Histologie unbekannt' auf nicht-klarzellig zu schließen ist falsch. Zudem wird Cabozantinib als 'Zweitlinie nach ICI-Kombination' begründet, obwohl der Patient bereits eine TKI-Linie (Sunitinib) hatte; Cabozantinib kann zwar als spätere Linie passen, die Begründung ist aber inkonsistent.\",\n  \"overall_score\": 0.67,\n  \"judge_reasoning\": \"Semantisch weicht Cabozantinib mono deutlich von der Tumorboard-Referenz (Lenvatinib+Everolimus als prototypische 3.-Linie) ab, daher keine Übereinstimmung und binär inkorrekt. Klinisch ist Cabozantinib nach ICI und VEGFR-TKI grundsätzlich eine leitlinienkonforme Option (v. a. bei Komorbidität/ECOG 2), daher hohe klinische Angemessenheit. Die Argumentation der KI enthält jedoch fehlerhafte Prämissen (Histologie/IMDC) und eine unpräzise Linien-Logik, weshalb die Begründungsqualität nur moderat ist.\"\n}",
+      "reasoning_output": "",
+      "error": null,
+      "inference_time_seconds": 23.994622230529785
+    },
+    {
+      "case_id": "ncc_32",
+      "evaluation": {
+        "is_correct": false,
+        "correctness_reason": "Ground Truth empfiehlt als 2. Linie explizit eine IO-basierte Kombination (oder alternative Sequenz) ohne Festlegung; die KI legt sich auf Nivolumab-Monotherapie fest, was semantisch nicht der primären Empfehlung entspricht und keine explizit akzeptierte Alternative genannt ist.",
+        "therapy_semantic_match": false,
+        "therapy_semantic_score": 0.65,
+        "clinical_appropriateness": true,
+        "clinical_appropriateness_score": 0.8,
+        "reasoning_quality": 0.45,
+        "reasoning_critique": "Mehrere fehlerhafte/unsichere Annahmen: Unbekannter Subtyp bedeutet nicht automatisch nicht-klarzellig; IMDC ist in der Praxis auch ohne vollständige Histologie oft anwendbar, sobald mRCC klar ist; zudem wird Cabozantinib fälschlich als Zweitlinienoption erneut genannt trotz Progress. CKD3 spricht nicht grundsätzlich gegen TKI, und Nivolumab ist nicht „nierenfreundlich“ per se (Risiko immunvermittelter Nephritis).",
+        "overall_score": 0.67,
+        "judge_reasoning": "Semantik: Nivolumab mono ist IO-basiert, aber keine Kombination und daher nur teilweise Deckung mit der eher kombinationsorientierten Tumorboard-Formulierung (mittlerer Score). Klinik: Nach Progress unter VEGF-TKI (Cabozantinib) ist Nivolumab-Monotherapie eine leitlinienkonforme/zugelassene Option in der Folgelinie, auch bei CKD G3 mit Monitoring. Begründung: klinischer Kern (2.-Linie ICI nach TKI) ist nachvollziehbar, jedoch mit relevanten fachlichen Ungenauigkeiten und unbegründeten Schlussfolgerungen."
+      },
+      "raw_response": "{\n  \"is_correct\": false,\n  \"correctness_reason\": \"Ground Truth empfiehlt als 2. Linie explizit eine IO-basierte Kombination (oder alternative Sequenz) ohne Festlegung; die KI legt sich auf Nivolumab-Monotherapie fest, was semantisch nicht der primären Empfehlung entspricht und keine explizit akzeptierte Alternative genannt ist.\",\n  \"therapy_semantic_match\": false,\n  \"therapy_semantic_score\": 0.65,\n  \"clinical_appropriateness\": true,\n  \"clinical_appropriateness_score\": 0.8,\n  \"reasoning_quality\": 0.45,\n  \"reasoning_critique\": \"Mehrere fehlerhafte/unsichere Annahmen: Unbekannter Subtyp bedeutet nicht automatisch nicht-klarzellig; IMDC ist in der Praxis auch ohne vollständige Histologie oft anwendbar, sobald mRCC klar ist; zudem wird Cabozantinib fälschlich als Zweitlinienoption erneut genannt trotz Progress. CKD3 spricht nicht grundsätzlich gegen TKI, und Nivolumab ist nicht „nierenfreundlich“ per se (Risiko immunvermittelter Nephritis).\",\n  \"overall_score\": 0.67,\n  \"judge_reasoning\": \"Semantik: Nivolumab mono ist IO-basiert, aber keine Kombination und daher nur teilweise Deckung mit der eher kombinationsorientierten Tumorboard-Formulierung (mittlerer Score). Klinik: Nach Progress unter VEGF-TKI (Cabozantinib) ist Nivolumab-Monotherapie eine leitlinienkonforme/zugelassene Option in der Folgelinie, auch bei CKD G3 mit Monitoring. Begründung: klinischer Kern (2.-Linie ICI nach TKI) ist nachvollziehbar, jedoch mit relevanten fachlichen Ungenauigkeiten und unbegründeten Schlussfolgerungen.\"\n}",
+      "reasoning_output": "",
+      "error": null,
+      "inference_time_seconds": 20.491299867630005
+    },
+    {
+      "case_id": "ncc_33",
+      "evaluation": {
+        "is_correct": false,
+        "correctness_reason": "Die Ground-Truth-Empfehlung lautet Abwägung Belzutifan (4. Linie, falls verfügbar/geeignet) vs. Best supportive care; die KI empfiehlt Cabozantinib (TKI mono), was weder semantisch übereinstimmt noch als akzeptable Alternative angegeben ist.",
+        "therapy_semantic_match": false,
+        "therapy_semantic_score": 0.25,
+        "clinical_appropriateness": true,
+        "clinical_appropriateness_score": 0.65,
+        "reasoning_quality": 0.5,
+        "reasoning_critique": "Teilweise nachvollziehbar (ECOG 2, palliative Zielsetzung), aber mehrere Schwächen: falsche Einordnung der Therapielinie, unbelegte Metastasenlokalisationen, und die Begründung gegen Nivolumab wegen Thromboembolierisiko ist verkürzt/unscharf (zumal auch Cabozantinib vaskuläre Risiken trägt). Belzutifan/BSC als in der Situation zentrale Optionen werden nicht adressiert.",
+        "overall_score": 0.46,
+        "judge_reasoning": "Semantik: Cabozantinib ist ein anderer Wirkmechanismus als Belzutifan und entspricht nicht der BSC-Option; daher niedrige semantische Übereinstimmung. Klinisch: Cabozantinib kann in späteren Linien bei mRCC grundsätzlich eingesetzt werden, ist aber bei ECOG 2 und relevanter Komorbidität nicht klar bevorzugt und es fehlt die im Tumorboard genannte Option Belzutifan/BSC; daher nur moderat angemessen. Begründung: enthält relevante Aspekte, aber mehrere Annahmen und Ungenauigkeiten reduzieren die Qualität."
+      },
+      "raw_response": "{\n  \"is_correct\": false,\n  \"correctness_reason\": \"Die Ground-Truth-Empfehlung lautet Abwägung Belzutifan (4. Linie, falls verfügbar/geeignet) vs. Best supportive care; die KI empfiehlt Cabozantinib (TKI mono), was weder semantisch übereinstimmt noch als akzeptable Alternative angegeben ist.\",\n  \"therapy_semantic_match\": false,\n  \"therapy_semantic_score\": 0.25,\n  \"clinical_appropriateness\": true,\n  \"clinical_appropriateness_score\": 0.65,\n  \"reasoning_quality\": 0.5,\n  \"reasoning_critique\": \"Teilweise nachvollziehbar (ECOG 2, palliative Zielsetzung), aber mehrere Schwächen: falsche Einordnung der Therapielinie, unbelegte Metastasenlokalisationen, und die Begründung gegen Nivolumab wegen Thromboembolierisiko ist verkürzt/unscharf (zumal auch Cabozantinib vaskuläre Risiken trägt). Belzutifan/BSC als in der Situation zentrale Optionen werden nicht adressiert.\",\n  \"overall_score\": 0.46,\n  \"judge_reasoning\": \"Semantik: Cabozantinib ist ein anderer Wirkmechanismus als Belzutifan und entspricht nicht der BSC-Option; daher niedrige semantische Übereinstimmung. Klinisch: Cabozantinib kann in späteren Linien bei mRCC grundsätzlich eingesetzt werden, ist aber bei ECOG 2 und relevanter Komorbidität nicht klar bevorzugt und es fehlt die im Tumorboard genannte Option Belzutifan/BSC; daher nur moderat angemessen. Begründung: enthält relevante Aspekte, aber mehrere Annahmen und Ungenauigkeiten reduzieren die Qualität.\"\n}",
+      "reasoning_output": "**Evaluating AI predictions**\n\nI need to evaluate the AI prediction against the ground truth. Looking at the fourth line info, belzutifan is compared to BSC, where the AI suggested cabozantinib monotherapy, which doesn't match. The semantic score for this representation might be around 0.2-0.4; there's a mismatch since they’re different classes of systemic therapy. Clinical guidelines say cabozantinib can be considered after other therapies, but since this patient has already tried tivozanib and has an ECOG 2, it might be best to consider BSC instead.**Assessing clinical appropriateness**\n\nI think the clinical appropriateness score could be around 0.6-0.7, but considering the pulmonary embolism (PE) risk, maybe it should drop to about 0.6. The reasoning quality has some issues; it mentions nivolumab caution due to thromboembolism, but the evidence isn't clear. Cabozantinib also carries a VTE risk. Plus, it inaccurately counts the therapy line as the third. This reasoning could be better, so I'll set it at 0.5. For the overall score, I'll calculate it to be approximately 0.45. I’ll provide the JSON accordingly.",
+      "error": null,
+      "inference_time_seconds": 18.67296004295349
+    },
+    {
+      "case_id": "ncc_34",
+      "evaluation": {
+        "is_correct": false,
+        "correctness_reason": "Ground Truth empfiehlt primär Best supportive care (palliativ/supportiv inkl. Analgesie und ggf. palliative RT), die KI empfiehlt hingegen eine weitere systemische Therapie (Cabozantinib 60 mg). Dies entspricht weder semantisch noch inhaltlich der Tumorboard-Empfehlung.",
+        "therapy_semantic_match": false,
+        "therapy_semantic_score": 0.1,
+        "clinical_appropriateness": false,
+        "clinical_appropriateness_score": 0.35,
+        "reasoning_quality": 0.35,
+        "reasoning_critique": "Begründung enthält mehrere Annahmen/Halluzinationen (konkrete Metastasenlokalisationen ohne Befund, IMDC-Parameter spekulativ) und verkennt die zentrale Implikation von ECOG 3/CKD G4 im palliativ-finalen Setting. Zudem wurde Cabozantinib bereits in 2. Linie gegeben; ein Re-Challenge wird nicht begründet, und die vorgeschlagene Startdosis (60 mg) erscheint bei ECOG 3/Komorbiditäten unplausibel.",
+        "overall_score": 0.25,
+        "judge_reasoning": "Semantisch klarer Missmatch (BSC vs TKI-Monotherapie). Klinisch ist in einem mehrfach vorbehandelten mRCC mit ECOG 3, ausgeprägter Kachexie/Schmerzen und CKD G4 typischerweise Symptomkontrolle/BSC vorrangig; eine erneute Cabozantinib-Gabe nach Vorbehandlung und in voller Dosis ist meist nicht sinnvoll bzw. potenziell schädlich. Die Argumentation ist teilweise leitliniennah formuliert, aber basiert auf nicht belegten Annahmen und adressiert die palliative Zielsetzung unzureichend."
+      },
+      "raw_response": "{\"is_correct\":false,\"correctness_reason\":\"Ground Truth empfiehlt primär Best supportive care (palliativ/supportiv inkl. Analgesie und ggf. palliative RT), die KI empfiehlt hingegen eine weitere systemische Therapie (Cabozantinib 60 mg). Dies entspricht weder semantisch noch inhaltlich der Tumorboard-Empfehlung.\",\"therapy_semantic_match\":false,\"therapy_semantic_score\":0.1,\"clinical_appropriateness\":false,\"clinical_appropriateness_score\":0.35,\"reasoning_quality\":0.35,\"reasoning_critique\":\"Begründung enthält mehrere Annahmen/Halluzinationen (konkrete Metastasenlokalisationen ohne Befund, IMDC-Parameter spekulativ) und verkennt die zentrale Implikation von ECOG 3/CKD G4 im palliativ-finalen Setting. Zudem wurde Cabozantinib bereits in 2. Linie gegeben; ein Re-Challenge wird nicht begründet, und die vorgeschlagene Startdosis (60 mg) erscheint bei ECOG 3/Komorbiditäten unplausibel.\",\"overall_score\":0.25,\"judge_reasoning\":\"Semantisch klarer Missmatch (BSC vs TKI-Monotherapie). Klinisch ist in einem mehrfach vorbehandelten mRCC mit ECOG 3, ausgeprägter Kachexie/Schmerzen und CKD G4 typischerweise Symptomkontrolle/BSC vorrangig; eine erneute Cabozantinib-Gabe nach Vorbehandlung und in voller Dosis ist meist nicht sinnvoll bzw. potenziell schädlich. Die Argumentation ist teilweise leitliniennah formuliert, aber basiert auf nicht belegten Annahmen und adressiert die palliative Zielsetzung unzureichend.\"}",
+      "reasoning_output": "",
+      "error": null,
+      "inference_time_seconds": 14.501503944396973
+    },
+    {
+      "case_id": "ncc_35",
+      "evaluation": {
+        "is_correct": true,
+        "correctness_reason": "Die KI empfiehlt als 3.-Linie Nivolumab (off-label) bzw. Studienteilnahme und trifft damit die Tumorboard-Empfehlung („Nivolumab off-label vs Studie/Alternative Sequenz“).",
+        "therapy_semantic_match": true,
+        "therapy_semantic_score": 0.95,
+        "clinical_appropriateness": true,
+        "clinical_appropriateness_score": 0.8,
+        "reasoning_quality": 0.7,
+        "reasoning_critique": "Begründung ist insgesamt logisch (Progress nach 2 TKIs, Abklärung ossärer Läsion per MRT, Berücksichtigung ECOG/Komorbiditäten). Schwächen: IMDC ist nicht ausschließlich auf ccRCC beschränkt (wenn auch primär dort validiert); Therapiekategorie ist inkonsistent (IO+TKI/TKI mono, obwohl IO-Mono empfohlen wird) und die Aussage „TKI-Monotherapie oft bevorzugt“ ist für chromophob/3L nicht eindeutig leitlinienbasiert.",
+        "overall_score": 0.84,
+        "judge_reasoning": "Semantisch sehr hohe Übereinstimmung, da Nivolumab off-label und Studienoption explizit genannt werden wie im MTB. Klinisch ist Nivolumab/Studie in dieser Situation (chromophobes mRCC, Progress nach Sunitinib und Cabozantinib, 3.-Linie) grundsätzlich vertretbar, wenngleich Evidenz/Label begrenzt und ECOG 2 die Nutzen-Risiko-Abwägung beeinflusst. Die Argumentation ist überwiegend korrekt, aber mit kleineren konzeptionellen Ungenauigkeiten (IMDC, Kategorisierung)."
+      },
+      "raw_response": "{\n  \"is_correct\": true,\n  \"correctness_reason\": \"Die KI empfiehlt als 3.-Linie Nivolumab (off-label) bzw. Studienteilnahme und trifft damit die Tumorboard-Empfehlung („Nivolumab off-label vs Studie/Alternative Sequenz“).\",\n  \"therapy_semantic_match\": true,\n  \"therapy_semantic_score\": 0.95,\n  \"clinical_appropriateness\": true,\n  \"clinical_appropriateness_score\": 0.8,\n  \"reasoning_quality\": 0.7,\n  \"reasoning_critique\": \"Begründung ist insgesamt logisch (Progress nach 2 TKIs, Abklärung ossärer Läsion per MRT, Berücksichtigung ECOG/Komorbiditäten). Schwächen: IMDC ist nicht ausschließlich auf ccRCC beschränkt (wenn auch primär dort validiert); Therapiekategorie ist inkonsistent (IO+TKI/TKI mono, obwohl IO-Mono empfohlen wird) und die Aussage „TKI-Monotherapie oft bevorzugt“ ist für chromophob/3L nicht eindeutig leitlinienbasiert.\",\n  \"overall_score\": 0.84,\n  \"judge_reasoning\": \"Semantisch sehr hohe Übereinstimmung, da Nivolumab off-label und Studienoption explizit genannt werden wie im MTB. Klinisch ist Nivolumab/Studie in dieser Situation (chromophobes mRCC, Progress nach Sunitinib und Cabozantinib, 3.-Linie) grundsätzlich vertretbar, wenngleich Evidenz/Label begrenzt und ECOG 2 die Nutzen-Risiko-Abwägung beeinflusst. Die Argumentation ist überwiegend korrekt, aber mit kleineren konzeptionellen Ungenauigkeiten (IMDC, Kategorisierung).\"\n}",
+      "reasoning_output": "",
+      "error": null,
+      "inference_time_seconds": 14.4805908203125
+    },
+    {
+      "case_id": "ncc_4",
+      "evaluation": {
+        "is_correct": true,
+        "correctness_reason": "Die KI empfiehlt eine Nierenteilresektion (Nephron-sparing surgery), was einen der beiden in der Ground-Truth genannten primären Therapiepfade (roboterassistierte partielle Nephrektomie vs. Kryoablation) direkt abdeckt.",
+        "therapy_semantic_match": true,
+        "therapy_semantic_score": 0.88,
+        "clinical_appropriateness": true,
+        "clinical_appropriateness_score": 0.9,
+        "reasoning_quality": 0.6,
+        "reasoning_critique": "Insgesamt logisch (cT1a → nephronerhaltende OP), aber mit relevanten inhaltlichen Schwächen: Spekulation zur Histologie und insbesondere die Aussage, bei nicht-klarzelligem RCC sei eine TKI-Monotherapie zu erwägen, ist für lokalisiertes cT1a-RCC falsch. Zudem wird die in der Ground Truth explizit erwogene Ablation/OP-Risiko-Abwägung zu kategorisch verworfen.",
+        "overall_score": 0.832,
+        "judge_reasoning": "Semantisch trifft die Empfehlung die Ground Truth weitgehend, da die partielle Nephrektomie explizit enthalten ist; die fehlende Nennung der Kryoablation reduziert den Score leicht. Klinisch ist die partielle Nephrektomie bei nicht-metastasiertem cT1a-RCC leitlinienkonform und Standard. Die Begründung ist überwiegend korrekt, enthält aber wesentliche Fehlannahmen zur Systemtherapie bei nicht-klarzelligem/lokalisiertem RCC und adressiert das im Tumorboard erwähnte Alternativverfahren (Kryoablation bei OP-Risiko) unzureichend."
+      },
+      "raw_response": "{\"is_correct\":true,\"correctness_reason\":\"Die KI empfiehlt eine Nierenteilresektion (Nephron-sparing surgery), was einen der beiden in der Ground-Truth genannten primären Therapiepfade (roboterassistierte partielle Nephrektomie vs. Kryoablation) direkt abdeckt.\",\"therapy_semantic_match\":true,\"therapy_semantic_score\":0.88,\"clinical_appropriateness\":true,\"clinical_appropriateness_score\":0.9,\"reasoning_quality\":0.6,\"reasoning_critique\":\"Insgesamt logisch (cT1a → nephronerhaltende OP), aber mit relevanten inhaltlichen Schwächen: Spekulation zur Histologie und insbesondere die Aussage, bei nicht-klarzelligem RCC sei eine TKI-Monotherapie zu erwägen, ist für lokalisiertes cT1a-RCC falsch. Zudem wird die in der Ground Truth explizit erwogene Ablation/OP-Risiko-Abwägung zu kategorisch verworfen.\",\"overall_score\":0.832,\"judge_reasoning\":\"Semantisch trifft die Empfehlung die Ground Truth weitgehend, da die partielle Nephrektomie explizit enthalten ist; die fehlende Nennung der Kryoablation reduziert den Score leicht. Klinisch ist die partielle Nephrektomie bei nicht-metastasiertem cT1a-RCC leitlinienkonform und Standard. Die Begründung ist überwiegend korrekt, enthält aber wesentliche Fehlannahmen zur Systemtherapie bei nicht-klarzelligem/lokalisiertem RCC und adressiert das im Tumorboard erwähnte Alternativverfahren (Kryoablation bei OP-Risiko) unzureichend.\"}",
+      "reasoning_output": "",
+      "error": null,
+      "inference_time_seconds": 18.374978065490723
+    },
+    {
+      "case_id": "ncc_5",
+      "evaluation": {
+        "is_correct": true,
+        "correctness_reason": "Die KI empfiehlt eine Nierenteilresektion (Nephron-sparing Surgery), was semantisch der Tumorboard-Empfehlung \"Nierenteilresektion\" entspricht (Ground Truth nennt zusätzlich Zugangswege und Ablation als Optionen).",
+        "therapy_semantic_match": true,
+        "therapy_semantic_score": 0.95,
+        "clinical_appropriateness": true,
+        "clinical_appropriateness_score": 0.9,
+        "reasoning_quality": 0.83,
+        "reasoning_critique": "Insgesamt logisch und leitliniennah. Kleine Schwächen: unnötige Annahme einer klarzelligen Histologie; Zugang (robotisch/laparoskopisch/offen) und die im Board explizit genannte Ablation als gleichwertige Option werden nicht als konkrete Empfehlung mit abgewogenem Kontext ausgeführt.",
+        "overall_score": 0.91,
+        "judge_reasoning": "Semantik: \"Nierenteilresektion\" trifft den Kern der Ground Truth sehr gut (hohe Übereinstimmung). Klinik: Bei Bosniak IV, 2,5 cm, nicht-metastasiert und ECOG 0 ist eine nephronerhaltende Operation eine Standard- und bevorzugte Option; Ablation ist eher selektiv (z.B. bei höherem OP-Risiko) und wurde korrekt als mögliche Alternative erwähnt. Begründung: schlüssig (Bosniak IV = hohes Malignitätsrisiko, cT1a, nephron-sparing), mit nur minoren Überinterpretationen."
+      },
+      "raw_response": "{\n  \"is_correct\": true,\n  \"correctness_reason\": \"Die KI empfiehlt eine Nierenteilresektion (Nephron-sparing Surgery), was semantisch der Tumorboard-Empfehlung \\\"Nierenteilresektion\\\" entspricht (Ground Truth nennt zusätzlich Zugangswege und Ablation als Optionen).\",\n  \"therapy_semantic_match\": true,\n  \"therapy_semantic_score\": 0.95,\n  \"clinical_appropriateness\": true,\n  \"clinical_appropriateness_score\": 0.9,\n  \"reasoning_quality\": 0.83,\n  \"reasoning_critique\": \"Insgesamt logisch und leitliniennah. Kleine Schwächen: unnötige Annahme einer klarzelligen Histologie; Zugang (robotisch/laparoskopisch/offen) und die im Board explizit genannte Ablation als gleichwertige Option werden nicht als konkrete Empfehlung mit abgewogenem Kontext ausgeführt.\",\n  \"overall_score\": 0.91,\n  \"judge_reasoning\": \"Semantik: \\\"Nierenteilresektion\\\" trifft den Kern der Ground Truth sehr gut (hohe Übereinstimmung). Klinik: Bei Bosniak IV, 2,5 cm, nicht-metastasiert und ECOG 0 ist eine nephronerhaltende Operation eine Standard- und bevorzugte Option; Ablation ist eher selektiv (z.B. bei höherem OP-Risiko) und wurde korrekt als mögliche Alternative erwähnt. Begründung: schlüssig (Bosniak IV = hohes Malignitätsrisiko, cT1a, nephron-sparing), mit nur minoren Überinterpretationen.\"\n}",
+      "reasoning_output": "**Evaluating AI accuracy**\n\nI'm evaluating the AI's output against the ground truth regarding partial nephrectomy and other procedures. The AI's suggestion of nephron-sparing surgery aligns with one option, so I'd say it's accurate. The semantic score seems high, possibly around 0.9-1.0, but it misses mentioning alternative approaches. In terms of clinical appropriateness for Bosniak IV at 2.5 cm, partial nephrectomy is indeed standard, scoring around 0.9. The reasoning quality is good, acknowledging options and noting surveillance concerns, scoring about 0.8-0.85. My overall weighted score comes to approximately 0.906. I'll prepare to return that in JSON format.",
+      "error": null,
+      "inference_time_seconds": 14.4994797706604
+    },
+    {
+      "case_id": "ncc_6",
+      "evaluation": {
+        "is_correct": false,
+        "correctness_reason": "Ground Truth bevorzugt primär aktive Überwachung mit erneuter Bildgebung in 6 Monaten und Intervention nur bei Progress. Die KI stellt hingegen eine Biopsie als zwingenden nächsten Schritt in den Vordergrund und empfiehlt engmaschige Überwachung bis zur Histologie; das entspricht semantisch nicht ausreichend der primären Tumorboard-Empfehlung.",
+        "therapy_semantic_match": false,
+        "therapy_semantic_score": 0.7,
+        "clinical_appropriateness": true,
+        "clinical_appropriateness_score": 0.85,
+        "reasoning_quality": 0.6,
+        "reasoning_critique": "Gute Einordnung von Alter/Komorbiditäten und geringer Tumorgröße; jedoch ist die Aussage, aktive Überwachung sei ohne Histologie „nicht möglich“, medizinisch so nicht korrekt (bei small renal mass ist Surveillance auch ohne Biopsie üblich; Biopsie optional v. a. vor Ablation/bei unklarer Strategie). Zudem fehlt die klare Festlegung auf das im Board genannte 6‑Monats-Imaging-Intervall.",
+        "overall_score": 0.74,
+        "judge_reasoning": "Semantisch weicht die KI durch den Fokus auf obligate Biopsie und „engmaschige“ Kontrolle von der Board-Strategie (Überwachung bevorzugt, Re-Imaging nach 6 Monaten) ab, daher kein Match ≥0.8 und keine akzeptierte Alternative explizit genannt. Klinisch ist Biopsie+Surveillance bei 2,1 cm und hohem OP-Risiko grundsätzlich vertretbar/leitliniennah, aber nicht deckungsgleich mit der Board-Priorität. Begründung überwiegend plausibel, mit relevantem fachlichen Mangel zur Notwendigkeit der Histologie."
+      },
+      "raw_response": "{\n  \"is_correct\": false,\n  \"correctness_reason\": \"Ground Truth bevorzugt primär aktive Überwachung mit erneuter Bildgebung in 6 Monaten und Intervention nur bei Progress. Die KI stellt hingegen eine Biopsie als zwingenden nächsten Schritt in den Vordergrund und empfiehlt engmaschige Überwachung bis zur Histologie; das entspricht semantisch nicht ausreichend der primären Tumorboard-Empfehlung.\",\n  \"therapy_semantic_match\": false,\n  \"therapy_semantic_score\": 0.7,\n  \"clinical_appropriateness\": true,\n  \"clinical_appropriateness_score\": 0.85,\n  \"reasoning_quality\": 0.6,\n  \"reasoning_critique\": \"Gute Einordnung von Alter/Komorbiditäten und geringer Tumorgröße; jedoch ist die Aussage, aktive Überwachung sei ohne Histologie „nicht möglich“, medizinisch so nicht korrekt (bei small renal mass ist Surveillance auch ohne Biopsie üblich; Biopsie optional v. a. vor Ablation/bei unklarer Strategie). Zudem fehlt die klare Festlegung auf das im Board genannte 6‑Monats-Imaging-Intervall.\",\n  \"overall_score\": 0.74,\n  \"judge_reasoning\": \"Semantisch weicht die KI durch den Fokus auf obligate Biopsie und „engmaschige“ Kontrolle von der Board-Strategie (Überwachung bevorzugt, Re-Imaging nach 6 Monaten) ab, daher kein Match ≥0.8 und keine akzeptierte Alternative explizit genannt. Klinisch ist Biopsie+Surveillance bei 2,1 cm und hohem OP-Risiko grundsätzlich vertretbar/leitliniennah, aber nicht deckungsgleich mit der Board-Priorität. Begründung überwiegend plausibel, mit relevantem fachlichen Mangel zur Notwendigkeit der Histologie.\"\n}",
+      "reasoning_output": "**Evaluating treatment options**\n\nI need to evaluate the options regarding surveillance and the recommendations for intervention. The ground truth suggests surveillance every six months, with intervention only if there’s progression. However, the AI recommends a biopsy first, which deviates from the preferred surveillance approach. I wonder if this recommendation is acceptable. The criteria for correctness suggest the therapy's match to the ground truth must be 0.8 or higher, and here it seems likely false since the AI's therapy category doesn't match exactly.**Calculating overall score**\n\nI’m thinking through the reasoning quality, which appears moderate, but there's an error regarding the need for histology. The overall score calculates as follows: 0.4 times 0.7 plus 0.4 times 0.85 plus 0.2 times 0.6, resulting in a total of 0.74. However, if the clinical score is between 0.8 and 0.9, I’ll set it at 0.85. The reasoning score is 0.6, so my overall score remains 0.74. Now, I’ll prepare to return the JSON.",
+      "error": null,
+      "inference_time_seconds": 21.450576066970825
+    },
+    {
+      "case_id": "ncc_7",
+      "evaluation": {
+        "is_correct": false,
+        "correctness_reason": "Ground Truth empfiehlt eine diagnostische Ureterorenoskopie rechts mit Probeentnahme; die KI empfiehlt unspezifisch eine Biopsie und anschließend (bei RCC) eine Teilresektion. Das ist nicht semantisch gleich und keine akzeptable Alternative zur primären Board-Empfehlung.",
+        "therapy_semantic_match": false,
+        "therapy_semantic_score": 0.4,
+        "clinical_appropriateness": true,
+        "clinical_appropriateness_score": 0.6,
+        "reasoning_quality": 0.5,
+        "reasoning_critique": "Richtig ist der Hinweis auf fehlende Histologie und den Bedarf an Gewebegewinnung; jedoch wird der V.a. Nierenbeckentumor/UTUC nicht leitliniengerecht (URS mit Biopsie) priorisiert und stattdessen RCC-Operationslogik (Teilresektion) vorangestellt. Staging/Diagnostikpfad bleibt unscharf.",
+        "overall_score": 0.5,
+        "judge_reasoning": "Semantisch weicht die KI deutlich von der Tumorboard-Empfehlung ab (URS+Biopsie vs. allgemeine Biopsie plus partielle Nephrektomie), daher is_correct=false. Klinisch ist 'erst Histologie sichern' grundsätzlich sinnvoll, aber bei Verdacht auf Nierenbeckentumor wäre die konkrete diagnostische Ureterorenoskopie mit Probeentnahme der adäquate nächste Schritt; die vorgeschlagene RCC-Teilresektion ist in dieser Konstellation nicht die primäre Empfehlung. Begründung teilweise korrekt, aber unvollständig und teilweise fehlgeleitet Richtung RCC statt UTUC-Abklärung."
+      },
+      "raw_response": "{\n  \"is_correct\": false,\n  \"correctness_reason\": \"Ground Truth empfiehlt eine diagnostische Ureterorenoskopie rechts mit Probeentnahme; die KI empfiehlt unspezifisch eine Biopsie und anschließend (bei RCC) eine Teilresektion. Das ist nicht semantisch gleich und keine akzeptable Alternative zur primären Board-Empfehlung.\",\n  \"therapy_semantic_match\": false,\n  \"therapy_semantic_score\": 0.4,\n  \"clinical_appropriateness\": true,\n  \"clinical_appropriateness_score\": 0.6,\n  \"reasoning_quality\": 0.5,\n  \"reasoning_critique\": \"Richtig ist der Hinweis auf fehlende Histologie und den Bedarf an Gewebegewinnung; jedoch wird der V.a. Nierenbeckentumor/UTUC nicht leitliniengerecht (URS mit Biopsie) priorisiert und stattdessen RCC-Operationslogik (Teilresektion) vorangestellt. Staging/Diagnostikpfad bleibt unscharf.\",\n  \"overall_score\": 0.5,\n  \"judge_reasoning\": \"Semantisch weicht die KI deutlich von der Tumorboard-Empfehlung ab (URS+Biopsie vs. allgemeine Biopsie plus partielle Nephrektomie), daher is_correct=false. Klinisch ist 'erst Histologie sichern' grundsätzlich sinnvoll, aber bei Verdacht auf Nierenbeckentumor wäre die konkrete diagnostische Ureterorenoskopie mit Probeentnahme der adäquate nächste Schritt; die vorgeschlagene RCC-Teilresektion ist in dieser Konstellation nicht die primäre Empfehlung. Begründung teilweise korrekt, aber unvollständig und teilweise fehlgeleitet Richtung RCC statt UTUC-Abklärung.\"\n}",
+      "reasoning_output": "",
+      "error": null,
+      "inference_time_seconds": 14.97205901145935
+    },
+    {
+      "case_id": "ncc_8",
+      "evaluation": {
+        "is_correct": true,
+        "correctness_reason": "Die KI empfiehlt eine Nephron-sparing Surgery/partielle Nephrektomie, was als zentrale Option in der Tumorboard-Empfehlung (OP vs. Ablation vs. Surveillance, partielle Nephrektomie technisch anspruchsvoll) enthalten ist.",
+        "therapy_semantic_match": true,
+        "therapy_semantic_score": 0.85,
+        "clinical_appropriateness": true,
+        "clinical_appropriateness_score": 0.88,
+        "reasoning_quality": 0.7,
+        "reasoning_critique": "Insgesamt leitliniennah und logisch, aber überbetont die Notwendigkeit einer prätherapeutischen Biopsie (vor partieller Nephrektomie nicht obligat) und stellt Surveillance/Ablation fälschlich als zwingend biopsiepflichtig dar; außerdem wird die technische Herausforderung des hilusnahen Tumors nicht ausreichend in die Empfehlung integriert.",
+        "overall_score": 0.83,
+        "judge_reasoning": "Ground Truth fordert wegen hilusnaher Lage eine Abwägung zwischen partieller Nephrektomie, Ablation und aktiver Überwachung. Die KI legt sich auf partielle Nephrektomie fest; das passt semantisch weitgehend, da es eine explizit genannte Option ist, verfehlt aber den deliberativen Charakter der Empfehlung. Klinisch ist partielle Nephrektomie bei cT1a grundsätzlich Standard, sofern technisch machbar und unter Berücksichtigung von Komorbiditäten. Die Begründung ist überwiegend korrekt, enthält aber Ungenauigkeiten zur Biopsieindikation."
+      },
+      "raw_response": "{\n  \"is_correct\": true,\n  \"correctness_reason\": \"Die KI empfiehlt eine Nephron-sparing Surgery/partielle Nephrektomie, was als zentrale Option in der Tumorboard-Empfehlung (OP vs. Ablation vs. Surveillance, partielle Nephrektomie technisch anspruchsvoll) enthalten ist.\",\n  \"therapy_semantic_match\": true,\n  \"therapy_semantic_score\": 0.85,\n  \"clinical_appropriateness\": true,\n  \"clinical_appropriateness_score\": 0.88,\n  \"reasoning_quality\": 0.7,\n  \"reasoning_critique\": \"Insgesamt leitliniennah und logisch, aber überbetont die Notwendigkeit einer prätherapeutischen Biopsie (vor partieller Nephrektomie nicht obligat) und stellt Surveillance/Ablation fälschlich als zwingend biopsiepflichtig dar; außerdem wird die technische Herausforderung des hilusnahen Tumors nicht ausreichend in die Empfehlung integriert.\",\n  \"overall_score\": 0.83,\n  \"judge_reasoning\": \"Ground Truth fordert wegen hilusnaher Lage eine Abwägung zwischen partieller Nephrektomie, Ablation und aktiver Überwachung. Die KI legt sich auf partielle Nephrektomie fest; das passt semantisch weitgehend, da es eine explizit genannte Option ist, verfehlt aber den deliberativen Charakter der Empfehlung. Klinisch ist partielle Nephrektomie bei cT1a grundsätzlich Standard, sofern technisch machbar und unter Berücksichtigung von Komorbiditäten. Die Begründung ist überwiegend korrekt, enthält aber Ungenauigkeiten zur Biopsieindikation.\"\n}",
+      "reasoning_output": "**Calculating and formatting data**\n\nI'm trying to calculate some numbers: 0.4 times 0.85 equals 0.34, and 0.4 times 0.88 gives 0.352, while 0.2 times 0.7 results in 0.14, leading to a total of 0.832. Now, I need to prepare this information in JSON format to make it easily transferable or usable. I'll ensure the final format is clear and well-structured for whatever task I need it for next.",
+      "error": null,
+      "inference_time_seconds": 22.02358102798462
+    },
+    {
+      "case_id": "ncc_9",
+      "evaluation": {
+        "is_correct": true,
+        "correctness_reason": "Die KI empfiehlt eine Nierenteilresektion, was innerhalb der Tumorboard-Empfehlung „partielle vs. radikale Nephrektomie je nach Lage/Komplexität“ liegt (Teilverfahren als eine der beiden vorgesehenen Optionen).",
+        "therapy_semantic_match": true,
+        "therapy_semantic_score": 0.83,
+        "clinical_appropriateness": true,
+        "clinical_appropriateness_score": 0.9,
+        "reasoning_quality": 0.8,
+        "reasoning_critique": "Schlüssig und leitliniennah; etwas zu kategorisch pro Teilresektion formuliert ohne explizit die Abhängigkeit von Tumorlokalisation/Komplexität bzw. operativer Machbarkeit (Alternative: radikale Nephrektomie) stärker herauszuarbeiten.",
+        "overall_score": 0.85,
+        "judge_reasoning": "Nicht-metastasiertes cT1b RCC wird primär chirurgisch behandelt. Die Tumorboard-Aussage lässt bewusst die Wahl zwischen partieller und radikaler Nephrektomie je nach anatomischer Situation. Die KI legt sich auf Teilresektion fest, was bei 4,6 cm grundsätzlich adäquat ist, sofern technisch/onkologisch sicher möglich. Daher hohe klinische Angemessenheit und gute Begründung; semantisch leichte Abwertung, weil die konditionale Alternative (radikal bei hoher Komplexität) nicht in der Empfehlung selbst enthalten ist."
+      },
+      "raw_response": "{\n  \"is_correct\": true,\n  \"correctness_reason\": \"Die KI empfiehlt eine Nierenteilresektion, was innerhalb der Tumorboard-Empfehlung „partielle vs. radikale Nephrektomie je nach Lage/Komplexität“ liegt (Teilverfahren als eine der beiden vorgesehenen Optionen).\",\n  \"therapy_semantic_match\": true,\n  \"therapy_semantic_score\": 0.83,\n  \"clinical_appropriateness\": true,\n  \"clinical_appropriateness_score\": 0.9,\n  \"reasoning_quality\": 0.8,\n  \"reasoning_critique\": \"Schlüssig und leitliniennah; etwas zu kategorisch pro Teilresektion formuliert ohne explizit die Abhängigkeit von Tumorlokalisation/Komplexität bzw. operativer Machbarkeit (Alternative: radikale Nephrektomie) stärker herauszuarbeiten.\",\n  \"overall_score\": 0.85,\n  \"judge_reasoning\": \"Nicht-metastasiertes cT1b RCC wird primär chirurgisch behandelt. Die Tumorboard-Aussage lässt bewusst die Wahl zwischen partieller und radikaler Nephrektomie je nach anatomischer Situation. Die KI legt sich auf Teilresektion fest, was bei 4,6 cm grundsätzlich adäquat ist, sofern technisch/onkologisch sicher möglich. Daher hohe klinische Angemessenheit und gute Begründung; semantisch leichte Abwertung, weil die konditionale Alternative (radikal bei hoher Komplexität) nicht in der Empfehlung selbst enthalten ist.\"\n}",
+      "reasoning_output": "",
+      "error": null,
+      "inference_time_seconds": 17.6756591796875
+    }
+  ]
+}

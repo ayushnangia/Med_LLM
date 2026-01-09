@@ -264,13 +264,25 @@ def load_ncc_cases(data_dir: str = "converted_data/send_27_12_25") -> List[dict]
         imdc_data = rcc_spez.get("imdc", {})
         systemtherapie = rcc_spez.get("systemtherapie_kontext", {})
 
+        # Extract ECOG/Karnofsky (handle both schema v1.0 flat and v1.1 nested formats)
+        ecog = patient.get("ecog") or patient.get("performance_status", {}).get("ecog")
+        karnofsky = patient.get("karnofsky_prozent") or patient.get("performance_status", {}).get("karnofsky_prozent")
+
+        # For v1.0 schema, Karnofsky may be in marker_oder_labor.sonstige array
+        if karnofsky is None:
+            marker_labor = entity.get("marker_oder_labor", {})
+            for item in marker_labor.get("sonstige", []):
+                if item.get("parameter") == "Karnofsky":
+                    karnofsky = item.get("wert")
+                    break
+
         cases.append({
             "case_id": f"ncc_{i}",
             # Patient data
             "patient_name": f"{patient.get('nachname', '')}, {patient.get('vorname', '')}",
             "age": patient.get("alter_jahre"),
-            "ecog": patient.get("performance_status", {}).get("ecog"),
-            "karnofsky": patient.get("performance_status", {}).get("karnofsky_prozent"),
+            "ecog": ecog,
+            "karnofsky": karnofsky,
             "comorbidity": patient.get("komorbiditaet_level"),
             "life_expectancy": patient.get("lebenserwartung"),
             # Diagnosis

@@ -47,7 +47,38 @@ Each cancer folder contains:
 - `*.xlsx` - Case data spreadsheet
 - `*_cases_json.docx` - Cases formatted as JSON
 
-## JSON Schema (v1.1)
+## JSON Schema (v1.0 and v1.1) - IMPORTANT
+
+**The NCC cases use TWO different JSON schemas in the same file.** This was a known issue that required fixes in the extraction code.
+
+### Schema Differences
+
+| Field | Schema v1.1 (Cases 1-14) | Schema v1.0 (Cases 15-35) |
+|-------|--------------------------|---------------------------|
+| ECOG | `patient.performance_status.ecog` | `case_template.patient.ecog` |
+| Karnofsky | `patient.performance_status.karnofsky_prozent` | `entity.marker_oder_labor.sonstige[]` (as array item) |
+| TNM | Separate `tnm_clinical` + `tnm_pathological` | Single `tnm` string field |
+| Structure | Top-level `patient`, `entitaeten` | Wrapped in `case_template` |
+
+### Extraction Code Fix (January 2026)
+
+The scripts `modal_treatment_predict.py` and `treatment_openrouter.py` now handle both schemas:
+
+```python
+# Handle both v1.0 flat and v1.1 nested formats
+ecog = patient.get("ecog") or patient.get("performance_status", {}).get("ecog")
+karnofsky = patient.get("karnofsky_prozent") or patient.get("performance_status", {}).get("karnofsky_prozent")
+
+# For v1.0, Karnofsky is in marker_oder_labor.sonstige array
+if karnofsky is None:
+    for item in entity.get("marker_oder_labor", {}).get("sonstige", []):
+        if item.get("parameter") == "Karnofsky":
+            karnofsky = item.get("wert")
+```
+
+**If you see empty ECOG/Karnofsky in results for cases 15-32, the inference needs to be re-run with the fixed scripts.**
+
+### Standard Schema (v1.1)
 
 The case structure follows this hierarchy:
 - **case_meta**: Case ID, date, tumor board, discussion type
@@ -172,6 +203,35 @@ All experiment results are logged to `findings/`:
 - `results_{model}_{timestamp}.json` - Raw classification results
 - `confusion_matrix_{model}.png` - Visualization
 - `evaluation_report.md` - Comprehensive metrics report
+
+## Thinking Models - IMPORTANT
+
+**Thinking models** (e.g., `olmo-3.1-32b-think`, `qwq-32b`) output `<think>` reasoning blocks before JSON. This requires special handling:
+
+### Configuration (January 2026 Fix)
+
+```python
+# In modal_treatment_predict.py
+if is_thinking:
+    params = SamplingParams(
+        temperature=0.6,
+        max_tokens=65536,  # HIGH - thinking consumes many tokens before JSON
+    )
+```
+
+### Common Issues
+
+| Symptom | Cause | Fix |
+|---------|-------|-----|
+| JSON parse errors (11/35 cases) | `max_tokens` too low (was 4096) | Increased to 65536 |
+| `tokens_used: 4096` exactly | Output truncated mid-reasoning | Increase max_tokens |
+| Raw response starts with `<think>` | Normal for thinking models | Code extracts JSON after `</think>` |
+
+### Detecting Thinking Models
+
+```python
+is_thinking = "think" in model_id.lower() or "qwq" in model_id.lower()
+```
 
 ## Models to Test
 
