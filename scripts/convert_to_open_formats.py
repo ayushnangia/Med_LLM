@@ -22,8 +22,8 @@ import pandas as pd
 
 # Configuration - adjust these paths as needed
 BASE_DIR = Path(__file__).parent.parent
-SOURCE_DIR = BASE_DIR / "data_llm" / "send_23_12_25"
-OUTPUT_DIR = BASE_DIR / "converted_data" / "send_23_12_25"
+SOURCE_DIR = BASE_DIR / "data_llm" / "send_27_12_25"
+OUTPUT_DIR = BASE_DIR / "converted_data" / "send_27_12_25"
 
 
 def clean_json_text(text: str) -> str:
