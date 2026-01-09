@@ -1,0 +1,14 @@
+{
+  "model": "google/medgemma-27b-text-it",
+  "provider": "modal",
+  "timestamp": "2026-01-09_22-08-27",
+  "total_cases": 35,
+  "metastatic_accuracy": 1.0,
+  "metastatic_correct": 11,
+  "therapy_exact_match_rate": 0.37142857142857144,
+  "therapy_exact_matches": 13,
+  "therapy_acceptable_rate": 0.2857142857142857,
+  "therapy_acceptable": 10,
+  "total_time": 172.91898655891418,
+  "errors": 0
+}

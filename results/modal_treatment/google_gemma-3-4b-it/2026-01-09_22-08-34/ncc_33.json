@@ -1,0 +1,144 @@
+{
+  "case_id": "ncc_33",
+  "timestamp": "2026-01-09_22-08-34",
+  "provider": "modal",
+  "model": "google/gemma-3-4b-it",
+  "input_case": {
+    "case_id": "ncc_33",
+    "patient_name": "Beispiel, Bora",
+    "age": 71,
+    "ecog": 2,
+    "karnofsky": 70,
+    "comorbidity": "unknown",
+    "life_expectancy": "unknown",
+    "anamnese": "Metastasiertes Nierenzellkarzinom (mRCC), mehrfach vorbehandelt. Progress unter 3. Linie (Tivozanib) im CT-Staging 05.12.2025. Vorgeschichte: Z. n. Lungenarterienembolie (LAE) mit dauerhafter Antikoagulation. Z. n. Hysterektomie 2016.",
+    "diagnose_kurz": "Metastasiertes Nierenzellkarzinom (mRCC) mit systemischem Progress unter Tivozanib (3. Linie).",
+    "stadium": "metastasiert; Therapielinie: nach 3 Vorlinien",
+    "tnm_clinical": null,
+    "tnm_pathological": null,
+    "histologie_subtyp": null,
+    "histologie_klarzellig": null,
+    "bildgebung": [
+      {
+        "modalitaet": "CT",
+        "region": "Thorax/Abdomen/Becken",
+        "datum": "2025-12-05",
+        "befund_kurz": "Systemischer Progress: Thorax mit Zunahme pulmonaler Metastasen (RLL 15 mm vorher 11 mm; LUL 10 mm vorher 7 mm), kein Pleuraerguss. Abdomen mit neuer Lebermetastase Segment VI 18 mm und Progress bekannter Leberläsion Segment VII 22→30 mm. Retroperitoneum: paraaortaler LK 18→26 mm. Skelett: neue osteolytische Läsion BWK11 14 mm.",
+        "quelle": "Erforderlicher Befund",
+        "detailstruktur": {
+          "thorax": {
+            "pulmonale_metastasen": [
+              {
+                "lokalisation": "RLL",
+                "groesse_mm": 15,
+                "vorher_mm": 11,
+                "bewertung": "progredient"
+              },
+              {
+                "lokalisation": "LUL",
+                "groesse_mm": 10,
+                "vorher_mm": 7,
+                "bewertung": "progredient"
+              }
+            ],
+            "pleuraerguss": false,
+            "mediastinale_hilaere_lk": "keine_sicheren_pathologisch_vergroesserten"
+          },
+          "abdomen": {
+            "leber": [
+              {
+                "segment": "VI",
+                "groesse_mm": 18,
+                "vorher_mm": null,
+                "bewertung": "neu_metastasenverdaechtig"
+              },
+              {
+                "segment": "VII",
+                "groesse_mm": 30,
+                "vorher_mm": 22,
+                "bewertung": "progredient"
+              }
+            ],
+            "lokalrezidiv": "unknown",
+            "aszetes": false
+          },
+          "retroperitoneum": {
+            "lymphknoten": [
+              {
+                "lokalisation": "paraaortal",
+                "groesse_mm": 26,
+                "vorher_mm": 18,
+                "bewertung": "progredient"
+              }
+            ]
+          },
+          "skelett": {
+            "ossäre_laesionen": [
+              {
+                "lokalisation": "BWK11",
+                "typ": "osteolytisch",
+                "groesse_mm": 14,
+                "vorher_mm": null,
+                "bewertung": "neu_metastasenverdaechtig"
+              }
+            ]
+          }
+        },
+        "beurteilung": "Systemischer Progress (Lunge + Leber + LK, neu ossär) unter Tivozanib; Therapieumstellung indiziert."
+      }
+    ],
+    "nebendiagnosen": [
+      {
+        "diagnose": "Zustand nach Lungenarterienembolie (LAE)",
+        "details": "dauerhaft antikoaguliert"
+      }
+    ],
+    "medikation": [
+      {
+        "wirkstoff": "Apixaban",
+        "dosierung": null,
+        "schema": null,
+        "hinweis": "DOAK (Dauertherapie nach LAE)"
+      },
+      {
+        "wirkstoff": "Pantoprazol",
+        "dosierung": null,
+        "schema": null,
+        "hinweis": null
+      },
+      {
+        "wirkstoff": "Analgetika",
+        "dosierung": null,
+        "schema": null,
+        "hinweis": "bei Bedarf"
+      }
+    ],
+    "ici_durchfuehrbar": null,
+    "prior_therapies": [],
+    "ground_truth_metastatic": null,
+    "ground_truth_imdc": null,
+    "ground_truth_therapy": "Abwägung 4. Linie (Belzutifan, falls verfügbar/geeignet) vs. Best supportive care (BSC). | Supportiv: Analgesie, Knochenprotektion nach Standard, engmaschige Laborkontrollen (Hb/Ca). | Studiensuche und Vorstellung im molekularen Tumorboard."
+  },
+  "prompt_text": "Du bist ein erfahrener Onkologe, spezialisiert auf Nierenzellkarzinom (RCC).\nAnalysiere den folgenden klinischen Fall und erstelle eine strukturierte Therapieempfehlung.\n\n=== KLINISCHER FALL ===\nPatient: Beispiel, Bora, 71 Jahre\nECOG: 2, Karnofsky: 70%\nKomorbidität: unknown\nLebenserwartung: unknown\n\nDiagnose: Metastasiertes Nierenzellkarzinom (mRCC) mit systemischem Progress unter Tivozanib (3. Linie).\nStadium: metastasiert; Therapielinie: nach 3 Vorlinien\nTNM: nicht dokumentiert\n\nHISTOLOGIE (WICHTIG für Therapieentscheidung):\nNicht dokumentiert\n\nAnamnese:\nMetastasiertes Nierenzellkarzinom (mRCC), mehrfach vorbehandelt. Progress unter 3. Linie (Tivozanib) im CT-Staging 05.12.2025. Vorgeschichte: Z. n. Lungenarterienembolie (LAE) mit dauerhafter Antikoagulation. Z. n. Hysterektomie 2016.\n\nNebendiagnosen: Zustand nach Lungenarterienembolie (LAE)\n\nAktuelle Medikation: , , \n\nBildgebung:\n  - CT Thorax/Abdomen/Becken (2025-12-05): Systemischer Progress: Thorax mit Zunahme pulmonaler Metastasen (RLL 15 mm vorher 11 mm; LUL 10 mm vorher 7 mm), kein Pleuraerguss. Abdomen mit neuer Lebermetastase Segment VI 18 mm und Progress bekannter Leberläsion Segment VII 22→30 mm. Retroperitoneum: paraaortaler LK 18→26 mm. Skelett: neue osteolytische Läsion BWK11 14 mm.\n\nIMDC-Risikofaktoren: Nicht dokumentiert\nICI-Kombination durchführbar: Nicht dokumentiert\nVorherige Systemtherapien: Keine\n\n=== THERAPIE-LEITLINIEN ===\n\n\nMETASTASIERTES KLARZELLIGES RCC - THERAPIE-ALGORITHMUS:\n\nIMDC-RISIKOSTRATIFIZIERUNG:\n- Günstig (0 Risikofaktoren)\n- Intermediär (1-2 Risikofaktoren)\n- Ungünstig (≥3 Risikofaktoren)\n\nRisikofaktoren: Karnofsky <80%, Zeit bis Systemtherapie <1 Jahr, Hämoglobin↓, Calcium↑, Neutrophile↑, Thrombozyten↑\n\nERSTLINIE (wenn ICI-Kombination möglich):\n- Günstig: NIVO+CABO (A), PEMBRO+AXI (A), PEMBRO+LEN (A), AVELU+AXI (B)\n- Intermediär: NIVO+CABO (A), NIVO+IPI (A), PEMBRO+AXI (A), PEMBRO+LEN (A)\n- Ungünstig: NIVO+CABO (A), NIVO+IPI (A), PEMBRO+AXI (A), PEMBRO+LEN (A)\n\nERSTLINIE (wenn ICI-Kombination NICHT möglich):\n- Günstig: Pazopanib (A), Sunitinib (A), Tivozanib (A), BEV+IFN (A)\n- Intermediär: Cabozantinib (B), Pazopanib (B), Sunitinib (B)\n- Ungünstig: Cabozantinib (B), Sunitinib (B), Temsirolimus (0)\n\nZWEITLINIE nach ICI-Kombination: Cabozantinib (A), Lenvatinib+Everolimus (A), Sunitinib (A)\nZWEITLINIE nach VEGF/R-Monotherapie: Cabozantinib (A), Nivolumab (A)\n\nLegende: A=starke Empfehlung, B=schwache Empfehlung, 0=Option\n\n\n\nNICHT-METASTASIERTES RCC - THERAPIE-ALGORITHMUS:\n\nTHERAPIEOPTIONEN nach Tumorgröße/Stadium:\n\n1. AKTIVE ÜBERWACHUNG (GoR 0):\n   - Kleine Nierentumoren + hohe Komorbidität ODER begrenzte Lebenserwartung\n   - Biopsie VOR Überwachung erforderlich\n\n2. ABLATION (Kryoablation/Radiofrequenzablation) (GoR 0):\n   - Kleine Nierentumoren + hohe Komorbidität ODER begrenzte Lebenserwartung\n   - Biopsie VOR Ablation erforderlich\n\n3. NIERENTEILRESEKTION (Nephron-sparing Surgery):\n   - cT1 (≤7cm): SOLL durchgeführt werden (GoR A)\n   - >T1: SOLLTE erwogen werden wenn technisch möglich (GoR B)\n   - Zugang: offen/laparoskopisch/robotisch (chirurgische Erfahrung)\n\n4. RADIKALE NEPHREKTOMIE:\n   - Wenn Teilresektion nicht möglich (GoR A)\n   - Minimalinvasiv wenn lokale Befunde es erlauben (GoR A)\n\nPERIOPERATIVE PRINZIPIEN:\n- KEINE Adrenalektomie bei unauffälliger Bildgebung (GoR A)\n- KEINE systematische Lymphadenektomie bei unauffälliger Bildgebung (GoR A)\n- LND bei vergrößerten Lymphknoten akzeptabel\n\nTNM-STADIEN:\n- T1a: ≤4cm, auf Niere begrenzt\n- T1b: >4-7cm, auf Niere begrenzt\n- T2a: >7-10cm, auf Niere begrenzt\n- T2b: >10cm, auf Niere begrenzt\n- T3: Ausdehnung in große Venen oder perirenales Gewebe\n- T4: Über Gerota-Faszie hinaus\n\nLegende: GoR A=starke Empfehlung, GoR B=schwache Empfehlung, GoR 0=Option\n\n\nWICHTIGER HINWEIS:\n- Die Leitlinien gelten primär für KLARZELLIGES RCC\n- Bei NICHT-KLARZELLIGEM RCC (papillär, chromophob, etc.) ist TKI-Monotherapie oft bevorzugt\n- IMDC-Risikostratifizierung ist nur für klarzelliges mRCC validiert\n\n=== AUFGABE ===\nAnalysiere den Fall schrittweise:\n\n1. METASTASIERUNG: Bestimme ob der Patient metastasiert oder nicht-metastasiert ist (basierend auf TNM M-Status, Anamnese, Bildgebung).\n\n2. HISTOLOGIE: Berücksichtige den histologischen Subtyp (klarzellig vs. nicht-klarzellig).\n\n3. RISIKOSTRATIFIZIERUNG: Falls metastasiert UND klarzellig, berechne das IMDC-Risiko.\n\n4. THERAPIEEMPFEHLUNG: Folge dem entsprechenden Therapie-Algorithmus und begründe deine Empfehlung.\n\nAntworte im folgenden JSON-Format:\n{\n    \"is_metastatic\": true/false,\n    \"metastatic_reasoning\": \"Begründung für Metastasierungsstatus...\",\n    \"imdc_risk\": \"guenstig/intermediaer/unguenstig/nicht_anwendbar\",\n    \"imdc_reasoning\": \"IMDC-Berechnung oder null wenn nicht-metastasiert/nicht-klarzellig...\",\n    \"treatment_reasoning\": \"Schrittweise Begründung nach Leitlinie...\",\n    \"recommended_therapy\": \"Konkrete Therapieempfehlung\",\n    \"therapy_category\": \"IO+TKI/TKI mono/Surgery/Surveillance/Ablation/etc.\",\n    \"recommendation_strength\": \"A/B/0\",\n    \"confidence\": 0.0-1.0\n}",
+  "prediction": {
+    "is_metastatic": true,
+    "metastatic_reasoning": "Der Patient hat mehrere Metastasen in Thorax (RLL, LUL), Leber (Segment VI, Segment VII) und Knochen (BWK11). Dies deutet auf ein metastasiertes Nierenzellkarzinom hin.",
+    "imdc_risk": "unguenstig",
+    "imdc_reasoning": "Die Informationen zum IMDC-Risiko sind nicht dokumentiert. Da der Patient nach 3 Vorlinien behandelt wird, ist er wahrscheinlich ungünstig bewertet. Eine detailliertere Risikobewertung ist erforderlich, um das genaue IMDC-Risiko zu bestimmen.",
+    "treatment_reasoning": "Der Patient befindet sich in der 3. Therapie-Linie nach einer Tivozanib-Progress. Aufgrund des ungünstigen IMDC-Risikos und der Systemerkrankung ist eine Zweitlinien-Therapie mit einem zielgerichteten Ansatz erforderlich. Die Leitlinien empfehlen Cabozantinib, Lenvatinib+Everolimus oder Sunitinib als Zweitlinienoptionen.  Die Anamnese einer LAE deutet auf eine mögliche Antikoagulation hin, die bei der Therapieplanung berücksichtigt werden muss.",
+    "recommended_therapy": "Cabozantinib",
+    "therapy_category": "IO+TKI",
+    "recommendation_strength": "A",
+    "confidence": 0.8
+  },
+  "raw_response": "{\"is_metastatic\": true,\n\"metastatic_reasoning\": \"Der Patient hat mehrere Metastasen in Thorax (RLL, LUL), Leber (Segment VI, Segment VII) und Knochen (BWK11). Dies deutet auf ein metastasiertes Nierenzellkarzinom hin.\",\n\"imdc_risk\": \"unguenstig\",\n\"imdc_reasoning\": \"Die Informationen zum IMDC-Risiko sind nicht dokumentiert. Da der Patient nach 3 Vorlinien behandelt wird, ist er wahrscheinlich ungünstig bewertet. Eine detailliertere Risikobewertung ist erforderlich, um das genaue IMDC-Risiko zu bestimmen.\",\n\"treatment_reasoning\": \"Der Patient befindet sich in der 3. Therapie-Linie nach einer Tivozanib-Progress. Aufgrund des ungünstigen IMDC-Risikos und der Systemerkrankung ist eine Zweitlinien-Therapie mit einem zielgerichteten Ansatz erforderlich. Die Leitlinien empfehlen Cabozantinib, Lenvatinib+Everolimus oder Sunitinib als Zweitlinienoptionen.  Die Anamnese einer LAE deutet auf eine mögliche Antikoagulation hin, die bei der Therapieplanung berücksichtigt werden muss.\",\n\"recommended_therapy\": \"Cabozantinib\",\n\"therapy_category\": \"IO+TKI\",\n\"recommendation_strength\": \"A\",\n\"confidence\": 0.8}",
+  "ground_truth_metastatic": null,
+  "ground_truth_therapy": "Abwägung 4. Linie (Belzutifan, falls verfügbar/geeignet) vs. Best supportive care (BSC). | Supportiv: Analgesie, Knochenprotektion nach Standard, engmaschige Laborkontrollen (Hb/Ca). | Studiensuche und Vorstellung im molekularen Tumorboard.",
+  "metastatic_correct": null,
+  "therapy_exact_match": false,
+  "therapy_clinically_acceptable": null,
+  "inference_time_seconds": 1.0167648315429687,
+  "tokens_used": 307,
+  "success": true,
+  "error_message": null
+}

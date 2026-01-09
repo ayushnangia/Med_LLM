@@ -1,0 +1,90 @@
+{
+  "case_id": "ncc_10",
+  "timestamp": "2026-01-09_22-08-27",
+  "provider": "modal",
+  "model": "google/medgemma-27b-text-it",
+  "input_case": {
+    "case_id": "ncc_10",
+    "patient_name": "Beispiel, Hanna",
+    "age": 75,
+    "ecog": 2,
+    "karnofsky": null,
+    "comorbidity": "hoch",
+    "life_expectancy": "unknown",
+    "anamnese": "Großer Tumor rechte Niere 7,5 cm (cT2a). Vorerkrankungen: CKD G3, arterielle Hypertonie, Vorhofflimmern (DOAK). Z. n. TUR-B 2019 ohne Malignität.",
+    "diagnose_kurz": "Großer Nierentumor rechts (Oberpol) ca. 7,5 × 6,5 cm, V. a. RCC (cT2a, prätherapeutisch)",
+    "stadium": "cT2a, Staging inkomplett (CT Thorax ausstehend)",
+    "tnm_clinical": {
+      "T": "T2",
+      "T_sub": "T2a",
+      "N": "unknown",
+      "M": "unknown",
+      "stage_group": "unknown"
+    },
+    "tnm_pathological": {
+      "T": null,
+      "T_sub": null,
+      "N": null,
+      "M": null,
+      "stage_group": null
+    },
+    "histologie_subtyp": null,
+    "histologie_klarzellig": null,
+    "bildgebung": [
+      {
+        "modalitaet": "CT",
+        "region": "Abdomen",
+        "datum": "2025-12-09",
+        "befund_kurz": "V. a. Nierenzellkarzinom rechte Niere am Oberpol ca. 7,5 × 6,5 cm (cT2a).",
+        "quelle": "Erforderlicher Befund"
+      }
+    ],
+    "nebendiagnosen": [
+      "CKD G3",
+      "arterielle Hypertonie",
+      "Vorhofflimmern (Antikoagulation mit DOAK)",
+      "Z. n. TUR-B 2019 (ohne Malignität)"
+    ],
+    "medikation": [
+      {
+        "wirkstoff_oder_klasse": "DOAK",
+        "details": "bei Vorhofflimmern"
+      },
+      {
+        "wirkstoff_oder_klasse": "Betablocker",
+        "details": null
+      },
+      {
+        "wirkstoff_oder_klasse": "ACE-Hemmer",
+        "details": null
+      }
+    ],
+    "ici_durchfuehrbar": null,
+    "prior_therapies": [],
+    "ground_truth_metastatic": null,
+    "ground_truth_imdc": null,
+    "ground_truth_therapy": "Perioperatives Antikoagulationsmanagement; Komplettierung Staging mittels CT Thorax; sofern keine Metastasen: radikale Nephrektomie rechts."
+  },
+  "prompt_text": "Du bist ein erfahrener Onkologe, spezialisiert auf Nierenzellkarzinom (RCC).\nAnalysiere den folgenden klinischen Fall und erstelle eine strukturierte Therapieempfehlung.\n\n=== KLINISCHER FALL ===\nPatient: Beispiel, Hanna, 75 Jahre\nECOG: 2, Karnofsky: ?%\nKomorbidität: hoch\nLebenserwartung: unknown\n\nDiagnose: Großer Nierentumor rechts (Oberpol) ca. 7,5 × 6,5 cm, V. a. RCC (cT2a, prätherapeutisch)\nStadium: cT2a, Staging inkomplett (CT Thorax ausstehend)\ncTNM: TT2 Nunknown Munknown\n\nHISTOLOGIE (WICHTIG für Therapieentscheidung):\nNicht dokumentiert\n\nAnamnese:\nGroßer Tumor rechte Niere 7,5 cm (cT2a). Vorerkrankungen: CKD G3, arterielle Hypertonie, Vorhofflimmern (DOAK). Z. n. TUR-B 2019 ohne Malignität.\n\nNebendiagnosen: CKD G3, arterielle Hypertonie, Vorhofflimmern (Antikoagulation mit DOAK), Z. n. TUR-B 2019 (ohne Malignität)\n\nAktuelle Medikation: DOAK (bei Vorhofflimmern), Betablocker, ACE-Hemmer\n\nBildgebung:\n  - CT Abdomen (2025-12-09): V. a. Nierenzellkarzinom rechte Niere am Oberpol ca. 7,5 × 6,5 cm (cT2a).\n\nIMDC-Risikofaktoren: Nicht dokumentiert\nICI-Kombination durchführbar: Nicht dokumentiert\nVorherige Systemtherapien: Keine\n\n=== THERAPIE-LEITLINIEN ===\n\n\nMETASTASIERTES KLARZELLIGES RCC - THERAPIE-ALGORITHMUS:\n\nIMDC-RISIKOSTRATIFIZIERUNG:\n- Günstig (0 Risikofaktoren)\n- Intermediär (1-2 Risikofaktoren)\n- Ungünstig (≥3 Risikofaktoren)\n\nRisikofaktoren: Karnofsky <80%, Zeit bis Systemtherapie <1 Jahr, Hämoglobin↓, Calcium↑, Neutrophile↑, Thrombozyten↑\n\nERSTLINIE (wenn ICI-Kombination möglich):\n- Günstig: NIVO+CABO (A), PEMBRO+AXI (A), PEMBRO+LEN (A), AVELU+AXI (B)\n- Intermediär: NIVO+CABO (A), NIVO+IPI (A), PEMBRO+AXI (A), PEMBRO+LEN (A)\n- Ungünstig: NIVO+CABO (A), NIVO+IPI (A), PEMBRO+AXI (A), PEMBRO+LEN (A)\n\nERSTLINIE (wenn ICI-Kombination NICHT möglich):\n- Günstig: Pazopanib (A), Sunitinib (A), Tivozanib (A), BEV+IFN (A)\n- Intermediär: Cabozantinib (B), Pazopanib (B), Sunitinib (B)\n- Ungünstig: Cabozantinib (B), Sunitinib (B), Temsirolimus (0)\n\nZWEITLINIE nach ICI-Kombination: Cabozantinib (A), Lenvatinib+Everolimus (A), Sunitinib (A)\nZWEITLINIE nach VEGF/R-Monotherapie: Cabozantinib (A), Nivolumab (A)\n\nLegende: A=starke Empfehlung, B=schwache Empfehlung, 0=Option\n\n\n\nNICHT-METASTASIERTES RCC - THERAPIE-ALGORITHMUS:\n\nTHERAPIEOPTIONEN nach Tumorgröße/Stadium:\n\n1. AKTIVE ÜBERWACHUNG (GoR 0):\n   - Kleine Nierentumoren + hohe Komorbidität ODER begrenzte Lebenserwartung\n   - Biopsie VOR Überwachung erforderlich\n\n2. ABLATION (Kryoablation/Radiofrequenzablation) (GoR 0):\n   - Kleine Nierentumoren + hohe Komorbidität ODER begrenzte Lebenserwartung\n   - Biopsie VOR Ablation erforderlich\n\n3. NIERENTEILRESEKTION (Nephron-sparing Surgery):\n   - cT1 (≤7cm): SOLL durchgeführt werden (GoR A)\n   - >T1: SOLLTE erwogen werden wenn technisch möglich (GoR B)\n   - Zugang: offen/laparoskopisch/robotisch (chirurgische Erfahrung)\n\n4. RADIKALE NEPHREKTOMIE:\n   - Wenn Teilresektion nicht möglich (GoR A)\n   - Minimalinvasiv wenn lokale Befunde es erlauben (GoR A)\n\nPERIOPERATIVE PRINZIPIEN:\n- KEINE Adrenalektomie bei unauffälliger Bildgebung (GoR A)\n- KEINE systematische Lymphadenektomie bei unauffälliger Bildgebung (GoR A)\n- LND bei vergrößerten Lymphknoten akzeptabel\n\nTNM-STADIEN:\n- T1a: ≤4cm, auf Niere begrenzt\n- T1b: >4-7cm, auf Niere begrenzt\n- T2a: >7-10cm, auf Niere begrenzt\n- T2b: >10cm, auf Niere begrenzt\n- T3: Ausdehnung in große Venen oder perirenales Gewebe\n- T4: Über Gerota-Faszie hinaus\n\nLegende: GoR A=starke Empfehlung, GoR B=schwache Empfehlung, GoR 0=Option\n\n\nWICHTIGER HINWEIS:\n- Die Leitlinien gelten primär für KLARZELLIGES RCC\n- Bei NICHT-KLARZELLIGEM RCC (papillär, chromophob, etc.) ist TKI-Monotherapie oft bevorzugt\n- IMDC-Risikostratifizierung ist nur für klarzelliges mRCC validiert\n\n=== AUFGABE ===\nAnalysiere den Fall schrittweise:\n\n1. METASTASIERUNG: Bestimme ob der Patient metastasiert oder nicht-metastasiert ist (basierend auf TNM M-Status, Anamnese, Bildgebung).\n\n2. HISTOLOGIE: Berücksichtige den histologischen Subtyp (klarzellig vs. nicht-klarzellig).\n\n3. RISIKOSTRATIFIZIERUNG: Falls metastasiert UND klarzellig, berechne das IMDC-Risiko.\n\n4. THERAPIEEMPFEHLUNG: Folge dem entsprechenden Therapie-Algorithmus und begründe deine Empfehlung.\n\nAntworte im folgenden JSON-Format:\n{\n    \"is_metastatic\": true/false,\n    \"metastatic_reasoning\": \"Begründung für Metastasierungsstatus...\",\n    \"imdc_risk\": \"guenstig/intermediaer/unguenstig/nicht_anwendbar\",\n    \"imdc_reasoning\": \"IMDC-Berechnung oder null wenn nicht-metastasiert/nicht-klarzellig...\",\n    \"treatment_reasoning\": \"Schrittweise Begründung nach Leitlinie...\",\n    \"recommended_therapy\": \"Konkrete Therapieempfehlung\",\n    \"therapy_category\": \"IO+TKI/TKI mono/Surgery/Surveillance/Ablation/etc.\",\n    \"recommendation_strength\": \"A/B/0\",\n    \"confidence\": 0.0-1.0\n}",
+  "prediction": {
+    "is_metastatic": false,
+    "metastatic_reasoning": "Der Patient hat ein cT2a-Stadium. Das M-Stadium ist 'unknown', aber es gibt keine Hinweise auf Fernmetastasen in der Anamnese oder der verfügbaren Bildgebung (CT Abdomen). Das CT Thorax steht noch aus, aber basierend auf den vorliegenden Daten ist von einem nicht-metastasierten Tumor auszugehen. Die Leitlinien für metastasiertes RCC sind daher nicht direkt anwendbar.",
+    "imdc_risk": "nicht_anwendbar",
+    "imdc_reasoning": "Die IMDC-Risikostratifizierung ist nur für metastasiertes, klarzelliges RCC validiert. Da der Patient aktuell als nicht-metastasiert eingestuft wird, ist die IMDC-Risikostratifizierung nicht anwendbar.",
+    "treatment_reasoning": "Der Patient hat einen Tumor von 7,5 cm (cT2a) in der rechten Niere. Die Leitlinien für nicht-metastasiertes RCC empfehlen für cT1-Tumore (≤7cm) eine Nephron-sparing Surgery (Teilresektion) mit starker Empfehlung (GoR A). Für Tumore >T1 (wie hier cT2a) sollte eine Teilresektion erwogen werden, wenn technisch möglich (GoR B). Eine radikale Nephrektomie ist indiziert, wenn eine Teilresektion nicht möglich ist (GoR A). Der Patient ist 75 Jahre alt mit hoher Komorbidität (CKD G3, Hypertonie, Vorhofflimmern, DOAK-Therapie) und einem ECOG-Status von 2. Dies muss bei der Therapieentscheidung berücksichtigt werden. Eine aktive Überwachung oder Ablation sind Optionen bei kleinen Tumoren und hoher Komorbidität/begrenzter Lebenserwartung, was hier aufgrund der Tumorgröße (7,5 cm) weniger wahrscheinlich ist. Die Histologie ist unbekannt, was die Therapieentscheidung beeinflussen kann (z.B. bei nicht-klarzelligen Subtypen). Da die Histologie unbekannt ist, muss zunächst eine Biopsie erfolgen, um den Subtyp zu bestimmen und die Eignung für eine Teilresektion zu beurteilen. Nach Bestätigung des klarzelligen Subtyps und Beurteilung der technischen Machbarkeit einer Teilresektion ist diese die bevorzugte Option, um das Nierengewebe zu schonen, insbesondere bei vorbestehendem CKD G3. Die hohe Komorbidität und das Alter sprechen für eine sorgfältige Abwägung der Risiken und Vorteile einer Operation. Die Antikoagulation mit DOAK muss perioperativ berücksichtigt werden. Ein CT Thorax ist noch ausstehend, um das M-Stadium sicher zu bestimmen.",
+    "recommended_therapy": "Biopsie zur Histologiebestimmung gefolgt von Nephron-sparing Surgery (Teilresektion) falls technisch möglich und Patient geeignet.",
+    "therapy_category": "Surgery",
+    "recommendation_strength": "B",
+    "confidence": 0.8
+  },
+  "raw_response": "{\"is_metastatic\": false,\n    \"metastatic_reasoning\": \"Der Patient hat ein cT2a-Stadium. Das M-Stadium ist 'unknown', aber es gibt keine Hinweise auf Fernmetastasen in der Anamnese oder der verfügbaren Bildgebung (CT Abdomen). Das CT Thorax steht noch aus, aber basierend auf den vorliegenden Daten ist von einem nicht-metastasierten Tumor auszugehen. Die Leitlinien für metastasiertes RCC sind daher nicht direkt anwendbar.\",\n    \"imdc_risk\": \"nicht_anwendbar\",\n    \"imdc_reasoning\": \"Die IMDC-Risikostratifizierung ist nur für metastasiertes, klarzelliges RCC validiert. Da der Patient aktuell als nicht-metastasiert eingestuft wird, ist die IMDC-Risikostratifizierung nicht anwendbar.\",\n    \"treatment_reasoning\": \"Der Patient hat einen Tumor von 7,5 cm (cT2a) in der rechten Niere. Die Leitlinien für nicht-metastasiertes RCC empfehlen für cT1-Tumore (≤7cm) eine Nephron-sparing Surgery (Teilresektion) mit starker Empfehlung (GoR A). Für Tumore >T1 (wie hier cT2a) sollte eine Teilresektion erwogen werden, wenn technisch möglich (GoR B). Eine radikale Nephrektomie ist indiziert, wenn eine Teilresektion nicht möglich ist (GoR A). Der Patient ist 75 Jahre alt mit hoher Komorbidität (CKD G3, Hypertonie, Vorhofflimmern, DOAK-Therapie) und einem ECOG-Status von 2. Dies muss bei der Therapieentscheidung berücksichtigt werden. Eine aktive Überwachung oder Ablation sind Optionen bei kleinen Tumoren und hoher Komorbidität/begrenzter Lebenserwartung, was hier aufgrund der Tumorgröße (7,5 cm) weniger wahrscheinlich ist. Die Histologie ist unbekannt, was die Therapieentscheidung beeinflussen kann (z.B. bei nicht-klarzelligen Subtypen). Da die Histologie unbekannt ist, muss zunächst eine Biopsie erfolgen, um den Subtyp zu bestimmen und die Eignung für eine Teilresektion zu beurteilen. Nach Bestätigung des klarzelligen Subtyps und Beurteilung der technischen Machbarkeit einer Teilresektion ist diese die bevorzugte Option, um das Nierengewebe zu schonen, insbesondere bei vorbestehendem CKD G3. Die hohe Komorbidität und das Alter sprechen für eine sorgfältige Abwägung der Risiken und Vorteile einer Operation. Die Antikoagulation mit DOAK muss perioperativ berücksichtigt werden. Ein CT Thorax ist noch ausstehend, um das M-Stadium sicher zu bestimmen.\",\n    \"recommended_therapy\": \"Biopsie zur Histologiebestimmung gefolgt von Nephron-sparing Surgery (Teilresektion) falls technisch möglich und Patient geeignet.\",\n    \"therapy_category\": \"Surgery\",\n    \"recommendation_strength\": \"B\",\n    \"confidence\": 0.8}",
+  "ground_truth_metastatic": null,
+  "ground_truth_therapy": "Perioperatives Antikoagulationsmanagement; Komplettierung Staging mittels CT Thorax; sofern keine Metastasen: radikale Nephrektomie rechts.",
+  "metastatic_correct": null,
+  "therapy_exact_match": false,
+  "therapy_clinically_acceptable": null,
+  "inference_time_seconds": 4.940542473111834,
+  "tokens_used": 662,
+  "success": true,
+  "error_message": null
+}

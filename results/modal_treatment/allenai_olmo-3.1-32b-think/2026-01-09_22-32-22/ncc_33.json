@@ -1,0 +1,144 @@
+{
+  "case_id": "ncc_33",
+  "timestamp": "2026-01-09_22-32-22",
+  "provider": "modal",
+  "model": "allenai/Olmo-3.1-32B-Think",
+  "input_case": {
+    "case_id": "ncc_33",
+    "patient_name": "Beispiel, Bora",
+    "age": 71,
+    "ecog": 2,
+    "karnofsky": 70,
+    "comorbidity": "unknown",
+    "life_expectancy": "unknown",
+    "anamnese": "Metastasiertes Nierenzellkarzinom (mRCC), mehrfach vorbehandelt. Progress unter 3. Linie (Tivozanib) im CT-Staging 05.12.2025. Vorgeschichte: Z. n. Lungenarterienembolie (LAE) mit dauerhafter Antikoagulation. Z. n. Hysterektomie 2016.",
+    "diagnose_kurz": "Metastasiertes Nierenzellkarzinom (mRCC) mit systemischem Progress unter Tivozanib (3. Linie).",
+    "stadium": "metastasiert; Therapielinie: nach 3 Vorlinien",
+    "tnm_clinical": null,
+    "tnm_pathological": null,
+    "histologie_subtyp": null,
+    "histologie_klarzellig": null,
+    "bildgebung": [
+      {
+        "modalitaet": "CT",
+        "region": "Thorax/Abdomen/Becken",
+        "datum": "2025-12-05",
+        "befund_kurz": "Systemischer Progress: Thorax mit Zunahme pulmonaler Metastasen (RLL 15 mm vorher 11 mm; LUL 10 mm vorher 7 mm), kein Pleuraerguss. Abdomen mit neuer Lebermetastase Segment VI 18 mm und Progress bekannter Leberläsion Segment VII 22→30 mm. Retroperitoneum: paraaortaler LK 18→26 mm. Skelett: neue osteolytische Läsion BWK11 14 mm.",
+        "quelle": "Erforderlicher Befund",
+        "detailstruktur": {
+          "thorax": {
+            "pulmonale_metastasen": [
+              {
+                "lokalisation": "RLL",
+                "groesse_mm": 15,
+                "vorher_mm": 11,
+                "bewertung": "progredient"
+              },
+              {
+                "lokalisation": "LUL",
+                "groesse_mm": 10,
+                "vorher_mm": 7,
+                "bewertung": "progredient"
+              }
+            ],
+            "pleuraerguss": false,
+            "mediastinale_hilaere_lk": "keine_sicheren_pathologisch_vergroesserten"
+          },
+          "abdomen": {
+            "leber": [
+              {
+                "segment": "VI",
+                "groesse_mm": 18,
+                "vorher_mm": null,
+                "bewertung": "neu_metastasenverdaechtig"
+              },
+              {
+                "segment": "VII",
+                "groesse_mm": 30,
+                "vorher_mm": 22,
+                "bewertung": "progredient"
+              }
+            ],
+            "lokalrezidiv": "unknown",
+            "aszetes": false
+          },
+          "retroperitoneum": {
+            "lymphknoten": [
+              {
+                "lokalisation": "paraaortal",
+                "groesse_mm": 26,
+                "vorher_mm": 18,
+                "bewertung": "progredient"
+              }
+            ]
+          },
+          "skelett": {
+            "ossäre_laesionen": [
+              {
+                "lokalisation": "BWK11",
+                "typ": "osteolytisch",
+                "groesse_mm": 14,
+                "vorher_mm": null,
+                "bewertung": "neu_metastasenverdaechtig"
+              }
+            ]
+          }
+        },
+        "beurteilung": "Systemischer Progress (Lunge + Leber + LK, neu ossär) unter Tivozanib; Therapieumstellung indiziert."
+      }
+    ],
+    "nebendiagnosen": [
+      {
+        "diagnose": "Zustand nach Lungenarterienembolie (LAE)",
+        "details": "dauerhaft antikoaguliert"
+      }
+    ],
+    "medikation": [
+      {
+        "wirkstoff": "Apixaban",
+        "dosierung": null,
+        "schema": null,
+        "hinweis": "DOAK (Dauertherapie nach LAE)"
+      },
+      {
+        "wirkstoff": "Pantoprazol",
+        "dosierung": null,
+        "schema": null,
+        "hinweis": null
+      },
+      {
+        "wirkstoff": "Analgetika",
+        "dosierung": null,
+        "schema": null,
+        "hinweis": "bei Bedarf"
+      }
+    ],
+    "ici_durchfuehrbar": null,
+    "prior_therapies": [],
+    "ground_truth_metastatic": null,
+    "ground_truth_imdc": null,
+    "ground_truth_therapy": "Abwägung 4. Linie (Belzutifan, falls verfügbar/geeignet) vs. Best supportive care (BSC). | Supportiv: Analgesie, Knochenprotektion nach Standard, engmaschige Laborkontrollen (Hb/Ca). | Studiensuche und Vorstellung im molekularen Tumorboard."
+  },
+  "prompt_text": "Du bist ein erfahrener Onkologe, spezialisiert auf Nierenzellkarzinom (RCC).\nAnalysiere den folgenden klinischen Fall und erstelle eine strukturierte Therapieempfehlung.\n\n=== KLINISCHER FALL ===\nPatient: Beispiel, Bora, 71 Jahre\nECOG: 2, Karnofsky: 70%\nKomorbidität: unknown\nLebenserwartung: unknown\n\nDiagnose: Metastasiertes Nierenzellkarzinom (mRCC) mit systemischem Progress unter Tivozanib (3. Linie).\nStadium: metastasiert; Therapielinie: nach 3 Vorlinien\nTNM: nicht dokumentiert\n\nHISTOLOGIE (WICHTIG für Therapieentscheidung):\nNicht dokumentiert\n\nAnamnese:\nMetastasiertes Nierenzellkarzinom (mRCC), mehrfach vorbehandelt. Progress unter 3. Linie (Tivozanib) im CT-Staging 05.12.2025. Vorgeschichte: Z. n. Lungenarterienembolie (LAE) mit dauerhafter Antikoagulation. Z. n. Hysterektomie 2016.\n\nNebendiagnosen: Zustand nach Lungenarterienembolie (LAE)\n\nAktuelle Medikation: , , \n\nBildgebung:\n  - CT Thorax/Abdomen/Becken (2025-12-05): Systemischer Progress: Thorax mit Zunahme pulmonaler Metastasen (RLL 15 mm vorher 11 mm; LUL 10 mm vorher 7 mm), kein Pleuraerguss. Abdomen mit neuer Lebermetastase Segment VI 18 mm und Progress bekannter Leberläsion Segment VII 22→30 mm. Retroperitoneum: paraaortaler LK 18→26 mm. Skelett: neue osteolytische Läsion BWK11 14 mm.\n\nIMDC-Risikofaktoren: Nicht dokumentiert\nICI-Kombination durchführbar: Nicht dokumentiert\nVorherige Systemtherapien: Keine\n\n=== THERAPIE-LEITLINIEN ===\n\n\nMETASTASIERTES KLARZELLIGES RCC - THERAPIE-ALGORITHMUS:\n\nIMDC-RISIKOSTRATIFIZIERUNG:\n- Günstig (0 Risikofaktoren)\n- Intermediär (1-2 Risikofaktoren)\n- Ungünstig (≥3 Risikofaktoren)\n\nRisikofaktoren: Karnofsky <80%, Zeit bis Systemtherapie <1 Jahr, Hämoglobin↓, Calcium↑, Neutrophile↑, Thrombozyten↑\n\nERSTLINIE (wenn ICI-Kombination möglich):\n- Günstig: NIVO+CABO (A), PEMBRO+AXI (A), PEMBRO+LEN (A), AVELU+AXI (B)\n- Intermediär: NIVO+CABO (A), NIVO+IPI (A), PEMBRO+AXI (A), PEMBRO+LEN (A)\n- Ungünstig: NIVO+CABO (A), NIVO+IPI (A), PEMBRO+AXI (A), PEMBRO+LEN (A)\n\nERSTLINIE (wenn ICI-Kombination NICHT möglich):\n- Günstig: Pazopanib (A), Sunitinib (A), Tivozanib (A), BEV+IFN (A)\n- Intermediär: Cabozantinib (B), Pazopanib (B), Sunitinib (B)\n- Ungünstig: Cabozantinib (B), Sunitinib (B), Temsirolimus (0)\n\nZWEITLINIE nach ICI-Kombination: Cabozantinib (A), Lenvatinib+Everolimus (A), Sunitinib (A)\nZWEITLINIE nach VEGF/R-Monotherapie: Cabozantinib (A), Nivolumab (A)\n\nLegende: A=starke Empfehlung, B=schwache Empfehlung, 0=Option\n\n\n\nNICHT-METASTASIERTES RCC - THERAPIE-ALGORITHMUS:\n\nTHERAPIEOPTIONEN nach Tumorgröße/Stadium:\n\n1. AKTIVE ÜBERWACHUNG (GoR 0):\n   - Kleine Nierentumoren + hohe Komorbidität ODER begrenzte Lebenserwartung\n   - Biopsie VOR Überwachung erforderlich\n\n2. ABLATION (Kryoablation/Radiofrequenzablation) (GoR 0):\n   - Kleine Nierentumoren + hohe Komorbidität ODER begrenzte Lebenserwartung\n   - Biopsie VOR Ablation erforderlich\n\n3. NIERENTEILRESEKTION (Nephron-sparing Surgery):\n   - cT1 (≤7cm): SOLL durchgeführt werden (GoR A)\n   - >T1: SOLLTE erwogen werden wenn technisch möglich (GoR B)\n   - Zugang: offen/laparoskopisch/robotisch (chirurgische Erfahrung)\n\n4. RADIKALE NEPHREKTOMIE:\n   - Wenn Teilresektion nicht möglich (GoR A)\n   - Minimalinvasiv wenn lokale Befunde es erlauben (GoR A)\n\nPERIOPERATIVE PRINZIPIEN:\n- KEINE Adrenalektomie bei unauffälliger Bildgebung (GoR A)\n- KEINE systematische Lymphadenektomie bei unauffälliger Bildgebung (GoR A)\n- LND bei vergrößerten Lymphknoten akzeptabel\n\nTNM-STADIEN:\n- T1a: ≤4cm, auf Niere begrenzt\n- T1b: >4-7cm, auf Niere begrenzt\n- T2a: >7-10cm, auf Niere begrenzt\n- T2b: >10cm, auf Niere begrenzt\n- T3: Ausdehnung in große Venen oder perirenales Gewebe\n- T4: Über Gerota-Faszie hinaus\n\nLegende: GoR A=starke Empfehlung, GoR B=schwache Empfehlung, GoR 0=Option\n\n\nWICHTIGER HINWEIS:\n- Die Leitlinien gelten primär für KLARZELLIGES RCC\n- Bei NICHT-KLARZELLIGEM RCC (papillär, chromophob, etc.) ist TKI-Monotherapie oft bevorzugt\n- IMDC-Risikostratifizierung ist nur für klarzelliges mRCC validiert\n\n=== AUFGABE ===\nAnalysiere den Fall schrittweise:\n\n1. METASTASIERUNG: Bestimme ob der Patient metastasiert oder nicht-metastasiert ist (basierend auf TNM M-Status, Anamnese, Bildgebung).\n\n2. HISTOLOGIE: Berücksichtige den histologischen Subtyp (klarzellig vs. nicht-klarzellig).\n\n3. RISIKOSTRATIFIZIERUNG: Falls metastasiert UND klarzellig, berechne das IMDC-Risiko.\n\n4. THERAPIEEMPFEHLUNG: Folge dem entsprechenden Therapie-Algorithmus und begründe deine Empfehlung.\n\nAntworte im folgenden JSON-Format:\n{\n    \"is_metastatic\": true/false,\n    \"metastatic_reasoning\": \"Begründung für Metastasierungsstatus...\",\n    \"imdc_risk\": \"guenstig/intermediaer/unguenstig/nicht_anwendbar\",\n    \"imdc_reasoning\": \"IMDC-Berechnung oder null wenn nicht-metastasiert/nicht-klarzellig...\",\n    \"treatment_reasoning\": \"Schrittweise Begründung nach Leitlinie...\",\n    \"recommended_therapy\": \"Konkrete Therapieempfehlung\",\n    \"therapy_category\": \"IO+TKI/TKI mono/Surgery/Surveillance/Ablation/etc.\",\n    \"recommendation_strength\": \"A/B/0\",\n    \"confidence\": 0.0-1.0\n}",
+  "prediction": {
+    "is_metastatic": true,
+    "metastatic_reasoning": "Die Diagnose 'metastasiertes Nierenzellkarzinom (mRCC)' und die CT-Bildgebung zeigen multiple metastasen (Lungenmetastasen, Lebermetastasen, paraaortale Lymphknotenmetastase, osseöse Metastase). Dies korreliert mit einem M-Stadium nach TNM-Klassifikation.",
+    "imdc_risk": "intermediaer",
+    "imdc_reasoning": "Karnofsky-Score <80% (70%) zählt als Risikofaktor. Andere IMDC-Kriterien (Zeit bis zur systemischen Therapie, Blutwerte) sind nicht dokumentiert. Bei Unklarheit wird mindestens 1 Risikofaktor vorausgesetzt, was ein intermediares Risiko nach IMDC-Stratifizierung nahelegt. Hinweis: IMDC-Anwendung erfordert klare Karzinomsubtypisierung (hier nicht verfügbar).",
+    "treatment_reasoning": "1. Metastasierung bestätigt → Algorithmen für mRCC gelten. 2. Histologie nicht dokumentiert → Annahme karzelliger Subtyp (Standard für mRCC-Leitlinien). 3. IMDC-Risikostatifizierung als intermediaer aufgrund Karnofsky <80%. 4. Der Fall ist im 3. Line-Therapie stadium (Tivozanib als 3. Linie, Progression). Die vorgegebenen Leitlinien decken nur bis 2. Linie ab. In der Praxis werden hier: a) TKI-Kombinationen oder b) ICI-Therapien nach vorheriger TKI-Therapie empfohlen. Cabozantinib (VEGF/MET-Inhibitor) ist eine etablierte 3. Linie-Option nach VEGF-TKI-Progression.",
+    "recommended_therapy": "Cabozantinib",
+    "therapy_category": "TKI mono",
+    "recommendation_strength": "A",
+    "confidence": 0.7
+  },
+  "raw_response": "assistant\n<think>\nOkay, let's tackle this case step by step. First, I need to determine if the patient has metastatic disease. The diagnosis given is \"metastasiertes Nierenzellkarzinom (mRCC)\", which directly translates to metastatic renal cell carcinoma. The imaging from CT on 05.12.2025 shows multiple metastases: lung metastases in the right lower lobe and left upper lobe, liver metastases in segments VI and VII, a paraaortic lymph node, and a bone lesion in BWK11. All these findings indicate that the cancer has spread beyond the primary site, so the patient is definitely metastatic. The TNM M-status isn't documented, but the presence of distant metastases is clear from the imaging.\n\nNext, the histology isn't documented. The guidelines mention that IMDC risk stratification is only valid for clear cell RCC. If the tumor isn't clear cell, the approach might differ, but since the histology isn't available, I have to assume it's clear cell unless stated otherwise. However, the user hasn't provided any information, so this is a limitation. But given that the diagnosis is RCC and the standard approach for mRCC is based on clear cell, I'll proceed under that assumption, but note the uncertainty.\n\nFor risk stratification using IMDC, the factors are Karnofsky <80%, time to systemic therapy <1 year, anemia (Hb < lower limit), hypercalcemia, neutrophilia, thrombocytosis. The patient's Karnofsky is 70%, which is below 80%, so that's one risk factor. The ECOG is 2, which corresponds to Karnofsky 50-70%, so that fits. The other factors aren't documented. The Anamnese mentions LAE and hysterectomy, but no info on lab values. Since the comorbidities are unknown, I can't assess the other IMDC criteria. However, the presence of one risk factor (Karnofsky <80%) would place the patient in intermediate risk if only that's present. But wait, the time to systemic therapy: the case says \"Therapielinie: nach 3 Vorlinien\". So the patient has received three lines of therapy before. The time from diagnosis to starting systemic therapy isn't given. If the time to first systemic therapy was less than 1 year, that's another risk factor. But here, the patient is on third-line, so the time from initial diagnosis to first-line treatment isn't specified. Without knowing how long it took to start treatment, I can't determine this factor. Similarly, lab values like Hb, calcium, neutrophils, platelets are unknown. So, with only Karnofsky <80% as a confirmed risk factor, and the others unknown, the IMDC risk can't be definitively calculated. However, the guidelines require at least three risk factors for unfavorable. If only one is present, it's intermediate. But since some factors are unknown, maybe the risk is intermediate? Wait, the IMDC criteria require all factors to be known. If any are missing, the stratification isn't possible. But in clinical practice, if some factors are unknown, you might proceed with the known ones. But according to the guidelines provided, the algorithm says \"nicht_anwendbar\" if not clear cell or not metastatic. But here, the patient is metastatic and we're assuming clear cell. However, the IMDC risk factors are not documented. The case states \"IMDC-Risikofaktoren: Nicht dokumentiert\". So according to the algorithm, if IMDC can't be applied, then maybe the treatment approach isn't based on IMDC. Wait, looking back at the treatment algorithm: for first-line, they use IMDC to decide between different regimens. But this is a third-line setting. The algorithm provided for metastatic clear cell RCC includes first-line, second-line, and third-line? Wait, the user provided an algorithm that includes first-line and second-line, but the case is third-line. The algorithm given doesn't specify beyond second-line. For third-line, the guidelines might differ. For example, after two lines of therapy, options include clinical trial, or specific TKIs. But according to the provided algorithm, under second-line after ICI combination, they suggest Cabozantinib (A), Lenvatinib+Everolimus (A), Sunitinib (A). But this is third-line. Wait, the case says \"Therapielinie: nach 3 Vorlinien\", meaning after three previous lines. The patient has progressed on Tivozanib as third-line. So this is fourth-line? Wait, no. Let me check: first-line is initial treatment. If the patient had three lines before, then Tivozanib was third-line, and now they're progressing, so this is fourth-line. But the provided algorithm doesn't go that far. The algorithm's second-line options are after first-line. So for third-line, the guidelines might not be covered here. However, the user's algorithm mentions for second-line after VEGF/R monotherapy, options like Cabozantinib (A), Nivolumab (A). But in this case, the patient has received three lines. Let's see the previous therapies: \"Vorherige Systemtherapien: Keine\". Wait, the case says \"Vorherige Systemtherapien: Keine\". But the patient is in third-line (Tivozanib). That seems contradictory. If there were no previous systemic therapies, then Tivozanib would be first-line. But the patient has progressed on third-line. This inconsistency needs to be addressed. Wait, looking at the case again: \"Therapielinie: nach 3 Vorlinien\" – meaning after three previous lines. But \"Vorherige Systemtherapien: Keine\" – no prior systemic therapies. That's a contradiction. How can the patient be in third-line if there are no prior therapies? This is a critical error in the case presentation. This might be a mistake in the case setup. Assuming that \"Vorherige Systemtherapien: Keine\" is incorrect, and the patient actually had three lines before. For example, first-line, second-line, third-line (Tivozanib), and now progressing, so fourth-line. But the algorithm provided doesn't cover beyond second-line. In real guidelines, for mRCC beyond second-line, options include clinical trials, or specific TKIs like cabozantinib, nivolumab, etc., depending on prior therapies. For instance, if the patient has received prior ICI, then options might be different. But in this case, the previous therapies are not documented. The current line is Tivozanib, a VEGF TKI. So previous lines could have been other VEGF TKIs or ICI combinations. But since the case states \"Vorherige Systemtherapien: Keine\", but the patient is on third-line, this is conflicting. This is a problem. But perhaps it's a typo, and \"Vorherige Systemtherapien\" refers to previous lines before the current one. But the wording is unclear. Alternatively, maybe the patient received three lines, but the system doesn't list them. But the case explicitly says \"Vorherige Systemtherapien: Keine\". This is confusing. However, given that the current treatment is Tivozanib as third-line, but no prior systemic therapies are documented, this is impossible. Therefore, this is likely an error in the case setup. But as an AI, I have to work with the given data. If we take \"Vorherige Systemtherapien: Keine\" at face value, then Tivozanib would be first-line, but the patient is progressing on it, so this would be first-line failure. But the case says \"Therapielinie: nach 3 Vorlinien\", which contradicts. This inconsistency is a major issue. However, perhaps \"Vorherige Systemtherapien\" refers to previous lines before the current one. For example, three lines before Tivozanib. But the case states \"Vorherige Systemtherapien: Keine\", meaning no prior systemic therapies. So this is a contradiction. Given this confusion, perhaps the intended scenario is that the patient has received three lines of therapy, with Tivozanib being the third, and now progressing, requiring fourth-line treatment. But the algorithm provided doesn't address this. In real-life practice, for fourth-line mRCC, options are limited. If the patient has received prior ICI and TKIs, then maybe options like cabozantinib, or clinical trials. But according to the provided algorithm, after second-line, they suggest certain options. But here, it's third-line. Alternatively, maybe the algorithm's second-line options can be considered for third-line if the prior lines were VEGF inhibitors. For example, the case says \"Progress unter 3. Linie (Tivozanib)\". So third-line is Tivozanib, which is a VEGF TKI. If previous lines were also VEGF TKIs, then switching to a different VEGF TKI isn't standard. But in reality, after progression on one VEGF TKI, switching to another is not recommended. However, in this case, the patient has received three lines, but the prior therapies are not documented. Given the confusion, perhaps the algorithm's second-line recommendations can be applied here, but it's unclear. Alternatively, the patient is in third-line, and the algorithm doesn't specify, so the recommendation would be based on general principles. For third-line mRCC, if prior therapies include VEGF TKIs and ICI, then options might be clinical trial, or cabozantinib if not used before. But in this case, the patient is on Tivozanib (VEGF TKI), and prior therapies are unknown. If this is third-line, and assuming that previous lines were other VEGF TKIs, then switching to another VEGF TKI isn't effective. However, Tivozanib is a VEGF inhibitor, so if the patient progressed on it, then other VEGF TKIs are unlikely to work. In that case, options would be ICI combination if not used before, or other agents like cabozantinib (which is a VEGF and MET inhibitor), or nivolumab if ICI hasn't been used. But according to the case, \"ICI-Kombination durchführbar: Nicht dokumentiert\". So we don't know if ICI was used before. Given the lack of information, this is challenging. But given the provided algorithm, perhaps the next step is to look at the second-line recommendations. For example, if the previous therapy was a VEGF/R monotherapy (like Tivozanib), then second-line options include Cabozantinib (A), Nivolumab (A). But in this case, it's third-line. So if the patient received Tivozanib as second-line, then third-line would be these options. But the case says it's third-line. This is getting too tangled due to the inconsistent case data. Given the ambiguity, I'll proceed with the information as presented. Assuming that the patient is in third-line after progression on Tivozanib, and the algorithm doesn't specify beyond second-line, but in real guidelines, after two lines of VEGF TKIs, switching to a different VEGF TKI isn't recommended. Instead, options include ICI combinations if not used, or cabozantinib. But here, the patient may have received ICI in previous lines? The case doesn't say. The current line is Tivozanib, a VEGF TKI. If previous lines were also VEGF TKIs, then third-line could be ICI if not used. For example, if first-line was a VEGF TKI, second-line another VEGF TKI, then third-line could be ICI combination. But the algorithm's first-line options include ICI combinations. If the patient hasn't received ICI before, then in third-line, using an ICI combination might be an option. But according to the algorithm, first-line ICI combinations are recommended for favorable or intermediate risk. But this patient is in third-line, so the algorithm's first-line recommendations don't apply. This is a limitation of the provided algorithm. Given all this confusion, perhaps the best approach is to follow the algorithm's second-line recommendations if applicable. For example, if the previous therapy was a VEGF/R monotherapy (Tivozanib), then second-line options are Cabozantinib (A) or Nivolumab (A). But since this is third-line, maybe the same applies if the prior line was VEGF monotherapy. Alternatively, if the patient has received ICI before, then options differ. But since ICI-Kombination durchführbar is not documented, we don't know. Given the lack of information, I'll have to make assumptions. Let's outline the steps as per the user's request. 1. Metastatic: Yes, due to multiple metastases. 2. Histology not documented, but assuming clear cell. 3. IMDC risk: Karnofsky 70% <80% → 1 risk factor. Other factors unknown. Since IMDC requires all factors, but they're not documented, perhaps the risk is intermediate if we count Karnofsky as the only factor. But according to IMDC, you need at least 3 factors for unfavorable. With only one, it's intermediate. But if other factors are unknown, maybe the risk is intermediate. However, the algorithm says \"nicht_anwendbar\" if not clear cell or not metastatic. But here, it is metastatic and we're assuming clear cell. But IMDC factors are not documented. The case states \"IMDC-Risikofaktoren: Nicht dokumentiert\". So according to the algorithm, if IMDC can't be applied, then maybe the treatment isn't based on IMDC. But the algorithm's first-line options depend on IMDC. However, this is third-line. For third-line, the algorithm doesn't specify. But given the provided options, perhaps the second-line recommendations are intended here. For example, after VEGF/R monotherapy, second-line is Cabozantinib or Nivolumab. But this is third-line. Alternatively, if the patient has received two prior lines, but the case says three. This is very confusing. Given the ambiguity, I'll proceed to recommend Cabozantinib as third-line, as per some guidelines where after progression on VEGF TKI, switching to a VEGF/MET inhibitor like cabozantinib is an option. Also, in the algorithm provided, for second-line after VEGF/R monotherapy, Cabozantinib is an option (A). But since this is third-line, perhaps the same applies if the prior therapy was VEGF monotherapy. Alternatively, if the patient has received ICI before, but it's not documented. Given the lack of information, the safest bet is to recommend Cabozantinib as third-line, as it's a standard option after progression on VEGF TKIs, especially if ICI hasn't been used. But according to the algorithm's second-line after VEGF/R monotherapy, Cabozantinib is recommended. So even though it's third-line, if the previous line was VEGF, then this recommendation might still apply. Alternatively, if the patient has received two VEGF TKIs before, then cabozantinib (which is also a VEGF inhibitor but with MET activity) might be an option. In this case, the patient is on Tivozanib (VEGF), and prior therapies are unknown. But given that it's third-line, and the algorithm doesn't specify, I'll use the algorithm's second-line recommendation for VEGF/R monotherapy failure, which is Cabozantinib (A). So the recommended therapy would be Cabozantinib, category TKI mono, strength A. But wait, the algorithm's second-line after VEGF/R monotherapy is Cabozantinib (A) or Nivolumab (A). Nivolumab is an ICI. But if the patient hasn't received ICI before, then Nivolumab could be an option. However, in third-line, using ICI might be possible if not used in earlier lines. But the case doesn't specify prior ICI use. Given the uncertainty, but according to the algorithm's second-line option, Cabozantinib is recommended. So I'll go with that. Confidence might be lower due to incomplete information, but given the case's constraints, I'll proceed.\n</think>\n\n```json\n{\n    \"is_metastatic\": true,\n    \"metastatic_reasoning\": \"Die Diagnose 'metastasiertes Nierenzellkarzinom (mRCC)' und die CT-Bildgebung zeigen multiple metastasen (Lungenmetastasen, Lebermetastasen, paraaortale Lymphknotenmetastase, osseöse Metastase). Dies korreliert mit einem M-Stadium nach TNM-Klassifikation.\",\n    \"imdc_risk\": \"intermediaer\",\n    \"imdc_reasoning\": \"Karnofsky-Score <80% (70%) zählt als Risikofaktor. Andere IMDC-Kriterien (Zeit bis zur systemischen Therapie, Blutwerte) sind nicht dokumentiert. Bei Unklarheit wird mindestens 1 Risikofaktor vorausgesetzt, was ein intermediares Risiko nach IMDC-Stratifizierung nahelegt. Hinweis: IMDC-Anwendung erfordert klare Karzinomsubtypisierung (hier nicht verfügbar).\",\n    \"treatment_reasoning\": \"1. Metastasierung bestätigt → Algorithmen für mRCC gelten. 2. Histologie nicht dokumentiert → Annahme karzelliger Subtyp (Standard für mRCC-Leitlinien). 3. IMDC-Risikostatifizierung als intermediaer aufgrund Karnofsky <80%. 4. Der Fall ist im 3. Line-Therapie stadium (Tivozanib als 3. Linie, Progression). Die vorgegebenen Leitlinien decken nur bis 2. Linie ab. In der Praxis werden hier: a) TKI-Kombinationen oder b) ICI-Therapien nach vorheriger TKI-Therapie empfohlen. Cabozantinib (VEGF/MET-Inhibitor) ist eine etablierte 3. Linie-Option nach VEGF-TKI-Progression.\",\n    \"recommended_therapy\": \"Cabozantinib\",\n    \"therapy_category\": \"TKI mono\",\n    \"recommendation_strength\": \"A\",\n    \"confidence\": 0.7\n}\n```",
+  "ground_truth_metastatic": null,
+  "ground_truth_therapy": "Abwägung 4. Linie (Belzutifan, falls verfügbar/geeignet) vs. Best supportive care (BSC). | Supportiv: Analgesie, Knochenprotektion nach Standard, engmaschige Laborkontrollen (Hb/Ca). | Studiensuche und Vorstellung im molekularen Tumorboard.",
+  "metastatic_correct": null,
+  "therapy_exact_match": false,
+  "therapy_clinically_acceptable": null,
+  "inference_time_seconds": 20.9425548689706,
+  "tokens_used": 4056,
+  "success": true,
+  "error_message": null
+}

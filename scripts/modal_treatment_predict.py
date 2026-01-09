@@ -615,10 +615,11 @@ def run_prediction(model_key: str, cases: list, run_timestamp: str):
     # Sampling params - use structured output for non-thinking models
     if is_thinking:
         # Thinking models: free-form generation, parse JSON manually
+        # Need much higher max_tokens because <think> blocks consume many tokens
         params = SamplingParams(
             temperature=0.6,
             top_p=0.95,
-            max_tokens=4096,
+            max_tokens=65536,  # Increased from 4096 - thinking needs room for reasoning + JSON
             seed=42,
         )
         print(f"Running inference on {len(cases)} NCC cases (free-form for thinking model)...")

@@ -1,0 +1,14 @@
+{
+  "model": "OpenMeditron/Meditron3-Qwen2.5-7B",
+  "provider": "modal",
+  "timestamp": "2026-01-09_22-06-23",
+  "total_cases": 35,
+  "metastatic_accuracy": 0.7272727272727273,
+  "metastatic_correct": 8,
+  "therapy_exact_match_rate": 0.08571428571428572,
+  "therapy_exact_matches": 3,
+  "therapy_acceptable_rate": 0.2571428571428571,
+  "therapy_acceptable": 9,
+  "total_time": 11.269466161727905,
+  "errors": 0
+}
