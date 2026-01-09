@@ -1,0 +1,321 @@
+#!/usr/bin/env python3
+"""
+Export Modal/OpenRouter treatment prediction results to CSV for medical review.
+
+Usage:
+    python scripts/export_results_csv.py --results-dir results/modal_treatment/google_gemma-3-27b-it/2025-12-30_00-02-19/
+    python scripts/export_results_csv.py --all  # Export all runs
+    python scripts/export_results_csv.py --results-dir PATH --output custom_output.csv
+"""
+
+import argparse
+import csv
+import json
+import re
+from pathlib import Path
+from typing import Dict, List, Optional
+
+
+# CSV column order (for readability in Excel)
+CSV_COLUMNS = [
+    # Case identification
+    "case_id",
+    "patient_name",
+    "age",
+
+    # Patient status
+    "ecog",
+    "karnofsky",
+    "comorbidity",
+
+    # Clinical data
+    "diagnose_kurz",
+    "stadium",
+    "histologie_subtyp",
+    "klarzellig",
+    "tnm_cM",
+
+    # Ground truth
+    "gt_metastatic",
+    "gt_therapy",
+
+    # Model prediction
+    "pred_metastatic",
+    "pred_imdc_risk",
+    "pred_therapy",
+    "pred_category",
+    "pred_confidence",
+
+    # Basic evaluation
+    "metastatic_correct",
+    "therapy_exact_match",
+    "therapy_acceptable",
+
+    # Judge evaluation
+    "judge_is_correct",
+    "judge_correctness_reason",
+    "judge_semantic_match",
+    "judge_semantic_score",
+    "judge_clinical_appropriate",
+    "judge_clinical_score",
+    "judge_reasoning_quality",
+    "judge_overall_score",
+
+    # Reasoning (truncated)
+    "pred_reasoning_short",
+    "judge_reasoning_short",
+
+    # Metadata
+    "model",
+    "timestamp",
+    "inference_time_s",
+    "success",
+]
+
+
+def truncate_text(text: Optional[str], max_len: int = 200) -> str:
+    """Truncate text to max_len characters, adding ... if truncated."""
+    if text is None:
+        return ""
+    text = str(text).replace("\n", " ").replace("\r", " ")
+    if len(text) > max_len:
+        return text[:max_len - 3] + "..."
+    return text
+
+
+def safe_get(d: dict, *keys, default=None):
+    """Safely get nested dict values."""
+    for key in keys:
+        if isinstance(d, dict):
+            d = d.get(key, default)
+        else:
+            return default
+    return d if d is not None else default
+
+
+def load_case_results(results_dir: Path) -> List[dict]:
+    """Load all ncc_*.json case files from a results directory."""
+    cases = []
+
+    # Find all ncc_*.json files
+    case_files = sorted(results_dir.glob("ncc_*.json"),
+                        key=lambda x: int(re.search(r'ncc_(\d+)', x.name).group(1)))
+
+    for case_file in case_files:
+        with open(case_file, "r", encoding="utf-8") as f:
+            case_data = json.load(f)
+
+        # Extract fields into flat structure
+        input_case = case_data.get("input_case", {})
+        prediction = case_data.get("prediction", {}) or {}
+
+        row = {
+            # Case identification
+            "case_id": case_data.get("case_id", ""),
+            "patient_name": safe_get(input_case, "patient_name", default=""),
+            "age": safe_get(input_case, "age", default=""),
+
+            # Patient status
+            "ecog": safe_get(input_case, "ecog", default=""),
+            "karnofsky": safe_get(input_case, "karnofsky", default=""),
+            "comorbidity": safe_get(input_case, "comorbidity", default=""),
+
+            # Clinical data
+            "diagnose_kurz": safe_get(input_case, "diagnose_kurz", default=""),
+            "stadium": safe_get(input_case, "stadium", default=""),
+            "histologie_subtyp": safe_get(input_case, "histologie_subtyp", default=""),
+            "klarzellig": safe_get(input_case, "histologie_klarzellig", default=""),
+            "tnm_cM": safe_get(input_case, "tnm_clinical", "M", default=""),
+
+            # Ground truth
+            "gt_metastatic": case_data.get("ground_truth_metastatic", ""),
+            "gt_therapy": case_data.get("ground_truth_therapy", ""),
+
+            # Model prediction
+            "pred_metastatic": safe_get(prediction, "is_metastatic", default=""),
+            "pred_imdc_risk": safe_get(prediction, "imdc_risk", default=""),
+            "pred_therapy": safe_get(prediction, "recommended_therapy", default=""),
+            "pred_category": safe_get(prediction, "therapy_category", default=""),
+            "pred_confidence": safe_get(prediction, "confidence", default=""),
+
+            # Basic evaluation
+            "metastatic_correct": case_data.get("metastatic_correct", ""),
+            "therapy_exact_match": case_data.get("therapy_exact_match", ""),
+            "therapy_acceptable": case_data.get("therapy_clinically_acceptable", ""),
+
+            # Judge placeholders (filled later if available)
+            "judge_is_correct": "",
+            "judge_correctness_reason": "",
+            "judge_semantic_match": "",
+            "judge_semantic_score": "",
+            "judge_clinical_appropriate": "",
+            "judge_clinical_score": "",
+            "judge_reasoning_quality": "",
+            "judge_overall_score": "",
+
+            # Reasoning
+            "pred_reasoning_short": truncate_text(safe_get(prediction, "treatment_reasoning")),
+            "judge_reasoning_short": "",
+
+            # Metadata
+            "model": case_data.get("model", ""),
+            "timestamp": case_data.get("timestamp", ""),
+            "inference_time_s": round(case_data.get("inference_time_seconds", 0), 2),
+            "success": case_data.get("success", ""),
+        }
+
+        cases.append(row)
+
+    return cases
+
+
+def load_judge_evaluation(results_dir: Path) -> Optional[Dict[str, dict]]:
+    """Load judge evaluation file if it exists, indexed by case_id."""
+    judge_files = list(results_dir.glob("judge_evaluation_*.json"))
+
+    if not judge_files:
+        return None
+
+    # Use the most recent judge file if multiple exist
+    judge_file = sorted(judge_files)[-1]
+
+    with open(judge_file, "r", encoding="utf-8") as f:
+        judge_data = json.load(f)
+
+    # Index evaluations by case_id
+    evaluations_by_case = {}
+    for eval_item in judge_data.get("evaluations", []):
+        case_id = eval_item.get("case_id")
+        if case_id:
+            evaluations_by_case[case_id] = eval_item
+
+    return evaluations_by_case
+
+
+def merge_judge_data(cases: List[dict], judge_data: Optional[Dict[str, dict]]) -> List[dict]:
+    """Merge judge evaluation data into case rows."""
+    if not judge_data:
+        return cases
+
+    for row in cases:
+        case_id = row["case_id"]
+        judge_eval = judge_data.get(case_id, {})
+        evaluation = judge_eval.get("evaluation", {}) or {}
+
+        row["judge_is_correct"] = safe_get(evaluation, "is_correct", default="")
+        row["judge_correctness_reason"] = truncate_text(safe_get(evaluation, "correctness_reason"))
+        row["judge_semantic_match"] = safe_get(evaluation, "therapy_semantic_match", default="")
+        row["judge_semantic_score"] = safe_get(evaluation, "therapy_semantic_score", default="")
+        row["judge_clinical_appropriate"] = safe_get(evaluation, "clinical_appropriateness", default="")
+        row["judge_clinical_score"] = safe_get(evaluation, "clinical_appropriateness_score", default="")
+        row["judge_reasoning_quality"] = safe_get(evaluation, "reasoning_quality", default="")
+        row["judge_overall_score"] = safe_get(evaluation, "overall_score", default="")
+        row["judge_reasoning_short"] = truncate_text(safe_get(evaluation, "judge_reasoning"))
+
+    return cases
+
+
+def export_to_csv(cases: List[dict], output_path: Path):
+    """Export cases to CSV with UTF-8 BOM for Excel compatibility."""
+    with open(output_path, "w", encoding="utf-8-sig", newline="") as f:
+        writer = csv.DictWriter(f, fieldnames=CSV_COLUMNS, extrasaction="ignore")
+        writer.writeheader()
+        writer.writerows(cases)
+
+    print(f"Exported {len(cases)} cases to {output_path}")
+
+
+def process_results_dir(results_dir: Path, output_path: Optional[Path] = None):
+    """Process a single results directory and export to CSV."""
+    if not results_dir.exists():
+        print(f"Error: Directory not found: {results_dir}")
+        return
+
+    # Load case results
+    cases = load_case_results(results_dir)
+    if not cases:
+        print(f"No case files found in {results_dir}")
+        return
+
+    # Load and merge judge data if available
+    judge_data = load_judge_evaluation(results_dir)
+    if judge_data:
+        print(f"Found judge evaluation with {len(judge_data)} cases")
+        cases = merge_judge_data(cases, judge_data)
+    else:
+        print("No judge evaluation found (judge columns will be empty)")
+
+    # Determine output path
+    if output_path is None:
+        output_path = results_dir / "results_review.csv"
+
+    # Export
+    export_to_csv(cases, output_path)
+
+
+def find_all_results_dirs(base_dir: Path) -> List[Path]:
+    """Find all timestamp directories containing ncc_*.json files."""
+    results_dirs = []
+
+    for model_dir in base_dir.iterdir():
+        if model_dir.is_dir():
+            for timestamp_dir in model_dir.iterdir():
+                if timestamp_dir.is_dir() and list(timestamp_dir.glob("ncc_*.json")):
+                    results_dirs.append(timestamp_dir)
+
+    return sorted(results_dirs)
+
+
+def main():
+    parser = argparse.ArgumentParser(
+        description="Export treatment prediction results to CSV for medical review"
+    )
+    parser.add_argument(
+        "--results-dir",
+        type=Path,
+        help="Path to a specific results directory (contains ncc_*.json files)"
+    )
+    parser.add_argument(
+        "--output",
+        type=Path,
+        help="Output CSV path (default: results_review.csv in results dir)"
+    )
+    parser.add_argument(
+        "--all",
+        action="store_true",
+        help="Export all results from results/modal_treatment/"
+    )
+    parser.add_argument(
+        "--base-dir",
+        type=Path,
+        default=Path("results/modal_treatment"),
+        help="Base directory for --all mode (default: results/modal_treatment)"
+    )
+
+    args = parser.parse_args()
+
+    if args.all:
+        # Export all results directories
+        results_dirs = find_all_results_dirs(args.base_dir)
+        if not results_dirs:
+            print(f"No results directories found in {args.base_dir}")
+            return
+
+        print(f"Found {len(results_dirs)} results directories")
+        for results_dir in results_dirs:
+            print(f"\nProcessing: {results_dir}")
+            process_results_dir(results_dir)
+
+    elif args.results_dir:
+        # Export single results directory
+        process_results_dir(args.results_dir, args.output)
+
+    else:
+        parser.print_help()
+        print("\nExample usage:")
+        print("  python scripts/export_results_csv.py --results-dir results/modal_treatment/google_gemma-3-27b-it/2025-12-30_00-02-19/")
+        print("  python scripts/export_results_csv.py --all")
+
+
+if __name__ == "__main__":
+    main()
