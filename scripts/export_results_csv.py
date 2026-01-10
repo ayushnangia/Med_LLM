@@ -58,7 +58,7 @@ CSV_COLUMNS = [
     "therapy_exact_match",
     "therapy_acceptable",
 
-    # Judge evaluation
+    # Judge evaluation - ALL fields
     "judge_is_correct",
     "judge_correctness_reason",
     "judge_semantic_match",
@@ -66,11 +66,13 @@ CSV_COLUMNS = [
     "judge_clinical_appropriate",
     "judge_clinical_score",
     "judge_reasoning_quality",
+    "judge_reasoning_critique",
     "judge_overall_score",
+    "judge_reasoning",
+    "judge_inference_time_s",
 
-    # Reasoning (truncated)
-    "pred_reasoning_short",
-    "judge_reasoning_short",
+    # Model reasoning (full)
+    "pred_reasoning",
 
     # Metadata
     "model",
@@ -158,11 +160,13 @@ def load_case_results(results_dir: Path) -> List[dict]:
             "judge_clinical_appropriate": "",
             "judge_clinical_score": "",
             "judge_reasoning_quality": "",
+            "judge_reasoning_critique": "",
             "judge_overall_score": "",
+            "judge_reasoning": "",
+            "judge_inference_time_s": "",
 
-            # Reasoning
-            "pred_reasoning_short": truncate_text(safe_get(prediction, "treatment_reasoning")),
-            "judge_reasoning_short": "",
+            # Model reasoning (full, not truncated)
+            "pred_reasoning": safe_get(prediction, "treatment_reasoning", default=""),
 
             # Metadata
             "model": case_data.get("model", ""),
@@ -176,12 +180,16 @@ def load_case_results(results_dir: Path) -> List[dict]:
     return cases
 
 
-def load_judge_evaluation(results_dir: Path) -> Optional[Dict[str, dict]]:
-    """Load judge evaluation file if it exists, indexed by case_id."""
+def load_judge_evaluation(results_dir: Path) -> Tuple[Optional[Dict[str, dict]], Optional[dict]]:
+    """Load judge evaluation file if it exists, indexed by case_id.
+
+    Returns:
+        Tuple of (evaluations_by_case, summary_metrics)
+    """
     judge_files = list(results_dir.glob("judge_evaluation_*.json"))
 
     if not judge_files:
-        return None
+        return None, None
 
     # Use the most recent judge file if multiple exist
     judge_file = sorted(judge_files)[-1]
@@ -196,7 +204,16 @@ def load_judge_evaluation(results_dir: Path) -> Optional[Dict[str, dict]]:
         if case_id:
             evaluations_by_case[case_id] = eval_item
 
-    return evaluations_by_case
+    # Extract summary metrics
+    summary_metrics = {
+        "judge_model": judge_data.get("judge_model", ""),
+        "total_cases": judge_data.get("total_cases", 0),
+        "evaluated_cases": judge_data.get("evaluated_cases", 0),
+        "failed_evaluations": judge_data.get("failed_evaluations", 0),
+        "metrics": judge_data.get("metrics", {}),
+    }
+
+    return evaluations_by_case, summary_metrics
 
 
 def merge_judge_data(cases: List[dict], judge_data: Optional[Dict[str, dict]]) -> List[dict]:
@@ -209,20 +226,23 @@ def merge_judge_data(cases: List[dict], judge_data: Optional[Dict[str, dict]]) -
         judge_eval = judge_data.get(case_id, {})
         evaluation = judge_eval.get("evaluation", {}) or {}
 
+        # All judge evaluation fields (not truncated for full review)
         row["judge_is_correct"] = safe_get(evaluation, "is_correct", default="")
-        row["judge_correctness_reason"] = truncate_text(safe_get(evaluation, "correctness_reason"))
+        row["judge_correctness_reason"] = safe_get(evaluation, "correctness_reason", default="")
         row["judge_semantic_match"] = safe_get(evaluation, "therapy_semantic_match", default="")
         row["judge_semantic_score"] = safe_get(evaluation, "therapy_semantic_score", default="")
         row["judge_clinical_appropriate"] = safe_get(evaluation, "clinical_appropriateness", default="")
         row["judge_clinical_score"] = safe_get(evaluation, "clinical_appropriateness_score", default="")
         row["judge_reasoning_quality"] = safe_get(evaluation, "reasoning_quality", default="")
+        row["judge_reasoning_critique"] = safe_get(evaluation, "reasoning_critique", default="")
         row["judge_overall_score"] = safe_get(evaluation, "overall_score", default="")
-        row["judge_reasoning_short"] = truncate_text(safe_get(evaluation, "judge_reasoning"))
+        row["judge_reasoning"] = safe_get(evaluation, "judge_reasoning", default="")
+        row["judge_inference_time_s"] = round(judge_eval.get("inference_time_seconds", 0), 2) if judge_eval.get("inference_time_seconds") else ""
 
     return cases
 
 
-def export_to_csv(cases: List[dict], output_path: Path):
+def export_to_csv(cases: List[dict], output_path: Path, summary_metrics: Optional[dict] = None):
     """Export cases to CSV with UTF-8 BOM for Excel compatibility."""
     # Ensure output directory exists
     output_path.parent.mkdir(parents=True, exist_ok=True)
@@ -231,6 +251,86 @@ def export_to_csv(cases: List[dict], output_path: Path):
         writer = csv.DictWriter(f, fieldnames=CSV_COLUMNS, extrasaction="ignore")
         writer.writeheader()
         writer.writerows(cases)
+
+        # Add summary rows if judge metrics available
+        if summary_metrics and summary_metrics.get("metrics"):
+            metrics = summary_metrics["metrics"]
+
+            # Empty row as separator
+            writer.writerow({})
+
+            # Header row for summary section
+            writer.writerow({
+                "case_id": "=== JUDGE EVALUATION SUMMARY ==="
+            })
+
+            # Judge model info
+            writer.writerow({
+                "case_id": "Judge Model",
+                "patient_name": summary_metrics.get('judge_model', 'N/A'),
+            })
+
+            # Case counts
+            writer.writerow({
+                "case_id": "Total Cases",
+                "patient_name": summary_metrics.get('total_cases', 0),
+            })
+            writer.writerow({
+                "case_id": "Evaluated",
+                "patient_name": summary_metrics.get('evaluated_cases', 0),
+            })
+            writer.writerow({
+                "case_id": "Failed",
+                "patient_name": summary_metrics.get('failed_evaluations', 0),
+            })
+
+            # Empty row
+            writer.writerow({})
+
+            # Key metrics
+            writer.writerow({
+                "case_id": "=== KEY METRICS ==="
+            })
+            writer.writerow({
+                "case_id": "ACCURACY",
+                "patient_name": f"{metrics.get('accuracy', 0):.1%}",
+                "age": f"{metrics.get('correct_count', 0)} correct",
+                "ecog": f"{metrics.get('incorrect_count', 0)} incorrect",
+            })
+            writer.writerow({
+                "case_id": "Semantic Match Rate",
+                "patient_name": f"{metrics.get('therapy_semantic_match_rate', 0):.1%}",
+                "age": f"{metrics.get('therapy_semantic_match_count', 0)} matches",
+            })
+            writer.writerow({
+                "case_id": "Clinical Appropriate Rate",
+                "patient_name": f"{metrics.get('clinical_appropriateness_rate', 0):.1%}",
+                "age": f"{metrics.get('clinical_appropriateness_count', 0)} appropriate",
+            })
+
+            # Empty row
+            writer.writerow({})
+
+            # Average scores
+            writer.writerow({
+                "case_id": "=== AVERAGE SCORES ==="
+            })
+            writer.writerow({
+                "case_id": "Avg Semantic Score",
+                "patient_name": f"{metrics.get('avg_therapy_semantic_score', 0):.4f}",
+            })
+            writer.writerow({
+                "case_id": "Avg Clinical Score",
+                "patient_name": f"{metrics.get('avg_clinical_score', 0):.4f}",
+            })
+            writer.writerow({
+                "case_id": "Avg Reasoning Quality",
+                "patient_name": f"{metrics.get('avg_reasoning_quality', 0):.4f}",
+            })
+            writer.writerow({
+                "case_id": "Avg Overall Score",
+                "patient_name": f"{metrics.get('avg_overall_score', 0):.4f}",
+            })
 
     print(f"Exported {len(cases)} cases to {output_path}")
 
@@ -274,11 +374,15 @@ def process_results_dir(results_dir: Path, output_path: Optional[Path] = None):
         return
 
     # Load and merge judge data if available
-    judge_data = load_judge_evaluation(results_dir)
+    judge_data, summary_metrics = load_judge_evaluation(results_dir)
     if judge_data:
         print(f"Found judge evaluation with {len(judge_data)} cases")
         cases = merge_judge_data(cases, judge_data)
+        if summary_metrics:
+            metrics = summary_metrics.get("metrics", {})
+            print(f"  → Accuracy: {metrics.get('accuracy', 0):.1%} ({metrics.get('correct_count', 0)}/{summary_metrics.get('evaluated_cases', 0)} correct)")
     else:
+        summary_metrics = None
         print("No judge evaluation found (judge columns will be empty)")
 
     # Determine output path using naming scheme
@@ -286,7 +390,7 @@ def process_results_dir(results_dir: Path, output_path: Optional[Path] = None):
         output_path = generate_output_filename(results_dir)
 
     # Export
-    export_to_csv(cases, output_path)
+    export_to_csv(cases, output_path, summary_metrics)
 
 
 def find_all_results_dirs(base_dir: Path) -> List[Path]:
@@ -319,6 +423,93 @@ def find_latest_results_dirs(base_dir: Path) -> List[Path]:
                 latest_dirs.append(latest)
 
     return sorted(latest_dirs)
+
+
+def export_summary_csv(results_dirs: List[Path]):
+    """Export a summary CSV comparing all models."""
+    summary_rows = []
+
+    for results_dir in results_dirs:
+        # Get model name
+        model_dir = results_dir.parent.name
+        model_name = model_dir.replace("google_", "").replace("openmeditron_", "").replace("allenai_", "")
+
+        # Get timestamp
+        timestamp = results_dir.name
+
+        # Load judge evaluation
+        _, summary_metrics = load_judge_evaluation(results_dir)
+
+        if summary_metrics and summary_metrics.get("metrics"):
+            metrics = summary_metrics["metrics"]
+            row = {
+                "model": model_name,
+                "timestamp": timestamp,
+                "judge_model": summary_metrics.get("judge_model", ""),
+                "total_cases": summary_metrics.get("total_cases", 0),
+                "evaluated_cases": summary_metrics.get("evaluated_cases", 0),
+                "accuracy": f"{metrics.get('accuracy', 0):.1%}",
+                "correct_count": metrics.get("correct_count", 0),
+                "incorrect_count": metrics.get("incorrect_count", 0),
+                "semantic_match_rate": f"{metrics.get('therapy_semantic_match_rate', 0):.1%}",
+                "clinical_ok_rate": f"{metrics.get('clinical_appropriateness_rate', 0):.1%}",
+                "avg_semantic_score": f"{metrics.get('avg_therapy_semantic_score', 0):.3f}",
+                "avg_clinical_score": f"{metrics.get('avg_clinical_score', 0):.3f}",
+                "avg_reasoning_quality": f"{metrics.get('avg_reasoning_quality', 0):.3f}",
+                "avg_overall_score": f"{metrics.get('avg_overall_score', 0):.3f}",
+            }
+        else:
+            row = {
+                "model": model_name,
+                "timestamp": timestamp,
+                "judge_model": "N/A",
+                "total_cases": len(list(results_dir.glob("ncc_*.json"))),
+                "evaluated_cases": 0,
+                "accuracy": "N/A",
+                "correct_count": "N/A",
+                "incorrect_count": "N/A",
+                "semantic_match_rate": "N/A",
+                "clinical_ok_rate": "N/A",
+                "avg_semantic_score": "N/A",
+                "avg_clinical_score": "N/A",
+                "avg_reasoning_quality": "N/A",
+                "avg_overall_score": "N/A",
+            }
+
+        summary_rows.append(row)
+
+    # Sort by accuracy (descending)
+    def sort_key(r):
+        acc = r.get("accuracy", "0%")
+        if acc == "N/A":
+            return -1
+        return float(acc.replace("%", "")) / 100
+
+    summary_rows.sort(key=sort_key, reverse=True)
+
+    # Write summary CSV
+    summary_path = REVIEWED_RESULTS_DIR / "models_comparison_summary.csv"
+    summary_path.parent.mkdir(parents=True, exist_ok=True)
+
+    fieldnames = [
+        "model", "accuracy", "correct_count", "incorrect_count",
+        "semantic_match_rate", "clinical_ok_rate",
+        "avg_semantic_score", "avg_clinical_score", "avg_reasoning_quality", "avg_overall_score",
+        "total_cases", "evaluated_cases", "judge_model", "timestamp"
+    ]
+
+    with open(summary_path, "w", encoding="utf-8-sig", newline="") as f:
+        writer = csv.DictWriter(f, fieldnames=fieldnames, extrasaction="ignore")
+        writer.writeheader()
+        writer.writerows(summary_rows)
+
+    print(f"\n{'='*60}")
+    print(f"Summary exported to: {summary_path}")
+    print(f"{'='*60}")
+    print(f"{'Model':<35} {'Accuracy':>10} {'Correct':>8}")
+    print(f"{'-'*35} {'-'*10} {'-'*8}")
+    for row in summary_rows:
+        print(f"{row['model']:<35} {row['accuracy']:>10} {row['correct_count']:>8}")
 
 
 def main():
@@ -374,6 +565,9 @@ def main():
             print(f"\nProcessing: {results_dir}")
             process_results_dir(results_dir)
 
+        # Export summary comparison
+        export_summary_csv(results_dirs)
+
     elif args.results_dir:
         # Export single results directory
         process_results_dir(args.results_dir, args.output)
@@ -385,6 +579,7 @@ def main():
         print("  python scripts/export_results_csv.py --all                   # All runs")
         print("  python scripts/export_results_csv.py --results-dir PATH      # Specific run")
         print("\nOutput: to_be_reviewed_results/{model}_treatment_{dd-mm-yy}.csv")
+        print("        to_be_reviewed_results/models_comparison_summary.csv")
 
 
 if __name__ == "__main__":
