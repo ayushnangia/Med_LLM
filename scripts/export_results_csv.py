@@ -180,6 +180,15 @@ def load_case_results(results_dir: Path) -> List[dict]:
     return cases
 
 
+def load_summary(results_dir: Path) -> Optional[dict]:
+    """Load summary.json if it exists."""
+    summary_file = results_dir / "summary.json"
+    if not summary_file.exists():
+        return None
+    with open(summary_file, "r", encoding="utf-8") as f:
+        return json.load(f)
+
+
 def load_judge_evaluation(results_dir: Path) -> Tuple[Optional[Dict[str, dict]], Optional[dict]]:
     """Load judge evaluation file if it exists, indexed by case_id.
 
@@ -426,7 +435,7 @@ def find_latest_results_dirs(base_dir: Path) -> List[Path]:
 
 
 def export_summary_csv(results_dirs: List[Path]):
-    """Export a summary CSV comparing all models."""
+    """Export a summary CSV comparing all models with ALL metrics."""
     summary_rows = []
 
     for results_dir in results_dirs:
@@ -437,50 +446,86 @@ def export_summary_csv(results_dirs: List[Path]):
         # Get timestamp
         timestamp = results_dir.name
 
-        # Load judge evaluation
-        _, summary_metrics = load_judge_evaluation(results_dir)
+        # Load BOTH summary.json and judge evaluation
+        basic_summary = load_summary(results_dir)
+        _, judge_metrics = load_judge_evaluation(results_dir)
 
-        if summary_metrics and summary_metrics.get("metrics"):
-            metrics = summary_metrics["metrics"]
-            row = {
-                "model": model_name,
-                "timestamp": timestamp,
-                "judge_model": summary_metrics.get("judge_model", ""),
-                "total_cases": summary_metrics.get("total_cases", 0),
-                "evaluated_cases": summary_metrics.get("evaluated_cases", 0),
-                "accuracy": f"{metrics.get('accuracy', 0):.1%}",
-                "correct_count": metrics.get("correct_count", 0),
-                "incorrect_count": metrics.get("incorrect_count", 0),
-                "semantic_match_rate": f"{metrics.get('therapy_semantic_match_rate', 0):.1%}",
-                "clinical_ok_rate": f"{metrics.get('clinical_appropriateness_rate', 0):.1%}",
+        # Start with basic row info
+        row = {
+            "model": model_name,
+            "timestamp": timestamp,
+        }
+
+        # Add basic metrics from summary.json
+        if basic_summary:
+            total_cases = basic_summary.get("total_cases", 35)
+            total_time = basic_summary.get("total_time", 0)
+            row.update({
+                "total_cases": total_cases,
+                "errors": basic_summary.get("errors", 0),
+                "total_time_s": f"{total_time:.1f}",
+                "avg_time_per_case_s": f"{total_time / total_cases:.1f}" if total_cases > 0 else "N/A",
+                # Metastatic classification
+                "metastatic_accuracy": f"{basic_summary.get('metastatic_accuracy', 0):.1%}",
+                "metastatic_correct": basic_summary.get("metastatic_correct", 0),
+                # Therapy matching (basic)
+                "therapy_exact_match_rate": f"{basic_summary.get('therapy_exact_match_rate', 0):.1%}",
+                "therapy_exact_matches": basic_summary.get("therapy_exact_matches", 0),
+                "therapy_acceptable_rate": f"{basic_summary.get('therapy_acceptable_rate', 0):.1%}",
+                "therapy_acceptable": basic_summary.get("therapy_acceptable", 0),
+            })
+        else:
+            row.update({
+                "total_cases": len(list(results_dir.glob("ncc_*.json"))),
+                "errors": "N/A",
+                "total_time_s": "N/A",
+                "avg_time_per_case_s": "N/A",
+                "metastatic_accuracy": "N/A",
+                "metastatic_correct": "N/A",
+                "therapy_exact_match_rate": "N/A",
+                "therapy_exact_matches": "N/A",
+                "therapy_acceptable_rate": "N/A",
+                "therapy_acceptable": "N/A",
+            })
+
+        # Add judge metrics
+        if judge_metrics and judge_metrics.get("metrics"):
+            metrics = judge_metrics["metrics"]
+            row.update({
+                "judge_model": judge_metrics.get("judge_model", ""),
+                "judge_accuracy": f"{metrics.get('accuracy', 0):.1%}",
+                "judge_correct": metrics.get("correct_count", 0),
+                "judge_incorrect": metrics.get("incorrect_count", 0),
+                "judge_semantic_match_rate": f"{metrics.get('therapy_semantic_match_rate', 0):.1%}",
+                "judge_semantic_matches": metrics.get("therapy_semantic_match_count", 0),
                 "avg_semantic_score": f"{metrics.get('avg_therapy_semantic_score', 0):.3f}",
+                "clinical_ok_rate": f"{metrics.get('clinical_appropriateness_rate', 0):.1%}",
+                "clinical_ok_count": metrics.get("clinical_appropriateness_count", 0),
                 "avg_clinical_score": f"{metrics.get('avg_clinical_score', 0):.3f}",
                 "avg_reasoning_quality": f"{metrics.get('avg_reasoning_quality', 0):.3f}",
                 "avg_overall_score": f"{metrics.get('avg_overall_score', 0):.3f}",
-            }
+            })
         else:
-            row = {
-                "model": model_name,
-                "timestamp": timestamp,
+            row.update({
                 "judge_model": "N/A",
-                "total_cases": len(list(results_dir.glob("ncc_*.json"))),
-                "evaluated_cases": 0,
-                "accuracy": "N/A",
-                "correct_count": "N/A",
-                "incorrect_count": "N/A",
-                "semantic_match_rate": "N/A",
-                "clinical_ok_rate": "N/A",
+                "judge_accuracy": "N/A",
+                "judge_correct": "N/A",
+                "judge_incorrect": "N/A",
+                "judge_semantic_match_rate": "N/A",
+                "judge_semantic_matches": "N/A",
                 "avg_semantic_score": "N/A",
+                "clinical_ok_rate": "N/A",
+                "clinical_ok_count": "N/A",
                 "avg_clinical_score": "N/A",
                 "avg_reasoning_quality": "N/A",
                 "avg_overall_score": "N/A",
-            }
+            })
 
         summary_rows.append(row)
 
-    # Sort by accuracy (descending)
+    # Sort by judge accuracy (descending)
     def sort_key(r):
-        acc = r.get("accuracy", "0%")
+        acc = r.get("judge_accuracy", "0%")
         if acc == "N/A":
             return -1
         return float(acc.replace("%", "")) / 100
@@ -492,10 +537,21 @@ def export_summary_csv(results_dirs: List[Path]):
     summary_path.parent.mkdir(parents=True, exist_ok=True)
 
     fieldnames = [
-        "model", "accuracy", "correct_count", "incorrect_count",
-        "semantic_match_rate", "clinical_ok_rate",
-        "avg_semantic_score", "avg_clinical_score", "avg_reasoning_quality", "avg_overall_score",
-        "total_cases", "evaluated_cases", "judge_model", "timestamp"
+        # Model info
+        "model", "timestamp",
+        # Basic metrics (from summary.json)
+        "total_cases", "errors", "total_time_s", "avg_time_per_case_s",
+        # Metastatic classification
+        "metastatic_accuracy", "metastatic_correct",
+        # Therapy matching (basic)
+        "therapy_exact_match_rate", "therapy_exact_matches",
+        "therapy_acceptable_rate", "therapy_acceptable",
+        # Judge evaluation
+        "judge_model",
+        "judge_accuracy", "judge_correct", "judge_incorrect",
+        "judge_semantic_match_rate", "judge_semantic_matches", "avg_semantic_score",
+        "clinical_ok_rate", "clinical_ok_count", "avg_clinical_score",
+        "avg_reasoning_quality", "avg_overall_score",
     ]
 
     with open(summary_path, "w", encoding="utf-8-sig", newline="") as f:
@@ -503,13 +559,14 @@ def export_summary_csv(results_dirs: List[Path]):
         writer.writeheader()
         writer.writerows(summary_rows)
 
-    print(f"\n{'='*60}")
+    print(f"\n{'='*100}")
     print(f"Summary exported to: {summary_path}")
-    print(f"{'='*60}")
-    print(f"{'Model':<35} {'Accuracy':>10} {'Correct':>8}")
-    print(f"{'-'*35} {'-'*10} {'-'*8}")
+    print(f"{'='*100}")
+    print(f"{'Model':<30} {'Metastatic':>12} {'Exact':>10} {'Accept':>10} {'Judge':>10} {'Overall':>10}")
+    print(f"{'':30} {'Accuracy':>12} {'Match':>10} {'Rate':>10} {'Accuracy':>10} {'Score':>10}")
+    print(f"{'-'*30} {'-'*12} {'-'*10} {'-'*10} {'-'*10} {'-'*10}")
     for row in summary_rows:
-        print(f"{row['model']:<35} {row['accuracy']:>10} {row['correct_count']:>8}")
+        print(f"{row['model']:<30} {row.get('metastatic_accuracy', 'N/A'):>12} {row.get('therapy_exact_match_rate', 'N/A'):>10} {row.get('therapy_acceptable_rate', 'N/A'):>10} {row.get('judge_accuracy', 'N/A'):>10} {row.get('avg_overall_score', 'N/A'):>10}")
 
 
 def main():
