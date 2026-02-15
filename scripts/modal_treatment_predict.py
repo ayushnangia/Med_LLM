@@ -220,12 +220,536 @@ Legende: GoR A=starke Empfehlung, GoR B=schwache Empfehlung, GoR 0=Option
 # Data Loading
 # ============================================================================
 
-def load_ncc_cases(data_dir: str = "converted_data/send_27_12_25") -> List[dict]:
+def _detect_case_format(case: dict) -> str:
+    """Detect which schema format a case uses.
+
+    Returns one of: 'case-de', 'diagnosen', 'case-template', 'v1.1'
+    """
+    if "case" in case and isinstance(case["case"], dict):
+        return "case-de"  # mRCC_case_schema with German keys (cases 62-63)
+    if "diagnosen" in case:
+        return "diagnosen"  # mRCC_case_schema_v1.1 (cases 64-66)
+    if "case_template" in case:
+        return "case-template"  # v1.0 original + v1.0-new (cases 15-35, 67-69)
+    return "v1.1"  # Standard v1.1 (cases 1-14, 36-61)
+
+
+def _extract_case_de(case: dict) -> dict:
+    """Extract fields from case-de format (mRCC_case_schema with German keys)."""
+    ci = case.get("case", {})
+    patient = ci.get("patient", {})
+    diag = ci.get("diagnose", {})
+    anam = ci.get("anamnese", {})
+    imdc = ci.get("imdc", {})
+    staging = ci.get("staging", {})
+    tp = ci.get("therapieplan", {})
+
+    # Build anamnese text from structured data
+    anamnese_parts = []
+    if anam.get("erstdiagnose_metastasiert_datum"):
+        anamnese_parts.append(f"Erstdiagnose metastasiert: {anam['erstdiagnose_metastasiert_datum']}")
+    for therapy in anam.get("vorherige_systemtherapien", []):
+        line = f"Linie {therapy.get('linie')}: {therapy.get('regime')} ({therapy.get('klasse')})"
+        if therapy.get("abbruchgrund"):
+            line += f" - {therapy['abbruchgrund']}"
+        anamnese_parts.append(line)
+    for lok in anam.get("vorherige_lokaltherapien", []):
+        if isinstance(lok, str):
+            anamnese_parts.append(f"Lokaltherapie: {lok}")
+        elif isinstance(lok, dict):
+            anamnese_parts.append(f"Lokaltherapie: {lok.get('eingriff', '')} ({lok.get('datum', '')})")
+    anamnese_text = "\n".join(anamnese_parts) if anamnese_parts else ""
+
+    # Build bildgebung from staging
+    bildgebung = []
+    if staging:
+        entry = {
+            "modalitaet": staging.get("modalitaet", ""),
+            "region": ", ".join(staging.get("regionen", [])),
+            "datum": staging.get("datum"),
+        }
+        befunde = staging.get("befunde", {})
+        befund_parts = []
+        for region, findings in befunde.items():
+            if isinstance(findings, dict):
+                for key, val in findings.items():
+                    if isinstance(val, list) and val:
+                        befund_parts.append(f"{region}/{key}: {len(val)} Läsionen")
+                    elif isinstance(val, str) and val:
+                        befund_parts.append(f"{region}/{key}: {val}")
+        entry["befund_kurz"] = "; ".join(befund_parts) if befund_parts else ""
+        bildgebung.append(entry)
+
+    # Ground truth from therapieplan
+    gt_options = tp.get("systemtherapie_optionen_diskutiert", [])
+    gt_therapy = " | ".join(gt_options) if gt_options else None
+
+    # Prior therapies
+    prior = [f"{t.get('regime', '')} ({t.get('klasse', '')})" for t in anam.get("vorherige_systemtherapien", [])]
+
+    # IMDC
+    imdc_kriterien = imdc.get("kriterien", {})
+    imdc_werte = imdc.get("werte", {})
+
+    return {
+        "patient_name": f"{patient.get('nachname', '')}, {patient.get('vorname', '')}",
+        "age": patient.get("alter_jahre"),
+        "ecog": patient.get("ecog"),
+        "karnofsky": patient.get("karnofsky_prozent"),
+        "comorbidity": None,
+        "life_expectancy": None,
+        "anamnese": anamnese_text,
+        "diagnose_kurz": diag.get("entitaet", "") or "",
+        "stadium": "",
+        "tnm_clinical": None,
+        "tnm_pathological": None,
+        "grading": None,
+        "histologie_subtyp": diag.get("histologie_subtyp"),
+        "histologie_klarzellig": None,
+        "histologie_sarcomatoid": None,
+        "histologie_grading": None,
+        "imdc_kategorie": imdc.get("risikogruppe"),
+        "imdc_risikofaktoren": imdc_kriterien,
+        "imdc_laborwerte": imdc_werte,
+        "ici_durchfuehrbar": None,
+        "ici_gruende_nein": [],
+        "prior_therapies": prior,
+        "bildgebung": bildgebung,
+        "nebendiagnosen": anam.get("komorbiditaeten", []),
+        "medikation": anam.get("medikation", []),
+        "quick_access": {},
+        "histology_clear_cell": None,
+        "ground_truth_metastatic": None,
+        "ground_truth_imdc": imdc.get("risikogruppe"),
+        "ground_truth_therapy": gt_therapy,
+    }
+
+
+def _extract_diagnosen(case: dict) -> dict:
+    """Extract fields from diagnosen format (mRCC_case_schema_v1.1)."""
+    patient = case.get("patient", {})
+    diags = case.get("diagnosen", [{}])
+    d0 = diags[0] if diags else {}
+    th = case.get("tumor_history", {})
+    tp = case.get("therapieplanung", {})
+    bg = case.get("bildgebung", [])
+    komorbid = case.get("komorbiditaeten_und_vops", {})
+    medikation = case.get("medikation", [])
+
+    # Build anamnese from tumor_history
+    anamnese_parts = []
+    primary = th.get("primary_tumor", {}) if isinstance(th, dict) else {}
+    if primary:
+        op = primary.get("op", {})
+        if op:
+            path = op.get("pathologie", {})
+            anamnese_parts.append(
+                f"Primärtumor: {primary.get('organ', '')} {primary.get('seite', '')} "
+                f"- {op.get('eingriff', '')} ({op.get('datum', '')})"
+                f" - {path.get('pT', '')} {path.get('pN', '')} R{path.get('R', '')}"
+            )
+    # Also include history entries if it's a list
+    if isinstance(th, list):
+        for entry in th:
+            if isinstance(entry, dict):
+                anamnese_parts.append(f"{entry.get('datum', '')}: {entry.get('ereignis', '')} - {entry.get('details', '')}")
+    anamnese_text = "\n".join(anamnese_parts) if anamnese_parts else ""
+
+    # Normalize bildgebung entries
+    norm_bg = []
+    for b in bg:
+        if isinstance(b, dict):
+            entry = {
+                "modalitaet": b.get("modalitaet", ""),
+                "region": b.get("region", ""),
+                "datum": b.get("datum"),
+            }
+            # Extract befund_kurz from nested befund dict
+            befund = b.get("befund", {})
+            if isinstance(befund, dict):
+                parts = []
+                for region, findings in befund.items():
+                    if isinstance(findings, str):
+                        parts.append(f"{region}: {findings}")
+                    elif isinstance(findings, dict):
+                        for key, val in findings.items():
+                            if isinstance(val, str) and val:
+                                parts.append(f"{region}/{key}: {val}")
+                entry["befund_kurz"] = "; ".join(parts[:5]) if parts else ""
+            elif isinstance(befund, str):
+                entry["befund_kurz"] = befund
+            norm_bg.append(entry)
+
+    # Ground truth from therapieplanung
+    gt_parts = tp.get("geplantes_vorgehen", []) if isinstance(tp, dict) else []
+    gt_therapy = " | ".join(gt_parts) if gt_parts else None
+
+    # IMDC
+    imdc_factors = d0.get("imdc_factors", {})
+    imdc_values = d0.get("imdc_values", {})
+
+    # Histologie from diagnosen or tumor_history
+    histologie_subtyp = d0.get("subtyp")
+    is_klarzellig = histologie_subtyp in ("ccRCC", "klarzellig") if histologie_subtyp else None
+    if not histologie_subtyp and isinstance(primary, dict):
+        histologie_subtyp = primary.get("histologie")
+        is_klarzellig = histologie_subtyp in ("ccRCC", "klarzellig") if histologie_subtyp else None
+
+    # Nebendiagnosen from komorbiditaeten_und_vops
+    nebend = komorbid.get("vorerkrankungen", []) if isinstance(komorbid, dict) else []
+
+    return {
+        "patient_name": f"{patient.get('nachname', '')}, {patient.get('vorname', '')}",
+        "age": patient.get("alter_jahre"),
+        "ecog": patient.get("ecog"),
+        "karnofsky": patient.get("karnofsky_percent"),
+        "comorbidity": None,
+        "life_expectancy": None,
+        "anamnese": anamnese_text,
+        "diagnose_kurz": d0.get("diagnose_kurz", ""),
+        "stadium": f"Linie {d0.get('therapielinie', '?')}" if d0.get("therapielinie") else "",
+        "tnm_clinical": None,
+        "tnm_pathological": None,
+        "grading": None,
+        "histologie_subtyp": histologie_subtyp,
+        "histologie_klarzellig": is_klarzellig,
+        "histologie_sarcomatoid": None,
+        "histologie_grading": None,
+        "imdc_kategorie": d0.get("imdc_risk_group"),
+        "imdc_risikofaktoren": imdc_factors,
+        "imdc_laborwerte": imdc_values,
+        "ici_durchfuehrbar": None,
+        "ici_gruende_nein": [],
+        "prior_therapies": [],
+        "bildgebung": norm_bg,
+        "nebendiagnosen": nebend,
+        "medikation": medikation,
+        "quick_access": {},
+        "histology_clear_cell": is_klarzellig,
+        "ground_truth_metastatic": None,
+        "ground_truth_imdc": d0.get("imdc_risk_group"),
+        "ground_truth_therapy": gt_therapy,
+    }
+
+
+def _extract_case_template(case: dict) -> dict:
+    """Extract fields from case_template format (v1.0 original + v1.0-new)."""
+    template = case.get("case_template", {})
+    patient = template.get("patient", {})
+    entities = template.get("entitaeten", [{}])
+    entity = entities[0] if entities else {}
+
+    # ECOG/Karnofsky - flat in v1.0
+    ecog = patient.get("ecog") or patient.get("performance_status", {}).get("ecog")
+    karnofsky = patient.get("karnofsky_prozent") or patient.get("performance_status", {}).get("karnofsky_prozent")
+
+    # For v1.0, Karnofsky may be in marker_oder_labor.sonstige array
+    if karnofsky is None:
+        marker_labor = entity.get("marker_oder_labor", {})
+        if isinstance(marker_labor, dict):
+            for item in marker_labor.get("sonstige", []):
+                if isinstance(item, dict) and item.get("parameter") == "Karnofsky":
+                    karnofsky = item.get("wert")
+                    break
+
+    # Anamnese: try multiple locations
+    anamnese = template.get("anamnese_freitext", "") or case.get("anamnese_freitext", "")
+
+    # v1.0-new: anamnese is in entity.anamnese.onko_verlauf (structured events)
+    if not anamnese and isinstance(entity.get("anamnese"), dict):
+        entity_anam = entity["anamnese"]
+        onko = entity_anam.get("onko_verlauf", [])
+        if onko:
+            parts = []
+            for event in onko:
+                if isinstance(event, dict):
+                    parts.append(f"{event.get('datum', '')}: {event.get('ereignis', '')} - {event.get('details', '')}")
+            anamnese = "\n".join(parts)
+        # Also pull in vorerkrankungen/medikation from entity.anamnese
+        if not template.get("nebendiagnosen") and entity_anam.get("vorerkrankungen"):
+            template["_nebendiagnosen_from_entity"] = entity_anam["vorerkrankungen"]
+        if not template.get("medikation") and entity_anam.get("medikation"):
+            template["_medikation_from_entity"] = entity_anam["medikation"]
+
+    nebendiagnosen = (template.get("nebendiagnosen", []) or case.get("nebendiagnosen", [])
+                      or template.get("_nebendiagnosen_from_entity", []))
+    medikation = (template.get("medikation", []) or case.get("medikation", [])
+                  or template.get("_medikation_from_entity", []))
+
+    # Ground truth: try multiple locations
+    gt_therapy = template.get("geplantes_therapiekonzept") or case.get("geplantes_therapiekonzept")
+    # v1.0-new: GT is in entity.therapieplanung.geplantes_konzept
+    if gt_therapy is None and isinstance(entity.get("therapieplanung"), dict):
+        konzept = entity["therapieplanung"].get("geplantes_konzept", [])
+        if konzept:
+            gt_parts = [f"{k.get('regime', '')} ({k.get('kategorie', '')})" for k in konzept if isinstance(k, dict)]
+            gt_therapy = " | ".join(gt_parts) if gt_parts else None
+
+    qa = entity.get("quick_access", {}) or {}
+    klassifikation = entity.get("klassifikation", {}) or {}
+    rcc_spez = entity.get("rcc_spezifisch", {}) or {}
+    histologie = rcc_spez.get("histologie", {}) or {}
+    imdc_data = rcc_spez.get("imdc", {}) or {}
+    systemtherapie = rcc_spez.get("systemtherapie_kontext", {}) or {}
+
+    # v1.0-new: IMDC is directly on entity
+    entity_imdc = entity.get("imdc", {}) or {}
+    if entity_imdc and not imdc_data:
+        imdc_data = entity_imdc
+
+    # IMDC category from various locations
+    imdc_kategorie = (imdc_data.get("kategorie") or imdc_data.get("risikoklasse")
+                      or qa.get("imdc_risiko"))
+
+    # IMDC risk factors
+    imdc_rf = imdc_data.get("risikofaktoren_structured", {}) or imdc_data.get("faktoren", {})
+    imdc_lab = imdc_data.get("laborwerte_optional", {})
+
+    # Prior therapies from multiple locations
+    prior = (systemtherapie.get("vorherige_systemtherapien", [])
+             or qa.get("vorherige_systemtherapien", []))
+
+    # Histologie from diagnose_kurz if not in rcc_spezifisch
+    histologie_subtyp = histologie.get("subtyp")
+    histologie_klarzellig = histologie.get("klarzellig")
+    histologie_sarcomatoid = histologie.get("sarcomatoid")
+    diag_kurz = entity.get("diagnose_kurz", "") or ""
+    if not histologie_subtyp and diag_kurz:
+        lower = diag_kurz.lower()
+        if "non-ccrcc" in lower or "nicht-klarzellig" in lower:
+            histologie_klarzellig = False
+            if "pap" in lower:
+                histologie_subtyp = "papillär"
+            elif "chromophob" in lower:
+                histologie_subtyp = "chromophob"
+            else:
+                histologie_subtyp = "non-ccRCC"
+        elif "klarzellig" in lower or "ccrcc" in lower:
+            histologie_subtyp = histologie_subtyp or "ccRCC"
+            histologie_klarzellig = True
+        elif "papill" in lower or "paprcc" in lower:
+            histologie_subtyp = histologie_subtyp or "papillär"
+            histologie_klarzellig = False
+        if "sarkomatoid" in lower or "sarcomatoid" in lower:
+            histologie_sarcomatoid = True
+
+    # TNM: v1.0 has string, v1.1 has dict
+    tnm_clinical = klassifikation.get("tnm_clinical")
+    tnm_pathological = klassifikation.get("tnm_pathological")
+    # v1.0 string TNM
+    if not tnm_clinical and isinstance(klassifikation.get("tnm"), str):
+        tnm_clinical = {"raw": klassifikation["tnm"]}
+
+    return {
+        "patient_name": f"{patient.get('nachname', '')}, {patient.get('vorname', '')}",
+        "age": patient.get("alter_jahre"),
+        "ecog": ecog,
+        "karnofsky": karnofsky,
+        "comorbidity": patient.get("komorbiditaet_level"),
+        "life_expectancy": patient.get("lebenserwartung"),
+        "anamnese": anamnese,
+        "diagnose_kurz": diag_kurz,
+        "stadium": entity.get("stadium_oder_risikoklasse", ""),
+        "tnm_clinical": tnm_clinical,
+        "tnm_pathological": tnm_pathological,
+        "grading": klassifikation.get("grad"),
+        "histologie_subtyp": histologie_subtyp,
+        "histologie_klarzellig": histologie_klarzellig,
+        "histologie_sarcomatoid": histologie_sarcomatoid,
+        "histologie_grading": histologie.get("grading_value"),
+        "imdc_kategorie": imdc_kategorie,
+        "imdc_risikofaktoren": imdc_rf,
+        "imdc_laborwerte": imdc_lab,
+        "ici_durchfuehrbar": systemtherapie.get("ici_kombination_durchfuehrbar"),
+        "ici_gruende_nein": systemtherapie.get("gruende_wenn_nein", []),
+        "prior_therapies": prior,
+        "bildgebung": entity.get("bildgebung", []),
+        "nebendiagnosen": nebendiagnosen,
+        "medikation": medikation,
+        "quick_access": qa,
+        "histology_clear_cell": qa.get("rcc_histologie_klarzellig") or histologie_klarzellig,
+        "ground_truth_metastatic": qa.get("metastatic"),
+        "ground_truth_imdc": imdc_kategorie,
+        "ground_truth_therapy": gt_therapy,
+    }
+
+
+def _extract_v11(case: dict) -> dict:
+    """Extract fields from v1.1 standard format (cases 1-14, 36-61)."""
+    patient = case.get("patient", {})
+    entities = case.get("entitaeten", [{}])
+    entity = entities[0] if entities else {}
+
+    # ECOG/Karnofsky
+    ecog = patient.get("ecog") or patient.get("performance_status", {}).get("ecog")
+    karnofsky = patient.get("karnofsky_prozent") or patient.get("performance_status", {}).get("karnofsky_prozent")
+
+    qa = entity.get("quick_access", {}) or {}
+    klassifikation = entity.get("klassifikation", {}) or {}
+    rcc_spez = entity.get("rcc_spezifisch", {}) or {}
+    histologie = rcc_spez.get("histologie", {}) or {}
+    imdc_data = rcc_spez.get("imdc", {}) or {}
+    systemtherapie = rcc_spez.get("systemtherapie_kontext", {}) or {}
+
+    # v1.1 newer: IMDC is in imdc_addendum instead of rcc_spezifisch
+    imdc_addendum = entity.get("imdc_addendum", {}) or {}
+    if imdc_addendum and not imdc_data:
+        imdc_data = imdc_addendum
+
+    # IMDC category from various locations
+    imdc_kategorie = (imdc_data.get("kategorie") or imdc_data.get("imdc_risk_category")
+                      or qa.get("imdc_risiko"))
+
+    # IMDC risk factors from imdc_addendum.imdc_parameters
+    imdc_rf = imdc_data.get("risikofaktoren_structured", {})
+    if not imdc_rf and imdc_addendum.get("imdc_parameters"):
+        imdc_rf = imdc_addendum["imdc_parameters"]
+    imdc_lab = imdc_data.get("laborwerte_optional", {})
+
+    # Also try to parse IMDC from stadium_oder_risikoklasse text
+    stadium = entity.get("stadium_oder_risikoklasse", "") or ""
+    if not imdc_kategorie and "imdc" in stadium.lower():
+        lower = stadium.lower()
+        if "low" in lower:
+            imdc_kategorie = "guenstig"
+        elif "intermediate" in lower:
+            imdc_kategorie = "intermediaer"
+        elif "high" in lower:
+            imdc_kategorie = "unguenstig"
+
+    # Anamnese
+    anamnese = case.get("anamnese_freitext", "")
+
+    # Ground truth therapy (can be string or list)
+    gt_therapy = case.get("geplantes_therapiekonzept")
+
+    # Prior therapies from multiple locations
+    prior = (systemtherapie.get("vorherige_systemtherapien", [])
+             or qa.get("vorherige_systemtherapien", []))
+
+    # Histologie from diagnose_kurz if not in rcc_spezifisch
+    histologie_subtyp = histologie.get("subtyp")
+    histologie_klarzellig = histologie.get("klarzellig")
+    histologie_sarcomatoid = histologie.get("sarcomatoid")
+    diag_kurz = entity.get("diagnose_kurz", "") or ""
+    if not histologie_subtyp and diag_kurz:
+        lower = diag_kurz.lower()
+        if "non-ccrcc" in lower or "nicht-klarzellig" in lower:
+            histologie_klarzellig = False
+            if "pap" in lower:
+                histologie_subtyp = "papillär"
+            elif "chromophob" in lower:
+                histologie_subtyp = "chromophob"
+            else:
+                histologie_subtyp = "non-ccRCC"
+        elif "klarzellig" in lower or "ccrcc" in lower:
+            histologie_subtyp = histologie_subtyp or "ccRCC"
+            histologie_klarzellig = True
+        elif "papill" in lower or "paprcc" in lower:
+            histologie_subtyp = histologie_subtyp or "papillär"
+            histologie_klarzellig = False
+        if "sarkomatoid" in lower or "sarcomatoid" in lower:
+            histologie_sarcomatoid = True
+
+    # Also check kommentar for IMDC info
+    kommentar = entity.get("kommentar", "")
+    if isinstance(kommentar, dict):
+        kommentar = str(kommentar)
+
+    return {
+        "patient_name": f"{patient.get('nachname', '')}, {patient.get('vorname', '')}",
+        "age": patient.get("alter_jahre"),
+        "ecog": ecog,
+        "karnofsky": karnofsky,
+        "comorbidity": patient.get("komorbiditaet_level"),
+        "life_expectancy": patient.get("lebenserwartung"),
+        "anamnese": anamnese,
+        "diagnose_kurz": diag_kurz,
+        "stadium": stadium,
+        "tnm_clinical": klassifikation.get("tnm_clinical"),
+        "tnm_pathological": klassifikation.get("tnm_pathological"),
+        "grading": klassifikation.get("grad"),
+        "histologie_subtyp": histologie_subtyp,
+        "histologie_klarzellig": histologie_klarzellig,
+        "histologie_sarcomatoid": histologie_sarcomatoid,
+        "histologie_grading": histologie.get("grading_value"),
+        "imdc_kategorie": imdc_kategorie,
+        "imdc_risikofaktoren": imdc_rf,
+        "imdc_laborwerte": imdc_lab,
+        "ici_durchfuehrbar": systemtherapie.get("ici_kombination_durchfuehrbar"),
+        "ici_gruende_nein": systemtherapie.get("gruende_wenn_nein", []),
+        "prior_therapies": prior,
+        "bildgebung": entity.get("bildgebung", []),
+        "nebendiagnosen": case.get("nebendiagnosen", []),
+        "medikation": case.get("medikation", []),
+        "quick_access": qa,
+        "histology_clear_cell": qa.get("rcc_histologie_klarzellig") or histologie_klarzellig,
+        "ground_truth_metastatic": qa.get("metastatic"),
+        "ground_truth_imdc": imdc_kategorie or qa.get("imdc_risiko"),
+        "ground_truth_therapy": gt_therapy,
+    }
+
+
+def _infer_ground_truth_metastatic(case: dict) -> Optional[bool]:
+    """Infer metastatic status from diagnosis text, stadium, and other fields.
+
+    The quick_access.metastatic field only exists in v1.1 cases 1-14.
+    For all other cases, we derive it from diagnose_kurz, stadium, entity type, etc.
+    """
+    # Already set from quick_access
+    if case.get("ground_truth_metastatic") is not None:
+        return case["ground_truth_metastatic"]
+
+    diag = (case.get("diagnose_kurz") or "").lower()
+    stadium = (case.get("stadium") or "").lower()
+
+    # Clear metastatic indicators
+    met_keywords = ["metastasiert", "mrcc", "met.", "metastatic", "metastasen"]
+    if any(kw in diag for kw in met_keywords):
+        return True
+    if any(kw in stadium for kw in met_keywords):
+        return True
+
+    # Therapy line > 1 implies metastatic
+    if "linie" in stadium or "linie" in diag:
+        return True
+
+    # IMDC risk only applies to metastatic
+    if case.get("imdc_kategorie") and case["imdc_kategorie"] not in ("not_applicable", None):
+        return True
+
+    # Clear non-metastatic indicators
+    non_met_keywords = ["local begrenzt", "lokal begrenzt", "nicht-metastasiert",
+                        "non-metastatic", "nicht metastasiert"]
+    if any(kw in diag for kw in non_met_keywords):
+        return False
+    if any(kw in stadium for kw in non_met_keywords):
+        return False
+
+    # Check TNM M status
+    tnm = case.get("tnm_clinical") or {}
+    if isinstance(tnm, dict):
+        m = str(tnm.get("M", ""))
+        if m == "1" or m.startswith("1"):
+            return True
+        if m == "0":
+            return False
+
+    return None
+
+
+def load_ncc_cases(data_dir: str = "converted_data/send_23_12_25", start_case: int = 1) -> List[dict]:
     """Load NCC cases with all relevant clinical data.
 
-    Handles two JSON structures:
-    1. Standard: patient, entitaeten, etc. at top level
-    2. Template: case_template.patient, case_template.entitaeten, etc. (cases 15-32)
+    Handles all schema formats:
+    1. v1.1 standard: patient, entitaeten, etc. at top level (cases 1-14, 36-61)
+    2. case_template: case_template.patient, etc. (v1.0 cases 15-35, v1.0-new cases 67-69)
+    3. case-de: mRCC_case_schema with case.patient, case.diagnose, etc. (cases 62-63)
+    4. diagnosen: mRCC_case_schema_v1.1 with diagnosen[], tumor_history, etc. (cases 64-66)
+
+    Args:
+        data_dir: Path to converted data directory
+        start_case: 1-based case number to start from (skip earlier cases)
     """
     base = Path(data_dir)
     ncc_file = base / "ncc" / "ncc_cases_json.json"
@@ -238,89 +762,27 @@ def load_ncc_cases(data_dir: str = "converted_data/send_27_12_25") -> List[dict]
 
     cases = []
     for i, case in enumerate(data.get("cases", []), 1):
-        # Handle case_template structure (cases 15-32 use this format)
-        if "case_template" in case and not case.get("patient", {}).get("nachname"):
-            template = case.get("case_template", {})
-            patient = template.get("patient", {})
-            entities = template.get("entitaeten", [{}])
-            anamnese = template.get("anamnese_freitext", "") or case.get("anamnese_freitext", "")
-            nebendiagnosen = template.get("nebendiagnosen", []) or case.get("nebendiagnosen", [])
-            medikation = template.get("medikation", []) or case.get("medikation", [])
-            gt_therapy = template.get("geplantes_therapiekonzept") or case.get("geplantes_therapiekonzept")
+        if i < start_case:
+            continue
+
+        fmt = _detect_case_format(case)
+        if fmt == "case-de":
+            extracted = _extract_case_de(case)
+        elif fmt == "diagnosen":
+            extracted = _extract_diagnosen(case)
+        elif fmt == "case-template":
+            extracted = _extract_case_template(case)
         else:
-            # Standard structure
-            patient = case.get("patient", {})
-            entities = case.get("entitaeten", [{}])
-            anamnese = case.get("anamnese_freitext", "")
-            nebendiagnosen = case.get("nebendiagnosen", [])
-            medikation = case.get("medikation", [])
-            gt_therapy = case.get("geplantes_therapiekonzept")
+            extracted = _extract_v11(case)
 
-        entity = entities[0] if entities else {}
-        qa = entity.get("quick_access", {})
-        klassifikation = entity.get("klassifikation", {})
-        rcc_spez = entity.get("rcc_spezifisch", {})
-        histologie = rcc_spez.get("histologie", {})
-        imdc_data = rcc_spez.get("imdc", {})
-        systemtherapie = rcc_spez.get("systemtherapie_kontext", {})
+        extracted["case_id"] = f"ncc_{i}"
+        extracted["schema_format"] = fmt
+        extracted["full_case"] = case
 
-        # Extract ECOG/Karnofsky (handle both schema v1.0 flat and v1.1 nested formats)
-        ecog = patient.get("ecog") or patient.get("performance_status", {}).get("ecog")
-        karnofsky = patient.get("karnofsky_prozent") or patient.get("performance_status", {}).get("karnofsky_prozent")
+        # Infer ground_truth_metastatic from diagnosis text if not set
+        extracted["ground_truth_metastatic"] = _infer_ground_truth_metastatic(extracted)
 
-        # For v1.0 schema, Karnofsky may be in marker_oder_labor.sonstige array
-        if karnofsky is None:
-            marker_labor = entity.get("marker_oder_labor", {})
-            for item in marker_labor.get("sonstige", []):
-                if item.get("parameter") == "Karnofsky":
-                    karnofsky = item.get("wert")
-                    break
-
-        cases.append({
-            "case_id": f"ncc_{i}",
-            # Patient data
-            "patient_name": f"{patient.get('nachname', '')}, {patient.get('vorname', '')}",
-            "age": patient.get("alter_jahre"),
-            "ecog": ecog,
-            "karnofsky": karnofsky,
-            "comorbidity": patient.get("komorbiditaet_level"),
-            "life_expectancy": patient.get("lebenserwartung"),
-            # Diagnosis
-            "anamnese": anamnese,  # Uses template fallback
-            "diagnose_kurz": entity.get("diagnose_kurz", ""),
-            "stadium": entity.get("stadium_oder_risikoklasse", ""),
-            # TNM staging
-            "tnm_clinical": klassifikation.get("tnm_clinical"),
-            "tnm_pathological": klassifikation.get("tnm_pathological"),
-            "grading": klassifikation.get("grad"),
-            # Histologie - CRITICAL for therapy decision
-            "histologie_subtyp": histologie.get("subtyp"),
-            "histologie_klarzellig": histologie.get("klarzellig"),
-            "histologie_sarcomatoid": histologie.get("sarcomatoid"),
-            "histologie_grading": histologie.get("grading_value"),
-            # IMDC risk factors
-            "imdc_kategorie": imdc_data.get("kategorie"),
-            "imdc_risikofaktoren": imdc_data.get("risikofaktoren_structured", {}),
-            "imdc_laborwerte": imdc_data.get("laborwerte_optional", {}),
-            # Systemtherapie context
-            "ici_durchfuehrbar": systemtherapie.get("ici_kombination_durchfuehrbar"),
-            "ici_gruende_nein": systemtherapie.get("gruende_wenn_nein", []),
-            "prior_therapies": systemtherapie.get("vorherige_systemtherapien", []) or qa.get("vorherige_systemtherapien", []),
-            # Bildgebung
-            "bildgebung": entity.get("bildgebung", []),
-            # Additional
-            "nebendiagnosen": nebendiagnosen,  # Uses template fallback
-            "medikation": medikation,  # Uses template fallback
-            # Quick access (legacy)
-            "quick_access": qa,
-            "histology_clear_cell": qa.get("rcc_histologie_klarzellig"),
-            # Ground truth
-            "ground_truth_metastatic": qa.get("metastatic"),
-            "ground_truth_imdc": qa.get("imdc_risiko") or imdc_data.get("kategorie"),
-            "ground_truth_therapy": gt_therapy,  # Uses template fallback
-            # Full case for reference
-            "full_case": case,
-        })
+        cases.append(extracted)
 
     return cases
 
@@ -333,9 +795,16 @@ def build_prompt(case: dict) -> str:
     tnm_path = case.get("tnm_pathological") or {}
     tnm_parts = []
     if tnm_clinical:
-        tnm_parts.append(f"cTNM: T{tnm_clinical.get('T', '?')} N{tnm_clinical.get('N', '?')} M{tnm_clinical.get('M', '?')}")
-    if tnm_path and tnm_path.get('T'):
-        tnm_parts.append(f"pTNM: T{tnm_path.get('T', '?')} N{tnm_path.get('N', '?')} M{tnm_path.get('M', '?')}")
+        if tnm_clinical.get("raw"):
+            # v1.0 string TNM
+            tnm_parts.append(f"TNM: {tnm_clinical['raw']}")
+        else:
+            tnm_parts.append(f"cTNM: T{tnm_clinical.get('T', '?')} N{tnm_clinical.get('N', '?')} M{tnm_clinical.get('M', '?')}")
+    if tnm_path and (tnm_path.get('T') or tnm_path.get('raw')):
+        if tnm_path.get("raw"):
+            tnm_parts.append(f"pTNM: {tnm_path['raw']}")
+        else:
+            tnm_parts.append(f"pTNM: T{tnm_path.get('T', '?')} N{tnm_path.get('N', '?')} M{tnm_path.get('M', '?')}")
     tnm_str = " | ".join(tnm_parts) if tnm_parts else "TNM: nicht dokumentiert"
 
     # Format histologie - CRITICAL for therapy decision
@@ -373,10 +842,15 @@ def build_prompt(case: dict) -> str:
             if isinstance(m, str):
                 med_list.append(m)
             elif isinstance(m, dict):
-                med_name = m.get("wirkstoff_oder_klasse", "")
+                med_name = m.get("wirkstoff_oder_klasse") or m.get("wirkstoff") or m.get("name", "")
                 if m.get("details"):
                     med_name += f" ({m['details']})"
-                med_list.append(med_name)
+                elif m.get("schema"):
+                    med_name += f" ({m['schema']})"
+                elif m.get("hinweis"):
+                    med_name += f" ({m['hinweis']})"
+                if med_name:
+                    med_list.append(med_name)
         medikation_str = ", ".join(med_list) if med_list else "Keine"
     else:
         medikation_str = "Keine dokumentiert"
@@ -392,15 +866,33 @@ def build_prompt(case: dict) -> str:
                     entry += f" ({b['datum']})"
                 if b.get('befund_kurz'):
                     entry += f": {b['befund_kurz']}"
+                elif isinstance(b.get('befund'), dict):
+                    # Nested befund structure - extract key findings
+                    befund_parts = []
+                    for region, findings in b['befund'].items():
+                        if isinstance(findings, str) and findings:
+                            befund_parts.append(f"{region}: {findings}")
+                        elif isinstance(findings, dict):
+                            for key, val in findings.items():
+                                if isinstance(val, str) and val:
+                                    befund_parts.append(f"{region}/{key}: {val}")
+                                elif isinstance(val, list) and val:
+                                    befund_parts.append(f"{region}/{key}: {len(val)} Befunde")
+                                elif isinstance(val, dict) and val:
+                                    befund_parts.append(f"{region}/{key}: {json.dumps(val, ensure_ascii=False)[:100]}")
+                    if befund_parts:
+                        entry += f": {'; '.join(befund_parts[:8])}"
                 bildgebung_parts.append(entry)
         bildgebung_str = "\n  - ".join(bildgebung_parts) if bildgebung_parts else "Keine"
     else:
         bildgebung_str = "Keine dokumentiert"
 
-    # Format IMDC risk factors if available
+    # Format IMDC risk factors if available (handles multiple field naming conventions)
     imdc_rf = case.get("imdc_risikofaktoren", {})
+    imdc_lab = case.get("imdc_laborwerte", {})
     imdc_parts = []
     if imdc_rf:
+        # v1.1 original naming
         if imdc_rf.get("karnofsky_prozent") is not None:
             imdc_parts.append(f"Karnofsky: {imdc_rf['karnofsky_prozent']}%")
         if imdc_rf.get("haemoglobin_unter_norm") is not None:
@@ -411,6 +903,36 @@ def build_prompt(case: dict) -> str:
             imdc_parts.append(f"Neutro↑: {'Ja' if imdc_rf['neutrophile_ueber_norm'] else 'Nein'}")
         if imdc_rf.get("thrombozyten_ueber_norm") is not None:
             imdc_parts.append(f"Thrombo↑: {'Ja' if imdc_rf['thrombozyten_ueber_norm'] else 'Nein'}")
+        # v1.1 newer: imdc_addendum.imdc_parameters naming
+        if not imdc_parts and imdc_rf.get("karnofsky_percent") is not None:
+            imdc_parts.append(f"Karnofsky: {imdc_rf['karnofsky_percent']}%")
+        # diagnosen format: English boolean keys
+        if not imdc_parts:
+            for key, label in [("kps_lt_80", "KPS<80"), ("hemoglobin_below_lln", "Hb↓"),
+                               ("corrected_calcium_above_uln", "Ca↑"), ("neutrophils_above_uln", "Neutro↑"),
+                               ("platelets_above_uln", "Thrombo↑")]:
+                if key in imdc_rf:
+                    imdc_parts.append(f"{label}: {'Ja' if imdc_rf[key] else 'Nein'}")
+        # v1.0-new: faktoren with structured wert/ist_faktor
+        if not imdc_parts:
+            for key, label in [("karnofsky_lt_80", "KPS<80"), ("haemoglobin_unter_lln", "Hb↓"),
+                               ("korr_calcium_ueber_uln", "Ca↑"), ("neutrophile_ueber_uln", "Neutro↑"),
+                               ("thrombozyten_ueber_uln", "Thrombo↑")]:
+                val = imdc_rf.get(key, {})
+                if isinstance(val, dict) and "wert" in val:
+                    ist = val.get("ist_faktor", False)
+                    imdc_parts.append(f"{label}: {val['wert']} {val.get('einheit', '')} ({'Faktor' if ist else 'kein Faktor'})")
+    # Also include lab values if available
+    if imdc_lab and not imdc_parts:
+        for key, label in [("karnofsky_percent", "Karnofsky"), ("hemoglobin_g_dl", "Hb"),
+                           ("corrected_calcium_mmol_l", "Ca"), ("neutrophils_x10e9_l", "Neutro"),
+                           ("platelets_x10e9_l", "Thrombo")]:
+            if imdc_lab.get(key) is not None:
+                imdc_parts.append(f"{label}: {imdc_lab[key]}")
+    # Show IMDC category if known
+    imdc_kat = case.get("imdc_kategorie")
+    if imdc_kat:
+        imdc_parts.insert(0, f"Kategorie: {imdc_kat}")
     imdc_str = ", ".join(imdc_parts) if imdc_parts else "Nicht dokumentiert"
 
     # Format ICI eligibility
@@ -790,8 +1312,14 @@ def run_prediction(model_key: str, cases: list, run_timestamp: str):
 # ============================================================================
 
 @app.local_entrypoint()
-def main(model: str = "meditron3-7b", data_dir: str = "converted_data/send_27_12_25"):
-    """Run NCC treatment prediction."""
+def main(model: str = "meditron3-7b", data_dir: str = "converted_data/send_23_12_25", start_case: int = 1):
+    """Run NCC treatment prediction.
+
+    Args:
+        model: Model key from MODEL_CONFIGS
+        data_dir: Path to converted data directory
+        start_case: 1-based case number to start from (skip earlier cases)
+    """
 
     if model not in MODEL_CONFIGS:
         print(f"Unknown model: {model}")
@@ -804,12 +1332,13 @@ def main(model: str = "meditron3-7b", data_dir: str = "converted_data/send_27_12
     print(f"\nNCC Treatment Prediction")
     print(f"Model: {model}")
     print(f"HuggingFace: {cfg['hf_id']}")
+    print(f"Start case: {start_case}")
     print(f"Timestamp: {run_timestamp}")
     print("-" * 50)
 
     # Load cases
-    cases = load_ncc_cases(data_dir)
-    print(f"Loaded {len(cases)} NCC cases")
+    cases = load_ncc_cases(data_dir, start_case=start_case)
+    print(f"Loaded {len(cases)} NCC cases (starting from case {start_case})")
 
     # Run prediction
     result = run_prediction.remote(model, cases, run_timestamp)

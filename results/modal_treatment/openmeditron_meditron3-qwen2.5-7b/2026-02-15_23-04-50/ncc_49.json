@@ -1,0 +1,88 @@
+{
+  "case_id": "ncc_49",
+  "timestamp": "2026-02-15_23-04-50",
+  "provider": "modal",
+  "model": "OpenMeditron/Meditron3-Qwen2.5-7B",
+  "input_case": {
+    "case_id": "ncc_49",
+    "patient_name": "Muster, Paula",
+    "age": 66,
+    "ecog": 1,
+    "karnofsky": 80,
+    "comorbidity": "unknown",
+    "life_expectancy": "unknown",
+    "anamnese": "Erstdiagnose metastasiertes RCC 01/2023. 1. Linie 2023–2025: Pembrolizumab + Axitinib, Progress 09/2025. 2. Linie seit 10/2025: Cabozantinib. Vorerkrankungen: KHK (Z. n. Stent), arterielle Hypertonie. Z. n. Cholezystektomie.",
+    "diagnose_kurz": "Metastasiertes Nierenzellkarzinom (mRCC) – 2. Linie Cabozantinib (TKI)",
+    "stadium": "metastasiert; aktuelle Bildgebung: stabile Erkrankung",
+    "tnm_clinical": null,
+    "tnm_pathological": null,
+    "histologie_subtyp": null,
+    "histologie_klarzellig": null,
+    "bildgebung": [
+      {
+        "modalitaet": "CT",
+        "region": "Thorax/Abdomen/Becken",
+        "datum": "2025-12-01",
+        "befund_kurz": "Thorax: pulmonale Metastasen stabil (RUL 7 mm, RLL 10 mm), kein Pleuraerguss, keine neuen Herde. Abdomen: bekannte Leberläsion Segment VII stabil (z. B. 18 mm), keine neuen Lebermetastasen. Lymphknoten: paraaortal stabil (z. B. 20 mm). Skelett: keine neuen ossären Läsionen im CT.",
+        "quelle": "CT Staging"
+      }
+    ],
+    "nebendiagnosen": [
+      "Koronare Herzkrankheit (Z. n. Stent)",
+      "Arterielle Hypertonie"
+    ],
+    "medikation": [
+      {
+        "wirkstoff": "Bisoprolol",
+        "dosierung": null,
+        "schema": null,
+        "hinweis": null
+      },
+      {
+        "wirkstoff": "ASS",
+        "dosierung": null,
+        "schema": null,
+        "hinweis": null
+      },
+      {
+        "wirkstoff": "Candesartan",
+        "dosierung": null,
+        "schema": null,
+        "hinweis": null
+      },
+      {
+        "wirkstoff": "Atorvastatin",
+        "dosierung": null,
+        "schema": null,
+        "hinweis": null
+      }
+    ],
+    "ici_durchfuehrbar": null,
+    "prior_therapies": [],
+    "ground_truth_metastatic": true,
+    "ground_truth_imdc": null,
+    "ground_truth_therapy": "Cabozantinib fortführen. Monitoring: Blutdruck, Haut/GI-Toxizität, Leberwerte, TSH; Re-Staging in 8–12 Wochen."
+  },
+  "prompt_text": "Du bist ein erfahrener Onkologe, spezialisiert auf Nierenzellkarzinom (RCC).\nAnalysiere den folgenden klinischen Fall und erstelle eine strukturierte Therapieempfehlung.\n\n=== KLINISCHER FALL ===\nPatient: Muster, Paula, 66 Jahre\nECOG: 1, Karnofsky: 80%\nKomorbidität: unknown\nLebenserwartung: unknown\n\nDiagnose: Metastasiertes Nierenzellkarzinom (mRCC) – 2. Linie Cabozantinib (TKI)\nStadium: metastasiert; aktuelle Bildgebung: stabile Erkrankung\nTNM: nicht dokumentiert\n\nHISTOLOGIE (WICHTIG für Therapieentscheidung):\nNicht dokumentiert\n\nAnamnese:\nErstdiagnose metastasiertes RCC 01/2023. 1. Linie 2023–2025: Pembrolizumab + Axitinib, Progress 09/2025. 2. Linie seit 10/2025: Cabozantinib. Vorerkrankungen: KHK (Z. n. Stent), arterielle Hypertonie. Z. n. Cholezystektomie.\n\nNebendiagnosen: Koronare Herzkrankheit (Z. n. Stent), Arterielle Hypertonie\n\nAktuelle Medikation: Bisoprolol, ASS, Candesartan, Atorvastatin\n\nBildgebung:\n  - CT Thorax/Abdomen/Becken (2025-12-01): Thorax: pulmonale Metastasen stabil (RUL 7 mm, RLL 10 mm), kein Pleuraerguss, keine neuen Herde. Abdomen: bekannte Leberläsion Segment VII stabil (z. B. 18 mm), keine neuen Lebermetastasen. Lymphknoten: paraaortal stabil (z. B. 20 mm). Skelett: keine neuen ossären Läsionen im CT.\n\nIMDC-Risikofaktoren: Nicht dokumentiert\nICI-Kombination durchführbar: Nicht dokumentiert\nVorherige Systemtherapien: Keine\n\n=== THERAPIE-LEITLINIEN ===\n\n\nMETASTASIERTES KLARZELLIGES RCC - THERAPIE-ALGORITHMUS:\n\nIMDC-RISIKOSTRATIFIZIERUNG:\n- Günstig (0 Risikofaktoren)\n- Intermediär (1-2 Risikofaktoren)\n- Ungünstig (≥3 Risikofaktoren)\n\nRisikofaktoren: Karnofsky <80%, Zeit bis Systemtherapie <1 Jahr, Hämoglobin↓, Calcium↑, Neutrophile↑, Thrombozyten↑\n\nERSTLINIE (wenn ICI-Kombination möglich):\n- Günstig: NIVO+CABO (A), PEMBRO+AXI (A), PEMBRO+LEN (A), AVELU+AXI (B)\n- Intermediär: NIVO+CABO (A), NIVO+IPI (A), PEMBRO+AXI (A), PEMBRO+LEN (A)\n- Ungünstig: NIVO+CABO (A), NIVO+IPI (A), PEMBRO+AXI (A), PEMBRO+LEN (A)\n\nERSTLINIE (wenn ICI-Kombination NICHT möglich):\n- Günstig: Pazopanib (A), Sunitinib (A), Tivozanib (A), BEV+IFN (A)\n- Intermediär: Cabozantinib (B), Pazopanib (B), Sunitinib (B)\n- Ungünstig: Cabozantinib (B), Sunitinib (B), Temsirolimus (0)\n\nZWEITLINIE nach ICI-Kombination: Cabozantinib (A), Lenvatinib+Everolimus (A), Sunitinib (A)\nZWEITLINIE nach VEGF/R-Monotherapie: Cabozantinib (A), Nivolumab (A)\n\nLegende: A=starke Empfehlung, B=schwache Empfehlung, 0=Option\n\n\n\nNICHT-METASTASIERTES RCC - THERAPIE-ALGORITHMUS:\n\nTHERAPIEOPTIONEN nach Tumorgröße/Stadium:\n\n1. AKTIVE ÜBERWACHUNG (GoR 0):\n   - Kleine Nierentumoren + hohe Komorbidität ODER begrenzte Lebenserwartung\n   - Biopsie VOR Überwachung erforderlich\n\n2. ABLATION (Kryoablation/Radiofrequenzablation) (GoR 0):\n   - Kleine Nierentumoren + hohe Komorbidität ODER begrenzte Lebenserwartung\n   - Biopsie VOR Ablation erforderlich\n\n3. NIERENTEILRESEKTION (Nephron-sparing Surgery):\n   - cT1 (≤7cm): SOLL durchgeführt werden (GoR A)\n   - >T1: SOLLTE erwogen werden wenn technisch möglich (GoR B)\n   - Zugang: offen/laparoskopisch/robotisch (chirurgische Erfahrung)\n\n4. RADIKALE NEPHREKTOMIE:\n   - Wenn Teilresektion nicht möglich (GoR A)\n   - Minimalinvasiv wenn lokale Befunde es erlauben (GoR A)\n\nPERIOPERATIVE PRINZIPIEN:\n- KEINE Adrenalektomie bei unauffälliger Bildgebung (GoR A)\n- KEINE systematische Lymphadenektomie bei unauffälliger Bildgebung (GoR A)\n- LND bei vergrößerten Lymphknoten akzeptabel\n\nTNM-STADIEN:\n- T1a: ≤4cm, auf Niere begrenzt\n- T1b: >4-7cm, auf Niere begrenzt\n- T2a: >7-10cm, auf Niere begrenzt\n- T2b: >10cm, auf Niere begrenzt\n- T3: Ausdehnung in große Venen oder perirenales Gewebe\n- T4: Über Gerota-Faszie hinaus\n\nLegende: GoR A=starke Empfehlung, GoR B=schwache Empfehlung, GoR 0=Option\n\n\nWICHTIGER HINWEIS:\n- Die Leitlinien gelten primär für KLARZELLIGES RCC\n- Bei NICHT-KLARZELLIGEM RCC (papillär, chromophob, etc.) ist TKI-Monotherapie oft bevorzugt\n- IMDC-Risikostratifizierung ist nur für klarzelliges mRCC validiert\n\n=== AUFGABE ===\nAnalysiere den Fall schrittweise:\n\n1. METASTASIERUNG: Bestimme ob der Patient metastasiert oder nicht-metastasiert ist (basierend auf TNM M-Status, Anamnese, Bildgebung).\n\n2. HISTOLOGIE: Berücksichtige den histologischen Subtyp (klarzellig vs. nicht-klarzellig).\n\n3. RISIKOSTRATIFIZIERUNG: Falls metastasiert UND klarzellig, berechne das IMDC-Risiko.\n\n4. THERAPIEEMPFEHLUNG: Folge dem entsprechenden Therapie-Algorithmus und begründe deine Empfehlung.\n\nAntworte im folgenden JSON-Format:\n{\n    \"is_metastatic\": true/false,\n    \"metastatic_reasoning\": \"Begründung für Metastasierungsstatus...\",\n    \"imdc_risk\": \"guenstig/intermediaer/unguenstig/nicht_anwendbar\",\n    \"imdc_reasoning\": \"IMDC-Berechnung oder null wenn nicht-metastasiert/nicht-klarzellig...\",\n    \"treatment_reasoning\": \"Schrittweise Begründung nach Leitlinie...\",\n    \"recommended_therapy\": \"Konkrete Therapieempfehlung\",\n    \"therapy_category\": \"IO+TKI/TKI mono/Surgery/Surveillance/Ablation/etc.\",\n    \"recommendation_strength\": \"A/B/0\",\n    \"confidence\": 0.0-1.0\n}",
+  "prediction": {
+    "is_metastatic": true,
+    "metastatic_reasoning": "Der Patient hat eine metastasierte Erkrankung, da es sich um eine Diagnose von metastasiertem Nierenzellkarzinom handelt.",
+    "imdc_risk": "nicht dokumentiert",
+    "imdc_reasoning": "Da der Patient nicht-metastasiert ist, ist die IMDC-Risikostratifizierung nicht anwendbar.",
+    "treatment_reasoning": "Da der Patient eine metastasierte Erkrankung hat, muss die Therapie nach dem entsprechenden Algorithmus erfolgen. Da die IMDC-Risikostratifizierung nicht anwendbar ist, muss die Therapie nach dem Algorithmus für nicht-klarzelliges RCC erfolgen.",
+    "recommended_therapy": "Cabozantinib (A)",
+    "therapy_category": "TKI mono",
+    "recommendation_strength": "A",
+    "confidence": 0.9
+  },
+  "raw_response": "{\n    \"is_metastatic\": true,\n    \"metastatic_reasoning\": \"Der Patient hat eine metastasierte Erkrankung, da es sich um eine Diagnose von metastasiertem Nierenzellkarzinom handelt.\",\n    \"imdc_risk\": \"nicht dokumentiert\",\n    \"imdc_reasoning\": \"Da der Patient nicht-metastasiert ist, ist die IMDC-Risikostratifizierung nicht anwendbar.\",\n    \"treatment_reasoning\": \"Da der Patient eine metastasierte Erkrankung hat, muss die Therapie nach dem entsprechenden Algorithmus erfolgen. Da die IMDC-Risikostratifizierung nicht anwendbar ist, muss die Therapie nach dem Algorithmus für nicht-klarzelliges RCC erfolgen.\",\n    \"recommended_therapy\": \"Cabozantinib (A)\",\n    \"therapy_category\": \"TKI mono\",\n    \"recommendation_strength\": \"A\",\n    \"confidence\": 0.9\n}",
+  "ground_truth_metastatic": true,
+  "ground_truth_therapy": "Cabozantinib fortführen. Monitoring: Blutdruck, Haut/GI-Toxizität, Leberwerte, TSH; Re-Staging in 8–12 Wochen.",
+  "metastatic_correct": true,
+  "therapy_exact_match": true,
+  "therapy_clinically_acceptable": true,
+  "inference_time_seconds": 0.32894278273862954,
+  "tokens_used": 218,
+  "success": true,
+  "error_message": null
+}

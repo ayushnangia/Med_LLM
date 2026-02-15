@@ -1,0 +1,78 @@
+{
+  "case_id": "ncc_56",
+  "timestamp": "2026-02-15_23-04-56",
+  "provider": "modal",
+  "model": "google/gemma-3-27b-it",
+  "input_case": {
+    "case_id": "ncc_56",
+    "patient_name": "Muster, Oana",
+    "age": 63,
+    "ecog": 1,
+    "karnofsky": 80,
+    "comorbidity": "moderate",
+    "life_expectancy": "unknown",
+    "anamnese": "Erstdiagnose metastasiertes RCC: 05.05.2023. 1. Linie (06/2023–12/2025): Pembrolizumab + Lenvatinib. Vorerkrankungen/VOP: CKD G3, Z. n. Nabelhernien-OP. Medikation: Amlodipin, Atorvastatin.",
+    "diagnose_kurz": "Metastasiertes Nierenzellkarzinom (mRCC) nach 1L Pembrolizumab + Lenvatinib; Progress lokal (V. a. Lokalrezidiv) und peritoneal",
+    "stadium": "metastasiert; Progress unter 1L",
+    "tnm_clinical": null,
+    "tnm_pathological": null,
+    "histologie_subtyp": null,
+    "histologie_klarzellig": null,
+    "bildgebung": [
+      {
+        "modalitaet": "CT",
+        "region": "Thorax/Abdomen/Becken",
+        "datum": "2025-12-09",
+        "befund_kurz": "Thorax: kein Pleuraerguss, keine sicheren pulmonalen Metastasen. Abdomen/Becken: (angenommene) Nephrektomie-Loge links mit weichteildichter Läsion 26×19 mm mit KM-Aufnahme (V. a. Lokalrezidiv). Peritoneum: zwei neue noduläre Raumforderungen links parakolisch 14 mm und prävesikal 13 mm (peritoneale Metastasen). Retroperitoneal: paraaortal links 12 mm grenzwertig, keine größeren Konglomerate. Skelett: kein sicherer Hinweis auf ossäre Metastasen.",
+        "quelle": "CT Staging 09.12.2025"
+      }
+    ],
+    "nebendiagnosen": [
+      {
+        "name": "Chronische Niereninsuffizienz",
+        "details": "CKD G3"
+      }
+    ],
+    "medikation": [
+      {
+        "wirkstoff": "Amlodipin",
+        "dosierung": null,
+        "schema": null,
+        "hinweis": null
+      },
+      {
+        "wirkstoff": "Atorvastatin",
+        "dosierung": null,
+        "schema": null,
+        "hinweis": null
+      }
+    ],
+    "ici_durchfuehrbar": null,
+    "prior_therapies": [],
+    "ground_truth_metastatic": true,
+    "ground_truth_imdc": null,
+    "ground_truth_therapy": "Umstellung auf 2. Linie (z. B. Cabozantinib oder alternative Sequenz je nach Toxizität/CKD). Re-Staging in 8–12 Wochen."
+  },
+  "prompt_text": "Du bist ein erfahrener Onkologe, spezialisiert auf Nierenzellkarzinom (RCC).\nAnalysiere den folgenden klinischen Fall und erstelle eine strukturierte Therapieempfehlung.\n\n=== KLINISCHER FALL ===\nPatient: Muster, Oana, 63 Jahre\nECOG: 1, Karnofsky: 80%\nKomorbidität: moderate\nLebenserwartung: unknown\n\nDiagnose: Metastasiertes Nierenzellkarzinom (mRCC) nach 1L Pembrolizumab + Lenvatinib; Progress lokal (V. a. Lokalrezidiv) und peritoneal\nStadium: metastasiert; Progress unter 1L\nTNM: nicht dokumentiert\n\nHISTOLOGIE (WICHTIG für Therapieentscheidung):\nNicht dokumentiert\n\nAnamnese:\nErstdiagnose metastasiertes RCC: 05.05.2023. 1. Linie (06/2023–12/2025): Pembrolizumab + Lenvatinib. Vorerkrankungen/VOP: CKD G3, Z. n. Nabelhernien-OP. Medikation: Amlodipin, Atorvastatin.\n\nNebendiagnosen: Chronische Niereninsuffizienz\n\nAktuelle Medikation: Amlodipin, Atorvastatin\n\nBildgebung:\n  - CT Thorax/Abdomen/Becken (2025-12-09): Thorax: kein Pleuraerguss, keine sicheren pulmonalen Metastasen. Abdomen/Becken: (angenommene) Nephrektomie-Loge links mit weichteildichter Läsion 26×19 mm mit KM-Aufnahme (V. a. Lokalrezidiv). Peritoneum: zwei neue noduläre Raumforderungen links parakolisch 14 mm und prävesikal 13 mm (peritoneale Metastasen). Retroperitoneal: paraaortal links 12 mm grenzwertig, keine größeren Konglomerate. Skelett: kein sicherer Hinweis auf ossäre Metastasen.\n\nIMDC-Risikofaktoren: Nicht dokumentiert\nICI-Kombination durchführbar: Nicht dokumentiert\nVorherige Systemtherapien: Keine\n\n=== THERAPIE-LEITLINIEN ===\n\n\nMETASTASIERTES KLARZELLIGES RCC - THERAPIE-ALGORITHMUS:\n\nIMDC-RISIKOSTRATIFIZIERUNG:\n- Günstig (0 Risikofaktoren)\n- Intermediär (1-2 Risikofaktoren)\n- Ungünstig (≥3 Risikofaktoren)\n\nRisikofaktoren: Karnofsky <80%, Zeit bis Systemtherapie <1 Jahr, Hämoglobin↓, Calcium↑, Neutrophile↑, Thrombozyten↑\n\nERSTLINIE (wenn ICI-Kombination möglich):\n- Günstig: NIVO+CABO (A), PEMBRO+AXI (A), PEMBRO+LEN (A), AVELU+AXI (B)\n- Intermediär: NIVO+CABO (A), NIVO+IPI (A), PEMBRO+AXI (A), PEMBRO+LEN (A)\n- Ungünstig: NIVO+CABO (A), NIVO+IPI (A), PEMBRO+AXI (A), PEMBRO+LEN (A)\n\nERSTLINIE (wenn ICI-Kombination NICHT möglich):\n- Günstig: Pazopanib (A), Sunitinib (A), Tivozanib (A), BEV+IFN (A)\n- Intermediär: Cabozantinib (B), Pazopanib (B), Sunitinib (B)\n- Ungünstig: Cabozantinib (B), Sunitinib (B), Temsirolimus (0)\n\nZWEITLINIE nach ICI-Kombination: Cabozantinib (A), Lenvatinib+Everolimus (A), Sunitinib (A)\nZWEITLINIE nach VEGF/R-Monotherapie: Cabozantinib (A), Nivolumab (A)\n\nLegende: A=starke Empfehlung, B=schwache Empfehlung, 0=Option\n\n\n\nNICHT-METASTASIERTES RCC - THERAPIE-ALGORITHMUS:\n\nTHERAPIEOPTIONEN nach Tumorgröße/Stadium:\n\n1. AKTIVE ÜBERWACHUNG (GoR 0):\n   - Kleine Nierentumoren + hohe Komorbidität ODER begrenzte Lebenserwartung\n   - Biopsie VOR Überwachung erforderlich\n\n2. ABLATION (Kryoablation/Radiofrequenzablation) (GoR 0):\n   - Kleine Nierentumoren + hohe Komorbidität ODER begrenzte Lebenserwartung\n   - Biopsie VOR Ablation erforderlich\n\n3. NIERENTEILRESEKTION (Nephron-sparing Surgery):\n   - cT1 (≤7cm): SOLL durchgeführt werden (GoR A)\n   - >T1: SOLLTE erwogen werden wenn technisch möglich (GoR B)\n   - Zugang: offen/laparoskopisch/robotisch (chirurgische Erfahrung)\n\n4. RADIKALE NEPHREKTOMIE:\n   - Wenn Teilresektion nicht möglich (GoR A)\n   - Minimalinvasiv wenn lokale Befunde es erlauben (GoR A)\n\nPERIOPERATIVE PRINZIPIEN:\n- KEINE Adrenalektomie bei unauffälliger Bildgebung (GoR A)\n- KEINE systematische Lymphadenektomie bei unauffälliger Bildgebung (GoR A)\n- LND bei vergrößerten Lymphknoten akzeptabel\n\nTNM-STADIEN:\n- T1a: ≤4cm, auf Niere begrenzt\n- T1b: >4-7cm, auf Niere begrenzt\n- T2a: >7-10cm, auf Niere begrenzt\n- T2b: >10cm, auf Niere begrenzt\n- T3: Ausdehnung in große Venen oder perirenales Gewebe\n- T4: Über Gerota-Faszie hinaus\n\nLegende: GoR A=starke Empfehlung, GoR B=schwache Empfehlung, GoR 0=Option\n\n\nWICHTIGER HINWEIS:\n- Die Leitlinien gelten primär für KLARZELLIGES RCC\n- Bei NICHT-KLARZELLIGEM RCC (papillär, chromophob, etc.) ist TKI-Monotherapie oft bevorzugt\n- IMDC-Risikostratifizierung ist nur für klarzelliges mRCC validiert\n\n=== AUFGABE ===\nAnalysiere den Fall schrittweise:\n\n1. METASTASIERUNG: Bestimme ob der Patient metastasiert oder nicht-metastasiert ist (basierend auf TNM M-Status, Anamnese, Bildgebung).\n\n2. HISTOLOGIE: Berücksichtige den histologischen Subtyp (klarzellig vs. nicht-klarzellig).\n\n3. RISIKOSTRATIFIZIERUNG: Falls metastasiert UND klarzellig, berechne das IMDC-Risiko.\n\n4. THERAPIEEMPFEHLUNG: Folge dem entsprechenden Therapie-Algorithmus und begründe deine Empfehlung.\n\nAntworte im folgenden JSON-Format:\n{\n    \"is_metastatic\": true/false,\n    \"metastatic_reasoning\": \"Begründung für Metastasierungsstatus...\",\n    \"imdc_risk\": \"guenstig/intermediaer/unguenstig/nicht_anwendbar\",\n    \"imdc_reasoning\": \"IMDC-Berechnung oder null wenn nicht-metastasiert/nicht-klarzellig...\",\n    \"treatment_reasoning\": \"Schrittweise Begründung nach Leitlinie...\",\n    \"recommended_therapy\": \"Konkrete Therapieempfehlung\",\n    \"therapy_category\": \"IO+TKI/TKI mono/Surgery/Surveillance/Ablation/etc.\",\n    \"recommendation_strength\": \"A/B/0\",\n    \"confidence\": 0.0-1.0\n}",
+  "prediction": {
+    "is_metastatic": true,
+    "metastatic_reasoning": "Der Patient zeigt per CT-Bildgebung peritoneale Metastasen und ein Lokalrezidiv in der Nephrektomieloge, was eindeutig für eine Metastasierung spricht. Die Anamnese bestätigt die Erstdiagnose eines metastasierten RCC.",
+    "imdc_risk": "nicht_anwendbar",
+    "imdc_reasoning": "Die IMDC-Risikostratifizierung ist nur für klarzelliges mRCC validiert. Der histologische Subtyp ist nicht dokumentiert. Daher kann die IMDC-Risikobewertung nicht durchgeführt werden.",
+    "treatment_reasoning": "Da der Patient bereits eine Therapie mit Pembrolizumab und Lenvatinib (1L) erhalten hat und eine Progression unter dieser Therapie aufweist, handelt es sich um eine Zweitlinientherapie. Aufgrund fehlender Informationen zum histologischen Subtyp muss von einem ungünstigen Szenario ausgegangen werden, da bei nicht-klarzelligen RCCs TKI-Monotherapie oft bevorzugt wird. Da der histologische Subtyp nicht bekannt ist, kann die Therapieempfehlung nur unter Vorbehalt erfolgen. Unter der Annahme eines klarzelligen RCCs und unter Berücksichtigung der Leitlinien für die Zweitlinientherapie nach ICI-Kombination, kommen Cabozantinib, Lenvatinib+Everolimus und Sunitinib in Frage. Cabozantinib hat eine starke Empfehlung (A).",
+    "recommended_therapy": "Cabozantinib",
+    "therapy_category": "TKI mono",
+    "recommendation_strength": "A",
+    "confidence": 0.7
+  },
+  "raw_response": "{\"is_metastatic\": true,\n    \"metastatic_reasoning\": \"Der Patient zeigt per CT-Bildgebung peritoneale Metastasen und ein Lokalrezidiv in der Nephrektomieloge, was eindeutig für eine Metastasierung spricht. Die Anamnese bestätigt die Erstdiagnose eines metastasierten RCC.\",\n    \"imdc_risk\": \"nicht_anwendbar\",\n    \"imdc_reasoning\": \"Die IMDC-Risikostratifizierung ist nur für klarzelliges mRCC validiert. Der histologische Subtyp ist nicht dokumentiert. Daher kann die IMDC-Risikobewertung nicht durchgeführt werden.\",\n    \"treatment_reasoning\": \"Da der Patient bereits eine Therapie mit Pembrolizumab und Lenvatinib (1L) erhalten hat und eine Progression unter dieser Therapie aufweist, handelt es sich um eine Zweitlinientherapie. Aufgrund fehlender Informationen zum histologischen Subtyp muss von einem ungünstigen Szenario ausgegangen werden, da bei nicht-klarzelligen RCCs TKI-Monotherapie oft bevorzugt wird. Da der histologische Subtyp nicht bekannt ist, kann die Therapieempfehlung nur unter Vorbehalt erfolgen. Unter der Annahme eines klarzelligen RCCs und unter Berücksichtigung der Leitlinien für die Zweitlinientherapie nach ICI-Kombination, kommen Cabozantinib, Lenvatinib+Everolimus und Sunitinib in Frage. Cabozantinib hat eine starke Empfehlung (A).\",\n    \"recommended_therapy\": \"Cabozantinib\",\n    \"therapy_category\": \"TKI mono\",\n    \"recommendation_strength\": \"A\",\n    \"confidence\": 0.7\n}",
+  "ground_truth_metastatic": true,
+  "ground_truth_therapy": "Umstellung auf 2. Linie (z. B. Cabozantinib oder alternative Sequenz je nach Toxizität/CKD). Re-Staging in 8–12 Wochen.",
+  "metastatic_correct": true,
+  "therapy_exact_match": true,
+  "therapy_clinically_acceptable": true,
+  "inference_time_seconds": 5.187590003013611,
+  "tokens_used": 365,
+  "success": true,
+  "error_message": null
+}

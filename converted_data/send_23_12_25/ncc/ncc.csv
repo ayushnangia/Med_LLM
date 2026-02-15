@@ -1,16 +1,72 @@
-Nr. ,Cases,Classes : tumor entity _ real,Therapy line,json,json_ver,urological/non_urological
-,,,,,,
-1.0,"Turtle, Ninja, *23.02.1963","Nierenkarzinom, met. Pap. NCC, therapy naive  ",Naive,True,1.1.,True
-2.0,"Ninja, Son *22.03.1951","Nierenkarzinom, local begrenzt",-,True,1.1.,True
-3.0,"Muster, Alpha, 11.01.1967","Nierenkarzinom, local begrenzt",-,True,1.1.,True
-4.0,"Beispiel, Beta, 05.05.1959 ","Nierenkarzinom, local begrenzt",-,True,1.1.,True
-5.0,"Muster, Clara, 20.02.1978","Nierenkarzinom, local begrenzt",-,True,1.1.,True
-6.0,"Beispiel, Daniel, 09.09.1948","Nierenkarzinom, local begrenzt",-,True,1.1.,True
-7.0,"Muster, Emil, 03.03.1982","Nierenkarzinom, local begrenzt, unklar - URS diagn",-,True,1.1.,True
-8.0,"Beispiel, Felix 14.04.1955","Nierenkarzinom, local begrenzt",-,True,1.1.,True
-9.0,"Muster, Georg, 01.01.1964","Nierenkarzinom, local begrenzt",-,True,1.1.,True
-10.0,"Beispiel, Hanna, 12.12.1950","Nierenkarzinom, local begrenzt",-,True,1.1.,True
-11.0,"Muster, Ivan, 05.05.1970","Nierenkarzinom, inf. V. cava cT3b",-,True,1.1.,True
-12.0,"Beispiel, Julia, 09.09.1958","Nierenkarzinom, local begrenzt",-,True,1.1.,True
-13.0,"Muster, Karl, 23.02.1961","Nierenkarzinom, local begrenzt, bilateral",-,True,1.1.,True
-14.0,"Beispiel, Leon, 18.10.1946","Nierenkarzinom, inf. Nebenniere",-,True,1.1.,True
+Nr. ,Cases,Classes : tumor entity _ real,Therapy line,Data entry,json,json_ver,urological/non_urological,Model x Prediction,Model y Prediction,Accuracy model x,Accuracy model y
+,,,,,,,,,,,
+1.0,"Turtle, Ninja, *23.02.1963","Nierenkarzinom, met. Pap. NCC, therapy naive  ",Naive,,True,1.1.,True,,,,
+2.0,"Ninja, Son *22.03.1951","Nierenkarzinom, local begrenzt",-,,True,1.1.,True,,,,
+3.0,"Muster, Alpha, 11.01.1967","Nierenkarzinom, local begrenzt",-,,True,1.1.,True,,,,
+4.0,"Beispiel, Beta, 05.05.1959 ","Nierenkarzinom, local begrenzt",-,,True,1.1.,True,,,,
+5.0,"Muster, Clara, 20.02.1978","Nierenkarzinom, local begrenzt",-,,True,1.1.,True,,,,
+6.0,"Beispiel, Daniel, 09.09.1948","Nierenkarzinom, local begrenzt",-,,True,1.1.,True,,,,
+7.0,"Muster, Emil, 03.03.1982","Nierenkarzinom, local begrenzt, unklar - URS diagn",-,,True,1.1.,True,,,,
+8.0,"Beispiel, Felix 14.04.1955","Nierenkarzinom, local begrenzt",-,,True,1.1.,True,,,,
+9.0,"Muster, Georg, 01.01.1964","Nierenkarzinom, local begrenzt",-,,True,1.1.,True,,,,
+10.0,"Beispiel, Hanna, 12.12.1950","Nierenkarzinom, local begrenzt",-,,True,1.1.,True,,,,
+11.0,"Muster, Ivan, 05.05.1970","Nierenkarzinom, inf. V. cava cT3b",-,,True,1.1.,True,,,,
+12.0,"Beispiel, Julia, 09.09.1958","Nierenkarzinom, local begrenzt",-,,True,1.1.,True,,,,
+13.0,"Muster, Karl, 23.02.1961","Nierenkarzinom, local begrenzt, bilateral",-,,True,1.1.,True,,,,
+14.0,"Beispiel, Leon, 18.10.1946","Nierenkarzinom, inf. Nebenniere",-,,True,1.1.,True,,,,
+15.0,"Muster, Mira, 07.07.1966",Metastasiert – IMDC Low risk ,1,,True,1.1.,True,,,,
+16.0,"Beispiel, Nina, 01.01.1959",Metastasiert – IMDC Low risk ,1,,True,1.1.,True,,,,
+17.0,"Muster, Oskar, 12.12.1962",Metastasiert – IMDC Low risk ,1,,True,1.1.,True,,,,
+18.0,"Muster, Quentin 22.02.1956",Metastasiert – IMDC Low risk ,1,,True,1.1.,True,,,,
+19.0,"Beispiel, Pia, 03.03.1971",Metastasiert – IMDC Low risk ,1,,True,1.1.,True,,,,
+20.0,"Beispiel, Ralf, 09.09.1960",Metastasiert – IMDC Low risk ,1,,True,1.1.,True,,,,
+21.0,"Muster, Sara, 01.01.1963",Metastasiert – IMDC intermediate risk ,1,,True,1.1.,True,,,,
+22.0,"Beispiel, Timo, 05.05.1955",Metastasiert – IMDC intermediate risk - sarkomatoid,1,,True,1.1.,True,,,,
+23.0,"Muster, Uwe, 07.07.1970",Metastasiert – IMDC intermediate risk ,1,,True,1.1.,True,,,,
+24.0,"Beispiel, Valeria, 12.12.1968",Metastasiert – IMDC intermediate risk ,1,,True,1.1.,True,,,,
+25.0,"Beispiel, Xaver, 01.01.1960",Metastasiert – IMDC intermediate risk ,1,,True,1.2.,True,,,,
+26.0,"Muster, Yara, 09.09.1949",Metastasiert – IMDC high risk ,1,,True,1.2.,True,,,,
+27.0,"Beispiel, Mustermann, 17.02.1952",Metastasiert – IMDC high risk ,1,,True,1.2.,True,,,,
+28.0,"Muster, Lukas, 04.06.1947",Metastasiert – IMDC high risk ,1,,True,1.2.,True,,,,
+29.0,"Beispiel, Tarek, 29.11.1956",Metastasiert – IMDC high risk ,1,,True,1.2.,True,,,,
+30.0,"Muster, Ada, 11.11.1965",Metastasiert – 4. Linie ,4,,True,1.2.,True,,,,
+31.0,"Muster, Felix, 21.07.1948",Metastasiert – 3. Linie ,3,,True,1.2.,True,,,,
+32.0,"Beispiel, Nora, 30.10.1963",Metastasiert – 2. Linie ,2,,True,1.2.,True,,,,
+33.0,"Beispiel, Bora, 06.06.1954",Metastasiert – 4. Linie ,4,,True,1.2.,True,,,,
+34.0,"Muster, Cora, 03.03.1951",Metastasiert – 3. Linie ,3,,True,1.2.,True,,,,
+35.0,"Beispiel, Dimo, 14.04.1962",Metastasiert – 3. Linie ,3,,True,1.2.,True,,,,
+36.0,"Malim, Baros, 01.07.1951",Metastasiert - NED - ggf. Adjuvanz,1,2026-01-09,True,1.2.,True,,,,
+37.0,"Beispiel, Jana, 15.02.1956",Metastasiert – 2. Linie ,2,2026-01-09,True,1.2.,True,,,,
+37.0,"Muster, Ralf, 03.09.1949",Metastasiert – 2. Linie ,2,2026-01-09,True,1.2.,True,,,,
+38.0,"Beispiel, Tom, 27.01.1963",Metastasiert – 2. Linie ,2,2026-01-09,True,1.2.,True,,,,
+39.0,"Muster, Helga, 10.10.1958",Metastasiert – 2. Linie ,2,2026-01-09,True,1.2.,True,,,,
+40.0,"Beispiel, Karim, 08.08.1952",Metastasiert – 3. Linie ,3,2026-01-09,True,1.2.,True,,,,
+41.0,"Muster, Selin, 19.04.1961",Metastasiert – 3. Linie ,3,2026-01-09,True,1.2.,True,,,,
+42.0,"Beispiel, Oleg, 01.12.1946",Metastasiert – 3. Linie ,3,2026-01-09,True,1.2.,True,,,,
+43.0,"Muster, Gerd, 05.05.1954",Metastasiert – 3. Linie ,3,2026-01-09,True,1.2.,True,,,,
+44.0,"Beispiel, Boraa, 06.06.1954",Metastasiert – 4. Linie ,4,2026-01-09,True,1.2.,True,,,,
+45.0,"Beispiel, Darios, 09.09.1962",Metastasiert – 4. Linie ,4,2026-01-09,True,1.2.,True,,,,
+46.0,"Muster, Ines, 22.02.1950",Metastasiert – 4. Linie ,4,2026-01-09,True,1.2.,True,,,,
+47.0,"Muster, Coras, 03.03.1951",Metastasiert – 4. Linie ,4,2026-01-09,True,1.2.,True,,,,
+48.0,"Beispieles, Lara, 08.08.1967",Metastasiert – 1. Linie - stabil - Fortführung,1,2026-01-09,True,1.2.,True,,,,
+49.0,"Muster, Paula, 12.12.1959",Metastasiert – 2. Linie - stabil - Fortführung,2,2026-01-09,True,1.2.,True,,,,
+50.0,"Beispiel, Selmas, 03.03.1954",Metastasiert – 3. Linie - stabil - Fortführung,3,2026-01-09,True,1.2.,True,,,,
+51.0,"Musterovici, Jonas, 19.01.1950",Metastasiert – 4. Linie - stabil - Fortführung,4,2026-01-09,True,1.2.,True,,,,
+52.0,"Beispiel, Samira, 02.02.1957",Metastasiert – IMDC intermediate risk ,1,2026-01-31,True,1.2.,True,,,,
+53.0,"Muster, Hakan, 15.05.1949",Metastasiert – IMDC intermediate risk ,1,2026-01-31,True,1.2.,True,,,,
+54.0,"Beispiel, Farido, 20.08.1962",Metastasiert – IMDC intermediate risk ,1,2026-01-31,True,1.2.,True,,,,
+55.0,"Beispiel, Irina, 14.04.1960",Metastasiert – 2. Linie ,2,2026-01-31,True,1.2.,True,,,,
+56.0,"Muster, Oana, 02.02.1962",Metastasiert – 2. Linie ,2,2026-01-31,True,1.2.,True,,,,
+57.0,"Beispiel, Mariano, 18.09.1958",Metastasiert – 2. Linie ,2,2026-01-31,True,1.2.,True,,,,
+58.0,"Beispiel, Radu, 02.03.1950",Metastasiert – 3. Linie ,3,2026-01-31,True,1.2.,True,,,,
+59.0," Muster, Elena, 11.11.1953",Metastasiert – 3. Linie ,3,2026-01-31,True,1.2.,True,,,,
+60.0,"Beispiel, Sorinovici, 09.09.1949",Metastasiert – 3. Linie ,3,2026-01-31,True,1.2.,True,,,,
+61.0,"Beispiel, Maraile, 12.03.1952",Metastasiert – 4. Linie ,4,2026-01-31,True,1.2.,True,,,,
+62.0,"Muster, Ionovici, 05.05.1947",Metastasiert – 4. Linie ,4,2026-01-31,True,1.2.,True,,,,
+63.0,"Beispiel, Dariam, 28.02.1960",Metastasiert – 4. Linie ,4,2026-01-31,True,1.2.,True,,,,
+64.0,"Beispiel, Livia, 21.11.1970",Metastasiert – IMDC Low risk ,1,2026-01-31,True,1.2.,True,,,,
+65.0,"Muster, Dariamus, 03.05.1964",Metastasiert – IMDC Low risk ,1,2026-01-31,True,1.2.,True,,,,
+66.0,"Beispiel, Sorinamus, 28.09.1968",Metastasiert – IMDC Low risk ,1,2026-01-31,True,1.2.,True,,,,
+67.0,"Muster, Dariamtam, 18.01.1950",Metastasiert – IMDC high risk ,1,2026-01-31,True,1.2.,True,,,,
+68.0,"Beispiel, Horians, 27.05.1946",Metastasiert – IMDC high risk ,1,2026-01-31,True,1.2.,True,,,,
+69.0,"Muster, Nadimas, 09.12.1952",Metastasiert – IMDC high risk ,1,2026-01-31,True,1.2.,True,,,,

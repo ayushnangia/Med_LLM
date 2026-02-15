@@ -22,8 +22,8 @@ import pandas as pd
 
 # Configuration - adjust these paths as needed
 BASE_DIR = Path(__file__).parent.parent
-SOURCE_DIR = BASE_DIR / "data_llm" / "send_27_12_25"
-OUTPUT_DIR = BASE_DIR / "converted_data" / "send_27_12_25"
+SOURCE_DIR = BASE_DIR / "data_llm" / "send_23_12_25"
+OUTPUT_DIR = BASE_DIR / "converted_data" / "send_23_12_25"
 
 
 def clean_json_text(text: str) -> str:
@@ -62,7 +62,14 @@ def find_all_json_objects(text: str) -> list:
 
 
 def extract_cases_from_object(obj: dict) -> list:
-    """Extract case objects from a JSON object."""
+    """Extract case objects from a JSON object.
+
+    Recognizes 4 schema formats:
+    - v1.1: top-level case_meta + entitaeten
+    - v1.0: wrapped in case_template
+    - Diagnosen schema: top-level diagnosen + tumor_history + therapieplanung
+    - English schema: top-level 'case' key with English field names (mRCC_case_schema)
+    """
     cases = []
     if isinstance(obj, dict):
         if 'cases' in obj and isinstance(obj['cases'], list):
@@ -70,6 +77,12 @@ def extract_cases_from_object(obj: dict) -> list:
         elif 'case_meta' in obj:
             cases.append(obj)
         elif 'case_template' in obj:
+            cases.append(obj)
+        elif 'diagnosen' in obj:
+            # Diagnosen schema (v1.2-style) — cases with diagnosen instead of entitaeten
+            cases.append(obj)
+        elif 'case' in obj and isinstance(obj['case'], dict):
+            # English schema (mRCC_case_schema) — case data wrapped in 'case' key
             cases.append(obj)
     return cases
 
@@ -122,8 +135,12 @@ def convert_docx(docx_path: Path, output_path: Path) -> dict:
             json_objects = find_all_json_objects(full_text)
 
             if json_objects:
-                has_cases = any('case_meta' in obj or 'cases' in obj or 'case_template' in obj
-                               for obj in json_objects)
+                has_cases = any(
+                    'case_meta' in obj or 'cases' in obj or 'case_template' in obj
+                    or 'diagnosen' in obj
+                    or ('case' in obj and isinstance(obj.get('case'), dict))
+                    for obj in json_objects
+                )
 
                 if has_cases:
                     data = merge_cases_to_unified_structure(json_objects)
