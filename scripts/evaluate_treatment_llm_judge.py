@@ -112,6 +112,15 @@ JUDGE_MODELS: Dict[str, Dict[str, Any]] = {
         "top_p": 0.95,
         "max_tokens": 2048,
     },
+    # Modal vLLM models
+    "medgemma-27b": {
+        "provider": "modal",
+        "hf_id": "google/medgemma-27b-text-it",
+        "temperature": 0.3,
+        "top_p": 0.95,
+        "max_tokens": 2048,
+        "supports_json_schema": True,
+    },
 }
 
 
@@ -416,6 +425,34 @@ def call_openrouter(
 
 
 # =============================================================================
+# MODAL BATCH API CALL
+# =============================================================================
+
+def call_modal_batch(prompts: list[str], model_key: str) -> list[tuple]:
+    """
+    Call Modal vLLM for batch judge evaluation.
+
+    Spins up the Modal app ephemerally via app.run() context manager,
+    so this works from a regular `python` invocation (no `modal run` needed).
+
+    Args:
+        prompts: List of judge prompts
+        model_key: Key from JUDGE_MODELS with provider=modal
+
+    Returns:
+        List of (response_text, inference_time, reasoning_output) tuples
+    """
+    import sys
+    sys.path.insert(0, str(Path(__file__).parent))
+    from modal_judge import app, run_judge_batch
+
+    json_schema = JudgeEvaluation.model_json_schema()
+    with app.run():
+        results = run_judge_batch.remote(model_key, prompts, json_schema)
+    return [(r["text"], r["inference_time"], None) for r in results]
+
+
+# =============================================================================
 # RESPONSE PARSING WITH PYDANTIC VALIDATION
 # =============================================================================
 
@@ -472,6 +509,123 @@ def parse_judge_response(text: str, is_thinking: bool = False) -> Optional[Judge
 # MAIN EVALUATION LOGIC
 # =============================================================================
 
+def _evaluate_modal_batch(
+    case_files: list,
+    model_key: str,
+    cfg: dict,
+) -> list:
+    """Evaluate cases using Modal vLLM batch inference."""
+    # Load all cases and build prompts
+    cases = []
+    for cf in case_files:
+        with open(cf, 'r', encoding='utf-8') as f:
+            cases.append(json.load(f))
+
+    prompts = [build_judge_prompt(c) for c in cases]
+    case_ids = [c.get("case_id", cf.stem) for c, cf in zip(cases, case_files)]
+
+    print(f"Sending {len(prompts)} prompts to Modal vLLM batch inference...")
+    responses = call_modal_batch(prompts, model_key)
+
+    evaluations = []
+    for i, (case_id, (response, inference_time, reasoning)) in enumerate(zip(case_ids, responses)):
+        eval_result = EvaluationResult(
+            case_id=case_id,
+            inference_time_seconds=inference_time,
+            reasoning_output=reasoning,
+        )
+
+        if response:
+            evaluation = parse_judge_response(response)
+            if evaluation:
+                eval_result.evaluation = evaluation
+                eval_result.raw_response = response
+                status = "✓ CORRECT" if evaluation.is_correct else "✗ INCORRECT"
+                print(f"[{i+1}/{len(case_ids)}] {case_id}... {status} | Score: {evaluation.overall_score:.2f}")
+            else:
+                eval_result.raw_response = response
+                eval_result.error = "parse_failed"
+                print(f"[{i+1}/{len(case_ids)}] {case_id}... ✗ Parse failed")
+        else:
+            eval_result.error = "inference_error"
+            print(f"[{i+1}/{len(case_ids)}] {case_id}... ✗ Inference error")
+
+        evaluations.append(eval_result)
+
+    return evaluations
+
+
+def _evaluate_openrouter_parallel(
+    case_files: list,
+    model_key: str,
+    cfg: dict,
+    workers: int,
+) -> list:
+    """Evaluate cases using OpenRouter API with parallel workers."""
+    is_thinking = cfg.get("thinking", False)
+    evaluations: list[EvaluationResult] = []
+    print_lock = threading.Lock()
+    completed_count = [0]
+
+    def evaluate_single_case(case_file: Path) -> EvaluationResult:
+        """Evaluate a single case - designed for parallel execution."""
+        with open(case_file, 'r', encoding='utf-8') as f:
+            case_result = json.load(f)
+
+        case_id = case_result.get("case_id", case_file.stem)
+
+        prompt = build_judge_prompt(case_result)
+        response, inference_time, reasoning = call_openrouter(prompt, model_key)
+
+        eval_result = EvaluationResult(
+            case_id=case_id,
+            inference_time_seconds=inference_time,
+            reasoning_output=reasoning
+        )
+
+        if response:
+            evaluation = parse_judge_response(response, is_thinking)
+            if evaluation:
+                eval_result.evaluation = evaluation
+                eval_result.raw_response = response
+                status = "✓ CORRECT" if evaluation.is_correct else "✗ INCORRECT"
+                result_msg = f"{status} | Score: {evaluation.overall_score:.2f} (Sem: {evaluation.therapy_semantic_score:.2f}, Clin: {evaluation.clinical_appropriateness_score:.2f})"
+            else:
+                eval_result.raw_response = response
+                eval_result.error = "parse_failed"
+                result_msg = "✗ Parse failed"
+        else:
+            eval_result.error = "api_error"
+            result_msg = "✗ API error"
+
+        with print_lock:
+            completed_count[0] += 1
+            print(f"[{completed_count[0]}/{len(case_files)}] {case_id}... {result_msg}")
+
+        return eval_result
+
+    num_workers = workers
+    print(f"Running {len(case_files)} evaluations with {num_workers} parallel workers...")
+
+    with ThreadPoolExecutor(max_workers=num_workers) as executor:
+        future_to_case = {executor.submit(evaluate_single_case, cf): cf for cf in case_files}
+
+        for future in as_completed(future_to_case):
+            try:
+                eval_result = future.result()
+                evaluations.append(eval_result)
+            except Exception as e:
+                case_file = future_to_case[future]
+                print(f"Error processing {case_file.stem}: {e}")
+                evaluations.append(EvaluationResult(
+                    case_id=case_file.stem,
+                    inference_time_seconds=0,
+                    error=str(e)
+                ))
+
+    return evaluations
+
+
 def evaluate_results(
     results_dir: str,
     model_key: str = "qwq-32b",
@@ -498,6 +652,7 @@ def evaluate_results(
     if not cfg:
         raise ValueError(f"Unknown model: {model_key}")
 
+    provider = cfg.get("provider", "openrouter")
     is_thinking = cfg.get("thinking", False)
 
     # Load all case results
@@ -505,11 +660,14 @@ def evaluate_results(
     if limit:
         case_files = case_files[:limit]
 
+    # Display config
+    model_display_id = cfg.get("hf_id") if provider == "modal" else cfg.get("openrouter_id")
     print(f"\n{'='*60}")
     print("LLM-as-a-Judge Evaluation")
     print(f"{'='*60}")
     print(f"Results Dir: {results_dir}")
-    print(f"Judge Model: {model_key} ({cfg['openrouter_id']})")
+    print(f"Judge Model: {model_key} ({model_display_id})")
+    print(f"Provider: {provider}")
     print(f"Temperature: {cfg.get('temperature', 0.3)}")
     print(f"Top-P: {cfg.get('top_p', 0.95)}")
     print(f"Max Tokens: {cfg.get('max_tokens', 2048)}")
@@ -519,70 +677,11 @@ def evaluate_results(
     print(f"Cases: {len(case_files)}")
     print("-" * 60)
 
-    evaluations: list[EvaluationResult] = []
-    print_lock = threading.Lock()
-    completed_count = [0]  # Use list to allow modification in closure
-
-    def evaluate_single_case(case_file: Path) -> EvaluationResult:
-        """Evaluate a single case - designed for parallel execution."""
-        with open(case_file, 'r', encoding='utf-8') as f:
-            case_result = json.load(f)
-
-        case_id = case_result.get("case_id", case_file.stem)
-
-        # Build prompt and call judge
-        prompt = build_judge_prompt(case_result)
-        response, inference_time, reasoning = call_openrouter(prompt, model_key)
-
-        eval_result = EvaluationResult(
-            case_id=case_id,
-            inference_time_seconds=inference_time,
-            reasoning_output=reasoning
-        )
-
-        if response:
-            evaluation = parse_judge_response(response, is_thinking)
-            if evaluation:
-                eval_result.evaluation = evaluation
-                eval_result.raw_response = response
-                status = "✓ CORRECT" if evaluation.is_correct else "✗ INCORRECT"
-                result_msg = f"{status} | Score: {evaluation.overall_score:.2f} (Sem: {evaluation.therapy_semantic_score:.2f}, Clin: {evaluation.clinical_appropriateness_score:.2f})"
-            else:
-                eval_result.raw_response = response
-                eval_result.error = "parse_failed"
-                result_msg = "✗ Parse failed"
-        else:
-            eval_result.error = "api_error"
-            result_msg = "✗ API error"
-
-        # Thread-safe printing
-        with print_lock:
-            completed_count[0] += 1
-            print(f"[{completed_count[0]}/{len(case_files)}] {case_id}... {result_msg}")
-
-        return eval_result
-
-    # Parallel execution with ThreadPoolExecutor
-    num_workers = workers
-    print(f"Running {len(case_files)} evaluations with {num_workers} parallel workers...")
-
-    with ThreadPoolExecutor(max_workers=num_workers) as executor:
-        # Submit all tasks
-        future_to_case = {executor.submit(evaluate_single_case, cf): cf for cf in case_files}
-
-        # Collect results as they complete
-        for future in as_completed(future_to_case):
-            try:
-                eval_result = future.result()
-                evaluations.append(eval_result)
-            except Exception as e:
-                case_file = future_to_case[future]
-                print(f"Error processing {case_file.stem}: {e}")
-                evaluations.append(EvaluationResult(
-                    case_id=case_file.stem,
-                    inference_time_seconds=0,
-                    error=str(e)
-                ))
+    # Route to provider-specific evaluation
+    if provider == "modal":
+        evaluations = _evaluate_modal_batch(case_files, model_key, cfg)
+    else:
+        evaluations = _evaluate_openrouter_parallel(case_files, model_key, cfg, workers)
 
     # Calculate aggregate metrics
     valid_evals = [e for e in evaluations if e.evaluation is not None]
@@ -607,7 +706,7 @@ def evaluate_results(
         semantic_match_count = clinical_ok_count = 0
 
     summary = {
-        "judge_model": cfg["openrouter_id"],
+        "judge_model": cfg.get("openrouter_id") or cfg.get("hf_id"),
         "judge_config": {
             "temperature": cfg.get("temperature", 0.3),
             "top_p": cfg.get("top_p", 0.95),
@@ -650,7 +749,7 @@ def evaluate_results(
     print("\n" + "=" * 60)
     print("EVALUATION SUMMARY")
     print("=" * 60)
-    print(f"Judge: {cfg['openrouter_id']}")
+    print(f"Judge: {model_display_id}")
     print(f"Evaluated: {len(valid_evals)}/{len(case_files)} cases")
     print()
     print(f">>> ACCURACY: {accuracy*100:.1f}% ({correct_count}/{len(valid_evals)}) <<<")
@@ -672,13 +771,15 @@ def evaluate_results(
 def list_models():
     """Print available judge models."""
     print("\nAvailable Judge Models:")
-    print("-" * 70)
-    print(f"{'Key':<15} {'OpenRouter ID':<35} {'Thinking':<10} {'JSON Schema'}")
-    print("-" * 70)
+    print("-" * 85)
+    print(f"{'Key':<15} {'Model ID':<35} {'Provider':<12} {'Thinking':<10} {'JSON Schema'}")
+    print("-" * 85)
     for key, cfg in JUDGE_MODELS.items():
+        provider = cfg.get("provider", "openrouter")
+        model_id = cfg.get("openrouter_id") or cfg.get("hf_id", "")
         thinking = "Yes" if cfg.get("thinking") else "No"
         json_schema = "Yes" if cfg.get("supports_json_schema") else "No"
-        print(f"{key:<15} {cfg['openrouter_id']:<35} {thinking:<10} {json_schema}")
+        print(f"{key:<15} {model_id:<35} {provider:<12} {thinking:<10} {json_schema}")
 
 
 def main():

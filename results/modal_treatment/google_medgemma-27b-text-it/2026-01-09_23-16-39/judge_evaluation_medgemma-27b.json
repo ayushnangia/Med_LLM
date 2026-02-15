@@ -1,0 +1,88 @@
+{
+  "judge_model": "google/medgemma-27b-text-it",
+  "judge_config": {
+    "temperature": 0.3,
+    "top_p": 0.95,
+    "max_tokens": 2048,
+    "thinking_mode": false,
+    "structured_output": true,
+    "reasoning_effort": null
+  },
+  "timestamp": "2026-02-15_22-37-20",
+  "source_results_dir": "results/modal_treatment/google_medgemma-27b-text-it/2026-01-09_23-16-39",
+  "total_cases": 3,
+  "evaluated_cases": 3,
+  "failed_evaluations": 0,
+  "metrics": {
+    "accuracy": 0.6667,
+    "correct_count": 2,
+    "incorrect_count": 1,
+    "therapy_semantic_match_rate": 0.6666666666666666,
+    "therapy_semantic_match_count": 2,
+    "avg_therapy_semantic_score": 0.8,
+    "clinical_appropriateness_rate": 1.0,
+    "clinical_appropriateness_count": 3,
+    "avg_clinical_score": 0.8667,
+    "avg_reasoning_quality": 0.8333,
+    "avg_overall_score": 0.82
+  },
+  "evaluations": [
+    {
+      "case_id": "ncc_1",
+      "evaluation": {
+        "is_correct": false,
+        "correctness_reason": "Die KI empfiehlt eine TKI-Monotherapie (Cabozantinib), während die Ground Truth eine Kombination aus TKI/IO (Nivolumab/Cabozantinib) ist. Obwohl TKI-Mono eine Option sein kann, ist die Kombination die bevorzugte Erstlinienbehandlung laut Ground Truth.",
+        "therapy_semantic_match": false,
+        "therapy_semantic_score": 0.5,
+        "clinical_appropriateness": true,
+        "clinical_appropriateness_score": 0.7,
+        "reasoning_quality": 0.8,
+        "reasoning_critique": "Die Begründung ist gut strukturiert und berücksichtigt die spezifischen Herausforderungen bei nicht-klarzelligen RCCs und die Komorbiditäten des Patienten. Die Argumentation für die Wahl von Cabozantinib ist nachvollziehbar, auch wenn die Kombinationstherapie die bevorzugte Option ist.",
+        "overall_score": 0.65,
+        "judge_reasoning": "Die KI-Empfehlung (Cabozantinib mono) ist klinisch angemessen, aber nicht die primäre Empfehlung des Tumorboards (Nivolumab/Cabozantinib). Die semantische Übereinstimmung ist daher gering (0.5). Die klinische Angemessenheit ist hoch (0.7), da TKI-Mono eine valide Option ist. Die Begründungsqualität ist ebenfalls hoch (0.8). Der Gesamtscore spiegelt wider, dass die Empfehlung zwar nicht die primäre ist, aber klinisch vertretbar und gut begründet ist."
+      },
+      "raw_response": "{\"is_correct\": false, \"correctness_reason\": \"Die KI empfiehlt eine TKI-Monotherapie (Cabozantinib), während die Ground Truth eine Kombination aus TKI/IO (Nivolumab/Cabozantinib) ist. Obwohl TKI-Mono eine Option sein kann, ist die Kombination die bevorzugte Erstlinienbehandlung laut Ground Truth.\", \"therapy_semantic_match\": false, \"therapy_semantic_score\": 0.5, \"clinical_appropriateness\": true, \"clinical_appropriateness_score\": 0.7, \"reasoning_quality\": 0.8, \"reasoning_critique\": \"Die Begründung ist gut strukturiert und berücksichtigt die spezifischen Herausforderungen bei nicht-klarzelligen RCCs und die Komorbiditäten des Patienten. Die Argumentation für die Wahl von Cabozantinib ist nachvollziehbar, auch wenn die Kombinationstherapie die bevorzugte Option ist.\", \"overall_score\": 0.65, \"judge_reasoning\": \"Die KI-Empfehlung (Cabozantinib mono) ist klinisch angemessen, aber nicht die primäre Empfehlung des Tumorboards (Nivolumab/Cabozantinib). Die semantische Übereinstimmung ist daher gering (0.5). Die klinische Angemessenheit ist hoch (0.7), da TKI-Mono eine valide Option ist. Die Begründungsqualität ist ebenfalls hoch (0.8). Der Gesamtscore spiegelt wider, dass die Empfehlung zwar nicht die primäre ist, aber klinisch vertretbar und gut begründet ist.\"}",
+      "reasoning_output": null,
+      "error": null,
+      "inference_time_seconds": 16.639145215352375
+    },
+    {
+      "case_id": "ncc_10",
+      "evaluation": {
+        "is_correct": true,
+        "correctness_reason": "Die KI empfiehlt eine Biopsie gefolgt von chirurgischer Resektion (Teilresektion oder Nephrektomie), was der Ground Truth entspricht, die ebenfalls eine chirurgische Resektion nach Komplettierung des Stagings empfiehlt. Die KI berücksichtigt korrekt die Notwendigkeit einer Biopsie bei unbekannter Histologie und die Komorbiditäten des Patienten.",
+        "therapy_semantic_match": true,
+        "therapy_semantic_score": 0.9,
+        "clinical_appropriateness": true,
+        "clinical_appropriateness_score": 0.9,
+        "reasoning_quality": 0.8,
+        "reasoning_critique": "Die Begründung ist gut, aber die Diskussion über die Anwendbarkeit von IMDC ist etwas redundant, da die KI korrekt feststellt, dass es für nicht-metastasiertes RCC nicht gilt. Die Betonung der Biopsie ist wichtig.",
+        "overall_score": 0.86,
+        "judge_reasoning": "Die KI-Empfehlung (Biopsie, dann Chirurgie) stimmt mit der Ground Truth (Staging, dann Nephrektomie) überein. Die KI berücksichtigt die Komorbiditäten und die Notwendigkeit einer Biopsie korrekt. Die semantische Übereinstimmung ist hoch, die klinische Angemessenheit ebenfalls. Die Begründung ist solide, wenn auch mit einer kleinen Redundanz."
+      },
+      "raw_response": "{\"is_correct\": true, \"correctness_reason\": \"Die KI empfiehlt eine Biopsie gefolgt von chirurgischer Resektion (Teilresektion oder Nephrektomie), was der Ground Truth entspricht, die ebenfalls eine chirurgische Resektion nach Komplettierung des Stagings empfiehlt. Die KI berücksichtigt korrekt die Notwendigkeit einer Biopsie bei unbekannter Histologie und die Komorbiditäten des Patienten.\", \"therapy_semantic_match\": true, \"therapy_semantic_score\": 0.9, \"clinical_appropriateness\": true, \"clinical_appropriateness_score\": 0.9, \"reasoning_quality\": 0.8, \"reasoning_critique\": \"Die Begründung ist gut, aber die Diskussion über die Anwendbarkeit von IMDC ist etwas redundant, da die KI korrekt feststellt, dass es für nicht-metastasiertes RCC nicht gilt. Die Betonung der Biopsie ist wichtig.\", \"overall_score\": 0.86, \"judge_reasoning\": \"Die KI-Empfehlung (Biopsie, dann Chirurgie) stimmt mit der Ground Truth (Staging, dann Nephrektomie) überein. Die KI berücksichtigt die Komorbiditäten und die Notwendigkeit einer Biopsie korrekt. Die semantische Übereinstimmung ist hoch, die klinische Angemessenheit ebenfalls. Die Begründung ist solide, wenn auch mit einer kleinen Redundanz.\"}",
+      "reasoning_output": null,
+      "error": null,
+      "inference_time_seconds": 16.639145215352375
+    },
+    {
+      "case_id": "ncc_11",
+      "evaluation": {
+        "is_correct": true,
+        "correctness_reason": "Die KI empfiehlt eine radikale Nephrektomie mit Thrombektomie, was der Ground Truth entspricht.",
+        "therapy_semantic_match": true,
+        "therapy_semantic_score": 1.0,
+        "clinical_appropriateness": true,
+        "clinical_appropriateness_score": 1.0,
+        "reasoning_quality": 0.9,
+        "reasoning_critique": "Die Begründung ist sehr gut, erklärt die Nicht-Anwendbarkeit von IMDC und die Wahl der radikalen Nephrektomie aufgrund der Tumorgröße und V.-cava-Beteiligung. Die Erwähnung der minimalinvasiven Optionen und der Nicht-Indikation für Adrenalektomie/Lymphadenektomie ist korrekt.",
+        "overall_score": 0.95,
+        "judge_reasoning": "Die KI-Empfehlung stimmt exakt mit der Ground Truth überein (radikale Nephrektomie mit Thrombektomie). Die Begründung ist klinisch korrekt und gut strukturiert. Die semantische Übereinstimmung ist perfekt. Die klinische Angemessenheit ist hoch, da die Empfehlung der Standardbehandlung für einen lokal fortgeschrittenen, nicht-metastasierten RCC mit V.-cava-Beteiligung entspricht. Die Begründungsqualität ist ebenfalls sehr hoch."
+      },
+      "raw_response": "{\"is_correct\": true, \"correctness_reason\": \"Die KI empfiehlt eine radikale Nephrektomie mit Thrombektomie, was der Ground Truth entspricht.\", \"therapy_semantic_match\": true, \"therapy_semantic_score\": 1.0, \"clinical_appropriateness\": true, \"clinical_appropriateness_score\": 1.0, \"reasoning_quality\": 0.9, \"reasoning_critique\": \"Die Begründung ist sehr gut, erklärt die Nicht-Anwendbarkeit von IMDC und die Wahl der radikalen Nephrektomie aufgrund der Tumorgröße und V.-cava-Beteiligung. Die Erwähnung der minimalinvasiven Optionen und der Nicht-Indikation für Adrenalektomie/Lymphadenektomie ist korrekt.\", \"overall_score\": 0.95, \"judge_reasoning\": \"Die KI-Empfehlung stimmt exakt mit der Ground Truth überein (radikale Nephrektomie mit Thrombektomie). Die Begründung ist klinisch korrekt und gut strukturiert. Die semantische Übereinstimmung ist perfekt. Die klinische Angemessenheit ist hoch, da die Empfehlung der Standardbehandlung für einen lokal fortgeschrittenen, nicht-metastasierten RCC mit V.-cava-Beteiligung entspricht. Die Begründungsqualität ist ebenfalls sehr hoch.\"}",
+      "reasoning_output": null,
+      "error": null,
+      "inference_time_seconds": 16.639145215352375
+    }
+  ]
+}
