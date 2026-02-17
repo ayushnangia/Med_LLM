@@ -165,6 +165,7 @@ export interface JudgeReviewRow {
   case_id: string;
   model_id: string;
   reviewer_name: string;
+  judge_model: string;
   judge_correct: string;
   judge_reasoning_quality: number | null;
   comment: string | null;
@@ -179,12 +180,14 @@ export async function getJudgeReviews(filters?: {
   doctor?: string;
   caseId?: string;
   modelId?: string;
+  judgeModel?: string;
 }): Promise<JudgeReviewRow[]> {
   let query = supabase.from('judge_reviews').select('*');
 
   if (filters?.doctor) query = query.eq('reviewer_name', filters.doctor);
   if (filters?.caseId) query = query.eq('case_id', filters.caseId);
   if (filters?.modelId) query = query.eq('model_id', filters.modelId);
+  if (filters?.judgeModel) query = query.eq('judge_model', filters.judgeModel);
 
   const { data, error } = await query;
   if (error) throw error;
@@ -196,6 +199,7 @@ export async function upsertJudgeReview(input: {
   case_id: string;
   model_id: string;
   reviewer_name: string;
+  judge_model: string;
   judge_correct: string;
   judge_reasoning_quality?: number | null;
   comment?: string | null;
@@ -204,13 +208,14 @@ export async function upsertJudgeReview(input: {
   judge_is_correct?: boolean | null;
   judge_overall_score?: number | null;
 }): Promise<JudgeReviewRow> {
-  const id = `${input.case_id}__${input.model_id}__${input.reviewer_name}`;
+  const id = `${input.case_id}__${input.model_id}__${input.reviewer_name}__${input.judge_model}`;
 
   const row = {
     id,
     case_id: input.case_id,
     model_id: input.model_id,
     reviewer_name: input.reviewer_name,
+    judge_model: input.judge_model,
     judge_correct: input.judge_correct,
     judge_reasoning_quality: input.judge_reasoning_quality ?? null,
     comment: input.comment ?? null,
@@ -234,6 +239,7 @@ export async function upsertJudgeReviewsBatch(inputs: Array<{
   case_id: string;
   model_id: string;
   reviewer_name: string;
+  judge_model: string;
   judge_correct: string;
   judge_reasoning_quality?: number | null;
   comment?: string | null;
@@ -243,10 +249,11 @@ export async function upsertJudgeReviewsBatch(inputs: Array<{
   judge_overall_score?: number | null;
 }>): Promise<JudgeReviewRow[]> {
   const rows = inputs.map(input => ({
-    id: `${input.case_id}__${input.model_id}__${input.reviewer_name}`,
+    id: `${input.case_id}__${input.model_id}__${input.reviewer_name}__${input.judge_model}`,
     case_id: input.case_id,
     model_id: input.model_id,
     reviewer_name: input.reviewer_name,
+    judge_model: input.judge_model,
     judge_correct: input.judge_correct,
     judge_reasoning_quality: input.judge_reasoning_quality ?? null,
     comment: input.comment ?? null,

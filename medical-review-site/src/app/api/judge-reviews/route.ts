@@ -9,6 +9,7 @@ export async function GET(request: NextRequest) {
       doctor: searchParams.get('doctor') || undefined,
       caseId: searchParams.get('case') || undefined,
       modelId: searchParams.get('model') || undefined,
+      judgeModel: searchParams.get('judge_model') || undefined,
     });
     return NextResponse.json({ reviews });
   } catch (error) {

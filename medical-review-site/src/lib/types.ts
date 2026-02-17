@@ -118,7 +118,8 @@ export interface ModelPrediction {
   metastatic_correct: boolean;
   therapy_exact_match: boolean;
   therapy_acceptable: boolean;
-  judge_evaluation: JudgeEvaluation;
+  judge_evaluation: JudgeEvaluation;            // default judge (GPT-5.2)
+  judge_evaluations: Record<string, JudgeEvaluation>; // all judges keyed by judge model ID
   inference_time_s: number;
   doctor_review: DoctorReview | null;
 }
@@ -162,6 +163,24 @@ export function getScoreLevel(score: number): ScoreLevel {
   if (score >= 0.7) return 'high';
   if (score >= 0.4) return 'medium';
   return 'low';
+}
+
+// Default judge used on case detail page
+export const DEFAULT_JUDGE_ID = 'openai/gpt-5.2';
+
+// All available judge models
+export const JUDGE_MODEL_IDS = [
+  'openai/gpt-5.2',
+  'google/medgemma-27b-text-it',
+] as const;
+
+export const JUDGE_DISPLAY_NAMES: Record<string, string> = {
+  'openai/gpt-5.2': 'GPT-5.2',
+  'google/medgemma-27b-text-it': 'MedGemma 27B',
+};
+
+export function getJudgeDisplayName(judgeId: string): string {
+  return JUDGE_DISPLAY_NAMES[judgeId] || judgeId.split('/').pop()?.replace(/-/g, ' ') || judgeId;
 }
 
 // Required models that need full review coverage

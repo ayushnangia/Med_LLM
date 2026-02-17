@@ -7,12 +7,14 @@ import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
 import { ModelSelector } from '@/components/ModelSelector';
 import { ModelGrid } from '@/components/ModelGrid';
-import { ClinicalContextDisplay } from '@/components/ClinicalContext';
 import { getReviewerName, getReviewsFromServer, setSelectedModels } from '@/lib/storage';
 import { REQUIRED_MODEL_IDS } from '@/lib/types';
 import { useI18n } from '@/lib/i18n';
-import { ChevronLeft, ChevronRight, Home, User, Activity, ClipboardCheck, CheckCircle } from 'lucide-react';
-import type { Case } from '@/lib/types';
+import {
+  ChevronLeft, ChevronRight, Home, User, Activity, ClipboardCheck, CheckCircle,
+  Stethoscope, FileText, Pill, Scan,
+} from 'lucide-react';
+import type { Case, Medication, ImagingFinding, SecondaryDiagnosis } from '@/lib/types';
 import type { DoctorReviewResponse } from '@/lib/storage';
 
 interface CaseDetailClientProps {
@@ -195,72 +197,178 @@ export function CaseDetailClient({ caseItem, allCases, currentIndex }: CaseDetai
         )
       )}
 
-      {/* Patient Info - Expanded */}
+      {/* Patient + Clinical Context + Ground Truth (integrated card) */}
       <Card>
-        <CardContent className="py-4">
-          <div className="space-y-3">
-            {/* Row 1: Patient basics */}
-            <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
-              <span className="font-semibold text-lg">{caseItem.patient.name}</span>
-              {caseItem.patient.age && (
-                <Badge variant="outline" className="font-normal">
-                  {caseItem.patient.age} {language === 'de' ? 'Jahre' : 'years'}
-                </Badge>
-              )}
-              {caseItem.patient.ecog !== null && (
-                <Badge variant="secondary">ECOG: {caseItem.patient.ecog}</Badge>
-              )}
-              {(caseItem.patient.karnofsky !== null || caseItem.patient.karnofsky_from_labor) && (
-                <Badge variant="secondary">
-                  Karnofsky: {caseItem.patient.karnofsky ?? caseItem.patient.karnofsky_from_labor}%
-                </Badge>
-              )}
-              {caseItem.patient.comorbidity && caseItem.patient.comorbidity !== 'unknown' && (
-                <Badge variant={caseItem.patient.comorbidity === 'hoch' ? 'destructive' : 'outline'}>
-                  {language === 'de' ? 'Komorbidität' : 'Comorbidity'}: {caseItem.patient.comorbidity}
-                </Badge>
-              )}
-            </div>
-
-            {/* Row 2: Diagnosis */}
-            <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
-              <Activity className="h-4 w-4 text-muted-foreground" />
-              <span className="font-medium">{caseItem.diagnosis.diagnose_kurz}</span>
-              <Badge variant={caseItem.ground_truth.metastatic ? 'destructive' : 'secondary'}>
-                {caseItem.ground_truth.metastatic ? t('case.metastatic') : t('case.nonMetastatic')}
+        <CardContent className="space-y-4 pt-4">
+          {/* Row 1: Patient basics + badges */}
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+            <span className="font-semibold text-lg">{caseItem.patient.name}</span>
+            {caseItem.patient.age != null && (
+              <Badge variant="outline" className="font-normal">
+                {caseItem.patient.age} {language === 'de' ? 'Jahre' : 'years'}
               </Badge>
+            )}
+            {caseItem.patient.ecog != null && (
+              <Badge variant="secondary">ECOG {caseItem.patient.ecog}</Badge>
+            )}
+            {(caseItem.patient.karnofsky != null || caseItem.patient.karnofsky_from_labor) && (
+              <Badge variant="secondary">
+                {t('clinical.karnofsky')} {caseItem.patient.karnofsky ?? caseItem.patient.karnofsky_from_labor}%
+              </Badge>
+            )}
+            <Badge variant={caseItem.ground_truth.metastatic ? 'destructive' : 'secondary'}>
+              {caseItem.ground_truth.metastatic ? t('case.metastatic') : t('case.nonMetastatic')}
+            </Badge>
+            {caseItem.patient.comorbidity && caseItem.patient.comorbidity !== 'unknown' && (
+              <Badge variant="outline">{t('clinical.comorbidity')}: {caseItem.patient.comorbidity}</Badge>
+            )}
+            {caseItem.patient.life_expectancy && caseItem.patient.life_expectancy !== 'unknown' && caseItem.patient.life_expectancy !== 'null' && (
+              <Badge variant="outline">{t('clinical.lifeExpectancy')}: {caseItem.patient.life_expectancy}</Badge>
+            )}
+          </div>
+
+          {/* Row 2: Diagnosis details */}
+          <div className="bg-gray-50 dark:bg-gray-900/50 rounded-lg px-3 py-2 space-y-1">
+            <div className="text-sm">
+              <span className="font-semibold text-gray-700 dark:text-gray-300">{t('clinical.diagnosis')}: </span>
+              <span>{caseItem.diagnosis.diagnose_kurz}</span>
+            </div>
+            {caseItem.diagnosis.stadium && (
+              <div className="text-sm">
+                <span className="font-semibold text-gray-700 dark:text-gray-300">{t('clinical.stadium')}: </span>
+                <span>{caseItem.diagnosis.stadium}</span>
+              </div>
+            )}
+            <div className="flex flex-wrap gap-x-4 gap-y-1 text-sm mt-1">
               {caseItem.diagnosis.histologie_subtyp && (
-                <Badge variant="outline">{caseItem.diagnosis.histologie_subtyp}</Badge>
+                <span><span className="font-medium text-gray-600 dark:text-gray-400">{t('clinical.histologie')}:</span> {caseItem.diagnosis.histologie_subtyp}</span>
               )}
-              {caseItem.diagnosis.klarzellig !== null && (
-                <Badge variant={caseItem.diagnosis.klarzellig ? 'default' : 'secondary'}>
-                  {caseItem.diagnosis.klarzellig
-                    ? (language === 'de' ? 'Klarzellig' : 'Clear cell')
-                    : (language === 'de' ? 'Nicht-klarzellig' : 'Non-clear cell')}
-                </Badge>
+              {caseItem.diagnosis.klarzellig != null && (
+                <span><span className="font-medium text-gray-600 dark:text-gray-400">{t('clinical.klarzellig')}:</span> {caseItem.diagnosis.klarzellig ? (language === 'de' ? 'Ja' : 'Yes') : (language === 'de' ? 'Nein' : 'No')}</span>
               )}
-              {caseItem.diagnosis.stadium && (
-                <Badge variant="outline">{caseItem.diagnosis.stadium}</Badge>
+              {caseItem.diagnosis.tnm_cM && (
+                <span><span className="font-medium text-gray-600 dark:text-gray-400">{t('clinical.tnm')}:</span> {caseItem.diagnosis.tnm_cM}</span>
+              )}
+              {caseItem.diagnosis.tnm_string && (
+                <span><span className="font-medium text-gray-600 dark:text-gray-400">{t('clinical.tnm')}:</span> {caseItem.diagnosis.tnm_string}</span>
+              )}
+              {caseItem.diagnosis.grading && (
+                <span><span className="font-medium text-gray-600 dark:text-gray-400">{t('clinical.grading')}:</span> {caseItem.diagnosis.grading}</span>
+              )}
+              {caseItem.diagnosis.imdc_risiko && (
+                <span><span className="font-medium text-gray-600 dark:text-gray-400">{t('clinical.imdc')}:</span> {caseItem.diagnosis.imdc_risiko}</span>
               )}
             </div>
           </div>
+
+          {/* Row 3: Anamnese */}
+          {caseItem.clinical_context?.anamnese_freitext && (
+            <div className="text-sm">
+              <div className="flex items-center gap-1.5 font-semibold text-gray-700 dark:text-gray-300 mb-1">
+                <FileText className="h-3.5 w-3.5" />
+                {t('clinical.anamnese')}
+              </div>
+              <p className="text-gray-600 dark:text-gray-400 whitespace-pre-wrap">{caseItem.clinical_context.anamnese_freitext}</p>
+            </div>
+          )}
+
+          {/* Row 4: Nebendiagnosen + Medikation side by side */}
+          {(caseItem.clinical_context?.nebendiagnosen?.length || caseItem.clinical_context?.medikation?.length) && (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+              {caseItem.clinical_context?.nebendiagnosen && caseItem.clinical_context.nebendiagnosen.length > 0 && (
+                <div className="bg-orange-50 dark:bg-orange-950/20 border border-orange-200 dark:border-orange-800 rounded-lg px-3 py-2">
+                  <div className="flex items-center gap-1.5 font-semibold text-orange-800 dark:text-orange-200 text-sm mb-1">
+                    <Activity className="h-3.5 w-3.5" />
+                    {t('clinical.nebendiagnosen')}
+                  </div>
+                  <ul className="text-sm text-gray-700 dark:text-gray-300 space-y-0.5">
+                    {caseItem.clinical_context.nebendiagnosen.map((nd: SecondaryDiagnosis, i: number) => (
+                      <li key={i} className="flex items-start gap-1.5">
+                        <span className="text-orange-400 mt-1">&#8226;</span>
+                        <span>{typeof nd === 'string' ? nd : nd.diagnose}{typeof nd !== 'string' && nd.details ? ` (${nd.details})` : ''}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              {caseItem.clinical_context?.medikation && caseItem.clinical_context.medikation.length > 0 && (
+                <div className="bg-blue-50 dark:bg-blue-950/20 border border-blue-200 dark:border-blue-800 rounded-lg px-3 py-2">
+                  <div className="flex items-center gap-1.5 font-semibold text-blue-800 dark:text-blue-200 text-sm mb-1">
+                    <Pill className="h-3.5 w-3.5" />
+                    {t('clinical.medikation')}
+                  </div>
+                  <ul className="text-sm text-gray-700 dark:text-gray-300 space-y-0.5">
+                    {caseItem.clinical_context.medikation.map((med: Medication, i: number) => {
+                      const name = med.wirkstoff_oder_klasse || med.wirkstoff || '';
+                      const detail = med.details || med.hinweis || '';
+                      const dose = med.dosierung || '';
+                      return (
+                        <li key={i} className="flex items-start gap-1.5">
+                          <span className="text-blue-400 mt-1">&#8226;</span>
+                          <span>
+                            {name}
+                            {dose ? ` ${dose}` : ''}
+                            {detail ? ` (${detail})` : ''}
+                          </span>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* Row 5: Bildgebung (Imaging) */}
+          {caseItem.clinical_context?.bildgebung && caseItem.clinical_context.bildgebung.length > 0 && (
+            <div className="bg-purple-50 dark:bg-purple-950/20 border border-purple-200 dark:border-purple-800 rounded-lg px-3 py-2">
+              <div className="flex items-center gap-1.5 font-semibold text-purple-800 dark:text-purple-200 text-sm mb-1">
+                <Scan className="h-3.5 w-3.5" />
+                {t('clinical.bildgebung')}
+              </div>
+              <div className="space-y-2">
+                {caseItem.clinical_context.bildgebung.map((img: ImagingFinding, i: number) => (
+                  <div key={i} className="text-sm">
+                    <div className="flex flex-wrap gap-2 items-center mb-0.5">
+                      <Badge variant="outline" className="text-xs">{img.modalitaet}</Badge>
+                      <span className="font-medium text-gray-700 dark:text-gray-300">{img.region}</span>
+                      {img.datum && <span className="text-xs text-muted-foreground">{img.datum}</span>}
+                    </div>
+                    <p className="text-gray-600 dark:text-gray-400 whitespace-pre-wrap">{img.befund_kurz}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Row 6: Prior therapies */}
+          {caseItem.clinical_context?.therapien_und_eingriffe && caseItem.clinical_context.therapien_und_eingriffe.length > 0 && (
+            <div className="bg-amber-50 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-800 rounded-lg px-3 py-2">
+              <div className="flex items-center gap-1.5 font-semibold text-amber-800 dark:text-amber-200 text-sm mb-1">
+                {t('clinical.priorTherapies')}
+              </div>
+              <div className="space-y-1 text-sm">
+                {caseItem.clinical_context.therapien_und_eingriffe.map((th, i) => (
+                  <div key={i} className="flex flex-wrap gap-2 items-center">
+                    {th.linie != null && <Badge variant="outline" className="text-xs">{th.linie}. Linie</Badge>}
+                    <span className="font-medium">{th.typ}</span>
+                    {(th.beschreibung || th.regime) && <span className="text-gray-600 dark:text-gray-400">{th.beschreibung || th.regime}</span>}
+                    {th.status && <Badge variant="secondary" className="text-xs">{th.status}</Badge>}
+                    {(th.datum || th.datum_start) && <span className="text-xs text-muted-foreground">{th.datum || th.datum_start}{th.datum_ende ? ` – ${th.datum_ende}` : ''}</span>}
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Ground Truth Therapy */}
+          <div className="bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-800 rounded-lg px-3 py-2">
+            <span className="font-semibold text-green-800 dark:text-green-200 text-sm">{t('case.groundTruth')}: </span>
+            <span className="text-sm">{caseItem.ground_truth.therapy}</span>
+          </div>
         </CardContent>
       </Card>
-
-      {/* Ground Truth - Green Box */}
-      <div className="bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-800 rounded-lg p-4">
-        <h3 className="font-semibold text-green-800 dark:text-green-200 mb-2 text-sm">
-          {t('case.groundTruth')}
-        </h3>
-        <p className="text-sm">{caseItem.ground_truth.therapy}</p>
-      </div>
-
-      {/* Clinical Context - Full medical information */}
-      <ClinicalContextDisplay
-        patient={caseItem.patient}
-        diagnosis={caseItem.diagnosis}
-        context={caseItem.clinical_context}
-      />
 
       {/* Model Selector */}
       <ModelSelector
@@ -269,27 +377,6 @@ export function CaseDetailClient({ caseItem, allCases, currentIndex }: CaseDetai
         onChange={handleModelSelectionChange}
         reviewedModels={reviewedModels}
       />
-
-      {/* Reviewer Reference: Diagnose + Soll-Therapie */}
-      <div className="space-y-2">
-        <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm">
-          <span className="font-semibold">{language === 'de' ? 'Diagnose' : 'Diagnosis'}:</span>
-          <span>{caseItem.diagnosis.diagnose_kurz}</span>
-          <Badge variant={caseItem.ground_truth.metastatic ? 'destructive' : 'secondary'} className="text-xs">
-            {caseItem.ground_truth.metastatic ? t('case.metastatic') : t('case.nonMetastatic')}
-          </Badge>
-          {caseItem.diagnosis.histologie_subtyp && (
-            <span className="text-muted-foreground">{caseItem.diagnosis.histologie_subtyp}</span>
-          )}
-          {caseItem.diagnosis.stadium && (
-            <span className="text-muted-foreground">{caseItem.diagnosis.stadium}</span>
-          )}
-        </div>
-        <div className="bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-800 rounded-lg px-3 py-2">
-          <span className="font-semibold text-green-800 dark:text-green-200 text-sm">{t('case.groundTruth')}: </span>
-          <span className="text-sm">{caseItem.ground_truth.therapy}</span>
-        </div>
-      </div>
 
       {/* Model Grid */}
       <ModelGrid

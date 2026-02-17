@@ -14,7 +14,7 @@ export async function GET(request: NextRequest) {
     }
 
     const headers = [
-      'case_id', 'model_id', 'reviewer_name', 'judge_correct',
+      'case_id', 'model_id', 'reviewer_name', 'judge_model', 'judge_correct',
       'judge_reasoning_quality', 'comment',
       'doctor_acceptable', 'doctor_quality',
       'judge_is_correct', 'judge_overall_score',
@@ -25,6 +25,7 @@ export async function GET(request: NextRequest) {
       r.case_id,
       r.model_id,
       r.reviewer_name,
+      r.judge_model ?? 'openai/gpt-5.2',
       r.judge_correct ?? '',
       r.judge_reasoning_quality?.toString() ?? '',
       r.comment ?? '',

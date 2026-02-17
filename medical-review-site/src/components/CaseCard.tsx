@@ -76,10 +76,8 @@ export function CaseCard({ caseItem, reviewedRequiredCount, totalRequiredCount }
                 {caseItem.ground_truth.metastatic ? t('cases.metastatic') : t('cases.nonMetastatic')}
               </Badge>
               {caseItem.diagnosis.stadium && (
-                <Badge variant="outline" className="text-xs">
-                  {caseItem.diagnosis.stadium.length > 30
-                    ? caseItem.diagnosis.stadium.substring(0, 30) + '...'
-                    : caseItem.diagnosis.stadium}
+                <Badge variant="outline" className="text-xs max-w-[280px] truncate">
+                  {caseItem.diagnosis.stadium}
                 </Badge>
               )}
             </div>

@@ -202,6 +202,7 @@ export interface JudgeReviewInput {
   case_id: string;
   model_id: string;
   reviewer_name: string;
+  judge_model: string;
   judge_correct: string;  // 'agree' | 'disagree' | 'partial'
   judge_reasoning_quality?: number | null;
   comment?: string | null;
@@ -237,10 +238,12 @@ export async function saveJudgeReviewsBatch(reviews: JudgeReviewInput[]): Promis
 export async function getJudgeReviewsFromServer(filters?: {
   doctor?: string;
   caseId?: string;
+  judgeModel?: string;
 }): Promise<JudgeReviewResponse[]> {
   const params = new URLSearchParams();
   if (filters?.doctor) params.set('doctor', filters.doctor);
   if (filters?.caseId) params.set('case', filters.caseId);
+  if (filters?.judgeModel) params.set('judge_model', filters.judgeModel);
 
   const url = `/api/judge-reviews${params.toString() ? `?${params}` : ''}`;
   const response = await fetch(url);
