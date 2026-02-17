@@ -8,23 +8,23 @@
     "structured_output": true,
     "reasoning_effort": null
   },
-  "timestamp": "2026-02-16_13-18-43",
+  "timestamp": "2026-02-18_02-00-03",
   "source_results_dir": "results/modal_treatment/google_medgemma-27b-text-it/2026-01-09_23-16-39",
   "total_cases": 35,
   "evaluated_cases": 35,
   "failed_evaluations": 0,
   "metrics": {
-    "accuracy": 0.6571,
-    "correct_count": 23,
-    "incorrect_count": 12,
+    "accuracy": 0.6857,
+    "correct_count": 24,
+    "incorrect_count": 11,
     "therapy_semantic_match_rate": 0.6,
     "therapy_semantic_match_count": 21,
     "avg_therapy_semantic_score": 0.7257,
     "clinical_appropriateness_rate": 1.0,
     "clinical_appropriateness_count": 35,
-    "avg_clinical_score": 0.8714,
-    "avg_reasoning_quality": 0.8,
-    "avg_overall_score": 0.7831
+    "avg_clinical_score": 0.8743,
+    "avg_reasoning_quality": 0.8029,
+    "avg_overall_score": 0.7891
   },
   "evaluations": [
     {
@@ -258,21 +258,21 @@
     {
       "case_id": "ncc_20",
       "evaluation": {
-        "is_correct": false,
-        "correctness_reason": "Die Ground Truth ist 'None', da keine Therapie empfohlen wurde. Die KI empfiehlt jedoch eine Therapie. Daher ist die KI-Vorhersage nicht korrekt gemäß der Definition.",
+        "is_correct": true,
+        "correctness_reason": "Die KI empfiehlt Nivolumab + Cabozantinib, was eine der empfohlenen Erstlinien-IO+TKI-Kombinationen für mRCC mit günstigem Risiko ist und der Ground Truth entspricht.",
         "therapy_semantic_match": true,
         "therapy_semantic_score": 1.0,
         "clinical_appropriateness": true,
-        "clinical_appropriateness_score": 0.9,
-        "reasoning_quality": 0.8,
-        "reasoning_critique": "Die Begründung für die Metastasierung und das IMDC-Risiko ist korrekt. Die Therapiebegründung ist ebenfalls korrekt und nennt leitlinienkonforme Optionen. Die Wahl von Nivolumab+Cabozantinib ist eine valide Erstlinienoption.",
-        "overall_score": 0.74,
-        "judge_reasoning": "Die KI-Empfehlung ist klinisch angemessen und die Begründung ist gut. Die semantische Übereinstimmung ist perfekt. Jedoch ist die Vorhersage gemäß der Aufgabenstellung 'is_correct' falsch, da die Ground Truth 'None' ist und die KI eine Therapie empfiehlt. Die Gesamtbewertung spiegelt die klinische Qualität wider, aber die 'is_correct'-Bewertung hat Priorität."
+        "clinical_appropriateness_score": 1.0,
+        "reasoning_quality": 0.9,
+        "reasoning_critique": "Die Begründung ist weitgehend korrekt und logisch. Die Annahme, dass ICI durchführbar ist, ist angemessen, da keine Kontraindikationen genannt werden. Die Nennung der IMDC-Kriterien ist korrekt, auch wenn die fehlenden Laborwerte als 'nicht dokumentiert' und 'keine Anzeichen' interpretiert werden, was eine Annahme ist.",
+        "overall_score": 0.95,
+        "judge_reasoning": "Die KI-Vorhersage ist korrekt, da die empfohlene Therapie (Nivolumab + Cabozantinib) der Ground Truth entspricht. Die Begründung ist klinisch angemessen und logisch aufgebaut, auch wenn die Interpretation der fehlenden Laborwerte eine Annahme darstellt. Die semantische Übereinstimmung ist perfekt. Die klinische Angemessenheit ist hoch, da die Therapie der Leitlinienempfehlung für Erstlinienbehandlung bei mRCC mit günstigem Risiko entspricht."
       },
-      "raw_response": "{\"is_correct\": false, \"correctness_reason\": \"Die Ground Truth ist 'None', da keine Therapie empfohlen wurde. Die KI empfiehlt jedoch eine Therapie. Daher ist die KI-Vorhersage nicht korrekt gemäß der Definition.\", \"therapy_semantic_match\": true, \"therapy_semantic_score\": 1.0, \"clinical_appropriateness\": true, \"clinical_appropriateness_score\": 0.9, \"reasoning_quality\": 0.8, \"reasoning_critique\": \"Die Begründung für die Metastasierung und das IMDC-Risiko ist korrekt. Die Therapiebegründung ist ebenfalls korrekt und nennt leitlinienkonforme Optionen. Die Wahl von Nivolumab+Cabozantinib ist eine valide Erstlinienoption.\", \"overall_score\": 0.74, \"judge_reasoning\": \"Die KI-Empfehlung ist klinisch angemessen und die Begründung ist gut. Die semantische Übereinstimmung ist perfekt. Jedoch ist die Vorhersage gemäß der Aufgabenstellung 'is_correct' falsch, da die Ground Truth 'None' ist und die KI eine Therapie empfiehlt. Die Gesamtbewertung spiegelt die klinische Qualität wider, aber die 'is_correct'-Bewertung hat Priorität.\"}",
+      "raw_response": "{\"is_correct\": true, \"correctness_reason\": \"Die KI empfiehlt Nivolumab + Cabozantinib, was eine der empfohlenen Erstlinien-IO+TKI-Kombinationen für mRCC mit günstigem Risiko ist und der Ground Truth entspricht.\", \"therapy_semantic_match\": true, \"therapy_semantic_score\": 1.0, \"clinical_appropriateness\": true, \"clinical_appropriateness_score\": 1.0, \"reasoning_quality\": 0.9, \"reasoning_critique\": \"Die Begründung ist weitgehend korrekt und logisch. Die Annahme, dass ICI durchführbar ist, ist angemessen, da keine Kontraindikationen genannt werden. Die Nennung der IMDC-Kriterien ist korrekt, auch wenn die fehlenden Laborwerte als 'nicht dokumentiert' und 'keine Anzeichen' interpretiert werden, was eine Annahme ist.\", \"overall_score\": 0.95, \"judge_reasoning\": \"Die KI-Vorhersage ist korrekt, da die empfohlene Therapie (Nivolumab + Cabozantinib) der Ground Truth entspricht. Die Begründung ist klinisch angemessen und logisch aufgebaut, auch wenn die Interpretation der fehlenden Laborwerte eine Annahme darstellt. Die semantische Übereinstimmung ist perfekt. Die klinische Angemessenheit ist hoch, da die Therapie der Leitlinienempfehlung für Erstlinienbehandlung bei mRCC mit günstigem Risiko entspricht.\"}",
       "reasoning_output": null,
       "error": null,
-      "inference_time_seconds": 2.7675809247153147
+      "inference_time_seconds": 30.62046217918396
     },
     {
       "case_id": "ncc_21",

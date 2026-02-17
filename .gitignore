@@ -39,3 +39,20 @@ build/
 *.tmp
 *.temp
 *.log
+
+# Local Netlify folder
+.netlify
+
+# Claude Code local config
+.agents/
+.claude/
+.mcp.json
+
+# Vercel
+.vercel
+
+# Data archives
+*.zip
+
+# Doctor review exports (sensitive)
+arzt-bewertungen_*.csv

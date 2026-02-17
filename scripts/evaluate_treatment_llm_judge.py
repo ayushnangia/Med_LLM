@@ -630,7 +630,8 @@ def evaluate_results(
     results_dir: str,
     model_key: str = "qwq-32b",
     limit: Optional[int] = None,
-    workers: int = 20
+    workers: int = 20,
+    case_filter: Optional[str] = None
 ) -> dict:
     """
     Evaluate all results in a directory using LLM judge.
@@ -640,6 +641,7 @@ def evaluate_results(
         model_key: Judge model key from JUDGE_MODELS
         limit: Optional limit on number of cases to evaluate
         workers: Number of parallel workers for API calls (default: 5)
+        case_filter: Optional comma-separated case IDs to filter (e.g., "ncc_20,ncc_21")
 
     Returns:
         Summary dict with all evaluations
@@ -657,6 +659,9 @@ def evaluate_results(
 
     # Load all case results
     case_files = sorted(results_path.glob("ncc_*.json"))
+    if case_filter:
+        filter_ids = {c.strip() for c in case_filter.split(",")}
+        case_files = [f for f in case_files if f.stem in filter_ids]
     if limit:
         case_files = case_files[:limit]
 
@@ -742,6 +747,40 @@ def evaluate_results(
     # Save results
     judge_slug = model_key.replace("/", "_").replace(":", "_")
     out_file = results_path / f"judge_evaluation_{judge_slug}.json"
+
+    # When using case_filter, merge into existing evaluation file
+    if case_filter and out_file.exists():
+        with open(out_file, 'r', encoding='utf-8') as f:
+            existing = json.load(f)
+        # Replace matching evaluations, keep the rest
+        new_case_ids = {e.case_id for e in evaluations}
+        merged_evals = [e for e in existing.get("evaluations", []) if e.get("case_id") not in new_case_ids]
+        merged_evals.extend([e.model_dump() for e in evaluations])
+        existing["evaluations"] = sorted(merged_evals, key=lambda x: x.get("case_id", ""))
+        existing["timestamp"] = summary["timestamp"]
+        # Recalculate metrics from merged evaluations
+        valid = [e for e in existing["evaluations"] if e.get("evaluation") is not None]
+        if valid:
+            n = len(valid)
+            cc = sum(1 for e in valid if e["evaluation"].get("is_correct"))
+            existing["metrics"] = {
+                "accuracy": round(cc / n, 4),
+                "correct_count": cc,
+                "incorrect_count": n - cc,
+                "therapy_semantic_match_rate": sum(1 for e in valid if e["evaluation"].get("therapy_semantic_match")) / n,
+                "therapy_semantic_match_count": sum(1 for e in valid if e["evaluation"].get("therapy_semantic_match")),
+                "avg_therapy_semantic_score": round(sum(e["evaluation"].get("therapy_semantic_score", 0) for e in valid) / n, 4),
+                "clinical_appropriateness_rate": sum(1 for e in valid if e["evaluation"].get("clinical_appropriateness")) / n,
+                "clinical_appropriateness_count": sum(1 for e in valid if e["evaluation"].get("clinical_appropriateness")),
+                "avg_clinical_score": round(sum(e["evaluation"].get("clinical_appropriateness_score", 0) for e in valid) / n, 4),
+                "avg_reasoning_quality": round(sum(e["evaluation"].get("reasoning_quality", 0) for e in valid) / n, 4),
+                "avg_overall_score": round(sum(e["evaluation"].get("overall_score", 0) for e in valid) / n, 4),
+            }
+            existing["total_cases"] = n
+            existing["evaluated_cases"] = n
+        summary = existing
+        print(f"\nMerged {len(new_case_ids)} case(s) into existing evaluation file ({len(valid)} total cases)")
+
     with open(out_file, 'w', encoding='utf-8') as f:
         json.dump(summary, f, indent=2, ensure_ascii=False)
 
@@ -804,6 +843,7 @@ Examples:
     parser.add_argument("--results-dir", help="Path to results directory")
     parser.add_argument("--model", default="gpt-5.2", help="Judge model key")
     parser.add_argument("--limit", type=int, help="Limit number of cases")
+    parser.add_argument("--case-filter", help="Only evaluate specific case(s), comma-separated (e.g., ncc_20 or ncc_20,ncc_21)")
     parser.add_argument("--workers", type=int, default=20, help="Number of parallel workers (default: 20)")
     parser.add_argument("--list-models", action="store_true", help="List available models")
 
@@ -816,7 +856,7 @@ Examples:
     if not args.results_dir:
         parser.error("--results-dir is required (or use --list-models)")
 
-    evaluate_results(args.results_dir, args.model, args.limit, args.workers)
+    evaluate_results(args.results_dir, args.model, args.limit, args.workers, args.case_filter)
 
 
 if __name__ == "__main__":

@@ -738,7 +738,7 @@ def _infer_ground_truth_metastatic(case: dict) -> Optional[bool]:
     return None
 
 
-def load_ncc_cases(data_dir: str = "converted_data/send_23_12_25", start_case: int = 1) -> List[dict]:
+def load_ncc_cases(data_dir: str = "converted_data/send_23_12_25", start_case: int = 1, end_case: int = 0) -> List[dict]:
     """Load NCC cases with all relevant clinical data.
 
     Handles all schema formats:
@@ -750,6 +750,7 @@ def load_ncc_cases(data_dir: str = "converted_data/send_23_12_25", start_case: i
     Args:
         data_dir: Path to converted data directory
         start_case: 1-based case number to start from (skip earlier cases)
+        end_case: 1-based case number to stop at (inclusive). 0 = no limit.
     """
     base = Path(data_dir)
     ncc_file = base / "ncc" / "ncc_cases_json.json"
@@ -764,6 +765,8 @@ def load_ncc_cases(data_dir: str = "converted_data/send_23_12_25", start_case: i
     for i, case in enumerate(data.get("cases", []), 1):
         if i < start_case:
             continue
+        if end_case > 0 and i > end_case:
+            break
 
         fmt = _detect_case_format(case)
         if fmt == "case-de":
@@ -1312,13 +1315,14 @@ def run_prediction(model_key: str, cases: list, run_timestamp: str):
 # ============================================================================
 
 @app.local_entrypoint()
-def main(model: str = "meditron3-7b", data_dir: str = "converted_data/send_23_12_25", start_case: int = 1):
+def main(model: str = "meditron3-7b", data_dir: str = "converted_data/send_23_12_25", start_case: int = 1, end_case: int = 0):
     """Run NCC treatment prediction.
 
     Args:
         model: Model key from MODEL_CONFIGS
         data_dir: Path to converted data directory
         start_case: 1-based case number to start from (skip earlier cases)
+        end_case: 1-based case number to stop at (inclusive). 0 = no limit.
     """
 
     if model not in MODEL_CONFIGS:
@@ -1333,12 +1337,13 @@ def main(model: str = "meditron3-7b", data_dir: str = "converted_data/send_23_12
     print(f"Model: {model}")
     print(f"HuggingFace: {cfg['hf_id']}")
     print(f"Start case: {start_case}")
+    print(f"End case: {end_case if end_case > 0 else 'all'}")
     print(f"Timestamp: {run_timestamp}")
     print("-" * 50)
 
     # Load cases
-    cases = load_ncc_cases(data_dir, start_case=start_case)
-    print(f"Loaded {len(cases)} NCC cases (starting from case {start_case})")
+    cases = load_ncc_cases(data_dir, start_case=start_case, end_case=end_case)
+    print(f"Loaded {len(cases)} NCC cases (cases {start_case}-{end_case if end_case > 0 else 'end'})")
 
     # Run prediction
     result = run_prediction.remote(model, cases, run_timestamp)

@@ -8,7 +8,7 @@
     "structured_output": true,
     "reasoning_effort": null
   },
-  "timestamp": "2026-02-15_23-09-32",
+  "timestamp": "2026-02-18_01-59-53",
   "source_results_dir": "results/modal_treatment/allenai_olmo-3.1-32b-think/2026-01-09_23-15-14",
   "total_cases": 35,
   "evaluated_cases": 35,
@@ -23,8 +23,8 @@
     "clinical_appropriateness_rate": 1.0,
     "clinical_appropriateness_count": 35,
     "avg_clinical_score": 0.8471,
-    "avg_reasoning_quality": 0.7757,
-    "avg_overall_score": 0.7514
+    "avg_reasoning_quality": 0.7729,
+    "avg_overall_score": 0.75
   },
   "evaluations": [
     {
@@ -259,20 +259,20 @@
       "case_id": "ncc_20",
       "evaluation": {
         "is_correct": true,
-        "correctness_reason": "Die KI-Empfehlung (Nivolumab + Cabozantinib) entspricht der Ground Truth (NIVO+CABO) semantisch.",
+        "correctness_reason": "Die KI empfiehlt Nivolumab + Cabozantinib, was der Ground Truth entspricht.",
         "therapy_semantic_match": true,
         "therapy_semantic_score": 1.0,
         "clinical_appropriateness": true,
         "clinical_appropriateness_score": 1.0,
-        "reasoning_quality": 0.9,
-        "reasoning_critique": "Die Begründung ist gut strukturiert und korrekt. Die Annahme über den Karnofsky-Score und die Laborwerte ist zwar nicht explizit im Fall, aber im Kontext eines ECOG 0 und IMDC low risk plausibel und wird als Voraussetzung genannt.",
-        "overall_score": 0.95,
-        "judge_reasoning": "Die KI identifiziert korrekt den metastasierten Status und das günstige IMDC-Risiko. Die Therapieempfehlung (Nivolumab + Cabozantinib) ist eine leitlinienkonforme Erstlinienbehandlung für mRCC mit niedrigem Risiko und entspricht der Ground Truth. Die Begründung ist klar und medizinisch fundiert."
+        "reasoning_quality": 0.8,
+        "reasoning_critique": "Die Begründung ist weitgehend korrekt, aber die Annahme 'keine Komorbidität' ist nicht explizit belegt, sondern nur implizit durch das Fehlen von Angaben. Die Nennung der Alternativen ist gut.",
+        "overall_score": 0.9,
+        "judge_reasoning": "Die KI-Empfehlung ist semantisch identisch mit der Ground Truth und klinisch absolut angemessen für einen mRCC mit günstigem IMDC-Risiko. Die Begründung ist solide, auch wenn die Annahme zur Komorbidität nicht explizit gestützt wird. Daher ist die Gesamtbewertung hoch."
       },
-      "raw_response": "{\"is_correct\": true, \"correctness_reason\": \"Die KI-Empfehlung (Nivolumab + Cabozantinib) entspricht der Ground Truth (NIVO+CABO) semantisch.\", \"therapy_semantic_match\": true, \"therapy_semantic_score\": 1.0, \"clinical_appropriateness\": true, \"clinical_appropriateness_score\": 1.0, \"reasoning_quality\": 0.9, \"reasoning_critique\": \"Die Begründung ist gut strukturiert und korrekt. Die Annahme über den Karnofsky-Score und die Laborwerte ist zwar nicht explizit im Fall, aber im Kontext eines ECOG 0 und IMDC low risk plausibel und wird als Voraussetzung genannt.\", \"overall_score\": 0.95, \"judge_reasoning\": \"Die KI identifiziert korrekt den metastasierten Status und das günstige IMDC-Risiko. Die Therapieempfehlung (Nivolumab + Cabozantinib) ist eine leitlinienkonforme Erstlinienbehandlung für mRCC mit niedrigem Risiko und entspricht der Ground Truth. Die Begründung ist klar und medizinisch fundiert.\"}",
+      "raw_response": "{\"is_correct\": true, \"correctness_reason\": \"Die KI empfiehlt Nivolumab + Cabozantinib, was der Ground Truth entspricht.\", \"therapy_semantic_match\": true, \"therapy_semantic_score\": 1.0, \"clinical_appropriateness\": true, \"clinical_appropriateness_score\": 1.0, \"reasoning_quality\": 0.8, \"reasoning_critique\": \"Die Begründung ist weitgehend korrekt, aber die Annahme 'keine Komorbidität' ist nicht explizit belegt, sondern nur implizit durch das Fehlen von Angaben. Die Nennung der Alternativen ist gut.\", \"overall_score\": 0.9, \"judge_reasoning\": \"Die KI-Empfehlung ist semantisch identisch mit der Ground Truth und klinisch absolut angemessen für einen mRCC mit günstigem IMDC-Risiko. Die Begründung ist solide, auch wenn die Annahme zur Komorbidität nicht explizit gestützt wird. Daher ist die Gesamtbewertung hoch.\"}",
       "reasoning_output": null,
       "error": null,
-      "inference_time_seconds": 2.69266072000776
+      "inference_time_seconds": 23.9606454372406
     },
     {
       "case_id": "ncc_21",

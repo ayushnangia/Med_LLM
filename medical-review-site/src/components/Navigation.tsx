@@ -15,7 +15,7 @@ export function Navigation() {
   const navItems = [
     { href: '/', label: t('nav.start'), icon: Home },
     { href: '/cases', label: t('nav.allCases'), icon: FileText },
-    { href: '/cases', label: t('nav.judgeReview'), icon: Scale, activePrefix: '/judge-review' },
+    { href: '/judge-review', label: t('nav.judgeReview'), icon: Scale, activePrefix: '/judge-review' },
   ];
 
   return (

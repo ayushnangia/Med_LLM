@@ -8,23 +8,23 @@
     "structured_output": true,
     "reasoning_effort": "high"
   },
-  "timestamp": "2026-01-10_00-02-32",
+  "timestamp": "2026-02-18_01-53-55",
   "source_results_dir": "/Users/fortuna/Desktop/Colab/Med_LLM/results/modal_treatment/allenai_olmo-3.1-32b-think/2026-01-09_23-15-14/",
   "total_cases": 35,
   "evaluated_cases": 35,
   "failed_evaluations": 0,
   "metrics": {
-    "accuracy": 0.5714,
-    "correct_count": 20,
-    "incorrect_count": 15,
-    "therapy_semantic_match_rate": 0.4857142857142857,
-    "therapy_semantic_match_count": 17,
-    "avg_therapy_semantic_score": 0.6486,
+    "accuracy": 0.6,
+    "correct_count": 21,
+    "incorrect_count": 14,
+    "therapy_semantic_match_rate": 0.5142857142857142,
+    "therapy_semantic_match_count": 18,
+    "avg_therapy_semantic_score": 0.6743,
     "clinical_appropriateness_rate": 0.9142857142857143,
     "clinical_appropriateness_count": 32,
-    "avg_clinical_score": 0.7869,
-    "avg_reasoning_quality": 0.62,
-    "avg_overall_score": 0.6964
+    "avg_clinical_score": 0.7883,
+    "avg_reasoning_quality": 0.6229,
+    "avg_overall_score": 0.7078
   },
   "evaluations": [
     {
@@ -258,21 +258,21 @@
     {
       "case_id": "ncc_20",
       "evaluation": {
-        "is_correct": false,
-        "correctness_reason": "Ground Truth enthält keine primäre Therapieempfehlung (None); die KI-Empfehlung Nivolumab+Cabozantinib stimmt damit nicht überein und es sind keine akzeptablen Alternativen definiert.",
-        "therapy_semantic_match": false,
-        "therapy_semantic_score": 0.0,
+        "is_correct": true,
+        "correctness_reason": "Die Ground-Truth empfiehlt eine Systemtherapie, explizit z. B. IO+TKI; Nivolumab + Cabozantinib ist eine passende IO+TKI-Erstlinienoption und erfüllt damit die primäre Empfehlung semantisch.",
+        "therapy_semantic_match": true,
+        "therapy_semantic_score": 0.9,
         "clinical_appropriateness": true,
-        "clinical_appropriateness_score": 0.9,
-        "reasoning_quality": 0.65,
-        "reasoning_critique": "Grundlogik (mRCC, IMDC günstig → IO+TKI möglich) ist korrekt, jedoch werden nicht belegte Details angenommen (Karnofsky 90%, Laborwerte), und es wird fälschlich auf T3/T4 verwiesen obwohl nur Tumorgröße/kein Thrombus genannt ist.",
-        "overall_score": 0.49,
-        "judge_reasoning": "Semantisch keine Übereinstimmung mit der Ground Truth (keine Therapie angegeben) → is_correct = false und Semantic Score = 0. Klinisch ist Nivo+Cabozantinib in der Erstlinie bei mRCC/IMDC günstig leitlinienkonform (hoher Clinical Score). Die Begründung ist überwiegend stimmig, aber enthält relevante unbelegte Annahmen und kleinere sachliche Ungenauigkeiten, daher mittlere Reasoning-Qualität."
+        "clinical_appropriateness_score": 0.95,
+        "reasoning_quality": 0.75,
+        "reasoning_critique": "Begründung ist insgesamt schlüssig (mRCC, IMDC günstig, IO+TKI als Standard). Kleinere Mängel: Avelumab+Axitinib wird als gleichrangige Option genannt (in aktuellen Standards teils nicht mehr bevorzugt), zudem fehlen patientenspezifische Aspekte wie Monitoring/Laborkontrollen und Re-Staging-Plan, die in der Ground Truth betont werden.",
+        "overall_score": 0.89,
+        "judge_reasoning": "Semantisch passt die Empfehlung gut, da die Ground Truth bewusst eine IO+TKI-Systemtherapie als Beispiel nennt und Nivo+Cabo eine etablierte Erstlinienkombination bei ccRCC ist. Klinisch ist die Empfehlung leitlinienkonform und angemessen bei IMDC-Favorable-Risk und fehlenden Kontraindikationen. Die Begründung ist überwiegend korrekt, aber etwas zu generisch und mit kleineren Aktualitäts-/Vollständigkeitslücken hinsichtlich begleitendem Monitoring und Therapie-Alternativen."
       },
-      "raw_response": "{\n  \"is_correct\": false,\n  \"correctness_reason\": \"Ground Truth enthält keine primäre Therapieempfehlung (None); die KI-Empfehlung Nivolumab+Cabozantinib stimmt damit nicht überein und es sind keine akzeptablen Alternativen definiert.\",\n  \"therapy_semantic_match\": false,\n  \"therapy_semantic_score\": 0.0,\n  \"clinical_appropriateness\": true,\n  \"clinical_appropriateness_score\": 0.9,\n  \"reasoning_quality\": 0.65,\n  \"reasoning_critique\": \"Grundlogik (mRCC, IMDC günstig → IO+TKI möglich) ist korrekt, jedoch werden nicht belegte Details angenommen (Karnofsky 90%, Laborwerte), und es wird fälschlich auf T3/T4 verwiesen obwohl nur Tumorgröße/kein Thrombus genannt ist.\",\n  \"overall_score\": 0.49,\n  \"judge_reasoning\": \"Semantisch keine Übereinstimmung mit der Ground Truth (keine Therapie angegeben) → is_correct = false und Semantic Score = 0. Klinisch ist Nivo+Cabozantinib in der Erstlinie bei mRCC/IMDC günstig leitlinienkonform (hoher Clinical Score). Die Begründung ist überwiegend stimmig, aber enthält relevante unbelegte Annahmen und kleinere sachliche Ungenauigkeiten, daher mittlere Reasoning-Qualität.\"\n}",
+      "raw_response": "{\n  \"is_correct\": true,\n  \"correctness_reason\": \"Die Ground-Truth empfiehlt eine Systemtherapie, explizit z. B. IO+TKI; Nivolumab + Cabozantinib ist eine passende IO+TKI-Erstlinienoption und erfüllt damit die primäre Empfehlung semantisch.\",\n  \"therapy_semantic_match\": true,\n  \"therapy_semantic_score\": 0.9,\n  \"clinical_appropriateness\": true,\n  \"clinical_appropriateness_score\": 0.95,\n  \"reasoning_quality\": 0.75,\n  \"reasoning_critique\": \"Begründung ist insgesamt schlüssig (mRCC, IMDC günstig, IO+TKI als Standard). Kleinere Mängel: Avelumab+Axitinib wird als gleichrangige Option genannt (in aktuellen Standards teils nicht mehr bevorzugt), zudem fehlen patientenspezifische Aspekte wie Monitoring/Laborkontrollen und Re-Staging-Plan, die in der Ground Truth betont werden.\",\n  \"overall_score\": 0.89,\n  \"judge_reasoning\": \"Semantisch passt die Empfehlung gut, da die Ground Truth bewusst eine IO+TKI-Systemtherapie als Beispiel nennt und Nivo+Cabo eine etablierte Erstlinienkombination bei ccRCC ist. Klinisch ist die Empfehlung leitlinienkonform und angemessen bei IMDC-Favorable-Risk und fehlenden Kontraindikationen. Die Begründung ist überwiegend korrekt, aber etwas zu generisch und mit kleineren Aktualitäts-/Vollständigkeitslücken hinsichtlich begleitendem Monitoring und Therapie-Alternativen.\"\n}",
       "reasoning_output": "",
       "error": null,
-      "inference_time_seconds": 10.888102054595947
+      "inference_time_seconds": 11.058883905410767
     },
     {
       "case_id": "ncc_21",

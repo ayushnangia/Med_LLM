@@ -865,6 +865,18 @@ async function main() {
         }
       }
 
+      // Fill in missing ground truth from JSON result files (e.g. case 20 had empty CSV ground truth)
+      if (!baseCase.ground_truth.therapy || baseCase.ground_truth.therapy === '???') {
+        for (const [, caseMap] of jsonCases) {
+          const jsonData = caseMap.get(caseId);
+          if (jsonData?.caseInfo.ground_truth.therapy) {
+            baseCase.ground_truth.therapy = jsonData.caseInfo.ground_truth.therapy;
+            baseCase.ground_truth.metastatic = jsonData.caseInfo.ground_truth.metastatic;
+            break;
+          }
+        }
+      }
+
       // Merge judge evaluations from JSON files into predictions
       for (const [modelId, prediction] of Object.entries(predictions)) {
         const modelJudges = judgeEvals.get(modelId);

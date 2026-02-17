@@ -8,23 +8,23 @@
     "structured_output": true,
     "reasoning_effort": null
   },
-  "timestamp": "2026-02-15_22-57-31",
+  "timestamp": "2026-02-18_02-00-07",
   "source_results_dir": "results/modal_treatment/allenai_olmo-3.1-32b-instruct/2026-01-09_23-16-53",
   "total_cases": 35,
   "evaluated_cases": 35,
   "failed_evaluations": 0,
   "metrics": {
-    "accuracy": 0.6571,
-    "correct_count": 23,
-    "incorrect_count": 12,
+    "accuracy": 0.6857,
+    "correct_count": 24,
+    "incorrect_count": 11,
     "therapy_semantic_match_rate": 0.4857142857142857,
     "therapy_semantic_match_count": 17,
     "avg_therapy_semantic_score": 0.6029,
     "clinical_appropriateness_rate": 1.0,
     "clinical_appropriateness_count": 35,
-    "avg_clinical_score": 0.8743,
-    "avg_reasoning_quality": 0.7829,
-    "avg_overall_score": 0.7614
+    "avg_clinical_score": 0.8771,
+    "avg_reasoning_quality": 0.7857,
+    "avg_overall_score": 0.7703
   },
   "evaluations": [
     {
@@ -258,21 +258,21 @@
     {
       "case_id": "ncc_20",
       "evaluation": {
-        "is_correct": false,
-        "correctness_reason": "Die Ground Truth ist 'None', die KI empfiehlt aber eine Therapie. Daher ist die KI-Vorhersage nicht korrekt gemäß der Definition.",
+        "is_correct": true,
+        "correctness_reason": "Die KI empfiehlt Nivolumab + Cabozantinib, was der Ground Truth entspricht.",
         "therapy_semantic_match": true,
         "therapy_semantic_score": 1.0,
         "clinical_appropriateness": true,
-        "clinical_appropriateness_score": 0.9,
-        "reasoning_quality": 0.8,
-        "reasoning_critique": "Die Begründung ist weitgehend korrekt, aber die Angabe 'Grading 2' ist nicht im Fall beschrieben und daher eine unzulässige Annahme. Die Begründung für den IMDC-Status ist korrekt.",
-        "overall_score": 0.64,
-        "judge_reasoning": "Die KI empfiehlt eine klinisch angemessene und semantisch korrekte Therapie (Nivolumab + Cabozantinib), die den Leitlinien entspricht. Die Begründung ist größtenteils schlüssig, enthält aber eine nicht belegte Annahme zum Grading. Da die Ground Truth jedoch 'None' ist, ist die Vorhersage gemäß der Kriterien nicht korrekt."
+        "clinical_appropriateness_score": 1.0,
+        "reasoning_quality": 0.9,
+        "reasoning_critique": "Die Begründung ist sehr gut, nennt die Leitlinienempfehlung und Alternativen. Die Begründung für das IMDC-Risiko ist korrekt, auch wenn die Faktoren nicht explizit genannt werden.",
+        "overall_score": 0.95,
+        "judge_reasoning": "Die KI-Vorhersage stimmt exakt mit der Ground Truth überein (Nivolumab + Cabozantinib). Die Begründung ist klinisch korrekt und vollständig, die Therapie ist leitlinienkonform und semantisch identisch. Die Bewertung des IMDC-Risikos ist korrekt. Der Overall Score spiegelt die hohe Übereinstimmung und Qualität wider."
       },
-      "raw_response": "{\"is_correct\": false, \"correctness_reason\": \"Die Ground Truth ist 'None', die KI empfiehlt aber eine Therapie. Daher ist die KI-Vorhersage nicht korrekt gemäß der Definition.\", \"therapy_semantic_match\": true, \"therapy_semantic_score\": 1.0, \"clinical_appropriateness\": true, \"clinical_appropriateness_score\": 0.9, \"reasoning_quality\": 0.8, \"reasoning_critique\": \"Die Begründung ist weitgehend korrekt, aber die Angabe 'Grading 2' ist nicht im Fall beschrieben und daher eine unzulässige Annahme. Die Begründung für den IMDC-Status ist korrekt.\", \"overall_score\": 0.64, \"judge_reasoning\": \"Die KI empfiehlt eine klinisch angemessene und semantisch korrekte Therapie (Nivolumab + Cabozantinib), die den Leitlinien entspricht. Die Begründung ist größtenteils schlüssig, enthält aber eine nicht belegte Annahme zum Grading. Da die Ground Truth jedoch 'None' ist, ist die Vorhersage gemäß der Kriterien nicht korrekt.\"}",
+      "raw_response": "{\"is_correct\": true, \"correctness_reason\": \"Die KI empfiehlt Nivolumab + Cabozantinib, was der Ground Truth entspricht.\", \"therapy_semantic_match\": true, \"therapy_semantic_score\": 1.0, \"clinical_appropriateness\": true, \"clinical_appropriateness_score\": 1.0, \"reasoning_quality\": 0.9, \"reasoning_critique\": \"Die Begründung ist sehr gut, nennt die Leitlinienempfehlung und Alternativen. Die Begründung für das IMDC-Risiko ist korrekt, auch wenn die Faktoren nicht explizit genannt werden.\", \"overall_score\": 0.95, \"judge_reasoning\": \"Die KI-Vorhersage stimmt exakt mit der Ground Truth überein (Nivolumab + Cabozantinib). Die Begründung ist klinisch korrekt und vollständig, die Therapie ist leitlinienkonform und semantisch identisch. Die Bewertung des IMDC-Risikos ist korrekt. Der Overall Score spiegelt die hohe Übereinstimmung und Qualität wider.\"}",
       "reasoning_output": null,
       "error": null,
-      "inference_time_seconds": 2.1055712018694197
+      "inference_time_seconds": 24.118435621261597
     },
     {
       "case_id": "ncc_21",

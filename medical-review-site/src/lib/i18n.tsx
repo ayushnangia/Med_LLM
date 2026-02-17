@@ -17,6 +17,7 @@ const translations = {
     'home.yourName': 'Ihr Name',
     'home.namePlaceholder': 'z.B. Dr. Schmidt',
     'home.startReview': 'Bewertung starten',
+    'home.startJudgeReview': 'Richter-Bewertungen',
     'home.savedReviews': 'Gespeicherte Bewertungen:',
     'home.exportCsv': 'Als CSV exportieren',
     'home.exportAll': 'Alle exportieren',
@@ -149,6 +150,12 @@ const translations = {
     'judgeReview.saveNextJudge': 'Speichern & Nächster Richter',
     'case.nextCase': 'Nächster Fall',
 
+    // Judge review list
+    'judgeList.title': 'Richter-Bewertungen',
+    'judgeList.subtitle': '{count} Fälle mit Bewertungen von {judges} KI-Richtern',
+    'judgeList.remaining': '{cases} Fälle · {count} Reviews offen',
+    'judgeList.judgeProgress': 'Richter-Fortschritt:',
+
     // Clinical context
     'clinical.anamnese': 'Anamnese',
     'clinical.nebendiagnosen': 'Nebendiagnosen',
@@ -179,6 +186,7 @@ const translations = {
     'home.yourName': 'Your Name',
     'home.namePlaceholder': 'e.g. Dr. Smith',
     'home.startReview': 'Start Review',
+    'home.startJudgeReview': 'Judge Reviews',
     'home.savedReviews': 'Saved Reviews:',
     'home.exportCsv': 'Export as CSV',
     'home.exportAll': 'Export All',
@@ -310,6 +318,12 @@ const translations = {
     'judgeReview.selectJudge': 'Select Judge',
     'judgeReview.saveNextJudge': 'Save & Next Judge',
     'case.nextCase': 'Next Case',
+
+    // Judge review list
+    'judgeList.title': 'Judge Reviews',
+    'judgeList.subtitle': '{count} cases with evaluations from {judges} AI judges',
+    'judgeList.remaining': '{cases} cases · {count} reviews remaining',
+    'judgeList.judgeProgress': 'Judge progress:',
 
     // Clinical context
     'clinical.anamnese': 'Medical History',

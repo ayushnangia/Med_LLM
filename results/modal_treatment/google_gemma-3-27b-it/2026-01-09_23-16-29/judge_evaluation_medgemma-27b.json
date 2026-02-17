@@ -8,23 +8,23 @@
     "structured_output": true,
     "reasoning_effort": null
   },
-  "timestamp": "2026-02-15_23-21-18",
+  "timestamp": "2026-02-18_02-01-14",
   "source_results_dir": "results/modal_treatment/google_gemma-3-27b-it/2026-01-09_23-16-29",
   "total_cases": 35,
   "evaluated_cases": 35,
   "failed_evaluations": 0,
   "metrics": {
-    "accuracy": 0.6857,
-    "correct_count": 24,
-    "incorrect_count": 11,
+    "accuracy": 0.7143,
+    "correct_count": 25,
+    "incorrect_count": 10,
     "therapy_semantic_match_rate": 0.5714285714285714,
     "therapy_semantic_match_count": 20,
     "avg_therapy_semantic_score": 0.6943,
     "clinical_appropriateness_rate": 0.9714285714285714,
     "clinical_appropriateness_count": 34,
-    "avg_clinical_score": 0.8543,
-    "avg_reasoning_quality": 0.7457,
-    "avg_overall_score": 0.7609
+    "avg_clinical_score": 0.8571,
+    "avg_reasoning_quality": 0.7486,
+    "avg_overall_score": 0.7686
   },
   "evaluations": [
     {
@@ -258,21 +258,21 @@
     {
       "case_id": "ncc_20",
       "evaluation": {
-        "is_correct": false,
-        "correctness_reason": "Die Ground Truth ist 'None', da keine Therapie empfohlen wurde. Die KI empfiehlt jedoch eine Therapie. Daher ist die KI-Vorhersage nicht korrekt gemäß der Definition.",
+        "is_correct": true,
+        "correctness_reason": "Die KI empfiehlt NIVO+CABO, was der Ground Truth entspricht.",
         "therapy_semantic_match": true,
         "therapy_semantic_score": 1.0,
         "clinical_appropriateness": true,
-        "clinical_appropriateness_score": 0.9,
-        "reasoning_quality": 0.8,
-        "reasoning_critique": "Die Begründung für die Metastasierung ist korrekt. Die Begründung für das IMDC-Risiko ist korrekt. Die Therapiebegründung ist klinisch sinnvoll, aber die Wahl von Nivo+Cabo ohne weitere Differenzierung ist etwas vereinfacht.",
-        "overall_score": 0.68,
-        "judge_reasoning": "Die KI empfiehlt eine valide Therapie für mRCC low risk, aber die Ground Truth gibt 'None' an. Daher ist die Vorhersage nicht korrekt, obwohl sie klinisch angemessen und semantisch passend ist. Die Gesamtbewertung spiegelt die hohe Qualität der Therapieempfehlung wider, aber die Nichtübereinstimmung mit der Ground Truth führt zu 'is_correct: false'."
+        "clinical_appropriateness_score": 1.0,
+        "reasoning_quality": 0.9,
+        "reasoning_critique": "Die Begründung ist sehr gut, könnte aber noch expliziter auf die Leitlinien (z.B. EAU 2024) verweisen. Die Annahme 'ICI-Kombination durchführbar' ist korrekt, aber sollte als solche benannt werden.",
+        "overall_score": 0.95,
+        "judge_reasoning": "Die KI identifiziert korrekt den metastasierten Status und das günstige IMDC-Risiko. Die Therapieempfehlung (NIVO+CABO) ist eine Standard-Erstlinienbehandlung für mRCC mit günstigem Risiko und entspricht exakt der Ground Truth. Die Begründung ist logisch und medizinisch korrekt, auch wenn sie die Leitlinien nicht explizit benennt."
       },
-      "raw_response": "{\"is_correct\": false, \"correctness_reason\": \"Die Ground Truth ist 'None', da keine Therapie empfohlen wurde. Die KI empfiehlt jedoch eine Therapie. Daher ist die KI-Vorhersage nicht korrekt gemäß der Definition.\", \"therapy_semantic_match\": true, \"therapy_semantic_score\": 1.0, \"clinical_appropriateness\": true, \"clinical_appropriateness_score\": 0.9, \"reasoning_quality\": 0.8, \"reasoning_critique\": \"Die Begründung für die Metastasierung ist korrekt. Die Begründung für das IMDC-Risiko ist korrekt. Die Therapiebegründung ist klinisch sinnvoll, aber die Wahl von Nivo+Cabo ohne weitere Differenzierung ist etwas vereinfacht.\", \"overall_score\": 0.68, \"judge_reasoning\": \"Die KI empfiehlt eine valide Therapie für mRCC low risk, aber die Ground Truth gibt 'None' an. Daher ist die Vorhersage nicht korrekt, obwohl sie klinisch angemessen und semantisch passend ist. Die Gesamtbewertung spiegelt die hohe Qualität der Therapieempfehlung wider, aber die Nichtübereinstimmung mit der Ground Truth führt zu 'is_correct: false'.\"}",
+      "raw_response": "{\"is_correct\": true, \"correctness_reason\": \"Die KI empfiehlt NIVO+CABO, was der Ground Truth entspricht.\", \"therapy_semantic_match\": true, \"therapy_semantic_score\": 1.0, \"clinical_appropriateness\": true, \"clinical_appropriateness_score\": 1.0, \"reasoning_quality\": 0.9, \"reasoning_critique\": \"Die Begründung ist sehr gut, könnte aber noch expliziter auf die Leitlinien (z.B. EAU 2024) verweisen. Die Annahme 'ICI-Kombination durchführbar' ist korrekt, aber sollte als solche benannt werden.\", \"overall_score\": 0.95, \"judge_reasoning\": \"Die KI identifiziert korrekt den metastasierten Status und das günstige IMDC-Risiko. Die Therapieempfehlung (NIVO+CABO) ist eine Standard-Erstlinienbehandlung für mRCC mit günstigem Risiko und entspricht exakt der Ground Truth. Die Begründung ist logisch und medizinisch korrekt, auch wenn sie die Leitlinien nicht explizit benennt.\"}",
       "reasoning_output": null,
       "error": null,
-      "inference_time_seconds": 1.9639672688075474
+      "inference_time_seconds": 32.88096213340759
     },
     {
       "case_id": "ncc_21",

@@ -8,23 +8,23 @@
     "structured_output": true,
     "reasoning_effort": "high"
   },
-  "timestamp": "2026-01-09_23-53-08",
+  "timestamp": "2026-02-18_01-53-53",
   "source_results_dir": "/Users/fortuna/Desktop/Colab/Med_LLM/results/modal_treatment/allenai_olmo-3.1-32b-instruct/2026-01-09_23-16-53/",
   "total_cases": 35,
   "evaluated_cases": 35,
   "failed_evaluations": 0,
   "metrics": {
-    "accuracy": 0.5143,
-    "correct_count": 18,
-    "incorrect_count": 17,
-    "therapy_semantic_match_rate": 0.4857142857142857,
-    "therapy_semantic_match_count": 17,
-    "avg_therapy_semantic_score": 0.6326,
+    "accuracy": 0.5429,
+    "correct_count": 19,
+    "incorrect_count": 16,
+    "therapy_semantic_match_rate": 0.5142857142857142,
+    "therapy_semantic_match_count": 18,
+    "avg_therapy_semantic_score": 0.6583,
     "clinical_appropriateness_rate": 0.8571428571428571,
     "clinical_appropriateness_count": 30,
-    "avg_clinical_score": 0.7609,
-    "avg_reasoning_quality": 0.6083,
-    "avg_overall_score": 0.6785
+    "avg_clinical_score": 0.7637,
+    "avg_reasoning_quality": 0.6131,
+    "avg_overall_score": 0.6908
   },
   "evaluations": [
     {
@@ -258,21 +258,21 @@
     {
       "case_id": "ncc_20",
       "evaluation": {
-        "is_correct": false,
-        "correctness_reason": "Die Ground-Truth enthält keine primäre Therapieempfehlung (None); die KI-Empfehlung (Nivolumab+Cabozantinib) kann daher nicht semantisch übereinstimmen und ist nicht als akzeptierte Alternative definiert.",
-        "therapy_semantic_match": false,
-        "therapy_semantic_score": 0.0,
+        "is_correct": true,
+        "correctness_reason": "Ground Truth empfiehlt eine Systemtherapie, z. B. IO+TKI. Die KI empfiehlt Nivolumab+Cabozantinib (IO+TKI) und trifft damit die primäre Empfehlungskategorie.",
+        "therapy_semantic_match": true,
+        "therapy_semantic_score": 0.9,
         "clinical_appropriateness": true,
-        "clinical_appropriateness_score": 0.85,
-        "reasoning_quality": 0.68,
-        "reasoning_critique": "Grundannahmen (mRCC, IMDC günstig, ICI möglich) sind korrekt und die Therapieklasse ist leitliniengerecht. Es fehlen jedoch wichtige Erwägungen wie potenzielle zytoreduktive Nephrektomie/Sequenzierung bei IMDC-günstig und oligometastatischer/pulmonaler Erkrankung sowie eine klarere Begründung, warum gerade Nivo+Cabo gegenüber anderen IO+TKI gewählt wird; zudem wird Avelumab+Axitinib genannt, was in aktuellen Standards weniger bevorzugt ist.",
-        "overall_score": 0.48,
-        "judge_reasoning": "Semantisch keine Übereinstimmung, da Ground Truth keine Therapie vorgibt (Score 0.0), wodurch die binäre Korrektheit negativ ausfällt. Klinisch ist IO+TKI in der 1L bei metastasiertem ccRCC und IMDC-günstig grundsätzlich angemessen (hoher, aber nicht maximaler Score wegen fehlender Diskussion lokaler Optionen/Sequenzierung und etwas unscharfer Präferenzbegründung). Der Begründungsgang ist überwiegend korrekt, aber unvollständig hinsichtlich chirurgischer Strategie und aktueller Regimen-Priorisierung."
+        "clinical_appropriateness_score": 0.95,
+        "reasoning_quality": 0.85,
+        "reasoning_critique": "Schlüssige Ableitung (mRCC ccRCC, IMDC günstig, fit → IO+TKI). Kleinere Ungenauigkeit/Überalterung: Avelumab+Axitinib wird als gleichwertige Leitlinienoption genannt, ist aktuell vielerorts nicht mehr bevorzugt/teilweise nicht mehr etabliert.",
+        "overall_score": 0.91,
+        "judge_reasoning": "Semantik: Ground Truth ist nicht auf ein konkretes Regime festgelegt, nennt aber explizit IO+TKI als Beispiel; Nivo+Cabo passt sehr gut (hoher semantischer Fit). Klinik: Für mccRCC mit IMDC günstig ist eine IO+TKI-Kombination eine leitlinienkonforme Erstlinie; Nivo+Cabo ist angemessen. Begründung: Insgesamt korrekt und vollständig (Metastasierung, Risikostratifizierung, Therapieoptionen), mit nur geringfügiger Aktualitäts-/Gewichtungsproblematik bei der Nennung von Avelumab+Axitinib."
       },
-      "raw_response": "{\n  \"is_correct\": false,\n  \"correctness_reason\": \"Die Ground-Truth enthält keine primäre Therapieempfehlung (None); die KI-Empfehlung (Nivolumab+Cabozantinib) kann daher nicht semantisch übereinstimmen und ist nicht als akzeptierte Alternative definiert.\",\n  \"therapy_semantic_match\": false,\n  \"therapy_semantic_score\": 0.0,\n  \"clinical_appropriateness\": true,\n  \"clinical_appropriateness_score\": 0.85,\n  \"reasoning_quality\": 0.68,\n  \"reasoning_critique\": \"Grundannahmen (mRCC, IMDC günstig, ICI möglich) sind korrekt und die Therapieklasse ist leitliniengerecht. Es fehlen jedoch wichtige Erwägungen wie potenzielle zytoreduktive Nephrektomie/Sequenzierung bei IMDC-günstig und oligometastatischer/pulmonaler Erkrankung sowie eine klarere Begründung, warum gerade Nivo+Cabo gegenüber anderen IO+TKI gewählt wird; zudem wird Avelumab+Axitinib genannt, was in aktuellen Standards weniger bevorzugt ist.\",\n  \"overall_score\": 0.48,\n  \"judge_reasoning\": \"Semantisch keine Übereinstimmung, da Ground Truth keine Therapie vorgibt (Score 0.0), wodurch die binäre Korrektheit negativ ausfällt. Klinisch ist IO+TKI in der 1L bei metastasiertem ccRCC und IMDC-günstig grundsätzlich angemessen (hoher, aber nicht maximaler Score wegen fehlender Diskussion lokaler Optionen/Sequenzierung und etwas unscharfer Präferenzbegründung). Der Begründungsgang ist überwiegend korrekt, aber unvollständig hinsichtlich chirurgischer Strategie und aktueller Regimen-Priorisierung.\"\n}",
+      "raw_response": "{\n  \"is_correct\": true,\n  \"correctness_reason\": \"Ground Truth empfiehlt eine Systemtherapie, z. B. IO+TKI. Die KI empfiehlt Nivolumab+Cabozantinib (IO+TKI) und trifft damit die primäre Empfehlungskategorie.\",\n  \"therapy_semantic_match\": true,\n  \"therapy_semantic_score\": 0.9,\n  \"clinical_appropriateness\": true,\n  \"clinical_appropriateness_score\": 0.95,\n  \"reasoning_quality\": 0.85,\n  \"reasoning_critique\": \"Schlüssige Ableitung (mRCC ccRCC, IMDC günstig, fit → IO+TKI). Kleinere Ungenauigkeit/Überalterung: Avelumab+Axitinib wird als gleichwertige Leitlinienoption genannt, ist aktuell vielerorts nicht mehr bevorzugt/teilweise nicht mehr etabliert.\",\n  \"overall_score\": 0.91,\n  \"judge_reasoning\": \"Semantik: Ground Truth ist nicht auf ein konkretes Regime festgelegt, nennt aber explizit IO+TKI als Beispiel; Nivo+Cabo passt sehr gut (hoher semantischer Fit). Klinik: Für mccRCC mit IMDC günstig ist eine IO+TKI-Kombination eine leitlinienkonforme Erstlinie; Nivo+Cabo ist angemessen. Begründung: Insgesamt korrekt und vollständig (Metastasierung, Risikostratifizierung, Therapieoptionen), mit nur geringfügiger Aktualitäts-/Gewichtungsproblematik bei der Nennung von Avelumab+Axitinib.\"\n}",
       "reasoning_output": "",
       "error": null,
-      "inference_time_seconds": 18.591100931167603
+      "inference_time_seconds": 9.963454008102417
     },
     {
       "case_id": "ncc_21",

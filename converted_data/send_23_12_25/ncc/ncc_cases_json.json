@@ -4715,7 +4715,7 @@
         ],
         "medikation": [],
         "fragestellung": "Bestätigung/Einordnung der Histologie (Subtyp/Grad).",
-        "geplantes_therapiekonzept": null,
+        "geplantes_therapiekonzept": "Einleitung einer Systemtherapie (z. B. IO + TKI). Klinisches Monitoring (Symptome, Haut, GI, Lunge) und regelmäßige Laborkontrollen (BB, Leberwerte, Kreatinin, TSH/fT4 etc.). Re-Staging nach etabliertem Schema (z. B. nach 8–12 Wochen) bzw. bei klinischem Verdacht auf Progress oder Immuntox.",
         "erforderliche_befunde": {
           "bildgebung": [
             "CT Staging 04.10.2025 (Thorax/Abdomen/Becken)"

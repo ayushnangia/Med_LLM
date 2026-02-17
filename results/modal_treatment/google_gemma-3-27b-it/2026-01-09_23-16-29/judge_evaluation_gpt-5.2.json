@@ -8,23 +8,23 @@
     "structured_output": true,
     "reasoning_effort": "high"
   },
-  "timestamp": "2026-01-10_00-12-56",
+  "timestamp": "2026-02-18_01-53-50",
   "source_results_dir": "/Users/fortuna/Desktop/Colab/Med_LLM/results/modal_treatment/google_gemma-3-27b-it/2026-01-09_23-16-29/",
   "total_cases": 35,
   "evaluated_cases": 35,
   "failed_evaluations": 0,
   "metrics": {
-    "accuracy": 0.6,
-    "correct_count": 21,
-    "incorrect_count": 14,
-    "therapy_semantic_match_rate": 0.5714285714285714,
-    "therapy_semantic_match_count": 20,
-    "avg_therapy_semantic_score": 0.7131,
+    "accuracy": 0.6286,
+    "correct_count": 22,
+    "incorrect_count": 13,
+    "therapy_semantic_match_rate": 0.6,
+    "therapy_semantic_match_count": 21,
+    "avg_therapy_semantic_score": 0.736,
     "clinical_appropriateness_rate": 0.9714285714285714,
     "clinical_appropriateness_count": 34,
     "avg_clinical_score": 0.812,
-    "avg_reasoning_quality": 0.6189,
-    "avg_overall_score": 0.7338
+    "avg_reasoning_quality": 0.6217,
+    "avg_overall_score": 0.7435
   },
   "evaluations": [
     {
@@ -258,21 +258,21 @@
     {
       "case_id": "ncc_20",
       "evaluation": {
-        "is_correct": false,
-        "correctness_reason": "Die Ground-Truth-Empfehlung enthält keine primäre Therapie (None); die KI nennt Nivolumab+Cabozantinib und trifft damit keine dokumentierte Tumorboard-Empfehlung oder akzeptierte Alternative in der Vorgabe.",
-        "therapy_semantic_match": false,
-        "therapy_semantic_score": 0.1,
+        "is_correct": true,
+        "correctness_reason": "Die Ground-Truth-Empfehlung ist die Einleitung einer Systemtherapie, z. B. als IO+TKI. Die KI empfiehlt Nivolumab + Cabozantinib (IO+TKI) und trifft damit die primäre Empfehlungskategorie.",
+        "therapy_semantic_match": true,
+        "therapy_semantic_score": 0.9,
         "clinical_appropriateness": true,
         "clinical_appropriateness_score": 0.9,
-        "reasoning_quality": 0.65,
-        "reasoning_critique": "Grundsätzlich leitlinienorientiert für mRCC/IMDC-günstig (IO+TKI). Allerdings wird der IMDC-Status aus fehlenden Labor-/Zeitangaben unzulässig abgeleitet, und wichtige Aspekte (z.B. Stellenwert zytoreduktiver Nephrektomie/Sequenzierung, ICI-Kontraindikationen) werden nicht adressiert.",
-        "overall_score": 0.53,
-        "judge_reasoning": "Semantisch kein Match, da Ground Truth keine Therapie benennt. Klinisch ist Nivolumab+Cabozantinib eine anerkannte Erstlinienoption bei metastasiertem ccRCC mit günstigem Risiko und ICI-Eignung. Die Begründung ist überwiegend korrekt, aber mit Annahmen und Auslassungen, daher nur mittlere Begründungsqualität."
+        "reasoning_quality": 0.75,
+        "reasoning_critique": "IMDC-Einstufung und Ableitung einer IO+TKI-Erstlinie sind plausibel; jedoch fehlen Aspekte der Tumorboard-Ground-Truth (Monitoring/Laborkontrollen/Re-Staging). Zudem ist Avelumab+Axitinib heutzutage eher nachrangig/selten, was die Begründung leicht schwächt.",
+        "overall_score": 0.87,
+        "judge_reasoning": "Semantisch passt die Empfehlung, da die Ground Truth ausdrücklich eine Systemtherapie (z. B. IO+TKI) fordert und die KI eine konkrete IO+TKI-Kombination wählt. Klinisch ist Nivo+Cabo eine leitlinienkonforme Erstlinienoption bei mccRCC (auch bei IMDC-günstig, sofern ICI möglich). Die Begründung ist überwiegend korrekt, aber unvollständig hinsichtlich der in der Ground Truth betonten Verlaufs-/Toxizitätskontrollen und des Re-Stagings."
       },
-      "raw_response": "{\n  \"is_correct\": false,\n  \"correctness_reason\": \"Die Ground-Truth-Empfehlung enthält keine primäre Therapie (None); die KI nennt Nivolumab+Cabozantinib und trifft damit keine dokumentierte Tumorboard-Empfehlung oder akzeptierte Alternative in der Vorgabe.\",\n  \"therapy_semantic_match\": false,\n  \"therapy_semantic_score\": 0.1,\n  \"clinical_appropriateness\": true,\n  \"clinical_appropriateness_score\": 0.9,\n  \"reasoning_quality\": 0.65,\n  \"reasoning_critique\": \"Grundsätzlich leitlinienorientiert für mRCC/IMDC-günstig (IO+TKI). Allerdings wird der IMDC-Status aus fehlenden Labor-/Zeitangaben unzulässig abgeleitet, und wichtige Aspekte (z.B. Stellenwert zytoreduktiver Nephrektomie/Sequenzierung, ICI-Kontraindikationen) werden nicht adressiert.\",\n  \"overall_score\": 0.53,\n  \"judge_reasoning\": \"Semantisch kein Match, da Ground Truth keine Therapie benennt. Klinisch ist Nivolumab+Cabozantinib eine anerkannte Erstlinienoption bei metastasiertem ccRCC mit günstigem Risiko und ICI-Eignung. Die Begründung ist überwiegend korrekt, aber mit Annahmen und Auslassungen, daher nur mittlere Begründungsqualität.\"\n}",
+      "raw_response": "{\n  \"is_correct\": true,\n  \"correctness_reason\": \"Die Ground-Truth-Empfehlung ist die Einleitung einer Systemtherapie, z. B. als IO+TKI. Die KI empfiehlt Nivolumab + Cabozantinib (IO+TKI) und trifft damit die primäre Empfehlungskategorie.\",\n  \"therapy_semantic_match\": true,\n  \"therapy_semantic_score\": 0.9,\n  \"clinical_appropriateness\": true,\n  \"clinical_appropriateness_score\": 0.9,\n  \"reasoning_quality\": 0.75,\n  \"reasoning_critique\": \"IMDC-Einstufung und Ableitung einer IO+TKI-Erstlinie sind plausibel; jedoch fehlen Aspekte der Tumorboard-Ground-Truth (Monitoring/Laborkontrollen/Re-Staging). Zudem ist Avelumab+Axitinib heutzutage eher nachrangig/selten, was die Begründung leicht schwächt.\",\n  \"overall_score\": 0.87,\n  \"judge_reasoning\": \"Semantisch passt die Empfehlung, da die Ground Truth ausdrücklich eine Systemtherapie (z. B. IO+TKI) fordert und die KI eine konkrete IO+TKI-Kombination wählt. Klinisch ist Nivo+Cabo eine leitlinienkonforme Erstlinienoption bei mccRCC (auch bei IMDC-günstig, sofern ICI möglich). Die Begründung ist überwiegend korrekt, aber unvollständig hinsichtlich der in der Ground Truth betonten Verlaufs-/Toxizitätskontrollen und des Re-Stagings.\"\n}",
       "reasoning_output": "",
       "error": null,
-      "inference_time_seconds": 13.669415712356567
+      "inference_time_seconds": 11.1370849609375
     },
     {
       "case_id": "ncc_21",

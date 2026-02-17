@@ -1,8 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // API routes require server mode, so no static export
-  // Run with: npm run dev (development) or npm run build && npm run start (production)
+  output: "standalone",
+  // Note: standalone output required by @netlify/plugin-nextjs
 };
 
 export default nextConfig;

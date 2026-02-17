@@ -8,23 +8,23 @@
     "structured_output": true,
     "reasoning_effort": "high"
   },
-  "timestamp": "2026-01-10_00-23-18",
+  "timestamp": "2026-02-18_01-53-47",
   "source_results_dir": "/Users/fortuna/Desktop/Colab/Med_LLM/results/modal_treatment/google_gemma-3-4b-it/2026-01-09_23-16-15/",
   "total_cases": 35,
   "evaluated_cases": 35,
   "failed_evaluations": 0,
   "metrics": {
-    "accuracy": 0.4286,
-    "correct_count": 15,
-    "incorrect_count": 20,
-    "therapy_semantic_match_rate": 0.42857142857142855,
-    "therapy_semantic_match_count": 15,
-    "avg_therapy_semantic_score": 0.5494,
+    "accuracy": 0.4571,
+    "correct_count": 16,
+    "incorrect_count": 19,
+    "therapy_semantic_match_rate": 0.45714285714285713,
+    "therapy_semantic_match_count": 16,
+    "avg_therapy_semantic_score": 0.5737,
     "clinical_appropriateness_rate": 0.7142857142857143,
     "clinical_appropriateness_count": 25,
-    "avg_clinical_score": 0.6403,
-    "avg_reasoning_quality": 0.44,
-    "avg_overall_score": 0.5639
+    "avg_clinical_score": 0.6417,
+    "avg_reasoning_quality": 0.4429,
+    "avg_overall_score": 0.5747
   },
   "evaluations": [
     {
@@ -258,21 +258,21 @@
     {
       "case_id": "ncc_20",
       "evaluation": {
-        "is_correct": false,
-        "correctness_reason": "Die Ground-Truth enthält keine primäre Therapieempfehlung; die KI nennt hingegen konkrete Erstlinien-Systemtherapien (IO+TKI). Damit keine Übereinstimmung mit der Ground Truth oder angegebenen Alternativen möglich.",
-        "therapy_semantic_match": false,
-        "therapy_semantic_score": 0.05,
+        "is_correct": true,
+        "correctness_reason": "Die Ground-Truth-Empfehlung lautet Einleitung einer Systemtherapie, z. B. IO+TKI. Pembrolizumab + Lenvatinib ist eine IO+TKI-Erstlinientherapie und entspricht damit semantisch der primären Empfehlung.",
+        "therapy_semantic_match": true,
+        "therapy_semantic_score": 0.9,
         "clinical_appropriateness": true,
-        "clinical_appropriateness_score": 0.9,
-        "reasoning_quality": 0.6,
-        "reasoning_critique": "Die Ableitung 'metastasiert + ccRCC + IMDC low → IO+TKI' ist im Grundsatz korrekt, bleibt aber unscharf (keine Priorisierung/Einzelregime, keine Diskussion von Zytoreduktionsnephrektomie/Sequenzierung, IMDC-Argument teils widersprüchlich: erst low risk, dann 'fehlende Daten').",
-        "overall_score": 0.5,
-        "judge_reasoning": "Semantisch keine Entsprechung zur Ground Truth (keine Empfehlung vs. konkrete IO+TKI-Kombinationen) → is_correct = false und sehr niedriger Semantik-Score. Klinisch sind die genannten IO+TKI-Kombinationen in der Erstlinie beim mccRCC (auch IMDC günstig) leitlinienkonform. Begründung insgesamt plausibel, jedoch unvollständig hinsichtlich Therapieplanung (z.B. CN/Timing, Patientendaten wie ECOG) und mit leichter Inkonsistenz zur IMDC-Datenlage."
+        "clinical_appropriateness_score": 0.95,
+        "reasoning_quality": 0.7,
+        "reasoning_critique": "Begründung ist im Kern korrekt (metastasiert, ccRCC, IMDC günstig, IO+TKI leitlinienkonform), aber etwas verkürzt: Es fehlen wichtige Aspekte aus der Ground Truth wie strukturierte Toxizitäts-/Laborüberwachung und Re-Staging-Plan sowie kurze Abwägung alternativer Regime (z. B. Nivo/Cabo, Pembro/Axi, Nivo/Ipi).",
+        "overall_score": 0.88,
+        "judge_reasoning": "Semantisch passt die Vorhersage gut, da die Ground Truth ausdrücklich eine IO+TKI-Systemtherapie als Beispiel nennt und die KI eine konkrete IO+TKI-Kombination (Pembro/Len) auswählt. Klinisch ist Pembro/Len als Erstlinie beim mccRCC (auch IMDC low risk) leitliniengerecht und angemessen. Die Argumentation ist plausibel, jedoch weniger vollständig als die Tumorboard-Empfehlung hinsichtlich Monitoring, Laborkontrollen und Re-Staging-Intervall."
       },
-      "raw_response": "{\n  \"is_correct\": false,\n  \"correctness_reason\": \"Die Ground-Truth enthält keine primäre Therapieempfehlung; die KI nennt hingegen konkrete Erstlinien-Systemtherapien (IO+TKI). Damit keine Übereinstimmung mit der Ground Truth oder angegebenen Alternativen möglich.\",\n  \"therapy_semantic_match\": false,\n  \"therapy_semantic_score\": 0.05,\n  \"clinical_appropriateness\": true,\n  \"clinical_appropriateness_score\": 0.9,\n  \"reasoning_quality\": 0.6,\n  \"reasoning_critique\": \"Die Ableitung 'metastasiert + ccRCC + IMDC low → IO+TKI' ist im Grundsatz korrekt, bleibt aber unscharf (keine Priorisierung/Einzelregime, keine Diskussion von Zytoreduktionsnephrektomie/Sequenzierung, IMDC-Argument teils widersprüchlich: erst low risk, dann 'fehlende Daten').\",\n  \"overall_score\": 0.5,\n  \"judge_reasoning\": \"Semantisch keine Entsprechung zur Ground Truth (keine Empfehlung vs. konkrete IO+TKI-Kombinationen) → is_correct = false und sehr niedriger Semantik-Score. Klinisch sind die genannten IO+TKI-Kombinationen in der Erstlinie beim mccRCC (auch IMDC günstig) leitlinienkonform. Begründung insgesamt plausibel, jedoch unvollständig hinsichtlich Therapieplanung (z.B. CN/Timing, Patientendaten wie ECOG) und mit leichter Inkonsistenz zur IMDC-Datenlage.\"\n}",
+      "raw_response": "{\n  \"is_correct\": true,\n  \"correctness_reason\": \"Die Ground-Truth-Empfehlung lautet Einleitung einer Systemtherapie, z. B. IO+TKI. Pembrolizumab + Lenvatinib ist eine IO+TKI-Erstlinientherapie und entspricht damit semantisch der primären Empfehlung.\",\n  \"therapy_semantic_match\": true,\n  \"therapy_semantic_score\": 0.9,\n  \"clinical_appropriateness\": true,\n  \"clinical_appropriateness_score\": 0.95,\n  \"reasoning_quality\": 0.7,\n  \"reasoning_critique\": \"Begründung ist im Kern korrekt (metastasiert, ccRCC, IMDC günstig, IO+TKI leitlinienkonform), aber etwas verkürzt: Es fehlen wichtige Aspekte aus der Ground Truth wie strukturierte Toxizitäts-/Laborüberwachung und Re-Staging-Plan sowie kurze Abwägung alternativer Regime (z. B. Nivo/Cabo, Pembro/Axi, Nivo/Ipi).\",\n  \"overall_score\": 0.88,\n  \"judge_reasoning\": \"Semantisch passt die Vorhersage gut, da die Ground Truth ausdrücklich eine IO+TKI-Systemtherapie als Beispiel nennt und die KI eine konkrete IO+TKI-Kombination (Pembro/Len) auswählt. Klinisch ist Pembro/Len als Erstlinie beim mccRCC (auch IMDC low risk) leitliniengerecht und angemessen. Die Argumentation ist plausibel, jedoch weniger vollständig als die Tumorboard-Empfehlung hinsichtlich Monitoring, Laborkontrollen und Re-Staging-Intervall.\"\n}",
       "reasoning_output": "",
       "error": null,
-      "inference_time_seconds": 11.897275924682617
+      "inference_time_seconds": 9.561217069625854
     },
     {
       "case_id": "ncc_21",

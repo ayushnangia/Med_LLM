@@ -8,23 +8,23 @@
     "structured_output": true,
     "reasoning_effort": null
   },
-  "timestamp": "2026-02-15_23-34-01",
+  "timestamp": "2026-02-18_02-44-34",
   "source_results_dir": "results/modal_treatment/google_gemma-3-4b-it/2026-01-09_23-16-15",
   "total_cases": 35,
   "evaluated_cases": 35,
   "failed_evaluations": 0,
   "metrics": {
-    "accuracy": 0.4857,
-    "correct_count": 17,
-    "incorrect_count": 18,
-    "therapy_semantic_match_rate": 0.4857142857142857,
-    "therapy_semantic_match_count": 17,
-    "avg_therapy_semantic_score": 0.6114,
+    "accuracy": 0.5143,
+    "correct_count": 18,
+    "incorrect_count": 17,
+    "therapy_semantic_match_rate": 0.5142857142857142,
+    "therapy_semantic_match_count": 18,
+    "avg_therapy_semantic_score": 0.6371,
     "clinical_appropriateness_rate": 0.8285714285714286,
     "clinical_appropriateness_count": 29,
     "avg_clinical_score": 0.74,
     "avg_reasoning_quality": 0.6571,
-    "avg_overall_score": 0.6371
+    "avg_overall_score": 0.6474
   },
   "evaluations": [
     {
@@ -258,21 +258,21 @@
     {
       "case_id": "ncc_20",
       "evaluation": {
-        "is_correct": false,
-        "correctness_reason": "Die KI empfiehlt eine Therapie (IO+TKI), während die Ground Truth 'None' ist. Obwohl die Therapie leitlinienkonform wäre, entspricht sie nicht der Ground Truth.",
-        "therapy_semantic_match": false,
-        "therapy_semantic_score": 0.0,
+        "is_correct": true,
+        "correctness_reason": "Die KI empfiehlt eine IO+TKI Kombination (PEMBRO+LEN), die der Ground Truth (IO+TKI) entspricht und eine akzeptable erste Linienbehandlung für mRCC low risk darstellt.",
+        "therapy_semantic_match": true,
+        "therapy_semantic_score": 0.9,
         "clinical_appropriateness": true,
         "clinical_appropriateness_score": 0.9,
         "reasoning_quality": 0.8,
-        "reasoning_critique": "Die Begründung ist weitgehend korrekt, aber die Aussage 'IMDC ist nur für klarzelliges mRCC validiert, daher ist die Risikostratifizierung aufgrund der fehlenden Daten eingeschränkt' ist irreführend. IMDC ist für mRCC validiert, und die Risikostratifizierung ist hier möglich (0 Faktoren = low risk).",
-        "overall_score": 0.5,
-        "judge_reasoning": "Die KI identifiziert korrekt die Metastasierung und das niedrige Risiko und schlägt eine leitlinienkonforme Therapie vor. Die Begründung ist größtenteils korrekt, enthält aber eine ungenaue Aussage zur IMDC-Validierung. Da die Ground Truth jedoch 'None' ist, ist die binäre Korrektheit nicht erfüllt, was die Gesamtbewertung stark beeinflusst."
+        "reasoning_critique": "Die Begründung ist weitgehend korrekt und logisch. Sie identifiziert korrekt den metastasierten Status und das niedrige IMDC-Risiko. Die Empfehlung einer IO+TKI-Kombination ist leitlinienkonform. Die Nennung von PEMBRO+LEN und PEMBRO+AXI als A-Empfehlungen ist korrekt.",
+        "overall_score": 0.86,
+        "judge_reasoning": "Die KI identifiziert korrekt den metastasierten Status und das IMDC-Risiko. Die Therapieempfehlung (PEMBRO+LEN) ist eine leitlinienkonforme und akzeptable erste Linienbehandlung für mRCC low risk und entspricht der allgemeinen Empfehlung der Ground Truth (IO+TKI). Die Begründung ist klar und korrekt. Daher ist die Vorhersage korrekt und klinisch angemessen."
       },
-      "raw_response": "{\"is_correct\": false, \"correctness_reason\": \"Die KI empfiehlt eine Therapie (IO+TKI), während die Ground Truth 'None' ist. Obwohl die Therapie leitlinienkonform wäre, entspricht sie nicht der Ground Truth.\", \"therapy_semantic_match\": false, \"therapy_semantic_score\": 0.0, \"clinical_appropriateness\": true, \"clinical_appropriateness_score\": 0.9, \"reasoning_quality\": 0.8, \"reasoning_critique\": \"Die Begründung ist weitgehend korrekt, aber die Aussage 'IMDC ist nur für klarzelliges mRCC validiert, daher ist die Risikostratifizierung aufgrund der fehlenden Daten eingeschränkt' ist irreführend. IMDC ist für mRCC validiert, und die Risikostratifizierung ist hier möglich (0 Faktoren = low risk).\", \"overall_score\": 0.5, \"judge_reasoning\": \"Die KI identifiziert korrekt die Metastasierung und das niedrige Risiko und schlägt eine leitlinienkonforme Therapie vor. Die Begründung ist größtenteils korrekt, enthält aber eine ungenaue Aussage zur IMDC-Validierung. Da die Ground Truth jedoch 'None' ist, ist die binäre Korrektheit nicht erfüllt, was die Gesamtbewertung stark beeinflusst.\"}",
+      "raw_response": "{\"is_correct\": true, \"correctness_reason\": \"Die KI empfiehlt eine IO+TKI Kombination (PEMBRO+LEN), die der Ground Truth (IO+TKI) entspricht und eine akzeptable erste Linienbehandlung für mRCC low risk darstellt.\", \"therapy_semantic_match\": true, \"therapy_semantic_score\": 0.9, \"clinical_appropriateness\": true, \"clinical_appropriateness_score\": 0.9, \"reasoning_quality\": 0.8, \"reasoning_critique\": \"Die Begründung ist weitgehend korrekt und logisch. Sie identifiziert korrekt den metastasierten Status und das niedrige IMDC-Risiko. Die Empfehlung einer IO+TKI-Kombination ist leitlinienkonform. Die Nennung von PEMBRO+LEN und PEMBRO+AXI als A-Empfehlungen ist korrekt.\", \"overall_score\": 0.86, \"judge_reasoning\": \"Die KI identifiziert korrekt den metastasierten Status und das IMDC-Risiko. Die Therapieempfehlung (PEMBRO+LEN) ist eine leitlinienkonforme und akzeptable erste Linienbehandlung für mRCC low risk und entspricht der allgemeinen Empfehlung der Ground Truth (IO+TKI). Die Begründung ist klar und korrekt. Daher ist die Vorhersage korrekt und klinisch angemessen.\"}",
       "reasoning_output": null,
       "error": null,
-      "inference_time_seconds": 2.0275605882917134
+      "inference_time_seconds": 27.220380067825317
     },
     {
       "case_id": "ncc_21",

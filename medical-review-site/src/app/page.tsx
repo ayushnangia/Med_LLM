@@ -120,16 +120,28 @@ export default function HomePage() {
             />
           </div>
 
-          {/* Start Button */}
-          <Button
-            onClick={handleStart}
-            disabled={!selectedDoctor}
-            className="w-full h-12 text-base font-medium"
-            size="lg"
-          >
-            {t('home.startReview')}
-            <ArrowRight className="ml-2 h-5 w-5" />
-          </Button>
+          {/* Start Buttons */}
+          <div className="space-y-3">
+            <Button
+              onClick={handleStart}
+              disabled={!selectedDoctor}
+              className="w-full h-12 text-base font-medium"
+              size="lg"
+            >
+              {t('home.startReview')}
+              <ArrowRight className="ml-2 h-5 w-5" />
+            </Button>
+            <Button
+              onClick={() => router.push('/judge-review')}
+              disabled={!selectedDoctor}
+              variant="outline"
+              className="w-full h-10 text-sm font-medium border-purple-300 text-purple-700 hover:bg-purple-50 dark:border-purple-700 dark:text-purple-400 dark:hover:bg-purple-950"
+              size="lg"
+            >
+              <Scale className="mr-2 h-4 w-4" />
+              {t('home.startJudgeReview')}
+            </Button>
+          </div>
 
           {/* Review Counts & Export */}
           {selectedDoctor && (
