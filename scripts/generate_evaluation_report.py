@@ -623,6 +623,9 @@ def select_case_studies(cases_data, reviews_df, judge_evals_df):
 
 def compute_run_comparison(run_df):
     """Compute Jan vs Feb improvement metrics per model."""
+    # Keep only the latest run per model per label (handles multiple Feb runs)
+    run_df = run_df.sort_values("timestamp")
+    run_df = run_df.drop_duplicates(subset=["model_id", "run_label"], keep="last")
     jan = run_df[run_df["run_label"] == "Jan 2026"].set_index("model_id")
     feb = run_df[run_df["run_label"] == "Feb 2026"].set_index("model_id")
     common = sorted(set(jan.index) & set(feb.index))
@@ -2401,16 +2404,28 @@ def build_report(reviews_df, judge_reviews_df, judge_evals_df,
         add_bullet(doc, rec)
 
     doc.add_heading("Limitations", level=2)
+    doc_cases_reviewed = reviews_df['case_id'].nunique()
+    judge_cases_reviewed = judge_reviews_df['case_id'].nunique()
+    if doc_cases_reviewed >= demo['n_cases'] and judge_cases_reviewed >= demo['n_cases']:
+        coverage_text = (
+            f"The doctor reviewed all {demo['n_cases']} cases for both model "
+            "evaluation and judge evaluation, providing complete coverage."
+        )
+    else:
+        coverage_text = (
+            f"The doctor's reviews covered {doc_cases_reviewed} of "
+            f"{demo['n_cases']} cases for model evaluation and "
+            f"{judge_cases_reviewed} cases for judge evaluation, limiting "
+            "the agreement analysis."
+        )
     doc.add_paragraph(
         "This study relies on a single physician reviewer, which may introduce "
         "individual assessment bias. The case dataset is limited to RCC from a "
-        "single institution's tumor boards. The doctor's reviews covered "
-        f"{reviews_df['case_id'].nunique()} of {demo['n_cases']} cases for model "
-        f"evaluation and {judge_reviews_df['case_id'].nunique()} cases for judge "
-        "evaluation, limiting the agreement analysis. Ground truth represents the "
-        "tumor board consensus, which is one valid approach but not necessarily "
-        "the only correct therapy. All cases use German medical terminology, which "
-        "may affect model performance compared to English-language clinical data."
+        f"single institution's tumor boards. {coverage_text} Ground truth "
+        "represents the tumor board consensus, which is one valid approach but "
+        "not necessarily the only correct therapy. All cases use German medical "
+        "terminology, which may affect model performance compared to "
+        "English-language clinical data."
     )
 
     doc.add_heading("Open Questions", level=2)
@@ -3339,9 +3354,14 @@ def build_markdown_report(reviews_df, judge_reviews_df, judge_evals_df,
     w("")
     w(f"- Single physician reviewer (potential individual assessment bias)")
     w(f"- Dataset limited to RCC from a single institution's tumor boards")
-    w(f"- Doctor reviews covered {reviews_df['case_id'].nunique()} of "
-      f"{demo['n_cases']} cases for model evaluation and "
-      f"{judge_reviews_df['case_id'].nunique()} cases for judge evaluation")
+    md_doc_cases = reviews_df['case_id'].nunique()
+    md_judge_cases = judge_reviews_df['case_id'].nunique()
+    if md_doc_cases >= demo['n_cases'] and md_judge_cases >= demo['n_cases']:
+        w(f"- Doctor reviewed all {demo['n_cases']} cases for both model and judge evaluation (complete coverage)")
+    else:
+        w(f"- Doctor reviews covered {md_doc_cases} of "
+          f"{demo['n_cases']} cases for model evaluation and "
+          f"{md_judge_cases} cases for judge evaluation")
     w(f"- Ground truth = tumor board consensus (not necessarily the only correct therapy)")
     w(f"- All cases use German medical terminology, which may affect model performance")
     w("")

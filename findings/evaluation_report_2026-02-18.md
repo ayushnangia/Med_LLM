@@ -14,18 +14,18 @@
 
 This report presents a novel three-tier evaluation pipeline for assessing AI-generated therapy recommendations in clinical oncology. Across 414 predictions from 6 LLMs on 69 renal cell carcinoma (Nierenzellkarzinom, RCC) cases from German tumor boards (Tumordiskussionen), the pipeline combines automated AI judging with expert physician validation to establish a scalable, reproducible evaluation framework.
 
-Through iterative pipeline refinement between January and February 2026, the average clinically acceptable therapy rate improved from 25% to 93% (+68 pp), and exact match rate from 21% to 41% (+19 pp).
+Through iterative pipeline refinement between January and February 2026, the average clinically acceptable therapy rate improved from 25% to 100% (+75 pp), and exact match rate from 21% to 0% (+-21 pp).
 
 ### Key Findings
 
 - Across all 414 predictions: **64%** metastatic detection accuracy, **31%** exact therapy match, **59%** clinically acceptable therapies.
-- **Best model by doctor review:** Gemma 3 27B (6.8/9 quality, 92% acceptable).
-- **Best model by automated judge score:** MedGemma 27B (avg overall 0.75/1.0).
-- GPT-5.2 shows **moderate agreement** with the doctor (Cohen's κ = 0.513).
-- MedGemma 27B shows **moderate agreement** with the doctor (Cohen's κ = 0.545).
-- **Inter-judge agreement:** κ = 0.722, 86% concordance across 414 evaluation pairs.
-- **MedGemma self-judging bias:** higher scores for own predictions (0.77 vs 0.69), significant (p=0.017).
-- **Clinical safety:** GPT-5.2 has lowest dangerous error rate (4.8% false positives).
+- **Best model by doctor review:** MedGemma 27B (6.1/9 quality, 75% acceptable).
+- **Best model by automated judge score:** MedGemma 27B (avg overall 0.76/1.0).
+- GPT-5.2 shows **substantial agreement** with the doctor (Cohen's κ = 0.629).
+- MedGemma 27B shows **substantial agreement** with the doctor (Cohen's κ = 0.675).
+- **Inter-judge agreement:** κ = 0.725, 86% concordance across 414 evaluation pairs.
+- **MedGemma self-judging bias:** higher scores for own predictions (0.78 vs 0.69), significant (p=0.017).
+- **Clinical safety:** GPT-5.2 has lowest dangerous error rate (8.2% false positives).
 
 ---
 
@@ -173,8 +173,8 @@ The dataset comprises **69 anonymized RCC cases** from German tumor board discus
 | Total cases | 69 |
 | Age range | 43–82 years |
 | Age mean / median | 67 / 67 years |
-| Metastatic | 35 (51%) |
-| Localized | 34 (49%) |
+| Metastatic | 36 (52%) |
+| Localized | 33 (48%) |
 | Clear cell (ccRCC) | 12 |
 | Non-clear cell | 3 |
 | Histology not specified | 54 |
@@ -190,8 +190,8 @@ The dataset comprises **69 anonymized RCC cases** from German tumor board discus
 | AI Judges | 2 | GPT-5.2, MedGemma 27B |
 | Total Predictions | 414 | 69 cases × 6 models |
 | Judge Evaluations | 828 | 69 cases × 6 models × 2 judges |
-| Doctor Model Reviews | 262 | 48 cases × 6 models |
-| Doctor Judge Reviews | 216 | 18 cases × 6 models × 2 judges |
+| Doctor Model Reviews | 414 | 69 cases × 6 models |
+| Doctor Judge Reviews | 828 | 69 cases × 6 models × 2 judges |
 
 ---
 
@@ -203,12 +203,12 @@ All 414 predictions across 69 cases were evaluated by both AI judges.
 
 | Model | Cases | Met. Detect. | Exact Match | Judge Acc. | Avg Score |
 | --- | --- | --- | --- | --- | --- |
-| MedGemma 27B | 69 | 6522% | 4638% | 6377% | 0.75 |
-| OLMo 32B Think | 69 | 6522% | 3333% | 6087% | 0.71 |
-| Gemma 3 27B | 69 | 6522% | 3623% | 5797% | 0.71 |
-| OLMo 32B Instruct | 69 | 6377% | 3043% | 5217% | 0.68 |
-| Gemma 3 4B | 69 | 5942% | 2899% | 4203% | 0.57 |
-| Meditron3 7B | 69 | 6232% | 1014% | 4058% | 0.50 |
+| MedGemma 27B | 69 | 6522% | 4638% | 6522% | 0.76 |
+| OLMo 32B Think | 69 | 6522% | 3333% | 6232% | 0.72 |
+| Gemma 3 27B | 69 | 6522% | 3623% | 5942% | 0.71 |
+| OLMo 32B Instruct | 69 | 6377% | 3043% | 5362% | 0.68 |
+| Gemma 3 4B | 69 | 5942% | 2899% | 4348% | 0.57 |
+| Meditron3 7B | 69 | 6232% | 1014% | 4203% | 0.51 |
 
 Overall: **64%** metastatic detection accuracy, **31%** exact therapy match, **59%** clinically acceptable.
 
@@ -216,12 +216,12 @@ Overall: **64%** metastatic detection accuracy, **31%** exact therapy match, **5
 
 | Model | Semantic | Clinical | Reasoning | Overall |
 | --- | --- | --- | --- | --- |
-| MedGemma 27B | 0.74 | 0.81 | 0.64 | 0.75 |
-| OLMo 32B Think | 0.68 | 0.79 | 0.61 | 0.71 |
-| Gemma 3 27B | 0.68 | 0.79 | 0.60 | 0.71 |
-| OLMo 32B Instruct | 0.65 | 0.75 | 0.58 | 0.68 |
-| Gemma 3 4B | 0.57 | 0.62 | 0.44 | 0.57 |
-| Meditron3 7B | 0.49 | 0.56 | 0.39 | 0.50 |
+| MedGemma 27B | 0.75 | 0.81 | 0.64 | 0.76 |
+| OLMo 32B Think | 0.69 | 0.79 | 0.61 | 0.72 |
+| Gemma 3 27B | 0.70 | 0.79 | 0.60 | 0.71 |
+| OLMo 32B Instruct | 0.67 | 0.75 | 0.58 | 0.68 |
+| Gemma 3 4B | 0.59 | 0.62 | 0.44 | 0.57 |
+| Meditron3 7B | 0.51 | 0.56 | 0.39 | 0.51 |
 
 ---
 
@@ -233,14 +233,14 @@ The evaluation pipeline was run twice: **January 2026** (initial, 35 cases) and 
 
 | Model | Jan Exact % | Feb Exact % | Jan Accept % | Feb Accept % |
 | --- | --- | --- | --- | --- |
-| Meditron3 7B | 9% | 12% | 26% | 82% |
-| OLMo 32B Instruct | 14% | 47% | 20% | 100% |
-| OLMo 32B Think | 23% | 44% | 23% | 82% |
-| Gemma 3 27B | 29% | 44% | 31% | 94% |
-| Gemma 3 4B | 17% | 41% | 20% | 100% |
-| MedGemma 27B | 37% | 56% | 31% | 100% |
+| Meditron3 7B | 9% | 0% | 26% | 100% |
+| OLMo 32B Instruct | 14% | 0% | 20% | 100% |
+| OLMo 32B Think | 23% | 0% | 23% | 100% |
+| Gemma 3 27B | 29% | 0% | 31% | 100% |
+| Gemma 3 4B | 17% | 0% | 20% | 100% |
+| MedGemma 27B | 37% | 0% | 31% | 100% |
 
-**Average improvement:** +19 pp exact match, +68 pp clinically acceptable. Key drivers: improved prompt engineering, fixed ECOG/Karnofsky extraction for v1.0 cases, increased max_tokens for thinking models.
+**Average improvement:** +-21 pp exact match, +75 pp clinically acceptable. Key drivers: improved prompt engineering, fixed ECOG/Karnofsky extraction for v1.0 cases, increased max_tokens for thinking models.
 
 ---
 
@@ -263,7 +263,7 @@ The evaluation pipeline was run twice: **January 2026** (initial, 35 cases) and 
 
 ## 10. Model Performance — Doctor Review
 
-Dr. Alexa reviewed **262 model predictions** across 48 cases in a blinded fashion.
+Dr. Alexa reviewed **414 model predictions** across 69 cases in a blinded fashion.
 
 ![Acceptability](charts/model_acceptability.png)
 
@@ -271,12 +271,12 @@ Dr. Alexa reviewed **262 model predictions** across 48 cases in a blinded fashio
 
 | Model | Cases | Acceptable % | Avg Exact Match | Avg Patient-Oriented | Avg Quality (0–9) |
 | --- | --- | --- | --- | --- | --- |
-| Gemma 3 27B | 40 | 92% | 71 | 71 | 6.8 |
-| MedGemma 27B | 33 | 89% | 70 | 68 | 6.6 |
-| OLMo 32B Instruct | 48 | 67% | 51 | 52 | 5.9 |
-| OLMo 32B Think | 45 | 80% | 57 | 57 | 5.6 |
-| Meditron3 7B | 48 | 50% | 41 | 41 | 4.4 |
-| Gemma 3 4B | 48 | 52% | 40 | 40 | 3.7 |
+| MedGemma 27B | 69 | 75% | 64 | 63 | 6.1 |
+| Gemma 3 27B | 69 | 75% | 62 | 62 | 5.8 |
+| OLMo 32B Instruct | 69 | 64% | 50 | 51 | 5.5 |
+| OLMo 32B Think | 69 | 69% | 54 | 54 | 5.3 |
+| Meditron3 7B | 69 | 49% | 41 | 41 | 4.2 |
+| Gemma 3 4B | 69 | 48% | 40 | 40 | 3.9 |
 
 ---
 
@@ -343,14 +343,14 @@ The physician rated the therapy as acceptable, but both AI judges classified it 
 
 | Judge | Score Type | Mean | Median | Std Dev | Min | Max |
 | --- | --- | --- | --- | --- | --- | --- |
-| GPT-5.2 | Semantic | 0.638 | 0.775 | 0.324 | 0.00 | 1.00 |
-| GPT-5.2 | Clinical | 0.721 | 0.835 | 0.236 | 0.10 | 0.95 |
-| GPT-5.2 | Reasoning | 0.543 | 0.600 | 0.180 | 0.10 | 0.88 |
-| GPT-5.2 | Overall | 0.652 | 0.750 | 0.247 | 0.08 | 0.96 |
-| MedGemma 27B | Semantic | 0.669 | 0.900 | 0.363 | 0.00 | 1.00 |
-| MedGemma 27B | Clinical | 0.797 | 0.900 | 0.226 | 0.00 | 1.00 |
+| GPT-5.2 | Semantic | 0.651 | 0.820 | 0.317 | 0.00 | 1.00 |
+| GPT-5.2 | Clinical | 0.722 | 0.835 | 0.237 | 0.10 | 0.95 |
+| GPT-5.2 | Reasoning | 0.545 | 0.600 | 0.182 | 0.10 | 0.88 |
+| GPT-5.2 | Overall | 0.658 | 0.760 | 0.248 | 0.08 | 0.96 |
+| MedGemma 27B | Semantic | 0.671 | 0.900 | 0.362 | 0.00 | 1.00 |
+| MedGemma 27B | Clinical | 0.798 | 0.900 | 0.227 | 0.00 | 1.00 |
 | MedGemma 27B | Reasoning | 0.712 | 0.700 | 0.145 | 0.10 | 0.90 |
-| MedGemma 27B | Overall | 0.705 | 0.780 | 0.217 | 0.07 | 0.98 |
+| MedGemma 27B | Overall | 0.708 | 0.810 | 0.218 | 0.07 | 0.98 |
 
 ---
 
@@ -360,16 +360,16 @@ The physician rated the therapy as acceptable, but both AI judges classified it 
 
 | Metric | GPT-5.2 | MedGemma 27B |
 | --- | --- | --- |
-| N pairs | 254 | 254 |
-| Cohen's κ | 0.513 | 0.545 |
-| Agreement Rate | 75.6% | 78.3% |
-| Sensitivity | 0.682 | 0.750 |
-| Specificity | 0.923 | 0.859 |
-| Precision | 0.952 | 0.923 |
-| F1 Score | 0.795 | 0.828 |
+| N pairs | 407 | 407 |
+| Cohen's κ | 0.629 | 0.675 |
+| Agreement Rate | 81.8% | 84.5% |
+| Sensitivity | 0.782 | 0.844 |
+| Specificity | 0.880 | 0.847 |
+| Precision | 0.918 | 0.904 |
+| F1 Score | 0.845 | 0.873 |
 
-**GPT-5.2:** κ = 0.513 (moderate agreement), Sensitivity = 68.2%, Specificity = 92.3%.
-**MedGemma 27B:** κ = 0.545 (moderate agreement), Sensitivity = 75.0%, Specificity = 85.9%.
+**GPT-5.2:** κ = 0.629 (substantial agreement), Sensitivity = 78.2%, Specificity = 88.0%.
+**MedGemma 27B:** κ = 0.675 (substantial agreement), Sensitivity = 84.4%, Specificity = 84.7%.
 
 ---
 
@@ -379,11 +379,11 @@ The physician rated the therapy as acceptable, but both AI judges classified it 
 
 | Comparison | GPT-5.2 | MedGemma 27B |
 | --- | --- | --- |
-| Overall Score vs Quality (ρ) | 0.685 | 0.619 |
+| Overall Score vs Quality (ρ) | 0.722 | 0.661 |
 |   p-value | 0.0000 | 0.0000 |
-| Overall Score vs Exact Match (ρ) | 0.732 | 0.646 |
+| Overall Score vs Exact Match (ρ) | 0.766 | 0.694 |
 |   p-value | 0.0000 | 0.0000 |
-| N pairs | 262 | 262 |
+| N pairs | 414 | 414 |
 
 ---
 
@@ -393,11 +393,11 @@ The physician rated the therapy as acceptable, but both AI judges classified it 
 
 | Metric | GPT-5.2 | MedGemma 27B |
 | --- | --- | --- |
-| Total Reviews | 108 | 108 |
-| Agree | 93 (86%) | 86 (80%) |
-| Partial | 0 (0%) | 15 (14%) |
-| Disagree | 15 (14%) | 7 (6%) |
-| Avg Reasoning Quality | 7.2/10 | 7.0/10 |
+| Total Reviews | 414 | 414 |
+| Agree | 352 (85%) | 353 (85%) |
+| Partial | 4 (1%) | 24 (6%) |
+| Disagree | 58 (14%) | 37 (9%) |
+| Avg Reasoning Quality | 7.1/10 | 7.2/10 |
 
 ---
 
@@ -413,7 +413,7 @@ Agreement between GPT-5.2 and MedGemma 27B across 414 evaluation pairs (69 cases
 
 ![Inter-Judge](charts/inter_judge.png)
 
-**Cohen's κ = 0.722** (substantial agreement). Overall concordance: 86.2%.
+**Cohen's κ = 0.725** (substantial agreement). Overall concordance: 86.5%.
 
 ---
 
@@ -426,10 +426,10 @@ MedGemma serves dual roles: both as a predictive model and as a judge.
 | Metric | Self-Judging | Judging Others |
 | --- | --- | --- |
 | N evaluations | 69 | 345 |
-| Mean Overall Score | 0.774 | 0.691 |
-| Median Overall Score | 0.850 | 0.760 |
+| Mean Overall Score | 0.777 | 0.695 |
+| Median Overall Score | 0.850 | 0.780 |
 
-**Mann-Whitney U test:** U = 14054, p = 0.0174 (statistically significant). MedGemma gives higher scores to its own predictions by 0.082 points on average.
+**Mann-Whitney U test:** U = 14062, p = 0.0170 (statistically significant). MedGemma gives higher scores to its own predictions by 0.082 points on average.
 
 ---
 
@@ -440,11 +440,11 @@ MedGemma serves dual roles: both as a predictive model and as a judge.
 
 | Safety Metric | GPT-5.2 | MedGemma 27B |
 | --- | --- | --- |
-| Total Pairs | 254 | 254 |
-| Judge Approvals | 126 | 143 |
-| Judge Rejections | 128 | 111 |
-| False Positives (dangerous) | 6 (4.8%) | 11 (7.7%) |
-| False Negatives (overly strict) | 56 (43.8%) | 44 (39.6%) |
+| Total Pairs | 407 | 407 |
+| Judge Approvals | 219 | 240 |
+| Judge Rejections | 188 | 167 |
+| False Positives (dangerous) | 18 (8.2%) | 23 (9.6%) |
+| False Negatives (overly strict) | 56 (29.8%) | 40 (24.0%) |
 
 ---
 
@@ -452,14 +452,14 @@ MedGemma serves dual roles: both as a predictive model and as a judge.
 
 | Metric | GPT-5.2 | MedGemma 27B |
 | --- | --- | --- |
-| Cohen's κ (vs Doctor) | 0.513 | 0.545 |
-| Agreement Rate | 75.6% | 78.3% |
-| F1 Score | 0.795 | 0.828 |
-| Doctor Agree % | 86% | 80% |
-| Avg Reasoning Quality | 7.2/10 | 7.0/10 |
-| False Positive Rate | 4.8% | 7.7% |
-| Avg Overall Score | 0.652 | 0.705 |
-| Avg Clinical Score | 0.721 | 0.797 |
+| Cohen's κ (vs Doctor) | 0.629 | 0.675 |
+| Agreement Rate | 81.8% | 84.5% |
+| F1 Score | 0.845 | 0.873 |
+| Doctor Agree % | 85% | 85% |
+| Avg Reasoning Quality | 7.1/10 | 7.2/10 |
+| False Positive Rate | 8.2% | 9.6% |
+| Avg Overall Score | 0.658 | 0.708 |
+| Avg Clinical Score | 0.722 | 0.798 |
 
 ---
 
@@ -488,10 +488,10 @@ MedGemma serves dual roles: both as a predictive model and as a judge.
 
 ### Key Findings
 
-- **Model Performance:** Gemma 3 27B achieved the highest doctor-rated quality (6.8/9) with 92% therapy acceptability. MedGemma 27B scored highest on automated judge evaluation (0.75/1.0).
-- **Best AI Judge:** MedGemma 27B showed the strongest agreement with the doctor (κ = 0.545).
-- **Therapy Categories:** IO+TKI and TKI Mono dominate model predictions, consistent with current RCC guidelines for the 35/69 metastatic cases.
-- **Clinical Safety:** GPT-5.2 has the lowest dangerous error rate (4.8%). Both judges tend to be overly strict, which is safer in a clinical context.
+- **Model Performance:** MedGemma 27B achieved the highest doctor-rated quality (6.1/9) with 75% therapy acceptability. MedGemma 27B scored highest on automated judge evaluation (0.76/1.0).
+- **Best AI Judge:** MedGemma 27B showed the strongest agreement with the doctor (κ = 0.675).
+- **Therapy Categories:** IO+TKI and TKI Mono dominate model predictions, consistent with current RCC guidelines for the 36/69 metastatic cases.
+- **Clinical Safety:** GPT-5.2 has the lowest dangerous error rate (8.2%). Both judges tend to be overly strict, which is safer in a clinical context.
 - **Self-Judging Bias:** MedGemma shows statistically significant self-judging bias. Self-evaluations should be interpreted with caution.
 
 ### Recommendations
@@ -506,7 +506,7 @@ MedGemma serves dual roles: both as a predictive model and as a judge.
 
 - Single physician reviewer (potential individual assessment bias)
 - Dataset limited to RCC from a single institution's tumor boards
-- Doctor reviews covered 48 of 69 cases for model evaluation and 18 cases for judge evaluation
+- Doctor reviewed all 69 cases for both model and judge evaluation (complete coverage)
 - Ground truth = tumor board consensus (not necessarily the only correct therapy)
 - All cases use German medical terminology, which may affect model performance
 
