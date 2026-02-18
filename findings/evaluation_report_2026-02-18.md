@@ -1,12 +1,12 @@
 # Evaluation Report
 
-**Doctor vs AI Judges in Medical Oncology — Therapy Recommendation Assessment**
+**Uro-Oncologist vs AI Judges in Medical Oncology — Therapy Recommendation Assessment**
 
 > February 2026 | Renal Cell Carcinoma (RCC) — 69 Cases from German Tumor Boards
 >
 > Prepared for Google AI Hackathon 2026
 >
-> Reviewer: Dr. Radu Alexa, Board-Certified Oncologist
+> Reviewer: Dr. Radu Alexa, Board-Certified Uro-Oncologist
 
 ---
 
@@ -14,16 +14,14 @@
 
 This report presents a novel three-tier evaluation pipeline for assessing AI-generated therapy recommendations in clinical oncology. Across 414 predictions from 6 LLMs on 69 renal cell carcinoma (Nierenzellkarzinom, RCC) cases from German tumor boards (Tumordiskussionen), the pipeline combines automated AI judging with expert physician validation to establish a scalable, reproducible evaluation framework.
 
-Through iterative pipeline refinement between January and February 2026, the average clinically acceptable therapy rate improved from 25% to 100% (+75 pp), and exact match rate from 21% to 0% (+-21 pp).
-
 ### Key Findings
 
-- Across all 414 predictions: **64%** metastatic detection accuracy, **31%** exact therapy match, **59%** clinically acceptable therapies.
-- **Best model by doctor review:** MedGemma 27B (6.1/9 quality, 75% acceptable).
+- Across all 414 predictions: **63.5%** metastatic detection accuracy, **30.9%** exact therapy match, **58.7%** clinically acceptable therapies.
+- **Best model by uro-oncologist review:** MedGemma 27B (6.1/9 quality, 75.4% acceptable).
 - **Best model by automated judge score:** MedGemma 27B (avg overall 0.76/1.0).
-- GPT-5.2 shows **substantial agreement** with the doctor (Cohen's κ = 0.629).
-- MedGemma 27B shows **substantial agreement** with the doctor (Cohen's κ = 0.675).
-- **Inter-judge agreement:** κ = 0.725, 86% concordance across 414 evaluation pairs.
+- GPT-5.2 shows **substantial agreement** with the uro-oncologist (Cohen's κ = 0.629).
+- MedGemma 27B shows **substantial agreement** with the uro-oncologist (Cohen's κ = 0.675).
+- **Inter-judge agreement:** κ = 0.725, 86.5% concordance across 414 evaluation pairs.
 - **MedGemma self-judging bias:** higher scores for own predictions (0.78 vs 0.69), significant (p=0.017).
 - **Clinical safety:** GPT-5.2 has lowest dangerous error rate (8.2% false positives).
 
@@ -52,7 +50,7 @@ The study uses a **three-tier evaluation pipeline:**
 
 1. **Tier 1 — LLM Prediction:** Each model receives the full clinical case and generates a therapy recommendation with reasoning.
 2. **Tier 2 — AI Judge Evaluation:** Two AI judges (GPT-5.2 and MedGemma 27B) independently score each prediction on semantic match, clinical appropriateness, reasoning quality, and overall correctness.
-3. **Tier 3 — Doctor Validation:** A board-certified oncologist blindly reviews model predictions and judge evaluations.
+3. **Tier 3 — Uro-Oncologist Validation:** A board-certified uro-oncologist reviews model predictions and judge evaluations.
 
 ### Models Evaluated
 
@@ -77,41 +75,15 @@ Unlike single-layer evaluations (model vs. ground truth), this project implement
 
 - **Tier 1 — LLM Prediction:** Six models with diverse architectures (2B–32B parameters, general-purpose and medical-specialized) generate therapy recommendations from structured German clinical case data.
 - **Tier 2 — AI Judge Evaluation:** Two independent AI judges score each prediction across four dimensions: semantic match, clinical appropriateness, reasoning quality, and overall correctness.
-- **Tier 3 — Physician Validation:** A board-certified oncologist blindly reviews both model predictions and judge evaluations, creating a ground truth for evaluating the evaluators themselves.
+- **Tier 3 — Uro-Oncologist Validation:** A board-certified uro-oncologist reviews both model predictions and judge evaluations, creating a ground truth for evaluating the evaluators themselves.
 
-### Multi-Schema Data Handling
+### Clinical Data Format
 
-The clinical dataset spans **four distinct JSON schema variants** across the 69 cases:
-
-| Schema | Cases | Structure | Key Differences |
-| --- | --- | --- | --- |
-| v1.1 Standard | 1–14, 36–61 | Top-level patient, entitäten | Nested performance_status, separate cTNM/pTNM |
-| v1.0 Template | 15–35, 67–69 | Wrapped in case_template | Flat ECOG, single TNM field, different IMDC path |
-| case-de | 62–63 | case.patient, case.diagnose | mRCC schema with therapieplan |
-| diagnosen | 64–66 | diagnosen[], tumor_history | Array-based diagnosis, geplantes_vorgehen |
-
-A critical bug affecting cases 15–35 (missing ECOG/Karnofsky due to changed schema paths) was identified and fixed between the January and February evaluation rounds.
+All 69 clinical cases are stored in structured JSON format. The inference pipeline automatically detects and normalizes schema variations across cases, extracting ECOG, TNM staging, histology, and therapy fields.
 
 ### Medical Review Web Platform
 
-A purpose-built Next.js web application enables structured physician review of AI predictions and judge evaluations. The platform supports blinded review workflows, Likert-scale and binary ratings, and exports data to Supabase for statistical analysis.
-
-### Inference Infrastructure
-
-| Aspect | Modal (Primary) | OpenRouter (Validation) |
-| --- | --- | --- |
-| Hardware | NVIDIA H100 80GB | Cloud API |
-| Framework | vLLM (batched) | Sequential API |
-| JSON Handling | vLLM structured output | Manual regex parsing |
-| Reproducibility | Seed=42, deterministic | Non-deterministic |
-| Speed (69 cases) | ~3 minutes | ~15 minutes |
-| Cost per run | ~$0.10 | ~$0.40 |
-
-### Scalability & Impact
-
-- **Cancer type expansion:** Pipeline is cancer-agnostic — same framework applies to prostate, urothelial, testicular, and non-urological cancers.
-- **Language adaptability:** German-language evaluation demonstrates LLM capability beyond English, relevant for non-English healthcare systems.
-- **Open-source potential:** Three-tier methodology, review platform, and evaluation scripts designed for reproducibility.
+A web application enables structured physician review of AI predictions and judge evaluations. The platform supports structured review workflows, Likert-scale and binary ratings, and exports data for statistical analysis.
 
 ---
 
@@ -153,7 +125,7 @@ overall_score = (semantic_score × 0.4) + (clinical_score × 0.4) + (reasoning_q
 | Clinical Appropriateness | 40% | 0–1 | First-choice=0.9–1.0, acceptable alternative=0.6–0.8 |
 | Reasoning Quality | 20% | 0–1 | Complete and correct=0.8–1.0, errors=0–0.4 |
 
-### Physician Validation Protocol
+### Uro-Oncologist Validation Protocol
 
 | Review Type | Target | Metrics | Scale |
 | --- | --- | --- | --- |
@@ -173,8 +145,8 @@ The dataset comprises **69 anonymized RCC cases** from German tumor board discus
 | Total cases | 69 |
 | Age range | 43–82 years |
 | Age mean / median | 67 / 67 years |
-| Metastatic | 36 (52%) |
-| Localized | 33 (48%) |
+| Metastatic | 36 (52.2%) |
+| Localized | 33 (47.8%) |
 | Clear cell (ccRCC) | 12 |
 | Non-clear cell | 3 |
 | Histology not specified | 54 |
@@ -190,8 +162,8 @@ The dataset comprises **69 anonymized RCC cases** from German tumor board discus
 | AI Judges | 2 | GPT-5.2, MedGemma 27B |
 | Total Predictions | 414 | 69 cases × 6 models |
 | Judge Evaluations | 828 | 69 cases × 6 models × 2 judges |
-| Doctor Model Reviews | 414 | 69 cases × 6 models |
-| Doctor Judge Reviews | 828 | 69 cases × 6 models × 2 judges |
+| Uro-Oncologist Model Reviews | 414 | 69 cases × 6 models |
+| Uro-Oncologist Judge Reviews | 828 | 69 cases × 6 models × 2 judges |
 
 ---
 
@@ -203,14 +175,14 @@ All 414 predictions across 69 cases were evaluated by both AI judges.
 
 | Model | Cases | Met. Detect. | Exact Match | Judge Acc. | Avg Score |
 | --- | --- | --- | --- | --- | --- |
-| MedGemma 27B | 69 | 6522% | 4638% | 6522% | 0.76 |
-| OLMo 32B Think | 69 | 6522% | 3333% | 6232% | 0.72 |
-| Gemma 3 27B | 69 | 6522% | 3623% | 5942% | 0.71 |
-| OLMo 32B Instruct | 69 | 6377% | 3043% | 5362% | 0.68 |
-| Gemma 3 4B | 69 | 5942% | 2899% | 4348% | 0.57 |
-| Meditron3 7B | 69 | 6232% | 1014% | 4203% | 0.51 |
+| MedGemma 27B | 69 | 65.2% | 46.4% | 65.2% | 0.76 |
+| OLMo 32B Think | 69 | 65.2% | 33.3% | 62.3% | 0.72 |
+| Gemma 3 27B | 69 | 65.2% | 36.2% | 59.4% | 0.71 |
+| OLMo 32B Instruct | 69 | 63.8% | 30.4% | 53.6% | 0.68 |
+| Gemma 3 4B | 69 | 59.4% | 29.0% | 43.5% | 0.57 |
+| Meditron3 7B | 69 | 62.3% | 10.1% | 42.0% | 0.51 |
 
-Overall: **64%** metastatic detection accuracy, **31%** exact therapy match, **59%** clinically acceptable.
+Overall: **63.5%** metastatic detection accuracy, **30.9%** exact therapy match, **58.7%** clinically acceptable.
 
 ### Detailed Judge Scores
 
@@ -225,45 +197,26 @@ Overall: **64%** metastatic detection accuracy, **31%** exact therapy match, **5
 
 ---
 
-## 8. Performance Across Evaluation Rounds
-
-The evaluation pipeline was run twice: **January 2026** (initial, 35 cases) and **February 2026** (expanded to 69 cases, improved prompts, fixed data extraction).
-
-![Run Comparison](charts/run_comparison.png)
-
-| Model | Jan Exact % | Feb Exact % | Jan Accept % | Feb Accept % |
-| --- | --- | --- | --- | --- |
-| Meditron3 7B | 9% | 0% | 26% | 100% |
-| OLMo 32B Instruct | 14% | 0% | 20% | 100% |
-| OLMo 32B Think | 23% | 0% | 23% | 100% |
-| Gemma 3 27B | 29% | 0% | 31% | 100% |
-| Gemma 3 4B | 17% | 0% | 20% | 100% |
-| MedGemma 27B | 37% | 0% | 31% | 100% |
-
-**Average improvement:** +-21 pp exact match, +75 pp clinically acceptable. Key drivers: improved prompt engineering, fixed ECOG/Karnofsky extraction for v1.0 cases, increased max_tokens for thinking models.
-
----
-
-## 9. Therapy Category Analysis
+## 8. Therapy Category Analysis
 
 ![Therapy Categories](charts/therapy_categories.png)
 
 | Therapy Category | Count | % of Predictions |
 | --- | --- | --- |
-| IO + TKI | 165 | 40% |
-| TKI Mono | 136 | 33% |
-| Surgery | 69 | 17% |
-| Other | 16 | 4% |
-| TKI + mTOR | 10 | 2% |
-| Surveillance | 9 | 2% |
-| IO Mono | 8 | 2% |
-| IO + IO | 1 | 0% |
+| IO + TKI | 165 | 39.9% |
+| TKI Mono | 136 | 32.9% |
+| Surgery | 69 | 16.7% |
+| Other | 16 | 3.9% |
+| TKI + mTOR | 10 | 2.4% |
+| Surveillance | 9 | 2.2% |
+| IO Mono | 8 | 1.9% |
+| IO + IO | 1 | 0.2% |
 
 ---
 
-## 10. Model Performance — Doctor Review
+## 9. Model Performance — Uro-Oncologist Review
 
-Dr. Alexa reviewed **414 model predictions** across 69 cases in a blinded fashion.
+Dr. Alexa reviewed **414 model predictions** across 69 cases.
 
 ![Acceptability](charts/model_acceptability.png)
 
@@ -271,16 +224,16 @@ Dr. Alexa reviewed **414 model predictions** across 69 cases in a blinded fashio
 
 | Model | Cases | Acceptable % | Avg Exact Match | Avg Patient-Oriented | Avg Quality (0–9) |
 | --- | --- | --- | --- | --- | --- |
-| MedGemma 27B | 69 | 75% | 64 | 63 | 6.1 |
-| Gemma 3 27B | 69 | 75% | 62 | 62 | 5.8 |
-| OLMo 32B Instruct | 69 | 64% | 50 | 51 | 5.5 |
-| OLMo 32B Think | 69 | 69% | 54 | 54 | 5.3 |
-| Meditron3 7B | 69 | 49% | 41 | 41 | 4.2 |
-| Gemma 3 4B | 69 | 48% | 40 | 40 | 3.9 |
+| MedGemma 27B | 69 | 75.4% | 63.8 | 63.5 | 6.1 |
+| Gemma 3 27B | 69 | 74.6% | 61.8 | 61.8 | 5.8 |
+| OLMo 32B Instruct | 69 | 63.8% | 49.8 | 50.6 | 5.5 |
+| OLMo 32B Think | 69 | 69.1% | 54.1 | 54.1 | 5.3 |
+| Meditron3 7B | 69 | 49.3% | 41.1 | 41.2 | 4.2 |
+| Gemma 3 4B | 69 | 47.8% | 39.9 | 39.9 | 3.9 |
 
 ---
 
-## 11. Case Studies
+## 10. Case Studies
 
 ### Case Study A: Model Consensus — Correct Prediction
 
@@ -316,7 +269,7 @@ All or most models agreed on the correct therapy category, demonstrating reliabl
 
 Models predicted **6 different therapy categories**, highlighting clinical ambiguity.
 
-### Case Study C: Doctor–Judge Divergence
+### Case Study C: Uro-Oncologist–Judge Divergence
 
 **Case ncc_1:** 52-year-old patient, ECOG 0, metastatic papillär. Diagnosis: Metastasiertes papilläres RCC.
 
@@ -335,7 +288,7 @@ The physician rated the therapy as acceptable, but both AI judges classified it 
 
 ---
 
-## 12. Judge Score Distributions
+## 11. Judge Score Distributions
 
 ![Score Distributions](charts/score_distributions.png)
 
@@ -354,7 +307,7 @@ The physician rated the therapy as acceptable, but both AI judges classified it 
 
 ---
 
-## 13. Agreement: Doctor vs AI Judge
+## 12. Agreement: Uro-Oncologist vs AI Judge
 
 ![Confusion Matrices](charts/confusion_matrices.png)
 
@@ -373,41 +326,27 @@ The physician rated the therapy as acceptable, but both AI judges classified it 
 
 ---
 
-## 14. Score Correlations
-
-![Scatter Correlations](charts/scatter_correlations.png)
-
-| Comparison | GPT-5.2 | MedGemma 27B |
-| --- | --- | --- |
-| Overall Score vs Quality (ρ) | 0.722 | 0.661 |
-|   p-value | 0.0000 | 0.0000 |
-| Overall Score vs Exact Match (ρ) | 0.766 | 0.694 |
-|   p-value | 0.0000 | 0.0000 |
-| N pairs | 414 | 414 |
-
----
-
-## 15. Doctor's Direct Rating of AI Judges
+## 13. Uro-Oncologist's Direct Rating of AI Judges
 
 ![Judge Ratings](charts/judge_ratings.png)
 
 | Metric | GPT-5.2 | MedGemma 27B |
 | --- | --- | --- |
 | Total Reviews | 414 | 414 |
-| Agree | 352 (85%) | 353 (85%) |
-| Partial | 4 (1%) | 24 (6%) |
-| Disagree | 58 (14%) | 37 (9%) |
+| Agree | 352 (85.0%) | 353 (85.3%) |
+| Partial | 4 (1.0%) | 24 (5.8%) |
+| Disagree | 58 (14.0%) | 37 (8.9%) |
 | Avg Reasoning Quality | 7.1/10 | 7.2/10 |
 
 ---
 
-## 16. Per-Model Judge Accuracy
+## 14. Per-Model Judge Accuracy
 
 ![Per-Model Accuracy](charts/per_model_accuracy.png)
 
 ---
 
-## 17. Inter-Judge Agreement
+## 15. Inter-Judge Agreement
 
 Agreement between GPT-5.2 and MedGemma 27B across 414 evaluation pairs (69 cases × 6 models).
 
@@ -417,7 +356,7 @@ Agreement between GPT-5.2 and MedGemma 27B across 414 evaluation pairs (69 cases
 
 ---
 
-## 18. MedGemma Self-Judging Bias
+## 16. MedGemma Self-Judging Bias
 
 MedGemma serves dual roles: both as a predictive model and as a judge.
 
@@ -433,10 +372,10 @@ MedGemma serves dual roles: both as a predictive model and as a judge.
 
 ---
 
-## 19. Clinical Safety Analysis
+## 17. Clinical Safety Analysis
 
-- **False Positive (dangerous):** Judge approves a prediction the doctor rejects → could lead to inappropriate treatment.
-- **False Negative (overly strict):** Judge rejects a prediction the doctor approves → could prevent appropriate treatment.
+- **False Positive (dangerous):** Judge approves a prediction the uro-oncologist rejects → could lead to inappropriate treatment.
+- **False Negative (overly strict):** Judge rejects a prediction the uro-oncologist approves → could prevent appropriate treatment.
 
 | Safety Metric | GPT-5.2 | MedGemma 27B |
 | --- | --- | --- |
@@ -448,14 +387,14 @@ MedGemma serves dual roles: both as a predictive model and as a judge.
 
 ---
 
-## 20. Summary Comparison: GPT-5.2 vs MedGemma 27B
+## 18. Summary Comparison: GPT-5.2 vs MedGemma 27B
 
 | Metric | GPT-5.2 | MedGemma 27B |
 | --- | --- | --- |
-| Cohen's κ (vs Doctor) | 0.629 | 0.675 |
+| Cohen's κ (vs Uro-Oncologist) | 0.629 | 0.675 |
 | Agreement Rate | 81.8% | 84.5% |
 | F1 Score | 0.845 | 0.873 |
-| Doctor Agree % | 85% | 85% |
+| Uro-Oncologist Agree % | 85.0% | 85.3% |
 | Avg Reasoning Quality | 7.1/10 | 7.2/10 |
 | False Positive Rate | 8.2% | 9.6% |
 | Avg Overall Score | 0.658 | 0.708 |
@@ -463,7 +402,7 @@ MedGemma serves dual roles: both as a predictive model and as a judge.
 
 ---
 
-## 21. German–English Medical Glossary
+## 19. German–English Medical Glossary
 
 | German Term | English Translation | Context |
 | --- | --- | --- |
@@ -484,19 +423,19 @@ MedGemma serves dual roles: both as a predictive model and as a judge.
 
 ---
 
-## 22. Conclusions & Recommendations
+## 20. Conclusions & Recommendations
 
 ### Key Findings
 
-- **Model Performance:** MedGemma 27B achieved the highest doctor-rated quality (6.1/9) with 75% therapy acceptability. MedGemma 27B scored highest on automated judge evaluation (0.76/1.0).
-- **Best AI Judge:** MedGemma 27B showed the strongest agreement with the doctor (κ = 0.675).
+- **Model Performance:** MedGemma 27B achieved the highest uro-oncologist-rated quality (6.1/9) with 75.4% therapy acceptability. MedGemma 27B scored highest on automated judge evaluation (0.76/1.0).
+- **Best AI Judge:** MedGemma 27B showed the strongest agreement with the uro-oncologist (κ = 0.675).
 - **Therapy Categories:** IO+TKI and TKI Mono dominate model predictions, consistent with current RCC guidelines for the 36/69 metastatic cases.
 - **Clinical Safety:** GPT-5.2 has the lowest dangerous error rate (8.2%). Both judges tend to be overly strict, which is safer in a clinical context.
 - **Self-Judging Bias:** MedGemma shows statistically significant self-judging bias. Self-evaluations should be interpreted with caution.
 
 ### Recommendations
 
-1. AI judges should be used as **screening tools**, not final arbiters. Doctor review remains essential for clinical safety.
+1. AI judges should be used as **screening tools**, not final arbiters. Uro-oncologist review remains essential for clinical safety.
 2. Using **both GPT-5.2 and MedGemma** as judges and flagging disagreements could improve evaluation reliability.
 3. Models with high acceptability but lower exact match may still provide clinically valid alternative recommendations.
 4. Strong Spearman correlations (ρ > 0.64) suggest automated judge scores are useful proxies for prediction quality, enabling scalable evaluation.
@@ -506,7 +445,7 @@ MedGemma serves dual roles: both as a predictive model and as a judge.
 
 - Single physician reviewer (potential individual assessment bias)
 - Dataset limited to RCC from a single institution's tumor boards
-- Doctor reviewed all 69 cases for both model and judge evaluation (complete coverage)
+- Uro-oncologist reviewed all 69 cases for both model and judge evaluation (complete coverage)
 - Ground truth = tumor board consensus (not necessarily the only correct therapy)
 - All cases use German medical terminology, which may affect model performance
 

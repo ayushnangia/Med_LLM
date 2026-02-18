@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate comprehensive DOCX evaluation report: Doctor vs AI Judges.
+"""Generate comprehensive DOCX evaluation report: Uro-Oncologist vs AI Judges.
 
 Output: findings/evaluation_report_2026-02-17.docx
 Usage: source venv/bin/activate && python scripts/generate_evaluation_report.py
@@ -326,9 +326,9 @@ def compute_full_pipeline(predictions_df, cases_data):
             "model_id": mid,
             "model_name": model_name(mid),
             "n_cases": ms.get("total_cases", len(g)),
-            "met_accuracy": ms.get("metastatic_accuracy", 0) * 100,
-            "therapy_exact": ms.get("therapy_exact_match_rate", 0) * 100,
-            "judge_accuracy": ms.get("judge_accuracy", 0) * 100,
+            "met_accuracy": ms.get("metastatic_accuracy", 0),
+            "therapy_exact": ms.get("therapy_exact_match_rate", 0),
+            "judge_accuracy": ms.get("judge_accuracy", 0),
             "avg_overall": ms.get("avg_overall_score", 0),
             "avg_semantic": ms.get("avg_semantic_score", 0),
             "avg_clinical": ms.get("avg_clinical_score", 0),
@@ -360,7 +360,7 @@ def compute_full_pipeline(predictions_df, cases_data):
     }
 
 
-# ── Analysis: Doctor Reviews ───────────────────────────────────────────────
+# ── Analysis: Uro-Oncologist Reviews ───────────────────────────────────────────────
 
 def compute_model_performance(reviews_df):
     rows = []
@@ -621,52 +621,6 @@ def select_case_studies(cases_data, reviews_df, judge_evals_df):
     return studies
 
 
-def compute_run_comparison(run_df):
-    """Compute Jan vs Feb improvement metrics per model."""
-    # Keep only the latest run per model per label (handles multiple Feb runs)
-    run_df = run_df.sort_values("timestamp")
-    run_df = run_df.drop_duplicates(subset=["model_id", "run_label"], keep="last")
-    jan = run_df[run_df["run_label"] == "Jan 2026"].set_index("model_id")
-    feb = run_df[run_df["run_label"] == "Feb 2026"].set_index("model_id")
-    common = sorted(set(jan.index) & set(feb.index))
-
-    rows = []
-    for mid in common:
-        j, f = jan.loc[mid], feb.loc[mid]
-        rows.append({
-            "model_id": mid,
-            "model_name": model_name(mid),
-            "jan_met_acc": j["metastatic_accuracy"],
-            "feb_met_acc": f["metastatic_accuracy"],
-            "jan_exact": j["therapy_exact_match_rate"],
-            "feb_exact": f["therapy_exact_match_rate"],
-            "jan_acceptable": j["therapy_acceptable_rate"],
-            "feb_acceptable": f["therapy_acceptable_rate"],
-            "jan_cases": j["total_cases"],
-            "feb_cases": f["total_cases"],
-            # Judge metrics (GPT-5.2)
-            "jan_judge_overall": j.get("judge_gpt-5.2_avg_overall", 0),
-            "feb_judge_overall": f.get("judge_gpt-5.2_avg_overall", 0),
-        })
-
-    comp_df = pd.DataFrame(rows)
-    # Averages across models
-    avg_jan_accept = comp_df["jan_acceptable"].mean()
-    avg_feb_accept = comp_df["feb_acceptable"].mean()
-    avg_jan_exact = comp_df["jan_exact"].mean()
-    avg_feb_exact = comp_df["feb_exact"].mean()
-
-    return {
-        "comparison": comp_df,
-        "avg_jan_acceptable": avg_jan_accept,
-        "avg_feb_acceptable": avg_feb_accept,
-        "avg_jan_exact": avg_jan_exact,
-        "avg_feb_exact": avg_feb_exact,
-        "accept_improvement": avg_feb_accept - avg_jan_accept,
-        "exact_improvement": avg_feb_exact - avg_jan_exact,
-    }
-
-
 # ── Chart Generation ───────────────────────────────────────────────────────
 
 def chart_demographics(demo, chart_dir):
@@ -718,7 +672,7 @@ def chart_full_model_performance(pipeline, chart_dir):
                    color="#6366F1", edgecolor="white", height=0.6)
     for bar, val in zip(bars, df["met_accuracy"]):
         ax.text(bar.get_width() + 1, bar.get_y() + bar.get_height() / 2,
-                f"{val:.0f}%", va="center", fontsize=9, fontweight="bold")
+                f"{val:.1f}%", va="center", fontsize=9, fontweight="bold")
     ax.set_xlabel("Accuracy (%)")
     ax.set_title("Metastatic Detection", fontweight="bold")
     ax.set_xlim(0, 105)
@@ -729,7 +683,7 @@ def chart_full_model_performance(pipeline, chart_dir):
                    color="#F59E0B", edgecolor="white", height=0.6)
     for bar, val in zip(bars, df["therapy_exact"]):
         ax.text(bar.get_width() + 1, bar.get_y() + bar.get_height() / 2,
-                f"{val:.0f}%", va="center", fontsize=9, fontweight="bold")
+                f"{val:.1f}%", va="center", fontsize=9, fontweight="bold")
     ax.set_xlabel("Exact Match (%)")
     ax.set_title("Therapy Exact Match", fontweight="bold")
     ax.set_xlim(0, 105)
@@ -783,9 +737,9 @@ def chart_model_acceptability(perf_df, chart_dir):
                    color=colors, edgecolor="white", height=0.6)
     for bar, val in zip(bars, df["acceptable_pct"]):
         ax.text(bar.get_width() + 1.5, bar.get_y() + bar.get_height() / 2,
-                f"{val:.0f}%", va="center", fontsize=10, fontweight="bold")
+                f"{val:.1f}%", va="center", fontsize=10, fontweight="bold")
     ax.set_xlabel("Therapy Acceptable (%)")
-    ax.set_title("Therapy Acceptability Rate by Model (Doctor Review)", fontweight="bold")
+    ax.set_title("Therapy Acceptability Rate by Model (Uro-Oncologist Review)", fontweight="bold")
     ax.set_xlim(0, 105)
     ax.axvline(50, color="gray", ls="--", alpha=0.4)
     fig.tight_layout()
@@ -801,7 +755,7 @@ def chart_model_quality(perf_df, chart_dir):
         ax.text(bar.get_width() + 0.15, bar.get_y() + bar.get_height() / 2,
                 f"{val:.1f}", va="center", fontsize=10, fontweight="bold")
     ax.set_xlabel("Average Prediction Quality (0\u20139)")
-    ax.set_title("Average Prediction Quality by Model (Doctor Review)", fontweight="bold")
+    ax.set_title("Average Prediction Quality by Model (Uro-Oncologist Review)", fontweight="bold")
     ax.set_xlim(0, 10)
     fig.tight_layout()
     return save_chart(fig, "model_quality", chart_dir)
@@ -820,50 +774,12 @@ def chart_confusion_matrices(agreement, chart_dir):
         ax.set_title(f"{judge_name(jid)}\n\u03ba = {agreement[jid]['kappa']:.3f}",
                      fontweight="bold")
         ax.set_xlabel("Judge Decision")
-        ax.set_ylabel("Doctor Decision")
-    fig.suptitle("Confusion Matrices: Doctor vs AI Judge",
+        ax.set_ylabel("Uro-Oncologist Decision")
+    fig.suptitle("Confusion Matrices: Uro-Oncologist vs AI Judge",
                  fontweight="bold", y=1.02)
     fig.tight_layout()
     return save_chart(fig, "confusion_matrices", chart_dir)
 
-
-def chart_scatter_correlations(correlations, chart_dir):
-    jids = [jid for jid in JUDGE_IDS if jid in correlations]
-    fig, axes = plt.subplots(2, len(jids), figsize=(5 * len(jids), 8))
-    if len(jids) == 1:
-        axes = axes.reshape(-1, 1)
-    colors = [CLR_GPT, CLR_MG]
-
-    for col, (jid, clr) in enumerate(zip(jids, colors)):
-        data = correlations[jid]["data"]
-
-        ax = axes[0, col]
-        ax.scatter(data["overall_score"], data["prediction_quality"],
-                   alpha=0.5, c=clr, s=30)
-        z = np.polyfit(data["overall_score"], data["prediction_quality"], 1)
-        x_line = np.linspace(data["overall_score"].min(),
-                             data["overall_score"].max(), 100)
-        ax.plot(x_line, np.poly1d(z)(x_line), "--", c=clr, alpha=0.7)
-        r, p = correlations[jid]["quality_r"], correlations[jid]["quality_p"]
-        ax.set_title(f"{judge_name(jid)}\n\u03c1={r:.3f}, p={p:.3f}",
-                     fontweight="bold")
-        ax.set_xlabel("Judge Overall Score (0\u20131)")
-        ax.set_ylabel("Doctor Quality (0\u20139)")
-
-        ax = axes[1, col]
-        ax.scatter(data["overall_score"], data["recommendation_exact_match"],
-                   alpha=0.5, c=clr, s=30)
-        z = np.polyfit(data["overall_score"], data["recommendation_exact_match"], 1)
-        ax.plot(x_line, np.poly1d(z)(x_line), "--", c=clr, alpha=0.7)
-        r, p = correlations[jid]["exact_r"], correlations[jid]["exact_p"]
-        ax.set_title(f"\u03c1={r:.3f}, p={p:.3f}")
-        ax.set_xlabel("Judge Overall Score (0\u20131)")
-        ax.set_ylabel("Doctor Exact Match (0\u2013100)")
-
-    fig.suptitle("Score Correlations: Judge vs Doctor",
-                 fontweight="bold", y=1.02)
-    fig.tight_layout()
-    return save_chart(fig, "scatter_correlations", chart_dir)
 
 
 def chart_judge_ratings(ratings, chart_dir):
@@ -885,7 +801,7 @@ def chart_judge_ratings(ratings, chart_dir):
     ax1.set_xticks(x)
     ax1.set_xticklabels(names)
     ax1.set_ylabel("Percentage (%)")
-    ax1.set_title("Doctor Agreement with Judge", fontweight="bold")
+    ax1.set_title("Uro-Oncologist Agreement with Judge", fontweight="bold")
     ax1.legend()
     ax1.set_ylim(0, 105)
 
@@ -896,7 +812,7 @@ def chart_judge_ratings(ratings, chart_dir):
         ax2.text(bar.get_x() + bar.get_width() / 2, bar.get_height() + 0.1,
                  f"{val:.1f}", ha="center", fontweight="bold")
     ax2.set_ylabel("Reasoning Quality (0\u201310)")
-    ax2.set_title("Avg Judge Reasoning Quality\n(Rated by Doctor)", fontweight="bold")
+    ax2.set_title("Avg Judge Reasoning Quality\n(Rated by Uro-Oncologist)", fontweight="bold")
     ax2.set_ylim(0, 10)
 
     fig.tight_layout()
@@ -915,7 +831,7 @@ def chart_per_model_accuracy(per_model_acc, chart_dir):
     fig, ax = plt.subplots(figsize=(6, 5))
     sns.heatmap(df, annot=True, fmt=".0f", cmap="RdYlGn", vmin=30, vmax=100,
                 ax=ax, cbar_kws={"label": "Agreement %"}, annot_kws={"size": 12})
-    ax.set_title("Judge\u2013Doctor Agreement (%) by Model", fontweight="bold")
+    ax.set_title("Judge\u2013Uro-Oncologist Agreement (%) by Model", fontweight="bold")
     ax.set_ylabel("")
     fig.tight_layout()
     return save_chart(fig, "per_model_accuracy", chart_dir)
@@ -1012,47 +928,6 @@ def chart_score_types(judge_evals_df, chart_dir):
     return save_chart(fig, "score_types", chart_dir)
 
 
-def chart_run_comparison(run_comp, chart_dir):
-    """Grouped bar chart: Jan vs Feb for acceptable rate and exact match."""
-    comp = run_comp["comparison"].sort_values("feb_acceptable", ascending=True)
-    models = comp["model_name"].values
-    x = np.arange(len(models))
-    w = 0.35
-
-    fig, axes = plt.subplots(1, 2, figsize=(14, 5))
-
-    # Acceptable rate
-    ax = axes[0]
-    ax.barh(x - w / 2, comp["jan_acceptable"], w, label="Jan 2026",
-            color="#94A3B8", edgecolor="white")
-    ax.barh(x + w / 2, comp["feb_acceptable"], w, label="Feb 2026",
-            color="#3B82F6", edgecolor="white")
-    ax.set_yticks(x)
-    ax.set_yticklabels(models)
-    ax.set_xlabel("Therapy Acceptable Rate (%)")
-    ax.set_title("Clinically Acceptable Rate", fontweight="bold")
-    ax.legend()
-    ax.set_xlim(0, 105)
-
-    # Exact match rate
-    ax = axes[1]
-    ax.barh(x - w / 2, comp["jan_exact"], w, label="Jan 2026",
-            color="#94A3B8", edgecolor="white")
-    ax.barh(x + w / 2, comp["feb_exact"], w, label="Feb 2026",
-            color="#F59E0B", edgecolor="white")
-    ax.set_yticks(x)
-    ax.set_yticklabels(models)
-    ax.set_xlabel("Therapy Exact Match Rate (%)")
-    ax.set_title("Exact Match Rate", fontweight="bold")
-    ax.legend()
-    ax.set_xlim(0, 105)
-
-    fig.suptitle("Performance Improvement: Jan 2026 → Feb 2026",
-                 fontweight="bold", y=1.03)
-    fig.tight_layout()
-    return save_chart(fig, "run_comparison", chart_dir)
-
-
 # ── DOCX Building ──────────────────────────────────────────────────────────
 
 def style_document(doc):
@@ -1132,7 +1007,7 @@ def build_report(reviews_df, judge_reviews_df, judge_evals_df,
     inter_judge = compute_inter_judge_agreement(judge_evals_df)
     mg_bias = compute_medgemma_bias(judge_evals_df)
     safety = compute_clinical_safety(reviews_df, judge_evals_df)
-    run_comp = compute_run_comparison(run_summaries_df) if len(run_summaries_df) > 0 else None
+
     case_studies = select_case_studies(cases_data, reviews_df, judge_evals_df)
 
     print("Generating charts...")
@@ -1144,8 +1019,6 @@ def build_report(reviews_df, judge_reviews_df, judge_evals_df,
     charts["quality"] = chart_model_quality(perf, chart_dir)
     if agreement:
         charts["confusion"] = chart_confusion_matrices(agreement, chart_dir)
-    if correlations:
-        charts["scatter"] = chart_scatter_correlations(correlations, chart_dir)
     if ratings:
         charts["ratings"] = chart_judge_ratings(ratings, chart_dir)
     if per_model_acc:
@@ -1156,9 +1029,6 @@ def build_report(reviews_df, judge_reviews_df, judge_evals_df,
         charts["mg_bias"] = chart_medgemma_bias(mg_bias, chart_dir)
     charts["distributions"] = chart_score_distributions(judge_evals_df, chart_dir)
     charts["score_types"] = chart_score_types(judge_evals_df, chart_dir)
-    if run_comp:
-        charts["run_comparison"] = chart_run_comparison(run_comp, chart_dir)
-
     print("Building DOCX...")
     doc = Document()
     style_document(doc)
@@ -1183,7 +1053,7 @@ def build_report(reviews_df, judge_reviews_df, judge_evals_df,
     p = doc.add_paragraph()
     p.alignment = WD_ALIGN_PARAGRAPH.CENTER
     run = p.add_run(
-        "Doctor vs AI Judges in Medical Oncology\n"
+        "Uro-Oncologist vs AI Judges in Medical Oncology\n"
         "Therapy Recommendation Assessment")
     run.font.size = Pt(16)
     run.font.color.rgb = RGBColor(0x64, 0x74, 0x8B)
@@ -1207,7 +1077,7 @@ def build_report(reviews_df, judge_reviews_df, judge_evals_df,
 
     p = doc.add_paragraph()
     p.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    run = p.add_run("\nReviewer: Dr. Radu Alexa, Board-Certified Oncologist")
+    run = p.add_run("\nReviewer: Dr. Radu Alexa, Board-Certified Uro-Oncologist")
     run.font.size = Pt(11)
     run.font.name = "Arial"
     run.font.italic = True
@@ -1228,27 +1098,17 @@ def build_report(reviews_df, judge_reviews_df, judge_evals_df,
         f"physician validation to establish a scalable, reproducible evaluation framework."
     )
 
-    if run_comp:
-        doc.add_paragraph(
-            f"Through iterative pipeline refinement between January and February 2026, "
-            f"the average clinically acceptable therapy rate improved from "
-            f"{run_comp['avg_jan_acceptable']:.0f}% to {run_comp['avg_feb_acceptable']:.0f}% "
-            f"(+{run_comp['accept_improvement']:.0f} pp), and exact match rate from "
-            f"{run_comp['avg_jan_exact']:.0f}% to {run_comp['avg_feb_exact']:.0f}% "
-            f"(+{run_comp['exact_improvement']:.0f} pp)."
-        )
-
     doc.add_heading("Key Findings", level=2)
 
     add_bullet(doc,
         f"Across all {ovr['total_predictions']} predictions: "
-        f"{ovr['met_accuracy']:.0f}% metastatic detection accuracy, "
-        f"{ovr['therapy_exact_rate']:.0f}% exact therapy match, "
-        f"{ovr['therapy_accept_rate']:.0f}% clinically acceptable therapies.")
+        f"{ovr['met_accuracy']:.1f}% metastatic detection accuracy, "
+        f"{ovr['therapy_exact_rate']:.1f}% exact therapy match, "
+        f"{ovr['therapy_accept_rate']:.1f}% clinically acceptable therapies.")
     add_bullet(doc,
-        f"Best model by doctor review: {best_model['model_name']} "
+        f"Best model by uro-oncologist review: {best_model['model_name']} "
         f"({best_model['avg_quality']:.1f}/9 quality, "
-        f"{best_model['acceptable_pct']:.0f}% acceptable).")
+        f"{best_model['acceptable_pct']:.1f}% acceptable).")
     add_bullet(doc,
         f"Best model by automated judge score: {best_auto['model_name']} "
         f"(avg overall {best_auto['avg_overall']:.2f}/1.0).")
@@ -1257,12 +1117,12 @@ def build_report(reviews_df, judge_reviews_df, judge_evals_df,
         k = agreement[jid]["kappa"]
         add_bullet(doc,
             f"{judge_name(jid)} shows {kappa_interpretation(k)} agreement "
-            f"with the doctor (Cohen's \u03ba = {k:.3f}).")
+            f"with the uro-oncologist (Cohen's \u03ba = {k:.3f}).")
 
     if inter_judge:
         add_bullet(doc,
             f"Inter-judge agreement: \u03ba = {inter_judge['kappa']:.3f}, "
-            f"{inter_judge['agreement_rate'] * 100:.0f}% concordance "
+            f"{inter_judge['agreement_rate'] * 100:.1f}% concordance "
             f"across {inter_judge['n_pairs']} evaluation pairs.")
 
     if mg_bias:
@@ -1341,7 +1201,7 @@ def build_report(reviews_df, judge_reviews_df, judge_evals_df,
         "independently score each prediction on semantic match, clinical appropriateness, "
         "reasoning quality, and overall correctness.")
     add_bullet(doc,
-        "Tier 3 \u2014 Doctor Validation: A board-certified oncologist blindly reviews "
+        "Tier 3 \u2014 Uro-Oncologist Validation: A board-certified uro-oncologist reviews "
         "model predictions (therapy acceptable? quality rating) and judge evaluations "
         "(agree/partial/disagree with judge verdict).")
 
@@ -1384,84 +1244,25 @@ def build_report(reviews_df, judge_reviews_df, judge_evals_df,
         "MedGemma 27B) score each prediction across four dimensions: semantic match, "
         "clinical appropriateness, reasoning quality, and overall correctness.")
     add_bullet(doc,
-        "Tier 3 — Physician Validation: A board-certified oncologist blindly reviews "
+        "Tier 3 — Uro-Oncologist Validation: A board-certified uro-oncologist reviews "
         "both model predictions and judge evaluations, creating a ground truth for "
         "evaluating the evaluators themselves.")
 
-    doc.add_heading("Multi-Schema Data Handling", level=2)
+    doc.add_heading("Clinical Data Format", level=2)
     doc.add_paragraph(
-        "The clinical dataset spans four distinct JSON schema variants across the "
-        "69 cases, reflecting real-world data heterogeneity in clinical systems:"
-    )
-    add_styled_table(doc,
-        ["Schema", "Cases", "Structure", "Key Differences"],
-        [
-            ["v1.1 Standard", "1\u201314, 36\u201361",
-             "Top-level patient, entit\u00e4ten",
-             "Nested performance_status, separate cTNM/pTNM"],
-            ["v1.0 Template", "15\u201335, 67\u201369",
-             "Wrapped in case_template",
-             "Flat ECOG, single TNM field, different IMDC path"],
-            ["case-de", "62\u201363",
-             "case.patient, case.diagnose",
-             "mRCC schema with therapieplan"],
-            ["diagnosen", "64\u201366",
-             "diagnosen[], tumor_history",
-             "Array-based diagnosis, geplantes_vorgehen"],
-        ],
-        col_widths=[3, 3, 4, 5],
-    )
-    doc.add_paragraph(
-        "The inference pipeline includes a _detect_case_format() function that "
-        "automatically identifies and normalizes each variant, extracting ECOG, TNM, "
-        "histology, and therapy fields from their respective JSON paths. A critical "
-        "bug affecting cases 15\u201335 (missing ECOG/Karnofsky due to changed schema "
-        "paths) was identified and fixed between the January and February evaluation rounds."
+        "All 69 clinical cases are stored in structured JSON format. The inference "
+        "pipeline automatically detects and normalizes schema variations across cases, "
+        "extracting ECOG, TNM staging, histology, and therapy fields."
     )
 
     doc.add_heading("Medical Review Web Platform", level=2)
     doc.add_paragraph(
-        "A purpose-built Next.js web application enables structured physician review "
-        "of AI predictions and judge evaluations. The platform supports blinded review "
-        "workflows, Likert-scale and binary ratings, and exports data to Supabase for "
-        "statistical analysis. This reusable tool can be adapted for other medical "
-        "AI evaluation studies."
+        "A web application enables structured physician review "
+        "of AI predictions and judge evaluations. The platform supports structured review "
+        "workflows, Likert-scale and binary ratings, and exports data for "
+        "statistical analysis."
     )
 
-    doc.add_heading("Inference Infrastructure", level=2)
-    doc.add_paragraph(
-        "Model inference runs on Modal (serverless GPU compute) using vLLM for "
-        "high-throughput batched prediction on NVIDIA H100 GPUs. All 69 cases are "
-        "processed in a single batch per model, with structured output enforcement "
-        "via Pydantic schemas guaranteeing valid JSON. A parallel OpenRouter API "
-        "pipeline provides cross-validation."
-    )
-    add_styled_table(doc,
-        ["Aspect", "Modal (Primary)", "OpenRouter (Validation)"],
-        [
-            ["Hardware", "NVIDIA H100 80GB", "Cloud API"],
-            ["Framework", "vLLM (batched)", "Sequential API"],
-            ["JSON Handling", "vLLM structured output", "Manual regex parsing"],
-            ["Reproducibility", "Seed=42, deterministic", "Non-deterministic"],
-            ["Speed (69 cases)", "~3 minutes", "~15 minutes"],
-            ["Cost per run", "~$0.10", "~$0.40"],
-        ],
-        col_widths=[3.5, 5, 5],
-    )
-
-    doc.add_heading("Scalability & Impact", level=2)
-    add_bullet(doc,
-        "Cancer type expansion: The pipeline is cancer-agnostic — the same evaluation "
-        "framework applies to prostate, urothelial, testicular, and non-urological cancers "
-        "already present in the dataset.")
-    add_bullet(doc,
-        "Language adaptability: The German-language evaluation demonstrates LLM "
-        "capability beyond English, relevant for clinical deployment in non-English "
-        "healthcare systems.")
-    add_bullet(doc,
-        "Open-source potential: The three-tier methodology, review platform, and "
-        "evaluation scripts are designed for reproducibility and can serve as a "
-        "reference implementation for medical AI benchmarking.")
 
     doc.add_page_break()
 
@@ -1546,11 +1347,11 @@ def build_report(reviews_df, judge_reviews_df, judge_evals_df,
         "and a free-text reasoning critique in German."
     )
 
-    doc.add_heading("Physician Validation Protocol", level=2)
+    doc.add_heading("Uro-Oncologist Validation Protocol", level=2)
     doc.add_paragraph(
-        "Dr. Radu Alexa, a board-certified oncologist, independently reviews both "
+        "Dr. Radu Alexa, a board-certified uro-oncologist, independently reviews both "
         "model predictions and judge evaluations through a custom web platform. "
-        "Reviews are blinded: the physician does not see model identifiers. Two "
+        "Two "
         "distinct review types are conducted:"
     )
     add_styled_table(doc,
@@ -1588,8 +1389,8 @@ def build_report(reviews_df, judge_reviews_df, judge_evals_df,
             ["Age range", f"{demo['age_min']}\u2013{demo['age_max']} years"],
             ["Age mean / median",
              f"{demo['age_mean']:.0f} / {demo['age_median']:.0f} years"],
-            ["Metastatic", f"{demo['n_metastatic']} ({demo['n_metastatic']/demo['n_cases']*100:.0f}%)"],
-            ["Localized", f"{demo['n_localized']} ({demo['n_localized']/demo['n_cases']*100:.0f}%)"],
+            ["Metastatic", f"{demo['n_metastatic']} ({demo['n_metastatic']/demo['n_cases']*100:.1f}%)"],
+            ["Localized", f"{demo['n_localized']} ({demo['n_localized']/demo['n_cases']*100:.1f}%)"],
             ["Clear cell (ccRCC)", str(demo["n_clear_cell"])],
             ["Non-clear cell", str(demo["n_non_clear_cell"])],
             ["Histology not specified", str(demo["n_histology_unknown"])],
@@ -1604,7 +1405,7 @@ def build_report(reviews_df, judge_reviews_df, judge_evals_df,
                 2: "Ambulatory, limited self-care", 3: "Limited self-care",
                 4: "Completely disabled"}.get(ecog, "")
         ecog_rows.append([f"ECOG {ecog}", str(cnt),
-                          f"{cnt/sum(demo['ecog_counts'].values())*100:.0f}%", desc])
+                          f"{cnt/sum(demo['ecog_counts'].values())*100:.1f}%", desc])
     add_styled_table(doc,
         ["Status", "Count", "Percentage", "Description"],
         ecog_rows,
@@ -1631,20 +1432,20 @@ def build_report(reviews_df, judge_reviews_df, judge_evals_df,
              f"{demo['n_cases']} cases \u00d7 6 models"],
             ["Judge Evaluations", str(len(judge_evals_df)),
              f"{demo['n_cases']} cases \u00d7 6 models \u00d7 2 judges"],
-            ["Doctor Model Reviews", str(len(reviews_df)),
+            ["Uro-Oncologist Model Reviews", str(len(reviews_df)),
              f"{reviews_df['case_id'].nunique()} cases \u00d7 6 models"],
-            ["Doctor Judge Reviews", str(len(judge_reviews_df)),
+            ["Uro-Oncologist Judge Reviews", str(len(judge_reviews_df)),
              f"{judge_reviews_df['case_id'].nunique()} cases \u00d7 6 models \u00d7 2 judges"],
         ],
         col_widths=[5, 3, 9],
     )
 
-    doc.add_heading("Doctor Review Scales", level=2)
+    doc.add_heading("Uro-Oncologist Review Scales", level=2)
     add_styled_table(doc,
         ["Metric", "Scale", "Description"],
         [
             ["Therapy Acceptable", "Yes / No",
-             "Would the doctor accept this therapy for the patient?"],
+             "Would the uro-oncologist accept this therapy for the patient?"],
             ["Recommendation Exact Match", "0\u2013100",
              "How closely does the prediction match the tumor board recommendation?"],
             ["Recommendation Patient-Oriented", "0\u2013100",
@@ -1683,7 +1484,7 @@ def build_report(reviews_df, judge_reviews_df, judge_evals_df,
     doc.add_paragraph(
         f"All {ovr['total_predictions']} predictions across {demo['n_cases']} cases "
         "were evaluated by both AI judges. This section shows the automated metrics "
-        "before any doctor validation."
+        "before any uro-oncologist validation."
     )
 
     add_chart(doc, charts["full_perf"])
@@ -1694,17 +1495,17 @@ def build_report(reviews_df, judge_reviews_df, judge_evals_df,
          "Judge Acc.", "Avg Score"],
         [
             [row["model_name"], str(row["n_cases"]),
-             f"{row['met_accuracy']:.0f}%", f"{row['therapy_exact']:.0f}%",
-             f"{row['judge_accuracy']:.0f}%", f"{row['avg_overall']:.2f}"]
+             f"{row['met_accuracy']:.1f}%", f"{row['therapy_exact']:.1f}%",
+             f"{row['judge_accuracy']:.1f}%", f"{row['avg_overall']:.2f}"]
             for _, row in pipeline["model_rows"].iterrows()
         ],
         col_widths=[3.5, 1.8, 2.5, 2.5, 2.5, 2.2],
     )
 
     doc.add_paragraph(
-        f"Overall: {ovr['met_accuracy']:.0f}% of predictions correctly identified "
-        f"metastatic status. {ovr['therapy_exact_rate']:.0f}% matched the tumor board "
-        f"therapy exactly, while {ovr['therapy_accept_rate']:.0f}% were classified as "
+        f"Overall: {ovr['met_accuracy']:.1f}% of predictions correctly identified "
+        f"metastatic status. {ovr['therapy_exact_rate']:.1f}% matched the tumor board "
+        f"therapy exactly, while {ovr['therapy_accept_rate']:.1f}% were classified as "
         "clinically acceptable (broader than exact match)."
     )
 
@@ -1723,49 +1524,9 @@ def build_report(reviews_df, judge_reviews_df, judge_evals_df,
     doc.add_page_break()
 
     # ================================================================
-    # 8. PERFORMANCE ACROSS EVALUATION ROUNDS (NEW)
+    # 8. THERAPY CATEGORY ANALYSIS
     # ================================================================
-    if run_comp:
-        doc.add_heading("8. Performance Across Evaluation Rounds", level=1)
-
-        doc.add_paragraph(
-            "The evaluation pipeline was run twice: January 2026 (initial run, 35 cases "
-            "with v1.0 schema) and February 2026 (expanded to 69 cases with both v1.0 "
-            "and v1.1 schemas, improved prompt engineering, and fixed data extraction). "
-            "Comparing the overlapping metrics reveals significant improvements."
-        )
-
-        add_chart(doc, charts["run_comparison"])
-
-        comp = run_comp["comparison"]
-        doc.add_heading("Per-Model Comparison", level=2)
-        add_styled_table(doc,
-            ["Model", "Jan Exact %", "Feb Exact %",
-             "Jan Accept %", "Feb Accept %"],
-            [
-                [row["model_name"],
-                 f"{row['jan_exact']:.0f}%", f"{row['feb_exact']:.0f}%",
-                 f"{row['jan_acceptable']:.0f}%", f"{row['feb_acceptable']:.0f}%"]
-                for _, row in comp.iterrows()
-            ],
-            col_widths=[4, 2.5, 2.5, 2.5, 2.5],
-        )
-
-        doc.add_paragraph(
-            f"Average improvement across all models: "
-            f"+{run_comp['exact_improvement']:.0f} percentage points in exact match rate, "
-            f"+{run_comp['accept_improvement']:.0f} percentage points in clinically "
-            f"acceptable rate. Key drivers include: improved prompt engineering with "
-            f"explicit German medical terminology, fixed ECOG/Karnofsky extraction for "
-            f"v1.0 schema cases, and increased max_tokens for thinking models."
-        )
-
-        doc.add_page_break()
-
-    # ================================================================
-    # 9. THERAPY CATEGORY ANALYSIS
-    # ================================================================
-    doc.add_heading("9. Therapy Category Analysis", level=1)
+    doc.add_heading("8. Therapy Category Analysis", level=1)
 
     doc.add_paragraph(
         "Each model's therapy prediction was classified into standard categories. "
@@ -1780,7 +1541,7 @@ def build_report(reviews_df, judge_reviews_df, judge_evals_df,
     cat_rows = []
     for cat, cnt in cat_totals.items():
         cat_rows.append([cat, str(cnt),
-                         f"{cnt / len(predictions_df) * 100:.0f}%"])
+                         f"{cnt / len(predictions_df) * 100:.1f}%"])
     add_styled_table(doc,
         ["Therapy Category", "Count", "% of Predictions"],
         cat_rows[:8],
@@ -1797,13 +1558,13 @@ def build_report(reviews_df, judge_reviews_df, judge_evals_df,
     doc.add_page_break()
 
     # ================================================================
-    # 10. MODEL PERFORMANCE \u2014 DOCTOR REVIEW (45 CASES)
+    # 9. MODEL PERFORMANCE \u2014 DOCTOR REVIEW (45 CASES)
     # ================================================================
-    doc.add_heading("10. Model Performance \u2014 Doctor Review", level=1)
+    doc.add_heading("9. Model Performance \u2014 Uro-Oncologist Review", level=1)
 
     doc.add_paragraph(
         f"Dr. Alexa reviewed {len(reviews_df)} model predictions across "
-        f"{reviews_df['case_id'].nunique()} cases in a blinded fashion, providing "
+        f"{reviews_df['case_id'].nunique()} cases, providing "
         "expert assessment on therapy acceptability, exact match, patient orientation, "
         "and overall quality."
     )
@@ -1814,15 +1575,15 @@ def build_report(reviews_df, judge_reviews_df, judge_evals_df,
     doc.add_heading("Average Prediction Quality", level=2)
     add_chart(doc, charts["quality"])
 
-    doc.add_heading("Doctor Review Summary", level=2)
+    doc.add_heading("Uro-Oncologist Review Summary", level=2)
     add_styled_table(doc,
         ["Model", "Cases", "Acceptable %", "Avg Exact Match",
          "Avg Patient-Oriented", "Avg Quality (0\u20139)"],
         [
             [row["model_name"], str(row["n_cases"]),
-             f"{row['acceptable_pct']:.0f}%",
-             f"{row['avg_exact_match']:.0f}",
-             f"{row['avg_patient_oriented']:.0f}",
+             f"{row['acceptable_pct']:.1f}%",
+             f"{row['avg_exact_match']:.1f}",
+             f"{row['avg_patient_oriented']:.1f}",
              f"{row['avg_quality']:.1f}"]
             for _, row in perf.iterrows()
         ],
@@ -1832,10 +1593,10 @@ def build_report(reviews_df, judge_reviews_df, judge_evals_df,
     doc.add_page_break()
 
     # ================================================================
-    # 11. CASE STUDIES (NEW)
+    # 10. CASE STUDIES
     # ================================================================
     if case_studies:
-        doc.add_heading("11. Case Studies", level=1)
+        doc.add_heading("10. Case Studies", level=1)
 
         doc.add_paragraph(
             "The following cases illustrate key patterns observed in the evaluation. "
@@ -1846,7 +1607,7 @@ def build_report(reviews_df, judge_reviews_df, judge_evals_df,
         study_labels = {
             "consensus_correct": "Case Study A: Model Consensus — Correct Prediction",
             "model_disagreement": "Case Study B: Model Disagreement",
-            "doctor_judge_diverge": "Case Study C: Doctor–Judge Divergence",
+            "doctor_judge_diverge": "Case Study C: Uro-Oncologist–Judge Divergence",
             "low_agreement": "Case Study C: Low Model Agreement",
         }
 
@@ -1918,9 +1679,9 @@ def build_report(reviews_df, judge_reviews_df, judge_evals_df,
         doc.add_page_break()
 
     # ================================================================
-    # 12. JUDGE SCORE DISTRIBUTIONS (ALL 69 CASES)
+    # 11. JUDGE SCORE DISTRIBUTIONS (ALL 69 CASES)
     # ================================================================
-    doc.add_heading("12. Judge Score Distributions", level=1)
+    doc.add_heading("11. Judge Score Distributions", level=1)
 
     doc.add_paragraph(
         f"Distribution of AI judge scores across all {demo['n_cases']} cases and "
@@ -1957,17 +1718,17 @@ def build_report(reviews_df, judge_reviews_df, judge_evals_df,
     doc.add_page_break()
 
     # ================================================================
-    # 13. AGREEMENT: DOCTOR VS AI JUDGE
+    # 12. AGREEMENT: DOCTOR VS AI JUDGE
     # ================================================================
-    doc.add_heading("13. Agreement: Doctor vs AI Judge", level=1)
+    doc.add_heading("12. Agreement: Uro-Oncologist vs AI Judge", level=1)
 
     if agreement:
         a_first = list(agreement.values())[0]
         doc.add_paragraph(
             f"Agreement analysis based on {a_first['n_cases']} cases with complete "
-            f"doctor reviews and judge evaluations ({a_first['n_pairs']} "
+            f"uro-oncologist reviews and judge evaluations ({a_first['n_pairs']} "
             "prediction\u2013evaluation pairs per judge). Cohen's Kappa measures "
-            "agreement beyond chance between the doctor's therapy acceptability "
+            "agreement beyond chance between the uro-oncologist's therapy acceptability "
             "rating and the judge's correctness verdict."
         )
 
@@ -2009,42 +1770,10 @@ def build_report(reviews_df, judge_reviews_df, judge_evals_df,
     doc.add_page_break()
 
     # ================================================================
-    # 14. SCORE CORRELATIONS
-    # ================================================================
-    doc.add_heading("14. Score Correlations", level=1)
-
-    if correlations:
-        doc.add_paragraph(
-            "Spearman rank correlations measure how well judge scores track the "
-            "doctor's ratings. Top row: judge overall score vs doctor's prediction "
-            "quality (0\u20139). Bottom row: judge overall score vs doctor's exact "
-            "match rating (0\u2013100)."
-        )
-        add_chart(doc, charts["scatter"])
-
-        jids_c = [jid for jid in JUDGE_IDS if jid in correlations]
-        add_styled_table(doc,
-            ["Comparison", *[judge_name(jid) for jid in jids_c]],
-            [
-                ["Overall Score vs Quality (\u03c1)",
-                 *[f"{correlations[jid]['quality_r']:.3f}" for jid in jids_c]],
-                ["  p-value",
-                 *[f"{correlations[jid]['quality_p']:.4f}" for jid in jids_c]],
-                ["Overall Score vs Exact Match (\u03c1)",
-                 *[f"{correlations[jid]['exact_r']:.3f}" for jid in jids_c]],
-                ["  p-value",
-                 *[f"{correlations[jid]['exact_p']:.4f}" for jid in jids_c]],
-                ["N pairs", *[str(correlations[jid]["n"]) for jid in jids_c]],
-            ],
-            col_widths=[6, 4, 4],
-        )
-
-    doc.add_page_break()
+    # 13. DOCTOR'S DIRECT RATING OF JUDGES
 
     # ================================================================
-    # 15. DOCTOR'S DIRECT RATING OF JUDGES
-    # ================================================================
-    doc.add_heading("15. Doctor's Direct Rating of AI Judges", level=1)
+    doc.add_heading("13. Uro-Oncologist's Direct Rating of AI Judges", level=1)
 
     if ratings:
         doc.add_paragraph(
@@ -2062,13 +1791,13 @@ def build_report(reviews_df, judge_reviews_df, judge_evals_df,
                 ["Total Reviews",
                  *[str(ratings[jid]["n"]) for jid in jids_r]],
                 ["Agree",
-                 *[f"{ratings[jid]['agree']} ({ratings[jid]['agree_pct']:.0f}%)"
+                 *[f"{ratings[jid]['agree']} ({ratings[jid]['agree_pct']:.1f}%)"
                    for jid in jids_r]],
                 ["Partial",
-                 *[f"{ratings[jid]['partial']} ({ratings[jid]['partial_pct']:.0f}%)"
+                 *[f"{ratings[jid]['partial']} ({ratings[jid]['partial_pct']:.1f}%)"
                    for jid in jids_r]],
                 ["Disagree",
-                 *[f"{ratings[jid]['disagree']} ({ratings[jid]['disagree_pct']:.0f}%)"
+                 *[f"{ratings[jid]['disagree']} ({ratings[jid]['disagree_pct']:.1f}%)"
                    for jid in jids_r]],
                 ["Avg Reasoning Quality",
                  *[f"{ratings[jid]['avg_reasoning_quality']:.1f}/10"
@@ -2080,14 +1809,14 @@ def build_report(reviews_df, judge_reviews_df, judge_evals_df,
     doc.add_page_break()
 
     # ================================================================
-    # 16. PER-MODEL JUDGE ACCURACY
+    # 14. PER-MODEL JUDGE ACCURACY
     # ================================================================
-    doc.add_heading("16. Per-Model Judge Accuracy", level=1)
+    doc.add_heading("14. Per-Model Judge Accuracy", level=1)
 
     if per_model_acc:
         doc.add_paragraph(
             "This heatmap shows the agreement rate (%) between each judge and the "
-            "doctor, broken down by model."
+            "uro-oncologist, broken down by model."
         )
         add_chart(doc, charts["per_model"])
 
@@ -2099,11 +1828,11 @@ def build_report(reviews_df, judge_reviews_df, judge_evals_df,
             "therapy_acceptable_ra"].mean() * 100
 
         add_styled_table(doc,
-            ["Model", "Doctor Acceptable %",
+            ["Model", "Uro-Oncologist Acceptable %",
              *[f"{judge_name(jid)} Agr." for jid in jids_pm]],
             [
-                [model_name(mid), f"{doc_acc.get(mid, 0):.0f}%",
-                 *[f"{per_model_acc.get(jid, {}).get(mid, 0):.0f}%"
+                [model_name(mid), f"{doc_acc.get(mid, 0):.1f}%",
+                 *[f"{per_model_acc.get(jid, {}).get(mid, 0):.1f}%"
                    for jid in jids_pm]]
                 for mid in models
             ],
@@ -2113,9 +1842,9 @@ def build_report(reviews_df, judge_reviews_df, judge_evals_df,
     doc.add_page_break()
 
     # ================================================================
-    # 17. INTER-JUDGE AGREEMENT
+    # 15. INTER-JUDGE AGREEMENT
     # ================================================================
-    doc.add_heading("17. Inter-Judge Agreement", level=1)
+    doc.add_heading("15. Inter-Judge Agreement", level=1)
 
     if inter_judge:
         doc.add_paragraph(
@@ -2134,9 +1863,9 @@ def build_report(reviews_df, judge_reviews_df, judge_evals_df,
     doc.add_page_break()
 
     # ================================================================
-    # 18. MEDGEMMA SELF-JUDGING BIAS
+    # 16. MEDGEMMA SELF-JUDGING BIAS
     # ================================================================
-    doc.add_heading("18. MedGemma Self-Judging Bias", level=1)
+    doc.add_heading("16. MedGemma Self-Judging Bias", level=1)
 
     if mg_bias:
         doc.add_paragraph(
@@ -2174,20 +1903,20 @@ def build_report(reviews_df, judge_reviews_df, judge_evals_df,
     doc.add_page_break()
 
     # ================================================================
-    # 19. CLINICAL SAFETY ANALYSIS
+    # 17. CLINICAL SAFETY ANALYSIS
     # ================================================================
-    doc.add_heading("19. Clinical Safety Analysis", level=1)
+    doc.add_heading("17. Clinical Safety Analysis", level=1)
 
     if safety:
         doc.add_paragraph(
             "Clinical safety is assessed by examining two types of judge errors "
-            "when compared to the doctor's assessment:"
+            "when compared to the uro-oncologist's assessment:"
         )
         add_bullet(doc,
-            "False Positive (dangerous): Judge approves a prediction the doctor "
+            "False Positive (dangerous): Judge approves a prediction the uro-oncologist "
             "rejects. Could lead to inappropriate treatment.")
         add_bullet(doc,
-            "False Negative (overly strict): Judge rejects a prediction the doctor "
+            "False Negative (overly strict): Judge rejects a prediction the uro-oncologist "
             "approves. Could prevent appropriate treatment.")
 
         jids_s = [jid for jid in JUDGE_IDS if jid in safety]
@@ -2225,9 +1954,9 @@ def build_report(reviews_df, judge_reviews_df, judge_evals_df,
     doc.add_page_break()
 
     # ================================================================
-    # 20. SUMMARY COMPARISON: GPT-5.2 VS MEDGEMMA 27B
+    # 18. SUMMARY COMPARISON: GPT-5.2 VS MEDGEMMA 27B
     # ================================================================
-    doc.add_heading("20. Summary Comparison: GPT-5.2 vs MedGemma 27B", level=1)
+    doc.add_heading("18. Summary Comparison: GPT-5.2 vs MedGemma 27B", level=1)
 
     doc.add_paragraph(
         "Side-by-side comparison of all computed metrics for both AI judges."
@@ -2238,7 +1967,7 @@ def build_report(reviews_df, judge_reviews_df, judge_evals_df,
 
     if agreement:
         jids_a = [jid for jid in jids_all if jid in agreement]
-        metrics.append(("Cohen's \u03ba (vs Doctor)",
+        metrics.append(("Cohen's \u03ba (vs Uro-Oncologist)",
                         *[f"{agreement[jid]['kappa']:.3f}" for jid in jids_a]))
         metrics.append(("Agreement Rate",
                         *[f"{agreement[jid]['agreement_rate'] * 100:.1f}%"
@@ -2259,8 +1988,8 @@ def build_report(reviews_df, judge_reviews_df, judge_evals_df,
 
     if ratings:
         jids_r = [jid for jid in jids_all if jid in ratings]
-        metrics.append(("Doctor Agree %",
-                        *[f"{ratings[jid]['agree_pct']:.0f}%"
+        metrics.append(("Uro-Oncologist Agree %",
+                        *[f"{ratings[jid]['agree_pct']:.1f}%"
                           for jid in jids_r]))
         metrics.append(("Avg Reasoning Quality",
                         *[f"{ratings[jid]['avg_reasoning_quality']:.1f}/10"
@@ -2294,9 +2023,9 @@ def build_report(reviews_df, judge_reviews_df, judge_evals_df,
     doc.add_page_break()
 
     # ================================================================
-    # 21. GERMAN-ENGLISH MEDICAL GLOSSARY (NEW)
+    # 19. GERMAN-ENGLISH MEDICAL GLOSSARY
     # ================================================================
-    doc.add_heading("21. German\u2013English Medical Glossary", level=1)
+    doc.add_heading("19. German\u2013English Medical Glossary", level=1)
 
     doc.add_paragraph(
         "Key German medical terms used throughout this report and the clinical "
@@ -2342,16 +2071,16 @@ def build_report(reviews_df, judge_reviews_df, judge_evals_df,
     doc.add_page_break()
 
     # ================================================================
-    # 22. CONCLUSIONS & RECOMMENDATIONS
+    # 20. CONCLUSIONS & RECOMMENDATIONS
     # ================================================================
-    doc.add_heading("22. Conclusions & Recommendations", level=1)
+    doc.add_heading("20. Conclusions & Recommendations", level=1)
 
     doc.add_heading("Key Findings", level=2)
 
     add_bullet(doc,
         f"Model Performance: {best_model['model_name']} achieved the highest "
-        f"doctor-rated quality ({best_model['avg_quality']:.1f}/9) with "
-        f"{best_model['acceptable_pct']:.0f}% therapy acceptability. "
+        f"uro-oncologist-rated quality ({best_model['avg_quality']:.1f}/9) with "
+        f"{best_model['acceptable_pct']:.1f}% therapy acceptability. "
         f"{best_auto['model_name']} scored highest on automated judge evaluation "
         f"({best_auto['avg_overall']:.2f}/1.0).")
 
@@ -2359,7 +2088,7 @@ def build_report(reviews_df, judge_reviews_df, judge_evals_df,
         best_j = max(agreement.items(), key=lambda x: x[1]["kappa"])
         add_bullet(doc,
             f"Best AI Judge: {judge_name(best_j[0])} showed the strongest agreement "
-            f"with the doctor (\u03ba = {best_j[1]['kappa']:.3f}). Both judges show "
+            f"with the uro-oncologist (\u03ba = {best_j[1]['kappa']:.3f}). Both judges show "
             "moderate agreement, indicating they are useful but not perfect proxies "
             "for expert clinical judgment.")
 
@@ -2385,7 +2114,7 @@ def build_report(reviews_df, judge_reviews_df, judge_evals_df,
     doc.add_heading("Recommendations", level=2)
 
     for rec in [
-        "AI judges should be used as screening tools, not final arbiters. Doctor "
+        "AI judges should be used as screening tools, not final arbiters. Uro-oncologist "
         "review remains essential for clinical safety.",
         "Using both GPT-5.2 and MedGemma as judges and flagging disagreements "
         "could improve evaluation reliability \u2014 their complementary strengths "
@@ -2395,7 +2124,7 @@ def build_report(reviews_df, judge_reviews_df, judge_evals_df,
         "still provide clinically valid alternative recommendations worthy of "
         "tumor board discussion.",
         "The strong Spearman correlations (\u03c1 > 0.64) between judge scores and "
-        "doctor ratings suggest automated judge scores are useful proxies for "
+        "uro-oncologist ratings suggest automated judge scores are useful proxies for "
         "prediction quality, enabling scalable evaluation.",
         "Future work should expand the dataset to include additional cancer types, "
         "test with multiple physician reviewers for inter-rater reliability, and "
@@ -2408,12 +2137,12 @@ def build_report(reviews_df, judge_reviews_df, judge_evals_df,
     judge_cases_reviewed = judge_reviews_df['case_id'].nunique()
     if doc_cases_reviewed >= demo['n_cases'] and judge_cases_reviewed >= demo['n_cases']:
         coverage_text = (
-            f"The doctor reviewed all {demo['n_cases']} cases for both model "
+            f"The uro-oncologist reviewed all {demo['n_cases']} cases for both model "
             "evaluation and judge evaluation, providing complete coverage."
         )
     else:
         coverage_text = (
-            f"The doctor's reviews covered {doc_cases_reviewed} of "
+            f"The uro-oncologist's reviews covered {doc_cases_reviewed} of "
             f"{demo['n_cases']} cases for model evaluation and "
             f"{judge_cases_reviewed} cases for judge evaluation, limiting "
             "the agreement analysis."
@@ -2487,7 +2216,7 @@ def build_markdown_report(reviews_df, judge_reviews_df, judge_evals_df,
     inter_judge = compute_inter_judge_agreement(judge_evals_df)
     mg_bias = compute_medgemma_bias(judge_evals_df)
     safety = compute_clinical_safety(reviews_df, judge_evals_df)
-    run_comp = compute_run_comparison(run_summaries_df) if len(run_summaries_df) > 0 else None
+
     case_studies = select_case_studies(cases_data, reviews_df, judge_evals_df)
 
     best_model = perf.iloc[0]
@@ -2501,13 +2230,13 @@ def build_markdown_report(reviews_df, judge_reviews_df, judge_evals_df,
     # ── TITLE ──
     w("# Evaluation Report")
     w("")
-    w("**Doctor vs AI Judges in Medical Oncology — Therapy Recommendation Assessment**")
+    w("**Uro-Oncologist vs AI Judges in Medical Oncology — Therapy Recommendation Assessment**")
     w("")
     w(f"> February 2026 | Renal Cell Carcinoma (RCC) — {demo['n_cases']} Cases from German Tumor Boards")
     w(">")
     w("> Prepared for Google AI Hackathon 2026")
     w(">")
-    w("> Reviewer: Dr. Radu Alexa, Board-Certified Oncologist")
+    w("> Reviewer: Dr. Radu Alexa, Board-Certified Uro-Oncologist")
     w("")
     w("---")
     w("")
@@ -2523,35 +2252,26 @@ def build_markdown_report(reviews_df, judge_reviews_df, judge_evals_df,
       f"physician validation to establish a scalable, reproducible evaluation framework.")
     w("")
 
-    if run_comp:
-        w(f"Through iterative pipeline refinement between January and February 2026, "
-          f"the average clinically acceptable therapy rate improved from "
-          f"{run_comp['avg_jan_acceptable']:.0f}% to {run_comp['avg_feb_acceptable']:.0f}% "
-          f"(+{run_comp['accept_improvement']:.0f} pp), and exact match rate from "
-          f"{run_comp['avg_jan_exact']:.0f}% to {run_comp['avg_feb_exact']:.0f}% "
-          f"(+{run_comp['exact_improvement']:.0f} pp).")
-        w("")
-
     w("### Key Findings")
     w("")
     w(f"- Across all {ovr['total_predictions']} predictions: "
-      f"**{ovr['met_accuracy']:.0f}%** metastatic detection accuracy, "
-      f"**{ovr['therapy_exact_rate']:.0f}%** exact therapy match, "
-      f"**{ovr['therapy_accept_rate']:.0f}%** clinically acceptable therapies.")
-    w(f"- **Best model by doctor review:** {best_model['model_name']} "
+      f"**{ovr['met_accuracy']:.1f}%** metastatic detection accuracy, "
+      f"**{ovr['therapy_exact_rate']:.1f}%** exact therapy match, "
+      f"**{ovr['therapy_accept_rate']:.1f}%** clinically acceptable therapies.")
+    w(f"- **Best model by uro-oncologist review:** {best_model['model_name']} "
       f"({best_model['avg_quality']:.1f}/9 quality, "
-      f"{best_model['acceptable_pct']:.0f}% acceptable).")
+      f"{best_model['acceptable_pct']:.1f}% acceptable).")
     w(f"- **Best model by automated judge score:** {best_auto['model_name']} "
       f"(avg overall {best_auto['avg_overall']:.2f}/1.0).")
 
     for jid in agreement:
         k = agreement[jid]["kappa"]
         w(f"- {judge_name(jid)} shows **{kappa_interpretation(k)} agreement** "
-          f"with the doctor (Cohen's κ = {k:.3f}).")
+          f"with the uro-oncologist (Cohen's κ = {k:.3f}).")
 
     if inter_judge:
         w(f"- **Inter-judge agreement:** κ = {inter_judge['kappa']:.3f}, "
-          f"{inter_judge['agreement_rate'] * 100:.0f}% concordance "
+          f"{inter_judge['agreement_rate'] * 100:.1f}% concordance "
           f"across {inter_judge['n_pairs']} evaluation pairs.")
 
     if mg_bias:
@@ -2613,7 +2333,7 @@ def build_markdown_report(reviews_df, judge_reviews_df, judge_evals_df,
     w("2. **Tier 2 — AI Judge Evaluation:** Two AI judges (GPT-5.2 and MedGemma 27B) "
       "independently score each prediction on semantic match, clinical appropriateness, "
       "reasoning quality, and overall correctness.")
-    w("3. **Tier 3 — Doctor Validation:** A board-certified oncologist blindly reviews "
+    w("3. **Tier 3 — Uro-Oncologist Validation:** A board-certified uro-oncologist reviews "
       "model predictions and judge evaluations.")
     w("")
 
@@ -2653,71 +2373,26 @@ def build_markdown_report(reviews_df, judge_reviews_df, judge_evals_df,
     w("- **Tier 2 — AI Judge Evaluation:** Two independent AI judges score each "
       "prediction across four dimensions: semantic match, clinical appropriateness, "
       "reasoning quality, and overall correctness.")
-    w("- **Tier 3 — Physician Validation:** A board-certified oncologist blindly "
+    w("- **Tier 3 — Uro-Oncologist Validation:** A board-certified uro-oncologist "
       "reviews both model predictions and judge evaluations, creating a ground "
       "truth for evaluating the evaluators themselves.")
     w("")
 
-    w("### Multi-Schema Data Handling")
+    w("### Clinical Data Format")
     w("")
-    w("The clinical dataset spans **four distinct JSON schema variants** across "
-      "the 69 cases:")
-    w("")
-    w(md_table(
-        ["Schema", "Cases", "Structure", "Key Differences"],
-        [
-            ["v1.1 Standard", "1–14, 36–61",
-             "Top-level patient, entitäten",
-             "Nested performance_status, separate cTNM/pTNM"],
-            ["v1.0 Template", "15–35, 67–69",
-             "Wrapped in case_template",
-             "Flat ECOG, single TNM field, different IMDC path"],
-            ["case-de", "62–63",
-             "case.patient, case.diagnose",
-             "mRCC schema with therapieplan"],
-            ["diagnosen", "64–66",
-             "diagnosen[], tumor_history",
-             "Array-based diagnosis, geplantes_vorgehen"],
-        ],
-    ))
-    w("")
-    w("A critical bug affecting cases 15–35 (missing ECOG/Karnofsky due to changed "
-      "schema paths) was identified and fixed between the January and February "
-      "evaluation rounds.")
+    w("All 69 clinical cases are stored in structured JSON format. The inference "
+      "pipeline automatically detects and normalizes schema variations across cases, "
+      "extracting ECOG, TNM staging, histology, and therapy fields.")
     w("")
 
     w("### Medical Review Web Platform")
     w("")
-    w("A purpose-built Next.js web application enables structured physician review "
-      "of AI predictions and judge evaluations. The platform supports blinded review "
-      "workflows, Likert-scale and binary ratings, and exports data to Supabase for "
+    w("A web application enables structured physician review "
+      "of AI predictions and judge evaluations. The platform supports structured review "
+      "workflows, Likert-scale and binary ratings, and exports data for "
       "statistical analysis.")
     w("")
 
-    w("### Inference Infrastructure")
-    w("")
-    w(md_table(
-        ["Aspect", "Modal (Primary)", "OpenRouter (Validation)"],
-        [
-            ["Hardware", "NVIDIA H100 80GB", "Cloud API"],
-            ["Framework", "vLLM (batched)", "Sequential API"],
-            ["JSON Handling", "vLLM structured output", "Manual regex parsing"],
-            ["Reproducibility", "Seed=42, deterministic", "Non-deterministic"],
-            ["Speed (69 cases)", "~3 minutes", "~15 minutes"],
-            ["Cost per run", "~$0.10", "~$0.40"],
-        ],
-    ))
-    w("")
-
-    w("### Scalability & Impact")
-    w("")
-    w("- **Cancer type expansion:** Pipeline is cancer-agnostic — same framework "
-      "applies to prostate, urothelial, testicular, and non-urological cancers.")
-    w("- **Language adaptability:** German-language evaluation demonstrates LLM "
-      "capability beyond English, relevant for non-English healthcare systems.")
-    w("- **Open-source potential:** Three-tier methodology, review platform, and "
-      "evaluation scripts designed for reproducibility.")
-    w("")
 
     # ── 4. METHODOLOGY ──
     w("---")
@@ -2786,7 +2461,7 @@ def build_markdown_report(reviews_df, judge_reviews_df, judge_evals_df,
     ))
     w("")
 
-    w("### Physician Validation Protocol")
+    w("### Uro-Oncologist Validation Protocol")
     w("")
     w(md_table(
         ["Review Type", "Target", "Metrics", "Scale"],
@@ -2817,8 +2492,8 @@ def build_markdown_report(reviews_df, judge_reviews_df, judge_evals_df,
             ["Total cases", str(demo["n_cases"])],
             ["Age range", f"{demo['age_min']}–{demo['age_max']} years"],
             ["Age mean / median", f"{demo['age_mean']:.0f} / {demo['age_median']:.0f} years"],
-            ["Metastatic", f"{demo['n_metastatic']} ({demo['n_metastatic']/demo['n_cases']*100:.0f}%)"],
-            ["Localized", f"{demo['n_localized']} ({demo['n_localized']/demo['n_cases']*100:.0f}%)"],
+            ["Metastatic", f"{demo['n_metastatic']} ({demo['n_metastatic']/demo['n_cases']*100:.1f}%)"],
+            ["Localized", f"{demo['n_localized']} ({demo['n_localized']/demo['n_cases']*100:.1f}%)"],
             ["Clear cell (ccRCC)", str(demo["n_clear_cell"])],
             ["Non-clear cell", str(demo["n_non_clear_cell"])],
             ["Histology not specified", str(demo["n_histology_unknown"])],
@@ -2843,9 +2518,9 @@ def build_markdown_report(reviews_df, judge_reviews_df, judge_evals_df,
              f"{demo['n_cases']} cases × 6 models"],
             ["Judge Evaluations", str(len(judge_evals_df)),
              f"{demo['n_cases']} cases × 6 models × 2 judges"],
-            ["Doctor Model Reviews", str(len(reviews_df)),
+            ["Uro-Oncologist Model Reviews", str(len(reviews_df)),
              f"{reviews_df['case_id'].nunique()} cases × 6 models"],
-            ["Doctor Judge Reviews", str(len(judge_reviews_df)),
+            ["Uro-Oncologist Judge Reviews", str(len(judge_reviews_df)),
              f"{judge_reviews_df['case_id'].nunique()} cases × 6 models × 2 judges"],
         ],
     ))
@@ -2865,15 +2540,15 @@ def build_markdown_report(reviews_df, judge_reviews_df, judge_evals_df,
         ["Model", "Cases", "Met. Detect.", "Exact Match", "Judge Acc.", "Avg Score"],
         [
             [row["model_name"], str(row["n_cases"]),
-             f"{row['met_accuracy']:.0f}%", f"{row['therapy_exact']:.0f}%",
-             f"{row['judge_accuracy']:.0f}%", f"{row['avg_overall']:.2f}"]
+             f"{row['met_accuracy']:.1f}%", f"{row['therapy_exact']:.1f}%",
+             f"{row['judge_accuracy']:.1f}%", f"{row['avg_overall']:.2f}"]
             for _, row in pipeline["model_rows"].iterrows()
         ],
     ))
     w("")
-    w(f"Overall: **{ovr['met_accuracy']:.0f}%** metastatic detection accuracy, "
-      f"**{ovr['therapy_exact_rate']:.0f}%** exact therapy match, "
-      f"**{ovr['therapy_accept_rate']:.0f}%** clinically acceptable.")
+    w(f"Overall: **{ovr['met_accuracy']:.1f}%** metastatic detection accuracy, "
+      f"**{ovr['therapy_exact_rate']:.1f}%** exact therapy match, "
+      f"**{ovr['therapy_accept_rate']:.1f}%** clinically acceptable.")
     w("")
 
     w("### Detailed Judge Scores")
@@ -2889,39 +2564,10 @@ def build_markdown_report(reviews_df, judge_reviews_df, judge_evals_df,
     ))
     w("")
 
-    # ── 8. RUN COMPARISON ──
-    if run_comp:
-        w("---")
-        w("")
-        w("## 8. Performance Across Evaluation Rounds")
-        w("")
-        w("The evaluation pipeline was run twice: **January 2026** (initial, 35 cases) "
-          "and **February 2026** (expanded to 69 cases, improved prompts, fixed data "
-          "extraction).")
-        w("")
-        w(f"![Run Comparison]({img}/run_comparison.png)")
-        w("")
-        comp = run_comp["comparison"]
-        w(md_table(
-            ["Model", "Jan Exact %", "Feb Exact %", "Jan Accept %", "Feb Accept %"],
-            [
-                [row["model_name"],
-                 f"{row['jan_exact']:.0f}%", f"{row['feb_exact']:.0f}%",
-                 f"{row['jan_acceptable']:.0f}%", f"{row['feb_acceptable']:.0f}%"]
-                for _, row in comp.iterrows()
-            ],
-        ))
-        w("")
-        w(f"**Average improvement:** +{run_comp['exact_improvement']:.0f} pp exact match, "
-          f"+{run_comp['accept_improvement']:.0f} pp clinically acceptable. Key drivers: "
-          "improved prompt engineering, fixed ECOG/Karnofsky extraction for v1.0 cases, "
-          "increased max_tokens for thinking models.")
-        w("")
-
-    # ── 9. THERAPY CATEGORIES ──
+    # ── 8. THERAPY CATEGORIES ──
     w("---")
     w("")
-    w("## 9. Therapy Category Analysis")
+    w("## 8. Therapy Category Analysis")
     w("")
     w(f"![Therapy Categories]({img}/therapy_categories.png)")
     w("")
@@ -2929,19 +2575,19 @@ def build_markdown_report(reviews_df, judge_reviews_df, judge_evals_df,
     w(md_table(
         ["Therapy Category", "Count", "% of Predictions"],
         [
-            [cat, str(cnt), f"{cnt / len(predictions_df) * 100:.0f}%"]
+            [cat, str(cnt), f"{cnt / len(predictions_df) * 100:.1f}%"]
             for cat, cnt in cat_totals.items()
         ][:8],
     ))
     w("")
 
-    # ── 10. DOCTOR REVIEW ──
+    # ── 9. DOCTOR REVIEW ──
     w("---")
     w("")
-    w("## 10. Model Performance — Doctor Review")
+    w("## 9. Model Performance — Uro-Oncologist Review")
     w("")
     w(f"Dr. Alexa reviewed **{len(reviews_df)} model predictions** across "
-      f"{reviews_df['case_id'].nunique()} cases in a blinded fashion.")
+      f"{reviews_df['case_id'].nunique()} cases.")
     w("")
     w(f"![Acceptability]({img}/model_acceptability.png)")
     w("")
@@ -2952,25 +2598,25 @@ def build_markdown_report(reviews_df, judge_reviews_df, judge_evals_df,
          "Avg Patient-Oriented", "Avg Quality (0–9)"],
         [
             [row["model_name"], str(row["n_cases"]),
-             f"{row['acceptable_pct']:.0f}%",
-             f"{row['avg_exact_match']:.0f}",
-             f"{row['avg_patient_oriented']:.0f}",
+             f"{row['acceptable_pct']:.1f}%",
+             f"{row['avg_exact_match']:.1f}",
+             f"{row['avg_patient_oriented']:.1f}",
              f"{row['avg_quality']:.1f}"]
             for _, row in perf.iterrows()
         ],
     ))
     w("")
 
-    # ── 11. CASE STUDIES ──
+    # ── 10. CASE STUDIES ──
     if case_studies:
         w("---")
         w("")
-        w("## 11. Case Studies")
+        w("## 10. Case Studies")
         w("")
         study_labels = {
             "consensus_correct": "Case Study A: Model Consensus — Correct Prediction",
             "model_disagreement": "Case Study B: Model Disagreement",
-            "doctor_judge_diverge": "Case Study C: Doctor–Judge Divergence",
+            "doctor_judge_diverge": "Case Study C: Uro-Oncologist–Judge Divergence",
             "low_agreement": "Case Study C: Low Model Agreement",
         }
         for study_type, cid, st in case_studies:
@@ -3020,10 +2666,10 @@ def build_markdown_report(reviews_df, judge_reviews_df, judge_evals_df,
                   "this case.")
             w("")
 
-    # ── 12. JUDGE SCORE DISTRIBUTIONS ──
+    # ── 11. JUDGE SCORE DISTRIBUTIONS ──
     w("---")
     w("")
-    w("## 12. Judge Score Distributions")
+    w("## 11. Judge Score Distributions")
     w("")
     w(f"![Score Distributions]({img}/score_distributions.png)")
     w("")
@@ -3048,11 +2694,11 @@ def build_markdown_report(reviews_df, judge_reviews_df, judge_evals_df,
     ))
     w("")
 
-    # ── 13. AGREEMENT ──
+    # ── 12. AGREEMENT ──
     if agreement:
         w("---")
         w("")
-        w("## 13. Agreement: Doctor vs AI Judge")
+        w("## 12. Agreement: Uro-Oncologist vs AI Judge")
         w("")
         w(f"![Confusion Matrices]({img}/confusion_matrices.png)")
         w("")
@@ -3081,36 +2727,11 @@ def build_markdown_report(reviews_df, judge_reviews_df, judge_evals_df,
               f"Specificity = {a['specificity']:.1%}.")
         w("")
 
-    # ── 14. CORRELATIONS ──
-    if correlations:
-        w("---")
-        w("")
-        w("## 14. Score Correlations")
-        w("")
-        w(f"![Scatter Correlations]({img}/scatter_correlations.png)")
-        w("")
-        jids_c = [jid for jid in JUDGE_IDS if jid in correlations]
-        w(md_table(
-            ["Comparison", *[judge_name(jid) for jid in jids_c]],
-            [
-                ["Overall Score vs Quality (ρ)",
-                 *[f"{correlations[jid]['quality_r']:.3f}" for jid in jids_c]],
-                ["  p-value",
-                 *[f"{correlations[jid]['quality_p']:.4f}" for jid in jids_c]],
-                ["Overall Score vs Exact Match (ρ)",
-                 *[f"{correlations[jid]['exact_r']:.3f}" for jid in jids_c]],
-                ["  p-value",
-                 *[f"{correlations[jid]['exact_p']:.4f}" for jid in jids_c]],
-                ["N pairs", *[str(correlations[jid]["n"]) for jid in jids_c]],
-            ],
-        ))
-        w("")
-
-    # ── 15. DOCTOR RATINGS OF JUDGES ──
+    # ── 13. DOCTOR RATINGS OF JUDGES ──
     if ratings:
         w("---")
         w("")
-        w("## 15. Doctor's Direct Rating of AI Judges")
+        w("## 13. Uro-Oncologist's Direct Rating of AI Judges")
         w("")
         w(f"![Judge Ratings]({img}/judge_ratings.png)")
         w("")
@@ -3120,13 +2741,13 @@ def build_markdown_report(reviews_df, judge_reviews_df, judge_evals_df,
             [
                 ["Total Reviews", *[str(ratings[jid]["n"]) for jid in jids_r]],
                 ["Agree",
-                 *[f"{ratings[jid]['agree']} ({ratings[jid]['agree_pct']:.0f}%)"
+                 *[f"{ratings[jid]['agree']} ({ratings[jid]['agree_pct']:.1f}%)"
                    for jid in jids_r]],
                 ["Partial",
-                 *[f"{ratings[jid]['partial']} ({ratings[jid]['partial_pct']:.0f}%)"
+                 *[f"{ratings[jid]['partial']} ({ratings[jid]['partial_pct']:.1f}%)"
                    for jid in jids_r]],
                 ["Disagree",
-                 *[f"{ratings[jid]['disagree']} ({ratings[jid]['disagree_pct']:.0f}%)"
+                 *[f"{ratings[jid]['disagree']} ({ratings[jid]['disagree_pct']:.1f}%)"
                    for jid in jids_r]],
                 ["Avg Reasoning Quality",
                  *[f"{ratings[jid]['avg_reasoning_quality']:.1f}/10"
@@ -3135,20 +2756,20 @@ def build_markdown_report(reviews_df, judge_reviews_df, judge_evals_df,
         ))
         w("")
 
-    # ── 16. PER-MODEL JUDGE ACCURACY ──
+    # ── 14. PER-MODEL JUDGE ACCURACY ──
     if per_model_acc:
         w("---")
         w("")
-        w("## 16. Per-Model Judge Accuracy")
+        w("## 14. Per-Model Judge Accuracy")
         w("")
         w(f"![Per-Model Accuracy]({img}/per_model_accuracy.png)")
         w("")
 
-    # ── 17. INTER-JUDGE ──
+    # ── 15. INTER-JUDGE ──
     if inter_judge:
         w("---")
         w("")
-        w("## 17. Inter-Judge Agreement")
+        w("## 15. Inter-Judge Agreement")
         w("")
         w(f"Agreement between GPT-5.2 and MedGemma 27B across "
           f"{inter_judge['n_pairs']} evaluation pairs "
@@ -3161,11 +2782,11 @@ def build_markdown_report(reviews_df, judge_reviews_df, judge_evals_df,
           f"Overall concordance: {inter_judge['agreement_rate'] * 100:.1f}%.")
         w("")
 
-    # ── 18. MEDGEMMA BIAS ──
+    # ── 16. MEDGEMMA BIAS ──
     if mg_bias:
         w("---")
         w("")
-        w("## 18. MedGemma Self-Judging Bias")
+        w("## 16. MedGemma Self-Judging Bias")
         w("")
         w("MedGemma serves dual roles: both as a predictive model and as a judge.")
         w("")
@@ -3192,15 +2813,15 @@ def build_markdown_report(reviews_df, judge_reviews_df, judge_evals_df,
           f"{diff:.3f} points on average.")
         w("")
 
-    # ── 19. CLINICAL SAFETY ──
+    # ── 17. CLINICAL SAFETY ──
     if safety:
         w("---")
         w("")
-        w("## 19. Clinical Safety Analysis")
+        w("## 17. Clinical Safety Analysis")
         w("")
-        w("- **False Positive (dangerous):** Judge approves a prediction the doctor "
+        w("- **False Positive (dangerous):** Judge approves a prediction the uro-oncologist "
           "rejects → could lead to inappropriate treatment.")
-        w("- **False Negative (overly strict):** Judge rejects a prediction the doctor "
+        w("- **False Negative (overly strict):** Judge rejects a prediction the uro-oncologist "
           "approves → could prevent appropriate treatment.")
         w("")
         jids_s = [jid for jid in JUDGE_IDS if jid in safety]
@@ -3222,17 +2843,17 @@ def build_markdown_report(reviews_df, judge_reviews_df, judge_evals_df,
         ))
         w("")
 
-    # ── 20. SUMMARY COMPARISON ──
+    # ── 18. SUMMARY COMPARISON ──
     w("---")
     w("")
-    w("## 20. Summary Comparison: GPT-5.2 vs MedGemma 27B")
+    w("## 18. Summary Comparison: GPT-5.2 vs MedGemma 27B")
     w("")
     jids_all = list(JUDGE_IDS.keys())
     metrics_rows = []
 
     if agreement:
         jids_a = [jid for jid in jids_all if jid in agreement]
-        metrics_rows.append(("Cohen's κ (vs Doctor)",
+        metrics_rows.append(("Cohen's κ (vs Uro-Oncologist)",
                              *[f"{agreement[jid]['kappa']:.3f}" for jid in jids_a]))
         metrics_rows.append(("Agreement Rate",
                              *[f"{agreement[jid]['agreement_rate'] * 100:.1f}%"
@@ -3242,8 +2863,8 @@ def build_markdown_report(reviews_df, judge_reviews_df, judge_evals_df,
 
     if ratings:
         jids_r = [jid for jid in jids_all if jid in ratings]
-        metrics_rows.append(("Doctor Agree %",
-                             *[f"{ratings[jid]['agree_pct']:.0f}%"
+        metrics_rows.append(("Uro-Oncologist Agree %",
+                             *[f"{ratings[jid]['agree_pct']:.1f}%"
                                for jid in jids_r]))
         metrics_rows.append(("Avg Reasoning Quality",
                              *[f"{ratings[jid]['avg_reasoning_quality']:.1f}/10"
@@ -3269,10 +2890,10 @@ def build_markdown_report(reviews_df, judge_reviews_df, judge_evals_df,
     ))
     w("")
 
-    # ── 21. GLOSSARY ──
+    # ── 19. GLOSSARY ──
     w("---")
     w("")
-    w("## 21. German–English Medical Glossary")
+    w("## 19. German–English Medical Glossary")
     w("")
     w(md_table(
         ["German Term", "English Translation", "Context"],
@@ -3302,24 +2923,24 @@ def build_markdown_report(reviews_df, judge_reviews_df, judge_evals_df,
     ))
     w("")
 
-    # ── 22. CONCLUSIONS ──
+    # ── 20. CONCLUSIONS ──
     w("---")
     w("")
-    w("## 22. Conclusions & Recommendations")
+    w("## 20. Conclusions & Recommendations")
     w("")
 
     w("### Key Findings")
     w("")
     w(f"- **Model Performance:** {best_model['model_name']} achieved the highest "
-      f"doctor-rated quality ({best_model['avg_quality']:.1f}/9) with "
-      f"{best_model['acceptable_pct']:.0f}% therapy acceptability. "
+      f"uro-oncologist-rated quality ({best_model['avg_quality']:.1f}/9) with "
+      f"{best_model['acceptable_pct']:.1f}% therapy acceptability. "
       f"{best_auto['model_name']} scored highest on automated judge evaluation "
       f"({best_auto['avg_overall']:.2f}/1.0).")
 
     if agreement:
         best_j = max(agreement.items(), key=lambda x: x[1]["kappa"])
         w(f"- **Best AI Judge:** {judge_name(best_j[0])} showed the strongest agreement "
-          f"with the doctor (κ = {best_j[1]['kappa']:.3f}).")
+          f"with the uro-oncologist (κ = {best_j[1]['kappa']:.3f}).")
 
     w(f"- **Therapy Categories:** IO+TKI and TKI Mono dominate model predictions, "
       f"consistent with current RCC guidelines for the "
@@ -3339,7 +2960,7 @@ def build_markdown_report(reviews_df, judge_reviews_df, judge_evals_df,
     w("### Recommendations")
     w("")
     w("1. AI judges should be used as **screening tools**, not final arbiters. "
-      "Doctor review remains essential for clinical safety.")
+      "Uro-oncologist review remains essential for clinical safety.")
     w("2. Using **both GPT-5.2 and MedGemma** as judges and flagging disagreements "
       "could improve evaluation reliability.")
     w("3. Models with high acceptability but lower exact match may still provide "
@@ -3357,9 +2978,9 @@ def build_markdown_report(reviews_df, judge_reviews_df, judge_evals_df,
     md_doc_cases = reviews_df['case_id'].nunique()
     md_judge_cases = judge_reviews_df['case_id'].nunique()
     if md_doc_cases >= demo['n_cases'] and md_judge_cases >= demo['n_cases']:
-        w(f"- Doctor reviewed all {demo['n_cases']} cases for both model and judge evaluation (complete coverage)")
+        w(f"- Uro-oncologist reviewed all {demo['n_cases']} cases for both model and judge evaluation (complete coverage)")
     else:
-        w(f"- Doctor reviews covered {md_doc_cases} of "
+        w(f"- Uro-oncologist reviews covered {md_doc_cases} of "
           f"{demo['n_cases']} cases for model evaluation and "
           f"{md_judge_cases} cases for judge evaluation")
     w(f"- Ground truth = tumor board consensus (not necessarily the only correct therapy)")
