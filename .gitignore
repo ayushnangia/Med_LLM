@@ -63,5 +63,14 @@ medical-review-site/
 # Node.js dependencies
 node_modules/
 
-# Slide build artifacts
-findings/kaggle_submission/slides/node_modules/
+# Internal working files (not for public repo)
+to_be_reviewed_results/
+models_openrouter.txt
+models_openrouter_paid.txt
+
+# Kaggle submission drafts (submitted separately)
+findings/kaggle_submission/
+
+# Stray spreadsheets at root or results/
+allenai_*.xlsx
+results/*.xlsx
