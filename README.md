@@ -1,6 +1,6 @@
 # Clinical Integration of HAI-DEF Models in Uro-Oncological Decision-Making
 
-MedGemma Impact Challenge 2026 — Main Track + Novel Task Prize
+MedGemma Impact Challenge 2026 — Main Track + Edge AI Prize
 
 ## Team
 
@@ -12,10 +12,10 @@ MedGemma Impact Challenge 2026 — Main Track + Novel Task Prize
 
 This project evaluates whether MedGemma can serve as both a **therapy recommendation engine** and an **automated quality evaluator** for German renal cell carcinoma (RCC) cases — validated against expert physician judgment.
 
-We deploy MedGemma 27B in two novel roles across 69 anonymized RCC cases from German tumor boards:
+We deploy MedGemma 27B in two roles across 69 anonymized RCC cases from German tumor boards:
 
 1. **Therapy Predictor** — generates guideline-concordant therapy recommendations from structured clinical data
-2. **Structured Medical Judge** (Novel Task) — evaluates predictions across semantic match, clinical appropriateness, and reasoning quality
+2. **Structured Medical Judge** — evaluates predictions across semantic match, clinical appropriateness, and reasoning quality
 
 ## Key Results
 
@@ -30,7 +30,7 @@ We deploy MedGemma 27B in two novel roles across 69 anonymized RCC cases from Ge
 
 - **Best predictor** among 6 models tested (MedGemma 27B, Gemma 3 27B, Gemma 3 4B, OLMo 32B Instruct, OLMo 32B Think, Meditron3 7B)
 - **Best judge** with substantial agreement (kappa=0.675) against board-certified uro-oncologist
-- **Novel discovery:** statistically significant self-judging bias when MedGemma evaluates its own predictions
+- **Key discovery:** statistically significant self-judging bias when MedGemma evaluates its own predictions
 
 ## Three-Tier Evaluation Pipeline
 
@@ -42,7 +42,6 @@ We deploy MedGemma 27B in two novel roles across 69 anonymized RCC cases from Ge
 
 - **Live Demo:** [medical-review-site.vercel.app](https://medical-review-site.vercel.app)
 - **Evaluation Report:** [`findings/evaluation_report_2026-02-18.md`](findings/evaluation_report_2026-02-18.md)
-- **Submission Writeup:** [`findings/kaggle_submission/writeup.md`](findings/kaggle_submission/writeup.md)
 
 ## Repository Structure
 
@@ -60,10 +59,9 @@ Med_LLM/
 │   ├── modal_treatment/        # Modal vLLM treatment predictions
 │   ├── modal_judge/            # Modal vLLM judge evaluations
 │   └── openrouter/             # OpenRouter API results
-├── findings/                   # Reports and submission materials
+├── findings/                   # Reports and analysis
 │   ├── evaluation_report_*.md  # Comprehensive evaluation report
-│   ├── SUMMARY_REPORT.md       # Model comparison summary
-│   └── kaggle_submission/      # Kaggle submission materials
+│   └── SUMMARY_REPORT.md       # Model comparison summary
 └── documentation/              # Project documentation
 ```
 

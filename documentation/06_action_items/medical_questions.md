@@ -193,10 +193,10 @@ Comorbidities listed as free text, e.g.:
 
 ### 10. Case Selection
 
-**Question:** Are all 35 cases appropriate for evaluation?
+**Question:** Are all cases appropriate for evaluation?
 
 **Potential Concerns:**
-- Cases 15-35 use different JSON structure (may have data issues)
+- Some cases use a different JSON structure (may have data issues)
 - Some cases may be edge cases not suitable for automated evaluation
 
 **Questions:**

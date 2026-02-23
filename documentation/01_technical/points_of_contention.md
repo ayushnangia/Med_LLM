@@ -79,12 +79,12 @@ This document lists all technical issues that need discussion or resolution.
 **Severity:** Low
 **Impact:** Speed difference only
 
-| Platform | Processing | Time (35 cases) |
-|----------|------------|-----------------|
-| Modal | Batched | ~122 seconds |
-| OpenRouter | Sequential | ~540 seconds |
+| Platform | Processing |
+|----------|------------|
+| Modal | Batched |
+| OpenRouter | Sequential |
 
-**Note:** This is a fundamental architectural difference, not a bug.
+**Note:** This is a fundamental architectural difference, not a bug. Modal is significantly faster due to batching.
 
 ---
 

@@ -1,167 +1,108 @@
-# Latest Results Comparison
+# Platform Comparison: Modal vs OpenRouter
 
-Comparison of Modal vs OpenRouter treatment prediction results.
-
----
-
-## Run Details
-
-| Aspect | Modal | OpenRouter |
-|--------|-------|------------|
-| **Date** | 2025-12-30 00:02:19 | 2025-12-30 00:02:17 |
-| **Model** | google/gemma-3-27b-it | google/gemma-3-27b-it |
-| **Provider** | Modal (vLLM) | OpenRouter API |
-| **Total Cases** | 35 | 35 |
+Methodology for comparing treatment prediction results across inference platforms.
 
 ---
 
-## Hyperparameters (Aligned)
+## Purpose
 
-| Parameter | Modal | OpenRouter |
-|-----------|-------|------------|
-| temperature | 0.3 | 0.3 |
-| top_p | 0.95 | 0.95 |
-| max_tokens | 32768 | 32768 |
-| seed | 42 | N/A |
+When running the same model on both Modal (vLLM) and OpenRouter (API), this comparison validates that results are consistent and identifies platform-specific differences.
 
 ---
 
-## Results Summary
+## Run Configuration
+
+Both platforms use identical:
+- Model (same HuggingFace model ID)
+- Prompt (same template and guidelines)
+- Hyperparameters (temperature, top_p, max_tokens)
+
+The only differences are:
+- **Seed support:** Modal supports `seed=42` for reproducibility; OpenRouter does not
+- **JSON handling:** Modal uses vLLM structured outputs; OpenRouter uses manual parsing
+- **Processing:** Modal is batched; OpenRouter is sequential
+
+---
+
+## Metrics Compared
 
 ### Primary Metrics
 
-| Metric | Modal | OpenRouter | Difference |
-|--------|-------|------------|------------|
-| **Metastatic Accuracy** | 100.0% | 100.0% | 0% |
-| **Metastatic Correct** | 11/11 | 11/11 | 0 |
-| **Therapy Exact Match** | 28.6% | 25.7% | +2.9% |
-| **Therapy Exact Matches** | 10/35 | 9/35 | +1 |
-| **Therapy Acceptable** | 28.6% | 28.6% | 0% |
-| **Therapy Acceptable Count** | 10/35 | 10/35 | 0 |
+| Metric | Description |
+|--------|-------------|
+| **Metastatic Accuracy** | Correct identification of metastatic vs non-metastatic cases |
+| **Therapy Exact Match** | Fuzzy string match between prediction and ground truth |
+| **Therapy Acceptable** | Guideline-compliant therapy (even if not exact match) |
 
 ### Performance Metrics
 
-| Metric | Modal | OpenRouter | Ratio |
-|--------|-------|------------|-------|
-| **Total Time** | 122.2s | 539.9s | 4.4x faster |
-| **Per Case** | 3.5s | 15.4s | 4.4x faster |
-| **Errors** | 0 | 0 | Same |
+| Metric | Description |
+|--------|-------------|
+| **Total Time** | Wall-clock time for all cases |
+| **Per Case** | Average processing time per case |
+| **Errors** | Number of failed predictions |
 
 ---
 
-## Detailed Breakdown
+## Why Results May Differ Slightly
 
-### Metastatic Classification
-
-**Note:** Metastatic accuracy is calculated only on the 11 metastatic cases.
-
-| Metric | Modal | OpenRouter |
-|--------|-------|------------|
-| True Positives (metastatic correctly identified) | 11 | 11 |
-| False Negatives (metastatic missed) | 0 | 0 |
-| Non-metastatic cases | 24 | 24 |
-| Accuracy on metastatic | 100% | 100% |
-
-### Therapy Matching
-
-| Match Type | Modal | OpenRouter |
-|------------|-------|------------|
-| Exact Match | 10 (28.6%) | 9 (25.7%) |
-| Clinically Acceptable Only | 0 | 1 |
-| Not Acceptable | 25 | 25 |
-
-**Observation:** Both platforms have the same number of clinically acceptable recommendations (10), but Modal has 1 more exact match.
-
----
-
-## Per-Case Comparison (Sample)
-
-| Case | Modal Therapy | OpenRouter Therapy | Ground Truth | Match |
-|------|---------------|-------------------|--------------|-------|
-| ncc_1 | Cabozantinib 60mg | Cabozantinib | TKI/IO (Nivo/Cabo) | ✅ Both |
-| ncc_2 | Nivo+Cabo | Nivo+Cabo | Nivo+Cabo | ✅ Both |
-| ncc_3 | Nephrektomie | Nephrektomie | Nephrektomie | ✅ Both |
-| ... | ... | ... | ... | ... |
-
----
-
-## Analysis
-
-### Why Results Are Similar
-
-1. **Same model** - Both use google/gemma-3-27b-it
-2. **Aligned hyperparameters** - Same temperature, top_p, max_tokens
-3. **Same prompt** - Identical prompt structure and guidelines
-4. **Same evaluation** - Same metrics and acceptability criteria
-
-### Why Results Differ Slightly
-
-1. **No seed in OpenRouter** - Slight randomness in API
-2. **Different JSON handling** - Modal uses structured outputs
-3. **Response format** - OpenRouter wraps JSON in markdown
-
-### Speed Difference Explanation
-
-| Factor | Modal | OpenRouter |
-|--------|-------|------------|
-| Processing | Batched | Sequential |
-| Network | Direct GPU | API over internet |
-| Overhead | vLLM optimized | HTTP round-trips |
+1. **No seed in OpenRouter** — slight randomness in API responses
+2. **Different JSON handling** — Modal uses structured outputs, OpenRouter wraps JSON in markdown
+3. **Response format** — OpenRouter occasionally produces malformed JSON requiring fallback parsing
 
 ---
 
 ## Recommendations
 
 ### For Reproducibility
-Use **Modal** - supports seed parameter for deterministic results.
+Use **Modal** — supports seed parameter for deterministic results.
 
 ### For Quick Testing
-Use **OpenRouter** - simpler setup, no GPU infrastructure needed.
+Use **OpenRouter** — simpler setup, no GPU infrastructure needed.
 
 ### For Production
-Use **Modal** - 4.4x faster, more reliable JSON output.
+Use **Modal** — faster (batching), more reliable JSON output.
 
 ---
 
-## Result Files
+## Result File Locations
 
 ### Modal
 ```
-results/modal_treatment/google_gemma-3-27b-it/2025-12-30_00-02-19/
+results/modal_treatment/{model_name}/{timestamp}/
 ├── summary.json
 ├── ncc_1.json
 ├── ncc_2.json
-├── ...
-└── ncc_35.json
+└── ...
 ```
 
 ### OpenRouter
 ```
-results/openrouter_treatment/google_gemma-3-27b-it/2025-12-30_00-02-17/
+results/openrouter_treatment/{model_name}/{timestamp}/
 ├── summary.json
 ├── ncc_1.json
 ├── ncc_2.json
-├── ...
-└── ncc_35.json
+└── ...
 ```
 
 ---
 
 ## Summary JSON Format
 
+Each run produces a `summary.json` with aggregate metrics:
+
 ```json
 {
-  "model": "google/gemma-3-27b-it",
-  "provider": "modal",
-  "timestamp": "2025-12-30_00-02-19",
-  "total_cases": 35,
-  "metastatic_accuracy": 1.0,
-  "metastatic_correct": 11,
-  "therapy_exact_match_rate": 0.2857142857142857,
-  "therapy_exact_matches": 10,
-  "therapy_acceptable_rate": 0.2857142857142857,
-  "therapy_acceptable": 10,
-  "total_time": 122.24953818321228,
-  "errors": 0
+  "model": "model/name",
+  "provider": "modal|openrouter",
+  "timestamp": "YYYY-MM-DD_HH-MM-SS",
+  "total_cases": ...,
+  "metastatic_accuracy": ...,
+  "therapy_exact_match_rate": ...,
+  "therapy_acceptable_rate": ...,
+  "total_time": ...,
+  "errors": ...
 }
 ```
+
+For actual results, see `findings/evaluation_report_*.md`.

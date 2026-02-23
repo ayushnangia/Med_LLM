@@ -1092,7 +1092,7 @@ def build_report(reviews_df, judge_reviews_df, judge_evals_df,
     doc.add_heading("1. Executive Summary", level=1)
 
     doc.add_paragraph(
-        f"This report presents a novel three-tier evaluation pipeline for assessing "
+        f"This report presents a three-tier evaluation pipeline for assessing "
         f"AI-generated therapy recommendations in clinical oncology. Across "
         f"{ovr['total_predictions']} predictions from 6 LLMs on {demo['n_cases']} "
         f"renal cell carcinoma (Nierenzellkarzinom, RCC) cases from German tumor boards "
@@ -2246,7 +2246,7 @@ def build_markdown_report(reviews_df, judge_reviews_df, judge_evals_df,
     # ── 1. EXECUTIVE SUMMARY ──
     w("## 1. Executive Summary")
     w("")
-    w(f"This report presents a novel three-tier evaluation pipeline for assessing "
+    w(f"This report presents a three-tier evaluation pipeline for assessing "
       f"AI-generated therapy recommendations in clinical oncology. Across "
       f"{ovr['total_predictions']} predictions from 6 LLMs on {demo['n_cases']} "
       f"renal cell carcinoma (Nierenzellkarzinom, RCC) cases from German tumor boards "

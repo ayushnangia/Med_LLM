@@ -85,7 +85,7 @@ for i, case in enumerate(data['cases'][14:], 15):
 **Status:** Review needed
 
 **Current Issues:**
-- 28.6% acceptable rate seems low
+- Acceptable rate may be lower than expected
 - May be missing valid therapy synonyms
 
 **Investigation Steps:**
@@ -154,8 +154,8 @@ Add structured logging for:
 
 After implementing fixes:
 
-- [ ] Run Modal prediction on all 35 cases
-- [ ] Run OpenRouter prediction on all 35 cases
+- [ ] Run Modal prediction on all cases
+- [ ] Run OpenRouter prediction on all cases
 - [ ] Compare results match previous runs
 - [ ] Verify ECOG values for cases 15-35
 - [ ] Check no new errors introduced

@@ -1,21 +1,27 @@
-# NCC Treatment Prediction: Complete Documentation
+# Documentation: RCC Treatment Prediction Pipeline
 
-**Project:** Med_LLM - German Medical Oncology LLM Evaluation
-**Date:** 2025-12-30
+**Project:** Med_LLM — German Medical Oncology LLM Evaluation
 **Status:** Active Development
 
 ---
 
 ## Overview
 
-This project evaluates Large Language Models (LLMs) on their ability to recommend cancer treatments for kidney cancer (Nierenzellkarzinom/RCC) cases based on German clinical guidelines.
+This project evaluates Large Language Models (LLMs) on their ability to recommend cancer treatments for renal cell carcinoma (Nierenzellkarzinom, RCC) cases based on German clinical guidelines.
 
 ### What We Do
 
-1. **Input:** 35 clinical cases in German with patient data, staging, histology
-2. **Process:** LLM analyzes case and recommends therapy following NCC guidelines
-3. **Output:** Structured JSON with metastatic classification, IMDC risk, therapy recommendation
-4. **Evaluate:** Compare to tumor board ground truth using multiple metrics
+1. **Input:** Anonymized clinical cases in German with patient data, staging, histology
+2. **Process:** LLMs analyze each case and recommend therapy following NCC guidelines
+3. **Evaluate:** AI judges (GPT-5.2 and MedGemma 27B) independently score each prediction
+4. **Validate:** A board-certified uro-oncologist reviews all model predictions and judge evaluations
+5. **Output:** Structured JSON with metastatic classification, IMDC risk, therapy recommendation, and judge scores
+
+### Three-Tier Evaluation Pipeline
+
+1. **Tier 1 — LLM Prediction:** Multiple models generate therapy recommendations from structured clinical JSON
+2. **Tier 2 — AI Judge:** Two AI judges independently score each prediction on semantic match, clinical appropriateness, and reasoning quality
+3. **Tier 3 — Expert Validation:** Board-certified uro-oncologist reviews all predictions and judge evaluations
 
 ---
 
@@ -26,9 +32,9 @@ documentation/
 ├── README.md                              # This file
 │
 ├── 01_technical/                          # Technical documentation
-│   ├── points_of_contention.md            # All technical issues
+│   ├── points_of_contention.md            # Technical issues and decisions
 │   ├── hyperparameters.md                 # Model parameters
-│   ├── json_schema_issue.md               # Critical data bug
+│   ├── json_schema_issue.md              # Data schema differences
 │   └── infrastructure.md                  # Modal vs OpenRouter
 │
 ├── 02_medical/                            # Medical/Clinical documentation
@@ -55,8 +61,8 @@ documentation/
 │       ├── output_judge_example.json      # Judge output
 │       └── example_walkthrough.md         # Step-by-step explanation
 │
-├── 05_results/                            # Experiment results
-│   ├── latest_comparison.md               # Modal vs OpenRouter
+├── 05_results/                            # Evaluation methodology
+│   ├── latest_comparison.md               # Platform comparison methodology
 │   └── metrics_explanation.md             # What metrics mean
 │
 └── 06_action_items/                       # Next steps
@@ -70,8 +76,9 @@ documentation/
 
 ### For Technical Review
 - [Technical Points of Contention](01_technical/points_of_contention.md)
-- [JSON Schema Bug (Critical)](01_technical/json_schema_issue.md)
+- [JSON Schema Differences](01_technical/json_schema_issue.md)
 - [Hyperparameters](01_technical/hyperparameters.md)
+- [Infrastructure](01_technical/infrastructure.md)
 
 ### For Medical Review
 - [Medical Points of Contention](02_medical/points_of_contention.md)
@@ -89,19 +96,7 @@ documentation/
 - [Judge Model Example Walkthrough](04_examples/judge_model/example_walkthrough.md)
 
 ### Results
-- [Latest Results Comparison](05_results/latest_comparison.md)
-
----
-
-## Key Numbers (Latest Run: 2025-12-30)
-
-| Metric | Modal (vLLM) | OpenRouter (API) |
-|--------|-------------|------------------|
-| Model | google/gemma-3-27b-it | google/gemma-3-27b-it |
-| Metastatic Accuracy | 100% (11/11) | 100% (11/11) |
-| Therapy Exact Match | 28.6% (10/35) | 25.7% (9/35) |
-| Therapy Acceptable | 28.6% (10/35) | 28.6% (10/35) |
-| Processing Time | 122s | 540s |
+- For actual results and numbers, see `findings/evaluation_report_*.md` and `findings/SUMMARY_REPORT.md`
 
 ---
 
@@ -110,7 +105,7 @@ documentation/
 ### Modal (Primary)
 - **Hardware:** NVIDIA H100 GPU
 - **Framework:** vLLM with structured outputs
-- **Processing:** Batched (all 35 cases at once)
+- **Processing:** Batched (all cases at once)
 - **Reproducibility:** Seed=42 for deterministic results
 
 ### OpenRouter (Comparison)
@@ -122,8 +117,8 @@ documentation/
 
 ## Contact
 
-- **Data Provider:** Medical oncologist (German-speaking)
-- **Technical Implementation:** Claude Code assistance
+- **Clinical Lead:** Dr. Radu Alexa, Board-Certified Uro-Oncologist
+- **Technical Implementation:** Ayush Nangia, Aman Gokrani
 
 ---
 
@@ -132,6 +127,8 @@ documentation/
 | File Type | Location |
 |-----------|----------|
 | Treatment Scripts | `scripts/modal_treatment_predict.py`, `scripts/treatment_openrouter.py` |
-| Judge Script | `scripts/evaluate_treatment_llm_judge.py` |
-| Case Data | `converted_data/send_27_12_25/ncc/ncc_cases_json.json` |
+| Judge Scripts | `scripts/modal_judge.py`, `scripts/evaluate_treatment_llm_judge.py` |
+| Report Generation | `scripts/generate_evaluation_report.py`, `scripts/create_summary_report.py` |
+| Case Data | `converted_data/` |
 | Results | `results/modal_treatment/`, `results/openrouter_treatment/` |
+| Findings | `findings/evaluation_report_*.md`, `findings/SUMMARY_REPORT.md` |

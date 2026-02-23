@@ -23,7 +23,7 @@ Measures whether the LLM correctly identifies if a patient has metastatic diseas
 accuracy = correct_predictions / total_metastatic_cases
 ```
 
-**Note:** This metric is calculated ONLY on metastatic cases (not all 35 cases).
+**Note:** This metric is calculated ONLY on metastatic cases (not all cases).
 
 ### Ground Truth Source
 ```json
@@ -151,16 +151,13 @@ def is_clinically_acceptable(prediction, metastatic, imdc_risk):
 - Exact Match: >50%
 - Clinically Acceptable: >80%
 
-### Current Results (Gemma-3-27B)
-- Metastatic Accuracy: 100% ✅
-- Exact Match: 28.6% ⚠️
-- Clinically Acceptable: 28.6% ⚠️
-
-### Analysis
-The low acceptable rate (28.6%) needs investigation:
+### Analysis Checklist
+When results fall below ideal, investigate:
 1. Are the valid therapy lists complete?
 2. Are non-metastatic cases being evaluated correctly?
 3. Is fuzzy matching missing valid therapies?
+
+For actual results, see `findings/evaluation_report_*.md`.
 
 ---
 

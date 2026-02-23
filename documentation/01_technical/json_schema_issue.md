@@ -145,8 +145,8 @@ Case 16: v1.1=None, v1.2=1
 
 | Metric | With Bug | After Fix |
 |--------|----------|-----------|
-| Cases with valid ECOG | 14/35 (40%) | 35/35 (100%) |
-| ECOG used in prompt | "?" for cases 15-35 | Actual values |
+| Cases with valid ECOG | Only v1.1 cases | All cases |
+| ECOG used in prompt | "?" for v1.2 cases | Actual values |
 | IMDC calculation | May be incorrect | Correct |
 
 ---

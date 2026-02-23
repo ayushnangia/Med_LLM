@@ -41,9 +41,8 @@ llm = LLM(
 ### Key Features
 
 1. **Batched Processing**
-   - All 35 cases processed in one batch
+   - All cases processed in one batch
    - GPU parallelism maximized
-   - ~122 seconds total
 
 2. **Structured Outputs**
    - JSON schema enforcement via vLLM
@@ -107,7 +106,6 @@ response = requests.post(
 1. **Sequential Processing**
    - One case at a time
    - Rate limiting built-in
-   - ~540 seconds total
 
 2. **No Structured Outputs**
    - Manual JSON parsing with regex
@@ -124,27 +122,22 @@ response = requests.post(
 
 ### Speed
 
-| Platform | 35 Cases | Per Case |
-|----------|----------|----------|
-| Modal | 122s | 3.5s |
-| OpenRouter | 540s | 15.4s |
-
-**Modal is 4.4x faster** due to batching.
+Modal is significantly faster than OpenRouter due to batched GPU processing vs sequential API calls.
 
 ### Reliability
 
 | Metric | Modal | OpenRouter |
 |--------|-------|------------|
-| JSON Parse Success | 100% | ~98% |
+| JSON Parse Success | High (structured outputs) | Occasional parse failures |
 | Timeout Failures | Rare | Occasional |
 | Rate Limiting | None | Possible |
 
 ### Cost
 
-| Platform | Cost Model | Estimate (35 cases) |
-|----------|------------|---------------------|
-| Modal | ~$0.0005/sec GPU | ~$0.06 |
-| OpenRouter | ~$0.0001/token | ~$0.20 |
+| Platform | Cost Model |
+|----------|------------|
+| Modal | Per-second GPU billing |
+| OpenRouter | Per-token billing |
 
 ---
 

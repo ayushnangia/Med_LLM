@@ -61,16 +61,13 @@ The prompt includes:
 4. Task instructions (4-step analysis)
 5. Expected JSON output format
 
-**Total prompt length:** ~3,000 tokens
+**Total prompt length:** Several thousand tokens (varies by case)
 
 ---
 
 ## Step 3: LLM Inference
 
 ### Modal Output
-
-**Processing time:** 3.49 seconds
-**Tokens used:** 487
 
 **Prediction:**
 ```json
@@ -88,9 +85,6 @@ The prompt includes:
 ```
 
 ### OpenRouter Output
-
-**Processing time:** 31.40 seconds
-**Tokens used:** 2,204
 
 **Prediction:**
 ```json
@@ -157,8 +151,8 @@ Since this patient has papillary (non-clear-cell) RCC, TKI monotherapy is guidel
 | Aspect | Modal | OpenRouter |
 |--------|-------|------------|
 | Dosing specified | Yes (60mg p.o.) | No |
-| Confidence | 0.85 | 0.80 |
-| Processing time | 3.5s | 31.4s |
+| Confidence | Higher | Lower |
+| Processing time | Fast (batched) | Slower (sequential) |
 | Response format | Clean JSON | JSON in markdown code block |
 
 ---
