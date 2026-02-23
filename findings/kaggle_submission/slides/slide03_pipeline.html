@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+html { background: #ffffff; }
+body {
+  width: 720pt; height: 405pt; margin: 0; padding: 0;
+  font-family: Arial, sans-serif; display: flex;
+  background: #ffffff;
+}
+.hdr {
+  position: absolute; top: 0; left: 0; right: 0; height: 48pt;
+  background: #0a192f;
+  display: flex; align-items: center;
+}
+.hdr h1 { color: #e6f1ff; font-size: 18pt; margin: 0 0 0 32pt; }
+.main {
+  margin: 58pt 32pt 40pt 32pt;
+  display: flex; flex-direction: column; gap: 7pt;
+}
+.tier { display: flex; align-items: stretch; gap: 10pt; }
+.lbl {
+  width: 70pt; background: #2A9D8F; padding: 6pt; border-radius: 4pt;
+  display: flex; flex-direction: column; justify-content: center; text-align: center;
+}
+.lbl h2 { color: #ffffff; font-size: 12pt; margin: 0; }
+.lbl p { color: #d4f5ef; font-size: 7pt; margin: 2pt 0 0 0; }
+.cnt {
+  flex: 1; background: #f8f9fa; padding: 6pt 12pt; border-radius: 4pt;
+  border-left: 3pt solid #2A9D8F;
+}
+.cnt h3 { color: #0a192f; font-size: 10pt; margin: 0 0 2pt 0; }
+.cnt p { color: #333333; font-size: 8pt; margin: 1pt 0; line-height: 1.3; }
+.arrow { text-align: center; }
+.arrow p { color: #2A9D8F; font-size: 14pt; margin: 0; }
+.nums { display: flex; gap: 10pt; margin-top: 4pt; }
+.num {
+  flex: 1; background: #0a192f; padding: 8pt; border-radius: 4pt; text-align: center;
+}
+.num h2 { color: #64ffda; font-size: 18pt; margin: 0; }
+.num p { color: #8892b0; font-size: 7pt; margin: 2pt 0 0 0; }
+</style>
+</head>
+<body>
+<div class="hdr"><h1>Three-Tier Evaluation Pipeline</h1></div>
+<div class="main">
+  <div class="tier">
+    <div class="lbl"><h2>Tier 1</h2><p>Prediction</p></div>
+    <div class="cnt">
+      <h3>LLM Therapy Recommendation</h3>
+      <p>6 models receive structured German clinical JSON with embedded IMDC therapy guidelines</p>
+      <p>Output: is_metastatic, IMDC risk, therapy, category, reasoning, confidence</p>
+    </div>
+  </div>
+  <div class="arrow"><p>v</p></div>
+  <div class="tier">
+    <div class="lbl"><h2>Tier 2</h2><p>AI Judge</p></div>
+    <div class="cnt">
+      <h3>Automated Judge Evaluation</h3>
+      <p>GPT-5.2 and MedGemma 27B independently score each prediction</p>
+      <p>Formula: <b>overall = semantic(40%) + clinical(40%) + reasoning(20%)</b></p>
+    </div>
+  </div>
+  <div class="arrow"><p>v</p></div>
+  <div class="tier">
+    <div class="lbl"><h2>Tier 3</h2><p>Expert</p></div>
+    <div class="cnt">
+      <h3>Uro-Oncologist Validation</h3>
+      <p>Board-certified physician reviews ALL model predictions AND judge evaluations</p>
+      <p>Metrics: acceptability, exact match, quality (0-9), judge agreement</p>
+    </div>
+  </div>
+  <div class="nums">
+    <div class="num"><h2>414</h2><p>Model Predictions</p></div>
+    <div class="num"><h2>828</h2><p>Judge Evaluations</p></div>
+    <div class="num"><h2>1,242</h2><p>Expert Reviews</p></div>
+  </div>
+</div>
+</body>
+</html>

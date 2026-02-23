@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+html { background: #ffffff; }
+body {
+  width: 720pt; height: 405pt; margin: 0; padding: 0;
+  font-family: Arial, sans-serif; display: flex;
+  background: #ffffff;
+}
+.hdr {
+  position: absolute; top: 0; left: 0; right: 0; height: 48pt;
+  background: #0a192f;
+  display: flex; align-items: center;
+}
+.hdr h1 { color: #e6f1ff; font-size: 18pt; margin: 0 0 0 32pt; }
+.pbadge {
+  position: absolute; top: 12pt; right: 32pt;
+  background: #E74C3C; padding: 4pt 10pt; border-radius: 2pt;
+}
+.pbadge p { color: #ffffff; font-size: 9pt; margin: 0; font-family: Courier New, monospace; }
+.main {
+  margin: 60pt 32pt 40pt 32pt;
+  display: flex; gap: 18pt;
+}
+.left { flex: 3; display: flex; flex-direction: column; gap: 8pt; }
+.comp { display: flex; gap: 10pt; }
+.sc {
+  flex: 1; background: #f8f9fa; border-radius: 6pt;
+  padding: 10pt; text-align: center;
+  border: 1pt solid #e0e0e0;
+}
+.sc h2 { color: #888888; font-size: 7pt; margin: 0 0 3pt 0; letter-spacing: 0.5pt; }
+.sc h3 { color: #0a192f; font-size: 28pt; margin: 0; }
+.sc p { color: #888888; font-size: 7pt; margin: 2pt 0 0 0; }
+.sc.self { border: 2pt solid #E74C3C; }
+.sc.self h3 { color: #E74C3C; }
+.diff {
+  background: #E74C3C; padding: 6pt; border-radius: 4pt;
+  text-align: center;
+}
+.diff h3 { color: #ffffff; font-size: 18pt; margin: 0; }
+.diff p { color: #ffffff; font-size: 8pt; margin: 1pt 0 0 0; }
+.chartimg { width: 100%; border-radius: 4pt; }
+.right { flex: 2; display: flex; flex-direction: column; gap: 6pt; }
+.st {
+  background: #0a192f; padding: 8pt; border-radius: 4pt; text-align: center;
+}
+.st h2 { color: #8892b0; font-size: 7pt; margin: 0 0 2pt 0; letter-spacing: 0.5pt; }
+.st h3 { color: #64ffda; font-size: 16pt; margin: 0; }
+.st p { color: #8892b0; font-size: 7pt; margin: 2pt 0 0 0; }
+.impl {
+  background: #f8f9fa; padding: 8pt 10pt; border-radius: 4pt;
+  border-left: 3pt solid #E74C3C; flex: 1;
+}
+.impl h3 { color: #E74C3C; font-size: 10pt; margin: 0 0 4pt 0; }
+.impl p { color: #333333; font-size: 8pt; margin: 0; line-height: 1.4; }
+</style>
+</head>
+<body>
+<div class="hdr"><h1>Key Discovery: Self-Judging Bias</h1></div>
+<div class="pbadge"><p>p = 0.017</p></div>
+<div class="main">
+  <div class="left">
+    <div class="comp">
+      <div class="sc self">
+        <h2>SELF-JUDGING</h2>
+        <h3>0.777</h3>
+        <p>n = 69 evaluations</p>
+      </div>
+      <div class="sc">
+        <h2>JUDGING OTHERS</h2>
+        <h3>0.695</h3>
+        <p>n = 345 evaluations</p>
+      </div>
+    </div>
+    <div class="diff">
+      <h3>+0.082</h3>
+      <p>MedGemma scores its own predictions higher</p>
+    </div>
+    <img src="/Users/fortuna/Desktop/Colab/Med_LLM/findings/charts/medgemma_bias.png" class="chartimg" style="width: 100%; border-radius: 4pt;">
+  </div>
+  <div class="right">
+    <div class="st">
+      <h2>STATISTICAL TEST</h2>
+      <h3>Mann-Whitney U</h3>
+      <p>U = 14,062 | p = 0.017</p>
+    </div>
+    <div class="st">
+      <h2>MEDIAN DIFFERENCE</h2>
+      <h3>0.850 vs 0.780</h3>
+      <p>Self vs. Others median scores</p>
+    </div>
+    <div class="impl">
+      <h3>Implication</h3>
+      <p>Self-evaluation pipelines must account for this bias. Models should not be sole judges of their own outputs without independent calibration. This finding generalizes to any LLM-as-judge pipeline.</p>
+    </div>
+  </div>
+</div>
+</body>
+</html>

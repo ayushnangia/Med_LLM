@@ -56,3 +56,12 @@ build/
 
 # Doctor review exports (sensitive)
 arzt-bewertungen_*.csv
+
+# Medical review web app (separate repository)
+medical-review-site/
+
+# Node.js dependencies
+node_modules/
+
+# Slide build artifacts
+findings/kaggle_submission/slides/node_modules/

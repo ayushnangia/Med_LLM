@@ -30,6 +30,8 @@ from docx.oxml import parse_xml
 # ── Constants ──────────────────────────────────────────────────────────────
 
 BASE_DIR = Path(__file__).resolve().parent.parent
+# NOTE: These paths require the companion web app repo (medical-review-site/)
+# to be cloned alongside this repository. See: github.com/ayushnangia/medical-review-site
 ENV_FILE = BASE_DIR / "medical-review-site" / ".env.local"
 CASES_FILE = BASE_DIR / "medical-review-site" / "src" / "data" / "cases.json"
 OUTPUT_DIR = BASE_DIR / "findings"

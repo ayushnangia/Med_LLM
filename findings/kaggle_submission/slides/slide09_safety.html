@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+html { background: #ffffff; }
+body {
+  width: 720pt; height: 405pt; margin: 0; padding: 0;
+  font-family: Arial, sans-serif; display: flex;
+  background: #ffffff;
+}
+.hdr {
+  position: absolute; top: 0; left: 0; right: 0; height: 48pt;
+  background: #0a192f;
+  display: flex; align-items: center;
+}
+.hdr h1 { color: #e6f1ff; font-size: 18pt; margin: 0 0 0 32pt; }
+.main {
+  margin: 60pt 32pt 40pt 32pt;
+  display: flex; gap: 20pt;
+}
+.left { flex: 1; display: flex; flex-direction: column; gap: 10pt; }
+.dcard {
+  background: #ffffff; border-radius: 6pt; padding: 12pt;
+  border: 1pt solid #e0e0e0; border-top: 4pt solid #E74C3C;
+  box-shadow: 1px 1px 4px rgba(0,0,0,0.06);
+}
+.dcard h2 { color: #E74C3C; font-size: 11pt; margin: 0 0 2pt 0; }
+.dcard .sub { color: #888888; font-size: 7pt; margin: 0 0 8pt 0; }
+.scard {
+  background: #ffffff; border-radius: 6pt; padding: 12pt;
+  border: 1pt solid #e0e0e0; border-top: 4pt solid #F39C12;
+  box-shadow: 1px 1px 4px rgba(0,0,0,0.06);
+}
+.scard h2 { color: #F39C12; font-size: 11pt; margin: 0 0 2pt 0; }
+.scard .sub { color: #888888; font-size: 7pt; margin: 0 0 8pt 0; }
+.rrow {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 5pt 0; border-bottom: 1pt solid #f0f0f0;
+}
+.rrow:last-child { border-bottom: none; }
+.rrow p { font-size: 9pt; margin: 0; color: #555555; }
+.pct { font-weight: bold; font-size: 13pt; }
+.good { color: #27AE60; }
+.danger { color: #E74C3C; }
+.warn { color: #F39C12; }
+.right { flex: 1; }
+.takeaway {
+  background: #0a192f; padding: 14pt; border-radius: 6pt; height: 100%;
+  box-sizing: border-box;
+}
+.takeaway h2 { color: #64ffda; font-size: 12pt; margin: 0 0 10pt 0; }
+.takeaway ul { margin: 0; padding-left: 14pt; }
+.takeaway li { color: #ccd6f6; font-size: 8pt; margin-bottom: 8pt; line-height: 1.5; }
+</style>
+</head>
+<body>
+<div class="hdr"><h1>Clinical Safety Analysis</h1></div>
+<div class="main">
+  <div class="left">
+    <div class="dcard">
+      <h2>False Positives (Dangerous)</h2>
+      <p class="sub">Judge approves what doctor rejects</p>
+      <div class="rrow">
+        <p>GPT-5.2</p>
+        <p class="pct good">8.2%</p>
+      </div>
+      <div class="rrow">
+        <p>MedGemma 27B</p>
+        <p class="pct danger">9.6%</p>
+      </div>
+    </div>
+    <div class="scard">
+      <h2>False Negatives (Overly Strict)</h2>
+      <p class="sub">Judge rejects what doctor approves</p>
+      <div class="rrow">
+        <p>GPT-5.2</p>
+        <p class="pct warn">29.8%</p>
+      </div>
+      <div class="rrow">
+        <p>MedGemma 27B</p>
+        <p class="pct warn">24.0%</p>
+      </div>
+    </div>
+  </div>
+  <div class="right">
+    <div class="takeaway">
+      <h2>Safety Takeaways</h2>
+      <ul>
+        <li><b>Both judges are conservative</b> — they err toward rejecting, which is safer in clinical context</li>
+        <li><b>GPT-5.2 has lowest dangerous error rate</b> (8.2%) — better for safety-critical screening</li>
+        <li><b>MedGemma is less strict</b> (24.0% vs 29.8% FN) — catches more valid alternatives</li>
+        <li><b>Complementary strengths:</b> Using both judges and flagging disagreements maximizes safety</li>
+        <li><b>AI judges as screening tools,</b> not final arbiters — physician review remains essential</li>
+      </ul>
+    </div>
+  </div>
+</div>
+</body>
+</html>
