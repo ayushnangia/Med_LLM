@@ -1,0 +1,54 @@
+{
+  "case_id": "ncc_7",
+  "timestamp": "2025-12-29T23:36:05.944621",
+  "provider": "openrouter",
+  "model": "google/gemma-3-27b-it",
+  "input_case": {
+    "case_id": "ncc_7",
+    "patient_name": "Muster, Emil",
+    "age": 43,
+    "ecog": 0,
+    "anamnese": "Nierentumor rechts 1,9 cm, endophytisch. CT-graphisch V. a. Nierenbeckentumor rechts ca. 1×1 cm. Z. n. Ureterorenoskopie rechts 11/2023.",
+    "diagnose_kurz": "Unklare Raumforderung Nierenbecken rechts ca. 1×1 cm (CT 11.11.2025), V. a. Nierenbeckentumor; dd: RCC endophytisch 1,9 cm",
+    "stadium": "unbekannt (prätherapeutisch)",
+    "tnm_clinical": {
+      "T": "unknown",
+      "T_sub": "unknown",
+      "N": "unknown",
+      "M": "unknown",
+      "stage_group": "unknown"
+    },
+    "histologie_subtyp": null,
+    "histologie_klarzellig": null,
+    "bildgebung": [
+      {
+        "modalitaet": "CT",
+        "region": "Abdomen (CT-Urographie/CT graphisch)",
+        "datum": "2025-11-11",
+        "befund_kurz": "Unklare Raumforderung des Nierenbeckens rechts ca. 1×1 cm, V. a. Nierenbeckentumor. Zusätzlich beschrieben: Nierentumor rechts 1,9 cm, endophytisch.",
+        "quelle": "Erforderlicher Befund"
+      }
+    ],
+    "nebendiagnosen": [],
+    "ground_truth_metastatic": false,
+    "ground_truth_therapy": "Diagnostische Ureterorenoskopie rechts mit Probeentnahme."
+  },
+  "prompt_text": "Du bist ein erfahrener Onkologe, spezialisiert auf Nierenzellkarzinom (RCC).\nAnalysiere den folgenden klinischen Fall und erstelle eine strukturierte Therapieempfehlung.\n\n=== KLINISCHER FALL ===\nPatient: Muster, Emil, 43 Jahre\nECOG: 0, Karnofsky: ?%\nKomorbidität: unknown\n\nDiagnose: Unklare Raumforderung Nierenbecken rechts ca. 1×1 cm (CT 11.11.2025), V. a. Nierenbeckentumor; dd: RCC endophytisch 1,9 cm\nStadium: unbekannt (prätherapeutisch)\nTNM: cTNM: Tunknown Nunknown Munknown\n\nHISTOLOGIE: Nicht dokumentiert\n\nAnamnese: Nierentumor rechts 1,9 cm, endophytisch. CT-graphisch V. a. Nierenbeckentumor rechts ca. 1×1 cm. Z. n. Ureterorenoskopie rechts 11/2023.\n\nNebendiagnosen: Keine\n\nBildgebung:\n  - CT Abdomen (CT-Urographie/CT graphisch) (2025-11-11): Unklare Raumforderung des Nierenbeckens rechts ca. 1×1 cm, V. a. Nierenbeckentumor. Zusätzlich beschrieben: Nierentumor rechts 1,9 cm, endophytisch.\n\nVorherige Systemtherapien: Keine\n\n=== THERAPIE-LEITLINIEN ===\n\nMETASTASIERTES KLARZELLIGES RCC - THERAPIE-ALGORITHMUS:\n\nIMDC-RISIKOSTRATIFIZIERUNG:\n- Günstig (0 Risikofaktoren)\n- Intermediär (1-2 Risikofaktoren)\n- Ungünstig (≥3 Risikofaktoren)\n\nRisikofaktoren: Karnofsky <80%, Zeit bis Systemtherapie <1 Jahr, Hämoglobin↓, Calcium↑, Neutrophile↑, Thrombozyten↑\n\nERSTLINIE (wenn ICI-Kombination möglich):\n- Günstig: NIVO+CABO (A), PEMBRO+AXI (A), PEMBRO+LEN (A), AVELU+AXI (B)\n- Intermediär: NIVO+CABO (A), NIVO+IPI (A), PEMBRO+AXI (A), PEMBRO+LEN (A)\n- Ungünstig: NIVO+CABO (A), NIVO+IPI (A), PEMBRO+AXI (A), PEMBRO+LEN (A)\n\nERSTLINIE (wenn ICI-Kombination NICHT möglich):\n- Günstig: Pazopanib (A), Sunitinib (A), Tivozanib (A), BEV+IFN (A)\n- Intermediär: Cabozantinib (B), Pazopanib (B), Sunitinib (B)\n- Ungünstig: Cabozantinib (B), Sunitinib (B), Temsirolimus (0)\n\nZWEITLINIE nach ICI-Kombination: Cabozantinib (A), Lenvatinib+Everolimus (A), Sunitinib (A)\nZWEITLINIE nach VEGF/R-Monotherapie: Cabozantinib (A), Nivolumab (A)\n\n---\n\nNICHT-METASTASIERTES RCC - THERAPIE-ALGORITHMUS:\n\n1. AKTIVE ÜBERWACHUNG (GoR 0): Kleine Tumoren + hohe Komorbidität/begrenzte Lebenserwartung\n2. ABLATION (GoR 0): Kleine Tumoren + hohe Komorbidität/begrenzte Lebenserwartung\n3. NIERENTEILRESEKTION: cT1 (≤7cm) SOLL durchgeführt werden (GoR A)\n4. RADIKALE NEPHREKTOMIE: Wenn Teilresektion nicht möglich (GoR A)\n\nLegende: A=starke Empfehlung, B=schwache Empfehlung, 0=Option\n\n\n=== AUFGABE ===\nAnalysiere den Fall schrittweise:\n1. METASTASIERUNG: Ist der Patient metastasiert? (basierend auf TNM, Anamnese, Bildgebung)\n2. HISTOLOGIE: Klarzellig vs. nicht-klarzellig?\n3. RISIKO: Falls metastasiert + klarzellig, IMDC-Risiko?\n4. THERAPIE: Empfehlung nach Leitlinie\n\nAntwort als JSON:\n{\n    \"is_metastatic\": true/false,\n    \"metastatic_reasoning\": \"Begründung...\",\n    \"imdc_risk\": \"guenstig/intermediaer/unguenstig/nicht_anwendbar\",\n    \"imdc_reasoning\": \"IMDC-Berechnung...\",\n    \"treatment_reasoning\": \"Schrittweise Begründung...\",\n    \"recommended_therapy\": \"Konkrete Empfehlung\",\n    \"therapy_category\": \"IO+TKI/TKI mono/Surgery/Surveillance/etc.\",\n    \"confidence\": 0.0-1.0\n}",
+  "output": {
+    "is_metastatic": false,
+    "metastatic_reasoning": "Der Fall beschreibt einen Patienten mit einem Nierentumor und einer unklaren Raumforderung im Nierenbecken. Es gibt keine Hinweise auf Fernmetastasen in der Anamnese oder der Bildgebung. Das cTNM ist unvollständig, aber die beschriebenen Befunde deuten nicht auf eine Metastasierung hin. Da das Stadium unbekannt ist, muss aber eine vollständige Stadieneinteilung erfolgen.",
+    "imdc_risk": "nicht_anwendbar",
+    "imdc_reasoning": "Die IMDC-Risikostratifizierung ist nur bei metastasiertem, klarzelligem Nierenzellkarzinom relevant. Da der Patient nicht als metastasiert eingestuft wurde, ist die IMDC-Risikobewertung nicht anwendbar.",
+    "treatment_reasoning": "Die vorliegenden Informationen deuten auf ein nicht-metastasiertes Nierenzellkarzinom hin. Die Größe des Tumors (1,9 cm) und die unklare Raumforderung im Nierenbecken erfordern eine weitere Abklärung und Therapieplanung.  Da die Histologie fehlt, muss diese unbedingt vor Therapiebeginn erfolgen.  Die Ureterorenoskopie deutet auf eine mögliche frühere Diagnose im Nierenbecken hin, die nun erneut untersucht wird. Aufgrund der Tumorgröße und des endophytischen Wachstums ist eine Nierenteilresektion die bevorzugte Option, sofern technisch möglich. Eine radikale Nephrektomie sollte in Betracht gezogen werden, wenn eine Teilresektion nicht möglich ist. Aktive Überwachung ist bei dieser Tumorgröße und dem unklaren Befund im Nierenbecken nicht indiziert.",
+    "recommended_therapy": "Nierenteilresektion, falls technisch möglich. Alternativ radikale Nephrektomie. Vorherige histologische Abklärung der Raumforderung im Nierenbecken und des Tumors erforderlich.",
+    "therapy_category": "Surgery",
+    "confidence": 0.8
+  },
+  "raw_response": ":```json\n{\n    \"is_metastatic\": false,\n    \"metastatic_reasoning\": \"Der Fall beschreibt einen Patienten mit einem Nierentumor und einer unklaren Raumforderung im Nierenbecken. Es gibt keine Hinweise auf Fernmetastasen in der Anamnese oder der Bildgebung. Das cTNM ist unvollständig, aber die beschriebenen Befunde deuten nicht auf eine Metastasierung hin. Da das Stadium unbekannt ist, muss aber eine vollständige Stadieneinteilung erfolgen.\",\n    \"imdc_risk\": \"nicht_anwendbar\",\n    \"imdc_reasoning\": \"Die IMDC-Risikostratifizierung ist nur bei metastasiertem, klarzelligem Nierenzellkarzinom relevant. Da der Patient nicht als metastasiert eingestuft wurde, ist die IMDC-Risikobewertung nicht anwendbar.\",\n    \"treatment_reasoning\": \"Die vorliegenden Informationen deuten auf ein nicht-metastasiertes Nierenzellkarzinom hin. Die Größe des Tumors (1,9 cm) und die unklare Raumforderung im Nierenbecken erfordern eine weitere Abklärung und Therapieplanung.  Da die Histologie fehlt, muss diese unbedingt vor Therapiebeginn erfolgen.  Die Ureterorenoskopie deutet auf eine mögliche frühere Diagnose im Nierenbecken hin, die nun erneut untersucht wird. Aufgrund der Tumorgröße und des endophytischen Wachstums ist eine Nierenteilresektion die bevorzugte Option, sofern technisch möglich. Eine radikale Nephrektomie sollte in Betracht gezogen werden, wenn eine Teilresektion nicht möglich ist. Aktive Überwachung ist bei dieser Tumorgröße und dem unklaren Befund im Nierenbecken nicht indiziert.\",\n    \"recommended_therapy\": \"Nierenteilresektion, falls technisch möglich. Alternativ radikale Nephrektomie. Vorherige histologische Abklärung der Raumforderung im Nierenbecken und des Tumors erforderlich.\",\n    \"therapy_category\": \"Surgery\",\n    \"confidence\": 0.8\n}\n```",
+  "ground_truth_metastatic": false,
+  "ground_truth_therapy": "Diagnostische Ureterorenoskopie rechts mit Probeentnahme.",
+  "metastatic_correct": true,
+  "inference_time_seconds": 10.260051012039185,
+  "tokens_used": 1601,
+  "success": true
+}

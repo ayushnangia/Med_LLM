@@ -1,0 +1,64 @@
+{
+  "case_id": "ncc_54",
+  "timestamp": "2026-02-15_23-04-59",
+  "provider": "modal",
+  "model": "allenai/Olmo-3.1-32B-Instruct",
+  "input_case": {
+    "case_id": "ncc_54",
+    "patient_name": "Beispiel, Farid",
+    "age": 63,
+    "ecog": 2,
+    "karnofsky": 60,
+    "comorbidity": "unknown",
+    "life_expectancy": "unknown",
+    "anamnese": "Z. n. radikaler Nephrektomie links am 18.02.2025 (extern) bei ccRCC mit sarkomatoider Differenzierung. Aktuell stationär Orthopädie/Wirbelsäulenchirurgie nach Kyphoplastie BWK (12/2025) wegen tumorassoziierter Schmerzen/Stabilitätsproblem. Staging 12/2025: multiple Lungen- und Knochenmetastasen sowie Verdacht auf Lokalrezidiv; Anfrage zur onkologischen Übernahme.",
+    "diagnose_kurz": "Metastasiertes klarzelliges RCC (ccRCC) mit sarkomatoider Differenzierung (~20%) – Lokalrezidiv + pulmonale, lymphonodale und ossäre Metastasierung",
+    "stadium": "therapienaiv metastasiert; IMDC high risk (4 Faktoren)",
+    "tnm_clinical": null,
+    "tnm_pathological": null,
+    "histologie_subtyp": "ccRCC",
+    "histologie_klarzellig": true,
+    "bildgebung": [
+      {
+        "modalitaet": "CT",
+        "region": "Thorax/Abdomen/Becken",
+        "datum": "2025-12-19",
+        "befund_kurz": "Thorax: multiple pulmonale Rundherde metastasenverdächtig (z. B. RLL 16 mm, LUL 12 mm, weitere 4–7 mm), kleiner Pleuraerguss links. Abdomen/Becken: weichteildichte Läsion in der Nephrektomie-Loge links 35 × 28 mm mit KM-Aufnahme (Lokalrezidiv); retroperitoneal paraaortal 24 mm (metastasenverdächtig). Skelett: multiple osteolytische Läsionen (z. B. BWK10 18 mm, LWK2 21 mm, Os ilium rechts 26 mm); kein hochgradiger Spinalkanalbefund im CT.",
+        "quelle": "Erforderlicher Befund (fiktiv)"
+      }
+    ],
+    "nebendiagnosen": [
+      "CKD G3",
+      "arterielle Hypertonie",
+      "Vorhofflimmern (unter Antikoagulation)"
+    ],
+    "medikation": [],
+    "ici_durchfuehrbar": null,
+    "prior_therapies": [],
+    "ground_truth_metastatic": true,
+    "ground_truth_imdc": "unguenstig",
+    "ground_truth_therapy": "Start einer Systemtherapie im metastasierten Setting unter Berücksichtigung IMDC high risk (IO+TKI oder IO+IO je nach Komorbidität/Tox-Profil). Strahlentherapeutische Vorstellung zur Evaluation einer palliativ-lokalen Radiatio symptomatischer/risikoreicher Knochenmetastasen. Supportiv: Analgesie, Knochenprotektion nach Standard, Frakturrisiko-Assessment und engmaschiges Monitoring."
+  },
+  "prompt_text": "Du bist ein erfahrener Onkologe, spezialisiert auf Nierenzellkarzinom (RCC).\nAnalysiere den folgenden klinischen Fall und erstelle eine strukturierte Therapieempfehlung.\n\n=== KLINISCHER FALL ===\nPatient: Beispiel, Farid, 63 Jahre\nECOG: 2, Karnofsky: 60%\nKomorbidität: unknown\nLebenserwartung: unknown\n\nDiagnose: Metastasiertes klarzelliges RCC (ccRCC) mit sarkomatoider Differenzierung (~20%) – Lokalrezidiv + pulmonale, lymphonodale und ossäre Metastasierung\nStadium: therapienaiv metastasiert; IMDC high risk (4 Faktoren)\nTNM: nicht dokumentiert\n\nHISTOLOGIE (WICHTIG für Therapieentscheidung):\nSubtyp: ccRCC, Klarzellig: Ja, Sarkomatoid: Ja, Grading: WHO/ISUP Grad 3\n\nAnamnese:\nZ. n. radikaler Nephrektomie links am 18.02.2025 (extern) bei ccRCC mit sarkomatoider Differenzierung. Aktuell stationär Orthopädie/Wirbelsäulenchirurgie nach Kyphoplastie BWK (12/2025) wegen tumorassoziierter Schmerzen/Stabilitätsproblem. Staging 12/2025: multiple Lungen- und Knochenmetastasen sowie Verdacht auf Lokalrezidiv; Anfrage zur onkologischen Übernahme.\n\nNebendiagnosen: CKD G3, arterielle Hypertonie, Vorhofflimmern (unter Antikoagulation)\n\nAktuelle Medikation: Keine dokumentiert\n\nBildgebung:\n  - CT Thorax/Abdomen/Becken (2025-12-19): Thorax: multiple pulmonale Rundherde metastasenverdächtig (z. B. RLL 16 mm, LUL 12 mm, weitere 4–7 mm), kleiner Pleuraerguss links. Abdomen/Becken: weichteildichte Läsion in der Nephrektomie-Loge links 35 × 28 mm mit KM-Aufnahme (Lokalrezidiv); retroperitoneal paraaortal 24 mm (metastasenverdächtig). Skelett: multiple osteolytische Läsionen (z. B. BWK10 18 mm, LWK2 21 mm, Os ilium rechts 26 mm); kein hochgradiger Spinalkanalbefund im CT.\n\nIMDC-Risikofaktoren: Kategorie: unguenstig\nICI-Kombination durchführbar: Nicht dokumentiert\nVorherige Systemtherapien: Keine\n\n=== THERAPIE-LEITLINIEN ===\n\n\nMETASTASIERTES KLARZELLIGES RCC - THERAPIE-ALGORITHMUS:\n\nIMDC-RISIKOSTRATIFIZIERUNG:\n- Günstig (0 Risikofaktoren)\n- Intermediär (1-2 Risikofaktoren)\n- Ungünstig (≥3 Risikofaktoren)\n\nRisikofaktoren: Karnofsky <80%, Zeit bis Systemtherapie <1 Jahr, Hämoglobin↓, Calcium↑, Neutrophile↑, Thrombozyten↑\n\nERSTLINIE (wenn ICI-Kombination möglich):\n- Günstig: NIVO+CABO (A), PEMBRO+AXI (A), PEMBRO+LEN (A), AVELU+AXI (B)\n- Intermediär: NIVO+CABO (A), NIVO+IPI (A), PEMBRO+AXI (A), PEMBRO+LEN (A)\n- Ungünstig: NIVO+CABO (A), NIVO+IPI (A), PEMBRO+AXI (A), PEMBRO+LEN (A)\n\nERSTLINIE (wenn ICI-Kombination NICHT möglich):\n- Günstig: Pazopanib (A), Sunitinib (A), Tivozanib (A), BEV+IFN (A)\n- Intermediär: Cabozantinib (B), Pazopanib (B), Sunitinib (B)\n- Ungünstig: Cabozantinib (B), Sunitinib (B), Temsirolimus (0)\n\nZWEITLINIE nach ICI-Kombination: Cabozantinib (A), Lenvatinib+Everolimus (A), Sunitinib (A)\nZWEITLINIE nach VEGF/R-Monotherapie: Cabozantinib (A), Nivolumab (A)\n\nLegende: A=starke Empfehlung, B=schwache Empfehlung, 0=Option\n\n\n\nNICHT-METASTASIERTES RCC - THERAPIE-ALGORITHMUS:\n\nTHERAPIEOPTIONEN nach Tumorgröße/Stadium:\n\n1. AKTIVE ÜBERWACHUNG (GoR 0):\n   - Kleine Nierentumoren + hohe Komorbidität ODER begrenzte Lebenserwartung\n   - Biopsie VOR Überwachung erforderlich\n\n2. ABLATION (Kryoablation/Radiofrequenzablation) (GoR 0):\n   - Kleine Nierentumoren + hohe Komorbidität ODER begrenzte Lebenserwartung\n   - Biopsie VOR Ablation erforderlich\n\n3. NIERENTEILRESEKTION (Nephron-sparing Surgery):\n   - cT1 (≤7cm): SOLL durchgeführt werden (GoR A)\n   - >T1: SOLLTE erwogen werden wenn technisch möglich (GoR B)\n   - Zugang: offen/laparoskopisch/robotisch (chirurgische Erfahrung)\n\n4. RADIKALE NEPHREKTOMIE:\n   - Wenn Teilresektion nicht möglich (GoR A)\n   - Minimalinvasiv wenn lokale Befunde es erlauben (GoR A)\n\nPERIOPERATIVE PRINZIPIEN:\n- KEINE Adrenalektomie bei unauffälliger Bildgebung (GoR A)\n- KEINE systematische Lymphadenektomie bei unauffälliger Bildgebung (GoR A)\n- LND bei vergrößerten Lymphknoten akzeptabel\n\nTNM-STADIEN:\n- T1a: ≤4cm, auf Niere begrenzt\n- T1b: >4-7cm, auf Niere begrenzt\n- T2a: >7-10cm, auf Niere begrenzt\n- T2b: >10cm, auf Niere begrenzt\n- T3: Ausdehnung in große Venen oder perirenales Gewebe\n- T4: Über Gerota-Faszie hinaus\n\nLegende: GoR A=starke Empfehlung, GoR B=schwache Empfehlung, GoR 0=Option\n\n\nWICHTIGER HINWEIS:\n- Die Leitlinien gelten primär für KLARZELLIGES RCC\n- Bei NICHT-KLARZELLIGEM RCC (papillär, chromophob, etc.) ist TKI-Monotherapie oft bevorzugt\n- IMDC-Risikostratifizierung ist nur für klarzelliges mRCC validiert\n\n=== AUFGABE ===\nAnalysiere den Fall schrittweise:\n\n1. METASTASIERUNG: Bestimme ob der Patient metastasiert oder nicht-metastasiert ist (basierend auf TNM M-Status, Anamnese, Bildgebung).\n\n2. HISTOLOGIE: Berücksichtige den histologischen Subtyp (klarzellig vs. nicht-klarzellig).\n\n3. RISIKOSTRATIFIZIERUNG: Falls metastasiert UND klarzellig, berechne das IMDC-Risiko.\n\n4. THERAPIEEMPFEHLUNG: Folge dem entsprechenden Therapie-Algorithmus und begründe deine Empfehlung.\n\nAntworte im folgenden JSON-Format:\n{\n    \"is_metastatic\": true/false,\n    \"metastatic_reasoning\": \"Begründung für Metastasierungsstatus...\",\n    \"imdc_risk\": \"guenstig/intermediaer/unguenstig/nicht_anwendbar\",\n    \"imdc_reasoning\": \"IMDC-Berechnung oder null wenn nicht-metastasiert/nicht-klarzellig...\",\n    \"treatment_reasoning\": \"Schrittweise Begründung nach Leitlinie...\",\n    \"recommended_therapy\": \"Konkrete Therapieempfehlung\",\n    \"therapy_category\": \"IO+TKI/TKI mono/Surgery/Surveillance/Ablation/etc.\",\n    \"recommendation_strength\": \"A/B/0\",\n    \"confidence\": 0.0-1.0\n}",
+  "prediction": {
+    "is_metastatic": true,
+    "metastatic_reasoning": "Der Patient hat multiple pulmonale Metastasen (z.B. RLL 16 mm, LUL 12 mm), multiple osteolytische Läsionen sowie einen Verdacht auf Lokalrezidiv im residualen Tumorlokalisation nach Nephrektomie. Daraus folgt ein metastatisierter Verlauf.",
+    "imdc_risk": "unguenstig",
+    "imdc_reasoning": "IMDC-Kategorisierung als 'unguenstig' (high risk) aufgrund mindestens dreier Risikofaktoren: ECOG 2 (<80%), kürzester Abstand zur vorherigen Systemtherapie (keine vorherige Therapie, aber klinisch erwartete kürze bis zur progressiven Erkrankung), vermutete oder bestehende Schwächen (postoperativ, multiple Metastasen). Hämoglobin/Nierfunktion/Calcium/Neutrophile nicht explizit dokumentiert, aber multiple Metastasen sprechen für schlechtere Prognose.",
+    "treatment_reasoning": "Der Fall ist ein metastatisierter, klarzellig-sarkomatoider ccRCC mit unguenstem IMDC-Risiko. Die aktuelle Leitlinie empfiehlt eine ICI-Kombination als Erstlinie. Da es sich um einen high-risk-Patient handelt, sind die Kombinationen NIVO+CABO oder NIVO+IPI (bei PD-1/PD-L1 Positivität) oder PEMBRO+AXI/LEN als Optionen. Da hierfür keine PD-L1-Statusdaten vorliegen, wird NIVO+CABO (Erstlinie, Stufe A) empfohlen. Alternativ ist PEMBRO+AXI eine gute Wahl, insbesondere wenn ICI-Kombinationen nicht verfügbar oder nicht toleratebar sind. Systemische Therapie sollte in einem Center mit Erfahrung in Immuntherapie und Gegenkanätherapie (z.B. Kortikosteroid, PD-1-Blocker) durchgeführt werden. Nach Abschluss der 1. Linie, bei Progression oder nicht-tolerierter Therapie, sind zweitlinige TKI wie Cabozantinib oder Lenvatinib+Everolimus sinnvoll.",
+    "recommended_therapy": "Nivolumab + Cabozantinib",
+    "therapy_category": "IO+TKI",
+    "recommendation_strength": "A",
+    "confidence": 0.95
+  },
+  "raw_response": "{\n\n    \"is_metastatic\": true,\n    \"metastatic_reasoning\": \"Der Patient hat multiple pulmonale Metastasen (z.B. RLL 16 mm, LUL 12 mm), multiple osteolytische Läsionen sowie einen Verdacht auf Lokalrezidiv im residualen Tumorlokalisation nach Nephrektomie. Daraus folgt ein metastatisierter Verlauf.\",\n    \"imdc_risk\": \"unguenstig\",\n    \"imdc_reasoning\": \"IMDC-Kategorisierung als 'unguenstig' (high risk) aufgrund mindestens dreier Risikofaktoren: ECOG 2 (<80%), kürzester Abstand zur vorherigen Systemtherapie (keine vorherige Therapie, aber klinisch erwartete kürze bis zur progressiven Erkrankung), vermutete oder bestehende Schwächen (postoperativ, multiple Metastasen). Hämoglobin/Nierfunktion/Calcium/Neutrophile nicht explizit dokumentiert, aber multiple Metastasen sprechen für schlechtere Prognose.\",\n    \"treatment_reasoning\": \"Der Fall ist ein metastatisierter, klarzellig-sarkomatoider ccRCC mit unguenstem IMDC-Risiko. Die aktuelle Leitlinie empfiehlt eine ICI-Kombination als Erstlinie. Da es sich um einen high-risk-Patient handelt, sind die Kombinationen NIVO+CABO oder NIVO+IPI (bei PD-1/PD-L1 Positivität) oder PEMBRO+AXI/LEN als Optionen. Da hierfür keine PD-L1-Statusdaten vorliegen, wird NIVO+CABO (Erstlinie, Stufe A) empfohlen. Alternativ ist PEMBRO+AXI eine gute Wahl, insbesondere wenn ICI-Kombinationen nicht verfügbar oder nicht toleratebar sind. Systemische Therapie sollte in einem Center mit Erfahrung in Immuntherapie und Gegenkanätherapie (z.B. Kortikosteroid, PD-1-Blocker) durchgeführt werden. Nach Abschluss der 1. Linie, bei Progression oder nicht-tolerierter Therapie, sind zweitlinige TKI wie Cabozantinib oder Lenvatinib+Everolimus sinnvoll.\",\n    \"recommended_therapy\": \"Nivolumab + Cabozantinib\",\n    \"therapy_category\": \"IO+TKI\",\n    \"recommendation_strength\": \"A\",\n    \"confidence\": 0.95\n}",
+  "ground_truth_metastatic": true,
+  "ground_truth_therapy": "Start einer Systemtherapie im metastasierten Setting unter Berücksichtigung IMDC high risk (IO+TKI oder IO+IO je nach Komorbidität/Tox-Profil). Strahlentherapeutische Vorstellung zur Evaluation einer palliativ-lokalen Radiatio symptomatischer/risikoreicher Knochenmetastasen. Supportiv: Analgesie, Knochenprotektion nach Standard, Frakturrisiko-Assessment und engmaschiges Monitoring.",
+  "metastatic_correct": true,
+  "therapy_exact_match": false,
+  "therapy_clinically_acceptable": true,
+  "inference_time_seconds": 2.3947045592700733,
+  "tokens_used": 590,
+  "success": true,
+  "error_message": null
+}

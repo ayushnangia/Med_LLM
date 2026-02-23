@@ -1,0 +1,75 @@
+{
+  "case_id": "ncc_38",
+  "timestamp": "2026-02-15_23-16-32",
+  "provider": "modal",
+  "model": "google/medgemma-27b-text-it",
+  "input_case": {
+    "case_id": "ncc_38",
+    "patient_name": "Beispiel, Tom",
+    "age": 62,
+    "ecog": 1,
+    "karnofsky": 80,
+    "comorbidity": "unknown",
+    "life_expectancy": "unknown",
+    "anamnese": "Erstdiagnose metastasiertes RCC: 09.09.2023. 1. Linie (2023–2025): Ipilimumab + Nivolumab (IO/IO). Vorerkrankungen: COPD GOLD II, Ex-Raucher 25 PY. Z. n. Leistenhernien-OP. Progress im CT-Staging vom 18.11.2025 (pulmonal + lymphonodal + neue Nebennierenläsion rechts).",
+    "diagnose_kurz": "Metastasiertes Nierenzellkarzinom (mRCC) mit Progress nach 1. Linie IO/IO",
+    "stadium": "metastasiert; Progress pulmonal + LK; neu Nebennierenmetastase rechts",
+    "tnm_clinical": null,
+    "tnm_pathological": null,
+    "histologie_subtyp": null,
+    "histologie_klarzellig": null,
+    "bildgebung": [
+      {
+        "modalitaet": "CT",
+        "region": "Thorax/Abdomen/Becken",
+        "datum": "2025-11-18",
+        "befund_kurz": "Thorax: neue pulmonale Metastasen (RLL 12 mm, LLL 9 mm), kein Pleuraerguss. Abdomen: Nebennierenmetastase rechts 16 mm (neu), Leber unauffällig. Lymphknoten: mediastinal subcarinal 8→14 mm progredient. Skelett: kein sicherer Nachweis ossär.",
+        "quelle": "CT Staging"
+      }
+    ],
+    "nebendiagnosen": [
+      "COPD GOLD II (Ex-Raucher, 25 PY)"
+    ],
+    "medikation": [
+      {
+        "wirkstoff": "LAMA/LABA inhalativ",
+        "dosierung": null,
+        "schema": null,
+        "hinweis": "COPD-Therapie"
+      },
+      {
+        "wirkstoff": "Amlodipin",
+        "dosierung": null,
+        "schema": null,
+        "hinweis": null
+      }
+    ],
+    "ici_durchfuehrbar": null,
+    "prior_therapies": [],
+    "ground_truth_metastatic": true,
+    "ground_truth_imdc": null,
+    "ground_truth_therapy": "Start 2. Linie Cabozantinib; Monitoring: Blutdruck, GI-Toxizität, klinische Symptomkontrolle; bei respiratorischer Symptomatik Pneumonitis ausschließen (DD COPD-Exazerbation). Re-Staging gemäß lokalem Schema."
+  },
+  "prompt_text": "Du bist ein erfahrener Onkologe, spezialisiert auf Nierenzellkarzinom (RCC).\nAnalysiere den folgenden klinischen Fall und erstelle eine strukturierte Therapieempfehlung.\n\n=== KLINISCHER FALL ===\nPatient: Beispiel, Tom, 62 Jahre\nECOG: 1, Karnofsky: 80%\nKomorbidität: unknown\nLebenserwartung: unknown\n\nDiagnose: Metastasiertes Nierenzellkarzinom (mRCC) mit Progress nach 1. Linie IO/IO\nStadium: metastasiert; Progress pulmonal + LK; neu Nebennierenmetastase rechts\nTNM: nicht dokumentiert\n\nHISTOLOGIE (WICHTIG für Therapieentscheidung):\nNicht dokumentiert\n\nAnamnese:\nErstdiagnose metastasiertes RCC: 09.09.2023. 1. Linie (2023–2025): Ipilimumab + Nivolumab (IO/IO). Vorerkrankungen: COPD GOLD II, Ex-Raucher 25 PY. Z. n. Leistenhernien-OP. Progress im CT-Staging vom 18.11.2025 (pulmonal + lymphonodal + neue Nebennierenläsion rechts).\n\nNebendiagnosen: COPD GOLD II (Ex-Raucher, 25 PY)\n\nAktuelle Medikation: LAMA/LABA inhalativ (COPD-Therapie), Amlodipin\n\nBildgebung:\n  - CT Thorax/Abdomen/Becken (2025-11-18): Thorax: neue pulmonale Metastasen (RLL 12 mm, LLL 9 mm), kein Pleuraerguss. Abdomen: Nebennierenmetastase rechts 16 mm (neu), Leber unauffällig. Lymphknoten: mediastinal subcarinal 8→14 mm progredient. Skelett: kein sicherer Nachweis ossär.\n\nIMDC-Risikofaktoren: Nicht dokumentiert\nICI-Kombination durchführbar: Nicht dokumentiert\nVorherige Systemtherapien: Keine\n\n=== THERAPIE-LEITLINIEN ===\n\n\nMETASTASIERTES KLARZELLIGES RCC - THERAPIE-ALGORITHMUS:\n\nIMDC-RISIKOSTRATIFIZIERUNG:\n- Günstig (0 Risikofaktoren)\n- Intermediär (1-2 Risikofaktoren)\n- Ungünstig (≥3 Risikofaktoren)\n\nRisikofaktoren: Karnofsky <80%, Zeit bis Systemtherapie <1 Jahr, Hämoglobin↓, Calcium↑, Neutrophile↑, Thrombozyten↑\n\nERSTLINIE (wenn ICI-Kombination möglich):\n- Günstig: NIVO+CABO (A), PEMBRO+AXI (A), PEMBRO+LEN (A), AVELU+AXI (B)\n- Intermediär: NIVO+CABO (A), NIVO+IPI (A), PEMBRO+AXI (A), PEMBRO+LEN (A)\n- Ungünstig: NIVO+CABO (A), NIVO+IPI (A), PEMBRO+AXI (A), PEMBRO+LEN (A)\n\nERSTLINIE (wenn ICI-Kombination NICHT möglich):\n- Günstig: Pazopanib (A), Sunitinib (A), Tivozanib (A), BEV+IFN (A)\n- Intermediär: Cabozantinib (B), Pazopanib (B), Sunitinib (B)\n- Ungünstig: Cabozantinib (B), Sunitinib (B), Temsirolimus (0)\n\nZWEITLINIE nach ICI-Kombination: Cabozantinib (A), Lenvatinib+Everolimus (A), Sunitinib (A)\nZWEITLINIE nach VEGF/R-Monotherapie: Cabozantinib (A), Nivolumab (A)\n\nLegende: A=starke Empfehlung, B=schwache Empfehlung, 0=Option\n\n\n\nNICHT-METASTASIERTES RCC - THERAPIE-ALGORITHMUS:\n\nTHERAPIEOPTIONEN nach Tumorgröße/Stadium:\n\n1. AKTIVE ÜBERWACHUNG (GoR 0):\n   - Kleine Nierentumoren + hohe Komorbidität ODER begrenzte Lebenserwartung\n   - Biopsie VOR Überwachung erforderlich\n\n2. ABLATION (Kryoablation/Radiofrequenzablation) (GoR 0):\n   - Kleine Nierentumoren + hohe Komorbidität ODER begrenzte Lebenserwartung\n   - Biopsie VOR Ablation erforderlich\n\n3. NIERENTEILRESEKTION (Nephron-sparing Surgery):\n   - cT1 (≤7cm): SOLL durchgeführt werden (GoR A)\n   - >T1: SOLLTE erwogen werden wenn technisch möglich (GoR B)\n   - Zugang: offen/laparoskopisch/robotisch (chirurgische Erfahrung)\n\n4. RADIKALE NEPHREKTOMIE:\n   - Wenn Teilresektion nicht möglich (GoR A)\n   - Minimalinvasiv wenn lokale Befunde es erlauben (GoR A)\n\nPERIOPERATIVE PRINZIPIEN:\n- KEINE Adrenalektomie bei unauffälliger Bildgebung (GoR A)\n- KEINE systematische Lymphadenektomie bei unauffälliger Bildgebung (GoR A)\n- LND bei vergrößerten Lymphknoten akzeptabel\n\nTNM-STADIEN:\n- T1a: ≤4cm, auf Niere begrenzt\n- T1b: >4-7cm, auf Niere begrenzt\n- T2a: >7-10cm, auf Niere begrenzt\n- T2b: >10cm, auf Niere begrenzt\n- T3: Ausdehnung in große Venen oder perirenales Gewebe\n- T4: Über Gerota-Faszie hinaus\n\nLegende: GoR A=starke Empfehlung, GoR B=schwache Empfehlung, GoR 0=Option\n\n\nWICHTIGER HINWEIS:\n- Die Leitlinien gelten primär für KLARZELLIGES RCC\n- Bei NICHT-KLARZELLIGEM RCC (papillär, chromophob, etc.) ist TKI-Monotherapie oft bevorzugt\n- IMDC-Risikostratifizierung ist nur für klarzelliges mRCC validiert\n\n=== AUFGABE ===\nAnalysiere den Fall schrittweise:\n\n1. METASTASIERUNG: Bestimme ob der Patient metastasiert oder nicht-metastasiert ist (basierend auf TNM M-Status, Anamnese, Bildgebung).\n\n2. HISTOLOGIE: Berücksichtige den histologischen Subtyp (klarzellig vs. nicht-klarzellig).\n\n3. RISIKOSTRATIFIZIERUNG: Falls metastasiert UND klarzellig, berechne das IMDC-Risiko.\n\n4. THERAPIEEMPFEHLUNG: Folge dem entsprechenden Therapie-Algorithmus und begründe deine Empfehlung.\n\nAntworte im folgenden JSON-Format:\n{\n    \"is_metastatic\": true/false,\n    \"metastatic_reasoning\": \"Begründung für Metastasierungsstatus...\",\n    \"imdc_risk\": \"guenstig/intermediaer/unguenstig/nicht_anwendbar\",\n    \"imdc_reasoning\": \"IMDC-Berechnung oder null wenn nicht-metastasiert/nicht-klarzellig...\",\n    \"treatment_reasoning\": \"Schrittweise Begründung nach Leitlinie...\",\n    \"recommended_therapy\": \"Konkrete Therapieempfehlung\",\n    \"therapy_category\": \"IO+TKI/TKI mono/Surgery/Surveillance/Ablation/etc.\",\n    \"recommendation_strength\": \"A/B/0\",\n    \"confidence\": 0.0-1.0\n}",
+  "prediction": {
+    "is_metastatic": true,
+    "metastatic_reasoning": "Der Patient hat eine Erstdiagnose eines metastasierten Nierenzellkarzinoms (mRCC) erhalten. Die Bildgebung (CT Thorax/Abdomen/Becken vom 18.11.2025) zeigt pulmonale Metastasen (RLL 12 mm, LLL 9 mm), eine neue Nebennierenmetastase rechts (16 mm) und progrediente mediastinale Lymphknoten (subcarinal 8→14 mm). Dies erfüllt die Kriterien für eine Metastasierung (M1).",
+    "imdc_risk": "nicht_anwendbar",
+    "imdc_reasoning": "Die IMDC-Risikostratifizierung ist nur für klarzelliges mRCC validiert. Der histologische Subtyp des RCC ist in diesem Fall nicht dokumentiert. Daher kann die IMDC-Risikostratifizierung nicht durchgeführt werden.",
+    "treatment_reasoning": "Der Patient hat ein metastasiertes Nierenzellkarzinom (mRCC) und zeigt eine Progression unter einer Erstlinien-Immuntherapie (Ipilimumab + Nivolumab). Die Therapieempfehlung muss daher auf der Zweitlinienbehandlung nach IO/IO basieren. Die Leitlinien empfehlen für die Zweitlinie nach ICI-Kombination Cabozantinib (A), Lenvatinib+Everolimus (A) oder Sunitinib (A). Da der histologische Subtyp nicht bekannt ist, muss die Empfehlung vorsichtig formuliert werden. Bei klarzelligem RCC wären alle drei Optionen (Cabozantinib, Lenvatinib+Everolimus, Sunitinib) mit starker Empfehlung (A) indiziert. Bei nicht-klarzelligen RCC ist TKI-Monotherapie oft bevorzugt, was Cabozantinib oder Sunitinib einschließen würde. Lenvatinib+Everolimus ist primär für klarzelliges RCC empfohlen. Angesichts der fehlenden Histologie und der Progression unter IO/IO ist Cabozantinib eine sehr gute Option, da es auch bei Progression nach IO/IO eine starke Empfehlung hat und bei verschiedenen Subtypen wirksam sein kann. Lenvatinib+Everolimus ist ebenfalls eine starke Option für klarzelliges RCC. Sunitinib ist eine weitere Option, aber möglicherweise weniger potent als Cabozantinib oder Lenvatinib+Everolimus in dieser Situation. Da die Leitlinien für klarzelliges RCC gelten und die Empfehlungen für die Zweitlinie nach IO/IO Cabozantinib, Lenvatinib+Everolimus und Sunitinib mit A-Empfehlung nennen, ist eine dieser Optionen zu wählen. Cabozantinib ist eine häufig gewählte und gut etablierte Option in dieser Situation.",
+    "recommended_therapy": "Cabozantinib",
+    "therapy_category": "TKI mono",
+    "recommendation_strength": "A",
+    "confidence": 0.8
+  },
+  "raw_response": "{\"is_metastatic\": true,\n    \"metastatic_reasoning\": \"Der Patient hat eine Erstdiagnose eines metastasierten Nierenzellkarzinoms (mRCC) erhalten. Die Bildgebung (CT Thorax/Abdomen/Becken vom 18.11.2025) zeigt pulmonale Metastasen (RLL 12 mm, LLL 9 mm), eine neue Nebennierenmetastase rechts (16 mm) und progrediente mediastinale Lymphknoten (subcarinal 8→14 mm). Dies erfüllt die Kriterien für eine Metastasierung (M1).\",\n    \"imdc_risk\": \"nicht_anwendbar\",\n    \"imdc_reasoning\": \"Die IMDC-Risikostratifizierung ist nur für klarzelliges mRCC validiert. Der histologische Subtyp des RCC ist in diesem Fall nicht dokumentiert. Daher kann die IMDC-Risikostratifizierung nicht durchgeführt werden.\",\n    \"treatment_reasoning\": \"Der Patient hat ein metastasiertes Nierenzellkarzinom (mRCC) und zeigt eine Progression unter einer Erstlinien-Immuntherapie (Ipilimumab + Nivolumab). Die Therapieempfehlung muss daher auf der Zweitlinienbehandlung nach IO/IO basieren. Die Leitlinien empfehlen für die Zweitlinie nach ICI-Kombination Cabozantinib (A), Lenvatinib+Everolimus (A) oder Sunitinib (A). Da der histologische Subtyp nicht bekannt ist, muss die Empfehlung vorsichtig formuliert werden. Bei klarzelligem RCC wären alle drei Optionen (Cabozantinib, Lenvatinib+Everolimus, Sunitinib) mit starker Empfehlung (A) indiziert. Bei nicht-klarzelligen RCC ist TKI-Monotherapie oft bevorzugt, was Cabozantinib oder Sunitinib einschließen würde. Lenvatinib+Everolimus ist primär für klarzelliges RCC empfohlen. Angesichts der fehlenden Histologie und der Progression unter IO/IO ist Cabozantinib eine sehr gute Option, da es auch bei Progression nach IO/IO eine starke Empfehlung hat und bei verschiedenen Subtypen wirksam sein kann. Lenvatinib+Everolimus ist ebenfalls eine starke Option für klarzelliges RCC. Sunitinib ist eine weitere Option, aber möglicherweise weniger potent als Cabozantinib oder Lenvatinib+Everolimus in dieser Situation. Da die Leitlinien für klarzelliges RCC gelten und die Empfehlungen für die Zweitlinie nach IO/IO Cabozantinib, Lenvatinib+Everolimus und Sunitinib mit A-Empfehlung nennen, ist eine dieser Optionen zu wählen. Cabozantinib ist eine häufig gewählte und gut etablierte Option in dieser Situation.\",\n    \"recommended_therapy\": \"Cabozantinib\",\n    \"therapy_category\": \"TKI mono\",\n    \"recommendation_strength\": \"A\",\n    \"confidence\": 0.8}",
+  "ground_truth_metastatic": true,
+  "ground_truth_therapy": "Start 2. Linie Cabozantinib; Monitoring: Blutdruck, GI-Toxizität, klinische Symptomkontrolle; bei respiratorischer Symptomatik Pneumonitis ausschließen (DD COPD-Exazerbation). Re-Staging gemäß lokalem Schema.",
+  "metastatic_correct": true,
+  "therapy_exact_match": true,
+  "therapy_clinically_acceptable": true,
+  "inference_time_seconds": 4.897843963959637,
+  "tokens_used": 642,
+  "success": true,
+  "error_message": null
+}

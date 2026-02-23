@@ -1,0 +1,365 @@
+{
+  "schema_version": "1.0",
+  "quelle_hinweis": "Aus dem vom Nutzer bereitgestellten Therapieschema (Flowchart) für fortgeschrittenes/metastasiertes klarzelliges RCC abgeleitet.",
+  "entitaet": {
+    "tumorentitaet": "klarzelliges Nierenzellkarzinom",
+    "setting": "fortgeschritten und/oder metastasiert"
+  },
+  "risikostratifizierung": {
+    "modell": "IMDC",
+    "kategorien": {
+      "guenstig": {
+        "definition": "0 Risikofaktoren"
+      },
+      "intermediaer": {
+        "definition": "1–2 Risikofaktoren"
+      },
+      "unguenstig": {
+        "definition": "≥3 Risikofaktoren"
+      }
+    },
+    "risikofaktoren": [
+      "Performance Status < 80% (Karnofsky)",
+      "Intervall von Diagnose bis zur Systemtherapie < 1 Jahr",
+      "Hämoglobin unterhalb des Normwertes",
+      "Korrigiertes Calcium oberhalb des Normwertes",
+      "Neutrophile oberhalb des Normwertes",
+      "Thrombozyten oberhalb des Normwertes"
+    ],
+    "besondere_hinweise": [
+      "Bei asymptomatischen Patienten mit günstigem Risiko kann eine zielgerichtete (aktive) Überwachung erwogen werden; Therapie erst bei nachgewiesener Progression und fehlender lokaler Therapieoption."
+    ]
+  },
+  "legende_empfehlungsstaerke": {
+    "A": "starke Empfehlung",
+    "B": "schwache Empfehlung",
+    "0": "Option"
+  },
+  "input_parameter": {
+    "imdc_risiko": [
+      "guenstig",
+      "intermediaer",
+      "unguenstig"
+    ],
+    "ici_kombination_durchfuehrbar": "boolean",
+    "vorherige_systemtherapien": "Liste (optional), z.B. ['Nivolumab+Cabozantinib']"
+  },
+  "therapien": {
+    "NIVO_CABO": {
+      "name": "Nivolumab + Cabozantinib",
+      "klasse": [
+        "PD-1",
+        "TKI"
+      ],
+      "linie_typ": "Kombination"
+    },
+    "PEMBRO_AXI": {
+      "name": "Pembrolizumab + Axitinib",
+      "klasse": [
+        "PD-1",
+        "TKI"
+      ],
+      "linie_typ": "Kombination"
+    },
+    "PEMBRO_LEN": {
+      "name": "Pembrolizumab + Lenvatinib",
+      "klasse": [
+        "PD-1",
+        "TKI"
+      ],
+      "linie_typ": "Kombination"
+    },
+    "AVELU_AXI": {
+      "name": "Avelumab + Axitinib",
+      "klasse": [
+        "PD-L1",
+        "TKI"
+      ],
+      "linie_typ": "Kombination"
+    },
+    "NIVO_IPI": {
+      "name": "Nivolumab + Ipilimumab",
+      "klasse": [
+        "PD-1",
+        "CTLA-4"
+      ],
+      "linie_typ": "Kombination"
+    },
+    "BEV_IFN": {
+      "name": "Bevacizumab + Interferon-α",
+      "klasse": [
+        "VEGF-A",
+        "Immunmodulator"
+      ],
+      "linie_typ": "Monotherapie/Combo alt"
+    },
+    "PAZOPANIB": {
+      "name": "Pazopanib",
+      "klasse": [
+        "TKI"
+      ],
+      "linie_typ": "Monotherapie"
+    },
+    "SUNITINIB": {
+      "name": "Sunitinib",
+      "klasse": [
+        "TKI"
+      ],
+      "linie_typ": "Monotherapie"
+    },
+    "TIVOZANIB": {
+      "name": "Tivozanib",
+      "klasse": [
+        "TKI"
+      ],
+      "linie_typ": "Monotherapie"
+    },
+    "CABO": {
+      "name": "Cabozantinib",
+      "klasse": [
+        "TKI"
+      ],
+      "linie_typ": "Monotherapie"
+    },
+    "TEMSI": {
+      "name": "Temsirolimus",
+      "klasse": [
+        "mTOR-Inhibitor"
+      ],
+      "linie_typ": "Monotherapie"
+    },
+    "LEN_EVE": {
+      "name": "Lenvatinib + Everolimus",
+      "klasse": [
+        "TKI",
+        "mTOR-Inhibitor"
+      ],
+      "linie_typ": "Kombination"
+    },
+    "NIVO": {
+      "name": "Nivolumab",
+      "klasse": [
+        "PD-1"
+      ],
+      "linie_typ": "Monotherapie"
+    },
+    "ANDERER_TKI": {
+      "name": "anderer TKI",
+      "klasse": [
+        "TKI"
+      ],
+      "linie_typ": "Monotherapie"
+    },
+    "TKI": {
+      "name": "TKI (unspezifiziert)",
+      "klasse": [
+        "TKI"
+      ],
+      "linie_typ": "Monotherapie"
+    }
+  },
+  "therapie_algorithmus": {
+    "erstlinie": {
+      "entscheidung": "Checkpointinhibitor-basierte Kombinationstherapie durchführbar?",
+      "wenn_ja": {
+        "guenstig": {
+          "empfehlungen": [
+            {
+              "therapie_id": "NIVO_CABO",
+              "empfehlung": "A"
+            },
+            {
+              "therapie_id": "PEMBRO_AXI",
+              "empfehlung": "A"
+            },
+            {
+              "therapie_id": "PEMBRO_LEN",
+              "empfehlung": "A"
+            },
+            {
+              "therapie_id": "AVELU_AXI",
+              "empfehlung": "B"
+            }
+          ]
+        },
+        "intermediaer": {
+          "empfehlungen": [
+            {
+              "therapie_id": "NIVO_CABO",
+              "empfehlung": "A"
+            },
+            {
+              "therapie_id": "NIVO_IPI",
+              "empfehlung": "A"
+            },
+            {
+              "therapie_id": "PEMBRO_AXI",
+              "empfehlung": "A"
+            },
+            {
+              "therapie_id": "PEMBRO_LEN",
+              "empfehlung": "A"
+            },
+            {
+              "therapie_id": "AVELU_AXI",
+              "empfehlung": "B"
+            }
+          ]
+        },
+        "unguenstig": {
+          "empfehlungen": [
+            {
+              "therapie_id": "NIVO_CABO",
+              "empfehlung": "A"
+            },
+            {
+              "therapie_id": "NIVO_IPI",
+              "empfehlung": "A"
+            },
+            {
+              "therapie_id": "PEMBRO_AXI",
+              "empfehlung": "A"
+            },
+            {
+              "therapie_id": "PEMBRO_LEN",
+              "empfehlung": "A"
+            },
+            {
+              "therapie_id": "AVELU_AXI",
+              "empfehlung": "B"
+            }
+          ]
+        }
+      },
+      "wenn_nein": {
+        "guenstig": {
+          "empfehlungen": [
+            {
+              "therapie_id": "BEV_IFN",
+              "empfehlung": "A"
+            },
+            {
+              "therapie_id": "PAZOPANIB",
+              "empfehlung": "A"
+            },
+            {
+              "therapie_id": "SUNITINIB",
+              "empfehlung": "A"
+            },
+            {
+              "therapie_id": "TIVOZANIB",
+              "empfehlung": "A"
+            }
+          ]
+        },
+        "intermediaer": {
+          "empfehlungen": [
+            {
+              "therapie_id": "CABO",
+              "empfehlung": "B"
+            },
+            {
+              "therapie_id": "PAZOPANIB",
+              "empfehlung": "B"
+            },
+            {
+              "therapie_id": "SUNITINIB",
+              "empfehlung": "B"
+            },
+            {
+              "therapie_id": "TIVOZANIB",
+              "empfehlung": "B"
+            },
+            {
+              "therapie_id": "BEV_IFN",
+              "empfehlung": "0"
+            }
+          ]
+        },
+        "unguenstig": {
+          "empfehlungen": [
+            {
+              "therapie_id": "CABO",
+              "empfehlung": "B"
+            },
+            {
+              "therapie_id": "SUNITINIB",
+              "empfehlung": "B"
+            },
+            {
+              "therapie_id": "PAZOPANIB",
+              "empfehlung": "0"
+            },
+            {
+              "therapie_id": "TEMSI",
+              "empfehlung": "0"
+            }
+          ]
+        }
+      }
+    },
+    "zweitlinie": [
+      {
+        "nach_erstlinie": {
+          "typ": "Checkpointinhibitor-basierte Kombinationstherapie"
+        },
+        "empfehlungen": [
+          {
+            "therapie_id": "CABO",
+            "empfehlung": "A"
+          },
+          {
+            "therapie_id": "LEN_EVE",
+            "empfehlung": "A"
+          },
+          {
+            "therapie_id": "SUNITINIB",
+            "empfehlung": "A"
+          }
+        ]
+      },
+      {
+        "nach_erstlinie": {
+          "typ": "VEGF/R-basierte Monotherapie"
+        },
+        "empfehlungen": [
+          {
+            "therapie_id": "CABO",
+            "empfehlung": "A"
+          },
+          {
+            "therapie_id": "NIVO",
+            "empfehlung": "A"
+          },
+          {
+            "therapie_id": "LEN_EVE",
+            "empfehlung": "B"
+          },
+          {
+            "therapie_id": "ANDERER_TKI",
+            "empfehlung": "0"
+          }
+        ]
+      },
+      {
+        "nach_erstlinie": {
+          "typ": "mTOR-Inhibitor (Temsirolimus)"
+        },
+        "empfehlungen": [
+          {
+            "therapie_id": "NIVO",
+            "empfehlung": "A"
+          },
+          {
+            "therapie_id": "TKI",
+            "empfehlung": "A"
+          }
+        ]
+      }
+    ],
+    "drittlinie": {
+      "prinzip": "Substanz verwenden, die in den Vortherapien nicht enthalten war.",
+      "regel_hinweis": "Drittlinie ist hier bewusst generisch gehalten; konkrete Auswahl abhängig von Vorbehandlung, Verträglichkeit, Komorbiditäten und Verfügbarkeit."
+    }
+  }
+}

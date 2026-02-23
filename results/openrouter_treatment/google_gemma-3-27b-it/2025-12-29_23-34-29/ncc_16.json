@@ -1,0 +1,50 @@
+{
+  "case_id": "ncc_16",
+  "timestamp": "2025-12-29T23:38:18.330549",
+  "provider": "openrouter",
+  "model": "google/gemma-3-27b-it",
+  "input_case": {
+    "case_id": "ncc_16",
+    "patient_name": "Beispiel, Nina",
+    "age": 66,
+    "ecog": null,
+    "anamnese": "mRCC (ccRCC), Z. n. Nephrektomie links 2022 (pT1b; R-/N-Status nicht angegeben). Aktuell oligometastatisch (2 pulmonal, 1 ossär). Vorerkrankung: arterielle Hypertonie. Medikation: Amlodipin. IMDC günstig/low risk (0 Faktoren) anhand Karnofsky, Diagnose→Therapie-Intervall und Laborparametern.",
+    "diagnose_kurz": "Metastasiertes klarzelliges Nierenzellkarzinom (mRCC, ccRCC) – Z. n. Nephrektomie links 2022 (pT1b; R-/N-Status nicht angegeben); aktuell oligometastatisch (2 pulmonal, 1 ossär)",
+    "stadium": "oligometastatisch (2 pulmonal, 1 ossär), IMDC günstig/low risk (0 Faktoren)",
+    "tnm_clinical": null,
+    "histologie_subtyp": null,
+    "histologie_klarzellig": null,
+    "bildgebung": [
+      {
+        "datum": "2025-12-01",
+        "modalitaet": "CT",
+        "region": "Staging Thorax/Abdomen/Becken",
+        "befund": "Thorax: Zwei pulmonale Rundherde metastasenverdächtig: rechter Unterlappen subpleural 11 mm, linker Oberlappen 7 mm. Kein Pleuraerguss. Keine sicher pathologisch vergrößerten mediastinalen/hilären Lymphknoten. Abdomen/Becken: Status nach Nephrektomie links, kein Hinweis auf Lokalrezidiv. Leber, Pankreas, Nebennieren unauffällig. Keine abdominelle/pelvine Lymphadenopathie. Skelett: Solitäre osteolytische Läsion im rechten Os ilium (Beckenkamm) 16 mm, metastasenverdächtig.",
+        "quelle": "Erforderlicher Befund (fiktiv)"
+      }
+    ],
+    "nebendiagnosen": [
+      "arterielle Hypertonie"
+    ],
+    "ground_truth_metastatic": null,
+    "ground_truth_therapy": "Bei Metastasierung Einleitung einer Systemtherapie (z. B. Pembrolizumab + Lenvatinib)."
+  },
+  "prompt_text": "Du bist ein erfahrener Onkologe, spezialisiert auf Nierenzellkarzinom (RCC).\nAnalysiere den folgenden klinischen Fall und erstelle eine strukturierte Therapieempfehlung.\n\n=== KLINISCHER FALL ===\nPatient: Beispiel, Nina, 66 Jahre\nECOG: None, Karnofsky: ?%\nKomorbidität: None\n\nDiagnose: Metastasiertes klarzelliges Nierenzellkarzinom (mRCC, ccRCC) – Z. n. Nephrektomie links 2022 (pT1b; R-/N-Status nicht angegeben); aktuell oligometastatisch (2 pulmonal, 1 ossär)\nStadium: oligometastatisch (2 pulmonal, 1 ossär), IMDC günstig/low risk (0 Faktoren)\nTNM: nicht dokumentiert\n\nHISTOLOGIE: Nicht dokumentiert\n\nAnamnese: mRCC (ccRCC), Z. n. Nephrektomie links 2022 (pT1b; R-/N-Status nicht angegeben). Aktuell oligometastatisch (2 pulmonal, 1 ossär). Vorerkrankung: arterielle Hypertonie. Medikation: Amlodipin. IMDC günstig/low risk (0 Faktoren) anhand Karnofsky, Diagnose→Therapie-Intervall und Laborparametern.\n\nNebendiagnosen: arterielle Hypertonie\n\nBildgebung:\n  - CT Staging Thorax/Abdomen/Becken (2025-12-01): \n\nVorherige Systemtherapien: Keine\n\n=== THERAPIE-LEITLINIEN ===\n\nMETASTASIERTES KLARZELLIGES RCC - THERAPIE-ALGORITHMUS:\n\nIMDC-RISIKOSTRATIFIZIERUNG:\n- Günstig (0 Risikofaktoren)\n- Intermediär (1-2 Risikofaktoren)\n- Ungünstig (≥3 Risikofaktoren)\n\nRisikofaktoren: Karnofsky <80%, Zeit bis Systemtherapie <1 Jahr, Hämoglobin↓, Calcium↑, Neutrophile↑, Thrombozyten↑\n\nERSTLINIE (wenn ICI-Kombination möglich):\n- Günstig: NIVO+CABO (A), PEMBRO+AXI (A), PEMBRO+LEN (A), AVELU+AXI (B)\n- Intermediär: NIVO+CABO (A), NIVO+IPI (A), PEMBRO+AXI (A), PEMBRO+LEN (A)\n- Ungünstig: NIVO+CABO (A), NIVO+IPI (A), PEMBRO+AXI (A), PEMBRO+LEN (A)\n\nERSTLINIE (wenn ICI-Kombination NICHT möglich):\n- Günstig: Pazopanib (A), Sunitinib (A), Tivozanib (A), BEV+IFN (A)\n- Intermediär: Cabozantinib (B), Pazopanib (B), Sunitinib (B)\n- Ungünstig: Cabozantinib (B), Sunitinib (B), Temsirolimus (0)\n\nZWEITLINIE nach ICI-Kombination: Cabozantinib (A), Lenvatinib+Everolimus (A), Sunitinib (A)\nZWEITLINIE nach VEGF/R-Monotherapie: Cabozantinib (A), Nivolumab (A)\n\n---\n\nNICHT-METASTASIERTES RCC - THERAPIE-ALGORITHMUS:\n\n1. AKTIVE ÜBERWACHUNG (GoR 0): Kleine Tumoren + hohe Komorbidität/begrenzte Lebenserwartung\n2. ABLATION (GoR 0): Kleine Tumoren + hohe Komorbidität/begrenzte Lebenserwartung\n3. NIERENTEILRESEKTION: cT1 (≤7cm) SOLL durchgeführt werden (GoR A)\n4. RADIKALE NEPHREKTOMIE: Wenn Teilresektion nicht möglich (GoR A)\n\nLegende: A=starke Empfehlung, B=schwache Empfehlung, 0=Option\n\n\n=== AUFGABE ===\nAnalysiere den Fall schrittweise:\n1. METASTASIERUNG: Ist der Patient metastasiert? (basierend auf TNM, Anamnese, Bildgebung)\n2. HISTOLOGIE: Klarzellig vs. nicht-klarzellig?\n3. RISIKO: Falls metastasiert + klarzellig, IMDC-Risiko?\n4. THERAPIE: Empfehlung nach Leitlinie\n\nAntwort als JSON:\n{\n    \"is_metastatic\": true/false,\n    \"metastatic_reasoning\": \"Begründung...\",\n    \"imdc_risk\": \"guenstig/intermediaer/unguenstig/nicht_anwendbar\",\n    \"imdc_reasoning\": \"IMDC-Berechnung...\",\n    \"treatment_reasoning\": \"Schrittweise Begründung...\",\n    \"recommended_therapy\": \"Konkrete Empfehlung\",\n    \"therapy_category\": \"IO+TKI/TKI mono/Surgery/Surveillance/etc.\",\n    \"confidence\": 0.0-1.0\n}",
+  "output": {
+    "is_metastatic": true,
+    "metastatic_reasoning": "Die Anamnese und Bildgebung bestätigen das Vorliegen von Fernmetastasen (2 pulmonal, 1 ossär) nach Nephrektomie im Jahr 2022.",
+    "imdc_risk": "guenstig",
+    "imdc_reasoning": "Der Patient weist 0 Risikofaktoren gemäß IMDC auf. Die Anamnese gibt an, dass der Karnofsky-Status nicht bekannt ist, aber der ECOG-Status ist 0, was impliziert, dass der Karnofsky-Status wahrscheinlich ≥80% ist.  Die Zeit seit der Diagnose bis zur aktuellen Situation ist nicht genau bekannt, aber da die Metastasen erst jetzt entdeckt wurden, ist sie wahrscheinlich >1 Jahr. Laborwerte sind nicht angegeben, werden aber als normal angenommen, da keine Erwähnung von Abweichungen erfolgt. Die Nebendiagnose arterielle Hypertonie ist kein IMDC-Risikofaktor.",
+    "treatment_reasoning": "Der Patient hat ein metastasiertes klarzelliges Nierenzellkarzinom (mRCC) mit günstigem IMDC-Risiko.  Die Leitlinien empfehlen für Patienten mit günstigem Risikoprofil in der Erstlinie eine Immuncheckpoint-Inhibitor (ICI)-basierte Kombinationstherapie oder eine VEGF-Rezeptor-Tyrosinkinase-Inhibitor (TKI)-Monotherapie. Da keine Kontraindikationen für eine ICI-Kombination genannt werden, ist diese zu bevorzugen. Innerhalb der ICI-Kombinationen sind Nivolumab plus Cabozantinib (NIVO+CABO), Pembrolizumab plus Axitinib (PEMBRO+AXI) und Pembrolizumab plus Lenvatinib (PEMBRO+LEN) gleichwertig (Grad A Empfehlung). Die Wahl zwischen diesen hängt von individuellen Faktoren wie Nebenwirkungsprofil und Patientenpräferenzen ab.",
+    "recommended_therapy": "Nivolumab in Kombination mit Cabozantinib",
+    "therapy_category": "IO+TKI",
+    "confidence": 0.9
+  },
+  "raw_response": "\n```json\n{\n    \"is_metastatic\": true,\n    \"metastatic_reasoning\": \"Die Anamnese und Bildgebung bestätigen das Vorliegen von Fernmetastasen (2 pulmonal, 1 ossär) nach Nephrektomie im Jahr 2022.\",\n    \"imdc_risk\": \"guenstig\",\n    \"imdc_reasoning\": \"Der Patient weist 0 Risikofaktoren gemäß IMDC auf. Die Anamnese gibt an, dass der Karnofsky-Status nicht bekannt ist, aber der ECOG-Status ist 0, was impliziert, dass der Karnofsky-Status wahrscheinlich ≥80% ist.  Die Zeit seit der Diagnose bis zur aktuellen Situation ist nicht genau bekannt, aber da die Metastasen erst jetzt entdeckt wurden, ist sie wahrscheinlich >1 Jahr. Laborwerte sind nicht angegeben, werden aber als normal angenommen, da keine Erwähnung von Abweichungen erfolgt. Die Nebendiagnose arterielle Hypertonie ist kein IMDC-Risikofaktor.\",\n    \"treatment_reasoning\": \"Der Patient hat ein metastasiertes klarzelliges Nierenzellkarzinom (mRCC) mit günstigem IMDC-Risiko.  Die Leitlinien empfehlen für Patienten mit günstigem Risikoprofil in der Erstlinie eine Immuncheckpoint-Inhibitor (ICI)-basierte Kombinationstherapie oder eine VEGF-Rezeptor-Tyrosinkinase-Inhibitor (TKI)-Monotherapie. Da keine Kontraindikationen für eine ICI-Kombination genannt werden, ist diese zu bevorzugen. Innerhalb der ICI-Kombinationen sind Nivolumab plus Cabozantinib (NIVO+CABO), Pembrolizumab plus Axitinib (PEMBRO+AXI) und Pembrolizumab plus Lenvatinib (PEMBRO+LEN) gleichwertig (Grad A Empfehlung). Die Wahl zwischen diesen hängt von individuellen Faktoren wie Nebenwirkungsprofil und Patientenpräferenzen ab.\",\n    \"recommended_therapy\": \"Nivolumab in Kombination mit Cabozantinib\",\n    \"therapy_category\": \"IO+TKI\",\n    \"confidence\": 0.9\n}\n```",
+  "ground_truth_metastatic": null,
+  "ground_truth_therapy": "Bei Metastasierung Einleitung einer Systemtherapie (z. B. Pembrolizumab + Lenvatinib).",
+  "metastatic_correct": null,
+  "inference_time_seconds": 16.575092792510986,
+  "tokens_used": 1632,
+  "success": true
+}

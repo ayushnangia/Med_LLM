@@ -1,0 +1,119 @@
+{
+  "case_id": "ncc_67",
+  "timestamp": "2026-02-15_23-04-54",
+  "provider": "modal",
+  "model": "google/gemma-3-4b-it",
+  "input_case": {
+    "case_id": "ncc_67",
+    "patient_name": "Muster, Dariamtam",
+    "age": 75,
+    "ecog": 2,
+    "karnofsky": null,
+    "comorbidity": null,
+    "life_expectancy": null,
+    "anamnese": "2019-06: Nephrektomie rechts (extern) bei ccRCC - pT3a, R0\n2025-11-06: CT-Staging Thorax/Abdomen/Becken - Hepatische + ossäre Metastasierung, kein sicherer pulmonaler Befall",
+    "diagnose_kurz": "Metastasiertes Nierenzellkarzinom (klarzelliges RCC, ccRCC)",
+    "stadium": "IMDC high risk (3 Faktoren), therapienaiv im metastasierten Setting",
+    "tnm_clinical": null,
+    "tnm_pathological": null,
+    "histologie_subtyp": "ccRCC",
+    "histologie_klarzellig": true,
+    "bildgebung": [
+      {
+        "modalitaet": "CT",
+        "datum": "2025-11-06",
+        "region": "Thorax/Abdomen/Becken",
+        "befund": {
+          "thorax": {
+            "pulmonal": "Keine sicheren pulmonalen Metastasen.",
+            "pleuraerguss": "Nein",
+            "lymphknoten_mediastinal_hilaer": "Keine sicher pathologischen mediastinal/hilären Lymphknoten."
+          },
+          "abdomen_becken": {
+            "op_loge": "Status nach Nephrektomie rechts, OP-Loge ohne Lokalrezidiv.",
+            "leber": [
+              {
+                "lokalisation": "Segment VII",
+                "groesse_mm": 31,
+                "beschreibung": "metastasenverdächtige Läsion"
+              },
+              {
+                "lokalisation": "Segment II",
+                "groesse_mm": 14,
+                "beschreibung": "metastasenverdächtige Läsion"
+              },
+              {
+                "lokalisation": "Segment V",
+                "groesse_mm": 12,
+                "beschreibung": "metastasenverdächtige Läsion"
+              }
+            ],
+            "lymphknoten_retroperitoneal": [
+              {
+                "lokalisation": "paraaortal links",
+                "kurzachse_mm": 11,
+                "beschreibung": "grenzwertig; kein Konglomerat"
+              }
+            ],
+            "aszites": "Nein"
+          },
+          "skelett": [
+            {
+              "lokalisation": "LWK3",
+              "typ": "osteolytisch",
+              "groesse_mm": 18,
+              "komplikation": "Keine Frakturzeichen"
+            },
+            {
+              "lokalisation": "rechtes Os ilium",
+              "typ": "osteolytisch",
+              "groesse_mm": 21,
+              "komplikation": "Keine Frakturzeichen"
+            }
+          ]
+        },
+        "beurteilung": "Viszerale Metastasierung hepatisch + ossär, keine sicheren pulmonalen Metastasen."
+      }
+    ],
+    "nebendiagnosen": [
+      "arterielle Hypertonie"
+    ],
+    "medikation": [
+      {
+        "wirkstoff": "Candesartan",
+        "schema": null
+      },
+      {
+        "wirkstoff": "Amlodipin",
+        "schema": null
+      }
+    ],
+    "ici_durchfuehrbar": null,
+    "prior_therapies": [],
+    "ground_truth_metastatic": true,
+    "ground_truth_imdc": "high",
+    "ground_truth_therapy": "Pembrolizumab + Lenvatinib (IO+TKI)"
+  },
+  "prompt_text": "Du bist ein erfahrener Onkologe, spezialisiert auf Nierenzellkarzinom (RCC).\nAnalysiere den folgenden klinischen Fall und erstelle eine strukturierte Therapieempfehlung.\n\n=== KLINISCHER FALL ===\nPatient: Muster, Dariamtam, 75 Jahre\nECOG: 2, Karnofsky: ?%\nKomorbidität: None\nLebenserwartung: None\n\nDiagnose: Metastasiertes Nierenzellkarzinom (klarzelliges RCC, ccRCC)\nStadium: IMDC high risk (3 Faktoren), therapienaiv im metastasierten Setting\nTNM: nicht dokumentiert\n\nHISTOLOGIE (WICHTIG für Therapieentscheidung):\nSubtyp: ccRCC, Klarzellig: Ja\n\nAnamnese:\n2019-06: Nephrektomie rechts (extern) bei ccRCC - pT3a, R0\n2025-11-06: CT-Staging Thorax/Abdomen/Becken - Hepatische + ossäre Metastasierung, kein sicherer pulmonaler Befall\n\nNebendiagnosen: arterielle Hypertonie\n\nAktuelle Medikation: Candesartan, Amlodipin\n\nBildgebung:\n  - CT Thorax/Abdomen/Becken (2025-11-06): thorax/pulmonal: Keine sicheren pulmonalen Metastasen.; thorax/pleuraerguss: Nein; thorax/lymphknoten_mediastinal_hilaer: Keine sicher pathologischen mediastinal/hilären Lymphknoten.; abdomen_becken/op_loge: Status nach Nephrektomie rechts, OP-Loge ohne Lokalrezidiv.; abdomen_becken/leber: 3 Befunde; abdomen_becken/lymphknoten_retroperitoneal: 1 Befunde; abdomen_becken/aszites: Nein\n\nIMDC-Risikofaktoren: Kategorie: high, KPS<80: 70 % (Faktor), Hb↓: 9.9 g/dl (Faktor), Ca↑: 2.71 mmol/l (Faktor), Neutro↑: 4.8 x10^9/l (kein Faktor), Thrombo↑: 255 x10^9/l (kein Faktor)\nICI-Kombination durchführbar: Nicht dokumentiert\nVorherige Systemtherapien: Keine\n\n=== THERAPIE-LEITLINIEN ===\n\n\nMETASTASIERTES KLARZELLIGES RCC - THERAPIE-ALGORITHMUS:\n\nIMDC-RISIKOSTRATIFIZIERUNG:\n- Günstig (0 Risikofaktoren)\n- Intermediär (1-2 Risikofaktoren)\n- Ungünstig (≥3 Risikofaktoren)\n\nRisikofaktoren: Karnofsky <80%, Zeit bis Systemtherapie <1 Jahr, Hämoglobin↓, Calcium↑, Neutrophile↑, Thrombozyten↑\n\nERSTLINIE (wenn ICI-Kombination möglich):\n- Günstig: NIVO+CABO (A), PEMBRO+AXI (A), PEMBRO+LEN (A), AVELU+AXI (B)\n- Intermediär: NIVO+CABO (A), NIVO+IPI (A), PEMBRO+AXI (A), PEMBRO+LEN (A)\n- Ungünstig: NIVO+CABO (A), NIVO+IPI (A), PEMBRO+AXI (A), PEMBRO+LEN (A)\n\nERSTLINIE (wenn ICI-Kombination NICHT möglich):\n- Günstig: Pazopanib (A), Sunitinib (A), Tivozanib (A), BEV+IFN (A)\n- Intermediär: Cabozantinib (B), Pazopanib (B), Sunitinib (B)\n- Ungünstig: Cabozantinib (B), Sunitinib (B), Temsirolimus (0)\n\nZWEITLINIE nach ICI-Kombination: Cabozantinib (A), Lenvatinib+Everolimus (A), Sunitinib (A)\nZWEITLINIE nach VEGF/R-Monotherapie: Cabozantinib (A), Nivolumab (A)\n\nLegende: A=starke Empfehlung, B=schwache Empfehlung, 0=Option\n\n\n\nNICHT-METASTASIERTES RCC - THERAPIE-ALGORITHMUS:\n\nTHERAPIEOPTIONEN nach Tumorgröße/Stadium:\n\n1. AKTIVE ÜBERWACHUNG (GoR 0):\n   - Kleine Nierentumoren + hohe Komorbidität ODER begrenzte Lebenserwartung\n   - Biopsie VOR Überwachung erforderlich\n\n2. ABLATION (Kryoablation/Radiofrequenzablation) (GoR 0):\n   - Kleine Nierentumoren + hohe Komorbidität ODER begrenzte Lebenserwartung\n   - Biopsie VOR Ablation erforderlich\n\n3. NIERENTEILRESEKTION (Nephron-sparing Surgery):\n   - cT1 (≤7cm): SOLL durchgeführt werden (GoR A)\n   - >T1: SOLLTE erwogen werden wenn technisch möglich (GoR B)\n   - Zugang: offen/laparoskopisch/robotisch (chirurgische Erfahrung)\n\n4. RADIKALE NEPHREKTOMIE:\n   - Wenn Teilresektion nicht möglich (GoR A)\n   - Minimalinvasiv wenn lokale Befunde es erlauben (GoR A)\n\nPERIOPERATIVE PRINZIPIEN:\n- KEINE Adrenalektomie bei unauffälliger Bildgebung (GoR A)\n- KEINE systematische Lymphadenektomie bei unauffälliger Bildgebung (GoR A)\n- LND bei vergrößerten Lymphknoten akzeptabel\n\nTNM-STADIEN:\n- T1a: ≤4cm, auf Niere begrenzt\n- T1b: >4-7cm, auf Niere begrenzt\n- T2a: >7-10cm, auf Niere begrenzt\n- T2b: >10cm, auf Niere begrenzt\n- T3: Ausdehnung in große Venen oder perirenales Gewebe\n- T4: Über Gerota-Faszie hinaus\n\nLegende: GoR A=starke Empfehlung, GoR B=schwache Empfehlung, GoR 0=Option\n\n\nWICHTIGER HINWEIS:\n- Die Leitlinien gelten primär für KLARZELLIGES RCC\n- Bei NICHT-KLARZELLIGEM RCC (papillär, chromophob, etc.) ist TKI-Monotherapie oft bevorzugt\n- IMDC-Risikostratifizierung ist nur für klarzelliges mRCC validiert\n\n=== AUFGABE ===\nAnalysiere den Fall schrittweise:\n\n1. METASTASIERUNG: Bestimme ob der Patient metastasiert oder nicht-metastasiert ist (basierend auf TNM M-Status, Anamnese, Bildgebung).\n\n2. HISTOLOGIE: Berücksichtige den histologischen Subtyp (klarzellig vs. nicht-klarzellig).\n\n3. RISIKOSTRATIFIZIERUNG: Falls metastasiert UND klarzellig, berechne das IMDC-Risiko.\n\n4. THERAPIEEMPFEHLUNG: Folge dem entsprechenden Therapie-Algorithmus und begründe deine Empfehlung.\n\nAntworte im folgenden JSON-Format:\n{\n    \"is_metastatic\": true/false,\n    \"metastatic_reasoning\": \"Begründung für Metastasierungsstatus...\",\n    \"imdc_risk\": \"guenstig/intermediaer/unguenstig/nicht_anwendbar\",\n    \"imdc_reasoning\": \"IMDC-Berechnung oder null wenn nicht-metastasiert/nicht-klarzellig...\",\n    \"treatment_reasoning\": \"Schrittweise Begründung nach Leitlinie...\",\n    \"recommended_therapy\": \"Konkrete Therapieempfehlung\",\n    \"therapy_category\": \"IO+TKI/TKI mono/Surgery/Surveillance/Ablation/etc.\",\n    \"recommendation_strength\": \"A/B/0\",\n    \"confidence\": 0.0-1.0\n}",
+  "prediction": {
+    "is_metastatic": true,
+    "metastatic_reasoning": "Der Patient hat hepatische und ossäre Metastasen, was auf eine metastasierte Erkrankung hinweist.",
+    "imdc_risk": "unguenstig",
+    "imdc_reasoning": "Der Patient hat 3 IMDC-Risikofaktoren: Karnofsky <80%, Hb↓ und Ca↑.  Dies führt zu einer Einstufung als high risk.",
+    "treatment_reasoning": "Der Patient ist metastasiert und weist ein high-risk IMDC-Profil auf. Daher ist eine systemische Therapie erforderlich. Da eine ICI-Kombination nicht dokumentiert ist, wird eine Erstlinientherapie mit NIVO+CABO empfohlen.",
+    "recommended_therapy": "NIVO (ivosidenib) + CABO (cabozantinib).",
+    "therapy_category": "IO+TKI",
+    "recommendation_strength": "A",
+    "confidence": 0.9
+  },
+  "raw_response": "{\"is_metastatic\": true,\n\"metastatic_reasoning\": \"Der Patient hat hepatische und ossäre Metastasen, was auf eine metastasierte Erkrankung hinweist.\",\n\"imdc_risk\": \"unguenstig\",\n\"imdc_reasoning\": \"Der Patient hat 3 IMDC-Risikofaktoren: Karnofsky <80%, Hb↓ und Ca↑.  Dies führt zu einer Einstufung als high risk.\",\n\"treatment_reasoning\": \"Der Patient ist metastasiert und weist ein high-risk IMDC-Profil auf. Daher ist eine systemische Therapie erforderlich. Da eine ICI-Kombination nicht dokumentiert ist, wird eine Erstlinientherapie mit NIVO+CABO empfohlen.\",\n\"recommended_therapy\": \"NIVO (ivosidenib) + CABO (cabozantinib).\",\n\"therapy_category\": \"IO+TKI\",\n\"recommendation_strength\": \"A\",\n\"confidence\": 0.9}",
+  "ground_truth_metastatic": true,
+  "ground_truth_therapy": "Pembrolizumab + Lenvatinib (IO+TKI)",
+  "metastatic_correct": true,
+  "therapy_exact_match": false,
+  "therapy_clinically_acceptable": true,
+  "inference_time_seconds": 1.437531085575328,
+  "tokens_used": 214,
+  "success": true,
+  "error_message": null
+}

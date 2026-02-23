@@ -1,0 +1,53 @@
+{
+  "case_id": "ncc_24",
+  "timestamp": "2025-12-29T23:40:21.605285",
+  "provider": "openrouter",
+  "model": "google/gemma-3-27b-it",
+  "input_case": {
+    "case_id": "ncc_24",
+    "patient_name": "Beispiel, Valeria",
+    "age": 57,
+    "ecog": null,
+    "anamnese": "Z. n. Nephrektomie links am 06.06.2025 bei papillärem Nierenzellkarzinom. Aktuelle Vorstellung zur Befund- und Therapieentscheidung anhand CT-Staging vom 10.10.2025. Komorbiditäten: COPD GOLD I (Raucher), Adipositas per magna. Z. n. Nabelhernien-OP.",
+    "diagnose_kurz": "Metastasiertes papilläres Nierenzellkarzinom (papRCC) nach Nephrektomie links 06.06.2025. CT 10.10.2025: multiple pulmonale Metastasen und Lokalrezidiv in der OP-Loge. IMDC intermediate (2 Faktoren: Diagnose→Therapie <12 Monate, Neutrophile erhöht).",
+    "stadium": "mRCC (pulmonal + Lokalrezidiv), IMDC intermediate (2 Faktoren)",
+    "tnm_clinical": null,
+    "histologie_subtyp": null,
+    "histologie_klarzellig": null,
+    "bildgebung": [
+      {
+        "datum": "2025-10-10",
+        "modalitaet": "CT",
+        "region": "Staging Thorax/Abdomen/Becken",
+        "befund": "Thorax: Multiple bilaterale pulmonale Rundherde metastasenverdächtig (rechter Unterlappen 12 mm, rechter Oberlappen 8 mm, linker Unterlappen 10 mm, weitere Herde beidseits 3–6 mm). Kein Pleuraerguss. Keine sicher pathologisch vergrößerten mediastinal/hilären Lymphknoten. Abdomen/Becken: Status nach Nephrektomie links. In der OP-Loge links weichteildichte Läsion 22×18 mm mit Kontrastmittelaufnahme, vereinbar mit Lokalrezidiv. Retroperitoneal keine sicher pathologisch vergrößerten Lymphknoten (max. 9 mm kurze Achse). Leber, Nebennieren, Pankreas ohne fokale Läsionen. Kein Aszites. Skelett: Kein sicherer Hinweis auf ossäre Metastasen im CT.",
+        "quelle": "Erforderlicher Befund"
+      }
+    ],
+    "nebendiagnosen": [
+      "COPD GOLD I",
+      "Raucher",
+      "Adipositas per magna",
+      "Z. n. Nabelhernien-OP"
+    ],
+    "ground_truth_metastatic": null,
+    "ground_truth_therapy": "Einleitung einer Systemtherapie im metastasierten Setting (papRCC, IMDC intermediate) unter Berücksichtigung Komorbiditäten (COPD, Adipositas) und erforderlichem Nebenwirkungs-/Supportivmanagement."
+  },
+  "prompt_text": "Du bist ein erfahrener Onkologe, spezialisiert auf Nierenzellkarzinom (RCC).\nAnalysiere den folgenden klinischen Fall und erstelle eine strukturierte Therapieempfehlung.\n\n=== KLINISCHER FALL ===\nPatient: Beispiel, Valeria, 57 Jahre\nECOG: None, Karnofsky: ?%\nKomorbidität: None\n\nDiagnose: Metastasiertes papilläres Nierenzellkarzinom (papRCC) nach Nephrektomie links 06.06.2025. CT 10.10.2025: multiple pulmonale Metastasen und Lokalrezidiv in der OP-Loge. IMDC intermediate (2 Faktoren: Diagnose→Therapie <12 Monate, Neutrophile erhöht).\nStadium: mRCC (pulmonal + Lokalrezidiv), IMDC intermediate (2 Faktoren)\nTNM: nicht dokumentiert\n\nHISTOLOGIE: Nicht dokumentiert\n\nAnamnese: Z. n. Nephrektomie links am 06.06.2025 bei papillärem Nierenzellkarzinom. Aktuelle Vorstellung zur Befund- und Therapieentscheidung anhand CT-Staging vom 10.10.2025. Komorbiditäten: COPD GOLD I (Raucher), Adipositas per magna. Z. n. Nabelhernien-OP.\n\nNebendiagnosen: COPD GOLD I, Raucher, Adipositas per magna, Z. n. Nabelhernien-OP\n\nBildgebung:\n  - CT Staging Thorax/Abdomen/Becken (2025-10-10): \n\nVorherige Systemtherapien: Keine\n\n=== THERAPIE-LEITLINIEN ===\n\nMETASTASIERTES KLARZELLIGES RCC - THERAPIE-ALGORITHMUS:\n\nIMDC-RISIKOSTRATIFIZIERUNG:\n- Günstig (0 Risikofaktoren)\n- Intermediär (1-2 Risikofaktoren)\n- Ungünstig (≥3 Risikofaktoren)\n\nRisikofaktoren: Karnofsky <80%, Zeit bis Systemtherapie <1 Jahr, Hämoglobin↓, Calcium↑, Neutrophile↑, Thrombozyten↑\n\nERSTLINIE (wenn ICI-Kombination möglich):\n- Günstig: NIVO+CABO (A), PEMBRO+AXI (A), PEMBRO+LEN (A), AVELU+AXI (B)\n- Intermediär: NIVO+CABO (A), NIVO+IPI (A), PEMBRO+AXI (A), PEMBRO+LEN (A)\n- Ungünstig: NIVO+CABO (A), NIVO+IPI (A), PEMBRO+AXI (A), PEMBRO+LEN (A)\n\nERSTLINIE (wenn ICI-Kombination NICHT möglich):\n- Günstig: Pazopanib (A), Sunitinib (A), Tivozanib (A), BEV+IFN (A)\n- Intermediär: Cabozantinib (B), Pazopanib (B), Sunitinib (B)\n- Ungünstig: Cabozantinib (B), Sunitinib (B), Temsirolimus (0)\n\nZWEITLINIE nach ICI-Kombination: Cabozantinib (A), Lenvatinib+Everolimus (A), Sunitinib (A)\nZWEITLINIE nach VEGF/R-Monotherapie: Cabozantinib (A), Nivolumab (A)\n\n---\n\nNICHT-METASTASIERTES RCC - THERAPIE-ALGORITHMUS:\n\n1. AKTIVE ÜBERWACHUNG (GoR 0): Kleine Tumoren + hohe Komorbidität/begrenzte Lebenserwartung\n2. ABLATION (GoR 0): Kleine Tumoren + hohe Komorbidität/begrenzte Lebenserwartung\n3. NIERENTEILRESEKTION: cT1 (≤7cm) SOLL durchgeführt werden (GoR A)\n4. RADIKALE NEPHREKTOMIE: Wenn Teilresektion nicht möglich (GoR A)\n\nLegende: A=starke Empfehlung, B=schwache Empfehlung, 0=Option\n\n\n=== AUFGABE ===\nAnalysiere den Fall schrittweise:\n1. METASTASIERUNG: Ist der Patient metastasiert? (basierend auf TNM, Anamnese, Bildgebung)\n2. HISTOLOGIE: Klarzellig vs. nicht-klarzellig?\n3. RISIKO: Falls metastasiert + klarzellig, IMDC-Risiko?\n4. THERAPIE: Empfehlung nach Leitlinie\n\nAntwort als JSON:\n{\n    \"is_metastatic\": true/false,\n    \"metastatic_reasoning\": \"Begründung...\",\n    \"imdc_risk\": \"guenstig/intermediaer/unguenstig/nicht_anwendbar\",\n    \"imdc_reasoning\": \"IMDC-Berechnung...\",\n    \"treatment_reasoning\": \"Schrittweise Begründung...\",\n    \"recommended_therapy\": \"Konkrete Empfehlung\",\n    \"therapy_category\": \"IO+TKI/TKI mono/Surgery/Surveillance/etc.\",\n    \"confidence\": 0.0-1.0\n}",
+  "output": {
+    "is_metastatic": true,
+    "metastatic_reasoning": "Der Patient zeigt multiple pulmonale Metastasen und ein Lokalrezidiv in der OP-Loge, wie durch das CT-Staging vom 10.10.2025 dokumentiert. Dies definiert ein metastasiertes Nierenzellkarzinom (mRCC).",
+    "imdc_risk": "intermediaer",
+    "imdc_reasoning": "Der IMDC-Risiko-Score wurde anhand der verfügbaren Informationen berechnet. Es liegen 2 Risikofaktoren vor: 1) Zeit bis zur Therapie (Diagnose→Therapie <12 Monate, da die Diagnose im Juni 2025 erfolgte und die Vorstellung zur Therapieentscheidung im Oktober 2025 stattfand) und 2) Erhöhte Neutrophile (im klinischen Fall erwähnt). Der Karnofsky-Status ist nicht bekannt, wird aber für die Berechnung nicht benötigt, da bereits 2 Risikofaktoren vorliegen. Da 2 Risikofaktoren vorliegen, fällt der Patient in die intermediäre Risikogruppe.",
+    "treatment_reasoning": "Der Patient hat ein papilläres Nierenzellkarzinom (papRCC). Die Leitlinien beziehen sich primär auf das klarzellige Nierenzellkarzinom. Da die Leitlinien für papRCC keine spezifischen Empfehlungen geben, muss man die Empfehlungen für das klarzellige RCC als Orientierung nehmen, wobei die Datenlage für papRCC weniger robust ist. Da der Patient ein intermediäres Risiko hat und keine vorherige systemische Therapie erhalten hat, kommen sowohl Immuncheckpoint-Inhibitoren (ICI) in Kombination mit Tyrosinkinase-Inhibitoren (TKI) als auch TKI-Monotherapie in Frage. Aufgrund der Komorbiditäten (COPD GOLD I, Adipositas) und des Raucheranamnese ist die Verträglichkeit ein wichtiger Faktor.  ICI/TKI Kombinationen haben in der Regel höhere Ansprechraten, können aber auch mehr Nebenwirkungen verursachen.  Da keine Angaben zum Karnofsky-Status vorliegen, gehe ich von einem guten Allgemeinzustand aus, was eine ICI/TKI-Kombination zulässt. Cabozantinib in Kombination mit Nivolumab ist eine gute Option, da es eine starke Empfehlung (A) in den Leitlinien hat.",
+    "recommended_therapy": "Nivolumab in Kombination mit Cabozantinib",
+    "therapy_category": "IO+TKI",
+    "confidence": 0.8
+  },
+  "raw_response": "\n```json\n{\n    \"is_metastatic\": true,\n    \"metastatic_reasoning\": \"Der Patient zeigt multiple pulmonale Metastasen und ein Lokalrezidiv in der OP-Loge, wie durch das CT-Staging vom 10.10.2025 dokumentiert. Dies definiert ein metastasiertes Nierenzellkarzinom (mRCC).\",\n    \"imdc_risk\": \"intermediaer\",\n    \"imdc_reasoning\": \"Der IMDC-Risiko-Score wurde anhand der verfügbaren Informationen berechnet. Es liegen 2 Risikofaktoren vor: 1) Zeit bis zur Therapie (Diagnose→Therapie <12 Monate, da die Diagnose im Juni 2025 erfolgte und die Vorstellung zur Therapieentscheidung im Oktober 2025 stattfand) und 2) Erhöhte Neutrophile (im klinischen Fall erwähnt). Der Karnofsky-Status ist nicht bekannt, wird aber für die Berechnung nicht benötigt, da bereits 2 Risikofaktoren vorliegen. Da 2 Risikofaktoren vorliegen, fällt der Patient in die intermediäre Risikogruppe.\",\n    \"treatment_reasoning\": \"Der Patient hat ein papilläres Nierenzellkarzinom (papRCC). Die Leitlinien beziehen sich primär auf das klarzellige Nierenzellkarzinom. Da die Leitlinien für papRCC keine spezifischen Empfehlungen geben, muss man die Empfehlungen für das klarzellige RCC als Orientierung nehmen, wobei die Datenlage für papRCC weniger robust ist. Da der Patient ein intermediäres Risiko hat und keine vorherige systemische Therapie erhalten hat, kommen sowohl Immuncheckpoint-Inhibitoren (ICI) in Kombination mit Tyrosinkinase-Inhibitoren (TKI) als auch TKI-Monotherapie in Frage. Aufgrund der Komorbiditäten (COPD GOLD I, Adipositas) und des Raucheranamnese ist die Verträglichkeit ein wichtiger Faktor.  ICI/TKI Kombinationen haben in der Regel höhere Ansprechraten, können aber auch mehr Nebenwirkungen verursachen.  Da keine Angaben zum Karnofsky-Status vorliegen, gehe ich von einem guten Allgemeinzustand aus, was eine ICI/TKI-Kombination zulässt. Cabozantinib in Kombination mit Nivolumab ist eine gute Option, da es eine starke Empfehlung (A) in den Leitlinien hat.\",\n    \"recommended_therapy\": \"Nivolumab in Kombination mit Cabozantinib\",\n    \"therapy_category\": \"IO+TKI\",\n    \"confidence\": 0.8\n}\n```",
+  "ground_truth_metastatic": null,
+  "ground_truth_therapy": "Einleitung einer Systemtherapie im metastasierten Setting (papRCC, IMDC intermediate) unter Berücksichtigung Komorbiditäten (COPD, Adipositas) und erforderlichem Nebenwirkungs-/Supportivmanagement.",
+  "metastatic_correct": null,
+  "inference_time_seconds": 19.482858896255493,
+  "tokens_used": 1755,
+  "success": true
+}

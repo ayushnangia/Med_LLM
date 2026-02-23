@@ -1,0 +1,58 @@
+{
+  "case_id": "ncc_8",
+  "timestamp": "2025-12-29T23:36:14.492242",
+  "provider": "openrouter",
+  "model": "google/gemma-3-27b-it",
+  "input_case": {
+    "case_id": "ncc_8",
+    "patient_name": "Beispiel, Felix",
+    "age": 70,
+    "ecog": 1,
+    "anamnese": "Kleiner Nierentumor links 2,7 cm, hilusnah. Vorerkrankungen: DM Typ 2, arterielle Hypertonie, Hyperlipidämie.",
+    "diagnose_kurz": "Kleiner Nierentumor links 2,7 cm, hilusnah",
+    "stadium": "nicht-metastasiert (Verdacht, prätherapeutisch)",
+    "tnm_clinical": {
+      "T": "unknown",
+      "T_sub": "unknown",
+      "N": "unknown",
+      "M": "M0",
+      "stage_group": "unknown"
+    },
+    "histologie_subtyp": null,
+    "histologie_klarzellig": null,
+    "bildgebung": [
+      {
+        "modalitaet": "CT",
+        "region": "Abdomen",
+        "datum": "2025-12-10",
+        "befund_kurz": "Kleiner Nierentumor links, hilusnah (2,7 cm).",
+        "quelle": "Erforderlicher Befund"
+      }
+    ],
+    "nebendiagnosen": [
+      "Diabetes mellitus Typ 2",
+      "arterielle Hypertonie",
+      "Hyperlipidämie"
+    ],
+    "ground_truth_metastatic": false,
+    "ground_truth_therapy": "Partielle Nephrektomie technisch anspruchsvoll → Diskussion Ablation vs. OP vs. Surveillance."
+  },
+  "prompt_text": "Du bist ein erfahrener Onkologe, spezialisiert auf Nierenzellkarzinom (RCC).\nAnalysiere den folgenden klinischen Fall und erstelle eine strukturierte Therapieempfehlung.\n\n=== KLINISCHER FALL ===\nPatient: Beispiel, Felix, 70 Jahre\nECOG: 1, Karnofsky: ?%\nKomorbidität: unknown\n\nDiagnose: Kleiner Nierentumor links 2,7 cm, hilusnah\nStadium: nicht-metastasiert (Verdacht, prätherapeutisch)\nTNM: cTNM: Tunknown Nunknown MM0\n\nHISTOLOGIE: Nicht dokumentiert\n\nAnamnese: Kleiner Nierentumor links 2,7 cm, hilusnah. Vorerkrankungen: DM Typ 2, arterielle Hypertonie, Hyperlipidämie.\n\nNebendiagnosen: Diabetes mellitus Typ 2, arterielle Hypertonie, Hyperlipidämie\n\nBildgebung:\n  - CT Abdomen (2025-12-10): Kleiner Nierentumor links, hilusnah (2,7 cm).\n\nVorherige Systemtherapien: Keine\n\n=== THERAPIE-LEITLINIEN ===\n\nMETASTASIERTES KLARZELLIGES RCC - THERAPIE-ALGORITHMUS:\n\nIMDC-RISIKOSTRATIFIZIERUNG:\n- Günstig (0 Risikofaktoren)\n- Intermediär (1-2 Risikofaktoren)\n- Ungünstig (≥3 Risikofaktoren)\n\nRisikofaktoren: Karnofsky <80%, Zeit bis Systemtherapie <1 Jahr, Hämoglobin↓, Calcium↑, Neutrophile↑, Thrombozyten↑\n\nERSTLINIE (wenn ICI-Kombination möglich):\n- Günstig: NIVO+CABO (A), PEMBRO+AXI (A), PEMBRO+LEN (A), AVELU+AXI (B)\n- Intermediär: NIVO+CABO (A), NIVO+IPI (A), PEMBRO+AXI (A), PEMBRO+LEN (A)\n- Ungünstig: NIVO+CABO (A), NIVO+IPI (A), PEMBRO+AXI (A), PEMBRO+LEN (A)\n\nERSTLINIE (wenn ICI-Kombination NICHT möglich):\n- Günstig: Pazopanib (A), Sunitinib (A), Tivozanib (A), BEV+IFN (A)\n- Intermediär: Cabozantinib (B), Pazopanib (B), Sunitinib (B)\n- Ungünstig: Cabozantinib (B), Sunitinib (B), Temsirolimus (0)\n\nZWEITLINIE nach ICI-Kombination: Cabozantinib (A), Lenvatinib+Everolimus (A), Sunitinib (A)\nZWEITLINIE nach VEGF/R-Monotherapie: Cabozantinib (A), Nivolumab (A)\n\n---\n\nNICHT-METASTASIERTES RCC - THERAPIE-ALGORITHMUS:\n\n1. AKTIVE ÜBERWACHUNG (GoR 0): Kleine Tumoren + hohe Komorbidität/begrenzte Lebenserwartung\n2. ABLATION (GoR 0): Kleine Tumoren + hohe Komorbidität/begrenzte Lebenserwartung\n3. NIERENTEILRESEKTION: cT1 (≤7cm) SOLL durchgeführt werden (GoR A)\n4. RADIKALE NEPHREKTOMIE: Wenn Teilresektion nicht möglich (GoR A)\n\nLegende: A=starke Empfehlung, B=schwache Empfehlung, 0=Option\n\n\n=== AUFGABE ===\nAnalysiere den Fall schrittweise:\n1. METASTASIERUNG: Ist der Patient metastasiert? (basierend auf TNM, Anamnese, Bildgebung)\n2. HISTOLOGIE: Klarzellig vs. nicht-klarzellig?\n3. RISIKO: Falls metastasiert + klarzellig, IMDC-Risiko?\n4. THERAPIE: Empfehlung nach Leitlinie\n\nAntwort als JSON:\n{\n    \"is_metastatic\": true/false,\n    \"metastatic_reasoning\": \"Begründung...\",\n    \"imdc_risk\": \"guenstig/intermediaer/unguenstig/nicht_anwendbar\",\n    \"imdc_reasoning\": \"IMDC-Berechnung...\",\n    \"treatment_reasoning\": \"Schrittweise Begründung...\",\n    \"recommended_therapy\": \"Konkrete Empfehlung\",\n    \"therapy_category\": \"IO+TKI/TKI mono/Surgery/Surveillance/etc.\",\n    \"confidence\": 0.0-1.0\n}",
+  "output": {
+    "is_metastatic": false,
+    "metastatic_reasoning": "Der Patient präsentiert sich mit einem cTNM von Tunknown Nunknown M0. Die Bildgebung (CT Abdomen) zeigt keinen Hinweis auf Fernmetastasen. Die Anamnese erwähnt keinen Hinweis auf Metastasen. Daher wird der Patient als nicht-metastasiert eingestuft.",
+    "imdc_risk": "nicht_anwendbar",
+    "imdc_reasoning": "Die IMDC-Risikostratifizierung ist nur für metastasiertes Nierenzellkarzinom relevant. Da der Patient nicht metastasiert ist, ist die IMDC-Risikobewertung nicht anwendbar.",
+    "treatment_reasoning": "Der Patient hat einen kleinen, hilusnahen Nierentumor (2,7 cm). Er hat relevante Komorbiditäten (Diabetes mellitus Typ 2, arterielle Hypertonie, Hyperlipidämie) und ist 70 Jahre alt. Der ECOG-Status ist 1, was auf eine gute Performance-Status hindeutet. Da die Histologie nicht dokumentiert ist, muss von einem Klarzellkarzinom ausgegangen werden, da dies die häufigste Form ist.  Aufgrund der Tumorgröße (≤7cm) und des guten Performance-Status ist eine Nierenteilresektion die Therapie der Wahl. Eine radikale Nephrektomie wäre nur indiziert, wenn eine Teilresektion technisch nicht möglich ist. Aktive Überwachung oder Ablation sind bei dieser Tumorgröße und dem ECOG-Status weniger geeignet.",
+    "recommended_therapy": "Nierenteilresektion",
+    "therapy_category": "Surgery",
+    "confidence": 0.9
+  },
+  "raw_response": ":```json\n{\n    \"is_metastatic\": false,\n    \"metastatic_reasoning\": \"Der Patient präsentiert sich mit einem cTNM von Tunknown Nunknown M0. Die Bildgebung (CT Abdomen) zeigt keinen Hinweis auf Fernmetastasen. Die Anamnese erwähnt keinen Hinweis auf Metastasen. Daher wird der Patient als nicht-metastasiert eingestuft.\",\n    \"imdc_risk\": \"nicht_anwendbar\",\n    \"imdc_reasoning\": \"Die IMDC-Risikostratifizierung ist nur für metastasiertes Nierenzellkarzinom relevant. Da der Patient nicht metastasiert ist, ist die IMDC-Risikobewertung nicht anwendbar.\",\n    \"treatment_reasoning\": \"Der Patient hat einen kleinen, hilusnahen Nierentumor (2,7 cm). Er hat relevante Komorbiditäten (Diabetes mellitus Typ 2, arterielle Hypertonie, Hyperlipidämie) und ist 70 Jahre alt. Der ECOG-Status ist 1, was auf eine gute Performance-Status hindeutet. Da die Histologie nicht dokumentiert ist, muss von einem Klarzellkarzinom ausgegangen werden, da dies die häufigste Form ist.  Aufgrund der Tumorgröße (≤7cm) und des guten Performance-Status ist eine Nierenteilresektion die Therapie der Wahl. Eine radikale Nephrektomie wäre nur indiziert, wenn eine Teilresektion technisch nicht möglich ist. Aktive Überwachung oder Ablation sind bei dieser Tumorgröße und dem ECOG-Status weniger geeignet.\",\n    \"recommended_therapy\": \"Nierenteilresektion\",\n    \"therapy_category\": \"Surgery\",\n    \"confidence\": 0.9\n}\n```",
+  "ground_truth_metastatic": false,
+  "ground_truth_therapy": "Partielle Nephrektomie technisch anspruchsvoll → Diskussion Ablation vs. OP vs. Surveillance.",
+  "metastatic_correct": true,
+  "inference_time_seconds": 8.5386061668396,
+  "tokens_used": 1448,
+  "success": true
+}

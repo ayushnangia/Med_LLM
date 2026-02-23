@@ -1,0 +1,72 @@
+{
+  "case_id": "ncc_64",
+  "timestamp": "2026-02-15_23-04-56",
+  "provider": "modal",
+  "model": "google/gemma-3-27b-it",
+  "input_case": {
+    "case_id": "ncc_64",
+    "patient_name": "Beispiel, Livia",
+    "age": 55,
+    "ecog": 0,
+    "karnofsky": 100,
+    "comorbidity": null,
+    "life_expectancy": null,
+    "anamnese": "Primärtumor: niere links - nephrektomie (2022-01-01) - pT2a pNx RR0",
+    "diagnose_kurz": "metastasiertes klarzelliges nierenzellkarzinom",
+    "stadium": "Linie 1",
+    "tnm_clinical": null,
+    "tnm_pathological": null,
+    "histologie_subtyp": "ccRCC",
+    "histologie_klarzellig": true,
+    "bildgebung": [
+      {
+        "modalitaet": "CT",
+        "region": "thorax/abdomen/becken",
+        "datum": "2025-12-05",
+        "befund_kurz": ""
+      }
+    ],
+    "nebendiagnosen": [
+      "arterielle hypertonie"
+    ],
+    "medikation": [
+      {
+        "wirkstoff": "Candesartan",
+        "schema": null,
+        "hinweis": null
+      },
+      {
+        "wirkstoff": "Pantoprazol",
+        "schema": null,
+        "hinweis": "bedarf"
+      }
+    ],
+    "ici_durchfuehrbar": null,
+    "prior_therapies": [],
+    "ground_truth_metastatic": true,
+    "ground_truth_imdc": "low",
+    "ground_truth_therapy": "start systemtherapie (io+tki), z. b. pembrolizumab + axitinib | klinisches und labor-monitoring (bb, leberwerte, nierenwerte, tsh) | blutdruck- und proteinurie-kontrollen | re-staging nach 8–12 wochen"
+  },
+  "prompt_text": "Du bist ein erfahrener Onkologe, spezialisiert auf Nierenzellkarzinom (RCC).\nAnalysiere den folgenden klinischen Fall und erstelle eine strukturierte Therapieempfehlung.\n\n=== KLINISCHER FALL ===\nPatient: Beispiel, Livia, 55 Jahre\nECOG: 0, Karnofsky: 100%\nKomorbidität: None\nLebenserwartung: None\n\nDiagnose: metastasiertes klarzelliges nierenzellkarzinom\nStadium: Linie 1\nTNM: nicht dokumentiert\n\nHISTOLOGIE (WICHTIG für Therapieentscheidung):\nSubtyp: ccRCC, Klarzellig: Ja\n\nAnamnese:\nPrimärtumor: niere links - nephrektomie (2022-01-01) - pT2a pNx RR0\n\nNebendiagnosen: arterielle hypertonie\n\nAktuelle Medikation: Candesartan, Pantoprazol (bedarf)\n\nBildgebung:\n  - CT thorax/abdomen/becken (2025-12-05)\n\nIMDC-Risikofaktoren: Kategorie: low, KPS<80: Nein, Hb↓: Nein, Ca↑: Nein, Neutro↑: Nein, Thrombo↑: Nein\nICI-Kombination durchführbar: Nicht dokumentiert\nVorherige Systemtherapien: Keine\n\n=== THERAPIE-LEITLINIEN ===\n\n\nMETASTASIERTES KLARZELLIGES RCC - THERAPIE-ALGORITHMUS:\n\nIMDC-RISIKOSTRATIFIZIERUNG:\n- Günstig (0 Risikofaktoren)\n- Intermediär (1-2 Risikofaktoren)\n- Ungünstig (≥3 Risikofaktoren)\n\nRisikofaktoren: Karnofsky <80%, Zeit bis Systemtherapie <1 Jahr, Hämoglobin↓, Calcium↑, Neutrophile↑, Thrombozyten↑\n\nERSTLINIE (wenn ICI-Kombination möglich):\n- Günstig: NIVO+CABO (A), PEMBRO+AXI (A), PEMBRO+LEN (A), AVELU+AXI (B)\n- Intermediär: NIVO+CABO (A), NIVO+IPI (A), PEMBRO+AXI (A), PEMBRO+LEN (A)\n- Ungünstig: NIVO+CABO (A), NIVO+IPI (A), PEMBRO+AXI (A), PEMBRO+LEN (A)\n\nERSTLINIE (wenn ICI-Kombination NICHT möglich):\n- Günstig: Pazopanib (A), Sunitinib (A), Tivozanib (A), BEV+IFN (A)\n- Intermediär: Cabozantinib (B), Pazopanib (B), Sunitinib (B)\n- Ungünstig: Cabozantinib (B), Sunitinib (B), Temsirolimus (0)\n\nZWEITLINIE nach ICI-Kombination: Cabozantinib (A), Lenvatinib+Everolimus (A), Sunitinib (A)\nZWEITLINIE nach VEGF/R-Monotherapie: Cabozantinib (A), Nivolumab (A)\n\nLegende: A=starke Empfehlung, B=schwache Empfehlung, 0=Option\n\n\n\nNICHT-METASTASIERTES RCC - THERAPIE-ALGORITHMUS:\n\nTHERAPIEOPTIONEN nach Tumorgröße/Stadium:\n\n1. AKTIVE ÜBERWACHUNG (GoR 0):\n   - Kleine Nierentumoren + hohe Komorbidität ODER begrenzte Lebenserwartung\n   - Biopsie VOR Überwachung erforderlich\n\n2. ABLATION (Kryoablation/Radiofrequenzablation) (GoR 0):\n   - Kleine Nierentumoren + hohe Komorbidität ODER begrenzte Lebenserwartung\n   - Biopsie VOR Ablation erforderlich\n\n3. NIERENTEILRESEKTION (Nephron-sparing Surgery):\n   - cT1 (≤7cm): SOLL durchgeführt werden (GoR A)\n   - >T1: SOLLTE erwogen werden wenn technisch möglich (GoR B)\n   - Zugang: offen/laparoskopisch/robotisch (chirurgische Erfahrung)\n\n4. RADIKALE NEPHREKTOMIE:\n   - Wenn Teilresektion nicht möglich (GoR A)\n   - Minimalinvasiv wenn lokale Befunde es erlauben (GoR A)\n\nPERIOPERATIVE PRINZIPIEN:\n- KEINE Adrenalektomie bei unauffälliger Bildgebung (GoR A)\n- KEINE systematische Lymphadenektomie bei unauffälliger Bildgebung (GoR A)\n- LND bei vergrößerten Lymphknoten akzeptabel\n\nTNM-STADIEN:\n- T1a: ≤4cm, auf Niere begrenzt\n- T1b: >4-7cm, auf Niere begrenzt\n- T2a: >7-10cm, auf Niere begrenzt\n- T2b: >10cm, auf Niere begrenzt\n- T3: Ausdehnung in große Venen oder perirenales Gewebe\n- T4: Über Gerota-Faszie hinaus\n\nLegende: GoR A=starke Empfehlung, GoR B=schwache Empfehlung, GoR 0=Option\n\n\nWICHTIGER HINWEIS:\n- Die Leitlinien gelten primär für KLARZELLIGES RCC\n- Bei NICHT-KLARZELLIGEM RCC (papillär, chromophob, etc.) ist TKI-Monotherapie oft bevorzugt\n- IMDC-Risikostratifizierung ist nur für klarzelliges mRCC validiert\n\n=== AUFGABE ===\nAnalysiere den Fall schrittweise:\n\n1. METASTASIERUNG: Bestimme ob der Patient metastasiert oder nicht-metastasiert ist (basierend auf TNM M-Status, Anamnese, Bildgebung).\n\n2. HISTOLOGIE: Berücksichtige den histologischen Subtyp (klarzellig vs. nicht-klarzellig).\n\n3. RISIKOSTRATIFIZIERUNG: Falls metastasiert UND klarzellig, berechne das IMDC-Risiko.\n\n4. THERAPIEEMPFEHLUNG: Folge dem entsprechenden Therapie-Algorithmus und begründe deine Empfehlung.\n\nAntworte im folgenden JSON-Format:\n{\n    \"is_metastatic\": true/false,\n    \"metastatic_reasoning\": \"Begründung für Metastasierungsstatus...\",\n    \"imdc_risk\": \"guenstig/intermediaer/unguenstig/nicht_anwendbar\",\n    \"imdc_reasoning\": \"IMDC-Berechnung oder null wenn nicht-metastasiert/nicht-klarzellig...\",\n    \"treatment_reasoning\": \"Schrittweise Begründung nach Leitlinie...\",\n    \"recommended_therapy\": \"Konkrete Therapieempfehlung\",\n    \"therapy_category\": \"IO+TKI/TKI mono/Surgery/Surveillance/Ablation/etc.\",\n    \"recommendation_strength\": \"A/B/0\",\n    \"confidence\": 0.0-1.0\n}",
+  "prediction": {
+    "is_metastatic": true,
+    "metastatic_reasoning": "Der Patient hatte eine Nephrektomie im Jahr 2022 aufgrund eines Nierenzellkarzinoms. Das aktuelle CT zeigt Metastasen (nicht explizit beschrieben, aber impliziert durch die Anforderung einer Therapieempfehlung für metastasiertes RCC).",
+    "imdc_risk": "guenstig",
+    "imdc_reasoning": "Der Patient hat 0 Risikofaktoren gemäß IMDC: KPS ist 100% (entspricht nicht <80%), Hb, Ca, Neutrophile und Thrombozyten sind nicht erhöht, und die Zeit bis zur Systemtherapie ist nicht angegeben, aber da es die Erstlinie ist, ist sie wahrscheinlich > 1 Jahr.",
+    "treatment_reasoning": "Der Patient hat ein metastasiertes klarzelliges Nierenzellkarzinom (ccRCC) und weist ein günstiges IMDC-Risiko auf. Die Leitlinie empfiehlt in der Erstlinie bei günstigem Risiko und durchführbarer ICI-Kombination NIVO+CABO, PEMBRO+AXI, PEMBRO+LEN oder AVELU+AXI. Da die Durchführbarkeit der ICI-Kombination nicht dokumentiert ist, gehe ich von der Möglichkeit aus und empfehle eine ICI-Kombination. Da NIVO+CABO die stärkste Empfehlung (A) hat, wird diese bevorzugt.",
+    "recommended_therapy": "Nivolumab in Kombination mit Cabozantinib",
+    "therapy_category": "IO+TKI",
+    "recommendation_strength": "A",
+    "confidence": 0.9
+  },
+  "raw_response": "{\"is_metastatic\": true,\n    \"metastatic_reasoning\": \"Der Patient hatte eine Nephrektomie im Jahr 2022 aufgrund eines Nierenzellkarzinoms. Das aktuelle CT zeigt Metastasen (nicht explizit beschrieben, aber impliziert durch die Anforderung einer Therapieempfehlung für metastasiertes RCC).\",\n    \"imdc_risk\": \"guenstig\",\n    \"imdc_reasoning\": \"Der Patient hat 0 Risikofaktoren gemäß IMDC: KPS ist 100% (entspricht nicht <80%), Hb, Ca, Neutrophile und Thrombozyten sind nicht erhöht, und die Zeit bis zur Systemtherapie ist nicht angegeben, aber da es die Erstlinie ist, ist sie wahrscheinlich > 1 Jahr.\",\n    \"treatment_reasoning\": \"Der Patient hat ein metastasiertes klarzelliges Nierenzellkarzinom (ccRCC) und weist ein günstiges IMDC-Risiko auf. Die Leitlinie empfiehlt in der Erstlinie bei günstigem Risiko und durchführbarer ICI-Kombination NIVO+CABO, PEMBRO+AXI, PEMBRO+LEN oder AVELU+AXI. Da die Durchführbarkeit der ICI-Kombination nicht dokumentiert ist, gehe ich von der Möglichkeit aus und empfehle eine ICI-Kombination. Da NIVO+CABO die stärkste Empfehlung (A) hat, wird diese bevorzugt.\",\n    \"recommended_therapy\": \"Nivolumab in Kombination mit Cabozantinib\",\n    \"therapy_category\": \"IO+TKI\",\n    \"recommendation_strength\": \"A\",\n    \"confidence\": 0.9}",
+  "ground_truth_metastatic": true,
+  "ground_truth_therapy": "start systemtherapie (io+tki), z. b. pembrolizumab + axitinib | klinisches und labor-monitoring (bb, leberwerte, nierenwerte, tsh) | blutdruck- und proteinurie-kontrollen | re-staging nach 8–12 wochen",
+  "metastatic_correct": true,
+  "therapy_exact_match": false,
+  "therapy_clinically_acceptable": true,
+  "inference_time_seconds": 5.187590003013611,
+  "tokens_used": 369,
+  "success": true,
+  "error_message": null
+}

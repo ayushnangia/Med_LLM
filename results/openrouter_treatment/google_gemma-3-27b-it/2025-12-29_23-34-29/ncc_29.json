@@ -1,0 +1,96 @@
+{
+  "case_id": "ncc_29",
+  "timestamp": "2025-12-29T23:42:26.450231",
+  "provider": "openrouter",
+  "model": "google/gemma-3-27b-it",
+  "input_case": {
+    "case_id": "ncc_29",
+    "patient_name": "Beispiel, Tarek",
+    "age": 69,
+    "ecog": null,
+    "anamnese": "Z. n. Nephrektomie rechts 07/2020 bei chromophobem RCC mit fokaler sarkomatoider Transformation. Aktuelle Vorstellung zur Befund- und Therapieentscheidung anhand CT Staging 04.11.2025. Vorerkrankungen/VOP: Z. n. Leistenhernien-OP, Z. n. Cholezystektomie. Medikation: Marcumar, Amlodipin.",
+    "diagnose_kurz": "Metastasiertes chromophobes Nierenzellkarzinom (chRCC) mit fokaler sarkomatoider Transformation nach Nephrektomie rechts 07/2020; CT 04.11.2025 mit hepatischer und ossärer Metastasierung; pulmonaler Rundherd LLL 6 mm unklar.",
+    "stadium": "mRCC; IMDC high risk; Metastasen: Leber + Knochen; pulmonaler Herd unklar (DD Metastase vs benign); sarkomatoide Komponente (fokal)",
+    "tnm_clinical": null,
+    "histologie_subtyp": null,
+    "histologie_klarzellig": null,
+    "bildgebung": [
+      {
+        "modalitaet": "CT",
+        "region": "Thorax/Abdomen/Becken",
+        "datum": "2025-11-04",
+        "befund_kurz": "Hepatische und ossäre Metastasierung; pulmonaler Herd LLL 6 mm unklar (Verlaufskontrolle empfohlen).",
+        "quelle": "CT Staging 04.11.2025",
+        "details": {
+          "thorax": {
+            "pleuraerguss": "nein",
+            "mediastinale_hilaere_lk": "keine sicher pathologisch vergrößerten LK",
+            "lungen_herde": [
+              {
+                "lokalisation": "LLL",
+                "groesse_mm": 6,
+                "beschreibung": "einzelner Rundherd unklar; DD Metastase vs benign; Verlaufskontrolle empfohlen"
+              }
+            ]
+          },
+          "abdomen_becken": {
+            "op_status": "Status nach Nephrektomie rechts",
+            "leber_metastasen": [
+              {
+                "segment": "VII",
+                "groesse_mm": 30,
+                "beschreibung": "metastasenverdächtig"
+              },
+              {
+                "segment": "V",
+                "groesse_mm": 15,
+                "beschreibung": "metastasenverdächtig"
+              }
+            ],
+            "aszites": "nein"
+          },
+          "skelett": {
+            "ossaere_metastasen": [
+              {
+                "lokalisation": "BWK12",
+                "groesse_mm": 19,
+                "typ": "osteolytisch",
+                "beschreibung": "metastasenverdächtig"
+              },
+              {
+                "lokalisation": "linkes Os ilium",
+                "groesse_mm": 23,
+                "typ": "osteolytisch",
+                "beschreibung": "metastasenverdächtig"
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "nebendiagnosen": [
+      "status_nach_leistenhernien_op",
+      "status_nach_cholezystektomie"
+    ],
+    "ground_truth_metastatic": null,
+    "ground_truth_therapy": "Einleitung Systemtherapie + Supportiv (Knochenprotektion/Analgesie; engmaschiges Monitoring inkl. Ca/Hb; Verlaufskontrolle Thorax)."
+  },
+  "prompt_text": "Du bist ein erfahrener Onkologe, spezialisiert auf Nierenzellkarzinom (RCC).\nAnalysiere den folgenden klinischen Fall und erstelle eine strukturierte Therapieempfehlung.\n\n=== KLINISCHER FALL ===\nPatient: Beispiel, Tarek, 69 Jahre\nECOG: None, Karnofsky: ?%\nKomorbidität: None\n\nDiagnose: Metastasiertes chromophobes Nierenzellkarzinom (chRCC) mit fokaler sarkomatoider Transformation nach Nephrektomie rechts 07/2020; CT 04.11.2025 mit hepatischer und ossärer Metastasierung; pulmonaler Rundherd LLL 6 mm unklar.\nStadium: mRCC; IMDC high risk; Metastasen: Leber + Knochen; pulmonaler Herd unklar (DD Metastase vs benign); sarkomatoide Komponente (fokal)\nTNM: nicht dokumentiert\n\nHISTOLOGIE: Nicht dokumentiert\n\nAnamnese: Z. n. Nephrektomie rechts 07/2020 bei chromophobem RCC mit fokaler sarkomatoider Transformation. Aktuelle Vorstellung zur Befund- und Therapieentscheidung anhand CT Staging 04.11.2025. Vorerkrankungen/VOP: Z. n. Leistenhernien-OP, Z. n. Cholezystektomie. Medikation: Marcumar, Amlodipin.\n\nNebendiagnosen: status_nach_leistenhernien_op, status_nach_cholezystektomie\n\nBildgebung:\n  - CT Thorax/Abdomen/Becken (2025-11-04): Hepatische und ossäre Metastasierung; pulmonaler Herd LLL 6 mm unklar (Verlaufskontrolle empfohlen).\n\nVorherige Systemtherapien: Keine\n\n=== THERAPIE-LEITLINIEN ===\n\nMETASTASIERTES KLARZELLIGES RCC - THERAPIE-ALGORITHMUS:\n\nIMDC-RISIKOSTRATIFIZIERUNG:\n- Günstig (0 Risikofaktoren)\n- Intermediär (1-2 Risikofaktoren)\n- Ungünstig (≥3 Risikofaktoren)\n\nRisikofaktoren: Karnofsky <80%, Zeit bis Systemtherapie <1 Jahr, Hämoglobin↓, Calcium↑, Neutrophile↑, Thrombozyten↑\n\nERSTLINIE (wenn ICI-Kombination möglich):\n- Günstig: NIVO+CABO (A), PEMBRO+AXI (A), PEMBRO+LEN (A), AVELU+AXI (B)\n- Intermediär: NIVO+CABO (A), NIVO+IPI (A), PEMBRO+AXI (A), PEMBRO+LEN (A)\n- Ungünstig: NIVO+CABO (A), NIVO+IPI (A), PEMBRO+AXI (A), PEMBRO+LEN (A)\n\nERSTLINIE (wenn ICI-Kombination NICHT möglich):\n- Günstig: Pazopanib (A), Sunitinib (A), Tivozanib (A), BEV+IFN (A)\n- Intermediär: Cabozantinib (B), Pazopanib (B), Sunitinib (B)\n- Ungünstig: Cabozantinib (B), Sunitinib (B), Temsirolimus (0)\n\nZWEITLINIE nach ICI-Kombination: Cabozantinib (A), Lenvatinib+Everolimus (A), Sunitinib (A)\nZWEITLINIE nach VEGF/R-Monotherapie: Cabozantinib (A), Nivolumab (A)\n\n---\n\nNICHT-METASTASIERTES RCC - THERAPIE-ALGORITHMUS:\n\n1. AKTIVE ÜBERWACHUNG (GoR 0): Kleine Tumoren + hohe Komorbidität/begrenzte Lebenserwartung\n2. ABLATION (GoR 0): Kleine Tumoren + hohe Komorbidität/begrenzte Lebenserwartung\n3. NIERENTEILRESEKTION: cT1 (≤7cm) SOLL durchgeführt werden (GoR A)\n4. RADIKALE NEPHREKTOMIE: Wenn Teilresektion nicht möglich (GoR A)\n\nLegende: A=starke Empfehlung, B=schwache Empfehlung, 0=Option\n\n\n=== AUFGABE ===\nAnalysiere den Fall schrittweise:\n1. METASTASIERUNG: Ist der Patient metastasiert? (basierend auf TNM, Anamnese, Bildgebung)\n2. HISTOLOGIE: Klarzellig vs. nicht-klarzellig?\n3. RISIKO: Falls metastasiert + klarzellig, IMDC-Risiko?\n4. THERAPIE: Empfehlung nach Leitlinie\n\nAntwort als JSON:\n{\n    \"is_metastatic\": true/false,\n    \"metastatic_reasoning\": \"Begründung...\",\n    \"imdc_risk\": \"guenstig/intermediaer/unguenstig/nicht_anwendbar\",\n    \"imdc_reasoning\": \"IMDC-Berechnung...\",\n    \"treatment_reasoning\": \"Schrittweise Begründung...\",\n    \"recommended_therapy\": \"Konkrete Empfehlung\",\n    \"therapy_category\": \"IO+TKI/TKI mono/Surgery/Surveillance/etc.\",\n    \"confidence\": 0.0-1.0\n}",
+  "output": {
+    "is_metastatic": true,
+    "metastatic_reasoning": "Der Patient zeigt hepatische und ossäre Metastasen, wie durch das CT vom 04.11.2025 dokumentiert. Dies definiert ein metastasiertes Nierenzellkarzinom (mRCC).",
+    "imdc_risk": "unguenstig",
+    "imdc_reasoning": "Der Patient weist mindestens drei ungünstige Risikofaktoren auf: metastasiertes RCC, Zeit bis zur Systemtherapie < 1 Jahr (Nephrektomie 2020, CT-Befund 2025), und die Anwesenheit von Knochenmetastasen. Der Karnofsky-Status ist unbekannt, wird aber für die Risikobewertung als nicht-limitierend angenommen (da ECOG 0).",
+    "treatment_reasoning": "Der Patient hat ein metastasiertes chromophobes Nierenzellkarzinom (chRCC) mit fokaler sarkomatoider Transformation. Die Leitlinien beziehen sich primär auf klarzelliges RCC.  chRCC spricht oft schlechter auf VEGF-Inhibitoren an als klarzelliges RCC. Die sarkomatoide Transformation deutet auf eine aggressive Biologie hin. Da keine vorherige Systemtherapie erfolgt ist, ist eine Erstlinientherapie indiziert.  Aufgrund des ungünstigen Risikoprofils und der spezifischen Histologie (chRCC mit sarkomatoider Transformation) sollte eine Immuntherapie-Kombination in Erwägung gezogen werden, auch wenn die Leitlinien primär für klarzelliges RCC formuliert sind.  Die Leitlinien empfehlen für ungünstiges Risiko NIVO+CABO, NIVO+IPI, PEMBRO+AXI oder PEMBRO+LEN. Cabozantinib hat in Studien mit chRCC vielversprechende Ergebnisse gezeigt und kann als Alternative in Betracht gezogen werden. Der pulmonale Herd muss weiter abgeklärt werden, beeinflusst aber die initiale Therapieentscheidung nicht.",
+    "recommended_therapy": "Nivolumab in Kombination mit Cabozantinib",
+    "therapy_category": "IO+TKI",
+    "confidence": 0.8
+  },
+  "raw_response": "\n```json\n{\n    \"is_metastatic\": true,\n    \"metastatic_reasoning\": \"Der Patient zeigt hepatische und ossäre Metastasen, wie durch das CT vom 04.11.2025 dokumentiert. Dies definiert ein metastasiertes Nierenzellkarzinom (mRCC).\",\n    \"imdc_risk\": \"unguenstig\",\n    \"imdc_reasoning\": \"Der Patient weist mindestens drei ungünstige Risikofaktoren auf: metastasiertes RCC, Zeit bis zur Systemtherapie < 1 Jahr (Nephrektomie 2020, CT-Befund 2025), und die Anwesenheit von Knochenmetastasen. Der Karnofsky-Status ist unbekannt, wird aber für die Risikobewertung als nicht-limitierend angenommen (da ECOG 0).\",\n    \"treatment_reasoning\": \"Der Patient hat ein metastasiertes chromophobes Nierenzellkarzinom (chRCC) mit fokaler sarkomatoider Transformation. Die Leitlinien beziehen sich primär auf klarzelliges RCC.  chRCC spricht oft schlechter auf VEGF-Inhibitoren an als klarzelliges RCC. Die sarkomatoide Transformation deutet auf eine aggressive Biologie hin. Da keine vorherige Systemtherapie erfolgt ist, ist eine Erstlinientherapie indiziert.  Aufgrund des ungünstigen Risikoprofils und der spezifischen Histologie (chRCC mit sarkomatoider Transformation) sollte eine Immuntherapie-Kombination in Erwägung gezogen werden, auch wenn die Leitlinien primär für klarzelliges RCC formuliert sind.  Die Leitlinien empfehlen für ungünstiges Risiko NIVO+CABO, NIVO+IPI, PEMBRO+AXI oder PEMBRO+LEN. Cabozantinib hat in Studien mit chRCC vielversprechende Ergebnisse gezeigt und kann als Alternative in Betracht gezogen werden. Der pulmonale Herd muss weiter abgeklärt werden, beeinflusst aber die initiale Therapieentscheidung nicht.\",\n    \"recommended_therapy\": \"Nivolumab in Kombination mit Cabozantinib\",\n    \"therapy_category\": \"IO+TKI\",\n    \"confidence\": 0.8\n}\n```",
+  "ground_truth_metastatic": null,
+  "ground_truth_therapy": "Einleitung Systemtherapie + Supportiv (Knochenprotektion/Analgesie; engmaschiges Monitoring inkl. Ca/Hb; Verlaufskontrolle Thorax).",
+  "metastatic_correct": null,
+  "inference_time_seconds": 14.557123899459839,
+  "tokens_used": 1713,
+  "success": true
+}

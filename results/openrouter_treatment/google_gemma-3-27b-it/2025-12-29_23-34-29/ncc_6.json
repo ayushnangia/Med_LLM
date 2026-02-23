@@ -1,0 +1,59 @@
+{
+  "case_id": "ncc_6",
+  "timestamp": "2025-12-29T23:35:55.678283",
+  "provider": "openrouter",
+  "model": "google/gemma-3-27b-it",
+  "input_case": {
+    "case_id": "ncc_6",
+    "patient_name": "Beispiel, Daniel",
+    "age": 77,
+    "ecog": 2,
+    "anamnese": "Zufallsbefund: Nierentumor links 2,1 cm bei Urolithiasis. Vorerkrankungen: KHK (Z. n. Stent 2016), CKD G3b, arterielle Hypertonie. Z. n. Hüft-TEP.",
+    "diagnose_kurz": "Unklare Raumforderung linke Niere (Oberpol) 2,1 cm, malignitätskriterien vorhanden",
+    "stadium": "nicht-metastasiert (Verdacht, prätherapeutisch)",
+    "tnm_clinical": {
+      "T": "unknown",
+      "T_sub": "unknown",
+      "N": "unknown",
+      "M": "M0",
+      "stage_group": "unknown"
+    },
+    "histologie_subtyp": null,
+    "histologie_klarzellig": null,
+    "bildgebung": [
+      {
+        "modalitaet": "MRT",
+        "region": "Niere",
+        "datum": "2025-11-01",
+        "befund_kurz": "Unklare Raumforderung linke Niere am Oberpol, ca. 2,1 cm; Malignitätskriterien vorhanden.",
+        "quelle": "Erforderlicher Befund"
+      }
+    ],
+    "nebendiagnosen": [
+      "KHK (Z. n. Stent 2016)",
+      "CKD G3b",
+      "arterielle Hypertonie",
+      "Z. n. Hüft-TEP"
+    ],
+    "ground_truth_metastatic": false,
+    "ground_truth_therapy": "OP vs Ablation vs Überwachung; Überwachung wegen Alter und Komorbiditäten bevorzugt; Intervention nur bei Progress; erneute Bildgebung in 6 Monaten."
+  },
+  "prompt_text": "Du bist ein erfahrener Onkologe, spezialisiert auf Nierenzellkarzinom (RCC).\nAnalysiere den folgenden klinischen Fall und erstelle eine strukturierte Therapieempfehlung.\n\n=== KLINISCHER FALL ===\nPatient: Beispiel, Daniel, 77 Jahre\nECOG: 2, Karnofsky: ?%\nKomorbidität: hoch\n\nDiagnose: Unklare Raumforderung linke Niere (Oberpol) 2,1 cm, malignitätskriterien vorhanden\nStadium: nicht-metastasiert (Verdacht, prätherapeutisch)\nTNM: cTNM: Tunknown Nunknown MM0\n\nHISTOLOGIE: Nicht dokumentiert\n\nAnamnese: Zufallsbefund: Nierentumor links 2,1 cm bei Urolithiasis. Vorerkrankungen: KHK (Z. n. Stent 2016), CKD G3b, arterielle Hypertonie. Z. n. Hüft-TEP.\n\nNebendiagnosen: KHK (Z. n. Stent 2016), CKD G3b, arterielle Hypertonie, Z. n. Hüft-TEP\n\nBildgebung:\n  - MRT Niere (2025-11-01): Unklare Raumforderung linke Niere am Oberpol, ca. 2,1 cm; Malignitätskriterien vorhanden.\n\nVorherige Systemtherapien: Keine\n\n=== THERAPIE-LEITLINIEN ===\n\nMETASTASIERTES KLARZELLIGES RCC - THERAPIE-ALGORITHMUS:\n\nIMDC-RISIKOSTRATIFIZIERUNG:\n- Günstig (0 Risikofaktoren)\n- Intermediär (1-2 Risikofaktoren)\n- Ungünstig (≥3 Risikofaktoren)\n\nRisikofaktoren: Karnofsky <80%, Zeit bis Systemtherapie <1 Jahr, Hämoglobin↓, Calcium↑, Neutrophile↑, Thrombozyten↑\n\nERSTLINIE (wenn ICI-Kombination möglich):\n- Günstig: NIVO+CABO (A), PEMBRO+AXI (A), PEMBRO+LEN (A), AVELU+AXI (B)\n- Intermediär: NIVO+CABO (A), NIVO+IPI (A), PEMBRO+AXI (A), PEMBRO+LEN (A)\n- Ungünstig: NIVO+CABO (A), NIVO+IPI (A), PEMBRO+AXI (A), PEMBRO+LEN (A)\n\nERSTLINIE (wenn ICI-Kombination NICHT möglich):\n- Günstig: Pazopanib (A), Sunitinib (A), Tivozanib (A), BEV+IFN (A)\n- Intermediär: Cabozantinib (B), Pazopanib (B), Sunitinib (B)\n- Ungünstig: Cabozantinib (B), Sunitinib (B), Temsirolimus (0)\n\nZWEITLINIE nach ICI-Kombination: Cabozantinib (A), Lenvatinib+Everolimus (A), Sunitinib (A)\nZWEITLINIE nach VEGF/R-Monotherapie: Cabozantinib (A), Nivolumab (A)\n\n---\n\nNICHT-METASTASIERTES RCC - THERAPIE-ALGORITHMUS:\n\n1. AKTIVE ÜBERWACHUNG (GoR 0): Kleine Tumoren + hohe Komorbidität/begrenzte Lebenserwartung\n2. ABLATION (GoR 0): Kleine Tumoren + hohe Komorbidität/begrenzte Lebenserwartung\n3. NIERENTEILRESEKTION: cT1 (≤7cm) SOLL durchgeführt werden (GoR A)\n4. RADIKALE NEPHREKTOMIE: Wenn Teilresektion nicht möglich (GoR A)\n\nLegende: A=starke Empfehlung, B=schwache Empfehlung, 0=Option\n\n\n=== AUFGABE ===\nAnalysiere den Fall schrittweise:\n1. METASTASIERUNG: Ist der Patient metastasiert? (basierend auf TNM, Anamnese, Bildgebung)\n2. HISTOLOGIE: Klarzellig vs. nicht-klarzellig?\n3. RISIKO: Falls metastasiert + klarzellig, IMDC-Risiko?\n4. THERAPIE: Empfehlung nach Leitlinie\n\nAntwort als JSON:\n{\n    \"is_metastatic\": true/false,\n    \"metastatic_reasoning\": \"Begründung...\",\n    \"imdc_risk\": \"guenstig/intermediaer/unguenstig/nicht_anwendbar\",\n    \"imdc_reasoning\": \"IMDC-Berechnung...\",\n    \"treatment_reasoning\": \"Schrittweise Begründung...\",\n    \"recommended_therapy\": \"Konkrete Empfehlung\",\n    \"therapy_category\": \"IO+TKI/TKI mono/Surgery/Surveillance/etc.\",\n    \"confidence\": 0.0-1.0\n}",
+  "output": {
+    "is_metastatic": false,
+    "metastatic_reasoning": "Der TNM-Status gibt M0 an, was bedeutet, dass keine Fernmetastasen vorliegen. Die Bildgebung bestätigt keine Hinweise auf Metastasen. Der Patient wurde prätherapeutisch untersucht, was bedeutet, dass die Stadieneinteilung noch nicht abschließend ist, aber die verfügbaren Daten deuten auf ein nicht-metastasiertes Stadium hin.",
+    "imdc_risk": "nicht_anwendbar",
+    "imdc_reasoning": "Die IMDC-Risikostratifizierung ist nur für metastasiertes Nierenzellkarzinom relevant. Da der Patient aktuell als nicht-metastasiert eingestuft wird, ist die IMDC-Risikobewertung nicht anwendbar.",
+    "treatment_reasoning": "Der Patient präsentiert sich mit einem 2,1 cm großen Tumor der linken Niere mit Malignitätskriterien. Er hat signifikante Komorbiditäten (KHK, CKD G3b, arterielle Hypertonie, Hüft-TEP) und ein Alter von 77 Jahren. Der ECOG-Status ist 2, was auf eine gewisse Einschränkung der Leistungsfähigkeit hinweist. Da der Tumor klein ist (≤7cm) und keine Metastasen vorliegen, kommen aktive Überwachung, Ablation oder eine Nierenteilresektion in Frage. Aufgrund der Komorbiditäten und des Alters des Patienten ist eine radikale Nephrektomie weniger bevorzugt, es sei denn, eine Teilresektion ist technisch nicht durchführbar. Eine aktive Überwachung ist eine Option, aber aufgrund der Malignitätskriterien und des Alters des Patienten würde ich eine interventionellere Strategie bevorzugen. Eine Ablation könnte in Betracht gezogen werden, aber eine Nierenteilresektion bietet die Möglichkeit einer histologischen Bestätigung und eine potenziell kurativere Behandlung.",
+    "recommended_therapy": "Nierenteilresektion",
+    "therapy_category": "Surgery",
+    "confidence": 0.8
+  },
+  "raw_response": "\n```json\n{\n    \"is_metastatic\": false,\n    \"metastatic_reasoning\": \"Der TNM-Status gibt M0 an, was bedeutet, dass keine Fernmetastasen vorliegen. Die Bildgebung bestätigt keine Hinweise auf Metastasen. Der Patient wurde prätherapeutisch untersucht, was bedeutet, dass die Stadieneinteilung noch nicht abschließend ist, aber die verfügbaren Daten deuten auf ein nicht-metastasiertes Stadium hin.\",\n    \"imdc_risk\": \"nicht_anwendbar\",\n    \"imdc_reasoning\": \"Die IMDC-Risikostratifizierung ist nur für metastasiertes Nierenzellkarzinom relevant. Da der Patient aktuell als nicht-metastasiert eingestuft wird, ist die IMDC-Risikobewertung nicht anwendbar.\",\n    \"treatment_reasoning\": \"Der Patient präsentiert sich mit einem 2,1 cm großen Tumor der linken Niere mit Malignitätskriterien. Er hat signifikante Komorbiditäten (KHK, CKD G3b, arterielle Hypertonie, Hüft-TEP) und ein Alter von 77 Jahren. Der ECOG-Status ist 2, was auf eine gewisse Einschränkung der Leistungsfähigkeit hinweist. Da der Tumor klein ist (≤7cm) und keine Metastasen vorliegen, kommen aktive Überwachung, Ablation oder eine Nierenteilresektion in Frage. Aufgrund der Komorbiditäten und des Alters des Patienten ist eine radikale Nephrektomie weniger bevorzugt, es sei denn, eine Teilresektion ist technisch nicht durchführbar. Eine aktive Überwachung ist eine Option, aber aufgrund der Malignitätskriterien und des Alters des Patienten würde ich eine interventionellere Strategie bevorzugen. Eine Ablation könnte in Betracht gezogen werden, aber eine Nierenteilresektion bietet die Möglichkeit einer histologischen Bestätigung und eine potenziell kurativere Behandlung.\",\n    \"recommended_therapy\": \"Nierenteilresektion\",\n    \"therapy_category\": \"Surgery\",\n    \"confidence\": 0.8\n}\n```",
+  "ground_truth_metastatic": false,
+  "ground_truth_therapy": "OP vs Ablation vs Überwachung; Überwachung wegen Alter und Komorbiditäten bevorzugt; Intervention nur bei Progress; erneute Bildgebung in 6 Monaten.",
+  "metastatic_correct": true,
+  "inference_time_seconds": 12.120080947875977,
+  "tokens_used": 1585,
+  "success": true
+}

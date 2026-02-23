@@ -442,8 +442,8 @@ with all classifications reviewed by medical professionals.
 
 def main():
     # Paths
-    results_dir = Path('/Users/fortuna/Desktop/Colab/Med_LLM/results/openrouter')
-    output_dir = Path('/Users/fortuna/Desktop/Colab/Med_LLM/findings')
+    results_dir = Path(__file__).resolve().parent.parent / 'results' / 'openrouter'
+    output_dir = Path(__file__).resolve().parent.parent / 'findings'
     output_dir.mkdir(exist_ok=True)
 
     print("Loading results...")

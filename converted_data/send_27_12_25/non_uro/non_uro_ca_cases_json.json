@@ -1,0 +1,321 @@
+{
+  "schema_version": "1.0",
+  "hinweis_missing_values": "Nicht vorhandene/fehlende Informationen werden als null (oder leere Liste []) eingetragen.",
+  "cases": [
+    {
+      "schema_version": "1.0",
+      "hinweis_missing_values": "Nicht vorhandene/fehlende Informationen werden als null (oder leere Liste []) eingetragen.",
+      "case_template": {
+        "patient": {
+          "nachname": "Mumbasa",
+          "vorname": "Lion",
+          "geburtsdatum": "1947-04-18",
+          "alter_jahre": 81,
+          "fallnummer": "13455436235",
+          "ecog": 0,
+          "sonstige_fachkliniken_bereiche": [
+            "RA"
+          ]
+        },
+        "anmeldung": {
+          "anmeldender_arzt": {
+            "name": "Badlion",
+            "abteilung": "Uro"
+          },
+          "diskussionstyp": null
+        },
+        "entitaeten": [
+          {
+            "entitaet_typ": "lymphom",
+            "diagnose_kurz": "Aggressives B-Zell Non-Hodgkin-Lymphom (GCB-Typ nach Hans), Double-Expressor (BCL2/cMYC), EBV-negativ; große paraaortale/peritoneale Raumforderung links (ca. 12,1×8,2×13,2 cm) mit Infiltration Pankreasschwanz/IVC/li. A. iliaca communis",
+            "stadium_oder_risikoklasse": "aggressives NHL; Staging unvollständig (CT Thorax ohne Metastasen; weitere Lymphom-Stagingdiagnostik ausstehend)",
+            "klassifikation": {
+              "tnm": null,
+              "isup_gleason": null,
+              "grad": null,
+              "icd": null,
+              "icdo": null
+            },
+            "molekular": {
+              "brca": null,
+              "pd_l1": null,
+              "sonstige": [
+                "GCB-Typ (Hans)",
+                "Double-Expressor BCL2/cMYC",
+                "EBV-negativ",
+                "Proliferationsindex inhomogen (fokal 80%, fokal 20%)"
+              ]
+            },
+            "marker_oder_labor": {
+              "psa": {
+                "initial": null,
+                "verlauf": [],
+                "einheit": "ng/ml"
+              },
+              "tumormarker": {
+                "hodenmarker": {
+                  "afp": {
+                    "initial": null,
+                    "verlauf": [],
+                    "einheit": "ng/ml"
+                  },
+                  "bhcg": {
+                    "initial": null,
+                    "verlauf": [],
+                    "einheit": "IU/l"
+                  },
+                  "ldh": {
+                    "initial": null,
+                    "verlauf": [],
+                    "einheit": "U/l"
+                  }
+                }
+              },
+              "sonstige": []
+            },
+            "therapien_und_eingriffe": [
+              {
+                "datum": "2025-12-18",
+                "typ": "Biopsie",
+                "beschreibung": "CT-gesteuerte Punktion/Biopsie paraaortal (18G, 5 Stanzen)",
+                "details": "Raumforderung links peritoneal/paraaortal; Verdacht auf malignomsuspekte Raumforderung Unterpol linke Niere"
+              }
+            ],
+            "pathologie": [
+              {
+                "datum": "2025-12-18",
+                "material": "Biopsie Raumforderung paraaortal/peritoneal (5×18G)",
+                "befund": "Fokal aggressives Non-Hodgkin-Lymphom der B-Zell-Reihe, GCB-Typ (Hans). Proliferation inhomogen (fokal 80%, fokal 20%). Double-Expressor BCL2/cMYC. EBV-negativ.",
+                "klassifikation": null
+              }
+            ],
+            "bildgebung": [
+              {
+                "datum": "2025-12-18",
+                "modalitaet": "CT",
+                "region": "Abdomen",
+                "befund": "Große Raumforderung links paraaortal/peritoneal: 12,1×8,2 cm, kraniokaudal 13,2 cm; infiltrierend Pankreasschwanz, V. cava inferior, linke A. iliaca communis.",
+                "quelle": "Aktuelle Befunde / erforderlicher Befund"
+              },
+              {
+                "datum": "2025-12-20",
+                "modalitaet": "CT",
+                "region": "Thorax",
+                "befund": "Kein Hinweis auf Metastasen.",
+                "quelle": "Aktuelle Befunde / erforderlicher Befund"
+              }
+            ],
+            "kommentar": "Fragestellung Malignität: ja, aggressives B-Zell-NHL (GCB, Double-Expressor). CT Thorax ohne Fernmetastasen; für Lymphom übliche Komplettierung des Stagings (z. B. PET/CT, Knochenmark, Labor inkl. LDH) ausstehend."
+          }
+        ],
+        "anamnese_freitext": "Z. n. CT-gesteuerter Punktion einer großen Raumforderung links peritoneal/paraaortal am 18.12.2025 bei malignomsuspekter Raumforderung (Unterpol linke Niere, 12,1 cm). Aktuelle Histologie: aggressives B-Zell-NHL (GCB, Double-Expressor, EBV-negativ). CT Abdomen zeigt infiltrierende große Masse; CT Thorax 20.12.2025 ohne Metastasen.",
+        "nebendiagnosen": [
+          "arterielle Hypertonie",
+          "koronare Herzkrankheit",
+          "Nierenzysten beidseits",
+          "Aortenaneurysma"
+        ],
+        "medikation": [],
+        "fragestellung": "Malignität in der Biopsie vom 18.12.2025? Metastasen im CT-Staging (Abdomen 18.12.2025 / Thorax 20.12.2025)?",
+        "geplantes_therapiekonzept": "Hämatoonkologische Vorstellung.",
+        "erforderliche_befunde": {
+          "bildgebung": [
+            "CT Abdomen 18.12.2025 (große infiltrierende Raumforderung links paraaortal/peritoneal)",
+            "CT Thorax 20.12.2025 (kein Hinweis auf Metastasen)"
+          ],
+          "pathologie": [
+            "Biopsie 18.12.2025 (aggressives B-Zell-NHL, GCB, Double-Expressor, EBV-negativ)"
+          ],
+          "labor": [],
+          "sonstiges": [
+            "Hämatoonkologisches Staging/Workup (z. B. PET/CT, Labor inkl. LDH, Knochenmark) – nicht angegeben"
+          ]
+        }
+      }
+    },
+    {
+      "schema_version": "1.0",
+      "hinweis_missing_values": "Nicht vorhandene/fehlende Informationen werden als null (oder leere Liste []) eingetragen.",
+      "case_template": {
+        "patient": {
+          "nachname": "Peter",
+          "vorname": "Dostoyevski",
+          "geburtsdatum": "1975-04-12",
+          "alter_jahre": 52,
+          "fallnummer": "14322576456",
+          "ecog": 1,
+          "sonstige_fachkliniken_bereiche": []
+        },
+        "anmeldung": {
+          "anmeldender_arzt": {
+            "name": "Tolstoi",
+            "abteilung": "UR"
+          },
+          "diskussionstyp": null
+        },
+        "entitaeten": [
+          {
+            "entitaet_typ": "urothelkarzinom_harnblase_ungeklare_raumforderung",
+            "diagnose_kurz": "Unklare Raumforderung Harnblase (Seitenwand) – TUR-B 01.11.2025; Histologie: morphologisch/klinisch Infiltration durch bekanntes Sigmakarzinom (sekundäre Blaseninfiltration, kein primäres Urothelkarzinom beschrieben)",
+            "stadium_oder_risikoklasse": "Sekundärbefall der Harnblase durch kolorektales Karzinom (Verdacht/Kommentar), genaue TNM der Blasenläsion nicht angegeben",
+            "klassifikation": {
+              "tnm": null,
+              "isup_gleason": null,
+              "grad": null,
+              "icd": null,
+              "icdo": null
+            },
+            "molekular": {
+              "brca": null,
+              "pd_l1": null,
+              "sonstige": [
+                "Histologie-Kommentar: Infiltration durch bekanntes Sigmakarzinom"
+              ]
+            },
+            "marker_oder_labor": {
+              "psa": {
+                "initial": null,
+                "verlauf": [],
+                "einheit": "ng/ml"
+              },
+              "tumormarker": {
+                "hodenmarker": {
+                  "afp": {
+                    "initial": null,
+                    "verlauf": [],
+                    "einheit": "ng/ml"
+                  },
+                  "bhcg": {
+                    "initial": null,
+                    "verlauf": [],
+                    "einheit": "IU/l"
+                  },
+                  "ldh": {
+                    "initial": null,
+                    "verlauf": [],
+                    "einheit": "U/l"
+                  }
+                }
+              },
+              "sonstige": []
+            },
+            "therapien_und_eingriffe": [
+              {
+                "datum": "2025-10-02",
+                "typ": "Diagnostik",
+                "beschreibung": "Z. n. Abklärung unklarer Raumforderung Harnblase rechts",
+                "details": null
+              },
+              {
+                "datum": "2025-11-01",
+                "typ": "Operation",
+                "beschreibung": "TUR-B",
+                "details": null
+              }
+            ],
+            "pathologie": [
+              {
+                "datum": "2025-11-01",
+                "material": "TUR-B (Harnblase)",
+                "befund": "Kommentar: morphologisch/klinisch Infiltration durch bekanntes Sigmakarzinom.",
+                "details": null
+              }
+            ],
+            "bildgebung": [],
+            "kommentar": "Fragestellung Malignität: Ja (wahrscheinlich maligne Infiltration der Blase), jedoch als sekundäre Infiltration durch bekanntes Sigmakarzinom beschrieben. Primäres Urothelkarzinom in den Angaben nicht bestätigt."
+          },
+          {
+            "entitaet_typ": "kolorektales_karzinom_sigmakarzinom",
+            "diagnose_kurz": "Hepatisch metastasiertes Sigmakarzinom (ED 01/2025), Status nach Sigmaresektion mit subperitonealer Exzision am Blasendach (12.01.2025) und Leber-lokalen Therapien/Resektionen",
+            "stadium_oder_risikoklasse": "pT3 pN2a cM1 (hepatisch), L0 V1 Pn1 G2 R0; UICC IV",
+            "klassifikation": {
+              "tnm": "pT3 pN2a cM1 (hepatisch) L0 V1 Pn1 R0; UICC IV",
+              "isup_gleason": null,
+              "grad": "G2",
+              "icd": null,
+              "icdo": null
+            },
+            "molekular": {
+              "brca": null,
+              "pd_l1": null,
+              "sonstige": []
+            },
+            "marker_oder_labor": {
+              "psa": {
+                "initial": null,
+                "verlauf": [],
+                "einheit": "ng/ml"
+              },
+              "tumormarker": {
+                "hodenmarker": {
+                  "afp": {
+                    "initial": null,
+                    "verlauf": [],
+                    "einheit": "ng/ml"
+                  },
+                  "bhcg": {
+                    "initial": null,
+                    "verlauf": [],
+                    "einheit": "IU/l"
+                  },
+                  "ldh": {
+                    "initial": null,
+                    "verlauf": [],
+                    "einheit": "U/l"
+                  }
+                }
+              },
+              "sonstige": []
+            },
+            "therapien_und_eingriffe": [
+              {
+                "datum": "2025-01-12",
+                "typ": "Operation",
+                "beschreibung": "Sigmaresektion mit subperitonealer Exzision am Blasendach",
+                "details": "pT3 pN2a cM1 (hepatisch), L0 V1 Pn1 G2 R0; UICC IV"
+              },
+              {
+                "datum": "2025-02",
+                "typ": "Intervention",
+                "beschreibung": "RFA Leber",
+                "details": null
+              },
+              {
+                "datum": "2025-03",
+                "typ": "Operation",
+                "beschreibung": "Darmteilresektion",
+                "details": null
+              },
+              {
+                "datum": "2025-03-12",
+                "typ": "Operation",
+                "beschreibung": "Exzision Leberraumforderung",
+                "details": null
+              }
+            ],
+            "pathologie": [],
+            "bildgebung": [],
+            "kommentar": "Blasenläsion 11/2025 wird histologisch/klinisch als Infiltration des bekannten Sigmakarzinoms gewertet."
+          }
+        ],
+        "anamnese_freitext": "Unklare Raumforderung der Harnblase; TUR-B 01.11.2025. Hintergrund: hepatisch metastasiertes Sigmakarzinom (ED 01/2025), Status nach Sigmaresektion mit subperitonealer Exzision am Blasendach 12.01.2025 (pT3 pN2a cM1 hepatisch, L0 V1 Pn1 G2 R0; UICC IV) sowie Leber-/Darm-Eingriffe (RFA 02/2025, Darmteilresektion 03/2025, Exzision Leberraumforderung 12.03.2025). Histologie TUR-B 01.11.2025: Kommentar spricht für Infiltration durch Sigmakarzinom.",
+        "nebendiagnosen": [
+          "Prostatasyndrom obstruktiv",
+          "Hypothyreose",
+          "Nierenzysten beidseits"
+        ],
+        "medikation": [],
+        "fragestellung": "Malignität in der Histologie vom 01.11.2025?",
+        "geplantes_therapiekonzept": "Allgemeinchirurgische Vorstellung.",
+        "erforderliche_befunde": {
+          "bildgebung": [],
+          "pathologie": [
+            "TUR-B 01.11.2025 (Kommentar: Infiltration durch bekanntes Sigmakarzinom)"
+          ],
+          "labor": [],
+          "sonstiges": []
+        }
+      }
+    }
+  ]
+}

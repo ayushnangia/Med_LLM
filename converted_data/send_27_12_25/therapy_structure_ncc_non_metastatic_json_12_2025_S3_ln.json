@@ -1,0 +1,617 @@
+{
+  "schema_name": "leitlinie_nmk_rcc_klassifikation_therapie_v1",
+  "context": {
+    "entity": "nicht_metastasiertes_nierenzellkarzinom",
+    "scope_note": "Schema basiert ausschließlich auf den im Screenshot gezeigten Leitlinien-Statements (Kap. 5–6). TNM-Dimensionen (Größen- und Ausdehnungskriterien) wurden zusätzlich gemäß der beigefügten TNM-Abbildung integriert.",
+    "evidence_fields": {
+      "GoR": "Grade of Recommendation",
+      "LoE": "Level of Evidence",
+      "statement_id": "Leitlinien-Statement-Nummer (z.B. 6.2)"
+    }
+  },
+  "case_input_schema": {
+    "patient": {
+      "age_years": null,
+      "comorbidity_level": "unknown",
+      "life_expectancy": "unknown"
+    },
+    "tumor": {
+      "metastatic": false,
+      "tumor_size_cm": null,
+      "tumor_confined_to_kidney": "unknown",
+      "local_extension": {
+        "major_veins_or_perinephric_tissues_involved": "unknown",
+        "beyond_gerotas_fascia": "unknown",
+        "ipsilateral_adrenal_gland_invasion_contiguous": "unknown"
+      },
+      "venous_involvement": {
+        "renal_vein_involved": "unknown",
+        "renal_sinus_fat_involved": "unknown",
+        "inferior_vena_cava_involved": "unknown",
+        "ivc_level": "unknown"
+      },
+      "regional_nodes": {
+        "status": "unknown",
+        "suspicious_or_enlarged_lymph_nodes": "unknown"
+      },
+      "distant_metastases": {
+        "status": "unknown"
+      },
+      "clinical_T_category": "unknown",
+      "clinical_T_subcategory": "unknown",
+      "clinical_N_category": "unknown",
+      "clinical_M_category": "unknown",
+      "clinical_stage_group": "unknown",
+      "tumor_size_category": "unknown",
+      "nephron_sparing_technically_possible": "unknown",
+      "local_findings_allow_minimally_invasive": "unknown",
+      "adrenal_suspicion_imaging_or_intraop": "unknown"
+    },
+    "surgery_context": {
+      "planned_procedure": "unknown",
+      "approach_preference": "unknown",
+      "surgeon_experience_drives_choice": true,
+      "ischemia_expected": "unknown"
+    },
+    "pathology_postop": {
+      "margin_status": "unknown",
+      "tumor_bed_macroscopically_unremarkable": "unknown"
+    }
+  },
+  "classification_schema": {
+    "tnm_dimensions_reference": {
+      "source": "TNM-Abbildung (aus Nutzer-Screenshot)",
+      "T": {
+        "allowed_values": [
+          "T0",
+          "T1",
+          "T1a",
+          "T1b",
+          "T2",
+          "T2a",
+          "T2b",
+          "T3",
+          "T3a",
+          "T3b",
+          "T3c",
+          "T4"
+        ],
+        "definitions": [
+          {
+            "category": "T0",
+            "involvement": "Primary not involved",
+            "extent_of_disease": null,
+            "criteria": "Primärtumor nicht nachweisbar"
+          },
+          {
+            "category": "T1",
+            "involvement": "≤ 7 cm",
+            "extent_of_disease": "limited to kidney",
+            "criteria": "tumor_size_cm ≤ 7 AND tumor_confined_to_kidney = true"
+          },
+          {
+            "category": "T1a",
+            "involvement": "≤ 4 cm",
+            "extent_of_disease": "limited to kidney",
+            "criteria": "tumor_size_cm ≤ 4 AND tumor_confined_to_kidney = true"
+          },
+          {
+            "category": "T1b",
+            "involvement": "> 4 cm bis ≤ 7 cm",
+            "extent_of_disease": "limited to kidney",
+            "criteria": "tumor_size_cm > 4 AND tumor_size_cm ≤ 7 AND tumor_confined_to_kidney = true"
+          },
+          {
+            "category": "T2",
+            "involvement": "> 7 cm",
+            "extent_of_disease": "limited to kidney",
+            "criteria": "tumor_size_cm > 7 AND tumor_confined_to_kidney = true"
+          },
+          {
+            "category": "T2a",
+            "involvement": "> 7 cm bis ≤ 10 cm",
+            "extent_of_disease": "limited to kidney",
+            "criteria": "tumor_size_cm > 7 AND tumor_size_cm ≤ 10 AND tumor_confined_to_kidney = true"
+          },
+          {
+            "category": "T2b",
+            "involvement": "> 10 cm",
+            "extent_of_disease": "limited to kidney",
+            "criteria": "tumor_size_cm > 10 AND tumor_confined_to_kidney = true"
+          },
+          {
+            "category": "T3",
+            "involvement": "into major veins or perinephric tissues",
+            "extent_of_disease": "not beyond Gerota's fascia",
+            "criteria": "major_veins_or_perinephric_tissues_involved = true AND beyond_gerotas_fascia = false"
+          },
+          {
+            "category": "T3a",
+            "involvement": "renal vein or renal sinus fat",
+            "extent_of_disease": "not beyond Gerota's fascia",
+            "criteria": "(renal_vein_involved = true OR renal_sinus_fat_involved = true) AND beyond_gerotas_fascia = false"
+          },
+          {
+            "category": "T3b",
+            "involvement": "into vena cava",
+            "extent_of_disease": "below diaphragm",
+            "criteria": "inferior_vena_cava_involved = true AND ivc_level = below_diaphragm"
+          },
+          {
+            "category": "T3c",
+            "involvement": "into vena cava",
+            "extent_of_disease": "above diaphragm",
+            "criteria": "inferior_vena_cava_involved = true AND ivc_level = above_diaphragm"
+          },
+          {
+            "category": "T4",
+            "involvement": "invasion beyond Gerota's fascia",
+            "extent_of_disease": "including contiguous extensions & into ipsilateral adrenal gland",
+            "criteria": "beyond_gerotas_fascia = true OR ipsilateral_adrenal_gland_invasion_contiguous = true"
+          }
+        ],
+        "input_mappings": {
+          "tumor_size_cm": "tumor.tumor_size_cm",
+          "tumor_confined_to_kidney": "tumor.tumor_confined_to_kidney",
+          "major_veins_or_perinephric_tissues_involved": "tumor.local_extension.major_veins_or_perinephric_tissues_involved",
+          "beyond_gerotas_fascia": "tumor.local_extension.beyond_gerotas_fascia",
+          "ipsilateral_adrenal_gland_invasion_contiguous": "tumor.local_extension.ipsilateral_adrenal_gland_invasion_contiguous",
+          "renal_vein_involved": "tumor.venous_involvement.renal_vein_involved",
+          "renal_sinus_fat_involved": "tumor.venous_involvement.renal_sinus_fat_involved",
+          "inferior_vena_cava_involved": "tumor.venous_involvement.inferior_vena_cava_involved",
+          "ivc_level": "tumor.venous_involvement.ivc_level"
+        },
+        "ivc_level_allowed_values": [
+          "unknown",
+          "below_diaphragm",
+          "above_diaphragm"
+        ]
+      },
+      "N": {
+        "allowed_values": [
+          "NX",
+          "N0",
+          "N1"
+        ],
+        "definitions": [
+          {
+            "category": "NX",
+            "meaning": "Regional lymph nodes not assessed"
+          },
+          {
+            "category": "N0",
+            "meaning": "No lymph node involvement"
+          },
+          {
+            "category": "N1",
+            "meaning": "Regional lymph node involvement"
+          }
+        ],
+        "input_mapping": "tumor.regional_nodes.status"
+      },
+      "M": {
+        "allowed_values": [
+          "M0",
+          "M1"
+        ],
+        "definitions": [
+          {
+            "category": "M0",
+            "meaning": "No distant metastases"
+          },
+          {
+            "category": "M1",
+            "meaning": "Distant metastases"
+          }
+        ],
+        "input_mapping": "tumor.distant_metastases.status"
+      },
+      "anatomic_stage_prognostic_groups": {
+        "allowed_values": [
+          "I",
+          "II",
+          "III",
+          "IV"
+        ],
+        "definitions": [
+          {
+            "stage": "I",
+            "criteria": "T1 AND N0 AND M0"
+          },
+          {
+            "stage": "II",
+            "criteria": "T2 AND N0 AND M0"
+          },
+          {
+            "stage": "III",
+            "criteria": "(T1 OR T2) AND N1 AND M0 OR (T3) AND (N0 OR N1) AND M0"
+          },
+          {
+            "stage": "IV",
+            "criteria": "T4 AND any N AND M0 OR any T AND any N AND M1"
+          }
+        ]
+      }
+    },
+    "primary_management_class": {
+      "allowed_values": [
+        "aktive_ueberwachung",
+        "ablative_therapie",
+        "operative_nephron_sparing",
+        "operative_nephrektomie"
+      ]
+    },
+    "surgery_subclass": {
+      "allowed_values": [
+        "teilresektion",
+        "radikale_nephrektomie",
+        "keine_op"
+      ]
+    },
+    "adjuncts": {
+      "lymphadenektomie": {
+        "allowed_values": [
+          "keine_systematische_LND",
+          "gezielte_LND_bei_vergroesserten_LK",
+          "unklar"
+        ]
+      },
+      "adrenalektomie": {
+        "allowed_values": [
+          "keine_adrenalektomie",
+          "adrenalektomie_begruendet",
+          "unklar"
+        ]
+      },
+      "schnellschnitt": {
+        "allowed_values": [
+          "nicht_noetig",
+          "erwaegen",
+          "unklar"
+        ]
+      }
+    }
+  },
+  "therapy_paths": {
+    "aktive_ueberwachung": {
+      "required_steps": [
+        {
+          "action": "biopsie_vor_start",
+          "statement_id": "5.3",
+          "evidence": {
+            "GoR": "konsens",
+            "LoE": null
+          }
+        }
+      ],
+      "eligibility_core": [
+        {
+          "criterion": "kleiner_nierentumor_und (hohe_komorbiditaet_oder_begrenzte_lebenserwartung)",
+          "statement_id": "5.2",
+          "evidence": {
+            "GoR": "0",
+            "LoE": "3"
+          }
+        }
+      ],
+      "notes": [
+        {
+          "note": "Es existieren keine einheitlichen objektiven Selektionskriterien/Definitionen (AS).",
+          "statement_id": "5.1",
+          "evidence": {
+            "GoR": "konsens",
+            "LoE": null
+          }
+        }
+      ]
+    },
+    "ablative_therapie": {
+      "modalities": [
+        "kryoablation",
+        "radiofrequenzablation"
+      ],
+      "required_steps": [
+        {
+          "action": "perkutane_nierentumorbiopsie_vor_ablation",
+          "statement_id": "5.5",
+          "evidence": {
+            "GoR": "A",
+            "LoE": "3"
+          }
+        }
+      ],
+      "eligibility_core": [
+        {
+          "criterion": "kleiner_nierentumor_und (hohe_komorbiditaet_oder_begrenzte_lebenserwartung)",
+          "statement_id": "5.4",
+          "evidence": {
+            "GoR": "0",
+            "LoE": "2"
+          }
+        }
+      ]
+    },
+    "operative_nephron_sparing": {
+      "intent": "kurativ",
+      "core_recommendations": [
+        {
+          "action": "chirurgische_resektion_zur_kuration_bei_lokalisiertem_rcc",
+          "statement_id": "6.1",
+          "evidence": {
+            "GoR": "A",
+            "LoE": "4"
+          }
+        },
+        {
+          "action": "bei_cT1_nephron_sparing_soll",
+          "statement_id": "6.2",
+          "evidence": {
+            "GoR": "A",
+            "LoE": "3"
+          }
+        },
+        {
+          "action": "bei_cT_groesser_T1_nephron_sparing_sollte_wenn_moeglich",
+          "statement_id": "6.3",
+          "evidence": {
+            "GoR": "B",
+            "LoE": "3"
+          }
+        }
+      ],
+      "approach_selection": [
+        {
+          "action": "zugang_offen_vs_lap_vs_robotisch_nach_operateurserfahrung",
+          "statement_id": "6.4",
+          "evidence": {
+            "GoR": "konsens",
+            "LoE": null
+          }
+        },
+        {
+          "action": "hinweis_robotische_teilresektion_vs_offen_meist_weniger_komplikationen_kuerzerer_aufenthalt_bei_vergleichbarer_onkologie_funktion",
+          "statement_id": "6.5",
+          "evidence": {
+            "GoR": "ST",
+            "LoE": "1-"
+          }
+        }
+      ],
+      "perioperative_principles": [
+        {
+          "action": "ischaemiezeit_so_kurz_wie_moeglich",
+          "statement_id": "6.9",
+          "evidence": {
+            "GoR": "B",
+            "LoE": "3"
+          }
+        },
+        {
+          "action": "adrenalektomie_nicht_bei_unauffaelliger_bildgebung_und_intraop",
+          "statement_id": "6.12",
+          "evidence": {
+            "GoR": "A",
+            "LoE": "3"
+          }
+        },
+        {
+          "action": "keine_systematische_oder_extendierte_LND_bei_unauffaelliger_bildgebung_und_intraop",
+          "statement_id": "6.10",
+          "evidence": {
+            "GoR": "A",
+            "LoE": "1+"
+          }
+        },
+        {
+          "action": "LND_kann_bei_vergroesserten_LK_fuer_staging_und_lokale_kontrolle",
+          "statement_id": "6.11",
+          "evidence": {
+            "GoR": "konsens",
+            "LoE": null
+          }
+        }
+      ]
+    },
+    "operative_nephrektomie": {
+      "intent": "kurativ",
+      "core_recommendations": [
+        {
+          "action": "wenn_nephron_sparing_nicht_moeglich_nephrektomie",
+          "statement_id": "6.6",
+          "evidence": {
+            "GoR": "A",
+            "LoE": "3"
+          }
+        },
+        {
+          "action": "nephrektomie_minimal_invasiv_in_abhaengigkeit_vom_lokalbefund",
+          "statement_id": "6.7",
+          "evidence": {
+            "GoR": "A",
+            "LoE": "2++"
+          }
+        },
+        {
+          "action": "robotische_nephrektomie_nicht_ueberlegen_zu_laparoskopisch_bei_aehnlichen_komplikationen_aber_hoeheren_kosten",
+          "statement_id": "6.8",
+          "evidence": {
+            "GoR": "ST",
+            "LoE": "2++"
+          }
+        }
+      ],
+      "perioperative_principles": [
+        {
+          "action": "adrenalektomie_nicht_bei_unauffaelliger_bildgebung_und_intraop",
+          "statement_id": "6.12",
+          "evidence": {
+            "GoR": "A",
+            "LoE": "3"
+          }
+        },
+        {
+          "action": "keine_systematische_oder_extendierte_LND_bei_unauffaelliger_bildgebung_und_intraop",
+          "statement_id": "6.10",
+          "evidence": {
+            "GoR": "A",
+            "LoE": "1+"
+          }
+        },
+        {
+          "action": "LND_kann_bei_vergroesserten_LK_fuer_staging_und_lokale_kontrolle",
+          "statement_id": "6.11",
+          "evidence": {
+            "GoR": "konsens",
+            "LoE": null
+          }
+        }
+      ]
+    }
+  },
+  "pathology_margin_management": {
+    "goal": [
+      {
+        "action": "R0_resektion_anstreben",
+        "statement_id": "6.13",
+        "evidence": {
+          "GoR": "A",
+          "LoE": "3"
+        }
+      }
+    ],
+    "R1_interpretation": [
+      {
+        "finding": "kein_gesicherter_nachweis_fuer_signifikanten_nachteil_im_tumorspezifischen_ueberleben_bei_makroskopisch_tumorfreiem_rand",
+        "statement_id": "6.14",
+        "evidence": {
+          "GoR": "ST",
+          "LoE": "3"
+        }
+      },
+      {
+        "finding": "erhoehtes_lokalrezidivrisiko",
+        "statement_id": "6.15",
+        "evidence": {
+          "GoR": "ST",
+          "LoE": "3"
+        }
+      }
+    ],
+    "R1_action": [
+      {
+        "action": "bei_R1_in_endgueltiger_histologie_systematische_ueberwachung_keine_nachoperation",
+        "statement_id": "6.16",
+        "evidence": {
+          "GoR": "B",
+          "LoE": "3"
+        }
+      }
+    ],
+    "frozen_section": [
+      {
+        "action": "bei_makroskopisch_unauffaelligem_tumorbett_auf_schnellschnitt_verzicht_moeglich",
+        "statement_id": "6.17",
+        "evidence": {
+          "GoR": "0",
+          "LoE": "3"
+        }
+      }
+    ]
+  },
+  "decision_rules_priority_order": [
+    {
+      "rule_id": "RCC_NM_01_AS_vs_Ablation",
+      "if": {
+        "tumor.metastatic": false,
+        "tumor.tumor_size_category": "klein",
+        "any_of": [
+          {
+            "patient.comorbidity_level": "hoch"
+          },
+          {
+            "patient.life_expectancy": "begrenzt"
+          }
+        ]
+      },
+      "then": {
+        "primary_management_class_options": [
+          "aktive_ueberwachung",
+          "ablative_therapie"
+        ],
+        "hard_requirements": [
+          "biopsie_vor_start (AS)",
+          "perkutane_biopsie_vor_ablation"
+        ]
+      }
+    },
+    {
+      "rule_id": "RCC_NM_02_Kurative_OP",
+      "if": {
+        "tumor.metastatic": false,
+        "not_all_of": [
+          {
+            "tumor.tumor_size_category": "klein"
+          },
+          {
+            "any_of": [
+              {
+                "patient.comorbidity_level": "hoch"
+              },
+              {
+                "patient.life_expectancy": "begrenzt"
+              }
+            ]
+          }
+        ]
+      },
+      "then": {
+        "primary_management_class": "operative_nephron_sparing_or_nephrektomie_based_on_stage_feasibility"
+      }
+    },
+    {
+      "rule_id": "RCC_NM_03_T1",
+      "if": {
+        "tumor.clinical_T_category": "T1"
+      },
+      "then": {
+        "primary_management_class": "operative_nephron_sparing"
+      }
+    },
+    {
+      "rule_id": "RCC_NM_03b_T1_subcategories",
+      "if": {
+        "any_of": [
+          {
+            "tumor.clinical_T_subcategory": "T1a"
+          },
+          {
+            "tumor.clinical_T_subcategory": "T1b"
+          }
+        ]
+      },
+      "then": {
+        "primary_management_class": "operative_nephron_sparing"
+      }
+    },
+    {
+      "rule_id": "RCC_NM_04_groesser_T1",
+      "if": {
+        "any_of": [
+          {
+            "tumor.clinical_T_category": "T2"
+          },
+          {
+            "tumor.clinical_T_category": "T3"
+          },
+          {
+            "tumor.clinical_T_category": "T4"
+          }
+        ]
+      },
+      "then": {
+        "if_nephron_sparing_technically_possible": "operative_nephron_sparing",
+        "else": "operative_nephrektomie"
+      }
+    }
+  ]
+}

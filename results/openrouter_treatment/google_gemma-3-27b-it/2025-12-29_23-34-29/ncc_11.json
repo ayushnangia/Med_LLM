@@ -1,0 +1,63 @@
+{
+  "case_id": "ncc_11",
+  "timestamp": "2025-12-29T23:37:01.602115",
+  "provider": "openrouter",
+  "model": "google/gemma-3-27b-it",
+  "input_case": {
+    "case_id": "ncc_11",
+    "patient_name": "Muster, Ivan",
+    "age": 55,
+    "ecog": 0,
+    "anamnese": "Im Rahmen TAVI-Abklärung Zufallsbefund: Nierentumor links (ca. 7,8 cm) mit V. a. Infiltration/Tumorthrombus in die V. cava inferior. Vorerkrankung: arterielle Hypertonie.",
+    "diagnose_kurz": "Großer Nierentumor links ca. 7,8 × 6,9 cm mit subdiaphragmaler Infiltration/Tumorthrombus V. cava inferior (cT3b?); CT Thorax ohne Metastasen",
+    "stadium": "lokal fortgeschritten (V. cava-Beteiligung), M0 (CT Thorax 07.12.2025)",
+    "tnm_clinical": {
+      "T": "T3",
+      "T_sub": "T3b",
+      "N": "unknown",
+      "M": "M0",
+      "stage_group": "unknown"
+    },
+    "histologie_subtyp": null,
+    "histologie_klarzellig": null,
+    "bildgebung": [
+      {
+        "modalitaet": "MRT",
+        "region": "Abdomen",
+        "datum": "2025-12-06",
+        "befund_kurz": "Hochgradiger Verdacht auf linksseitigen Nierentumor ca. 7,8 × 6,9 cm mit subdiaphragmaler Infiltration der V. cava inferior (Tumorthrombus/V.-cava-Beteiligung).",
+        "quelle": "Erforderlicher Befund"
+      },
+      {
+        "modalitaet": "CT",
+        "region": "Thorax",
+        "datum": "2025-12-07",
+        "befund_kurz": "Kein Hinweis auf Filiae/Metastasen.",
+        "quelle": "Erforderlicher Befund"
+      }
+    ],
+    "nebendiagnosen": [
+      "arterielle Hypertonie"
+    ],
+    "ground_truth_metastatic": false,
+    "ground_truth_therapy": "OP-Planung: Nephrektomie links offen (bei V.-cava-Beteiligung ggf. Thrombektomie)."
+  },
+  "prompt_text": "Du bist ein erfahrener Onkologe, spezialisiert auf Nierenzellkarzinom (RCC).\nAnalysiere den folgenden klinischen Fall und erstelle eine strukturierte Therapieempfehlung.\n\n=== KLINISCHER FALL ===\nPatient: Muster, Ivan, 55 Jahre\nECOG: 0, Karnofsky: ?%\nKomorbidität: unknown\n\nDiagnose: Großer Nierentumor links ca. 7,8 × 6,9 cm mit subdiaphragmaler Infiltration/Tumorthrombus V. cava inferior (cT3b?); CT Thorax ohne Metastasen\nStadium: lokal fortgeschritten (V. cava-Beteiligung), M0 (CT Thorax 07.12.2025)\nTNM: cTNM: TT3 Nunknown MM0\n\nHISTOLOGIE: Nicht dokumentiert\n\nAnamnese: Im Rahmen TAVI-Abklärung Zufallsbefund: Nierentumor links (ca. 7,8 cm) mit V. a. Infiltration/Tumorthrombus in die V. cava inferior. Vorerkrankung: arterielle Hypertonie.\n\nNebendiagnosen: arterielle Hypertonie\n\nBildgebung:\n  - MRT Abdomen (2025-12-06): Hochgradiger Verdacht auf linksseitigen Nierentumor ca. 7,8 × 6,9 cm mit subdiaphragmaler Infiltration der V. cava inferior (Tumorthrombus/V.-cava-Beteiligung).\n  - CT Thorax (2025-12-07): Kein Hinweis auf Filiae/Metastasen.\n\nVorherige Systemtherapien: Keine\n\n=== THERAPIE-LEITLINIEN ===\n\nMETASTASIERTES KLARZELLIGES RCC - THERAPIE-ALGORITHMUS:\n\nIMDC-RISIKOSTRATIFIZIERUNG:\n- Günstig (0 Risikofaktoren)\n- Intermediär (1-2 Risikofaktoren)\n- Ungünstig (≥3 Risikofaktoren)\n\nRisikofaktoren: Karnofsky <80%, Zeit bis Systemtherapie <1 Jahr, Hämoglobin↓, Calcium↑, Neutrophile↑, Thrombozyten↑\n\nERSTLINIE (wenn ICI-Kombination möglich):\n- Günstig: NIVO+CABO (A), PEMBRO+AXI (A), PEMBRO+LEN (A), AVELU+AXI (B)\n- Intermediär: NIVO+CABO (A), NIVO+IPI (A), PEMBRO+AXI (A), PEMBRO+LEN (A)\n- Ungünstig: NIVO+CABO (A), NIVO+IPI (A), PEMBRO+AXI (A), PEMBRO+LEN (A)\n\nERSTLINIE (wenn ICI-Kombination NICHT möglich):\n- Günstig: Pazopanib (A), Sunitinib (A), Tivozanib (A), BEV+IFN (A)\n- Intermediär: Cabozantinib (B), Pazopanib (B), Sunitinib (B)\n- Ungünstig: Cabozantinib (B), Sunitinib (B), Temsirolimus (0)\n\nZWEITLINIE nach ICI-Kombination: Cabozantinib (A), Lenvatinib+Everolimus (A), Sunitinib (A)\nZWEITLINIE nach VEGF/R-Monotherapie: Cabozantinib (A), Nivolumab (A)\n\n---\n\nNICHT-METASTASIERTES RCC - THERAPIE-ALGORITHMUS:\n\n1. AKTIVE ÜBERWACHUNG (GoR 0): Kleine Tumoren + hohe Komorbidität/begrenzte Lebenserwartung\n2. ABLATION (GoR 0): Kleine Tumoren + hohe Komorbidität/begrenzte Lebenserwartung\n3. NIERENTEILRESEKTION: cT1 (≤7cm) SOLL durchgeführt werden (GoR A)\n4. RADIKALE NEPHREKTOMIE: Wenn Teilresektion nicht möglich (GoR A)\n\nLegende: A=starke Empfehlung, B=schwache Empfehlung, 0=Option\n\n\n=== AUFGABE ===\nAnalysiere den Fall schrittweise:\n1. METASTASIERUNG: Ist der Patient metastasiert? (basierend auf TNM, Anamnese, Bildgebung)\n2. HISTOLOGIE: Klarzellig vs. nicht-klarzellig?\n3. RISIKO: Falls metastasiert + klarzellig, IMDC-Risiko?\n4. THERAPIE: Empfehlung nach Leitlinie\n\nAntwort als JSON:\n{\n    \"is_metastatic\": true/false,\n    \"metastatic_reasoning\": \"Begründung...\",\n    \"imdc_risk\": \"guenstig/intermediaer/unguenstig/nicht_anwendbar\",\n    \"imdc_reasoning\": \"IMDC-Berechnung...\",\n    \"treatment_reasoning\": \"Schrittweise Begründung...\",\n    \"recommended_therapy\": \"Konkrete Empfehlung\",\n    \"therapy_category\": \"IO+TKI/TKI mono/Surgery/Surveillance/etc.\",\n    \"confidence\": 0.0-1.0\n}",
+  "output": {
+    "is_metastatic": false,
+    "metastatic_reasoning": "Der CT-Thorax vom 07.12.2025 zeigt keinen Hinweis auf Fernmetastasen (M0). Die V. cava-Beteiligung stellt eine lokale Ausdehnung dar, aber keine Fernmetastase.",
+    "imdc_risk": "nicht_anwendbar",
+    "imdc_reasoning": "Die IMDC-Risikostratifizierung ist nur bei metastasiertem Nierenzellkarzinom relevant. Da der Patient nach aktueller Beurteilung keine Fernmetastasen hat, ist die IMDC-Risikobewertung nicht anwendbar.",
+    "treatment_reasoning": "Der Patient präsentiert sich mit einem lokal fortgeschrittenen Nierenzellkarzinom (cT3b?) mit Infiltration der V. cava inferior. Aufgrund der Größe des Tumors (7,8 x 6,9 cm) und der V. cava-Beteiligung ist eine radikale Nephrektomie mit Resektion des Tumorthrombus in der V. cava inferior die Therapie der Wahl. Eine neoadjuvante Therapie ist in dieser Situation nicht standardisiert und der Nutzen ist unklar. Eine aktive Überwachung ist aufgrund der Tumorgröße und der V. cava-Beteiligung nicht indiziert. Eine Ablation ist aufgrund der Größe und Lokalisation des Tumors nicht geeignet. Die Histologie ist noch nicht bekannt, was die Therapieplanung etwas erschwert, aber die primäre chirurgische Resektion sollte angestrebt werden.",
+    "recommended_therapy": "Radikale Nephrektomie mit Resektion des Tumorthrombus in der V. cava inferior.",
+    "therapy_category": "Surgery",
+    "confidence": 0.9
+  },
+  "raw_response": "\n```json\n{\n    \"is_metastatic\": false,\n    \"metastatic_reasoning\": \"Der CT-Thorax vom 07.12.2025 zeigt keinen Hinweis auf Fernmetastasen (M0). Die V. cava-Beteiligung stellt eine lokale Ausdehnung dar, aber keine Fernmetastase.\",\n    \"imdc_risk\": \"nicht_anwendbar\",\n    \"imdc_reasoning\": \"Die IMDC-Risikostratifizierung ist nur bei metastasiertem Nierenzellkarzinom relevant. Da der Patient nach aktueller Beurteilung keine Fernmetastasen hat, ist die IMDC-Risikobewertung nicht anwendbar.\",\n    \"treatment_reasoning\": \"Der Patient präsentiert sich mit einem lokal fortgeschrittenen Nierenzellkarzinom (cT3b?) mit Infiltration der V. cava inferior. Aufgrund der Größe des Tumors (7,8 x 6,9 cm) und der V. cava-Beteiligung ist eine radikale Nephrektomie mit Resektion des Tumorthrombus in der V. cava inferior die Therapie der Wahl. Eine neoadjuvante Therapie ist in dieser Situation nicht standardisiert und der Nutzen ist unklar. Eine aktive Überwachung ist aufgrund der Tumorgröße und der V. cava-Beteiligung nicht indiziert. Eine Ablation ist aufgrund der Größe und Lokalisation des Tumors nicht geeignet. Die Histologie ist noch nicht bekannt, was die Therapieplanung etwas erschwert, aber die primäre chirurgische Resektion sollte angestrebt werden.\",\n    \"recommended_therapy\": \"Radikale Nephrektomie mit Resektion des Tumorthrombus in der V. cava inferior.\",\n    \"therapy_category\": \"Surgery\",\n    \"confidence\": 0.9\n}\n```",
+  "ground_truth_metastatic": false,
+  "ground_truth_therapy": "OP-Planung: Nephrektomie links offen (bei V.-cava-Beteiligung ggf. Thrombektomie).",
+  "metastatic_correct": true,
+  "inference_time_seconds": 23.771440029144287,
+  "tokens_used": 1582,
+  "success": true
+}

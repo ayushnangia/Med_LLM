@@ -1,0 +1,98 @@
+{
+  "case_id": "ncc_35",
+  "timestamp": "2025-12-29T23:44:07.397603",
+  "provider": "openrouter",
+  "model": "google/gemma-3-27b-it",
+  "input_case": {
+    "case_id": "ncc_35",
+    "patient_name": "Beispiel, Dimo",
+    "age": 63,
+    "ecog": 2,
+    "anamnese": "Chromophobes RCC, metastasiert. Therapiesequenz geplant/bisher: 1L Sunitinib, 2L Cabozantinib, 3L Diskussion: Nivolumab (off-label je nach Setting/MTB) vs Studie. Komorbiditäten: arterielle Hypertonie; Z. n. Nabelhernien-OP. Aktuell Progress lymphonodal/peritoneal im CT 08.12.2025; mögliche neue ossäre Läsion.",
+    "diagnose_kurz": "Metastasiertes chromophobes Nierenzellkarzinom (non-ccRCC) mit Progress lymphonodal/peritoneal im CT 08.12.2025 und DD neuer ossärer Läsion.",
+    "stadium": "metastasiert; non-ccRCC (chromophob); nach TKI-Vortherapien; 3.-Linie/Studie in Diskussion",
+    "tnm_clinical": null,
+    "histologie_subtyp": null,
+    "histologie_klarzellig": null,
+    "bildgebung": [
+      {
+        "modalitaet": "CT",
+        "region": "Thorax/Abdomen/Becken",
+        "datum": "2025-12-08",
+        "befund_kurz": "Thorax: stabile geringe Lungenherde, jedoch neu mediastinaler LK (subcarinal 17 mm) metastasenverdächtig. Abdomen: Progress retroperitoneal (interaortokaval 14 → 22 mm) und neu peritonealer Herd 13 mm; Leber ohne sichere Metastasen. Skelett: neue osteoblastische Läsion rechtes Acetabulum 12 mm (DD Metastase) – Korrelation/MRT erwägen.",
+        "quelle": "Erforderlicher Befund",
+        "detailstruktur": {
+          "thorax": {
+            "pulmonale_herde": "stabil_gering",
+            "pleuraerguss": false,
+            "mediastinale_hilaere_lk": [
+              {
+                "lokalisation": "subcarinal",
+                "groesse_mm_kurze_achse": 17,
+                "bewertung": "metastasenverdaechtig_neu"
+              }
+            ]
+          },
+          "abdomen": {
+            "retroperitoneum": {
+              "lymphknoten": [
+                {
+                  "lokalisation": "interaortokaval",
+                  "groesse_mm_kurze_achse": 22,
+                  "vorher_mm_kurze_achse": 14,
+                  "bewertung": "progredient"
+                }
+              ]
+            },
+            "peritoneum": [
+              {
+                "lokalisation": "peritoneal",
+                "groesse_mm": 13,
+                "bewertung": "neu_metastasenverdaechtig"
+              }
+            ],
+            "leber": "keine_sicheren_metastasen"
+          },
+          "skelett": {
+            "ossäre_laesionen": [
+              {
+                "lokalisation": "rechtes Acetabulum",
+                "typ": "osteoblastisch",
+                "groesse_mm": 12,
+                "bewertung": "DD_metastase",
+                "empfehlung": "MRT_Korrelation"
+              }
+            ]
+          }
+        },
+        "beurteilung": "Progress lymphonodal/peritoneal; mögliche neue ossäre Läsion."
+      }
+    ],
+    "nebendiagnosen": [
+      {
+        "diagnose": "Arterielle Hypertonie",
+        "details": null
+      }
+    ],
+    "ground_truth_metastatic": null,
+    "ground_truth_therapy": "Entscheidung 3. Linie im MTB: Nivolumab (off-label je nach Setting) vs alternative Sequenz vs Studie. | Supportiv: Blutdruckkontrollen, Nierenfunktion/Metabolik unter weiterer Therapie, Schmerzassessment (Becken); ggf. MRT zur Abklärung ossärer Läsion."
+  },
+  "prompt_text": "Du bist ein erfahrener Onkologe, spezialisiert auf Nierenzellkarzinom (RCC).\nAnalysiere den folgenden klinischen Fall und erstelle eine strukturierte Therapieempfehlung.\n\n=== KLINISCHER FALL ===\nPatient: Beispiel, Dimo, 63 Jahre\nECOG: 2, Karnofsky: 70%\nKomorbidität: unknown\n\nDiagnose: Metastasiertes chromophobes Nierenzellkarzinom (non-ccRCC) mit Progress lymphonodal/peritoneal im CT 08.12.2025 und DD neuer ossärer Läsion.\nStadium: metastasiert; non-ccRCC (chromophob); nach TKI-Vortherapien; 3.-Linie/Studie in Diskussion\nTNM: nicht dokumentiert\n\nHISTOLOGIE: Nicht dokumentiert\n\nAnamnese: Chromophobes RCC, metastasiert. Therapiesequenz geplant/bisher: 1L Sunitinib, 2L Cabozantinib, 3L Diskussion: Nivolumab (off-label je nach Setting/MTB) vs Studie. Komorbiditäten: arterielle Hypertonie; Z. n. Nabelhernien-OP. Aktuell Progress lymphonodal/peritoneal im CT 08.12.2025; mögliche neue ossäre Läsion.\n\nNebendiagnosen: Arterielle Hypertonie\n\nBildgebung:\n  - CT Thorax/Abdomen/Becken (2025-12-08): Thorax: stabile geringe Lungenherde, jedoch neu mediastinaler LK (subcarinal 17 mm) metastasenverdächtig. Abdomen: Progress retroperitoneal (interaortokaval 14 → 22 mm) und neu peritonealer Herd 13 mm; Leber ohne sichere Metastasen. Skelett: neue osteoblastische Läsion rechtes Acetabulum 12 mm (DD Metastase) – Korrelation/MRT erwägen.\n\nVorherige Systemtherapien: Keine\n\n=== THERAPIE-LEITLINIEN ===\n\nMETASTASIERTES KLARZELLIGES RCC - THERAPIE-ALGORITHMUS:\n\nIMDC-RISIKOSTRATIFIZIERUNG:\n- Günstig (0 Risikofaktoren)\n- Intermediär (1-2 Risikofaktoren)\n- Ungünstig (≥3 Risikofaktoren)\n\nRisikofaktoren: Karnofsky <80%, Zeit bis Systemtherapie <1 Jahr, Hämoglobin↓, Calcium↑, Neutrophile↑, Thrombozyten↑\n\nERSTLINIE (wenn ICI-Kombination möglich):\n- Günstig: NIVO+CABO (A), PEMBRO+AXI (A), PEMBRO+LEN (A), AVELU+AXI (B)\n- Intermediär: NIVO+CABO (A), NIVO+IPI (A), PEMBRO+AXI (A), PEMBRO+LEN (A)\n- Ungünstig: NIVO+CABO (A), NIVO+IPI (A), PEMBRO+AXI (A), PEMBRO+LEN (A)\n\nERSTLINIE (wenn ICI-Kombination NICHT möglich):\n- Günstig: Pazopanib (A), Sunitinib (A), Tivozanib (A), BEV+IFN (A)\n- Intermediär: Cabozantinib (B), Pazopanib (B), Sunitinib (B)\n- Ungünstig: Cabozantinib (B), Sunitinib (B), Temsirolimus (0)\n\nZWEITLINIE nach ICI-Kombination: Cabozantinib (A), Lenvatinib+Everolimus (A), Sunitinib (A)\nZWEITLINIE nach VEGF/R-Monotherapie: Cabozantinib (A), Nivolumab (A)\n\n---\n\nNICHT-METASTASIERTES RCC - THERAPIE-ALGORITHMUS:\n\n1. AKTIVE ÜBERWACHUNG (GoR 0): Kleine Tumoren + hohe Komorbidität/begrenzte Lebenserwartung\n2. ABLATION (GoR 0): Kleine Tumoren + hohe Komorbidität/begrenzte Lebenserwartung\n3. NIERENTEILRESEKTION: cT1 (≤7cm) SOLL durchgeführt werden (GoR A)\n4. RADIKALE NEPHREKTOMIE: Wenn Teilresektion nicht möglich (GoR A)\n\nLegende: A=starke Empfehlung, B=schwache Empfehlung, 0=Option\n\n\n=== AUFGABE ===\nAnalysiere den Fall schrittweise:\n1. METASTASIERUNG: Ist der Patient metastasiert? (basierend auf TNM, Anamnese, Bildgebung)\n2. HISTOLOGIE: Klarzellig vs. nicht-klarzellig?\n3. RISIKO: Falls metastasiert + klarzellig, IMDC-Risiko?\n4. THERAPIE: Empfehlung nach Leitlinie\n\nAntwort als JSON:\n{\n    \"is_metastatic\": true/false,\n    \"metastatic_reasoning\": \"Begründung...\",\n    \"imdc_risk\": \"guenstig/intermediaer/unguenstig/nicht_anwendbar\",\n    \"imdc_reasoning\": \"IMDC-Berechnung...\",\n    \"treatment_reasoning\": \"Schrittweise Begründung...\",\n    \"recommended_therapy\": \"Konkrete Empfehlung\",\n    \"therapy_category\": \"IO+TKI/TKI mono/Surgery/Surveillance/etc.\",\n    \"confidence\": 0.0-1.0\n}",
+  "output": {
+    "is_metastatic": true,
+    "metastatic_reasoning": "Der Patient zeigt eindeutige Anzeichen einer Metastasierung: mediastinale Lymphknotenmetastasen, Progression retroperitoneal und peritoneale Herde sowie eine neue osteoblastische Läsion im Acetabulum. Die Anamnese bestätigt ein bereits metastasiertes chromophobes Nierenzellkarzinom.",
+    "imdc_risk": "nicht_anwendbar",
+    "imdc_reasoning": "Der IMDC-Risiko-Score ist für nicht-klarzellige RCC (non-ccRCC) nicht validiert und daher nicht anwendbar. Die Leitlinien differenzieren nicht explizit nach IMDC-Risiko bei non-ccRCC.",
+    "treatment_reasoning": "Der Patient befindet sich in der 3. Linie der systemischen Therapie nach Sunitinib und Cabozantinib. Die Progression unter diesen Therapien deutet auf eine Refraktärität hin. Da es sich um ein chromophobes Nierenzellkarzinom handelt, sind die Datenlage und Empfehlungen weniger eindeutig als bei klarzelligem RCC.  Nivolumab (off-label) oder die Teilnahme an einer Studie werden diskutiert. Die neue osteoblastische Läsion sollte durch MRT evaluiert werden, um eine Metastase zu bestätigen und Frakturrisiko zu beurteilen. Die arterielle Hypertonie muss bei der Therapieplanung berücksichtigt werden. Da Cabozantinib bereits eingesetzt wurde, ist es als nächste Therapie weniger geeignet. Die Leitlinien geben für die 3. Linie bei non-ccRCC keine klare Empfehlung, sondern verweisen auf Studien. Aufgrund des ECOG-Status von 2 und Karnofsky von 70% ist der Patient für eine Immuntherapie geeignet, sofern keine Kontraindikationen vorliegen.",
+    "recommended_therapy": "Nivolumab (off-label) in Erwägung ziehen, alternativ Teilnahme an einer klinischen Studie mit neuartigen Wirkstoffen oder Therapieansätzen für refraktäres chromophobes Nierenzellkarzinom.",
+    "therapy_category": "IO+TKI/Studie",
+    "confidence": 0.7
+  },
+  "raw_response": "\n```json\n{\n    \"is_metastatic\": true,\n    \"metastatic_reasoning\": \"Der Patient zeigt eindeutige Anzeichen einer Metastasierung: mediastinale Lymphknotenmetastasen, Progression retroperitoneal und peritoneale Herde sowie eine neue osteoblastische Läsion im Acetabulum. Die Anamnese bestätigt ein bereits metastasiertes chromophobes Nierenzellkarzinom.\",\n    \"imdc_risk\": \"nicht_anwendbar\",\n    \"imdc_reasoning\": \"Der IMDC-Risiko-Score ist für nicht-klarzellige RCC (non-ccRCC) nicht validiert und daher nicht anwendbar. Die Leitlinien differenzieren nicht explizit nach IMDC-Risiko bei non-ccRCC.\",\n    \"treatment_reasoning\": \"Der Patient befindet sich in der 3. Linie der systemischen Therapie nach Sunitinib und Cabozantinib. Die Progression unter diesen Therapien deutet auf eine Refraktärität hin. Da es sich um ein chromophobes Nierenzellkarzinom handelt, sind die Datenlage und Empfehlungen weniger eindeutig als bei klarzelligem RCC.  Nivolumab (off-label) oder die Teilnahme an einer Studie werden diskutiert. Die neue osteoblastische Läsion sollte durch MRT evaluiert werden, um eine Metastase zu bestätigen und Frakturrisiko zu beurteilen. Die arterielle Hypertonie muss bei der Therapieplanung berücksichtigt werden. Da Cabozantinib bereits eingesetzt wurde, ist es als nächste Therapie weniger geeignet. Die Leitlinien geben für die 3. Linie bei non-ccRCC keine klare Empfehlung, sondern verweisen auf Studien. Aufgrund des ECOG-Status von 2 und Karnofsky von 70% ist der Patient für eine Immuntherapie geeignet, sofern keine Kontraindikationen vorliegen.\",\n    \"recommended_therapy\": \"Nivolumab (off-label) in Erwägung ziehen, alternativ Teilnahme an einer klinischen Studie mit neuartigen Wirkstoffen oder Therapieansätzen für refraktäres chromophobes Nierenzellkarzinom.\",\n    \"therapy_category\": \"IO+TKI/Studie\",\n    \"confidence\": 0.7\n}\n```",
+  "ground_truth_metastatic": null,
+  "ground_truth_therapy": "Entscheidung 3. Linie im MTB: Nivolumab (off-label je nach Setting) vs alternative Sequenz vs Studie. | Supportiv: Blutdruckkontrollen, Nierenfunktion/Metabolik unter weiterer Therapie, Schmerzassessment (Becken); ggf. MRT zur Abklärung ossärer Läsion.",
+  "metastatic_correct": null,
+  "inference_time_seconds": 15.854140996932983,
+  "tokens_used": 1756,
+  "success": true
+}

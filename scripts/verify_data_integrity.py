@@ -18,8 +18,8 @@ import re
 
 # Configuration
 BASE_DIR = Path(__file__).parent.parent
-SOURCE_DIR = BASE_DIR / "data_llm" / "send_23_12_25"
-OUTPUT_DIR = BASE_DIR / "converted_data" / "send_23_12_25"
+SOURCE_DIR = BASE_DIR / "data_llm" / "send_27_12_25"
+OUTPUT_DIR = BASE_DIR / "converted_data" / "send_27_12_25"
 
 
 def get_patient_from_case(case: dict) -> dict:

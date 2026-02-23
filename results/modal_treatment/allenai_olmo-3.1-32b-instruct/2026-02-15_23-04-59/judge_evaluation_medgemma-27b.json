@@ -1,0 +1,677 @@
+{
+  "judge_model": "google/medgemma-27b-text-it",
+  "judge_config": {
+    "temperature": 0.3,
+    "top_p": 0.95,
+    "max_tokens": 2048,
+    "thinking_mode": false,
+    "structured_output": true,
+    "reasoning_effort": null
+  },
+  "timestamp": "2026-02-15_23-02-26",
+  "source_results_dir": "results/modal_treatment/allenai_olmo-3.1-32b-instruct/2026-02-15_23-04-59",
+  "total_cases": 34,
+  "evaluated_cases": 34,
+  "failed_evaluations": 0,
+  "metrics": {
+    "accuracy": 0.6176,
+    "correct_count": 21,
+    "incorrect_count": 13,
+    "therapy_semantic_match_rate": 0.5,
+    "therapy_semantic_match_count": 17,
+    "avg_therapy_semantic_score": 0.6706,
+    "clinical_appropriateness_rate": 0.9705882352941176,
+    "clinical_appropriateness_count": 33,
+    "avg_clinical_score": 0.8397,
+    "avg_reasoning_quality": 0.7662,
+    "avg_overall_score": 0.7315
+  },
+  "evaluations": [
+    {
+      "case_id": "ncc_36",
+      "evaluation": {
+        "is_correct": true,
+        "correctness_reason": "Die KI empfiehlt Nivolumab + Cabozantinib, was der Ground Truth entspricht.",
+        "therapy_semantic_match": true,
+        "therapy_semantic_score": 1.0,
+        "clinical_appropriateness": true,
+        "clinical_appropriateness_score": 0.9,
+        "reasoning_quality": 0.8,
+        "reasoning_critique": "Die Begründung ist im Wesentlichen korrekt, aber die Annahme eines günstigen IMDC-Risikos ohne vollständige Laborwerte und Zeitangaben ist eine Vereinfachung. Die Diskussion über die adjuvante Therapie in der Ground Truth wird von der KI nicht aufgegriffen, sondern direkt eine systemische Therapie empfohlen.",
+        "overall_score": 0.9,
+        "judge_reasoning": "Die KI trifft die korrekte Therapieempfehlung (Nivolumab + Cabozantinib), die der Ground Truth entspricht. Die Begründung ist weitgehend schlüssig und klinisch angemessen, auch wenn die IMDC-Risikobewertung vereinfacht ist und die Ground Truth eine vorsichtigere Haltung (Restaging/Diskussion adjuvante Therapie) zeigt. Die semantische Übereinstimmung ist perfekt. Die klinische Angemessenheit ist hoch, da die empfohlene Therapie der Leitlinienentsprechung entspricht. Die Begründungsqualität ist gut, aber nicht perfekt. Der Gesamtscore spiegelt die hohe Übereinstimmung bei der Therapieempfehlung wider."
+      },
+      "raw_response": "{\"is_correct\": true, \"correctness_reason\": \"Die KI empfiehlt Nivolumab + Cabozantinib, was der Ground Truth entspricht.\", \"therapy_semantic_match\": true, \"therapy_semantic_score\": 1.0, \"clinical_appropriateness\": true, \"clinical_appropriateness_score\": 0.9, \"reasoning_quality\": 0.8, \"reasoning_critique\": \"Die Begründung ist im Wesentlichen korrekt, aber die Annahme eines günstigen IMDC-Risikos ohne vollständige Laborwerte und Zeitangaben ist eine Vereinfachung. Die Diskussion über die adjuvante Therapie in der Ground Truth wird von der KI nicht aufgegriffen, sondern direkt eine systemische Therapie empfohlen.\", \"overall_score\": 0.9, \"judge_reasoning\": \"Die KI trifft die korrekte Therapieempfehlung (Nivolumab + Cabozantinib), die der Ground Truth entspricht. Die Begründung ist weitgehend schlüssig und klinisch angemessen, auch wenn die IMDC-Risikobewertung vereinfacht ist und die Ground Truth eine vorsichtigere Haltung (Restaging/Diskussion adjuvante Therapie) zeigt. Die semantische Übereinstimmung ist perfekt. Die klinische Angemessenheit ist hoch, da die empfohlene Therapie der Leitlinienentsprechung entspricht. Die Begründungsqualität ist gut, aber nicht perfekt. Der Gesamtscore spiegelt die hohe Übereinstimmung bei der Therapieempfehlung wider.\"}",
+      "reasoning_output": null,
+      "error": null,
+      "inference_time_seconds": 1.8006826569052303
+    },
+    {
+      "case_id": "ncc_37",
+      "evaluation": {
+        "is_correct": false,
+        "correctness_reason": "Die KI empfiehlt eine Biopsie vor der Therapie, während die Ground Truth eine direkte Therapieempfehlung gibt. Obwohl die KI-Empfehlung klinisch sinnvoll ist, entspricht sie nicht der spezifischen Therapieempfehlung der Ground Truth.",
+        "therapy_semantic_match": false,
+        "therapy_semantic_score": 0.1,
+        "clinical_appropriateness": true,
+        "clinical_appropriateness_score": 0.9,
+        "reasoning_quality": 0.9,
+        "reasoning_critique": "Die Begründung ist sehr gut und berücksichtigt die fehlende Histologie sowie die Leitlinienempfehlungen für verschiedene Subtypen. Die Argumentation für die Biopsie ist stichhaltig.",
+        "overall_score": 0.6,
+        "judge_reasoning": "Die KI-Empfehlung ist klinisch sehr angemessen und die Begründung ist exzellent. Sie erkennt korrekt die Notwendigkeit der Subtypisierung bei fehlender Histologie. Allerdings weicht die Empfehlung (Biopsie + dann Therapie je nach Subtyp) von der direkten Therapieempfehlung der Ground Truth (Cabozantinib) ab. Daher ist 'is_correct' false, obwohl die klinische Angemessenheit hoch ist. Der Gesamtscore spiegelt die hohe klinische Qualität, aber die Abweichung von der Ground Truth wider."
+      },
+      "raw_response": "{\"is_correct\": false, \"correctness_reason\": \"Die KI empfiehlt eine Biopsie vor der Therapie, während die Ground Truth eine direkte Therapieempfehlung gibt. Obwohl die KI-Empfehlung klinisch sinnvoll ist, entspricht sie nicht der spezifischen Therapieempfehlung der Ground Truth.\", \"therapy_semantic_match\": false, \"therapy_semantic_score\": 0.1, \"clinical_appropriateness\": true, \"clinical_appropriateness_score\": 0.9, \"reasoning_quality\": 0.9, \"reasoning_critique\": \"Die Begründung ist sehr gut und berücksichtigt die fehlende Histologie sowie die Leitlinienempfehlungen für verschiedene Subtypen. Die Argumentation für die Biopsie ist stichhaltig.\", \"overall_score\": 0.6, \"judge_reasoning\": \"Die KI-Empfehlung ist klinisch sehr angemessen und die Begründung ist exzellent. Sie erkennt korrekt die Notwendigkeit der Subtypisierung bei fehlender Histologie. Allerdings weicht die Empfehlung (Biopsie + dann Therapie je nach Subtyp) von der direkten Therapieempfehlung der Ground Truth (Cabozantinib) ab. Daher ist 'is_correct' false, obwohl die klinische Angemessenheit hoch ist. Der Gesamtscore spiegelt die hohe klinische Qualität, aber die Abweichung von der Ground Truth wider.\"}",
+      "reasoning_output": null,
+      "error": null,
+      "inference_time_seconds": 1.8006826569052303
+    },
+    {
+      "case_id": "ncc_38",
+      "evaluation": {
+        "is_correct": false,
+        "correctness_reason": "Die KI empfiehlt eine Biopsie als ersten Schritt, während die Ground Truth direkt eine Therapie empfiehlt. Obwohl die Biopsie klinisch sinnvoll ist, entspricht sie nicht der primären Therapieempfehlung.",
+        "therapy_semantic_match": false,
+        "therapy_semantic_score": 0.0,
+        "clinical_appropriateness": true,
+        "clinical_appropriateness_score": 0.8,
+        "reasoning_quality": 0.8,
+        "reasoning_critique": "Die Begründung ist sehr gut und berücksichtigt die fehlende Histologie korrekt. Die Empfehlung zur Biopsie ist klinisch sinnvoll, aber die KI übersieht, dass die Ground Truth eine direkte Therapieempfehlung ist.",
+        "overall_score": 0.5,
+        "judge_reasoning": "Die KI identifiziert korrekt die Notwendigkeit einer Histologiebestimmung und schlägt eine klinisch sinnvolle Vorgehensweise vor. Die Therapieempfehlung (Biopsie gefolgt von Therapie basierend auf Histologie) weicht jedoch von der direkten Therapieempfehlung der Ground Truth ab, was zu 'is_correct: false' führt. Die klinische Angemessenheit und Begründungsqualität sind hoch."
+      },
+      "raw_response": "{\"is_correct\": false, \"correctness_reason\": \"Die KI empfiehlt eine Biopsie als ersten Schritt, während die Ground Truth direkt eine Therapie empfiehlt. Obwohl die Biopsie klinisch sinnvoll ist, entspricht sie nicht der primären Therapieempfehlung.\", \"therapy_semantic_match\": false, \"therapy_semantic_score\": 0.0, \"clinical_appropriateness\": true, \"clinical_appropriateness_score\": 0.8, \"reasoning_quality\": 0.8, \"reasoning_critique\": \"Die Begründung ist sehr gut und berücksichtigt die fehlende Histologie korrekt. Die Empfehlung zur Biopsie ist klinisch sinnvoll, aber die KI übersieht, dass die Ground Truth eine direkte Therapieempfehlung ist.\", \"overall_score\": 0.5, \"judge_reasoning\": \"Die KI identifiziert korrekt die Notwendigkeit einer Histologiebestimmung und schlägt eine klinisch sinnvolle Vorgehensweise vor. Die Therapieempfehlung (Biopsie gefolgt von Therapie basierend auf Histologie) weicht jedoch von der direkten Therapieempfehlung der Ground Truth ab, was zu 'is_correct: false' führt. Die klinische Angemessenheit und Begründungsqualität sind hoch.\"}",
+      "reasoning_output": null,
+      "error": null,
+      "inference_time_seconds": 1.8006826569052303
+    },
+    {
+      "case_id": "ncc_39",
+      "evaluation": {
+        "is_correct": true,
+        "correctness_reason": "Die KI empfiehlt Cabozantinib, was der Ground Truth entspricht.",
+        "therapy_semantic_match": true,
+        "therapy_semantic_score": 1.0,
+        "clinical_appropriateness": true,
+        "clinical_appropriateness_score": 0.9,
+        "reasoning_quality": 0.7,
+        "reasoning_critique": "Die Begründung ist teilweise unvollständig (z.B. keine klare Aussage zur Histologie, obwohl sie als unbekannt deklariert wird) und nennt unnötig alternative Therapien, die nicht zur primären Empfehlung passen. Die Erwähnung von Zejula ist falsch (Zejula ist Niraparib).",
+        "overall_score": 0.82,
+        "judge_reasoning": "Die KI identifiziert korrekt die Notwendigkeit einer 2. Linien-Therapie nach Progress unter ICI+TKI. Die primäre Empfehlung 'Cabozantinib' stimmt mit der Ground Truth überein (hohe semantische Übereinstimmung). Die klinische Angemessenheit ist hoch, da Cabozantinib eine Standardoption in der 2. Linie ist. Die Begründung leidet unter Unvollständigkeiten und Fehlern (Zejula), was den Score senkt, aber die Kernempfehlung ist korrekt."
+      },
+      "raw_response": "{\"is_correct\": true,\n    \"correctness_reason\": \"Die KI empfiehlt Cabozantinib, was der Ground Truth entspricht.\",\n    \"therapy_semantic_match\": true,\n    \"therapy_semantic_score\": 1.0,\n    \"clinical_appropriateness\": true,\n    \"clinical_appropriateness_score\": 0.9,\n    \"reasoning_quality\": 0.7,\n    \"reasoning_critique\": \"Die Begründung ist teilweise unvollständig (z.B. keine klare Aussage zur Histologie, obwohl sie als unbekannt deklariert wird) und nennt unnötig alternative Therapien, die nicht zur primären Empfehlung passen. Die Erwähnung von Zejula ist falsch (Zejula ist Niraparib).\",\n    \"overall_score\": 0.82,\n    \"judge_reasoning\": \"Die KI identifiziert korrekt die Notwendigkeit einer 2. Linien-Therapie nach Progress unter ICI+TKI. Die primäre Empfehlung 'Cabozantinib' stimmt mit der Ground Truth überein (hohe semantische Übereinstimmung). Die klinische Angemessenheit ist hoch, da Cabozantinib eine Standardoption in der 2. Linie ist. Die Begründung leidet unter Unvollständigkeiten und Fehlern (Zejula), was den Score senkt, aber die Kernempfehlung ist korrekt.\"\n}",
+      "reasoning_output": null,
+      "error": null,
+      "inference_time_seconds": 1.8006826569052303
+    },
+    {
+      "case_id": "ncc_40",
+      "evaluation": {
+        "is_correct": false,
+        "correctness_reason": "Die KI empfiehlt eine Biopsie und eine retreatment-Strategie, während die Ground Truth eine spezifische 3. Linien-Therapie (Lenvatinib + Everolimus) vorschlägt. Obwohl die KI-Strategie klinisch sinnvoll ist, entspricht sie nicht der spezifischen Therapieempfehlung der Ground Truth.",
+        "therapy_semantic_match": false,
+        "therapy_semantic_score": 0.2,
+        "clinical_appropriateness": true,
+        "clinical_appropriateness_score": 0.8,
+        "reasoning_quality": 0.8,
+        "reasoning_critique": "Die Begründung ist gut strukturiert und erkennt die Notwendigkeit der Histologie-Klärung korrekt an. Sie berücksichtigt die vorherigen Therapien und schlägt sinnvolle Optionen (Biopsie, Retreatment) vor. Die Diskussion über klarzellige vs. nicht-klarzellige RCC ist korrekt.",
+        "overall_score": 0.55,
+        "judge_reasoning": "Die KI identifiziert korrekt die Notwendigkeit einer weiteren Behandlung und die Unsicherheit bezüglich des RCC-Subtyps. Die Empfehlung einer Biopsie ist klinisch sinnvoll, da die Histologie die Therapieentscheidung maßgeblich beeinflusst. Die vorgeschlagene Retreatment-Strategie ist ebenfalls angemessen. Allerdings weicht die Empfehlung von der spezifischen Therapie (Lenvatinib + Everolimus) der Ground Truth ab. Die Semantik-Übereinstimmung ist daher gering, obwohl die klinische Angemessenheit und die Begründungsqualität hoch sind. Der Gesamtscore spiegelt diese Diskrepanz wider."
+      },
+      "raw_response": "{\"is_correct\": false, \"correctness_reason\": \"Die KI empfiehlt eine Biopsie und eine retreatment-Strategie, während die Ground Truth eine spezifische 3. Linien-Therapie (Lenvatinib + Everolimus) vorschlägt. Obwohl die KI-Strategie klinisch sinnvoll ist, entspricht sie nicht der spezifischen Therapieempfehlung der Ground Truth.\", \"therapy_semantic_match\": false, \"therapy_semantic_score\": 0.2, \"clinical_appropriateness\": true, \"clinical_appropriateness_score\": 0.8, \"reasoning_quality\": 0.8, \"reasoning_critique\": \"Die Begründung ist gut strukturiert und erkennt die Notwendigkeit der Histologie-Klärung korrekt an. Sie berücksichtigt die vorherigen Therapien und schlägt sinnvolle Optionen (Biopsie, Retreatment) vor. Die Diskussion über klarzellige vs. nicht-klarzellige RCC ist korrekt.\", \"overall_score\": 0.55, \"judge_reasoning\": \"Die KI identifiziert korrekt die Notwendigkeit einer weiteren Behandlung und die Unsicherheit bezüglich des RCC-Subtyps. Die Empfehlung einer Biopsie ist klinisch sinnvoll, da die Histologie die Therapieentscheidung maßgeblich beeinflusst. Die vorgeschlagene Retreatment-Strategie ist ebenfalls angemessen. Allerdings weicht die Empfehlung von der spezifischen Therapie (Lenvatinib + Everolimus) der Ground Truth ab. Die Semantik-Übereinstimmung ist daher gering, obwohl die klinische Angemessenheit und die Begründungsqualität hoch sind. Der Gesamtscore spiegelt diese Diskrepanz wider.\"}",
+      "reasoning_output": null,
+      "error": null,
+      "inference_time_seconds": 1.8006826569052303
+    },
+    {
+      "case_id": "ncc_41",
+      "evaluation": {
+        "is_correct": false,
+        "correctness_reason": "Die KI empfiehlt Cabozantinib als Zweitlinientherapie, obwohl der Patient bereits eine ICI+TKI (Nivolumab+Cabozantinib) in der 1. Linie erhalten hat und unter Sunitinib in der 2. Linie progredient ist. Die Ground Truth empfiehlt Tivozanib als 3. Linie. Die KI-Empfehlung ist daher nicht korrekt.",
+        "therapy_semantic_match": false,
+        "therapy_semantic_score": 0.2,
+        "clinical_appropriateness": false,
+        "clinical_appropriateness_score": 0.3,
+        "reasoning_quality": 0.6,
+        "reasoning_critique": "Die Begründung ist teilweise korrekt, indem sie die vorherigen Therapien berücksichtigt, aber sie schlägt eine falsche Therapie an (Cabozantinib als 2. Linie nach ICI+TKI und Sunitinib). Die Logik ist fehlerhaft, da Cabozantinib bereits in der 1. Linie verwendet wurde. Die Diskussion über nicht-klarzellige RCC ist spekulativ ohne Histologie.",
+        "overall_score": 0.35,
+        "judge_reasoning": "Die KI-Empfehlung (Cabozantinib) weicht erheblich von der Ground Truth (Tivozanib) ab und ist klinisch nicht angemessen, da Cabozantinib bereits in der 1. Linie eingesetzt wurde. Die Begründung enthält logische Fehler und Spekulationen. Daher ist die Gesamtbewertung niedrig."
+      },
+      "raw_response": "{\"is_correct\": false, \"correctness_reason\": \"Die KI empfiehlt Cabozantinib als Zweitlinientherapie, obwohl der Patient bereits eine ICI+TKI (Nivolumab+Cabozantinib) in der 1. Linie erhalten hat und unter Sunitinib in der 2. Linie progredient ist. Die Ground Truth empfiehlt Tivozanib als 3. Linie. Die KI-Empfehlung ist daher nicht korrekt.\", \"therapy_semantic_match\": false, \"therapy_semantic_score\": 0.2, \"clinical_appropriateness\": false, \"clinical_appropriateness_score\": 0.3, \"reasoning_quality\": 0.6, \"reasoning_critique\": \"Die Begründung ist teilweise korrekt, indem sie die vorherigen Therapien berücksichtigt, aber sie schlägt eine falsche Therapie an (Cabozantinib als 2. Linie nach ICI+TKI und Sunitinib). Die Logik ist fehlerhaft, da Cabozantinib bereits in der 1. Linie verwendet wurde. Die Diskussion über nicht-klarzellige RCC ist spekulativ ohne Histologie.\", \"overall_score\": 0.35, \"judge_reasoning\": \"Die KI-Empfehlung (Cabozantinib) weicht erheblich von der Ground Truth (Tivozanib) ab und ist klinisch nicht angemessen, da Cabozantinib bereits in der 1. Linie eingesetzt wurde. Die Begründung enthält logische Fehler und Spekulationen. Daher ist die Gesamtbewertung niedrig.\"}",
+      "reasoning_output": null,
+      "error": null,
+      "inference_time_seconds": 1.8006826569052303
+    },
+    {
+      "case_id": "ncc_42",
+      "evaluation": {
+        "is_correct": false,
+        "correctness_reason": "Die KI empfiehlt Cabozantinib mono, während die Ground Truth Lenvatinib + Everolimus (oder alternative Sequenz) vorschlägt. Obwohl Cabozantinib eine Option ist, entspricht es nicht der primären Empfehlung oder einer expliziten Alternative.",
+        "therapy_semantic_match": false,
+        "therapy_semantic_score": 0.5,
+        "clinical_appropriateness": true,
+        "clinical_appropriateness_score": 0.7,
+        "reasoning_quality": 0.6,
+        "reasoning_critique": "Die Begründung ist teilweise korrekt, aber fehlerhaft in der Sequenzierung und der Gewichtung der Optionen. Die Annahme, dass Cabozantinib die 'empfohlene 2. Linie-Therapie nach VEGF-TKI' ist, ignoriert die vorherige ICI-Therapie (Pembrolizumab) und die Leitlinienempfehlungen für die 3. Linie nach ICI+TKI und TKI. Die Begründung für die Nicht-Anwendbarkeit von IMDC ist korrekt.",
+        "overall_score": 0.55,
+        "judge_reasoning": "Die KI schlägt eine klinisch akzeptable Therapie (Cabozantinib) vor, aber sie entspricht nicht der primären Empfehlung der Ground Truth (Lenvatinib + Everolimus) oder einer der Alternativen. Die Begründung ist logisch aufgebaut, aber die Therapieempfehlung basiert auf einer fehlerhaften Interpretation der Leitlinien für die 3. Linie nach Vorbehandlung mit ICI+TKI und TKI. Die semantische Übereinstimmung ist gering (gleiche Klasse, anderes Medikament). Die klinische Angemessenheit ist gegeben, aber nicht optimal. Die Begründungsqualität ist mittelmäßig aufgrund des Fehlers in der Therapieempfehlung."
+      },
+      "raw_response": "{\"is_correct\": false, \"correctness_reason\": \"Die KI empfiehlt Cabozantinib mono, während die Ground Truth Lenvatinib + Everolimus (oder alternative Sequenz) vorschlägt. Obwohl Cabozantinib eine Option ist, entspricht es nicht der primären Empfehlung oder einer expliziten Alternative.\", \"therapy_semantic_match\": false, \"therapy_semantic_score\": 0.5, \"clinical_appropriateness\": true, \"clinical_appropriateness_score\": 0.7, \"reasoning_quality\": 0.6, \"reasoning_critique\": \"Die Begründung ist teilweise korrekt, aber fehlerhaft in der Sequenzierung und der Gewichtung der Optionen. Die Annahme, dass Cabozantinib die 'empfohlene 2. Linie-Therapie nach VEGF-TKI' ist, ignoriert die vorherige ICI-Therapie (Pembrolizumab) und die Leitlinienempfehlungen für die 3. Linie nach ICI+TKI und TKI. Die Begründung für die Nicht-Anwendbarkeit von IMDC ist korrekt.\", \"overall_score\": 0.55, \"judge_reasoning\": \"Die KI schlägt eine klinisch akzeptable Therapie (Cabozantinib) vor, aber sie entspricht nicht der primären Empfehlung der Ground Truth (Lenvatinib + Everolimus) oder einer der Alternativen. Die Begründung ist logisch aufgebaut, aber die Therapieempfehlung basiert auf einer fehlerhaften Interpretation der Leitlinien für die 3. Linie nach Vorbehandlung mit ICI+TKI und TKI. Die semantische Übereinstimmung ist gering (gleiche Klasse, anderes Medikament). Die klinische Angemessenheit ist gegeben, aber nicht optimal. Die Begründungsqualität ist mittelmäßig aufgrund des Fehlers in der Therapieempfehlung.\"}",
+      "reasoning_output": null,
+      "error": null,
+      "inference_time_seconds": 1.8006826569052303
+    },
+    {
+      "case_id": "ncc_43",
+      "evaluation": {
+        "is_correct": true,
+        "correctness_reason": "Die KI empfiehlt Lenvatinib + Everolimus, was eine der von der Ground Truth genannten akzeptablen Optionen ist.",
+        "therapy_semantic_match": false,
+        "therapy_semantic_score": 0.5,
+        "clinical_appropriateness": true,
+        "clinical_appropriateness_score": 0.9,
+        "reasoning_quality": 0.8,
+        "reasoning_critique": "Die Begründung ist weitgehend korrekt und logisch aufgebaut. Die Diskussion über Nivolumab nach ICI-Progress ist korrekt, die Priorisierung von Lenvatinib+Everolimus ist nachvollziehbar. Die IMDC-Bewertung ist korrekt als nicht anwendbar markiert.",
+        "overall_score": 0.76,
+        "judge_reasoning": "Die KI-Empfehlung (Lenvatinib + Everolimus) ist klinisch angemessen und entspricht einer der akzeptablen Alternativen zur Ground Truth (Tivozanib, Lenvatinib+Everolimus, Sunitinib). Die semantische Übereinstimmung ist gering, da die Ground Truth eine Auswahl an Optionen nennt, die KI aber eine spezifische Empfehlung trifft. Die klinische Angemessenheit ist hoch, da die Empfehlung leitlinienkonform ist. Die Begründungsqualität ist gut, da sie die Krankheitsgeschichte und die Leitlinien korrekt berücksichtigt. Der Gesamtscore spiegelt die hohe klinische Angemessenheit und die gute Begründung wider, während die semantische Übereinstimmung niedrig ist, da die KI eine spezifische Option aus der Liste der Ground Truth wählt."
+      },
+      "raw_response": "{\"is_correct\": true, \"correctness_reason\": \"Die KI empfiehlt Lenvatinib + Everolimus, was eine der von der Ground Truth genannten akzeptablen Optionen ist.\", \"therapy_semantic_match\": false, \"therapy_semantic_score\": 0.5, \"clinical_appropriateness\": true, \"clinical_appropriateness_score\": 0.9, \"reasoning_quality\": 0.8, \"reasoning_critique\": \"Die Begründung ist weitgehend korrekt und logisch aufgebaut. Die Diskussion über Nivolumab nach ICI-Progress ist korrekt, die Priorisierung von Lenvatinib+Everolimus ist nachvollziehbar. Die IMDC-Bewertung ist korrekt als nicht anwendbar markiert.\", \"overall_score\": 0.76, \"judge_reasoning\": \"Die KI-Empfehlung (Lenvatinib + Everolimus) ist klinisch angemessen und entspricht einer der akzeptablen Alternativen zur Ground Truth (Tivozanib, Lenvatinib+Everolimus, Sunitinib). Die semantische Übereinstimmung ist gering, da die Ground Truth eine Auswahl an Optionen nennt, die KI aber eine spezifische Empfehlung trifft. Die klinische Angemessenheit ist hoch, da die Empfehlung leitlinienkonform ist. Die Begründungsqualität ist gut, da sie die Krankheitsgeschichte und die Leitlinien korrekt berücksichtigt. Der Gesamtscore spiegelt die hohe klinische Angemessenheit und die gute Begründung wider, während die semantische Übereinstimmung niedrig ist, da die KI eine spezifische Option aus der Liste der Ground Truth wählt.\"}",
+      "reasoning_output": null,
+      "error": null,
+      "inference_time_seconds": 1.8006826569052303
+    },
+    {
+      "case_id": "ncc_44",
+      "evaluation": {
+        "is_correct": true,
+        "correctness_reason": "Die KI empfiehlt eine IO+TKI Kombination (Nivolumab + Ipilimumab oder Pembrolizumab + Cabozantinib), was eine akzeptable Alternative zur Ground Truth (MTB/Studie oder BSC) in der 4. Linie darstellt.",
+        "therapy_semantic_match": true,
+        "therapy_semantic_score": 0.9,
+        "clinical_appropriateness": true,
+        "clinical_appropriateness_score": 0.9,
+        "reasoning_quality": 0.8,
+        "reasoning_critique": "Die Begründung ist weitgehend korrekt, aber die Annahme, dass es sich um einen 'vermutlich klarzelligen RCC' handelt, ist nicht explizit durch den Fall gestützt. Die Diskussion der Optionen ist jedoch angemessen.",
+        "overall_score": 0.86,
+        "judge_reasoning": "Die KI-Empfehlung (IO+TKI) ist klinisch angemessen und eine valide Alternative zur Ground Truth (MTB/Studie oder BSC) in der 4. Linie bei einem mehrfach vorbehandelten mRCC. Die Begründung ist logisch und berücksichtigt die Vortherapien. Die semantische Übereinstimmung ist hoch, da die KI eine spezifische IO+TKI-Kombination vorschlägt, die zur Kategorie passt. Die klinische Angemessenheit ist ebenfalls hoch, da IO+TKI eine Standardoption in dieser Situation ist. Die Begründungsqualität ist gut, obwohl die Annahme über den Subtyp nicht belegt ist."
+      },
+      "raw_response": "{\"is_correct\": true, \"correctness_reason\": \"Die KI empfiehlt eine IO+TKI Kombination (Nivolumab + Ipilimumab oder Pembrolizumab + Cabozantinib), was eine akzeptable Alternative zur Ground Truth (MTB/Studie oder BSC) in der 4. Linie darstellt.\", \"therapy_semantic_match\": true, \"therapy_semantic_score\": 0.9, \"clinical_appropriateness\": true, \"clinical_appropriateness_score\": 0.9, \"reasoning_quality\": 0.8, \"reasoning_critique\": \"Die Begründung ist weitgehend korrekt, aber die Annahme, dass es sich um einen 'vermutlich klarzelligen RCC' handelt, ist nicht explizit durch den Fall gestützt. Die Diskussion der Optionen ist jedoch angemessen.\", \"overall_score\": 0.86, \"judge_reasoning\": \"Die KI-Empfehlung (IO+TKI) ist klinisch angemessen und eine valide Alternative zur Ground Truth (MTB/Studie oder BSC) in der 4. Linie bei einem mehrfach vorbehandelten mRCC. Die Begründung ist logisch und berücksichtigt die Vortherapien. Die semantische Übereinstimmung ist hoch, da die KI eine spezifische IO+TKI-Kombination vorschlägt, die zur Kategorie passt. Die klinische Angemessenheit ist ebenfalls hoch, da IO+TKI eine Standardoption in dieser Situation ist. Die Begründungsqualität ist gut, obwohl die Annahme über den Subtyp nicht belegt ist.\"}",
+      "reasoning_output": null,
+      "error": null,
+      "inference_time_seconds": 1.8006826569052303
+    },
+    {
+      "case_id": "ncc_45",
+      "evaluation": {
+        "is_correct": false,
+        "correctness_reason": "Die KI empfiehlt Cabozantinib, während das Tumorboard Belzutifan (falls verfügbar) oder eine alternative TKI-Sequenz vorschlägt. Cabozantinib ist zwar eine Option, aber nicht die primäre Empfehlung des Tumorboards.",
+        "therapy_semantic_match": false,
+        "therapy_semantic_score": 0.5,
+        "clinical_appropriateness": true,
+        "clinical_appropriateness_score": 0.7,
+        "reasoning_quality": 0.7,
+        "reasoning_critique": "Die Begründung ist weitgehend korrekt, aber die Schlussfolgerung, Cabozantinib sei die beste Wahl bei fehlender Histologie, ist diskutabel. Belzutifan wäre bei VHL-Mutation eine Option, die hier nicht berücksichtigt wird. Die Annahme, dass Immuntherapie ineffektiv ist, ist nicht unbedingt korrekt, da dies die 4. Linie ist.",
+        "overall_score": 0.55,
+        "judge_reasoning": "Die KI-Empfehlung ist klinisch angemessen, aber nicht die primäre Empfehlung des Tumorboards. Die semantische Übereinstimmung ist gering (gleiche Klasse, anderes Medikament). Die Begründung ist solide, aber die Schlussfolgerung ist nicht optimal. Der Gesamtscore spiegelt die Diskrepanz zur Ground Truth wider."
+      },
+      "raw_response": "{\"is_correct\": false, \"correctness_reason\": \"Die KI empfiehlt Cabozantinib, während das Tumorboard Belzutifan (falls verfügbar) oder eine alternative TKI-Sequenz vorschlägt. Cabozantinib ist zwar eine Option, aber nicht die primäre Empfehlung des Tumorboards.\", \"therapy_semantic_match\": false, \"therapy_semantic_score\": 0.5, \"clinical_appropriateness\": true, \"clinical_appropriateness_score\": 0.7, \"reasoning_quality\": 0.7, \"reasoning_critique\": \"Die Begründung ist weitgehend korrekt, aber die Schlussfolgerung, Cabozantinib sei die beste Wahl bei fehlender Histologie, ist diskutabel. Belzutifan wäre bei VHL-Mutation eine Option, die hier nicht berücksichtigt wird. Die Annahme, dass Immuntherapie ineffektiv ist, ist nicht unbedingt korrekt, da dies die 4. Linie ist.\", \"overall_score\": 0.55, \"judge_reasoning\": \"Die KI-Empfehlung ist klinisch angemessen, aber nicht die primäre Empfehlung des Tumorboards. Die semantische Übereinstimmung ist gering (gleiche Klasse, anderes Medikament). Die Begründung ist solide, aber die Schlussfolgerung ist nicht optimal. Der Gesamtscore spiegelt die Diskrepanz zur Ground Truth wider.\"}",
+      "reasoning_output": null,
+      "error": null,
+      "inference_time_seconds": 1.8006826569052303
+    },
+    {
+      "case_id": "ncc_46",
+      "evaluation": {
+        "is_correct": true,
+        "correctness_reason": "Die KI empfiehlt Cabozantinib, was eine der in der Ground Truth genannten Optionen (Pazopanib, Tivozanib, Cabozantinib) ist.",
+        "therapy_semantic_match": false,
+        "therapy_semantic_score": 0.5,
+        "clinical_appropriateness": true,
+        "clinical_appropriateness_score": 0.8,
+        "reasoning_quality": 0.7,
+        "reasoning_critique": "Die Begründung ist größtenteils korrekt, aber die Aussage, dass IO-Therapie bei nicht-klarzelligen RCC bevorzugt wird, ist nicht ganz korrekt (TKI-Mono ist Standard, IO kann aber auch eine Rolle spielen). Die Annahme, dass Cabozantinib bei CKD G3 oft vorzuziehen ist, ist plausibel, aber nicht universell gültig. Die Erwähnung der Palliativtherapie ist gut.",
+        "overall_score": 0.7,
+        "judge_reasoning": "Die KI empfiehlt eine der akzeptablen Therapien (Cabozantinib) aus der Ground Truth. Die semantische Übereinstimmung ist gering, da die Ground Truth mehrere Optionen nennt und die KI eine spezifische auswählt. Die klinische Angemessenheit ist hoch, da Cabozantinib eine valide 4L-Option bei CKD G3 ist. Die Begründungsqualität ist gut, aber mit kleinen Ungenauigkeiten bezüglich der IO-Therapie bei nicht-klarzelligen RCC."
+      },
+      "raw_response": "{\"is_correct\": true, \"correctness_reason\": \"Die KI empfiehlt Cabozantinib, was eine der in der Ground Truth genannten Optionen (Pazopanib, Tivozanib, Cabozantinib) ist.\", \"therapy_semantic_match\": false, \"therapy_semantic_score\": 0.5, \"clinical_appropriateness\": true, \"clinical_appropriateness_score\": 0.8, \"reasoning_quality\": 0.7, \"reasoning_critique\": \"Die Begründung ist größtenteils korrekt, aber die Aussage, dass IO-Therapie bei nicht-klarzelligen RCC bevorzugt wird, ist nicht ganz korrekt (TKI-Mono ist Standard, IO kann aber auch eine Rolle spielen). Die Annahme, dass Cabozantinib bei CKD G3 oft vorzuziehen ist, ist plausibel, aber nicht universell gültig. Die Erwähnung der Palliativtherapie ist gut.\", \"overall_score\": 0.7, \"judge_reasoning\": \"Die KI empfiehlt eine der akzeptablen Therapien (Cabozantinib) aus der Ground Truth. Die semantische Übereinstimmung ist gering, da die Ground Truth mehrere Optionen nennt und die KI eine spezifische auswählt. Die klinische Angemessenheit ist hoch, da Cabozantinib eine valide 4L-Option bei CKD G3 ist. Die Begründungsqualität ist gut, aber mit kleinen Ungenauigkeiten bezüglich der IO-Therapie bei nicht-klarzelligen RCC.\"}",
+      "reasoning_output": null,
+      "error": null,
+      "inference_time_seconds": 1.8006826569052303
+    },
+    {
+      "case_id": "ncc_47",
+      "evaluation": {
+        "is_correct": false,
+        "correctness_reason": "Die KI empfiehlt eine systemische Therapie (Cabozantinib oder Nivolumab), während die Ground Truth eine BSC-orientierte Therapie mit Palliativmaßnahmen empfiehlt. Obwohl die KI-Therapie leitlinienkonform wäre, entspricht sie nicht der primären Empfehlung oder den Alternativen.",
+        "therapy_semantic_match": false,
+        "therapy_semantic_score": 0.1,
+        "clinical_appropriateness": true,
+        "clinical_appropriateness_score": 0.7,
+        "reasoning_quality": 0.7,
+        "reasoning_critique": "Die Begründung ist größtenteils korrekt, erkennt aber die BSC-Orientierung des Patienten nicht ausreichend an und schlägt aktiv systemische Therapien vor, die im Widerspruch zur Ground Truth stehen. Die IMDC-Einschätzung ist spekulativ, da nicht alle Daten vorliegen.",
+        "overall_score": 0.4,
+        "judge_reasoning": "Die KI schlägt eine aktive systemische Therapie vor, die im Widerspruch zur BSC-orientierten Empfehlung der Ground Truth steht. Obwohl die vorgeschlagenen Therapien (Cabozantinib, Nivolumab) in anderen Kontexten leitlinienkonform wären, ist die Empfehlung für diesen spezifischen Patienten (ECOG 3, massiver Progress, BSC-orientiert) nicht korrekt. Die klinische Angemessenheit ist nur teilweise gegeben, da die BSC-Orientierung ignoriert wird. Die Begründung ist zwar logisch aufgebaut, aber die Schlussfolgerung (aktive Therapie) ist in diesem Fall unpassend."
+      },
+      "raw_response": "{\"is_correct\": false, \"correctness_reason\": \"Die KI empfiehlt eine systemische Therapie (Cabozantinib oder Nivolumab), während die Ground Truth eine BSC-orientierte Therapie mit Palliativmaßnahmen empfiehlt. Obwohl die KI-Therapie leitlinienkonform wäre, entspricht sie nicht der primären Empfehlung oder den Alternativen.\", \"therapy_semantic_match\": false, \"therapy_semantic_score\": 0.1, \"clinical_appropriateness\": true, \"clinical_appropriateness_score\": 0.7, \"reasoning_quality\": 0.7, \"reasoning_critique\": \"Die Begründung ist größtenteils korrekt, erkennt aber die BSC-Orientierung des Patienten nicht ausreichend an und schlägt aktiv systemische Therapien vor, die im Widerspruch zur Ground Truth stehen. Die IMDC-Einschätzung ist spekulativ, da nicht alle Daten vorliegen.\", \"overall_score\": 0.4, \"judge_reasoning\": \"Die KI schlägt eine aktive systemische Therapie vor, die im Widerspruch zur BSC-orientierten Empfehlung der Ground Truth steht. Obwohl die vorgeschlagenen Therapien (Cabozantinib, Nivolumab) in anderen Kontexten leitlinienkonform wären, ist die Empfehlung für diesen spezifischen Patienten (ECOG 3, massiver Progress, BSC-orientiert) nicht korrekt. Die klinische Angemessenheit ist nur teilweise gegeben, da die BSC-Orientierung ignoriert wird. Die Begründung ist zwar logisch aufgebaut, aber die Schlussfolgerung (aktive Therapie) ist in diesem Fall unpassend.\"}",
+      "reasoning_output": null,
+      "error": null,
+      "inference_time_seconds": 1.8006826569052303
+    },
+    {
+      "case_id": "ncc_48",
+      "evaluation": {
+        "is_correct": true,
+        "correctness_reason": "Die KI-Empfehlung entspricht der Ground Truth.",
+        "therapy_semantic_match": true,
+        "therapy_semantic_score": 1.0,
+        "clinical_appropriateness": true,
+        "clinical_appropriateness_score": 1.0,
+        "reasoning_quality": 0.9,
+        "reasoning_critique": "Die Begründung ist sehr gut, aber die Aussage 'IMDC-Risiko: nicht_anwendbar' ist nicht ganz korrekt. Die IMDC-Risikostatistiken sind zwar nicht dokumentiert, aber das Risiko *könnte* anhand der verfügbaren Daten (ECOG, Ca-Wert, Hb, Thrombozyten, Kalzium, Neutrophile, LDH) geschätzt werden, auch wenn es nicht explizit angegeben ist. Die Begründung für die Therapie ist jedoch korrekt.",
+        "overall_score": 0.95,
+        "judge_reasoning": "Die KI-Empfehlung ist semantisch identisch mit der Ground Truth und klinisch absolut angemessen. Die Begründung ist weitgehend korrekt und logisch, weist aber eine kleine Ungenauigkeit bezüglich der Anwendbarkeit des IMDC-Risikos auf."
+      },
+      "raw_response": "{\"is_correct\": true, \"correctness_reason\": \"Die KI-Empfehlung entspricht der Ground Truth.\", \"therapy_semantic_match\": true, \"therapy_semantic_score\": 1.0, \"clinical_appropriateness\": true, \"clinical_appropriateness_score\": 1.0, \"reasoning_quality\": 0.9, \"reasoning_critique\": \"Die Begründung ist sehr gut, aber die Aussage 'IMDC-Risiko: nicht_anwendbar' ist nicht ganz korrekt. Die IMDC-Risikostatistiken sind zwar nicht dokumentiert, aber das Risiko *könnte* anhand der verfügbaren Daten (ECOG, Ca-Wert, Hb, Thrombozyten, Kalzium, Neutrophile, LDH) geschätzt werden, auch wenn es nicht explizit angegeben ist. Die Begründung für die Therapie ist jedoch korrekt.\", \"overall_score\": 0.95, \"judge_reasoning\": \"Die KI-Empfehlung ist semantisch identisch mit der Ground Truth und klinisch absolut angemessen. Die Begründung ist weitgehend korrekt und logisch, weist aber eine kleine Ungenauigkeit bezüglich der Anwendbarkeit des IMDC-Risikos auf.\"}",
+      "reasoning_output": null,
+      "error": null,
+      "inference_time_seconds": 1.8006826569052303
+    },
+    {
+      "case_id": "ncc_49",
+      "evaluation": {
+        "is_correct": true,
+        "correctness_reason": "Die KI empfiehlt die Fortsetzung von Cabozantinib, was der Ground Truth entspricht.",
+        "therapy_semantic_match": true,
+        "therapy_semantic_score": 1.0,
+        "clinical_appropriateness": true,
+        "clinical_appropriateness_score": 0.9,
+        "reasoning_quality": 0.8,
+        "reasoning_critique": "Die Begründung ist im Wesentlichen korrekt, erwähnt aber Alternativen, die in diesem spezifischen Fall (stabile Erkrankung, gute Verträglichkeit) weniger relevant sind. Die Aussage zur Nicht-Anwendbarkeit des IMDC ist korrekt.",
+        "overall_score": 0.88,
+        "judge_reasoning": "Die KI trifft die korrekte Therapieempfehlung (Fortsetzung von Cabozantinib), die semantisch und klinisch angemessen ist. Die Begründung ist gut, könnte aber prägnanter sein, da die Alternativen bei stabiler Erkrankung weniger relevant sind."
+      },
+      "raw_response": "{\"is_correct\": true, \"correctness_reason\": \"Die KI empfiehlt die Fortsetzung von Cabozantinib, was der Ground Truth entspricht.\", \"therapy_semantic_match\": true, \"therapy_semantic_score\": 1.0, \"clinical_appropriateness\": true, \"clinical_appropriateness_score\": 0.9, \"reasoning_quality\": 0.8, \"reasoning_critique\": \"Die Begründung ist im Wesentlichen korrekt, erwähnt aber Alternativen, die in diesem spezifischen Fall (stabile Erkrankung, gute Verträglichkeit) weniger relevant sind. Die Aussage zur Nicht-Anwendbarkeit des IMDC ist korrekt.\", \"overall_score\": 0.88, \"judge_reasoning\": \"Die KI trifft die korrekte Therapieempfehlung (Fortsetzung von Cabozantinib), die semantisch und klinisch angemessen ist. Die Begründung ist gut, könnte aber prägnanter sein, da die Alternativen bei stabiler Erkrankung weniger relevant sind.\"}",
+      "reasoning_output": null,
+      "error": null,
+      "inference_time_seconds": 1.8006826569052303
+    },
+    {
+      "case_id": "ncc_50",
+      "evaluation": {
+        "is_correct": true,
+        "correctness_reason": "Die KI empfiehlt die Fortführung der aktuellen Therapie (Lenvatinib + Everolimus), was der Ground Truth entspricht.",
+        "therapy_semantic_match": true,
+        "therapy_semantic_score": 1.0,
+        "clinical_appropriateness": true,
+        "clinical_appropriateness_score": 0.9,
+        "reasoning_quality": 0.8,
+        "reasoning_critique": "Die Begründung ist weitgehend korrekt und berücksichtigt die vorherigen Therapien und Leitlinien. Die Diskussion über alternative Therapien bei Progression ist sinnvoll. Die Aussage, dass Lenvatinib+Everolimus eine 2. Linie-Therapie ist, ist korrekt, aber der Patient ist bereits in der 3. Linie. Die Begründung für die Nicht-Anwendbarkeit des IMDC-Risikos ist korrekt.",
+        "overall_score": 0.88,
+        "judge_reasoning": "Die KI trifft die korrekte primäre Empfehlung (Fortführung der aktuellen Therapie). Die Begründung ist solide und klinisch relevant, auch wenn die Einordnung der aktuellen Therapie als '2. Linie' im Kontext des Patienten (der bereits in der 3. Linie ist) etwas ungenau ist. Die klinische Angemessenheit ist hoch, da die Fortführung der aktuellen Therapie bei stabiler Erkrankung Standard ist. Die semantische Übereinstimmung ist perfekt."
+      },
+      "raw_response": "{\"is_correct\": true, \"correctness_reason\": \"Die KI empfiehlt die Fortführung der aktuellen Therapie (Lenvatinib + Everolimus), was der Ground Truth entspricht.\", \"therapy_semantic_match\": true, \"therapy_semantic_score\": 1.0, \"clinical_appropriateness\": true, \"clinical_appropriateness_score\": 0.9, \"reasoning_quality\": 0.8, \"reasoning_critique\": \"Die Begründung ist weitgehend korrekt und berücksichtigt die vorherigen Therapien und Leitlinien. Die Diskussion über alternative Therapien bei Progression ist sinnvoll. Die Aussage, dass Lenvatinib+Everolimus eine 2. Linie-Therapie ist, ist korrekt, aber der Patient ist bereits in der 3. Linie. Die Begründung für die Nicht-Anwendbarkeit des IMDC-Risikos ist korrekt.\", \"overall_score\": 0.88, \"judge_reasoning\": \"Die KI trifft die korrekte primäre Empfehlung (Fortführung der aktuellen Therapie). Die Begründung ist solide und klinisch relevant, auch wenn die Einordnung der aktuellen Therapie als '2. Linie' im Kontext des Patienten (der bereits in der 3. Linie ist) etwas ungenau ist. Die klinische Angemessenheit ist hoch, da die Fortführung der aktuellen Therapie bei stabiler Erkrankung Standard ist. Die semantische Übereinstimmung ist perfekt.\"}",
+      "reasoning_output": null,
+      "error": null,
+      "inference_time_seconds": 1.8006826569052303
+    },
+    {
+      "case_id": "ncc_51",
+      "evaluation": {
+        "is_correct": true,
+        "correctness_reason": "Die KI empfiehlt die Fortführung von Tivozanib, was der Ground Truth entspricht.",
+        "therapy_semantic_match": true,
+        "therapy_semantic_score": 1.0,
+        "clinical_appropriateness": true,
+        "clinical_appropriateness_score": 0.9,
+        "reasoning_quality": 0.7,
+        "reasoning_critique": "Die Begründung ist größtenteils korrekt, aber die Annahme 'klarzelliges RCC' ist nicht belegt und die Begründung für die Nicht-Anwendbarkeit des IMDC-Scores ist etwas unklar formuliert (Risikofaktoren fehlen, nicht nur Histologie).",
+        "overall_score": 0.85,
+        "judge_reasoning": "Die KI trifft die korrekte Therapieempfehlung (Fortführung Tivozanib) und diese ist klinisch angemessen in der 4. Linie nach vorheriger ICI-Therapie. Die semantische Übereinstimmung ist perfekt. Die Begründung ist zwar weitgehend korrekt, weist aber kleine Mängel auf (Annahme klarzelliges RCC, ungenaue IMDC-Begründung), was den Overall-Score leicht reduziert."
+      },
+      "raw_response": "{\"is_correct\": true, \"correctness_reason\": \"Die KI empfiehlt die Fortführung von Tivozanib, was der Ground Truth entspricht.\", \"therapy_semantic_match\": true, \"therapy_semantic_score\": 1.0, \"clinical_appropriateness\": true, \"clinical_appropriateness_score\": 0.9, \"reasoning_quality\": 0.7, \"reasoning_critique\": \"Die Begründung ist größtenteils korrekt, aber die Annahme 'klarzelliges RCC' ist nicht belegt und die Begründung für die Nicht-Anwendbarkeit des IMDC-Scores ist etwas unklar formuliert (Risikofaktoren fehlen, nicht nur Histologie).\", \"overall_score\": 0.85, \"judge_reasoning\": \"Die KI trifft die korrekte Therapieempfehlung (Fortführung Tivozanib) und diese ist klinisch angemessen in der 4. Linie nach vorheriger ICI-Therapie. Die semantische Übereinstimmung ist perfekt. Die Begründung ist zwar weitgehend korrekt, weist aber kleine Mängel auf (Annahme klarzelliges RCC, ungenaue IMDC-Begründung), was den Overall-Score leicht reduziert.\"}",
+      "reasoning_output": null,
+      "error": null,
+      "inference_time_seconds": 1.8006826569052303
+    },
+    {
+      "case_id": "ncc_52",
+      "evaluation": {
+        "is_correct": true,
+        "correctness_reason": "Die KI empfiehlt Nivolumab + Cabozantinib, was der Ground Truth (IO+IO oder IO+TKI) entspricht und eine akzeptable Erstlinienoption für mRCC mit hohem IMDC-Risiko ist.",
+        "therapy_semantic_match": true,
+        "therapy_semantic_score": 1.0,
+        "clinical_appropriateness": true,
+        "clinical_appropriateness_score": 0.9,
+        "reasoning_quality": 0.7,
+        "reasoning_critique": "Die Begründung für den IMDC-Status ist spekulativ (Anämie, Thrombozytose), da keine Laborwerte vorliegen. Die Begründung für die Therapie ist aber korrekt.",
+        "overall_score": 0.85,
+        "judge_reasoning": "Die KI identifiziert korrekt den metastasierten Status und empfiehlt eine leitlinienkonforme Erstlinientherapie (IO+TKI). Die semantische Übereinstimmung ist perfekt. Die klinische Angemessenheit ist hoch, obwohl die Begründung für den IMDC-Status spekulativ ist. Die Gesamtbewertung spiegelt die hohe Korrektheit und Angemessenheit wider, mit einem leichten Abzug für die spekulativen Annahmen in der IMDC-Begründung."
+      },
+      "raw_response": "{\"is_correct\": true, \"correctness_reason\": \"Die KI empfiehlt Nivolumab + Cabozantinib, was der Ground Truth (IO+IO oder IO+TKI) entspricht und eine akzeptable Erstlinienoption für mRCC mit hohem IMDC-Risiko ist.\", \"therapy_semantic_match\": true, \"therapy_semantic_score\": 1.0, \"clinical_appropriateness\": true, \"clinical_appropriateness_score\": 0.9, \"reasoning_quality\": 0.7, \"reasoning_critique\": \"Die Begründung für den IMDC-Status ist spekulativ (Anämie, Thrombozytose), da keine Laborwerte vorliegen. Die Begründung für die Therapie ist aber korrekt.\", \"overall_score\": 0.85, \"judge_reasoning\": \"Die KI identifiziert korrekt den metastasierten Status und empfiehlt eine leitlinienkonforme Erstlinientherapie (IO+TKI). Die semantische Übereinstimmung ist perfekt. Die klinische Angemessenheit ist hoch, obwohl die Begründung für den IMDC-Status spekulativ ist. Die Gesamtbewertung spiegelt die hohe Korrektheit und Angemessenheit wider, mit einem leichten Abzug für die spekulativen Annahmen in der IMDC-Begründung.\"}",
+      "reasoning_output": null,
+      "error": null,
+      "inference_time_seconds": 1.8006826569052303
+    },
+    {
+      "case_id": "ncc_53",
+      "evaluation": {
+        "is_correct": true,
+        "correctness_reason": "Die KI empfiehlt NIVO+CABO, was eine der von der Ground Truth genannten Optionen (IO+IO oder IO+TKI) ist und somit akzeptabel ist.",
+        "therapy_semantic_match": true,
+        "therapy_semantic_score": 1.0,
+        "clinical_appropriateness": true,
+        "clinical_appropriateness_score": 0.9,
+        "reasoning_quality": 0.7,
+        "reasoning_critique": "Die Begründung für den IMDC-Status ist spekulativ ('vermutlich', 'alternativ könnte', 'im Falle des Doubts'). Die Therapiebegründung ist im Großen und Ganzen korrekt, aber die Argumentation für die Wahl von NIVO+CABO gegenüber NIVO+IPI ist nicht vollständig überzeugend und basiert auf einer nicht ganz klaren Abwägung von Alter/Komorbidität.",
+        "overall_score": 0.81,
+        "judge_reasoning": "Die Therapieempfehlung ist klinisch angemessen und semantisch korrekt. Die Begründung ist größtenteils gut, weist aber Schwächen bei der IMDC-Einstufung und der finalen Therapieauswahl auf. Der Gesamtscore spiegelt die hohe Korrektheit der Therapieempfehlung wider, während die Begründungsqualität etwas reduziert wird."
+      },
+      "raw_response": "{\"is_correct\": true, \"correctness_reason\": \"Die KI empfiehlt NIVO+CABO, was eine der von der Ground Truth genannten Optionen (IO+IO oder IO+TKI) ist und somit akzeptabel ist.\", \"therapy_semantic_match\": true, \"therapy_semantic_score\": 1.0, \"clinical_appropriateness\": true, \"clinical_appropriateness_score\": 0.9, \"reasoning_quality\": 0.7, \"reasoning_critique\": \"Die Begründung für den IMDC-Status ist spekulativ ('vermutlich', 'alternativ könnte', 'im Falle des Doubts'). Die Therapiebegründung ist im Großen und Ganzen korrekt, aber die Argumentation für die Wahl von NIVO+CABO gegenüber NIVO+IPI ist nicht vollständig überzeugend und basiert auf einer nicht ganz klaren Abwägung von Alter/Komorbidität.\", \"overall_score\": 0.81, \"judge_reasoning\": \"Die Therapieempfehlung ist klinisch angemessen und semantisch korrekt. Die Begründung ist größtenteils gut, weist aber Schwächen bei der IMDC-Einstufung und der finalen Therapieauswahl auf. Der Gesamtscore spiegelt die hohe Korrektheit der Therapieempfehlung wider, während die Begründungsqualität etwas reduziert wird.\"}",
+      "reasoning_output": null,
+      "error": null,
+      "inference_time_seconds": 1.8006826569052303
+    },
+    {
+      "case_id": "ncc_54",
+      "evaluation": {
+        "is_correct": true,
+        "correctness_reason": "Die KI-Empfehlung (Nivolumab + Cabozantinib) entspricht der primären Ground Truth.",
+        "therapy_semantic_match": true,
+        "therapy_semantic_score": 1.0,
+        "clinical_appropriateness": true,
+        "clinical_appropriateness_score": 1.0,
+        "reasoning_quality": 0.8,
+        "reasoning_critique": "Die Begründung für den IMDC-Status ist etwas ungenau ('kürzester Abstand zur vorherigen Systemtherapie' ist nicht relevant bei therapienaivem Patienten, aber die Schlussfolgerung 'ungenstig' ist korrekt). Die Therapiebegründung ist gut, aber die Erwähnung von PD-L1-Status als Voraussetzung für Nivo+Ipi ist korrekt, aber die Empfehlung von Nivo+Cabo ohne diesen Status ist ebenfalls valide.",
+        "overall_score": 0.9,
+        "judge_reasoning": "Die KI-Empfehlung ist semantisch identisch mit der Ground Truth und klinisch absolut angemessen für einen therapienaiven, high-risk ccRCC. Die Begründung ist größtenteils korrekt, weist aber kleine Ungenauigkeiten auf, was den Gesamtscore leicht reduziert."
+      },
+      "raw_response": "{\"is_correct\": true, \"correctness_reason\": \"Die KI-Empfehlung (Nivolumab + Cabozantinib) entspricht der primären Ground Truth.\", \"therapy_semantic_match\": true, \"therapy_semantic_score\": 1.0, \"clinical_appropriateness\": true, \"clinical_appropriateness_score\": 1.0, \"reasoning_quality\": 0.8, \"reasoning_critique\": \"Die Begründung für den IMDC-Status ist etwas ungenau ('kürzester Abstand zur vorherigen Systemtherapie' ist nicht relevant bei therapienaivem Patienten, aber die Schlussfolgerung 'ungenstig' ist korrekt). Die Therapiebegründung ist gut, aber die Erwähnung von PD-L1-Status als Voraussetzung für Nivo+Ipi ist korrekt, aber die Empfehlung von Nivo+Cabo ohne diesen Status ist ebenfalls valide.\", \"overall_score\": 0.9, \"judge_reasoning\": \"Die KI-Empfehlung ist semantisch identisch mit der Ground Truth und klinisch absolut angemessen für einen therapienaiven, high-risk ccRCC. Die Begründung ist größtenteils korrekt, weist aber kleine Ungenauigkeiten auf, was den Gesamtscore leicht reduziert.\"}",
+      "reasoning_output": null,
+      "error": null,
+      "inference_time_seconds": 1.8006826569052303
+    },
+    {
+      "case_id": "ncc_55",
+      "evaluation": {
+        "is_correct": false,
+        "correctness_reason": "Die KI empfiehlt Cabozantinib als Monotherapie, während die Ground Truth eine Kombinationstherapie (Lenvatinib + Everolimus) vorschlägt. Obwohl Cabozantinib eine Option sein könnte, entspricht es nicht der primären Empfehlung.",
+        "therapy_semantic_match": false,
+        "therapy_semantic_score": 0.5,
+        "clinical_appropriateness": true,
+        "clinical_appropriateness_score": 0.7,
+        "reasoning_quality": 0.8,
+        "reasoning_critique": "Die Begründung ist gut strukturiert und berücksichtigt die Progression unter 1L, den metastasierten Status und die fehlende Histologie. Die Argumentation für TKI-Monotherapie ist nachvollziehbar, aber die spezifische Empfehlung von Cabozantinib als Monotherapie ist nicht die erste Wahl im Tumorboard.",
+        "overall_score": 0.6,
+        "judge_reasoning": "Die KI-Empfehlung ist klinisch angemessen, da TKI-Monotherapie eine Option nach Progression unter IO+TKI ist, insbesondere bei unklarer Histologie. Sie entspricht jedoch nicht der primären Empfehlung des Tumorboards (Lenvatinib + Everolimus), was die 'is_correct'-Bewertung auf FALSE setzt. Die semantische Übereinstimmung ist gering (0.5), da es sich um unterschiedliche Therapieansätze handelt. Die klinische Angemessenheit ist hoch (0.7), da die Empfehlung leitlinienkonform ist. Die Begründungsqualität ist gut (0.8). Der Gesamtscore spiegelt die Diskrepanz zur Ground Truth wider."
+      },
+      "raw_response": "{\"is_correct\": false, \"correctness_reason\": \"Die KI empfiehlt Cabozantinib als Monotherapie, während die Ground Truth eine Kombinationstherapie (Lenvatinib + Everolimus) vorschlägt. Obwohl Cabozantinib eine Option sein könnte, entspricht es nicht der primären Empfehlung.\", \"therapy_semantic_match\": false, \"therapy_semantic_score\": 0.5, \"clinical_appropriateness\": true, \"clinical_appropriateness_score\": 0.7, \"reasoning_quality\": 0.8, \"reasoning_critique\": \"Die Begründung ist gut strukturiert und berücksichtigt die Progression unter 1L, den metastasierten Status und die fehlende Histologie. Die Argumentation für TKI-Monotherapie ist nachvollziehbar, aber die spezifische Empfehlung von Cabozantinib als Monotherapie ist nicht die erste Wahl im Tumorboard.\", \"overall_score\": 0.6, \"judge_reasoning\": \"Die KI-Empfehlung ist klinisch angemessen, da TKI-Monotherapie eine Option nach Progression unter IO+TKI ist, insbesondere bei unklarer Histologie. Sie entspricht jedoch nicht der primären Empfehlung des Tumorboards (Lenvatinib + Everolimus), was die 'is_correct'-Bewertung auf FALSE setzt. Die semantische Übereinstimmung ist gering (0.5), da es sich um unterschiedliche Therapieansätze handelt. Die klinische Angemessenheit ist hoch (0.7), da die Empfehlung leitlinienkonform ist. Die Begründungsqualität ist gut (0.8). Der Gesamtscore spiegelt die Diskrepanz zur Ground Truth wider.\"}",
+      "reasoning_output": null,
+      "error": null,
+      "inference_time_seconds": 1.8006826569052303
+    },
+    {
+      "case_id": "ncc_56",
+      "evaluation": {
+        "is_correct": false,
+        "correctness_reason": "Die KI empfiehlt Sunitinib mono, während die Ground Truth eine Umstellung auf 2. Linie mit Cabozantinib oder einer Alternative vorschlägt. Sunitinib ist zwar eine Option, aber nicht die primäre Empfehlung im Tumorboard.",
+        "therapy_semantic_match": false,
+        "therapy_semantic_score": 0.5,
+        "clinical_appropriateness": true,
+        "clinical_appropriateness_score": 0.7,
+        "reasoning_quality": 0.8,
+        "reasoning_critique": "Die Begründung ist weitgehend korrekt und logisch aufgebaut, berücksichtigt die fehlende Histologie und die Progression unter 1L. Die Betonung auf TKI-Mono bei fehlender Histologie ist angemessen.",
+        "overall_score": 0.6,
+        "judge_reasoning": "Die KI-Empfehlung (Sunitinib mono) ist klinisch angemessen, aber nicht die primäre Empfehlung des Tumorboards (Cabozantinib oder Alternative). Daher ist 'is_correct' false. Die semantische Übereinstimmung ist gering (0.5), da es sich um unterschiedliche Wirkstoffe handelt. Die klinische Angemessenheit ist hoch (0.7), da TKI-Mono eine valide Option ist. Die Begründungsqualität ist gut (0.8). Der Gesamtscore spiegelt die Diskrepanz zur Ground Truth wider."
+      },
+      "raw_response": "{\"is_correct\": false, \"correctness_reason\": \"Die KI empfiehlt Sunitinib mono, während die Ground Truth eine Umstellung auf 2. Linie mit Cabozantinib oder einer Alternative vorschlägt. Sunitinib ist zwar eine Option, aber nicht die primäre Empfehlung im Tumorboard.\", \"therapy_semantic_match\": false, \"therapy_semantic_score\": 0.5, \"clinical_appropriateness\": true, \"clinical_appropriateness_score\": 0.7, \"reasoning_quality\": 0.8, \"reasoning_critique\": \"Die Begründung ist weitgehend korrekt und logisch aufgebaut, berücksichtigt die fehlende Histologie und die Progression unter 1L. Die Betonung auf TKI-Mono bei fehlender Histologie ist angemessen.\", \"overall_score\": 0.6, \"judge_reasoning\": \"Die KI-Empfehlung (Sunitinib mono) ist klinisch angemessen, aber nicht die primäre Empfehlung des Tumorboards (Cabozantinib oder Alternative). Daher ist 'is_correct' false. Die semantische Übereinstimmung ist gering (0.5), da es sich um unterschiedliche Wirkstoffe handelt. Die klinische Angemessenheit ist hoch (0.7), da TKI-Mono eine valide Option ist. Die Begründungsqualität ist gut (0.8). Der Gesamtscore spiegelt die Diskrepanz zur Ground Truth wider.\"}",
+      "reasoning_output": null,
+      "error": null,
+      "inference_time_seconds": 1.8006826569052303
+    },
+    {
+      "case_id": "ncc_57",
+      "evaluation": {
+        "is_correct": true,
+        "correctness_reason": "Die KI-Empfehlung (Lenvatinib + Everolimus) entspricht der Ground Truth (z.B. Lenvatinib + Everolimus).",
+        "therapy_semantic_match": true,
+        "therapy_semantic_score": 1.0,
+        "clinical_appropriateness": true,
+        "clinical_appropriateness_score": 0.9,
+        "reasoning_quality": 0.8,
+        "reasoning_critique": "Die Begründung ist weitgehend korrekt, aber die Annahme von klarzelligem RCC ist nicht explizit im Fall genannt. Die IMDC-Risikobewertung ist plausibel, aber die Begründung für 'ungenünstig' ist etwas schwach (Karnofsky 80% ist nicht unbedingt 'gering'). Die Therapiebegründung ist gut, aber die Aussage 'Nivolumab als 2. Linie-Therapie ... unwahrscheinlich' ist zu absolut formuliert.",
+        "overall_score": 0.88,
+        "judge_reasoning": "Die Therapieempfehlung ist korrekt und klinisch angemessen. Die Begründung ist solide, weist aber kleine Ungenauigkeiten auf (Annahme RCC-Subtyp, IMDC-Kriterien, absolute Aussage zu Nivolumab). Die semantische Übereinstimmung ist perfekt."
+      },
+      "raw_response": "{\"is_correct\": true, \"correctness_reason\": \"Die KI-Empfehlung (Lenvatinib + Everolimus) entspricht der Ground Truth (z.B. Lenvatinib + Everolimus).\", \"therapy_semantic_match\": true, \"therapy_semantic_score\": 1.0, \"clinical_appropriateness\": true, \"clinical_appropriateness_score\": 0.9, \"reasoning_quality\": 0.8, \"reasoning_critique\": \"Die Begründung ist weitgehend korrekt, aber die Annahme von klarzelligem RCC ist nicht explizit im Fall genannt. Die IMDC-Risikobewertung ist plausibel, aber die Begründung für 'ungenünstig' ist etwas schwach (Karnofsky 80% ist nicht unbedingt 'gering'). Die Therapiebegründung ist gut, aber die Aussage 'Nivolumab als 2. Linie-Therapie ... unwahrscheinlich' ist zu absolut formuliert.\", \"overall_score\": 0.88, \"judge_reasoning\": \"Die Therapieempfehlung ist korrekt und klinisch angemessen. Die Begründung ist solide, weist aber kleine Ungenauigkeiten auf (Annahme RCC-Subtyp, IMDC-Kriterien, absolute Aussage zu Nivolumab). Die semantische Übereinstimmung ist perfekt.\"}",
+      "reasoning_output": null,
+      "error": null,
+      "inference_time_seconds": 1.8006826569052303
+    },
+    {
+      "case_id": "ncc_58",
+      "evaluation": {
+        "is_correct": false,
+        "correctness_reason": "Die KI empfiehlt Sunitinib als TKI-Monotherapie, während die Ground Truth Lenvatinib+Everolimus (TKI+mTORi) oder Belzutifan (VEGF-Inhibitor) als 3. Linie vorschlägt. Sunitinib ist zwar eine Option, aber nicht die primäre Empfehlung des Tumorboards.",
+        "therapy_semantic_match": false,
+        "therapy_semantic_score": 0.5,
+        "clinical_appropriateness": true,
+        "clinical_appropriateness_score": 0.7,
+        "reasoning_quality": 0.7,
+        "reasoning_critique": "Die Begründung ist größtenteils korrekt, aber die Schlussfolgerung, dass Sunitinib die beste Option ist, ist nicht vollständig überzeugend. Die Argumentation gegen ICI+TKI ist nachvollziehbar, aber die Präferenz für Sunitinib gegenüber Lenvatinib+Everolimus oder Belzutifan wird nicht ausreichend begründet. Die Aussage über Temsirolimus ist korrekt, aber irrelevant für die 3. Linie bei ccRCC.",
+        "overall_score": 0.6,
+        "judge_reasoning": "Die KI-Empfehlung ist klinisch angemessen, da Sunitinib eine valide Option in der 3. Linie nach ICI+TKI und Cabozantinib ist. Die semantische Übereinstimmung mit der Ground Truth ist jedoch gering (TKI mono vs. TKI+mTORi/VEGF-Inhibitor). Die Begründung ist solide, aber die finale Therapieempfehlung weicht von der primären Empfehlung des Tumorboards ab, was zu einer 'is_correct: false' Bewertung führt."
+      },
+      "raw_response": "{\"is_correct\": false, \"correctness_reason\": \"Die KI empfiehlt Sunitinib als TKI-Monotherapie, während die Ground Truth Lenvatinib+Everolimus (TKI+mTORi) oder Belzutifan (VEGF-Inhibitor) als 3. Linie vorschlägt. Sunitinib ist zwar eine Option, aber nicht die primäre Empfehlung des Tumorboards.\", \"therapy_semantic_match\": false, \"therapy_semantic_score\": 0.5, \"clinical_appropriateness\": true, \"clinical_appropriateness_score\": 0.7, \"reasoning_quality\": 0.7, \"reasoning_critique\": \"Die Begründung ist größtenteils korrekt, aber die Schlussfolgerung, dass Sunitinib die beste Option ist, ist nicht vollständig überzeugend. Die Argumentation gegen ICI+TKI ist nachvollziehbar, aber die Präferenz für Sunitinib gegenüber Lenvatinib+Everolimus oder Belzutifan wird nicht ausreichend begründet. Die Aussage über Temsirolimus ist korrekt, aber irrelevant für die 3. Linie bei ccRCC.\", \"overall_score\": 0.6, \"judge_reasoning\": \"Die KI-Empfehlung ist klinisch angemessen, da Sunitinib eine valide Option in der 3. Linie nach ICI+TKI und Cabozantinib ist. Die semantische Übereinstimmung mit der Ground Truth ist jedoch gering (TKI mono vs. TKI+mTORi/VEGF-Inhibitor). Die Begründung ist solide, aber die finale Therapieempfehlung weicht von der primären Empfehlung des Tumorboards ab, was zu einer 'is_correct: false' Bewertung führt.\"}",
+      "reasoning_output": null,
+      "error": null,
+      "inference_time_seconds": 1.8006826569052303
+    },
+    {
+      "case_id": "ncc_59",
+      "evaluation": {
+        "is_correct": true,
+        "correctness_reason": "Die KI empfiehlt Cabozantinib als 3L-Therapie, was eine der vom Tumorboard genannten Optionen (TKI mono) ist.",
+        "therapy_semantic_match": false,
+        "therapy_semantic_score": 0.5,
+        "clinical_appropriateness": true,
+        "clinical_appropriateness_score": 0.8,
+        "reasoning_quality": 0.7,
+        "reasoning_critique": "Die Begründung ist größtenteils korrekt, aber die Aussage, dass ICI in papRCC nur begrenzt Daten haben, ist zu pauschal. Es gibt inzwischen Daten, die auch in 2L/3L eine Rolle spielen können. Die Begründung für die Wahl von Cabozantinib ist aber nachvollziehbar.",
+        "overall_score": 0.7,
+        "judge_reasoning": "Die KI empfiehlt eine klinisch angemessene Therapie (Cabozantinib), die eine der vom Tumorboard genannten Alternativen ist. Die semantische Übereinstimmung ist gering, da die GT eine Liste von Optionen ist und die KI eine spezifische auswählt. Die Begründung ist solide, aber mit kleinen Ungenauigkeiten. Der Gesamtscore spiegelt die Korrektheit der Therapieempfehlung wider, auch wenn sie nicht exakt der GT entspricht."
+      },
+      "raw_response": "{\"is_correct\": true, \"correctness_reason\": \"Die KI empfiehlt Cabozantinib als 3L-Therapie, was eine der vom Tumorboard genannten Optionen (TKI mono) ist.\", \"therapy_semantic_match\": false, \"therapy_semantic_score\": 0.5, \"clinical_appropriateness\": true, \"clinical_appropriateness_score\": 0.8, \"reasoning_quality\": 0.7, \"reasoning_critique\": \"Die Begründung ist größtenteils korrekt, aber die Aussage, dass ICI in papRCC nur begrenzt Daten haben, ist zu pauschal. Es gibt inzwischen Daten, die auch in 2L/3L eine Rolle spielen können. Die Begründung für die Wahl von Cabozantinib ist aber nachvollziehbar.\", \"overall_score\": 0.7, \"judge_reasoning\": \"Die KI empfiehlt eine klinisch angemessene Therapie (Cabozantinib), die eine der vom Tumorboard genannten Alternativen ist. Die semantische Übereinstimmung ist gering, da die GT eine Liste von Optionen ist und die KI eine spezifische auswählt. Die Begründung ist solide, aber mit kleinen Ungenauigkeiten. Der Gesamtscore spiegelt die Korrektheit der Therapieempfehlung wider, auch wenn sie nicht exakt der GT entspricht.\"}",
+      "reasoning_output": null,
+      "error": null,
+      "inference_time_seconds": 1.8006826569052303
+    },
+    {
+      "case_id": "ncc_60",
+      "evaluation": {
+        "is_correct": true,
+        "correctness_reason": "Die KI empfiehlt Lenvatinib oder Pazopanibib als TKI-Mono-Therapie in der 3. Linie, was eine der akzeptablen Optionen im Ground Truth ist.",
+        "therapy_semantic_match": false,
+        "therapy_semantic_score": 0.5,
+        "clinical_appropriateness": true,
+        "clinical_appropriateness_score": 0.9,
+        "reasoning_quality": 0.8,
+        "reasoning_critique": "Die Begründung ist gut strukturiert und berücksichtigt die Leitlinien sowie die Vorgeschichte des Patienten. Die Diskussion über IO+TKI vs. TKI-Mono ist angemessen. Die Begründung für die Nicht-Anwendbarkeit des IMDC-Risikos ist korrekt.",
+        "overall_score": 0.76,
+        "judge_reasoning": "Die KI schlägt eine klinisch angemessene und leitlinienkonforme Therapie (TKI-Mono) für die 3. Linie vor, die im Ground Truth als eine der Optionen genannt wird. Die semantische Übereinstimmung ist gering, da die KI spezifische Medikamente nennt, während das Ground Truth eine Liste von Optionen gibt. Die Begründung ist solide und berücksichtigt die Patientenhistorie und Komorbiditäten."
+      },
+      "raw_response": "{\"is_correct\": true, \"correctness_reason\": \"Die KI empfiehlt Lenvatinib oder Pazopanibib als TKI-Mono-Therapie in der 3. Linie, was eine der akzeptablen Optionen im Ground Truth ist.\", \"therapy_semantic_match\": false, \"therapy_semantic_score\": 0.5, \"clinical_appropriateness\": true, \"clinical_appropriateness_score\": 0.9, \"reasoning_quality\": 0.8, \"reasoning_critique\": \"Die Begründung ist gut strukturiert und berücksichtigt die Leitlinien sowie die Vorgeschichte des Patienten. Die Diskussion über IO+TKI vs. TKI-Mono ist angemessen. Die Begründung für die Nicht-Anwendbarkeit des IMDC-Risikos ist korrekt.\", \"overall_score\": 0.76, \"judge_reasoning\": \"Die KI schlägt eine klinisch angemessene und leitlinienkonforme Therapie (TKI-Mono) für die 3. Linie vor, die im Ground Truth als eine der Optionen genannt wird. Die semantische Übereinstimmung ist gering, da die KI spezifische Medikamente nennt, während das Ground Truth eine Liste von Optionen gibt. Die Begründung ist solide und berücksichtigt die Patientenhistorie und Komorbiditäten.\"}",
+      "reasoning_output": null,
+      "error": null,
+      "inference_time_seconds": 1.8006826569052303
+    },
+    {
+      "case_id": "ncc_61",
+      "evaluation": {
+        "is_correct": false,
+        "correctness_reason": "Die KI empfiehlt eine spezifische TKI-Monotherapie (Cabozantinib oder Lenvatinib), während die Ground Truth eine Abwägung zwischen 4L-Therapie (inkl. Belzutifan oder alternativer TKI-Sequenz) und BSC sowie Studienscreening vorschlägt. Die KI-Empfehlung ist nicht Teil der akzeptablen Alternativen.",
+        "therapy_semantic_match": false,
+        "therapy_semantic_score": 0.5,
+        "clinical_appropriateness": true,
+        "clinical_appropriateness_score": 0.7,
+        "reasoning_quality": 0.7,
+        "reasoning_critique": "Die Begründung ist größtenteils korrekt, erkennt den späten Therapiezustand und die Notwendigkeit einer Abwägung an. Sie übersieht jedoch die explizite Erwähnung von Belzutifan und Studienscreening in der Ground Truth und schlägt eine spezifische TKI-Monotherapie vor, die nicht die primäre Empfehlung ist. Die Annahme von klarzelligem RCC ist nicht belegt.",
+        "overall_score": 0.55,
+        "judge_reasoning": "Die KI-Empfehlung ist klinisch angemessen, aber nicht semantisch mit der Ground Truth überein und gehört nicht zu den akzeptablen Alternativen. Die Begründung ist solide, aber nicht vollständig im Einklang mit der Ground Truth. Die Gesamtbewertung spiegelt die Diskrepanz zur Ground Truth wider."
+      },
+      "raw_response": "{\"is_correct\": false, \"correctness_reason\": \"Die KI empfiehlt eine spezifische TKI-Monotherapie (Cabozantinib oder Lenvatinib), während die Ground Truth eine Abwägung zwischen 4L-Therapie (inkl. Belzutifan oder alternativer TKI-Sequenz) und BSC sowie Studienscreening vorschlägt. Die KI-Empfehlung ist nicht Teil der akzeptablen Alternativen.\", \"therapy_semantic_match\": false, \"therapy_semantic_score\": 0.5, \"clinical_appropriateness\": true, \"clinical_appropriateness_score\": 0.7, \"reasoning_quality\": 0.7, \"reasoning_critique\": \"Die Begründung ist größtenteils korrekt, erkennt den späten Therapiezustand und die Notwendigkeit einer Abwägung an. Sie übersieht jedoch die explizite Erwähnung von Belzutifan und Studienscreening in der Ground Truth und schlägt eine spezifische TKI-Monotherapie vor, die nicht die primäre Empfehlung ist. Die Annahme von klarzelligem RCC ist nicht belegt.\", \"overall_score\": 0.55, \"judge_reasoning\": \"Die KI-Empfehlung ist klinisch angemessen, aber nicht semantisch mit der Ground Truth überein und gehört nicht zu den akzeptablen Alternativen. Die Begründung ist solide, aber nicht vollständig im Einklang mit der Ground Truth. Die Gesamtbewertung spiegelt die Diskrepanz zur Ground Truth wider.\"}",
+      "reasoning_output": null,
+      "error": null,
+      "inference_time_seconds": 1.8006826569052303
+    },
+    {
+      "case_id": "ncc_62",
+      "evaluation": {
+        "is_correct": false,
+        "correctness_reason": "Die KI empfiehlt eine Therapie (IO+IO), während die Ground Truth eine 4. Linie nur bei klarer Zielsetzung/geringer Tox-Erwartung vorsieht. Die KI-Empfehlung ist zwar leitlinienkonform, entspricht aber nicht der spezifischen Empfehlung der Ground Truth.",
+        "therapy_semantic_match": false,
+        "therapy_semantic_score": 0.0,
+        "clinical_appropriateness": true,
+        "clinical_appropriateness_score": 0.8,
+        "reasoning_quality": 0.7,
+        "reasoning_critique": "Die Begründung für den IMDC-Status ist plausibel, aber die Annahme einer 'raschen Progression' ohne genaue Zeitpunkte ist spekulativ. Die Therapiebegründung ist korrekt, aber die spezifische Wahl (Nivolumab + Ipilimumab) ist nur eine von mehreren Optionen.",
+        "overall_score": 0.5,
+        "judge_reasoning": "Die KI-Empfehlung ist klinisch angemessen und die Begründung ist weitgehend korrekt. Allerdings entspricht die empfohlene Therapie nicht der spezifischen Empfehlung der Ground Truth (4L nur bei klarer Zielsetzung/geringer Tox-Erwartung), was die 'is_correct'-Bewertung negativ beeinflusst. Die semantische Übereinstimmung ist 0, da die Ground Truth keine spezifische Therapie nennt, sondern eine Bedingung für die 4L-Therapie stellt."
+      },
+      "raw_response": "{\"is_correct\": false, \"correctness_reason\": \"Die KI empfiehlt eine Therapie (IO+IO), während die Ground Truth eine 4. Linie nur bei klarer Zielsetzung/geringer Tox-Erwartung vorsieht. Die KI-Empfehlung ist zwar leitlinienkonform, entspricht aber nicht der spezifischen Empfehlung der Ground Truth.\", \"therapy_semantic_match\": false, \"therapy_semantic_score\": 0.0, \"clinical_appropriateness\": true, \"clinical_appropriateness_score\": 0.8, \"reasoning_quality\": 0.7, \"reasoning_critique\": \"Die Begründung für den IMDC-Status ist plausibel, aber die Annahme einer 'raschen Progression' ohne genaue Zeitpunkte ist spekulativ. Die Therapiebegründung ist korrekt, aber die spezifische Wahl (Nivolumab + Ipilimumab) ist nur eine von mehreren Optionen.\", \"overall_score\": 0.5, \"judge_reasoning\": \"Die KI-Empfehlung ist klinisch angemessen und die Begründung ist weitgehend korrekt. Allerdings entspricht die empfohlene Therapie nicht der spezifischen Empfehlung der Ground Truth (4L nur bei klarer Zielsetzung/geringer Tox-Erwartung), was die 'is_correct'-Bewertung negativ beeinflusst. Die semantische Übereinstimmung ist 0, da die Ground Truth keine spezifische Therapie nennt, sondern eine Bedingung für die 4L-Therapie stellt.\"}",
+      "reasoning_output": null,
+      "error": null,
+      "inference_time_seconds": 1.8006826569052303
+    },
+    {
+      "case_id": "ncc_63",
+      "evaluation": {
+        "is_correct": false,
+        "correctness_reason": "Die KI empfiehlt Cabozantinib als TKI-Mono, während die Ground Truth Belzutifan (sofern geeignet) oder eine alternative Sequenz/palliative Therapie vorschlägt. Cabozantinib ist keine der genannten Optionen.",
+        "therapy_semantic_match": false,
+        "therapy_semantic_score": 0.5,
+        "clinical_appropriateness": true,
+        "clinical_appropriateness_score": 0.7,
+        "reasoning_quality": 0.7,
+        "reasoning_critique": "Die Begründung ist größtenteils korrekt, aber die Schlussfolgerung (Cabozantinib) ist nicht optimal, da Belzutifan eine wichtige Option nach ICI+TKI ist und die Ground Truth dies berücksichtigt. Die Begründung für die Nicht-Anwendbarkeit des IMDC ist korrekt.",
+        "overall_score": 0.55,
+        "judge_reasoning": "Die KI-Empfehlung ist klinisch nicht völlig falsch, aber sie weicht signifikant von der Ground Truth ab, die Belzutifan als primäre Option nennt. Die Semantik stimmt nicht überein, da Cabozantinib nicht in der Ground Truth oder den Alternativen genannt wird. Die klinische Angemessenheit ist akzeptabel, aber nicht optimal. Die Begründung ist solide, aber die Schlussfolgerung ist nicht ideal."
+      },
+      "raw_response": "{\"is_correct\": false, \"correctness_reason\": \"Die KI empfiehlt Cabozantinib als TKI-Mono, während die Ground Truth Belzutifan (sofern geeignet) oder eine alternative Sequenz/palliative Therapie vorschlägt. Cabozantinib ist keine der genannten Optionen.\", \"therapy_semantic_match\": false, \"therapy_semantic_score\": 0.5, \"clinical_appropriateness\": true, \"clinical_appropriateness_score\": 0.7, \"reasoning_quality\": 0.7, \"reasoning_critique\": \"Die Begründung ist größtenteils korrekt, aber die Schlussfolgerung (Cabozantinib) ist nicht optimal, da Belzutifan eine wichtige Option nach ICI+TKI ist und die Ground Truth dies berücksichtigt. Die Begründung für die Nicht-Anwendbarkeit des IMDC ist korrekt.\", \"overall_score\": 0.55, \"judge_reasoning\": \"Die KI-Empfehlung ist klinisch nicht völlig falsch, aber sie weicht signifikant von der Ground Truth ab, die Belzutifan als primäre Option nennt. Die Semantik stimmt nicht überein, da Cabozantinib nicht in der Ground Truth oder den Alternativen genannt wird. Die klinische Angemessenheit ist akzeptabel, aber nicht optimal. Die Begründung ist solide, aber die Schlussfolgerung ist nicht ideal.\"}",
+      "reasoning_output": null,
+      "error": null,
+      "inference_time_seconds": 1.8006826569052303
+    },
+    {
+      "case_id": "ncc_64",
+      "evaluation": {
+        "is_correct": true,
+        "correctness_reason": "Die KI empfiehlt Nivolumab + Cabozantinib, was eine der von der Ground Truth genannten akzeptablen IO+TKI Kombinationen ist.",
+        "therapy_semantic_match": true,
+        "therapy_semantic_score": 1.0,
+        "clinical_appropriateness": true,
+        "clinical_appropriateness_score": 1.0,
+        "reasoning_quality": 0.8,
+        "reasoning_critique": "Die Begründung ist weitgehend korrekt, aber die Aussage 'Da die Diagnose explizit metastasiertes Tumor ist, wird angenommen, dass Metastasen vorhanden sind' ist redundant und die Erwähnung von CT-Scans ohne Auswertung ist unklar.",
+        "overall_score": 0.9,
+        "judge_reasoning": "Die KI-Empfehlung (Nivolumab + Cabozantinib) ist eine valide und leitlinienkonforme Erstlinienbehandlung für metastasiertes klarzelliges Nierenzellkarzinom mit günstigem IMDC-Risiko. Sie entspricht semantisch einer der akzeptablen Optionen. Die klinische Angemessenheit ist hoch. Die Begründung ist größtenteils korrekt, weist aber kleine Redundanzen auf."
+      },
+      "raw_response": "{\"is_correct\": true, \"correctness_reason\": \"Die KI empfiehlt Nivolumab + Cabozantinib, was eine der von der Ground Truth genannten akzeptablen IO+TKI Kombinationen ist.\", \"therapy_semantic_match\": true, \"therapy_semantic_score\": 1.0, \"clinical_appropriateness\": true, \"clinical_appropriateness_score\": 1.0, \"reasoning_quality\": 0.8, \"reasoning_critique\": \"Die Begründung ist weitgehend korrekt, aber die Aussage 'Da die Diagnose explizit metastasiertes Tumor ist, wird angenommen, dass Metastasen vorhanden sind' ist redundant und die Erwähnung von CT-Scans ohne Auswertung ist unklar.\", \"overall_score\": 0.9, \"judge_reasoning\": \"Die KI-Empfehlung (Nivolumab + Cabozantinib) ist eine valide und leitlinienkonforme Erstlinienbehandlung für metastasiertes klarzelliges Nierenzellkarzinom mit günstigem IMDC-Risiko. Sie entspricht semantisch einer der akzeptablen Optionen. Die klinische Angemessenheit ist hoch. Die Begründung ist größtenteils korrekt, weist aber kleine Redundanzen auf.\"}",
+      "reasoning_output": null,
+      "error": null,
+      "inference_time_seconds": 1.8006826569052303
+    },
+    {
+      "case_id": "ncc_65",
+      "evaluation": {
+        "is_correct": true,
+        "correctness_reason": "Die KI-Empfehlung (Nivolumab + Cabozantinib) entspricht exakt der Ground Truth.",
+        "therapy_semantic_match": true,
+        "therapy_semantic_score": 1.0,
+        "clinical_appropriateness": true,
+        "clinical_appropriateness_score": 1.0,
+        "reasoning_quality": 0.9,
+        "reasoning_critique": "Die Begründung ist sehr gut, aber die Nennung der Alternativen (PEMBRO+AXI, PEMBRO+LEN, AVELU+AXI) könnte noch expliziter erfolgen, auch wenn NIVO+CABO als 'meist empfohlene' genannt wird.",
+        "overall_score": 0.95,
+        "judge_reasoning": "Die KI-Empfehlung ist semantisch identisch mit der Ground Truth und klinisch absolut angemessen für einen Patienten mit metastasiertem klarzelligem RCC und günstigem IMDC-Risiko in der Erstlinie. Die Begründung ist fundiert und korrekt."
+      },
+      "raw_response": "{\"is_correct\": true, \"correctness_reason\": \"Die KI-Empfehlung (Nivolumab + Cabozantinib) entspricht exakt der Ground Truth.\", \"therapy_semantic_match\": true, \"therapy_semantic_score\": 1.0, \"clinical_appropriateness\": true, \"clinical_appropriateness_score\": 1.0, \"reasoning_quality\": 0.9, \"reasoning_critique\": \"Die Begründung ist sehr gut, aber die Nennung der Alternativen (PEMBRO+AXI, PEMBRO+LEN, AVELU+AXI) könnte noch expliziter erfolgen, auch wenn NIVO+CABO als 'meist empfohlene' genannt wird.\", \"overall_score\": 0.95, \"judge_reasoning\": \"Die KI-Empfehlung ist semantisch identisch mit der Ground Truth und klinisch absolut angemessen für einen Patienten mit metastasiertem klarzelligem RCC und günstigem IMDC-Risiko in der Erstlinie. Die Begründung ist fundiert und korrekt.\"}",
+      "reasoning_output": null,
+      "error": null,
+      "inference_time_seconds": 1.8006826569052303
+    },
+    {
+      "case_id": "ncc_66",
+      "evaluation": {
+        "is_correct": true,
+        "correctness_reason": "Die KI-Empfehlung (Nivolumab + Cabozantinib) entspricht der Ground Truth (Pembrolizumab + Lenvatinib) in der Kategorie IO+TKI und ist eine akzeptable Alternative.",
+        "therapy_semantic_match": true,
+        "therapy_semantic_score": 1.0,
+        "clinical_appropriateness": true,
+        "clinical_appropriateness_score": 1.0,
+        "reasoning_quality": 0.8,
+        "reasoning_critique": "Die Begründung ist weitgehend korrekt, aber die Aussage 'frühes Stadium (Linie 1)' ist irreführend, da es sich um metastasiertes RCC handelt. Die IMDC-Risikobewertung ist korrekt.",
+        "overall_score": 0.9,
+        "judge_reasoning": "Die KI-Empfehlung ist semantisch korrekt (IO+TKI), klinisch angemessen (Erstlinienbehandlung für metastasiertes RCC mit gutem Risikoprofil) und die Begründung ist überwiegend korrekt, obwohl die Beschreibung des Stadiums ungenau ist. Die Empfehlung ist eine valide Alternative zur Ground Truth."
+      },
+      "raw_response": "{\"is_correct\": true, \"correctness_reason\": \"Die KI-Empfehlung (Nivolumab + Cabozantinib) entspricht der Ground Truth (Pembrolizumab + Lenvatinib) in der Kategorie IO+TKI und ist eine akzeptable Alternative.\", \"therapy_semantic_match\": true, \"therapy_semantic_score\": 1.0, \"clinical_appropriateness\": true, \"clinical_appropriateness_score\": 1.0, \"reasoning_quality\": 0.8, \"reasoning_critique\": \"Die Begründung ist weitgehend korrekt, aber die Aussage 'frühes Stadium (Linie 1)' ist irreführend, da es sich um metastasiertes RCC handelt. Die IMDC-Risikobewertung ist korrekt.\", \"overall_score\": 0.9, \"judge_reasoning\": \"Die KI-Empfehlung ist semantisch korrekt (IO+TKI), klinisch angemessen (Erstlinienbehandlung für metastasiertes RCC mit gutem Risikoprofil) und die Begründung ist überwiegend korrekt, obwohl die Beschreibung des Stadiums ungenau ist. Die Empfehlung ist eine valide Alternative zur Ground Truth.\"}",
+      "reasoning_output": null,
+      "error": null,
+      "inference_time_seconds": 1.8006826569052303
+    },
+    {
+      "case_id": "ncc_67",
+      "evaluation": {
+        "is_correct": true,
+        "correctness_reason": "Die KI empfiehlt Nivolumab + Cabozantinib, was eine akzeptable Alternative zur Ground Truth (Pembrolizumab + Lenvatinib) ist.",
+        "therapy_semantic_match": true,
+        "therapy_semantic_score": 0.9,
+        "clinical_appropriateness": true,
+        "clinical_appropriateness_score": 0.9,
+        "reasoning_quality": 0.8,
+        "reasoning_critique": "Die Begründung ist größtenteils korrekt, aber die Annahme KPS < 80% bei ECOG 2 ist nicht zwingend und sollte als Annahme klarer formuliert werden. Die Begründung für die Therapieauswahl ist jedoch solide.",
+        "overall_score": 0.86,
+        "judge_reasoning": "Die KI identifiziert korrekt die Metastasierung und das hohe IMDC-Risiko. Die Therapieempfehlung (Nivolumab + Cabozantinib) ist eine leitlinienkonforme und akzeptable Erstlinienoption für ccRCC mit hohem Risiko, auch wenn sie nicht exakt der Ground Truth entspricht. Die Begründung ist weitgehend korrekt und logisch aufgebaut."
+      },
+      "raw_response": "{\"is_correct\": true, \"correctness_reason\": \"Die KI empfiehlt Nivolumab + Cabozantinib, was eine akzeptable Alternative zur Ground Truth (Pembrolizumab + Lenvatinib) ist.\", \"therapy_semantic_match\": true, \"therapy_semantic_score\": 0.9, \"clinical_appropriateness\": true, \"clinical_appropriateness_score\": 0.9, \"reasoning_quality\": 0.8, \"reasoning_critique\": \"Die Begründung ist größtenteils korrekt, aber die Annahme KPS < 80% bei ECOG 2 ist nicht zwingend und sollte als Annahme klarer formuliert werden. Die Begründung für die Therapieauswahl ist jedoch solide.\", \"overall_score\": 0.86, \"judge_reasoning\": \"Die KI identifiziert korrekt die Metastasierung und das hohe IMDC-Risiko. Die Therapieempfehlung (Nivolumab + Cabozantinib) ist eine leitlinienkonforme und akzeptable Erstlinienoption für ccRCC mit hohem Risiko, auch wenn sie nicht exakt der Ground Truth entspricht. Die Begründung ist weitgehend korrekt und logisch aufgebaut.\"}",
+      "reasoning_output": null,
+      "error": null,
+      "inference_time_seconds": 1.8006826569052303
+    },
+    {
+      "case_id": "ncc_68",
+      "evaluation": {
+        "is_correct": true,
+        "correctness_reason": "Die KI-Empfehlung (Nivolumab + Cabozantinib) entspricht exakt der Ground Truth.",
+        "therapy_semantic_match": true,
+        "therapy_semantic_score": 1.0,
+        "clinical_appropriateness": true,
+        "clinical_appropriateness_score": 1.0,
+        "reasoning_quality": 0.9,
+        "reasoning_critique": "Die Begründung ist sehr gut und korrekt. Sie erklärt die Metastasen, das IMDC-Risiko und die Therapieempfehlung gemäß den Leitlinien. Die Erwähnung von Alternativen und Überwachungspunkten ist ebenfalls positiv.",
+        "overall_score": 0.95,
+        "judge_reasoning": "Die KI-Empfehlung ist semantisch identisch mit der Ground Truth (Score 1.0). Die Therapie ist klinisch absolut angemessen und entspricht der First-Line-Empfehlung für IMDC high-risk RCC (Score 1.0). Die Begründung ist sehr detailliert, korrekt und logisch aufgebaut (Score 0.9). Der Gesamtscore spiegelt die hohe Übereinstimmung und Qualität wider."
+      },
+      "raw_response": "{\"is_correct\": true,\n    \"correctness_reason\": \"Die KI-Empfehlung (Nivolumab + Cabozantinib) entspricht exakt der Ground Truth.\",\n    \"therapy_semantic_match\": true,\n    \"therapy_semantic_score\": 1.0,\n    \"clinical_appropriateness\": true,\n    \"clinical_appropriateness_score\": 1.0,\n    \"reasoning_quality\": 0.9,\n    \"reasoning_critique\": \"Die Begründung ist sehr gut und korrekt. Sie erklärt die Metastasen, das IMDC-Risiko und die Therapieempfehlung gemäß den Leitlinien. Die Erwähnung von Alternativen und Überwachungspunkten ist ebenfalls positiv.\",\n    \"overall_score\": 0.95,\n    \"judge_reasoning\": \"Die KI-Empfehlung ist semantisch identisch mit der Ground Truth (Score 1.0). Die Therapie ist klinisch absolut angemessen und entspricht der First-Line-Empfehlung für IMDC high-risk RCC (Score 1.0). Die Begründung ist sehr detailliert, korrekt und logisch aufgebaut (Score 0.9). Der Gesamtscore spiegelt die hohe Übereinstimmung und Qualität wider.\"\n}",
+      "reasoning_output": null,
+      "error": null,
+      "inference_time_seconds": 1.8006826569052303
+    },
+    {
+      "case_id": "ncc_69",
+      "evaluation": {
+        "is_correct": true,
+        "correctness_reason": "Die KI empfiehlt NIVO+IPI oder NIVO+CABO, beides sind akzeptable Alternativen zur Ground Truth NIVO+CABO.",
+        "therapy_semantic_match": true,
+        "therapy_semantic_score": 0.9,
+        "clinical_appropriateness": true,
+        "clinical_appropriateness_score": 0.95,
+        "reasoning_quality": 0.85,
+        "reasoning_critique": "Die Begründung ist gut strukturiert und korrekt. Die Vermutung KPS<80% ist zwar nicht explizit, aber angesichts Alter und ECOG 2 plausibel. Die Therapieempfehlung ist leitlinienkonform.",
+        "overall_score": 0.91,
+        "judge_reasoning": "Die KI identifiziert korrekt den metastasierten Status und das hohe IMDC-Risiko. Die Therapieempfehlungen (NIVO+IPI oder NIVO+CABO) sind klinisch angemessen und entsprechen den aktuellen Leitlinien für ICI-naive Patienten mit hohem Risiko. Da NIVO+CABO eine der empfohlenen Optionen ist, ist die Vorhersage korrekt. Die Begründung ist fundiert und die semantische Übereinstimmung ist hoch."
+      },
+      "raw_response": "{\"is_correct\": true,\n    \"correctness_reason\": \"Die KI empfiehlt NIVO+IPI oder NIVO+CABO, beides sind akzeptable Alternativen zur Ground Truth NIVO+CABO.\",\n    \"therapy_semantic_match\": true,\n    \"therapy_semantic_score\": 0.9,\n    \"clinical_appropriateness\": true,\n    \"clinical_appropriateness_score\": 0.95,\n    \"reasoning_quality\": 0.85,\n    \"reasoning_critique\": \"Die Begründung ist gut strukturiert und korrekt. Die Vermutung KPS<80% ist zwar nicht explizit, aber angesichts Alter und ECOG 2 plausibel. Die Therapieempfehlung ist leitlinienkonform.\",\n    \"overall_score\": 0.91,\n    \"judge_reasoning\": \"Die KI identifiziert korrekt den metastasierten Status und das hohe IMDC-Risiko. Die Therapieempfehlungen (NIVO+IPI oder NIVO+CABO) sind klinisch angemessen und entsprechen den aktuellen Leitlinien für ICI-naive Patienten mit hohem Risiko. Da NIVO+CABO eine der empfohlenen Optionen ist, ist die Vorhersage korrekt. Die Begründung ist fundiert und die semantische Übereinstimmung ist hoch.\"\n}",
+      "reasoning_output": null,
+      "error": null,
+      "inference_time_seconds": 1.8006826569052303
+    }
+  ]
+}

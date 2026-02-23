@@ -1,0 +1,998 @@
+*1. Turtle, Ninja, 23.02.1963, 123421353452, Alter: 52, ECOG: 0
+sonstige Fachkliniken/Bereiche:
+RA
+Anmeldender/Vorstellender Arzt: 
+Abrahamovici / Uro
+
+Anamnese:
+Met. pap. RCC
+Z. n. Nephrektomie links 2014 (papilläres RCC pT3b, Nx, L0, V0, Pn0, G3, Rx)
+Z. n. offener Resektion eines Lokalrezidivs 2024
+Aktuell: multiple Rezidive (pulmonal, lymphonodal, hepatisch)
+Nebendiagnosen: obstruktive Kardiomyopathie, Z. n. Hyperthyreose 2021, aHT, DM, Z. n. LAE, Hyperlipidämie
+Medikation (Auszug): Betablocker, Statin, Metformin, DOAK (bei LAE)
+Fragestellung 
+Demo Bildgebung, progress?
+
+geplantes Therapiekonzept:
+Einleitung palliative Systemtherapie TKI/IO (z.B. Nivolumab/Cabozantinib)
+Erforderlicher Befund/ Bildgebung: CT Ganzkörper 03.11.2025 – Aktuell: multiple Rezidive (pulmonal, lymphonodal, hepatisch)
+
+*2. Ninja, Son, 22.03.1951, 12142354343124, Alter: 82, ECOG: 1
+Anmeldender/Vorstellender Arzt: Milanovici / MED I
+Malignomsuspekte Raumforderung linke Niere
+Spezifische Daten:
+Erstdiagnose: 06.11.2025; Seite: links
+Anamnese:
+Pat synkopiert, zur TAVI-Evaluation. TAVI indiziert, im TAVI-CT malignomsuspekte RF (ca. 2×3 cm) linke Niere.
+Vorerkrankungen: Aortenstenose hochgradig, KHK, CKD G3
+Medikation: ASS, Statin, ACE-Hemmer, Diuretikum
+Fragestellung/ geplantes Therapiekonzept:
+Weiteres Procedere (Diagnostik/Intervention vs Surveillance) unter Berücksichtigung TAVI-Priorität
+Erforderlicher Befund/ Bildgebung: CT Ganzkörper 06.11.2025 – malignomsuspekte RF (ca. 2×3 cm) linke Niere
+
+
+*3. Muster, Alpha, 11.01.1967, 2100010001, Alter: 58, ECOG: 0
+sonstige Fachkliniken/Bereiche:
+RA
+Anmeldender/Vorstellender Arzt: Mustermann / Uro
+Solide Nierenraumforderung re. 2,2 cm
+Anamnese:
+Zufallsbefund im CT wegen Nephrolithiasis.
+Vorerkrankungen: aHT
+Medikation: Ramipril
+Fragestellung:
+Malignitätskriterien? – ja. 
+geplantes Therapiekonzept:
+Aktive Überwachung vs. Nierenteilresektion vs. Ablation (je nach Lage/RENAL-Score)
+Biopsie ja/nein?
+Erforderlicher Befund/ Bildgebung: MRT Niere mit KM, 12/2025: Solide Nierenraumforderung re. 2,2 cm
+
+*4. Beispiel, Beta, 05.05.1959, 2100010002, Alter: 66, ECOG: 1
+Anmeldender/Vorstellender Arzt: Beispiel / Uro
+Kleiner Nierentumor li. 2,8 cm (cT1a)
+Anamnese:
+Z.n. Appendektomie; COPD GOLD I (Raucher 20 PY)
+Medikation: LAMA-Inhalativ, Atorvastatin
+Fragestellung:
+Malingitätskriterien? Ja
+Geplantes Therapiekonzept:
+Roboterassistierte partielle Nephrektomie vs. Kryoablation (Komorbidität/OP-Risiko)
+Erforderlicher Befund: CT Nierenprotokoll, 11/2025: Kleine Raumforderung li. 2,8 cm (cT1a). malignitätsverdächtig. 
+
+*5. Muster, Clara, 20.02.1978, 2100010003, Alter: 47, ECOG: 0
+Anmeldender/Vorstellender Arzt: Mustermann / Uro
+Zystische Läsion Bosniak IV, 2,5 cm, Niere rechts
+Anamnese:
+Keine relevanten Vorerkrankungen
+Medikation: keine
+Fragestellung: Malignitätskriterien?
+
+geplantes Therapiekonzept:
+Nierenteilresektion robotisch vs. Laparoskopisch vs. Offen vs. Ablation
+Erforderlicher Befund/ Bildgebung: MRT Niere, 12/2025: Zystische Läsion Bosniak IV, 2,5 cm, Niere rechts
+
+*6. Beispiel, Daniel, 09.09.1948, 2100010004, Alter: 77, ECOG: 2
+Anmeldender/Vorstellender Arzt: Beispiel / Uro
+
+Zufallsbefund Nierentumor li. 2,1 cm bei Urolithiasis 
+Anamnese:
+KHK (Z.n. Stent 2016), CKD G3b, aHT
+Medikation: ASS, Betablocker, Statin, ACE-Hemmer
+Z.n. Hüft-TEP
+Fragestellung:
+Malignitätskriterien? Therapiekonzept?
+
+geplantes Therapiekonzept:
+OP vs. Ablatio vs. Überwachung 
+Überwachung wegen des Alters und Komorbiditäten bevorzugt
+Intervention nur bei Progress
+Erneute Bildgebung in 6 Monaten
+Erforderlicher Befund: 
+MRT Niere, 11/2025: Unklare Raumforderung der linken Niere am Oberpol, malingitätskriterien vorhanden. 
+
+*7. Muster, Emil, 03.03.1982, 2100010005, Alter: 43, ECOG: 0
+Anmeldender/Vorstellender Arzt: Mustermann / Uro
+Nierentumor re. 1,9 cm, endophytisch
+Anamnese:
+CT grapisch V.a. Nierenbeckentumor rechts ca. 1x1 cm. 
+Z.n. Ureterorenoskopie rechts 11/2023
+Medikation: keine
+
+Fragestellung:
+Beurteilung CT Abdomen vom 11.11.2025 : malignitätskriterien? 
+
+geplantes Therapiekonzept:
+Diagnostische Ureterorenoskopie rechts mit Probeentnahme
+
+Erforderlicher Befund: 
+CT Abdomen vom 11.11.2025 – Unklare Raumforderung des Nierenbeckens rechts ca. 1x1 cm. 
+
+*8. Beispiel, Felix, 14.04.1955, 2100010006, Alter: 70, ECOG: 1
+Anmeldender/Vorstellender Arzt: Beispiel / Uro
+Kleiner Tumor li. 2,7 cm, hilusnah
+Anamnese:
+DM Typ 2, aHT, Hyperlipidämie
+Medikation: Metformin, Amlodipin, Statin
+Fragestellung:
+Malignitätskriterien vorhanden? 
+
+Geplantes Therapiekonzept:
+Partielle Nephrektomie technisch anspruchsvoll → Diskussion Ablation vs. OP vs Surveillance
+Erforderlicher Befund: 
+CT Abdomen vom 10.12.2025: kleiner Nierentumor Hilusnah links. 
+
+Lokalisiert – Tumor >3 cm (6 Fälle)
+
+*9. Muster, Georg, 01.01.1964, 2200020001, Alter: 61, ECOG: 0
+Anmeldender/Vorstellender Arzt: Mustermann / Uro
+Nierentumor li. 4,6 cm (cT1b)
+Anamnese:
+Raucher: ex 15 PY
+Z.n. Cholezystektomie
+Medikation: keine
+Fragestellung:
+Malingitätskriterien? Metastasen?
+
+geplantes Therapiekonzept:
+Partielle vs radikale Nephrektomie je nach Lage/Komplexität
+
+Erforderlicher Befund: 
+CT Staging (Thorax/Abdomen) vom 11.10.2025: Unklare Raumforderung der linken Niere am Oberpol ca. 4,6 cm (cT1b), malignitätsverdächtig. Kein Hinweis auf Filliae. 
+
+
+
+*10. Beispiel, Hanna, 12.12.1950, 2200020002, Alter: 75, ECOG: 2
+Anmeldender/Vorstellender Arzt: Beispiel / Uro
+Großer Tumor re. Niere 7,5 cm (cT2a)
+
+Anamnese:
+CKD G3, aHT, Vorhofflimmern (DOAK)
+Z. n. TUR-B 2019 ohne Malignität 
+Medikation: DOAK, Betablocker, ACE-Hemmer
+
+Fragestellung:
+Malignitätskriterien im CT Abdomen vom 09.12.2025?
+
+geplantes Therapiekonzept:
+perioperatives Antikoagulationsmanagement
+Komplettierung des Stagings mittels CT Thorax
+Sofern, fehlende Metastasierung -> Radikale Nephrektomie rechts
+
+Erforderlicher Befund: 
+CT Abdomen vom 09.12.2025 – V.a. Nierenzellkarzinom der rechten Niere am Oberpol ca. 7,5 x 6,5 cm. 
+
+*11. Muster, Ivan, 05.05.1970, 2200020003, Alter: 55, ECOG: 0
+Anmeldender/Vorstellender Arzt: Alexa / Uro
+Anamnese:
+Nierentumor li. 7,8 cm + Tumorthrombus in die Vena cava?
+In Rahmen Abklärung TAVI Zufallsbeunf Nierentumor links mit V.a. Infiltration der Vena cava. 
+
+
+aHT
+Medikation: Ramipril
+
+Fragestellung:
+Tumorthrombus im MRT-Abdomen vom 06.12.2025? 
+Metastasen im CT-Thorax vom 07.12.2025?
+geplantes Therapiekonzept:
+OP-Planung -> Nephrektomie links offen. 
+
+Erforderlicher Befund: 
+MRT Abdomen vom 06.12.2025:
+Hochgradiger Verdacht auf einen linksseitigen Nierentumor (ca. 7,8 × 6,9 cm) mit subdiaphragmaler Infiltration der V. cava inferior.
+CT Thorax vom 07.12.2025:
+Kein Hinweis auf Filiae.
+
+*12. Beispiel, Julia, 09.09.1958, 2200020004, Alter: 67, ECOG: 1
+Anmeldender/Vorstellender Arzt: Mustermann Mold / Uro
+
+Anamnese:
+Zufallsbefund der linken Niere 5,2 x 4,5 cm, iR.d. Abklärung von Rückenschmerzen
+
+COPD GOLD II, Raucher 30 PY
+Medikation: Amlodpin, Candesartan, Digitoxin, Atrovent
+
+Fragestellung:
+Malignitätskriterien in dem CT Abdomen vom 21.11.2025?
+
+geplantes Therapiekonzept:
+Komplettierung des Stagings mittels CT Thorax
+Bei fehlender Metastasierung, Nierenteilresektion vs Nephrektomie
+pulmonale Prä-OP-Evaluierung
+
+Erforderlicher Befund: 
+CT Abdomen vom 21.11.2025:
+Raumforderung der linken Niere (ca. 5,2 × 4,5 cm), V. a. Nierenzellkarzinom (NZK). Ansonsten keine pathologischen Befunde.
+
+
+*13. Muster, Karl, 23.02.1961, 2200020005, Alter: 64, ECOG: 0
+Anmeldender/Vorstellender Arzt: Mustermann / Uro
+Anamnese:
+Vorstellung beim Hausarzt zum regelmäßigen Ultraschallkontrolle. 
+Hier zeigte sich eine Raumfordeung der rechten Niere. Anschließend wurde eine CT Abdomen durchgeführt mit Hinweis auf 2 Raumforedunrgn der Nieren (re. 4,1 cm / li. 1,8 cm)
+
+Z. n. Kolon-OP bei Divertikulitis
+Medikation: keine
+
+Fragestellung:
+Malingitätskriterien in der CT Abdomen vom 03.12.2025?
+Geplantes Therapiekonzept:
+Nierenteilresektion beidseits. Zuerst Nierenteilresektion rechts und 8 Wochen später Nierenteilresektion links.
+Komplettierung des Stagings mittels CT Thorax. 
+
+Erforderlicher Befund:
+CT Abdomen vom 03.12.2025:
+Nieren: Beidseitige renale Raumforderungen, rechts ca. 4,1 cm, links ca. 1,8 cm. Malignitätsverdächtig, vereinbar mit V. a. Nierenzellkarzinom.
+Pankreas: Größe und Kontur regelrecht, homogene Kontrastmittelaufnahme. Kein Hinweis auf Raumforderung, keine Gangdilatation. Peripankreatisches Fettgewebe reizlos. Unauffällig.
+
+
+*14. Beispiel, Leon, 18.10.1946, 2200020006, Alter: 79, ECOG: 2
+
+Anmeldender/Vorstellender Arzt: Beispiel / Uro
+Anamnese:
+Vorstellung des Patienten mit einem Zufallsbvefund der linken Niere (Sonographie beim Hausarzt bei Rückenschmerzen)
+Großer Nierentumor links 9 cm 
+
+KHK, Z.n. Bypass 2012, CKD G2
+Medikation: ASS, Statin, Betablocker
+Fragestellung:
+Malignitätskriterien in dem CT Abdomen?
+Metastasen? 
+Großer Nierentumor links 9 cm, fragliche Infiltration der Nebenniere links
+
+geplantes Therapiekonzept:
+Nephrektomie mit Adrenalektomie links
+Einschätzung des perioperativen Risikos
+Erforderlicher Befund: 
+CT Abdomen mit KM vom 04.12.2025: 
+Nieren/Nebenniere: Linksseitige große renale Raumforderung, maximal ca. 9,0 cm, hochgradig malignitätsverdächtig (V. a. Nierenzellkarzinom). In enger Nachbarschaft zur linken Nebenniere mit fraglicher Infiltration; sichere Abgrenzung zur Nebenniere nicht eindeutig möglich. Rechte Niere ohne fokale Läsion.
+Pankreas: Unauffällig (regelrechte Größe/Kontur, homogene KM-Aufnahme, kein Gangstau).
+Weitere abdominelle Organe: Leber, Milz, Gallenwege unauffällig. Keine Aszites. Keine abdominelle Lymphadenopathie.
+ 
+CT Thorax vom 04.12.2025: 
+Lunge/Pleura: Kein Nachweis pulmonaler Rundherde oder suspekter Infiltrate. Keine Pleuraergüsse.
+Mediastinum/Hili: Keine pathologisch vergrößerten mediastinalen oder hilären Lymphknoten.
+Herz/Gefäße: Unauffällige Darstellung der thorakalen Gefäße, kein Perikarderguss.
+Skelett: Kein Hinweis auf ossäre Metastasen.
+Beurteilung: Kein Hinweis auf thorakale Metastasierung.
+
+
+
+Metastasiert – IMDC Low risk (6 Fälle)
+(0 Risikofaktoren; Beispiele: Hb normal, Ca normal, Neutrophile/Thrombo normal, KPS/ECOG gut, Zeit von Diagnose bis Systemtherapie ≥12 Monate)
+
+*15. Muster, Mira, 07.07.1966, 3100030001, Alter: 59, ECOG: 0
+orstellender Arzt: Mustermann (Onko).
+Diagnose: Metastasiertes klarzelliges Nierenzellkarzinom (mRCC, ccRCC).
+Z. n. Nephrektomie rechts 2023: ccRCC pT2a R0 (N-Status nicht angegeben).
+CT-Staging 12.12.2025 
+IMDC :
+Karnofsky 100% (aus ECOG 0) → kein Faktor
+Diagnose→ Systemtherapie 26 Monate (>12 Monate)
+Hb 13,6 g/dl normal 
+Korr. Calcium 2,32 mmol/l normal 
+Neutrophile 4,2 x10^9/l normal 
+Thrombozyten 248 x10^9/l normal 
+Fragestellung: Therapiebeginn/Monitoring, Re-Staging nach 8–12 Wochen.
+
+Geplantes Vorgehen: Start Nivolumab + Cabozantinib (IO+TKI), klinisches/Labor-Monitoring, Re-Staging nach 8–12 Wochen.
+Erforderlicher Befund: CT Staging vom 12.12.2025: 
+multiple bilaterale pulmonale Metastasen (z.B. RLL 12 mm, LUL 9 mm, weitere 3–6 mm), keine Pleuraergüsse, keine sicheren mediastinal/hilären LK. Abdomen/Becken ohne Lokalrezidiv, keine abdominelle LK-Vergrößerung. 
+
+
+*16. Beispiel, Nina, 01.01.1959, 3100030002, Alter: 66, ECOG: 1
+Anmeldender/Vorstellender Arzt: Beispiel / Onko
+mRCC, IMDC low risk
+Anamnese:
+Z. n. Nephrektomie links 2022 (ccRCC pT1b, R-/N-Status nicht angegeben). Jetzt oligometastatisch (2 pulmonal, 1 ossär).
+Vorerkrankung: arterielle Hypertonie. Medikation: Amlodipin.
+IMDC (weiterhin günstig / low risk, 0 Faktoren) – neue Werte:
+Karnofsky 90% (aus ECOG 0 abgeleitet) → kein Faktor (<80% wäre Faktor)
+Diagnose → Systemtherapie 34 Monate (>12 Monate) → kein Faktor
+Hb 14,0 g/dl (normal) → kein Faktor
+Korr. Calcium 2,30 mmol/l (normal) → kein Faktor
+Neutrophile 3,9 ×10^9/l (normal) → kein Faktor
+Thrombozyten 225 ×10^9/l (normal) → kein Faktor
+Fragestellung:
+Mitbeurteilung CT Staging vom 01.12.2025. Metastasen?
+Geplantes Therapiekonzept:
+Bei Metastasierung Einleitung einer Systemtherapie (z. B. Pembrolizumab + Lenvatinib).
+Erforderlicher Befund: 
+CT Staging vom 01.12.2025 (fiktiver Befund; oligometastatisch: 2 pulmonal, 1 ossär):
+Thorax: Zwei pulmonale Rundherde metastasenverdächtig:
+rechter Unterlappen subpleural 11 mm,
+linker Oberlappen 7 mm.
+Kein Pleuraerguss. Keine sicher pathologisch vergrößerten mediastinalen/hilären Lymphknoten.
+Abdomen/Becken: Status nach Nephrektomie links, kein Hinweis auf Lokalrezidiv. Leber, Pankreas, Nebennieren unauffällig. Keine abdominelle/pelvine Lymphadenopathie.
+Skelett: Solitäre osteolytische Läsion im rechten Os ilium (Beckenkamm) 16 mm, metastasenverdächtig.
+
+
+
+*17. Muster, Oskar, 12.12.1962, 3100030003, Alter: 63, ECOG: 0
+Vorstellender Arzt: Mustermann (Onko)
+Diagnose: Metastasiertes papilläres Nierenzellkarzinom (mRCC, papRCC) 
+Anamnese / Verlauf
+Neudiagnose eines papillären RCC (links).
+Z. n. Nierenbiopsie links am 01.12.2025 zur histologischen Sicherung.
+IMDC-Kriterien 
+Karnofsky: 90% (aus ECOG 0–1 plausibel abgeleitet) → 
+Diagnose → Systemtherapie: 18 Monate
+Hämoglobin: 14,2 g/dl (normal) 
+Korrigiertes Calcium: 2,33 mmol/l (normal) 
+Neutrophile: 4,0 ×10^9/l (normal) 
+Thrombozyten: 238 ×10^9/l (normal) 
+Vorerkrankungen / VOP
+Hyperlipidämie
+Z. n. Appendektomie
+Medikation
+Atorvastatin 40 mg 0–0–1
+CT Staging vom 20.11.2025 
+Abdomen/Retroperitoneum: Mehrere pathologisch vergrößerte Lymphknoten paraaortal und interaortokaval, teils rund-konfiguriert, metastasenverdächtig.
+größter paraaortaler LK links 22 × 16 mm
+interaortokaval 18 × 12 mm
+weitere retroperitoneale LK bis 10–14 mm
+Niere links: Solide, kontrastmittelaufnehmende Raumforderung am Unterpol, ca. 5,1 cm, malignitätsverdächtig (vereinbar mit RCC).
+Leber/Nebennieren/Pankreas: unauffällig, kein Hinweis auf Viszeralmetastasen.
+Thorax (falls mituntersucht): kein Hinweis auf pulmonale Metastasen (optional, sofern im Staging enthalten).
+Beurteilung: Malignomsuspekte Nierenraumforderung links mit abdomineller/retroperitonealer lymphonodaler Metastasierung; keine Organmetastasen nachweisbar (nach vorliegenden Angaben).
+
+Histologie
+Nierenbiopsie links vom 01.12.2025 
+Diagnose: Papilläres Nierenzellkarzinom (papRCC)
+Subtyp: vereinbar mit papRCC Typ 2 (falls gewünscht; alternativ „Typisierung nicht sicher möglich“)
+WHO/ISUP-Grad: Grad 2 (moderate Kernatypien)
+Immunhistochemie (typisch): PAX8+, CK7 (fokal/positiv), AMACR+, CAIX negativ/gering → Muster vereinbar mit papRCC
+Hinweis: Kein Nachweis von Nekrosen in den Biopsiezylindern; Material repräsentativ.
+Zusammenfassung Histologie: Malignität bestätigt – papilläres RCC.
+
+Fragestellung
+Mitbeurteilung Histologie? 
+Sequenzplanung der Systemtherapie und Nebenwirkungsmanagement (IO/TKI-Setting)
+Geplantes Therapiekonzept
+Einleitung einer Systemtherapie (IO + TKI) im metastasierten Setting, unter Berücksichtigung Komorbiditäten/Interaktionen (Atorvastatin) und geplanter Verlaufskontrollen.
+Erforderliche Befunde
+CT Staging 20.11.2025 
+Histologie Nierenbiopsie 01.12.2025 
+
+*18. Patient: Muster, Quentin (22.02.1956), 69 J., ECOG 1, Fallnr. 3100030005
+Vorstellender Arzt: Mustermann (Onko)
+Diagnose: Metastasiertes Nierenzellkarzinom (mRCC
+Anamnese / Verlauf
+V.a. Metastasierung 3 Jahre nach Primärdiagnose/Initialtherapie (diagnose→Systemtherapie >12 Monate).
+Z. n. Nephrektomie rechts 10.10.2022 – Niernezellkarzinom 
+Labor aktuell unauffällig 
+Vorerkrankung: Diabetes mellitus Typ 2.
+Medikation: Metformin.
+
+Reale IMDC-Werte (günstig / 0 Faktoren)
+Karnofsky: 80% (passend zu ECOG 1) 
+Diagnose → Systemtherapie: 36 Monate 
+Hämoglobin: 13,9 g/dl (normal) 
+Korrigiertes Calcium: 2,34 mmol/l (normal)
+Neutrophile: 4,5 ×10^9/l (normal) 
+Thrombozyten: 244 ×10^9/l (normal)
+
+CT Staging vom 10.12.2025 (Thorax/Abdomen/Becken):
+Thorax: Mehrere bilaterale pulmonale Rundherde metastasenverdächtig (z. B. RLL 9 mm, LUL 6 mm), kein Pleuraerguss, keine sicher pathologisch vergrößerten mediastinal/hilären Lymphknoten.
+Abdomen/Becken: Status nach Primärtherapie/Niere: kein sicherer Hinweis auf Lokalrezidiv (falls nephrektomiert: OP-Loge unauffällig). Leber, Nebennieren, Pankreas ohne fokale Läsionen. Keine abdominelle/pelvine Lymphadenopathie.
+Skelett: Kein sicherer Hinweis auf ossäre Metastasen im CT.
+Beurteilung: Bildmorphologischer Metastasenverdacht pulmonal; kein Nachweis von Viszeral- oder ossären Metastasen im Abdomen/Becken.
+
+Fragestellung:
+Metastasen in dem letzten Staging? 
+Geplantes Therapiekonzept:
+Einleitung einer Systemtherapie (IO TKI)
+Engmaschige klinische und laborchemische Kontrollen
+Erneutes Staging in 3 Monaten
+
+Erforderlicher Befund: 
+CT Staging vom 10.12.2025
+
+*19. Beispiel, Pia, 03.03.1971, 3100030004, Alter: 54, ECOG: 0
+Vorstellender Arzt: Beispiel (Onko)
+Diagnose: Metastasiertes Nierenzellkarzinom (mRCC) mit sarkomatoider Komponente 
+Anamnese / Verlauf
+Z. n. Nephrektomie 2024 bei Nierenzellkarzinom (histologisch mit sarkomatoider Komponente).
+Aktuell metastasiert: Lymphknoten (abdominell/mediastinal) und Lunge.
+Raucheranamnese: negativ.
+
+Reale IMDC-Werte (günstig / 0 Faktoren)
+Karnofsky: 100% (aus ECOG 0 abgeleitet)
+Diagnose → Systemtherapie: 14 Monate 
+Hämoglobin: 14,1 g/dl 
+Korrigiertes Calcium: 2,29 mmol/l 
+Neutrophile: 3,8 ×10^9/l 
+Thrombozyten: 256 ×10^9/l 
+
+CT Staging vom 15.12.2025 (Thorax/Abdomen/Becken):
+Thorax: Mehrere bilaterale pulmonale Rundherde metastasenverdächtig, z. B.
+rechter Oberlappen 8 mm,
+rechter Unterlappen 6 mm,
+linker Unterlappen 7 mm.
+Kein Pleuraerguss. Mediastinal eine paraaortale LK-Vergrößerung bis 13 mm (kurze Achse), metastasenverdächtig.
+Abdomen/Becken: Status nach Nephrektomie (OP-Loge) ohne sicheren Hinweis auf Lokalrezidiv. Retroperitoneal mehrere LK metastasenverdächtig, z. B. paraaortal links 18 × 12 mm, interaortokaval 15 × 10 mm. Leber, Nebennieren, Pankreas ohne fokale Läsionen. Kein Aszites.
+Skelett: Kein sicherer Hinweis auf ossäre Metastasen im CT.
+Beurteilung: Metastasenverdächtige pulmonale Rundherde sowie lymphonodale Metastasierung (mediastinal + retroperitoneal). Kein Hinweis auf Viszeralmetastasen im Abdomen oder ossäre Metastasen.
+
+Fragestellung
+Metatasierung in dem neuen Staging?
+IMDC klasse?
+Geplantes Therapiekonzept
+Einleitung einer Systemtherapie (z.B: IO + TKI)
+Klinisches Monitoring (Symptome, Haut, GI, Lunge), regelmäßige Laborkontrollen (BB, Leberwerte, Kreatinin, TSH/fT4 etc.)
+Re-Staging nach etabliertem Schema (z. B. nach 8–12 Wochen) bzw. bei klinischem Verdacht auf Progress oder Immuntox.
+Erforderlicher Befund: CT Staging vom 15.12.2025 (Thorax/Abdomen/Becken)
+
+*20. Beispiel, Ralf, 09.09.1960, 3100030006, Alter: 65, ECOG: 0
+Vorstellender Arzt: Beispiel (Onko)
+Diagnose: Metastasiertes Nierenzellkarzinom 
+Anamnese / Verlauf
+Vorstellung mit CT-Staging vom 04.10.2025: große Raumforderung der linken Niere sowie multiple bilaterale pulmonale Metastasen.
+Z. n. Nierenbiopsie am 15.10.2025 zur histologischen Sicherung.
+VE: Z. n. Hüft-TEP.
+
+CT Staging vom 04.10.2025 - Thorax/Abdomen/Becken)
+Linke Niere: Große, solide, heterogen kontrastmittelaufnehmende Raumforderung am Mittel-/Unterpol links, ca. 9,4 × 8,1 × 7,6 cm, malignitätsverdächtig, vereinbar mit Nierenzellkarzinom. Kontakt zur Nierenkapsel, kein sicherer Nachweis einer Infiltration benachbarter Organe.
+Nierenvenen/VCI: Linke Nierenvene frei, kein sicherer Tumorthrombus.
+Lymphknoten: Keine sicher pathologisch vergrößerten abdominellen Lymphknoten (max. paraaortal 9 mm kurze Achse).
+Leber/Nebennieren/Pankreas: ohne fokale Läsionen, unauffällig. Kein Aszites.
+Thorax: Multiple bilaterale pulmonale Rundherde metastasenverdächtig, z. B.
+RLL subpleural 14 mm,
+RML 9 mm,
+LUL 11 mm,
+weitere Herde 3–6 mm beidseits.
+Kein Pleuraerguss. Keine sicher pathologisch vergrößerten mediastinal/hilären Lymphknoten.
+Skelett (CT): Kein sicherer Hinweis auf ossäre Metastasen.
+Beurteilung: Große linksseitige renale Raumforderung, hochgradig malignitätsverdächtig (V. a. RCC) mit multiplen pulmonalen Metastasen. Kein sicherer Nachweis eines Tumorthrombus oder abdomineller Organmetastasen im CT.
+
+Histologie – Nierenbiopsie vom 15.10.2025 
+Diagnose: Klarzelliges Nierenzellkarzinom (ccRCC)
+WHO/ISUP Grad: Grad 2
+Morphologie: Tumorgewebe mit klarzelligem Zytoplasma und feinem kapillärem Netzwerk; keine Sarkomatoid-/Rhabdoid-Komponente in den Biopsiezylindern.
+Immunhistochemie (typisch): PAX8+, CAIX stark positiv (box-like), CD10+, CK7 negativ/fokal → Muster vereinbar mit ccRCC.
+Hinweis: Biopsiematerial repräsentativ; Nekrose in den Zylindern nicht nachweisbar.
+
+IMDC-Werte
+Karnofsky: 90% 
+Diagnose → Systemtherapie: 15 Monate 
+Hämoglobin: 14,0 g/dl 
+Korrigiertes Calcium: 2,31 mmol/l 
+Neutrophile: 4,1 ×10^9/l 
+Thrombozyten: 240 ×10^9/l 
+
+Fragestellung
+Bestätigung/Einordnung der Histologie (Subtyp/Grad) 
+Erforderliche Befunde
+CT Staging 04.10.2025 
+Histologie Nierenbiopsie 15.10.2025
+
+Metastasiert – IMDC Intermediate risk (6 Fälle)
+(1–2 Risikofaktoren)
+*21. Muster, Sara, 01.01.1963, 3200040001, Alter: 62, ECOG: 1
+Vorstellender Arzt: Mustermann (Onko)
+Diagnose: Metastasiertes klarzelliges Nierenzellkarzinom
+– Z. n. Nephrektomie links 04/2025 
+Anamnese 
+Z. n. Nephrektomie links 04/2025 bei ccRCC.
+Aktuell Vorstellung zur Therapieentscheidung anhand CT-Staging vom 10.11.2025.
+VE / Medikation; Arterielle Hypertonie, Medis: Candesartan, Amlodipin
+
+IMDC 
+Karnofsky: 80% 
+Diagnose → Systemtherapie: 7 Monate (04/2025 → 11/2025) 
+Hämoglobin: 13,8 g/dl 
+Korrigiertes Calcium: 2,32 mmol/l 
+Neutrophile: 4,3 ×10^9/l
+Thrombozyten: 236 ×10^9/l 
+
+CT Staging vom 10.11.2025 - Thorax/Abdomen/Becken
+Thorax: Zwei pulmonale Rundherde metastasenverdächtig:
+rechter Unterlappen 10 mm,
+linker Oberlappen 6 mm.
+Kein Pleuraerguss. Keine sicher pathologisch vergrößerten mediastinal/hilären Lymphknoten.
+Abdomen/Becken: Status nach Nephrektomie links, OP-Loge ohne sicheren Hinweis auf Lokalrezidiv. Retroperitoneal ein paraaortaler Lymphknoten links 14 mm (kurze Achse), metastasenverdächtig. Leber, Nebennieren, Pankreas ohne fokale Läsionen. Kein Aszites.
+Skelett: Kein sicherer Hinweis auf ossäre Metastasen im CT.
+Beurteilung: Bildmorphologisch metastasenverdächtige pulmonale Herde sowie retroperitoneale lymphonodale Metastasierung. Kein Hinweis auf Viszeralmetastasen im Abdomen oder ossäre Metastasen.
+
+Fragestellung
+Metastasen im Staging vom 10.11.2025?
+Geplantes Therapiekonzept
+Einleitung einer Systemtherapie: IO + IO vs. IO + TKI (unter Berücksichtigung IMDC intermediate, Komorbiditäten und Verträglichkeit)
+Erforderlicher Befund
+CT Staging 10.11.2025
+
+*22. Beispiel, Timo, 05.05.1955, 3200040002, Alter: 70, ECOG: 1
+Vorstellender Arzt: Beispiel (Onko)
+Diagnose: 
+Z. n. Nephrektomie links 2023 
+Anamnese / Verlauf
+Z. n. Nephrektomie links 2023 bei Nierenzellkarzinom mit sarkomatoider Komponente.
+Aktuelle Vorstellung zur Befund- und Therapieentscheidung anhand CT-Staging vom 01.12.2025.
+Raucheranamnese: 30 PY, COPD.
+VOP: Z. n. Appendektomie.
+
+IMDC (intermediate / 2 Faktoren) – reale Werte (fiktive Konstellation)
+Karnofsky: 80% 
+Diagnose → Systemtherapie: 24 Monate 
+Hämoglobin: 10,8 g/dl 
+Korrigiertes Calcium: 2,68 mmol/l 
+Neutrophile: 4,6 ×10^9/l 
+Thrombozyten: 270 ×10^9/l 
+
+CT Staging vom 01.12.2025 Thorax/Abdomen/Becken)
+Thorax: Kein Pleuraerguss. Keine sicher pathologisch vergrößerten mediastinal/hilären Lymphknoten. Kein sicherer Nachweis pulmonaler Rundherde (optional; falls gewünscht: „keine pulmonalen Metastasen“).
+Abdomen/Retroperitoneum: Mehrere retroperitoneale Lymphknoten metastasenverdächtig, z. B.
+paraaortal links 21 × 15 mm,
+interaortokaval 17 × 12 mm,
+weitere LK bis 10–12 mm.
+Leber, Nebennieren, Pankreas ohne fokale Läsionen. Kein Aszites. OP-Loge links ohne sicheren Hinweis auf Lokalrezidiv.
+Skelett: Osteolytische, metastasenverdächtige Läsionen:
+rechter Beckenkamm/Os ilium 24 mm,
+BWK12 15 mm (kortikale Mitbeteiligung geringgradig, keine Spinalkanalstenose im CT).
+Beurteilung: Lymphonodale Metastasierung retroperitoneal sowie ossäre Metastasen. Kein Hinweis auf Viszeralmetastasen im Abdomen.
+
+Fragestellung
+Metastasen im neuen Staging vom 01.12.2025?
+Geplantes Therapiekonzept
+Systemtherapie: IO + IO vs. IO + TKI (unter Berücksichtigung sarkomatoider Komponente, IMDC intermediate, Komorbiditäten)
+Anämieabklärung/Supportivtherapie (z. B. Eisenstatus, Blutungsausschluss, Entzündungszeichen; ggf. Substitution/Transfusion je nach Klinik)
+Knochenprotektion (z. B. Denosumab/Bisphosphonat nach Standard + Ca/Vit-D, Zahnarztstatus) und ggf. lokale Maßnahmen (Radiatio/OP) bei Risiko-Läsionen
+Erforderlicher Befund
+CT Staging 01.12.2025
+
+*23. Muster, Uwe, 07.07.1970, 3200040003, Alter: 55, ECOG: 0
+Vorstellender Arzt: Mustermann (Onko)
+Diagnose: Z. n. Nephrektomie rechts 2022 
+Anamnese / Verlauf
+Z. n. Nephrektomie rechts 2022 bei Nierenzellkarzinom 
+Aktuelle Vorstellung zur Befund- und Therapieentscheidung anhand CT-Staging vom 02.12.2025.
+Vorerkrankungen: ahT, V. a. Hyperparathyreoidismus (als mögliche Ursache der Hyperkalzämie).
+Medikation: Vitamin D, Amlodipin.
+
+IMDC 
+Karnofsky: 80% (entspricht ECOG 1) 
+Diagnose → Systemtherapie: 38 Monate (2022 → 12/2025) 
+Hämoglobin: 13,6 g/dl (normal) 
+Korrigiertes Calcium: 2,62 mmol/l 
+Neutrophile: 4,2 ×10^9/l (normal) 
+Thrombozyten: 232 ×10^9/l (normal
+
+CT Staging vom 02.12.2025 (fiktiver Befund; Thorax/Abdomen/Becken)
+Thorax: Kein Pleuraerguss. Keine sicher pathologisch vergrößerten mediastinal/hilären Lymphknoten. Kein sicherer Nachweis pulmonaler Rundherde.
+Abdomen/Retroperitoneum: Status nach Nephrektomie rechts, OP-Loge ohne sicheren Hinweis auf Lokalrezidiv. Mehrere retroperitoneale Lymphknoten metastasenverdächtig, z. B.
+paraaortal links 19 × 13 mm,
+interaortokaval 16 × 11 mm,
+weitere LK bis 10–12 mm.
+Leber, Nebennieren, Pankreas ohne fokale Läsionen. Kein Aszites.
+Skelett: Mehrere ossäre Läsionen metastasenverdächtig, z. B.
+osteolytische Läsion im BWK10 12 mm,
+osteolytische Läsion im rechten Os ilium 18 mm.
+Keine Frakturzeichen, keine Spinalkanalstenose im CT.
+Beurteilung: Lymphonodale Metastasierung retroperitoneal sowie ossäre Metastasierung. Kein Hinweis auf viszerale Metastasen in Thorax/Abdomen/Becken im vorliegenden CT.
+
+Fragestellung
+Metastasen im CT-Staging vom 02.12.2025?
+Geplantes Therapiekonzept
+Einleitung einer Systemtherapie: IO + IO vs. IO + TKI (unter Berücksichtigung IMDC intermediate, Hyperkalzämie/Komorbiditäten)
+Parallel: Abklärung der Hyperkalzämie (z. B. PTH/Phosphat/Vit.-D-Spiegel, ggf. endokrinologische Mitbetreuung) und Supportivmaßnahmen nach klinischer Situation
+Erforderlicher Befund
+CT Staging 02.12.2025 (Thorax/Abdomen/Becken)
+
+*24. Beispiel, Valeria, 12.12.1968, 3200040004, Alter: 57, ECOG: 1
+Vorstellender Arzt: Beispiel (Onko)
+Diagnose: Metastasiertes papilläres Nierenzellkarzinom (mRCC, papRCC) 
+Z. n. Nephrektomie links 06.06.2025 (papRCC)
+
+Anamnese / Verlauf
+Z. n. Nephrektomie links am 06.06.2025 bei papillärem Nierenzellkarzinom 
+Aktuelle Vorstellung zur Befund- und Therapieentscheidung anhand CT-Staging vom 10.10.2025.
+Komorbiditäten: COPD GOLD I (Raucher), Adipositas per magna.
+VOP: Z. n. Nabelhernien-OP.
+
+IMDC
+Karnofsky: 80% (entspricht ECOG 1) 
+Diagnose → Systemtherapie: 4 Monate (06/2025 → 10/2025) 
+Hämoglobin: 13,2 g/dl 
+Korrigiertes Calcium: 2,34 mmol/l 
+Neutrophile: 8,1 ×10^9/l 
+Thrombozyten: 268 ×10^9/l 
+
+CT Staging vom 10.10.2025 Thorax/Abdomen/Becken
+Thorax: Multiple bilaterale pulmonale Rundherde metastasenverdächtig, z. B.
+rechter Unterlappen 12 mm,
+rechter Oberlappen 8 mm,
+linker Unterlappen 10 mm,
+weitere Herde beidseits 3–6 mm.
+Kein Pleuraerguss. Keine sicher pathologisch vergrößerten mediastinal/hilären Lymphknoten.
+Abdomen/Becken: Status nach Nephrektomie links. In der OP-Loge links weichteildichte Läsion 22 × 18 mm mit Kontrastmittelaufnahme, vereinbar mit Lokalrezidiv. Retroperitoneal keine sicher pathologisch vergrößerten Lymphknoten (max. 9 mm kurze Achse). Leber, Nebennieren, Pankreas ohne fokale Läsionen. Kein Aszites.
+Skelett: Kein sicherer Hinweis auf ossäre Metastasen im CT.
+Beurteilung: Pulmonale Metastasierung sowie lokales Rezidiv in der Nephrektomie-Loge links. Kein Hinweis auf viszerale Metastasen im Abdomen oder ossäre Metastasen im CT.
+
+Fragestellung
+Metastasen im Staging vom 10.10.2025?
+Geplantes Therapiekonzept
+Einleitung einer Systemtherapie im metastasierten Setting (papRCC, IMDC intermediate) unter Berücksichtigung Komorbiditäten (COPD, Adipositas) und erforderlichem Nebenwirkungs-/Supportivmanagement.
+Erforderlicher Befund
+CT Staging 10.10.2025 (Thorax/Abdomen/Becken)
+
+*25. Muster, Willem, 03.03.1952, 3200040005, Alter: 73, ECOG: 2
+Anmeldender/Vorstellender Arzt: Mustermann / Onko
+mRCC, IMDC intermediate (2 Faktoren)
+IMDC-Faktoren: ECOG 2 (1), Hb niedrig (2)
+Metastasen: Lunge
+Medikation: DOAK (VHF), Betablocker
+1. Linie: Lenvatinib + Pembrolizumab (Dosisanpassung)
+Fragestellung:
+Therapietauglichkeit/Supportiv
+
+*26. Beispiel, Xaver, 01.01.1960, 3200040006, Alter: 65, ECOG: 1
+Vorstellender Arzt: Mustermann (Onko)
+Diagnose: Z. n. Nephrektomie 08/2024
+
+Anamnese / Verlauf
+Z. n. Nephrektomie 08/2024 bei papillärem Nierenzellkarzinom 
+Aktuelle Vorstellung zur Therapieentscheidung anhand CT-Staging vom 10.10.2025.
+Vorerkrankungen: Diabetes mellitus Typ 2, arterielle Hypertonie, Z. n. Cholezystektomie.
+
+IMDC 
+Karnofsky: nicht angegeben
+Diagnose → Systemtherapie: 14 Monate (08/2024 → 10/2025)
+Hämoglobin: 13,4 g/dl 
+Korrigiertes Calcium: 2,33 mmol/l 
+Neutrophile: 4,4 ×10^9/l 
+Thrombozyten: 468 ×10^9/l
+
+CT Staging vom 10.10.2025 Thorax/Abdomen/Becken
+Thorax: Kein Pleuraerguss. Kein sicherer Nachweis pulmonaler Rundherde. Keine sicher pathologisch vergrößerten mediastinal/hilären Lymphknoten.
+Abdomen/Becken: Status nach Nephrektomie (OP-Loge) ohne sicheren Hinweis auf Lokalrezidiv. Leber, Nebennieren, Pankreas ohne fokale Läsionen. Keine abdominelle/pelvine Lymphadenopathie. Kein Aszites.
+Skelett: Multiple ossäre Läsionen metastasenverdächtig, z. B.
+BWK8 osteolytisch 14 mm,
+LWK3 osteolytisch 18 mm,
+rechtes Os ilium 22 mm,
+linkes Femur proximal 16 mm (kein Frakturzeichen im CT).
+Keine Spinalkanalstenose im CT.
+Beurteilung: Multiple ossäre Metastasierung. Kein Hinweis auf viszerale Metastasen im Thorax/Abdomen/Becken im vorliegenden CT.
+
+Fragestellung
+Metastasen im letzten Staging vom 10.10.2025?
+Geplantes Therapiekonzept
+Einleitung einer Systemtherapie im metastasierten Setting (papRCC) unter Berücksichtigung Komorbiditäten (DM2, aHT) und Supportivmaßnahmen (z. B. Analgesie, Knochenprotektion nach Standard, ggf. lokale Therapie bei Risiko-Läsionen).
+Erforderlicher Befund
+CT Staging 10.10.2025 (Thorax/Abdomen/Becken)
+
+
+
+
+Metastasiert – IMDC High risk (6 Fälle)
+(≥3 Risikofaktoren; oft frühe Systemtherapie, schlechte Parameter, ECOG schlechter)
+*27. Muster, Yara, 09.09.1949, 3300050001, Alter: 76, ECOG: 2
+Vorstellender Arzt: Mustermann (Onko)
+Diagnose: Z. n. Nephrektomie links 2000
+
+
+Anamnese / Verlauf
+Z. n. Nephrektomie links 2000 bei Nierenzellkarzinom 
+Aktuelle Vorstellung zur Befund- und Therapieentscheidung anhand CT-Staging vom 04.11.2025.
+Vorerkrankungen: KHK, CKD G3.
+
+IMDC 
+Karnofsky: 70% (entspricht ECOG 2) 
+Diagnose → Systemtherapie: >24 Monate 
+Hämoglobin: 10,4 g/dl 
+Korrigiertes Calcium: 2,74 mmol/l 
+Neutrophile: 4,6 ×10^9/l 
+Thrombozyten: 248 ×10^9/l 
+
+CT Staging vom 04.11.2025 Thorax/Abdomen/Becken
+Thorax: Kein Pleuraerguss. Keine sicher pathologisch vergrößerten mediastinal/hilären Lymphknoten. Keine eindeutigen pulmonalen Rundherde (alternativ: „unspezifische Mikronoduli <4 mm“ ohne sicheren Metastasencharakter).
+Abdomen/Becken: Status nach Nephrektomie links. OP-Loge ohne sicheren Hinweis auf Lokalrezidiv.
+Leber: Mehrere hypodense, kontrastmittelaufnehmende Läsionen metastasenverdächtig, z. B.
+Segment VII 28 mm,
+Segment IVa 16 mm,
+Segment II 12 mm.
+Nebennieren/Pankreas: unauffällig.
+Lymphknoten: kein sicher pathologisch vergrößerter abdomineller LK (max. 9 mm kurze Achse).
+Kein Aszites.
+Skelett: Mehrere ossäre Läsionen metastasenverdächtig, z. B.
+osteolytische Läsion LWK2 20 mm,
+osteolytische Läsion rechtes Os ilium 24 mm.
+Keine Frakturzeichen, keine Spinalkanalstenose im CT.
+Beurteilung: Viszerale Metastasierung hepatisch sowie ossäre Metastasierung. Kein sicherer Hinweis auf pulmonale Metastasen im vorliegenden CT.
+
+Fragestellung
+Metastasen im Staging vom 04.11.2025?
+Passende Systemtherapie im Kontext IMDC high risk und Komorbiditäten (KHK, CKD G3)?
+Geplantes Therapiekonzept
+Einleitung einer geeigneten Systemtherapie im metastasierten Setting (Auswahl abhängig von IMDC high risk, Nierenfunktion/CKD, kardialer Situation, Komedikation und gewünschtem Nebenwirkungsprofil).
+Supportiv: Knochenprotektion nach Standard + Analgesie/Frakturrisiko-Assessment; engmaschiges Monitoring (BB, Elektrolyte inkl. Ca, Nierenwerte, Leberwerte).
+Erforderlicher Befund
+CT Staging 04.11.2025 (Thorax/Abdomen/Becken)
+
+*28. Beispiel, Mustermann, 17.02.1952, 3300050002, Alter: 73, ECOG: 2
+Vorstellender Arzt: Mustermann Man (Onko)
+Diagnose: Z. n. Nephrektomie rechts 11/2022 (klarzelliges RCC mit sarkomatoider Differenzierung)
+
+Anamnese / Verlauf
+Z. n. Nephrektomie rechts 11/2022 bei ccRCC mit sarkomatoider Differenzierung.
+Aktuelle Vorstellung zur Befund- und Therapieentscheidung anhand CT-Staging vom 18.11.2025.
+Vorerkrankungen/VOP: Z. n. Cholezystektomie, Z. n. Leistenhernien-OP beidseits.
+Medikation: Candesartan, Amlodipin, Marcumar.
+
+IMDC 
+Karnofsky: 60% 
+Diagnose → Systemtherapie: >24 Monate 
+Hämoglobin: 9,8 g/dl 
+Korrigiertes Calcium: 2,72 mmol/l 
+Neutrophile: 7,9 ×10^9/l 
+Thrombozyten: 410 ×10^9/l 
+
+CT Staging vom 18.11.2025 (Thorax/Abdomen/Becken)
+Thorax: Mehrere bilaterale pulmonale Rundherde metastasenverdächtig (z. B. RLL 11 mm, LUL 7 mm, weitere 3–5 mm). Kein Pleuraerguss. Keine sicher pathologisch vergrößerten mediastinal/hilären Lymphknoten.
+Abdomen/Becken: Status nach Nephrektomie rechts. Lebermetastasen (z. B. Segment VII 26 mm, Segment IVa 14 mm). Kein Aszites.
+Skelett: Osteolytische Läsion BWK9 17 mm und rechtes Os ilium 21 mm, metastasenverdächtig.
+Beurteilung: Pulmonale + hepatische + ossäre Metastasierung (multifokal).
+
+Fragestellung
+Metastasen im Staging vom 18.11.2025?
+Passende Systemtherapie bei IMDC high risk und sarkomatoider Komponente?
+Geplantes Therapiekonzept
+Einleitung einer geeigneten Systemtherapie (IO-basiert) + Supportivmaßnahmen (Knochenprotektion/Analgesie, engmaschiges Labor-/Tox-Monitoring).
+Erforderlicher Befund
+CT Staging 18.11.2025 (Thorax/Abdomen/Becken)
+
+
+29. Muster, Lukas, 04.06.1947, 3300050003, Alter: 78, ECOG: 2
+Vorstellender Arzt: Mustermann (Onko)
+Diagnose: Z. n. Nephrektomie links 03/2021 (papilläres RCC Typ 2)
+
+Anamnese / Verlauf
+Z. n. Nephrektomie links 03/2021 bei papRCC Typ 2.
+Aktuelle Vorstellung zur Befund- und Therapieentscheidung anhand CT-Staging vom 04.11.2025.
+Vorerkrankungen/VOP: Z. n. Appendektomie, Z. n. Nabelhernien-OP.
+Medikation: Amlodipin, Candesartan.
+
+IMDC 
+Karnofsky: 70% → Faktor
+Diagnose → Systemtherapie: > 12 Monate 
+Hämoglobin: 10,2 g/dl
+Korrigiertes Calcium: 2,69 mmol/l 
+Neutrophile: 6,6 ×10^9/l 
+Thrombozyten: 392 ×10^9/l 
+
+CT Staging vom 04.11.2025 (Thorax/Abdomen/Becken)
+Thorax: Kein Pleuraerguss. Keine sicher pathologisch vergrößerten mediastinal/hilären Lymphknoten. Keine eindeutigen pulmonalen Metastasen.
+Abdomen/Becken: Status nach Nephrektomie links. Multiple Leberläsionen metastasenverdächtig (Segment VI 22 mm, Segment II 13 mm).
+Skelett: Mehrere ossäre Läsionen metastasenverdächtig (z. B. LWK1 16 mm, rechtes Os pubis 18 mm).
+Beurteilung: Hepatische und ossäre Metastasierung; keine sicheren pulmonalen Metastasen.
+
+Fragestellung
+Metastasen im CT-Staging vom 04.11.2025?
+Passende Systemtherapie bei IMDC high risk?
+Geplantes Therapiekonzept
+Einleitung Systemtherapie im metastasierten Setting + Supportiv (Knochenprotektion/Analgesie, Laborkontrollen).
+Erforderlicher Befund
+CT Staging 04.11.2025 (Thorax/Abdomen/Becken)
+
+
+30. Beispiel, Tarek, 29.11.1956, 3300050004, Alter: 69, ECOG: 2
+Vorstellender Arzt: Mustermann (Onko)
+Diagnose: Z. n. Nephrektomie rechts 07/2020 (chromophobes RCC mit fokaler sarkomatoider Transformation)
+
+Anamnese / Verlauf
+Z. n. Nephrektomie rechts 07/2020 bei chromophobem RCC mit fokaler sarkomatoider Transformation.
+Aktuelle Vorstellung zur Befund- und Therapieentscheidung anhand CT-Staging vom 04.11.2025.
+Vorerkrankungen/VOP: Z. n. Leistenhernien-OP, Z. n. Cholezystektomie.
+Medikation: Marcumar, Amlodipin.
+
+IMDC 
+Karnofsky: 60% 
+Diagnose → Systemtherapie: >12 Monate
+Hämoglobin: 9,6 g/dl 
+Korrigiertes Calcium: 2,77 mmol/l 
+Neutrophile: 7,2 ×10^9/l 
+Thrombozyten: 455 ×10^9/l 
+
+CT Staging vom 04.11.2025 (Thorax/Abdomen/Becken)
+Thorax: Keine Pleuraergüsse. Keine sicher pathologisch vergrößerten mediastinal/hilären Lymphknoten. Einzelner Rundherd LLL 6 mm (unklar, Verlaufskontrolle empfohlen).
+Abdomen/Becken: Status nach Nephrektomie rechts. Lebermetastasen (Segment VII 30 mm, Segment V 15 mm). Kein Aszites.
+Skelett: Osteolytische Läsionen BWK12 19 mm und linkes Os ilium 23 mm, metastasenverdächtig.
+Beurteilung: Hepatische und ossäre Metastasierung; pulmonaler Herd unklar (DD Metastase vs. benign).
+
+Fragestellung
+Metastasen im Staging vom 04.11.2025?
+Passende Systemtherapie bei IMDC high risk und sarkomatoider Komponente?
+Geplantes Therapiekonzept
+Einleitung Systemtherapie + Supportiv (Knochenprotektion/Analgesie; engmaschiges Monitoring inkl. Ca/Hb; Verlaufskontrolle Thorax).
+Erforderlicher Befund
+CT Staging 04.11.2025 (Thorax/Abdomen/Becken)
+
+30. Muster, Ada, 11.11.1965, 3300050003, Alter: 60, ECOG: 2
+Vorstellender Arzt: Mustermann (Onko)
+Diagnose: Metastasiertes Nierenzellkarzinom (mRCC) 
+Anamnese / Verlauf
+Erstdiagnose metastasiertes RCC: 10.10.2022.
+2022: Ipilimumab + Nivolumab (IO/IO)
+2024: Cabozantinib (TKI)
+aktuell: Lenvatinib + Everolimus (TKI + mTOR)
+Vorerkrankung: arterielle Hypertonie.
+Medikation: Ramipril.
+CT Staging vom 10.12.2025 (Thorax/Abdomen/Becken)
+Progress der bekannten ossären und lymphonodalen Metastasen (Größenzunahme retroperitonealer Lymphknoten und Zunahme/Neueintritt ossärer Läsionen).
+Fragestellung
+4. Linie starten? Nutzen–Risiko-Abwägung bei zunehmender Toxizität und Progress unter aktueller Therapie.
+Geplantes Therapiekonzept
+Wechsel der Systemtherapie (z. B. Pazopanib oder Tivozanib oder Sunitinib) je nach Vorbehandlung/Verträglichkeit.
+Erforderlicher Befund
+CT Staging 10.12.2025 (Progress ossär + lymphonodal).
+
+
+Beispiel, Carla, 08.04.1959, 3300050004, Alter: 66, ECOG: 1
+Vorstellender Arzt: Beispiel (Onko)
+Diagnose: Metastasiertes Nierenzellkarzinom (mRCC)
+Anamnese / Verlauf
+Erstdiagnose metastasiertes RCC: 02/2024.
+1. Linie (2024): Pembrolizumab + Axitinib
+Vorerkrankungen: Diabetes mellitus Typ 2, Z. n. Appendektomie.
+Medikation: Metformin, Amlodipin.
+CT Staging vom 05.12.2025 (Thorax/Abdomen/Becken) 
+Thorax: Zunahme pulmonaler Metastasen:
+RLL subpleural 13 mm (zuvor 9 mm),
+LUL 8 mm (zuvor 5 mm),
+mehrere neue Mikronoduli 3–4 mm beidseits.
+Kein Pleuraerguss.
+Lymphknoten: mediastinal paraaortal 14 mm (kurze Achse), retroperitoneal paraaortal links 18 mm – metastasenverdächtig.
+Abdomen/Becken: kein sicherer Hinweis auf Lokalrezidiv, keine Lebermetastasen.
+Skelett: kein sicherer Hinweis auf ossäre Metastasen im CT.
+Fragestellung
+Progress im CT bestätigt? Wechsel in die 2. Linie – Nutzen/Risiko und Nebenwirkungsmanagement?
+Geplantes Therapiekonzept
+Start 2. Linie (z. B. Cabozantinib oder alternative TKI-basierte Sequenz je nach Verträglichkeit/Komorbidität).
+Monitoring: Blutdruck, Leberwerte, GI-Tox, Fatigue.
+Erforderlicher Befund
+CT Staging 05.12.2025 
+
+
+
+31. Muster, Felix, 21.07.1948, 3300050005, Alter: 77, ECOG: 2
+Vorstellender Arzt: Mustermann (Onko)
+Diagnose: Metastasiertes Nierenzellkarzinom
+Anamnese / Verlauf
+Erstdiagnose metastasiertes RCC: 03.03.2021.
+ (2021): Nivolumab + Ipilimumab (IO/IO).
+ (2023): Sunitinib (TKI).
+Vorerkrankungen: KHK, Z. n. Leistenhernien-OP.
+Medikation: Candesartan, Marcumar.
+CT Staging vom 22.11.2025 (Thorax/Abdomen/Becken) 
+Thorax: bekannte kleine pulmonale Rundherde stabil (z. B. RLL 5 mm, LUL 4 mm), kein Pleuraerguss.
+Abdomen: neue Lebermetastasen: Segment VII 24 mm, Segment II 11 mm.
+Retroperitoneal LK paraaortal 12 mm (neu/grenzwertig).
+Skelett: neue osteolytische Läsion LWK3 19 mm und rechtes Os ilium 23 mm, metastasenverdächtig.
+Beurteilung: Progress v. a. hepatisch + ossär.
+Fragestellung
+Progress bestätigt? 3. Linie starten – Toxizität/Nutzen bei ECOG 2 und KHK?
+Geplantes Therapiekonzept
+Start 3. Linie (z. B. Lenvatinib + Everolimus oder alternative Sequenz je nach Vorbehandlung/Komorbidität).
+Supportiv: Analgesie, Knochenprotektion nach Standard, engmaschige Laborkontrollen.
+Erforderlicher Befund
+CT Staging 22.11.2025 
+
+
+32. Beispiel, Nora, 30.10.1963, 3300050006, Alter: 62, ECOG: 1
+Vorstellender Arzt: Beispiel (Onko)
+Diagnose: Metastasiertes Nierenzellkarzinom (mRCC)
+Anamnese / Verlauf
+Erstdiagnose metastasiertes RCC: 12.06.2023.
+1. Linie (2023–2025): Cabozantinib (TKI).
+Vorerkrankungen: CKD G3, Z. n. Cholezystektomie.
+Medikation: Amlodipin.
+CT Staging vom 10.12.2025 (Thorax/Abdomen/Becken) 
+Thorax: kein Nachweis pulmonaler Metastasen, kein Pleuraerguss.
+Abdomen/Becken:
+in der Nephrektomie-Loge links (OP-Status angenommen): weichteildichte Läsion 28 × 20 mm mit KM-Aufnahme → Lokalrezidiv.
+Peritoneale Metastasen: zwei noduläre Herde, z. B. links parakolisch 16 mm, im kleinen Becken 12 mm.
+retroperitoneale LK bis 11 mm (unspezifisch/grenzwertig).
+Skelett: kein sicherer Hinweis auf ossäre Metastasen.
+Fragestellung
+Progress/Lokalrezidiv bestätigt? Wechsel in die 2. Linie und Monitoring?
+Geplantes Therapiekonzept
+Start 2. Linie (z. B. IO-basierte Kombination oder alternative Sequenz je nach Vorbehandlung und Nierenfunktion).
+Monitoring: Nierenwerte, Blutdruck, Proteinurie, klinische Symptomkontrolle.
+Erforderlicher Befund
+CT Staging 10.12.2025 
+
+
+
+*33. Beispiel, Bora, 06.06.1954, 3300050004, Alter: 71, ECOG: 2
+Vorstellender Arzt: Beispiel (Onko)
+Diagnose: Metastasiertes Nierenzellkarzinom (mRCC)
+Anamnese / Verlauf
+mRCC, mehrfach vorbehandelt.
+Therapiesequenz:
+1. Linie: Pembrolizumab + Axitinib (IO+TKI)
+2. Linie: Cabozantinib (TKI)
+3. Linie: Tivozanib (TKI)
+Vorerkrankungen: Z. n. Lungenarterienembolie (LAE) → dauerhaft antikoaguliert
+Medikation: Apixaban Pantoprazol, ggf. Schmerzmedikation nach Bedarf
+VOP: Z. n. Hysterekotmie-OP (2016)
+Karnofsky: 70% (≈ ECOG 2) 
+Hämoglobin: 9,9 g/dl 
+Korrigiertes Calcium: 2,78 mmol/l
+Neutrophile: 8,4 ×10^9/l 
+Thrombozyten: 290 ×10^9/l (normal) 
+
+CT Staging vom 05.12.2025 (Thorax/Abdomen/Becken) 
+Thorax: Zunahme pulmonaler Metastasen (z. B. RLL 15 mm (vorher 11 mm), LUL 10 mm (vorher 7 mm)), kein Pleuraerguss.
+Abdomen: Neue Lebermetastase Segment VI 18 mm; bekannte Leberläsion Segment VII von 22 → 30 mm progredient.
+Retroperitoneum: paraaortaler LK progredient 18 → 26 mm.
+Skelett: neue osteolytische Läsion BWK11 14 mm (neu).
+Beurteilung: Systemischer Progress (Lunge + Leber + LK, neu ossär) unter Tivozanib → Therapieumstellung indiziert.
+Fragestellung
+4. Linie vs. BSC bei ECOG 2 und Progress?
+Studiensuche/MTB-Vorstellung (Belzutifan/weitere Optionen)
+Geplantes Therapiekonzept
+Abwägung Belzutifan vs. Best supportive care
+Supportiv: Analgesie, Knochenprotektion nach Standard, engmaschige Laborkontrollen (Hb/Ca)
+Erforderliicher Befund: 
+CT Staging vom 05.12.2025
+
+
+34. Muster, Cora, 03.03.1951, 3300050005, Alter: 74, ECOG: 3
+Vorstellender Arzt: Mustermann (Onko)
+Diagnose: mRCC
+Anamnese / Verlauf
+Deutlich reduzierter Allgemeinzustand (ECOG 3), massive Gewichtsabnahme, tumorassoziierte Schmerzen.
+Therapielinien: 1. Linie: Ipi Nivo; 2. Linie Cabozantinib, aktuell unter Lenva Everolimus
+Vorerkrankungen: CKD G4, KHK (Z. n. Stent), COPD GOLD II
+Medikation: Bisoprolol, ASS, Torasemid, inhalatives LAMA/LABA, Oxycodon (Bedarf)
+VOP: Z. n. Appendektomie
+Karnofsky: 50% 
+Hämoglobin: 9,2 g/dl 
+Thrombozyten: 520 ×10^9/l
+Neutrophile: 7,0 ×10^9/l
+Korrigiertes Calcium: 2,42 mmol/l
+
+CT Staging vom 02.12.2025 (Thorax/Abdomen/Becken) 
+Thorax: progrediente bilaterale pulmonale Metastasen (z. B. RLL 18 mm, LUL 14 mm, multiple neue 4–7 mm), kleiner Pleuraerguss rechts.
+Abdomen: progrediente Lebermetastasen (Segment VIII 34 mm, Segment II 19 mm), neu Aszites gering.
+LK: Retroperitoneale LK-Konglomerate paraaortal bis 32 mm.
+Skelett: multipel osteolytisch (LWK2 22 mm; linkes Os ilium 28 mm) – korreliert mit Schmerzen.
+Beurteilung: Deutlicher systemischer Progress (viszeral + ossär + LK) bei schlechtem AZ.
+Fragestellung / geplantes Therapiekonzept
+Best supportive care im Vordergrund:
+Optimierung Analgesieschema (WHO-Stufen, ggf. Palliativdienst)
+Palliative Radiotherapie schmerzhafter Knochenläsionen (z. B. Becken/LWS)
+Supportiv: Antiemese, Ernährung/Cachexie-Support, CKD-gerechte Therapie
+Erforderlicher Befund: 
+CT Staging vom 02.12.2025
+
+34. Beispiel, Dimo, 14.04.1962, 3300050006, Alter: 63, ECOG: 2
+Vorstellender Arzt: Beispiel (Onko)
+Diagnose: mRCC non-ccRCC (chromophob)
+Anamnese / Verlauf
+chromophobes RCC, metastasiert.
+Therapiesequenz geplant/bisher:
+1. Linie: Sunitinib
+2. Linie: Cabozantinib
+3. Linie (Diskussion): Nivolumab (off-label je nach Setting/MTB) / Studiensetting
+Vorerkrankungen: arterielle Hypertonie, Z. n. Nabelhernien-OP
+Medikation: Candesartan, Amlodipin
+Karnofsky: 70% (≈ ECOG 2)
+Hämoglobin: 10,1 g/dl 
+Neutrophile: 8,0 ×10^9/l 
+Korrigiertes Calcium: 2,36 mmol/l
+Thrombozyten: 280 ×10^9/l 
+
+CT Staging vom 08.12.2025 (Thorax/Abdomen/Becken) 
+Thorax: stabile geringe Lungenherde, aber neu mediastinaler LK (subcarinal 17 mm) metastasenverdächtig.
+Abdomen: Progress retroperitoneal (interaortokaval 14 → 22 mm), neu peritonealer Herd 13 mm. Leber ohne sichere Metastasen.
+Skelett: neue osteoblastische Läsion im rechten Acetabulum 12 mm (DD Metastase) → Korrelation/MRT erwägen.
+Beurteilung: Progress lymphonodal/peritoneal unter Everolimus; mögliche neue ossäre Läsion.
+Fragestellung
+Therapieoptionen bei non-ccRCC (chromophob) nach TKI/mTOR?
+Studienscreening / MTB-Diskussion (z. B. IO off-label, Kombinationsoptionen, Biomarker falls vorhanden)
+Geplantes Therapiekonzept
+Entscheidung 3. Linie im MTB: Nivolumab (off-label je nach Setting) vs. alternative Sequenz vs. Studie
+Supportiv: Blutdruckkontrollen, Nierenfunktion/Metabolik unter weiterer Therapie, Schmerzassessment (Becken)
+Erforderlicher Befund: 
+CT Staging vom 08.12.2025

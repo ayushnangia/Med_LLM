@@ -1,0 +1,181 @@
+{
+  "case_id": "ncc_34",
+  "timestamp": "2026-01-09_23-16-39",
+  "provider": "modal",
+  "model": "google/medgemma-27b-text-it",
+  "input_case": {
+    "case_id": "ncc_34",
+    "patient_name": "Muster, Cora",
+    "age": 74,
+    "ecog": 3,
+    "karnofsky": 50,
+    "comorbidity": "unknown",
+    "life_expectancy": "unknown",
+    "anamnese": "mRCC mit deutlich reduziertem Allgemeinzustand (ECOG 3), massiver Gewichtsabnahme und tumorassoziierten Schmerzen. Vortherapien: 1. Linie Ipilimumab + Nivolumab; 2. Linie Cabozantinib; aktuell Lenvatinib + Everolimus. Komorbiditäten: CKD G4, KHK (Z. n. Stent), COPD GOLD II. Z. n. Appendektomie.",
+    "diagnose_kurz": "Metastasiertes Nierenzellkarzinom (mRCC) mit deutlichem systemischem Progress unter aktueller Therapie (Lenvatinib + Everolimus) bei ECOG 3.",
+    "stadium": "metastasiert; mehrfach vorbehandelt (>=3 Therapielinien); klinisch palliatives Setting",
+    "tnm_clinical": null,
+    "tnm_pathological": null,
+    "histologie_subtyp": null,
+    "histologie_klarzellig": null,
+    "bildgebung": [
+      {
+        "modalitaet": "CT",
+        "region": "Thorax/Abdomen/Becken",
+        "datum": "2025-12-02",
+        "befund_kurz": "Deutlicher systemischer Progress: Thorax mit progredienten bilateralen pulmonalen Metastasen (RLL 18 mm, LUL 14 mm, multiple neue 4–7 mm) und kleinem Pleuraerguss rechts. Abdomen mit progredienten Lebermetastasen (Seg. VIII 34 mm, Seg. II 19 mm) und neu geringem Aszites. Retroperitoneal paraaortale LK-Konglomerate bis 32 mm. Skelett: multiple osteolytische Metastasen (LWK2 22 mm; linkes Os ilium 28 mm) korrelierend mit Schmerzen.",
+        "quelle": "Erforderlicher Befund",
+        "detailstruktur": {
+          "thorax": {
+            "pulmonale_metastasen": [
+              {
+                "lokalisation": "RLL",
+                "groesse_mm": 18,
+                "vorher_mm": null,
+                "bewertung": "progredient"
+              },
+              {
+                "lokalisation": "LUL",
+                "groesse_mm": 14,
+                "vorher_mm": null,
+                "bewertung": "progredient"
+              }
+            ],
+            "weitere_herde_mm": "multiple neu 4–7 mm",
+            "pleuraerguss": true,
+            "pleuraerguss_seite": "rechts_klein",
+            "mediastinale_hilaere_lk": "keine_sicheren_pathologisch_vergroesserten"
+          },
+          "abdomen": {
+            "leber": [
+              {
+                "segment": "VIII",
+                "groesse_mm": 34,
+                "vorher_mm": null,
+                "bewertung": "progredient"
+              },
+              {
+                "segment": "II",
+                "groesse_mm": 19,
+                "vorher_mm": null,
+                "bewertung": "progredient"
+              }
+            ],
+            "aszetes": true,
+            "aszetes_ausmass": "gering"
+          },
+          "retroperitoneum": {
+            "lymphknoten": [
+              {
+                "lokalisation": "paraaortal",
+                "groesse_mm": 32,
+                "vorher_mm": null,
+                "bewertung": "konglomerat_progredient"
+              }
+            ]
+          },
+          "skelett": {
+            "ossäre_laesionen": [
+              {
+                "lokalisation": "LWK2",
+                "typ": "osteolytisch",
+                "groesse_mm": 22,
+                "vorher_mm": null,
+                "bewertung": "metastasenverdaechtig"
+              },
+              {
+                "lokalisation": "linkes Os ilium",
+                "typ": "osteolytisch",
+                "groesse_mm": 28,
+                "vorher_mm": null,
+                "bewertung": "metastasenverdaechtig"
+              }
+            ]
+          }
+        },
+        "beurteilung": "Deutlicher systemischer Progress (viszeral + ossär + LK) bei schlechtem Allgemeinzustand."
+      }
+    ],
+    "nebendiagnosen": [
+      {
+        "diagnose": "Chronische Niereninsuffizienz (CKD) G4",
+        "details": null
+      },
+      {
+        "diagnose": "Koronare Herzkrankheit (KHK)",
+        "details": "Z. n. Stent"
+      },
+      {
+        "diagnose": "COPD GOLD II",
+        "details": null
+      },
+      {
+        "diagnose": "Tumorkachexie / massive Gewichtsabnahme",
+        "details": "klinisch"
+      },
+      {
+        "diagnose": "Tumorassoziierte Schmerzen",
+        "details": "v. a. ossär korrelierend"
+      }
+    ],
+    "medikation": [
+      {
+        "wirkstoff": "Bisoprolol",
+        "dosierung": null,
+        "schema": null,
+        "hinweis": null
+      },
+      {
+        "wirkstoff": "ASS",
+        "dosierung": null,
+        "schema": null,
+        "hinweis": null
+      },
+      {
+        "wirkstoff": "Torasemid",
+        "dosierung": null,
+        "schema": null,
+        "hinweis": null
+      },
+      {
+        "wirkstoff": "LAMA/LABA inhalativ",
+        "dosierung": null,
+        "schema": null,
+        "hinweis": "COPD"
+      },
+      {
+        "wirkstoff": "Oxycodon",
+        "dosierung": null,
+        "schema": null,
+        "hinweis": "bei Bedarf"
+      }
+    ],
+    "ici_durchfuehrbar": null,
+    "prior_therapies": [],
+    "ground_truth_metastatic": null,
+    "ground_truth_imdc": null,
+    "ground_truth_therapy": "Best supportive care im Vordergrund. | Optimierung Analgesieschema (WHO-Stufen, ggf. Palliativdienst). | Palliative Radiotherapie schmerzhafter Knochenläsionen (z. B. Becken/LWS). | Supportiv: Antiemese, Ernährung/Cachexie-Support, CKD-gerechte Therapie."
+  },
+  "prompt_text": "Du bist ein erfahrener Onkologe, spezialisiert auf Nierenzellkarzinom (RCC).\nAnalysiere den folgenden klinischen Fall und erstelle eine strukturierte Therapieempfehlung.\n\n=== KLINISCHER FALL ===\nPatient: Muster, Cora, 74 Jahre\nECOG: 3, Karnofsky: 50%\nKomorbidität: unknown\nLebenserwartung: unknown\n\nDiagnose: Metastasiertes Nierenzellkarzinom (mRCC) mit deutlichem systemischem Progress unter aktueller Therapie (Lenvatinib + Everolimus) bei ECOG 3.\nStadium: metastasiert; mehrfach vorbehandelt (>=3 Therapielinien); klinisch palliatives Setting\nTNM: nicht dokumentiert\n\nHISTOLOGIE (WICHTIG für Therapieentscheidung):\nNicht dokumentiert\n\nAnamnese:\nmRCC mit deutlich reduziertem Allgemeinzustand (ECOG 3), massiver Gewichtsabnahme und tumorassoziierten Schmerzen. Vortherapien: 1. Linie Ipilimumab + Nivolumab; 2. Linie Cabozantinib; aktuell Lenvatinib + Everolimus. Komorbiditäten: CKD G4, KHK (Z. n. Stent), COPD GOLD II. Z. n. Appendektomie.\n\nNebendiagnosen: Chronische Niereninsuffizienz (CKD) G4, Koronare Herzkrankheit (KHK), COPD GOLD II, Tumorkachexie / massive Gewichtsabnahme, Tumorassoziierte Schmerzen\n\nAktuelle Medikation: , , , , \n\nBildgebung:\n  - CT Thorax/Abdomen/Becken (2025-12-02): Deutlicher systemischer Progress: Thorax mit progredienten bilateralen pulmonalen Metastasen (RLL 18 mm, LUL 14 mm, multiple neue 4–7 mm) und kleinem Pleuraerguss rechts. Abdomen mit progredienten Lebermetastasen (Seg. VIII 34 mm, Seg. II 19 mm) und neu geringem Aszites. Retroperitoneal paraaortale LK-Konglomerate bis 32 mm. Skelett: multiple osteolytische Metastasen (LWK2 22 mm; linkes Os ilium 28 mm) korrelierend mit Schmerzen.\n\nIMDC-Risikofaktoren: Nicht dokumentiert\nICI-Kombination durchführbar: Nicht dokumentiert\nVorherige Systemtherapien: Keine\n\n=== THERAPIE-LEITLINIEN ===\n\n\nMETASTASIERTES KLARZELLIGES RCC - THERAPIE-ALGORITHMUS:\n\nIMDC-RISIKOSTRATIFIZIERUNG:\n- Günstig (0 Risikofaktoren)\n- Intermediär (1-2 Risikofaktoren)\n- Ungünstig (≥3 Risikofaktoren)\n\nRisikofaktoren: Karnofsky <80%, Zeit bis Systemtherapie <1 Jahr, Hämoglobin↓, Calcium↑, Neutrophile↑, Thrombozyten↑\n\nERSTLINIE (wenn ICI-Kombination möglich):\n- Günstig: NIVO+CABO (A), PEMBRO+AXI (A), PEMBRO+LEN (A), AVELU+AXI (B)\n- Intermediär: NIVO+CABO (A), NIVO+IPI (A), PEMBRO+AXI (A), PEMBRO+LEN (A)\n- Ungünstig: NIVO+CABO (A), NIVO+IPI (A), PEMBRO+AXI (A), PEMBRO+LEN (A)\n\nERSTLINIE (wenn ICI-Kombination NICHT möglich):\n- Günstig: Pazopanib (A), Sunitinib (A), Tivozanib (A), BEV+IFN (A)\n- Intermediär: Cabozantinib (B), Pazopanib (B), Sunitinib (B)\n- Ungünstig: Cabozantinib (B), Sunitinib (B), Temsirolimus (0)\n\nZWEITLINIE nach ICI-Kombination: Cabozantinib (A), Lenvatinib+Everolimus (A), Sunitinib (A)\nZWEITLINIE nach VEGF/R-Monotherapie: Cabozantinib (A), Nivolumab (A)\n\nLegende: A=starke Empfehlung, B=schwache Empfehlung, 0=Option\n\n\n\nNICHT-METASTASIERTES RCC - THERAPIE-ALGORITHMUS:\n\nTHERAPIEOPTIONEN nach Tumorgröße/Stadium:\n\n1. AKTIVE ÜBERWACHUNG (GoR 0):\n   - Kleine Nierentumoren + hohe Komorbidität ODER begrenzte Lebenserwartung\n   - Biopsie VOR Überwachung erforderlich\n\n2. ABLATION (Kryoablation/Radiofrequenzablation) (GoR 0):\n   - Kleine Nierentumoren + hohe Komorbidität ODER begrenzte Lebenserwartung\n   - Biopsie VOR Ablation erforderlich\n\n3. NIERENTEILRESEKTION (Nephron-sparing Surgery):\n   - cT1 (≤7cm): SOLL durchgeführt werden (GoR A)\n   - >T1: SOLLTE erwogen werden wenn technisch möglich (GoR B)\n   - Zugang: offen/laparoskopisch/robotisch (chirurgische Erfahrung)\n\n4. RADIKALE NEPHREKTOMIE:\n   - Wenn Teilresektion nicht möglich (GoR A)\n   - Minimalinvasiv wenn lokale Befunde es erlauben (GoR A)\n\nPERIOPERATIVE PRINZIPIEN:\n- KEINE Adrenalektomie bei unauffälliger Bildgebung (GoR A)\n- KEINE systematische Lymphadenektomie bei unauffälliger Bildgebung (GoR A)\n- LND bei vergrößerten Lymphknoten akzeptabel\n\nTNM-STADIEN:\n- T1a: ≤4cm, auf Niere begrenzt\n- T1b: >4-7cm, auf Niere begrenzt\n- T2a: >7-10cm, auf Niere begrenzt\n- T2b: >10cm, auf Niere begrenzt\n- T3: Ausdehnung in große Venen oder perirenales Gewebe\n- T4: Über Gerota-Faszie hinaus\n\nLegende: GoR A=starke Empfehlung, GoR B=schwache Empfehlung, GoR 0=Option\n\n\nWICHTIGER HINWEIS:\n- Die Leitlinien gelten primär für KLARZELLIGES RCC\n- Bei NICHT-KLARZELLIGEM RCC (papillär, chromophob, etc.) ist TKI-Monotherapie oft bevorzugt\n- IMDC-Risikostratifizierung ist nur für klarzelliges mRCC validiert\n\n=== AUFGABE ===\nAnalysiere den Fall schrittweise:\n\n1. METASTASIERUNG: Bestimme ob der Patient metastasiert oder nicht-metastasiert ist (basierend auf TNM M-Status, Anamnese, Bildgebung).\n\n2. HISTOLOGIE: Berücksichtige den histologischen Subtyp (klarzellig vs. nicht-klarzellig).\n\n3. RISIKOSTRATIFIZIERUNG: Falls metastasiert UND klarzellig, berechne das IMDC-Risiko.\n\n4. THERAPIEEMPFEHLUNG: Folge dem entsprechenden Therapie-Algorithmus und begründe deine Empfehlung.\n\nAntworte im folgenden JSON-Format:\n{\n    \"is_metastatic\": true/false,\n    \"metastatic_reasoning\": \"Begründung für Metastasierungsstatus...\",\n    \"imdc_risk\": \"guenstig/intermediaer/unguenstig/nicht_anwendbar\",\n    \"imdc_reasoning\": \"IMDC-Berechnung oder null wenn nicht-metastasiert/nicht-klarzellig...\",\n    \"treatment_reasoning\": \"Schrittweise Begründung nach Leitlinie...\",\n    \"recommended_therapy\": \"Konkrete Therapieempfehlung\",\n    \"therapy_category\": \"IO+TKI/TKI mono/Surgery/Surveillance/Ablation/etc.\",\n    \"recommendation_strength\": \"A/B/0\",\n    \"confidence\": 0.0-1.0\n}",
+  "prediction": {
+    "is_metastatic": true,
+    "metastatic_reasoning": "Der Patient hat nachweisbare Metastasen in Lunge, Leber, Lymphknoten und Knochen (LWK2, Os ilium) gemäß CT-Befund vom 2025-12-02. Die Anamnese beschreibt ein metastasiertes Nierenzellkarzinom (mRCC).",
+    "imdc_risk": "unguenstig",
+    "imdc_reasoning": "Die IMDC-Risikofaktoren sind: Karnofsky <80% (50%), Zeit bis Systemtherapie <1 Jahr (nicht dokumentiert, aber der Patient hat bereits 3 Linien Therapie erhalten und zeigt Progress unter der aktuellen Linie, was auf eine kurze Zeit bis zur nächsten Therapie hindeutet), Hämoglobin↓ (nicht dokumentiert), Calcium↑ (nicht dokumentiert), Neutrophile↑ (nicht dokumentiert), Thrombozyten↑ (nicht dokumentiert). Da der Karnofsky-Score <80% ist, erfüllt der Patient mindestens einen Risikofaktor. Angesichts des ECOG 3, der massiven Gewichtsabnahme und des deutlichen systemischen Progresses ist es sehr wahrscheinlich, dass weitere Risikofaktoren (z.B. Hämoglobin↓, kurze Zeit bis Systemtherapie) vorliegen, was zu einer ungünstigen Risikostratifizierung führt. Selbst mit nur einem bekannten Risikofaktor (Karnofsky <80%) wäre die Stratifizierung intermediär. Da aber der Patient bereits 3 Linien Therapie erhalten hat und unter der aktuellen Therapie progredient ist, ist eine ungünstige Risikostratifizierung am wahrscheinlichsten. Die Leitlinie besagt, dass die IMDC-Risikostratifizierung nur für klarzelliges mRCC validiert ist. Wir gehen hier aber von einem klarzelligen RCC aus, da keine gegenteiligen Informationen vorliegen und die Leitlinien primär für diesen Subtyp gelten.",
+    "treatment_reasoning": "Der Patient hat ein metastasiertes Nierenzellkarzinom (mRCC) und hat bereits drei Linien der Systemtherapie erhalten (Ipilimumab + Nivolumab, Cabozantinib, Lenvatinib + Everolimus) und zeigt nun unter der aktuellen Therapie (Lenvatinib + Everolimus) einen deutlichen systemischen Progress. Der Patient befindet sich in einem palliativen Setting mit schlechtem Allgemeinzustand (ECOG 3, Karnofsky 50%).\n\n1. **Histologie:** Der histologische Subtyp ist nicht dokumentiert. Da die Leitlinien primär für klarzelliges RCC gelten und keine gegenteiligen Informationen vorliegen, gehen wir von einem klarzelligen RCC aus.\n2. **Metastasierung:** Der Patient ist klar metastasiert (siehe oben).\n3. **Risikostratifizierung:** Aufgrund des Karnofsky-Scores von 50% und der Vorgeschichte (3 Linien Therapie, Progress unter aktueller Linie, ECOG 3) ist eine ungünstige IMDC-Risikostratifizierung anzunehmen.\n4. **Therapiealgorithmus:** Gemäß der Leitlinie für mRCC nach drei Linien Therapie (oder Progress unter aktueller Linie nach 2 Linien) und ungünstigem Risikoprofil gibt es keine spezifische Empfehlung in der bereitgestellten Tabelle. Die Tabelle listet nur Empfehlungen für die Erst- und Zweitlinie auf. In der Situation nach Progress unter der 3. Linie (Lenvatinib + Everolimus) und schlechtem Allgemeinzustand (ECOG 3) sind die Optionen begrenzt. Die Leitlinien empfehlen in diesem Setting oft eine Umstellung auf eine andere Wirkstoffklasse oder eine palliative Therapie mit Fokus auf Symptomkontrolle.\n\n**Optionen nach 3. Linie (nicht in der Tabelle, aber klinisch relevant):**\n- **Weitere zielgerichtete Therapien:** Es könnten andere TKIs (z.B. Sunitinib, Pazopanib, Axitinib, Cabozantinib - falls nicht bereits in Kombination mit IO gegeben) oder mTOR-Inhibitoren (Temsirolimus) in Betracht gezogen werden, obwohl die Wirksamkeit nach drei Linien oft gering ist.\n- **Immuntherapie:** Eine Monotherapie mit Nivolumab oder Pembrolizumab könnte eine Option sein, insbesondere wenn die vorherige IO-Kombination (Ipilimumab + Nivolumab) nicht gut vertragen wurde oder der Patient nicht für eine erneute IO-Kombination geeignet ist. Die Wirksamkeit nach drei Linien ist jedoch begrenzt.\n- **Palliative Therapie:** Angesichts des schlechten Allgemeinzustandes (ECOG 3, Karnofsky 50%) und der begrenzten Lebenserwartung sollte der Fokus auf die Palliation von Symptomen (Schmerzen, Kachexie) gelegt werden. Dies kann durch Bestrahlung der schmerzhaften Metastasen (Knochen), systemische Schmerztherapie und supportive Maßnahmen erfolgen. Eine weitere systemische Therapie sollte nur in Betracht gezogen werden, wenn der Patient dies wünscht und der potenzielle Nutzen das Risiko überwiegt.\n\n**Empfehlung:** Aufgrund des schlechten Allgemeinzustandes (ECOG 3, Karnofsky 50%), der Vorgeschichte von drei Therapielinien und des Progresses unter der aktuellen Therapie ist eine weitere aggressive systemische Therapie mit hohem Risiko für Nebenwirkungen möglicherweise nicht angemessen. Der Fokus sollte auf die Palliation der Symptome gelegt werden. Wenn der Patient jedoch noch fit genug ist und eine weitere systemische Therapie wünscht, könnte eine Monotherapie mit Nivolumab oder Pembrolizumab (falls noch nicht gegeben) oder ein Wechsel zu einem anderen TKI (z.B. Sunitinib) erwogen werden, wobei der Nutzen begrenzt sein dürfte. Eine erneute IO-Kombination ist aufgrund des schlechten Allgemeinzustandes wahrscheinlich nicht durchführbar.\n\n**Konkrete Empfehlung (unter Berücksichtigung der Leitlinien und der klinischen Situation):** Da die Leitlinien keine klare Empfehlung für die 4. Linie geben und der Patient einen schlechten Allgemeinzustand hat, ist die beste Option eine palliative Therapie mit Fokus auf Symptomkontrolle. Dies beinhaltet Schmerzmanagement (inkl. ggf. Strahlentherapie der Knochenmetastasen) und supportive Maßnahmen. Wenn eine systemische Therapie gewünscht wird, könnte Nivolumab als Monotherapie eine Option sein (Empfehlung B, basierend auf der Zweitlinienempfehlung nach VEGF-TKI, obwohl hier bereits IO und TKI-Kombis erfolglos waren).",
+    "recommended_therapy": "Palliative Therapie mit Fokus auf Symptomkontrolle (Schmerztherapie, Strahlentherapie bei Knochenmetastasen, supportive Maßnahmen). Ggf. Nivolumab als Monotherapie erwägen, falls Patient systemische Therapie wünscht und Zustand dies zulässt.",
+    "therapy_category": "Palliative Care / Immunotherapy",
+    "recommendation_strength": "B",
+    "confidence": 0.8
+  },
+  "raw_response": "{\"is_metastatic\": true,\n    \"metastatic_reasoning\": \"Der Patient hat nachweisbare Metastasen in Lunge, Leber, Lymphknoten und Knochen (LWK2, Os ilium) gemäß CT-Befund vom 2025-12-02. Die Anamnese beschreibt ein metastasiertes Nierenzellkarzinom (mRCC).\",\n    \"imdc_risk\": \"unguenstig\",\n    \"imdc_reasoning\": \"Die IMDC-Risikofaktoren sind: Karnofsky <80% (50%), Zeit bis Systemtherapie <1 Jahr (nicht dokumentiert, aber der Patient hat bereits 3 Linien Therapie erhalten und zeigt Progress unter der aktuellen Linie, was auf eine kurze Zeit bis zur nächsten Therapie hindeutet), Hämoglobin↓ (nicht dokumentiert), Calcium↑ (nicht dokumentiert), Neutrophile↑ (nicht dokumentiert), Thrombozyten↑ (nicht dokumentiert). Da der Karnofsky-Score <80% ist, erfüllt der Patient mindestens einen Risikofaktor. Angesichts des ECOG 3, der massiven Gewichtsabnahme und des deutlichen systemischen Progresses ist es sehr wahrscheinlich, dass weitere Risikofaktoren (z.B. Hämoglobin↓, kurze Zeit bis Systemtherapie) vorliegen, was zu einer ungünstigen Risikostratifizierung führt. Selbst mit nur einem bekannten Risikofaktor (Karnofsky <80%) wäre die Stratifizierung intermediär. Da aber der Patient bereits 3 Linien Therapie erhalten hat und unter der aktuellen Therapie progredient ist, ist eine ungünstige Risikostratifizierung am wahrscheinlichsten. Die Leitlinie besagt, dass die IMDC-Risikostratifizierung nur für klarzelliges mRCC validiert ist. Wir gehen hier aber von einem klarzelligen RCC aus, da keine gegenteiligen Informationen vorliegen und die Leitlinien primär für diesen Subtyp gelten.\",\n    \"treatment_reasoning\": \"Der Patient hat ein metastasiertes Nierenzellkarzinom (mRCC) und hat bereits drei Linien der Systemtherapie erhalten (Ipilimumab + Nivolumab, Cabozantinib, Lenvatinib + Everolimus) und zeigt nun unter der aktuellen Therapie (Lenvatinib + Everolimus) einen deutlichen systemischen Progress. Der Patient befindet sich in einem palliativen Setting mit schlechtem Allgemeinzustand (ECOG 3, Karnofsky 50%).\\n\\n1. **Histologie:** Der histologische Subtyp ist nicht dokumentiert. Da die Leitlinien primär für klarzelliges RCC gelten und keine gegenteiligen Informationen vorliegen, gehen wir von einem klarzelligen RCC aus.\\n2. **Metastasierung:** Der Patient ist klar metastasiert (siehe oben).\\n3. **Risikostratifizierung:** Aufgrund des Karnofsky-Scores von 50% und der Vorgeschichte (3 Linien Therapie, Progress unter aktueller Linie, ECOG 3) ist eine ungünstige IMDC-Risikostratifizierung anzunehmen.\\n4. **Therapiealgorithmus:** Gemäß der Leitlinie für mRCC nach drei Linien Therapie (oder Progress unter aktueller Linie nach 2 Linien) und ungünstigem Risikoprofil gibt es keine spezifische Empfehlung in der bereitgestellten Tabelle. Die Tabelle listet nur Empfehlungen für die Erst- und Zweitlinie auf. In der Situation nach Progress unter der 3. Linie (Lenvatinib + Everolimus) und schlechtem Allgemeinzustand (ECOG 3) sind die Optionen begrenzt. Die Leitlinien empfehlen in diesem Setting oft eine Umstellung auf eine andere Wirkstoffklasse oder eine palliative Therapie mit Fokus auf Symptomkontrolle.\\n\\n**Optionen nach 3. Linie (nicht in der Tabelle, aber klinisch relevant):**\\n- **Weitere zielgerichtete Therapien:** Es könnten andere TKIs (z.B. Sunitinib, Pazopanib, Axitinib, Cabozantinib - falls nicht bereits in Kombination mit IO gegeben) oder mTOR-Inhibitoren (Temsirolimus) in Betracht gezogen werden, obwohl die Wirksamkeit nach drei Linien oft gering ist.\\n- **Immuntherapie:** Eine Monotherapie mit Nivolumab oder Pembrolizumab könnte eine Option sein, insbesondere wenn die vorherige IO-Kombination (Ipilimumab + Nivolumab) nicht gut vertragen wurde oder der Patient nicht für eine erneute IO-Kombination geeignet ist. Die Wirksamkeit nach drei Linien ist jedoch begrenzt.\\n- **Palliative Therapie:** Angesichts des schlechten Allgemeinzustandes (ECOG 3, Karnofsky 50%) und der begrenzten Lebenserwartung sollte der Fokus auf die Palliation von Symptomen (Schmerzen, Kachexie) gelegt werden. Dies kann durch Bestrahlung der schmerzhaften Metastasen (Knochen), systemische Schmerztherapie und supportive Maßnahmen erfolgen. Eine weitere systemische Therapie sollte nur in Betracht gezogen werden, wenn der Patient dies wünscht und der potenzielle Nutzen das Risiko überwiegt.\\n\\n**Empfehlung:** Aufgrund des schlechten Allgemeinzustandes (ECOG 3, Karnofsky 50%), der Vorgeschichte von drei Therapielinien und des Progresses unter der aktuellen Therapie ist eine weitere aggressive systemische Therapie mit hohem Risiko für Nebenwirkungen möglicherweise nicht angemessen. Der Fokus sollte auf die Palliation der Symptome gelegt werden. Wenn der Patient jedoch noch fit genug ist und eine weitere systemische Therapie wünscht, könnte eine Monotherapie mit Nivolumab oder Pembrolizumab (falls noch nicht gegeben) oder ein Wechsel zu einem anderen TKI (z.B. Sunitinib) erwogen werden, wobei der Nutzen begrenzt sein dürfte. Eine erneute IO-Kombination ist aufgrund des schlechten Allgemeinzustandes wahrscheinlich nicht durchführbar.\\n\\n**Konkrete Empfehlung (unter Berücksichtigung der Leitlinien und der klinischen Situation):** Da die Leitlinien keine klare Empfehlung für die 4. Linie geben und der Patient einen schlechten Allgemeinzustand hat, ist die beste Option eine palliative Therapie mit Fokus auf Symptomkontrolle. Dies beinhaltet Schmerzmanagement (inkl. ggf. Strahlentherapie der Knochenmetastasen) und supportive Maßnahmen. Wenn eine systemische Therapie gewünscht wird, könnte Nivolumab als Monotherapie eine Option sein (Empfehlung B, basierend auf der Zweitlinienempfehlung nach VEGF-TKI, obwohl hier bereits IO und TKI-Kombis erfolglos waren).\",\n    \"recommended_therapy\": \"Palliative Therapie mit Fokus auf Symptomkontrolle (Schmerztherapie, Strahlentherapie bei Knochenmetastasen, supportive Maßnahmen). Ggf. Nivolumab als Monotherapie erwägen, falls Patient systemische Therapie wünscht und Zustand dies zulässt.\",\n    \"therapy_category\": \"Palliative Care / Immunotherapy\",\n    \"recommendation_strength\": \"B\",\n    \"confidence\": 0.8}",
+  "ground_truth_metastatic": null,
+  "ground_truth_therapy": "Best supportive care im Vordergrund. | Optimierung Analgesieschema (WHO-Stufen, ggf. Palliativdienst). | Palliative Radiotherapie schmerzhafter Knochenläsionen (z. B. Becken/LWS). | Supportiv: Antiemese, Ernährung/Cachexie-Support, CKD-gerechte Therapie.",
+  "metastatic_correct": null,
+  "therapy_exact_match": true,
+  "therapy_clinically_acceptable": null,
+  "inference_time_seconds": 5.718720143181937,
+  "tokens_used": 1513,
+  "success": true,
+  "error_message": null
+}

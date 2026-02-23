@@ -1,0 +1,65 @@
+{
+  "case_id": "ncc_14",
+  "timestamp": "2025-12-29T23:37:48.435425",
+  "provider": "openrouter",
+  "model": "google/gemma-3-27b-it",
+  "input_case": {
+    "case_id": "ncc_14",
+    "patient_name": "Beispiel, Leon",
+    "age": 79,
+    "ecog": 2,
+    "anamnese": "Zufallsbefund der linken Niere (Sonographie beim Hausarzt bei Rückenschmerzen). Großer Nierentumor links ca. 9 cm. Vorerkrankungen: KHK, Z. n. Bypass 2012, CKD G2.",
+    "diagnose_kurz": "Großer Nierentumor links ca. 9,0 cm, hochgradig malignitätsverdächtig (V. a. RCC), fragliche Infiltration linke Nebenniere; CT Thorax ohne Metastasen",
+    "stadium": "lokal fortgeschritten vs organbegrenzt; M0 (CT Thorax 04.12.2025)",
+    "tnm_clinical": {
+      "T": "T2",
+      "T_sub": "T2a",
+      "N": "N0",
+      "M": "M0",
+      "stage_group": "unknown"
+    },
+    "histologie_subtyp": null,
+    "histologie_klarzellig": null,
+    "bildgebung": [
+      {
+        "modalitaet": "CT",
+        "region": "Abdomen mit KM",
+        "datum": "2025-12-04",
+        "befund_kurz": "Linksseitige große renale Raumforderung, max. ca. 9,0 cm, hochgradig malignitätsverdächtig (V. a. RCC). In enger Nachbarschaft zur linken Nebenniere mit fraglicher Infiltration; sichere Abgrenzung nicht eindeutig möglich. Rechte Niere ohne fokale Läsion. Keine abdominelle Lymphadenopathie, keine Aszites, übrige Organe (inkl. Pankreas/Leber/Milz/Gallenwege) unauffällig.",
+        "quelle": "Erforderlicher Befund"
+      },
+      {
+        "modalitaet": "CT",
+        "region": "Thorax",
+        "datum": "2025-12-04",
+        "befund_kurz": "Kein Nachweis pulmonaler Rundherde oder suspekter Infiltrate. Keine Pleuraergüsse. Keine pathologisch vergrößerten mediastinalen/hilären Lymphknoten. Kein Hinweis auf ossäre Metastasen. Beurteilung: Kein Hinweis auf thorakale Metastasierung.",
+        "quelle": "Erforderlicher Befund"
+      }
+    ],
+    "nebendiagnosen": [
+      "KHK",
+      "Z. n. aortokoronarer Bypass 2012",
+      "CKD G2"
+    ],
+    "ground_truth_metastatic": false,
+    "ground_truth_therapy": "Nephrektomie mit Adrenalektomie links; Einschätzung des perioperativen Risikos."
+  },
+  "prompt_text": "Du bist ein erfahrener Onkologe, spezialisiert auf Nierenzellkarzinom (RCC).\nAnalysiere den folgenden klinischen Fall und erstelle eine strukturierte Therapieempfehlung.\n\n=== KLINISCHER FALL ===\nPatient: Beispiel, Leon, 79 Jahre\nECOG: 2, Karnofsky: ?%\nKomorbidität: hoch\n\nDiagnose: Großer Nierentumor links ca. 9,0 cm, hochgradig malignitätsverdächtig (V. a. RCC), fragliche Infiltration linke Nebenniere; CT Thorax ohne Metastasen\nStadium: lokal fortgeschritten vs organbegrenzt; M0 (CT Thorax 04.12.2025)\nTNM: cTNM: TT2 NN0 MM0\n\nHISTOLOGIE: Nicht dokumentiert\n\nAnamnese: Zufallsbefund der linken Niere (Sonographie beim Hausarzt bei Rückenschmerzen). Großer Nierentumor links ca. 9 cm. Vorerkrankungen: KHK, Z. n. Bypass 2012, CKD G2.\n\nNebendiagnosen: KHK, Z. n. aortokoronarer Bypass 2012, CKD G2\n\nBildgebung:\n  - CT Abdomen mit KM (2025-12-04): Linksseitige große renale Raumforderung, max. ca. 9,0 cm, hochgradig malignitätsverdächtig (V. a. RCC). In enger Nachbarschaft zur linken Nebenniere mit fraglicher Infiltration; sichere Abgrenzung nicht eindeutig möglich. Rechte Niere ohne fokale Läsion. Keine abdominelle Lymphadenopathie, keine Aszites, übrige Organe (inkl. Pankreas/Leber/Milz/Gallenwege) unauffällig.\n  - CT Thorax (2025-12-04): Kein Nachweis pulmonaler Rundherde oder suspekter Infiltrate. Keine Pleuraergüsse. Keine pathologisch vergrößerten mediastinalen/hilären Lymphknoten. Kein Hinweis auf ossäre Metastasen. Beurteilung: Kein Hinweis auf thorakale Metastasierung.\n\nVorherige Systemtherapien: Keine\n\n=== THERAPIE-LEITLINIEN ===\n\nMETASTASIERTES KLARZELLIGES RCC - THERAPIE-ALGORITHMUS:\n\nIMDC-RISIKOSTRATIFIZIERUNG:\n- Günstig (0 Risikofaktoren)\n- Intermediär (1-2 Risikofaktoren)\n- Ungünstig (≥3 Risikofaktoren)\n\nRisikofaktoren: Karnofsky <80%, Zeit bis Systemtherapie <1 Jahr, Hämoglobin↓, Calcium↑, Neutrophile↑, Thrombozyten↑\n\nERSTLINIE (wenn ICI-Kombination möglich):\n- Günstig: NIVO+CABO (A), PEMBRO+AXI (A), PEMBRO+LEN (A), AVELU+AXI (B)\n- Intermediär: NIVO+CABO (A), NIVO+IPI (A), PEMBRO+AXI (A), PEMBRO+LEN (A)\n- Ungünstig: NIVO+CABO (A), NIVO+IPI (A), PEMBRO+AXI (A), PEMBRO+LEN (A)\n\nERSTLINIE (wenn ICI-Kombination NICHT möglich):\n- Günstig: Pazopanib (A), Sunitinib (A), Tivozanib (A), BEV+IFN (A)\n- Intermediär: Cabozantinib (B), Pazopanib (B), Sunitinib (B)\n- Ungünstig: Cabozantinib (B), Sunitinib (B), Temsirolimus (0)\n\nZWEITLINIE nach ICI-Kombination: Cabozantinib (A), Lenvatinib+Everolimus (A), Sunitinib (A)\nZWEITLINIE nach VEGF/R-Monotherapie: Cabozantinib (A), Nivolumab (A)\n\n---\n\nNICHT-METASTASIERTES RCC - THERAPIE-ALGORITHMUS:\n\n1. AKTIVE ÜBERWACHUNG (GoR 0): Kleine Tumoren + hohe Komorbidität/begrenzte Lebenserwartung\n2. ABLATION (GoR 0): Kleine Tumoren + hohe Komorbidität/begrenzte Lebenserwartung\n3. NIERENTEILRESEKTION: cT1 (≤7cm) SOLL durchgeführt werden (GoR A)\n4. RADIKALE NEPHREKTOMIE: Wenn Teilresektion nicht möglich (GoR A)\n\nLegende: A=starke Empfehlung, B=schwache Empfehlung, 0=Option\n\n\n=== AUFGABE ===\nAnalysiere den Fall schrittweise:\n1. METASTASIERUNG: Ist der Patient metastasiert? (basierend auf TNM, Anamnese, Bildgebung)\n2. HISTOLOGIE: Klarzellig vs. nicht-klarzellig?\n3. RISIKO: Falls metastasiert + klarzellig, IMDC-Risiko?\n4. THERAPIE: Empfehlung nach Leitlinie\n\nAntwort als JSON:\n{\n    \"is_metastatic\": true/false,\n    \"metastatic_reasoning\": \"Begründung...\",\n    \"imdc_risk\": \"guenstig/intermediaer/unguenstig/nicht_anwendbar\",\n    \"imdc_reasoning\": \"IMDC-Berechnung...\",\n    \"treatment_reasoning\": \"Schrittweise Begründung...\",\n    \"recommended_therapy\": \"Konkrete Empfehlung\",\n    \"therapy_category\": \"IO+TKI/TKI mono/Surgery/Surveillance/etc.\",\n    \"confidence\": 0.0-1.0\n}",
+  "output": {
+    "is_metastatic": false,
+    "metastatic_reasoning": "Der CT Thorax zeigt keinen Hinweis auf Fernmetastasen (M0). Obwohl der Tumor lokal fortgeschritten sein könnte, gibt es keine Hinweise auf Metastasen in Lunge oder Knochen. Die fragliche Infiltration der Nebenniere ist nicht gleichbedeutend mit Fernmetastasen, sondern eher ein Hinweis auf lokales Wachstum.",
+    "imdc_risk": "nicht_anwendbar",
+    "imdc_reasoning": "Die IMDC-Risikostratifizierung ist nur für metastasiertes RCC relevant. Da der Patient aktuell nicht metastasiert ist, ist die IMDC-Risikobewertung nicht anwendbar.",
+    "treatment_reasoning": "Der Patient präsentiert sich mit einem großen, lokal fortgeschrittenen Nierentumor (cT2 NN0 MM0). Aufgrund seines Alters (79 Jahre), seiner Komorbiditäten (KHK, Z.n. Bypass, CKD G2) und seines ECOG-Status von 2 ist er jedoch ein Patient mit erhöhtem Operationsrisiko. Eine radikale Nephrektomie birgt aufgrund der Vorerkrankungen ein erhebliches Risiko für postoperative Komplikationen. Eine Teilnephrektomie ist aufgrund der Tumorgröße (9cm) wahrscheinlich nicht möglich. Aktive Überwachung ist bei dieser Tumorgröße und dem Verdacht auf Malignität nicht angemessen. Eine Ablation ist aufgrund der Größe und der potenziellen Infiltration der Nebenniere ebenfalls nicht geeignet. Daher ist eine neoadjuvante Therapie gefolgt von einer Operation (wenn möglich) oder einer definitiven Radiotherapie die beste Option. Da die Histologie noch nicht vorliegt, muss zunächst eine Biopsie durchgeführt werden, um den genauen Tumortyp zu bestimmen. Bis dahin ist eine systemische Therapie mit einem TKI (Tyrosinkinaseinhibitor) oder einer Immuntherapie (ICI) nicht indiziert.",
+    "recommended_therapy": "Biopsie zur histologischen Abklärung gefolgt von einer neoadjuvanten Therapie (abhängig von der Histologie) und anschließender Re-Evaluation hinsichtlich operativer Resektabilität oder definitiver Radiotherapie.",
+    "therapy_category": "Biopsie, Neoadjuvant",
+    "confidence": 0.8
+  },
+  "raw_response": ":```json\n{\n    \"is_metastatic\": false,\n    \"metastatic_reasoning\": \"Der CT Thorax zeigt keinen Hinweis auf Fernmetastasen (M0). Obwohl der Tumor lokal fortgeschritten sein könnte, gibt es keine Hinweise auf Metastasen in Lunge oder Knochen. Die fragliche Infiltration der Nebenniere ist nicht gleichbedeutend mit Fernmetastasen, sondern eher ein Hinweis auf lokales Wachstum.\",\n    \"imdc_risk\": \"nicht_anwendbar\",\n    \"imdc_reasoning\": \"Die IMDC-Risikostratifizierung ist nur für metastasiertes RCC relevant. Da der Patient aktuell nicht metastasiert ist, ist die IMDC-Risikobewertung nicht anwendbar.\",\n    \"treatment_reasoning\": \"Der Patient präsentiert sich mit einem großen, lokal fortgeschrittenen Nierentumor (cT2 NN0 MM0). Aufgrund seines Alters (79 Jahre), seiner Komorbiditäten (KHK, Z.n. Bypass, CKD G2) und seines ECOG-Status von 2 ist er jedoch ein Patient mit erhöhtem Operationsrisiko. Eine radikale Nephrektomie birgt aufgrund der Vorerkrankungen ein erhebliches Risiko für postoperative Komplikationen. Eine Teilnephrektomie ist aufgrund der Tumorgröße (9cm) wahrscheinlich nicht möglich. Aktive Überwachung ist bei dieser Tumorgröße und dem Verdacht auf Malignität nicht angemessen. Eine Ablation ist aufgrund der Größe und der potenziellen Infiltration der Nebenniere ebenfalls nicht geeignet. Daher ist eine neoadjuvante Therapie gefolgt von einer Operation (wenn möglich) oder einer definitiven Radiotherapie die beste Option. Da die Histologie noch nicht vorliegt, muss zunächst eine Biopsie durchgeführt werden, um den genauen Tumortyp zu bestimmen. Bis dahin ist eine systemische Therapie mit einem TKI (Tyrosinkinaseinhibitor) oder einer Immuntherapie (ICI) nicht indiziert.\",\n    \"recommended_therapy\": \"Biopsie zur histologischen Abklärung gefolgt von einer neoadjuvanten Therapie (abhängig von der Histologie) und anschließender Re-Evaluation hinsichtlich operativer Resektabilität oder definitiver Radiotherapie.\",\n    \"therapy_category\": \"Biopsie, Neoadjuvant\",\n    \"confidence\": 0.8\n}\n```",
+  "ground_truth_metastatic": false,
+  "ground_truth_therapy": "Nephrektomie mit Adrenalektomie links; Einschätzung des perioperativen Risikos.",
+  "metastatic_correct": true,
+  "inference_time_seconds": 15.458853006362915,
+  "tokens_used": 1813,
+  "success": true
+}

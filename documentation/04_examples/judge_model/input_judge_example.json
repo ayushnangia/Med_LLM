@@ -1,0 +1,24 @@
+{
+  "case_id": "ncc_1",
+  "input_case": {
+    "patient_name": "Turtle, Ninja",
+    "age": 52,
+    "ecog": 0,
+    "diagnose_kurz": "Metastasiertes papilläres RCC",
+    "stadium": "metastasiert (pulmonal, lymphonodal, hepatisch)",
+    "anamnese": "Met. pap. RCC. Z. n. Nephrektomie links 2014 (papilläres RCC pT3b, Nx, L0, V0, Pn0, G3, Rx). Z. n. offener Resektion eines Lokalrezidivs 2024. Aktuell multiple Rezidive (pulmonal, lymphonodal, hepatisch)."
+  },
+  "ground_truth": {
+    "metastatic": true,
+    "therapy": "Einleitung palliative Systemtherapie TKI/IO (z.B. Nivolumab/Cabozantinib)."
+  },
+  "prediction": {
+    "is_metastatic": true,
+    "metastatic_reasoning": "Der Patient weist multiple Rezidive in Lunge, Lymphknoten und Leber auf, was eindeutig für eine Metastasierung spricht. Die Anamnese einer Nephrektomie 2014 und einer Resektion eines Lokalrezidivs 2024 unterstützt dies zusätzlich.",
+    "imdc_risk": "unguenstig",
+    "imdc_reasoning": "Da der Patient ein Rezidiv nach Nephrektomie und Lokalrezidiv-Resektion hat, sowie multiple Metastasen, ist das Risiko als ungünstig einzustufen. Die genauen IMDC-Risikofaktoren (Karnofsky, Zeit bis Systemtherapie, Hämoglobin, Calcium, Neutrophile, Thrombozyten) sind nicht dokumentiert, aber aufgrund der Anamnese und des Stadiums ist ein ungünstiges Risiko sehr wahrscheinlich. Da es sich um ein nicht-klarzelliges RCC handelt, ist die IMDC-Risikostratifizierung nicht validiert, wird aber zur Orientierung herangezogen.",
+    "treatment_reasoning": "Der Patient hat ein metastasiertes, nicht-klarzelliges (papilläres) RCC. Die Leitlinien empfehlen bei nicht-klarzelligem RCC oft eine TKI-Monotherapie. Da der Patient bereits eine Nephrektomie und eine Resektion eines Lokalrezidivs hinter sich hat und aktuell multiple Metastasen vorliegen, ist eine systemische Therapie indiziert. Cabozantinib und Sunitinib werden in den Leitlinien für ungünstiges Risiko als Optionen genannt. Da der Patient mehrere Komorbiditäten (obstruktive Kardiomyopathie, Hyperthyreose, arterielle Hypertonie, Diabetes mellitus, LAE, Hyperlipidämie) hat, ist die Verträglichkeit der Therapie ein wichtiger Faktor. Cabozantinib hat ein etwas günstigeres Nebenwirkungsprofil als Sunitinib. DOAK-Therapie muss bei Therapieentscheidung berücksichtigt werden.",
+    "recommended_therapy": "Cabozantinib 60mg p.o. täglich",
+    "therapy_category": "TKI mono"
+  }
+}

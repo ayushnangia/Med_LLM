@@ -1,0 +1,57 @@
+{
+  "case_id": "ncc_9",
+  "timestamp": "2025-12-29T23:36:21.999835",
+  "provider": "openrouter",
+  "model": "google/gemma-3-27b-it",
+  "input_case": {
+    "case_id": "ncc_9",
+    "patient_name": "Muster, Georg",
+    "age": 61,
+    "ecog": 0,
+    "anamnese": "Nierentumor links 4,6 cm (cT1b). Raucher: ex 15 PY. Z. n. Cholezystektomie.",
+    "diagnose_kurz": "Nierentumor links (Oberpol) 4,6 cm, malignitätsverdächtig (cT1b), keine Metastasen im CT-Staging",
+    "stadium": "cT1b, M0 (radiologisch), prätherapeutisch",
+    "tnm_clinical": {
+      "T": "T1",
+      "T_sub": "T1b",
+      "N": "N0",
+      "M": "M0",
+      "stage_group": "unknown"
+    },
+    "histologie_subtyp": null,
+    "histologie_klarzellig": null,
+    "bildgebung": [
+      {
+        "modalitaet": "CT",
+        "region": "Staging Thorax/Abdomen",
+        "datum": "2025-10-11",
+        "befund_kurz": "Unklare Raumforderung linke Niere (Oberpol) ca. 4,6 cm (cT1b), malignitätsverdächtig. Kein Hinweis auf Filiae/Metastasen.",
+        "quelle": "Erforderlicher Befund"
+      }
+    ],
+    "nebendiagnosen": [
+      "Ex-Raucher (15 PY)",
+      "Z. n. Cholezystektomie"
+    ],
+    "ground_truth_metastatic": false,
+    "ground_truth_therapy": "Partielle vs. radikale Nephrektomie je nach Lage/Komplexität."
+  },
+  "prompt_text": "Du bist ein erfahrener Onkologe, spezialisiert auf Nierenzellkarzinom (RCC).\nAnalysiere den folgenden klinischen Fall und erstelle eine strukturierte Therapieempfehlung.\n\n=== KLINISCHER FALL ===\nPatient: Muster, Georg, 61 Jahre\nECOG: 0, Karnofsky: ?%\nKomorbidität: unknown\n\nDiagnose: Nierentumor links (Oberpol) 4,6 cm, malignitätsverdächtig (cT1b), keine Metastasen im CT-Staging\nStadium: cT1b, M0 (radiologisch), prätherapeutisch\nTNM: cTNM: TT1 NN0 MM0\n\nHISTOLOGIE: Nicht dokumentiert\n\nAnamnese: Nierentumor links 4,6 cm (cT1b). Raucher: ex 15 PY. Z. n. Cholezystektomie.\n\nNebendiagnosen: Ex-Raucher (15 PY), Z. n. Cholezystektomie\n\nBildgebung:\n  - CT Staging Thorax/Abdomen (2025-10-11): Unklare Raumforderung linke Niere (Oberpol) ca. 4,6 cm (cT1b), malignitätsverdächtig. Kein Hinweis auf Filiae/Metastasen.\n\nVorherige Systemtherapien: Keine\n\n=== THERAPIE-LEITLINIEN ===\n\nMETASTASIERTES KLARZELLIGES RCC - THERAPIE-ALGORITHMUS:\n\nIMDC-RISIKOSTRATIFIZIERUNG:\n- Günstig (0 Risikofaktoren)\n- Intermediär (1-2 Risikofaktoren)\n- Ungünstig (≥3 Risikofaktoren)\n\nRisikofaktoren: Karnofsky <80%, Zeit bis Systemtherapie <1 Jahr, Hämoglobin↓, Calcium↑, Neutrophile↑, Thrombozyten↑\n\nERSTLINIE (wenn ICI-Kombination möglich):\n- Günstig: NIVO+CABO (A), PEMBRO+AXI (A), PEMBRO+LEN (A), AVELU+AXI (B)\n- Intermediär: NIVO+CABO (A), NIVO+IPI (A), PEMBRO+AXI (A), PEMBRO+LEN (A)\n- Ungünstig: NIVO+CABO (A), NIVO+IPI (A), PEMBRO+AXI (A), PEMBRO+LEN (A)\n\nERSTLINIE (wenn ICI-Kombination NICHT möglich):\n- Günstig: Pazopanib (A), Sunitinib (A), Tivozanib (A), BEV+IFN (A)\n- Intermediär: Cabozantinib (B), Pazopanib (B), Sunitinib (B)\n- Ungünstig: Cabozantinib (B), Sunitinib (B), Temsirolimus (0)\n\nZWEITLINIE nach ICI-Kombination: Cabozantinib (A), Lenvatinib+Everolimus (A), Sunitinib (A)\nZWEITLINIE nach VEGF/R-Monotherapie: Cabozantinib (A), Nivolumab (A)\n\n---\n\nNICHT-METASTASIERTES RCC - THERAPIE-ALGORITHMUS:\n\n1. AKTIVE ÜBERWACHUNG (GoR 0): Kleine Tumoren + hohe Komorbidität/begrenzte Lebenserwartung\n2. ABLATION (GoR 0): Kleine Tumoren + hohe Komorbidität/begrenzte Lebenserwartung\n3. NIERENTEILRESEKTION: cT1 (≤7cm) SOLL durchgeführt werden (GoR A)\n4. RADIKALE NEPHREKTOMIE: Wenn Teilresektion nicht möglich (GoR A)\n\nLegende: A=starke Empfehlung, B=schwache Empfehlung, 0=Option\n\n\n=== AUFGABE ===\nAnalysiere den Fall schrittweise:\n1. METASTASIERUNG: Ist der Patient metastasiert? (basierend auf TNM, Anamnese, Bildgebung)\n2. HISTOLOGIE: Klarzellig vs. nicht-klarzellig?\n3. RISIKO: Falls metastasiert + klarzellig, IMDC-Risiko?\n4. THERAPIE: Empfehlung nach Leitlinie\n\nAntwort als JSON:\n{\n    \"is_metastatic\": true/false,\n    \"metastatic_reasoning\": \"Begründung...\",\n    \"imdc_risk\": \"guenstig/intermediaer/unguenstig/nicht_anwendbar\",\n    \"imdc_reasoning\": \"IMDC-Berechnung...\",\n    \"treatment_reasoning\": \"Schrittweise Begründung...\",\n    \"recommended_therapy\": \"Konkrete Empfehlung\",\n    \"therapy_category\": \"IO+TKI/TKI mono/Surgery/Surveillance/etc.\",\n    \"confidence\": 0.0-1.0\n}",
+  "output": {
+    "is_metastatic": false,
+    "metastatic_reasoning": "Die Bildgebung (CT Thorax/Abdomen) zeigt keinen Hinweis auf Filiae (lokale Ausbreitung) oder Fernmetastasen. Das radiologische TNM ist cT1b, M0.  Die Anamnese liefert keine Hinweise auf bekannte Metastasen.",
+    "imdc_risk": "nicht_anwendbar",
+    "imdc_reasoning": "Der Patient ist nicht metastasiert, daher ist die IMDC-Risikobewertung nicht anwendbar.",
+    "treatment_reasoning": "Der Patient hat einen isolierten Nierentumor (cT1b, M0). Die Leitlinien für nicht-metastasiertes RCC empfehlen zunächst eine Nierenteilresektion für cT1-Tumoren (≤7cm) mit einer starken Empfehlung (GoR A). Falls eine Teilresektion nicht möglich ist, sollte eine radikale Nephrektomie in Betracht gezogen werden (GoR A).  Da keine Informationen zu Komorbiditäten oder begrenzter Lebenserwartung vorliegen, wird von einer direkten aktiven Überwachung oder Ablation abgeraten.   Die Tumorgröße von 4,6cm liegt innerhalb des Bereichs, in dem eine Nierenteilresektion die bevorzugte Option wäre.",
+    "recommended_therapy": "Nierenteilresektion",
+    "therapy_category": "Surgery",
+    "confidence": 0.9
+  },
+  "raw_response": "```json\n{\n    \"is_metastatic\": false,\n    \"metastatic_reasoning\": \"Die Bildgebung (CT Thorax/Abdomen) zeigt keinen Hinweis auf Filiae (lokale Ausbreitung) oder Fernmetastasen. Das radiologische TNM ist cT1b, M0.  Die Anamnese liefert keine Hinweise auf bekannte Metastasen.\",\n    \"imdc_risk\": \"nicht_anwendbar\",\n    \"imdc_reasoning\": \"Der Patient ist nicht metastasiert, daher ist die IMDC-Risikobewertung nicht anwendbar.\",\n    \"treatment_reasoning\": \"Der Patient hat einen isolierten Nierentumor (cT1b, M0). Die Leitlinien für nicht-metastasiertes RCC empfehlen zunächst eine Nierenteilresektion für cT1-Tumoren (≤7cm) mit einer starken Empfehlung (GoR A). Falls eine Teilresektion nicht möglich ist, sollte eine radikale Nephrektomie in Betracht gezogen werden (GoR A).  Da keine Informationen zu Komorbiditäten oder begrenzter Lebenserwartung vorliegen, wird von einer direkten aktiven Überwachung oder Ablation abgeraten.   Die Tumorgröße von 4,6cm liegt innerhalb des Bereichs, in dem eine Nierenteilresektion die bevorzugte Option wäre.\",\n    \"recommended_therapy\": \"Nierenteilresektion\",\n    \"therapy_category\": \"Surgery\",\n    \"confidence\": 0.9\n}\n```",
+  "ground_truth_metastatic": false,
+  "ground_truth_therapy": "Partielle vs. radikale Nephrektomie je nach Lage/Komplexität.",
+  "metastatic_correct": true,
+  "inference_time_seconds": 7.488667249679565,
+  "tokens_used": 1452,
+  "success": true
+}

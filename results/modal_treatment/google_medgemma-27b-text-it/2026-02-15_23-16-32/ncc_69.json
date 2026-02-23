@@ -1,0 +1,102 @@
+{
+  "case_id": "ncc_69",
+  "timestamp": "2026-02-15_23-16-32",
+  "provider": "modal",
+  "model": "google/medgemma-27b-text-it",
+  "input_case": {
+    "case_id": "ncc_69",
+    "patient_name": "Muster, Nadimas",
+    "age": 72,
+    "ecog": 2,
+    "karnofsky": null,
+    "comorbidity": null,
+    "life_expectancy": null,
+    "anamnese": "2022-08: Nephrektomie rechts (extern) - ccRCC mit sarkomatoider Komponente, R0\n2025-11-07: CT-Staging Thorax/Abdomen/Becken - multilokuläre Metastasierung (Lunge + Leber + LK + ossär)",
+    "diagnose_kurz": "Metastasiertes Nierenzellkarzinom (ccRCC mit sarkomatoider Differenzierung)",
+    "stadium": "IMDC high risk (4 Faktoren), therapienaiv im metastasierten Setting",
+    "tnm_clinical": null,
+    "tnm_pathological": null,
+    "histologie_subtyp": "ccRCC",
+    "histologie_klarzellig": true,
+    "bildgebung": [
+      {
+        "modalitaet": "CT",
+        "datum": "2025-11-07",
+        "region": "Thorax/Abdomen/Becken",
+        "befund": {
+          "thorax": {
+            "pulmonal": "Multiple bilaterale pulmonale Metastasen (z. B. RLL 15 mm, LUL 11 mm, weitere 4–7 mm).",
+            "pleuraerguss": "Kleiner Pleuraerguss rechts",
+            "lymphknoten_mediastinal_hilaer": "Nicht sicher pathologisch vergrößert (keine Angaben zu mediastinal/hilär)."
+          },
+          "abdomen_becken": {
+            "op_loge": "Status nach Nephrektomie rechts, OP-Loge ohne sicheren Lokalrezidivnachweis.",
+            "leber": "Eine metastasenverdächtige Läsion Segment VI 19 mm.",
+            "lymphknoten_retroperitoneal": [
+              {
+                "lokalisation": "paracaval",
+                "groesse_mm": 24,
+                "beschreibung": "progredient/metastasenverdächtig"
+              }
+            ],
+            "aszites": "Nicht angegeben"
+          },
+          "skelett": [
+            {
+              "lokalisation": "Os ilium links",
+              "typ": "osteolytisch",
+              "groesse_mm": 23,
+              "komplikation": "Keine Frakturzeichen"
+            }
+          ]
+        },
+        "beurteilung": "Multilokuläre Metastasierung (Lunge + Leber + LK + ossär) bei aggressiver Histologie (sarkomatoid)."
+      }
+    ],
+    "nebendiagnosen": [
+      "Vorhofflimmern (unter DOAK)",
+      "arterielle Hypertonie"
+    ],
+    "medikation": [
+      {
+        "wirkstoff": "Apixaban",
+        "schema": null
+      },
+      {
+        "wirkstoff": "Amlodipin",
+        "schema": null
+      },
+      {
+        "wirkstoff": "Pantoprazol",
+        "schema": "Bedarf"
+      }
+    ],
+    "ici_durchfuehrbar": null,
+    "prior_therapies": [],
+    "ground_truth_metastatic": true,
+    "ground_truth_imdc": "high",
+    "ground_truth_therapy": "Cabozantinib + Nivolumab (IO+TKI)"
+  },
+  "prompt_text": "Du bist ein erfahrener Onkologe, spezialisiert auf Nierenzellkarzinom (RCC).\nAnalysiere den folgenden klinischen Fall und erstelle eine strukturierte Therapieempfehlung.\n\n=== KLINISCHER FALL ===\nPatient: Muster, Nadimas, 72 Jahre\nECOG: 2, Karnofsky: ?%\nKomorbidität: None\nLebenserwartung: None\n\nDiagnose: Metastasiertes Nierenzellkarzinom (ccRCC mit sarkomatoider Differenzierung)\nStadium: IMDC high risk (4 Faktoren), therapienaiv im metastasierten Setting\nTNM: nicht dokumentiert\n\nHISTOLOGIE (WICHTIG für Therapieentscheidung):\nSubtyp: ccRCC, Klarzellig: Ja, Sarkomatoid: Ja\n\nAnamnese:\n2022-08: Nephrektomie rechts (extern) - ccRCC mit sarkomatoider Komponente, R0\n2025-11-07: CT-Staging Thorax/Abdomen/Becken - multilokuläre Metastasierung (Lunge + Leber + LK + ossär)\n\nNebendiagnosen: Vorhofflimmern (unter DOAK), arterielle Hypertonie\n\nAktuelle Medikation: Apixaban, Amlodipin, Pantoprazol (Bedarf)\n\nBildgebung:\n  - CT Thorax/Abdomen/Becken (2025-11-07): thorax/pulmonal: Multiple bilaterale pulmonale Metastasen (z. B. RLL 15 mm, LUL 11 mm, weitere 4–7 mm).; thorax/pleuraerguss: Kleiner Pleuraerguss rechts; thorax/lymphknoten_mediastinal_hilaer: Nicht sicher pathologisch vergrößert (keine Angaben zu mediastinal/hilär).; abdomen_becken/op_loge: Status nach Nephrektomie rechts, OP-Loge ohne sicheren Lokalrezidivnachweis.; abdomen_becken/leber: Eine metastasenverdächtige Läsion Segment VI 19 mm.; abdomen_becken/lymphknoten_retroperitoneal: 1 Befunde; abdomen_becken/aszites: Nicht angegeben\n\nIMDC-Risikofaktoren: Kategorie: high, KPS<80: 60 % (Faktor), Hb↓: 9.5 g/dl (Faktor), Ca↑: 2.76 mmol/l (Faktor), Neutro↑: 8.0 x10^9/l (Faktor), Thrombo↑: 310 x10^9/l (kein Faktor)\nICI-Kombination durchführbar: Nicht dokumentiert\nVorherige Systemtherapien: Keine\n\n=== THERAPIE-LEITLINIEN ===\n\n\nMETASTASIERTES KLARZELLIGES RCC - THERAPIE-ALGORITHMUS:\n\nIMDC-RISIKOSTRATIFIZIERUNG:\n- Günstig (0 Risikofaktoren)\n- Intermediär (1-2 Risikofaktoren)\n- Ungünstig (≥3 Risikofaktoren)\n\nRisikofaktoren: Karnofsky <80%, Zeit bis Systemtherapie <1 Jahr, Hämoglobin↓, Calcium↑, Neutrophile↑, Thrombozyten↑\n\nERSTLINIE (wenn ICI-Kombination möglich):\n- Günstig: NIVO+CABO (A), PEMBRO+AXI (A), PEMBRO+LEN (A), AVELU+AXI (B)\n- Intermediär: NIVO+CABO (A), NIVO+IPI (A), PEMBRO+AXI (A), PEMBRO+LEN (A)\n- Ungünstig: NIVO+CABO (A), NIVO+IPI (A), PEMBRO+AXI (A), PEMBRO+LEN (A)\n\nERSTLINIE (wenn ICI-Kombination NICHT möglich):\n- Günstig: Pazopanib (A), Sunitinib (A), Tivozanib (A), BEV+IFN (A)\n- Intermediär: Cabozantinib (B), Pazopanib (B), Sunitinib (B)\n- Ungünstig: Cabozantinib (B), Sunitinib (B), Temsirolimus (0)\n\nZWEITLINIE nach ICI-Kombination: Cabozantinib (A), Lenvatinib+Everolimus (A), Sunitinib (A)\nZWEITLINIE nach VEGF/R-Monotherapie: Cabozantinib (A), Nivolumab (A)\n\nLegende: A=starke Empfehlung, B=schwache Empfehlung, 0=Option\n\n\n\nNICHT-METASTASIERTES RCC - THERAPIE-ALGORITHMUS:\n\nTHERAPIEOPTIONEN nach Tumorgröße/Stadium:\n\n1. AKTIVE ÜBERWACHUNG (GoR 0):\n   - Kleine Nierentumoren + hohe Komorbidität ODER begrenzte Lebenserwartung\n   - Biopsie VOR Überwachung erforderlich\n\n2. ABLATION (Kryoablation/Radiofrequenzablation) (GoR 0):\n   - Kleine Nierentumoren + hohe Komorbidität ODER begrenzte Lebenserwartung\n   - Biopsie VOR Ablation erforderlich\n\n3. NIERENTEILRESEKTION (Nephron-sparing Surgery):\n   - cT1 (≤7cm): SOLL durchgeführt werden (GoR A)\n   - >T1: SOLLTE erwogen werden wenn technisch möglich (GoR B)\n   - Zugang: offen/laparoskopisch/robotisch (chirurgische Erfahrung)\n\n4. RADIKALE NEPHREKTOMIE:\n   - Wenn Teilresektion nicht möglich (GoR A)\n   - Minimalinvasiv wenn lokale Befunde es erlauben (GoR A)\n\nPERIOPERATIVE PRINZIPIEN:\n- KEINE Adrenalektomie bei unauffälliger Bildgebung (GoR A)\n- KEINE systematische Lymphadenektomie bei unauffälliger Bildgebung (GoR A)\n- LND bei vergrößerten Lymphknoten akzeptabel\n\nTNM-STADIEN:\n- T1a: ≤4cm, auf Niere begrenzt\n- T1b: >4-7cm, auf Niere begrenzt\n- T2a: >7-10cm, auf Niere begrenzt\n- T2b: >10cm, auf Niere begrenzt\n- T3: Ausdehnung in große Venen oder perirenales Gewebe\n- T4: Über Gerota-Faszie hinaus\n\nLegende: GoR A=starke Empfehlung, GoR B=schwache Empfehlung, GoR 0=Option\n\n\nWICHTIGER HINWEIS:\n- Die Leitlinien gelten primär für KLARZELLIGES RCC\n- Bei NICHT-KLARZELLIGEM RCC (papillär, chromophob, etc.) ist TKI-Monotherapie oft bevorzugt\n- IMDC-Risikostratifizierung ist nur für klarzelliges mRCC validiert\n\n=== AUFGABE ===\nAnalysiere den Fall schrittweise:\n\n1. METASTASIERUNG: Bestimme ob der Patient metastasiert oder nicht-metastasiert ist (basierend auf TNM M-Status, Anamnese, Bildgebung).\n\n2. HISTOLOGIE: Berücksichtige den histologischen Subtyp (klarzellig vs. nicht-klarzellig).\n\n3. RISIKOSTRATIFIZIERUNG: Falls metastasiert UND klarzellig, berechne das IMDC-Risiko.\n\n4. THERAPIEEMPFEHLUNG: Folge dem entsprechenden Therapie-Algorithmus und begründe deine Empfehlung.\n\nAntworte im folgenden JSON-Format:\n{\n    \"is_metastatic\": true/false,\n    \"metastatic_reasoning\": \"Begründung für Metastasierungsstatus...\",\n    \"imdc_risk\": \"guenstig/intermediaer/unguenstig/nicht_anwendbar\",\n    \"imdc_reasoning\": \"IMDC-Berechnung oder null wenn nicht-metastasiert/nicht-klarzellig...\",\n    \"treatment_reasoning\": \"Schrittweise Begründung nach Leitlinie...\",\n    \"recommended_therapy\": \"Konkrete Therapieempfehlung\",\n    \"therapy_category\": \"IO+TKI/TKI mono/Surgery/Surveillance/Ablation/etc.\",\n    \"recommendation_strength\": \"A/B/0\",\n    \"confidence\": 0.0-1.0\n}",
+  "prediction": {
+    "is_metastatic": true,
+    "metastatic_reasoning": "Der Patient hat eine Anamnese einer Nephrektomie rechts im Jahr 2022. Das CT-Staging vom 07.11.2025 zeigt multilokuläre Metastasen in Lunge, Leber, Lymphknoten und ossär. Dies erfüllt den M1-Kriterium des TNM-Systems.",
+    "imdc_risk": "unguenstig",
+    "imdc_reasoning": "Der Patient hat 4 der 6 IMDC-Risikofaktoren: Karnofsky Performance Status <80% (60% angegeben), niedriges Hämoglobin (9.5 g/dl), erhöhter Calciumspiegel (2.76 mmol/l) und erhöhte Neutrophile (8.0 x10^9/l). Da 4 Faktoren vorliegen, fällt der Patient in die 'ungünstig' (high risk) Kategorie.",
+    "treatment_reasoning": "Der Patient hat ein metastasiertes klarzelliges Nierenzellkarzinom (ccRCC) mit sarkomatoider Differenzierung. Die Leitlinien für metastasiertes klarzelliges RCC sind anzuwenden. Der IMDC-Risiko ist 'ungünstig'. Gemäß den Leitlinien ist für Patienten mit ungünstigem Risiko in der Erstlinie eine Kombination aus Immuncheckpoint-Inhibitor (ICI) und Tyrosinkinase-Inhibitor (TKI) oder eine TKI-Monotherapie indiziert. Die Leitlinien empfehlen für ungünstiges Risiko in der Erstlinie NIVO+CABO (A), NIVO+IPI (A), PEMBRO+AXI (A) oder PEMBRO+LEN (A) als Optionen mit starker Empfehlung (A), wenn eine ICI-Kombination möglich ist. Alternativ sind Cabozantinib (B) oder Sunitinib (B) als TKI-Monotherapie mit schwacher Empfehlung (B) möglich. Die Sarkomatoid-Differenzierung kann mit einer schlechteren Prognose und geringeren Ansprechrate auf TKI-Monotherapie assoziiert sein, was die Wahl einer ICI-Kombination favorisiert. Da die Durchführbarkeit einer ICI-Kombination nicht dokumentiert ist, gehen wir von der Annahme aus, dass sie möglich ist. Die Wahl zwischen den ICI+TKI-Kombinationen hängt von individuellen Faktoren und Verfügbarkeit ab. NIVO+CABO ist eine häufig verwendete und gut untersuchte Option.",
+    "recommended_therapy": "Nivolumab in Kombination mit Cabozantinib",
+    "therapy_category": "IO+TKI",
+    "recommendation_strength": "A",
+    "confidence": 0.9
+  },
+  "raw_response": "{\"is_metastatic\": true,\n    \"metastatic_reasoning\": \"Der Patient hat eine Anamnese einer Nephrektomie rechts im Jahr 2022. Das CT-Staging vom 07.11.2025 zeigt multilokuläre Metastasen in Lunge, Leber, Lymphknoten und ossär. Dies erfüllt den M1-Kriterium des TNM-Systems.\",\n    \"imdc_risk\": \"unguenstig\",\n    \"imdc_reasoning\": \"Der Patient hat 4 der 6 IMDC-Risikofaktoren: Karnofsky Performance Status <80% (60% angegeben), niedriges Hämoglobin (9.5 g/dl), erhöhter Calciumspiegel (2.76 mmol/l) und erhöhte Neutrophile (8.0 x10^9/l). Da 4 Faktoren vorliegen, fällt der Patient in die 'ungünstig' (high risk) Kategorie.\",\n    \"treatment_reasoning\": \"Der Patient hat ein metastasiertes klarzelliges Nierenzellkarzinom (ccRCC) mit sarkomatoider Differenzierung. Die Leitlinien für metastasiertes klarzelliges RCC sind anzuwenden. Der IMDC-Risiko ist 'ungünstig'. Gemäß den Leitlinien ist für Patienten mit ungünstigem Risiko in der Erstlinie eine Kombination aus Immuncheckpoint-Inhibitor (ICI) und Tyrosinkinase-Inhibitor (TKI) oder eine TKI-Monotherapie indiziert. Die Leitlinien empfehlen für ungünstiges Risiko in der Erstlinie NIVO+CABO (A), NIVO+IPI (A), PEMBRO+AXI (A) oder PEMBRO+LEN (A) als Optionen mit starker Empfehlung (A), wenn eine ICI-Kombination möglich ist. Alternativ sind Cabozantinib (B) oder Sunitinib (B) als TKI-Monotherapie mit schwacher Empfehlung (B) möglich. Die Sarkomatoid-Differenzierung kann mit einer schlechteren Prognose und geringeren Ansprechrate auf TKI-Monotherapie assoziiert sein, was die Wahl einer ICI-Kombination favorisiert. Da die Durchführbarkeit einer ICI-Kombination nicht dokumentiert ist, gehen wir von der Annahme aus, dass sie möglich ist. Die Wahl zwischen den ICI+TKI-Kombinationen hängt von individuellen Faktoren und Verfügbarkeit ab. NIVO+CABO ist eine häufig verwendete und gut untersuchte Option.\",\n    \"recommended_therapy\": \"Nivolumab in Kombination mit Cabozantinib\",\n    \"therapy_category\": \"IO+TKI\",\n    \"recommendation_strength\": \"A\",\n    \"confidence\": 0.9}",
+  "ground_truth_metastatic": true,
+  "ground_truth_therapy": "Cabozantinib + Nivolumab (IO+TKI)",
+  "metastatic_correct": true,
+  "therapy_exact_match": true,
+  "therapy_clinically_acceptable": true,
+  "inference_time_seconds": 4.897843963959637,
+  "tokens_used": 601,
+  "success": true,
+  "error_message": null
+}

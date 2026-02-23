@@ -1,0 +1,87 @@
+{
+  "case_id": "ncc_32",
+  "timestamp": "2025-12-29T23:43:14.197307",
+  "provider": "openrouter",
+  "model": "google/gemma-3-27b-it",
+  "input_case": {
+    "case_id": "ncc_32",
+    "patient_name": "Beispiel, Nora",
+    "age": 62,
+    "ecog": null,
+    "anamnese": "Erstdiagnose metastasiertes RCC 12.06.2023. 1. Linie 2023–2025 Cabozantinib. Vorerkrankungen: CKD G3, Status nach Cholezystektomie. Medikation: Amlodipin. CT Staging 10.12.2025 zeigt Lokalrezidiv (Nephrektomie-Loge links angenommen) und peritoneale Metastasen.",
+    "diagnose_kurz": "Metastasiertes RCC (ED 12.06.2023), 1. Linie Cabozantinib (2023–2025); CT 10.12.2025 mit Lokalrezidiv in Nephrektomie-Loge links (OP-Status angenommen) und peritonealer Metastasierung; keine pulmonalen/ossären Metastasen im CT.",
+    "stadium": "mRCC; Progress 12/2025: Lokalrezidiv + peritoneal; retroperitoneale LK grenzwertig; keine Lungen-/Knochenmetastasen",
+    "tnm_clinical": null,
+    "histologie_subtyp": null,
+    "histologie_klarzellig": null,
+    "bildgebung": [
+      {
+        "modalitaet": "CT",
+        "region": "Thorax/Abdomen/Becken",
+        "datum": "2025-12-10",
+        "befund_kurz": "Kein Nachweis pulmonaler Metastasen. Lokalrezidiv in Nephrektomie-Loge links (OP-Status angenommen) sowie peritoneale Metastasen; retroperitoneale LK grenzwertig; kein ossärer Metastasennachweis im CT.",
+        "quelle": "CT Staging 10.12.2025",
+        "details": {
+          "thorax": {
+            "pulmonale_metastasen": "nein",
+            "pleuraerguss": "nein"
+          },
+          "abdomen_becken": {
+            "op_status": "Nephrektomie-Loge links angenommen",
+            "lokalrezidiv": {
+              "lokalisation": "Nephrektomie-Loge links",
+              "groesse_mm": [
+                28,
+                20
+              ],
+              "beschreibung": "weichteildichte Läsion mit KM-Aufnahme, vereinbar mit Lokalrezidiv"
+            },
+            "peritoneale_metastasen": [
+              {
+                "lokalisation": "links parakolisch",
+                "groesse_mm": 16,
+                "beschreibung": "nodulärer Herd, metastasenverdächtig"
+              },
+              {
+                "lokalisation": "kleines Becken",
+                "groesse_mm": 12,
+                "beschreibung": "nodulärer Herd, metastasenverdächtig"
+              }
+            ],
+            "retroperitoneale_lymphknoten": {
+              "max_kurze_achse_mm": 11,
+              "beschreibung": "unspezifisch/grenzwertig"
+            }
+          },
+          "skelett": {
+            "ossaere_metastasen": "kein sicherer Hinweis im CT"
+          }
+        }
+      }
+    ],
+    "nebendiagnosen": [
+      "chronische_niereninsuffizienz_ckd_g3",
+      "status_nach_cholezystektomie"
+    ],
+    "ground_truth_metastatic": null,
+    "ground_truth_therapy": "Start 2. Linie (z. B. IO-basierte Kombination oder alternative Sequenz je nach Vorbehandlung und Nierenfunktion). Monitoring: Nierenwerte, Blutdruck, Proteinurie, klinische Symptomkontrolle."
+  },
+  "prompt_text": "Du bist ein erfahrener Onkologe, spezialisiert auf Nierenzellkarzinom (RCC).\nAnalysiere den folgenden klinischen Fall und erstelle eine strukturierte Therapieempfehlung.\n\n=== KLINISCHER FALL ===\nPatient: Beispiel, Nora, 62 Jahre\nECOG: None, Karnofsky: ?%\nKomorbidität: None\n\nDiagnose: Metastasiertes RCC (ED 12.06.2023), 1. Linie Cabozantinib (2023–2025); CT 10.12.2025 mit Lokalrezidiv in Nephrektomie-Loge links (OP-Status angenommen) und peritonealer Metastasierung; keine pulmonalen/ossären Metastasen im CT.\nStadium: mRCC; Progress 12/2025: Lokalrezidiv + peritoneal; retroperitoneale LK grenzwertig; keine Lungen-/Knochenmetastasen\nTNM: nicht dokumentiert\n\nHISTOLOGIE: Nicht dokumentiert\n\nAnamnese: Erstdiagnose metastasiertes RCC 12.06.2023. 1. Linie 2023–2025 Cabozantinib. Vorerkrankungen: CKD G3, Status nach Cholezystektomie. Medikation: Amlodipin. CT Staging 10.12.2025 zeigt Lokalrezidiv (Nephrektomie-Loge links angenommen) und peritoneale Metastasen.\n\nNebendiagnosen: chronische_niereninsuffizienz_ckd_g3, status_nach_cholezystektomie\n\nBildgebung:\n  - CT Thorax/Abdomen/Becken (2025-12-10): Kein Nachweis pulmonaler Metastasen. Lokalrezidiv in Nephrektomie-Loge links (OP-Status angenommen) sowie peritoneale Metastasen; retroperitoneale LK grenzwertig; kein ossärer Metastasennachweis im CT.\n\nVorherige Systemtherapien: Keine\n\n=== THERAPIE-LEITLINIEN ===\n\nMETASTASIERTES KLARZELLIGES RCC - THERAPIE-ALGORITHMUS:\n\nIMDC-RISIKOSTRATIFIZIERUNG:\n- Günstig (0 Risikofaktoren)\n- Intermediär (1-2 Risikofaktoren)\n- Ungünstig (≥3 Risikofaktoren)\n\nRisikofaktoren: Karnofsky <80%, Zeit bis Systemtherapie <1 Jahr, Hämoglobin↓, Calcium↑, Neutrophile↑, Thrombozyten↑\n\nERSTLINIE (wenn ICI-Kombination möglich):\n- Günstig: NIVO+CABO (A), PEMBRO+AXI (A), PEMBRO+LEN (A), AVELU+AXI (B)\n- Intermediär: NIVO+CABO (A), NIVO+IPI (A), PEMBRO+AXI (A), PEMBRO+LEN (A)\n- Ungünstig: NIVO+CABO (A), NIVO+IPI (A), PEMBRO+AXI (A), PEMBRO+LEN (A)\n\nERSTLINIE (wenn ICI-Kombination NICHT möglich):\n- Günstig: Pazopanib (A), Sunitinib (A), Tivozanib (A), BEV+IFN (A)\n- Intermediär: Cabozantinib (B), Pazopanib (B), Sunitinib (B)\n- Ungünstig: Cabozantinib (B), Sunitinib (B), Temsirolimus (0)\n\nZWEITLINIE nach ICI-Kombination: Cabozantinib (A), Lenvatinib+Everolimus (A), Sunitinib (A)\nZWEITLINIE nach VEGF/R-Monotherapie: Cabozantinib (A), Nivolumab (A)\n\n---\n\nNICHT-METASTASIERTES RCC - THERAPIE-ALGORITHMUS:\n\n1. AKTIVE ÜBERWACHUNG (GoR 0): Kleine Tumoren + hohe Komorbidität/begrenzte Lebenserwartung\n2. ABLATION (GoR 0): Kleine Tumoren + hohe Komorbidität/begrenzte Lebenserwartung\n3. NIERENTEILRESEKTION: cT1 (≤7cm) SOLL durchgeführt werden (GoR A)\n4. RADIKALE NEPHREKTOMIE: Wenn Teilresektion nicht möglich (GoR A)\n\nLegende: A=starke Empfehlung, B=schwache Empfehlung, 0=Option\n\n\n=== AUFGABE ===\nAnalysiere den Fall schrittweise:\n1. METASTASIERUNG: Ist der Patient metastasiert? (basierend auf TNM, Anamnese, Bildgebung)\n2. HISTOLOGIE: Klarzellig vs. nicht-klarzellig?\n3. RISIKO: Falls metastasiert + klarzellig, IMDC-Risiko?\n4. THERAPIE: Empfehlung nach Leitlinie\n\nAntwort als JSON:\n{\n    \"is_metastatic\": true/false,\n    \"metastatic_reasoning\": \"Begründung...\",\n    \"imdc_risk\": \"guenstig/intermediaer/unguenstig/nicht_anwendbar\",\n    \"imdc_reasoning\": \"IMDC-Berechnung...\",\n    \"treatment_reasoning\": \"Schrittweise Begründung...\",\n    \"recommended_therapy\": \"Konkrete Empfehlung\",\n    \"therapy_category\": \"IO+TKI/TKI mono/Surgery/Surveillance/etc.\",\n    \"confidence\": 0.0-1.0\n}",
+  "output": {
+    "is_metastatic": true,
+    "metastatic_reasoning": "Der Patient zeigt im CT-Thorax/Abdomen/Becken (10.12.2025) peritoneale Metastasen und ein Lokalrezidiv in der Nephrektomie-Loge. Dies definiert ein metastasiertes Nierenzellkarzinom (mRCC).",
+    "imdc_risk": "intermediaer",
+    "imdc_reasoning": "Die IMDC-Risikostratifizierung erfordert die folgenden Informationen: Karnofsky-Performance-Status, Zeit bis zur Systemtherapie, Hämoglobin, Calcium, Neutrophile und Thrombozyten. Der Karnofsky-Status fehlt, wird aber durch ECOG 0 impliziert, was einem Karnofsky >80% entspricht. Die Zeit bis zur Systemtherapie beträgt ca. 2 Jahre (2023-2025), was nicht <1 Jahr ist. CKD G3 deutet auf eine mögliche, aber nicht zwingend pathologische Abweichung des Hämoglobins hin. Calcium, Neutrophile und Thrombozyten sind nicht dokumentiert. Unter der Annahme, dass diese Werte im Normbereich liegen, fallen wir in die intermediäre Risikogruppe (1-2 Risikofaktoren: CKD G3 und Zeit bis Therapie > 1 Jahr).",
+    "treatment_reasoning": "Der Patient hat bereits eine Erstlinienbehandlung mit Cabozantinib erhalten und zeigt nun eine Progression mit Lokalrezidiv und peritonealen Metastasen. Gemäß den Therapie-Leitlinien ist dies eine Zweitlinien-Situation nach VEGF-R-TKI-Monotherapie. Die Leitlinie empfiehlt in diesem Fall Cabozantinib (A) oder Nivolumab (A). Da Cabozantinib bereits in der Erstlinie eingesetzt wurde und eine Progression unter dieser Therapie vorliegt, ist Nivolumab die bevorzugte Option. Die CKD G3 sollte bei der Dosierung von Nivolumab berücksichtigt werden, aber stellt keine absolute Kontraindikation dar.",
+    "recommended_therapy": "Nivolumab",
+    "therapy_category": "IO",
+    "confidence": 0.8
+  },
+  "raw_response": "\n```json\n{\n    \"is_metastatic\": true,\n    \"metastatic_reasoning\": \"Der Patient zeigt im CT-Thorax/Abdomen/Becken (10.12.2025) peritoneale Metastasen und ein Lokalrezidiv in der Nephrektomie-Loge. Dies definiert ein metastasiertes Nierenzellkarzinom (mRCC).\",\n    \"imdc_risk\": \"intermediaer\",\n    \"imdc_reasoning\": \"Die IMDC-Risikostratifizierung erfordert die folgenden Informationen: Karnofsky-Performance-Status, Zeit bis zur Systemtherapie, Hämoglobin, Calcium, Neutrophile und Thrombozyten. Der Karnofsky-Status fehlt, wird aber durch ECOG 0 impliziert, was einem Karnofsky >80% entspricht. Die Zeit bis zur Systemtherapie beträgt ca. 2 Jahre (2023-2025), was nicht <1 Jahr ist. CKD G3 deutet auf eine mögliche, aber nicht zwingend pathologische Abweichung des Hämoglobins hin. Calcium, Neutrophile und Thrombozyten sind nicht dokumentiert. Unter der Annahme, dass diese Werte im Normbereich liegen, fallen wir in die intermediäre Risikogruppe (1-2 Risikofaktoren: CKD G3 und Zeit bis Therapie > 1 Jahr).\",\n    \"treatment_reasoning\": \"Der Patient hat bereits eine Erstlinienbehandlung mit Cabozantinib erhalten und zeigt nun eine Progression mit Lokalrezidiv und peritonealen Metastasen. Gemäß den Therapie-Leitlinien ist dies eine Zweitlinien-Situation nach VEGF-R-TKI-Monotherapie. Die Leitlinie empfiehlt in diesem Fall Cabozantinib (A) oder Nivolumab (A). Da Cabozantinib bereits in der Erstlinie eingesetzt wurde und eine Progression unter dieser Therapie vorliegt, ist Nivolumab die bevorzugte Option. Die CKD G3 sollte bei der Dosierung von Nivolumab berücksichtigt werden, aber stellt keine absolute Kontraindikation dar.\",\n    \"recommended_therapy\": \"Nivolumab\",\n    \"therapy_category\": \"IO\",\n    \"confidence\": 0.8\n}\n```",
+  "ground_truth_metastatic": null,
+  "ground_truth_therapy": "Start 2. Linie (z. B. IO-basierte Kombination oder alternative Sequenz je nach Vorbehandlung und Nierenfunktion). Monitoring: Nierenwerte, Blutdruck, Proteinurie, klinische Symptomkontrolle.",
+  "metastatic_correct": null,
+  "inference_time_seconds": 18.1405930519104,
+  "tokens_used": 1755,
+  "success": true
+}

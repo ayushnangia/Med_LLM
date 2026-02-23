@@ -1,0 +1,57 @@
+{
+  "case_id": "ncc_4",
+  "timestamp": "2025-12-29T23:35:34.941506",
+  "provider": "openrouter",
+  "model": "google/gemma-3-27b-it",
+  "input_case": {
+    "case_id": "ncc_4",
+    "patient_name": "Beispiel, Beta",
+    "age": 66,
+    "ecog": 1,
+    "anamnese": "Kleiner Nierentumor links 2,8 cm (cT1a). Vorerkrankungen: Z. n. Appendektomie; COPD GOLD I (Raucher 20 PY).",
+    "diagnose_kurz": "Kleiner Nierentumor links 2,8 cm (cT1a), malignitätsverdächtig",
+    "stadium": "cT1a, nicht-metastasiert (prätherapeutisch)",
+    "tnm_clinical": {
+      "T": "T1",
+      "T_sub": "T1a",
+      "N": "unknown",
+      "M": "M0",
+      "stage_group": "unknown"
+    },
+    "histologie_subtyp": null,
+    "histologie_klarzellig": null,
+    "bildgebung": [
+      {
+        "modalitaet": "CT",
+        "region": "Niere (Nierenprotokoll)",
+        "datum": "2025-11-01",
+        "befund_kurz": "Kleine Raumforderung links 2,8 cm (cT1a), malignitätsverdächtig.",
+        "quelle": "Erforderlicher Befund"
+      }
+    ],
+    "nebendiagnosen": [
+      "Z. n. Appendektomie",
+      "COPD GOLD I (Raucher 20 PY)"
+    ],
+    "ground_truth_metastatic": false,
+    "ground_truth_therapy": "Roboterassistierte partielle Nephrektomie vs. Kryoablation (Komorbidität/OP-Risiko)."
+  },
+  "prompt_text": "Du bist ein erfahrener Onkologe, spezialisiert auf Nierenzellkarzinom (RCC).\nAnalysiere den folgenden klinischen Fall und erstelle eine strukturierte Therapieempfehlung.\n\n=== KLINISCHER FALL ===\nPatient: Beispiel, Beta, 66 Jahre\nECOG: 1, Karnofsky: ?%\nKomorbidität: unknown\n\nDiagnose: Kleiner Nierentumor links 2,8 cm (cT1a), malignitätsverdächtig\nStadium: cT1a, nicht-metastasiert (prätherapeutisch)\nTNM: cTNM: TT1 Nunknown MM0\n\nHISTOLOGIE: Nicht dokumentiert\n\nAnamnese: Kleiner Nierentumor links 2,8 cm (cT1a). Vorerkrankungen: Z. n. Appendektomie; COPD GOLD I (Raucher 20 PY).\n\nNebendiagnosen: Z. n. Appendektomie, COPD GOLD I (Raucher 20 PY)\n\nBildgebung:\n  - CT Niere (Nierenprotokoll) (2025-11-01): Kleine Raumforderung links 2,8 cm (cT1a), malignitätsverdächtig.\n\nVorherige Systemtherapien: Keine\n\n=== THERAPIE-LEITLINIEN ===\n\nMETASTASIERTES KLARZELLIGES RCC - THERAPIE-ALGORITHMUS:\n\nIMDC-RISIKOSTRATIFIZIERUNG:\n- Günstig (0 Risikofaktoren)\n- Intermediär (1-2 Risikofaktoren)\n- Ungünstig (≥3 Risikofaktoren)\n\nRisikofaktoren: Karnofsky <80%, Zeit bis Systemtherapie <1 Jahr, Hämoglobin↓, Calcium↑, Neutrophile↑, Thrombozyten↑\n\nERSTLINIE (wenn ICI-Kombination möglich):\n- Günstig: NIVO+CABO (A), PEMBRO+AXI (A), PEMBRO+LEN (A), AVELU+AXI (B)\n- Intermediär: NIVO+CABO (A), NIVO+IPI (A), PEMBRO+AXI (A), PEMBRO+LEN (A)\n- Ungünstig: NIVO+CABO (A), NIVO+IPI (A), PEMBRO+AXI (A), PEMBRO+LEN (A)\n\nERSTLINIE (wenn ICI-Kombination NICHT möglich):\n- Günstig: Pazopanib (A), Sunitinib (A), Tivozanib (A), BEV+IFN (A)\n- Intermediär: Cabozantinib (B), Pazopanib (B), Sunitinib (B)\n- Ungünstig: Cabozantinib (B), Sunitinib (B), Temsirolimus (0)\n\nZWEITLINIE nach ICI-Kombination: Cabozantinib (A), Lenvatinib+Everolimus (A), Sunitinib (A)\nZWEITLINIE nach VEGF/R-Monotherapie: Cabozantinib (A), Nivolumab (A)\n\n---\n\nNICHT-METASTASIERTES RCC - THERAPIE-ALGORITHMUS:\n\n1. AKTIVE ÜBERWACHUNG (GoR 0): Kleine Tumoren + hohe Komorbidität/begrenzte Lebenserwartung\n2. ABLATION (GoR 0): Kleine Tumoren + hohe Komorbidität/begrenzte Lebenserwartung\n3. NIERENTEILRESEKTION: cT1 (≤7cm) SOLL durchgeführt werden (GoR A)\n4. RADIKALE NEPHREKTOMIE: Wenn Teilresektion nicht möglich (GoR A)\n\nLegende: A=starke Empfehlung, B=schwache Empfehlung, 0=Option\n\n\n=== AUFGABE ===\nAnalysiere den Fall schrittweise:\n1. METASTASIERUNG: Ist der Patient metastasiert? (basierend auf TNM, Anamnese, Bildgebung)\n2. HISTOLOGIE: Klarzellig vs. nicht-klarzellig?\n3. RISIKO: Falls metastasiert + klarzellig, IMDC-Risiko?\n4. THERAPIE: Empfehlung nach Leitlinie\n\nAntwort als JSON:\n{\n    \"is_metastatic\": true/false,\n    \"metastatic_reasoning\": \"Begründung...\",\n    \"imdc_risk\": \"guenstig/intermediaer/unguenstig/nicht_anwendbar\",\n    \"imdc_reasoning\": \"IMDC-Berechnung...\",\n    \"treatment_reasoning\": \"Schrittweise Begründung...\",\n    \"recommended_therapy\": \"Konkrete Empfehlung\",\n    \"therapy_category\": \"IO+TKI/TKI mono/Surgery/Surveillance/etc.\",\n    \"confidence\": 0.0-1.0\n}",
+  "output": {
+    "is_metastatic": false,
+    "metastatic_reasoning": "Der TNM-Status des Patienten ist cT1a Nunknown M0. Dies bedeutet, dass keine Hinweise auf Fernmetastasen vorliegen. Die Bildgebung (CT Niere) bestätigt das Fehlen von Metastasen. Daher ist der Patient derzeit nicht metastasiert.",
+    "imdc_risk": "nicht_anwendbar",
+    "imdc_reasoning": "Die IMDC-Risikostratifizierung ist nur für metastasiertes Nierenzellkarzinom relevant. Da der Patient nicht metastasiert ist, ist die IMDC-Risikobewertung nicht anwendbar.",
+    "treatment_reasoning": "Der Patient präsentiert sich mit einem kleinen, lokal begrenzten Nierentumor (cT1a, 2,8 cm). Die Leitlinien empfehlen für cT1-Tumoren (≤7cm) eine Nierenteilresektion (GoR A). Eine radikale Nephrektomie sollte nur in Betracht gezogen werden, wenn eine Teilresektion nicht möglich ist. Aktive Überwachung und Ablation sind Optionen für Patienten mit hoher Komorbidität oder begrenzter Lebenserwartung, was hier nicht klar ist. Der Patient hat eine ECOG Performance Status von 1 und eine leichte COPD (GOLD I), was gegen eine passive Überwachung spricht. Die Appendektomie in der Anamnese ist keine relevante Komorbidität für diese Entscheidung. Die COPD sollte vor einer Operation beurteilt werden, aber stellt keine absolute Kontraindikation dar.",
+    "recommended_therapy": "Nierenteilresektion",
+    "therapy_category": "Surgery",
+    "confidence": 0.95
+  },
+  "raw_response": ":```json\n{\n    \"is_metastatic\": false,\n    \"metastatic_reasoning\": \"Der TNM-Status des Patienten ist cT1a Nunknown M0. Dies bedeutet, dass keine Hinweise auf Fernmetastasen vorliegen. Die Bildgebung (CT Niere) bestätigt das Fehlen von Metastasen. Daher ist der Patient derzeit nicht metastasiert.\",\n    \"imdc_risk\": \"nicht_anwendbar\",\n    \"imdc_reasoning\": \"Die IMDC-Risikostratifizierung ist nur für metastasiertes Nierenzellkarzinom relevant. Da der Patient nicht metastasiert ist, ist die IMDC-Risikobewertung nicht anwendbar.\",\n    \"treatment_reasoning\": \"Der Patient präsentiert sich mit einem kleinen, lokal begrenzten Nierentumor (cT1a, 2,8 cm). Die Leitlinien empfehlen für cT1-Tumoren (≤7cm) eine Nierenteilresektion (GoR A). Eine radikale Nephrektomie sollte nur in Betracht gezogen werden, wenn eine Teilresektion nicht möglich ist. Aktive Überwachung und Ablation sind Optionen für Patienten mit hoher Komorbidität oder begrenzter Lebenserwartung, was hier nicht klar ist. Der Patient hat eine ECOG Performance Status von 1 und eine leichte COPD (GOLD I), was gegen eine passive Überwachung spricht. Die Appendektomie in der Anamnese ist keine relevante Komorbidität für diese Entscheidung. Die COPD sollte vor einer Operation beurteilt werden, aber stellt keine absolute Kontraindikation dar.\",\n    \"recommended_therapy\": \"Nierenteilresektion\",\n    \"therapy_category\": \"Surgery\",\n    \"confidence\": 0.95\n}\n```",
+  "ground_truth_metastatic": false,
+  "ground_truth_therapy": "Roboterassistierte partielle Nephrektomie vs. Kryoablation (Komorbidität/OP-Risiko).",
+  "metastatic_correct": true,
+  "inference_time_seconds": 15.352438926696777,
+  "tokens_used": 1479,
+  "success": true
+}

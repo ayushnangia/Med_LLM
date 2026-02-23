@@ -1,0 +1,51 @@
+{
+  "case_id": "ncc_23",
+  "timestamp": "2025-12-29T23:40:02.105742",
+  "provider": "openrouter",
+  "model": "google/gemma-3-27b-it",
+  "input_case": {
+    "case_id": "ncc_23",
+    "patient_name": "Muster, Uwe",
+    "age": 55,
+    "ecog": null,
+    "anamnese": "Z. n. Nephrektomie rechts 2022 bei Nierenzellkarzinom. Aktuelle Vorstellung zur Befund- und Therapieentscheidung anhand CT-Staging vom 02.12.2025. Vorerkrankungen: arterielle Hypertonie, V. a. Hyperparathyreoidismus (als mögliche Ursache der Hyperkalzämie). Medikation: Vitamin D, Amlodipin.",
+    "diagnose_kurz": "Metastasiertes Nierenzellkarzinom nach Nephrektomie rechts 2022; CT 02.12.2025: retroperitoneale Lymphknotenmetastasen und ossäre Metastasen; IMDC intermediate (1 Faktor: korrigiertes Calcium erhöht).",
+    "stadium": "mRCC (lymphonodal retroperitoneal + ossär), IMDC intermediate (1 Faktor)",
+    "tnm_clinical": null,
+    "histologie_subtyp": null,
+    "histologie_klarzellig": null,
+    "bildgebung": [
+      {
+        "datum": "2025-12-02",
+        "modalitaet": "CT",
+        "region": "Staging Thorax/Abdomen/Becken",
+        "befund": "Thorax: Kein Pleuraerguss. Keine sicher pathologisch vergrößerten mediastinal/hilären Lymphknoten. Kein sicherer Nachweis pulmonaler Rundherde. Abdomen/Retroperitoneum: Status nach Nephrektomie rechts, OP-Loge ohne sicheren Hinweis auf Lokalrezidiv. Mehrere retroperitoneale Lymphknoten metastasenverdächtig (paraaortal links 19×13 mm, interaortokaval 16×11 mm, weitere bis 10–12 mm). Leber, Nebennieren, Pankreas ohne fokale Läsionen. Kein Aszites. Skelett: ossäre Läsionen metastasenverdächtig (osteolytische Läsion BWK10 12 mm; osteolytische Läsion rechtes Os ilium 18 mm). Keine Frakturzeichen, keine Spinalkanalstenose im CT.",
+        "quelle": "Erforderlicher Befund"
+      }
+    ],
+    "nebendiagnosen": [
+      "Arterielle Hypertonie",
+      "V. a. Hyperparathyreoidismus"
+    ],
+    "ground_truth_metastatic": null,
+    "ground_truth_therapy": "Einleitung einer Systemtherapie: IO + IO vs. IO + TKI (unter Berücksichtigung IMDC intermediate, Hyperkalzämie/Komorbiditäten). Parallel Abklärung der Hyperkalzämie (z. B. PTH/Phosphat/Vit.-D-Spiegel, ggf. endokrinologische Mitbetreuung) und Supportivmaßnahmen nach klinischer Situation."
+  },
+  "prompt_text": "Du bist ein erfahrener Onkologe, spezialisiert auf Nierenzellkarzinom (RCC).\nAnalysiere den folgenden klinischen Fall und erstelle eine strukturierte Therapieempfehlung.\n\n=== KLINISCHER FALL ===\nPatient: Muster, Uwe, 55 Jahre\nECOG: None, Karnofsky: ?%\nKomorbidität: None\n\nDiagnose: Metastasiertes Nierenzellkarzinom nach Nephrektomie rechts 2022; CT 02.12.2025: retroperitoneale Lymphknotenmetastasen und ossäre Metastasen; IMDC intermediate (1 Faktor: korrigiertes Calcium erhöht).\nStadium: mRCC (lymphonodal retroperitoneal + ossär), IMDC intermediate (1 Faktor)\nTNM: nicht dokumentiert\n\nHISTOLOGIE: Nicht dokumentiert\n\nAnamnese: Z. n. Nephrektomie rechts 2022 bei Nierenzellkarzinom. Aktuelle Vorstellung zur Befund- und Therapieentscheidung anhand CT-Staging vom 02.12.2025. Vorerkrankungen: arterielle Hypertonie, V. a. Hyperparathyreoidismus (als mögliche Ursache der Hyperkalzämie). Medikation: Vitamin D, Amlodipin.\n\nNebendiagnosen: Arterielle Hypertonie, V. a. Hyperparathyreoidismus\n\nBildgebung:\n  - CT Staging Thorax/Abdomen/Becken (2025-12-02): \n\nVorherige Systemtherapien: Keine\n\n=== THERAPIE-LEITLINIEN ===\n\nMETASTASIERTES KLARZELLIGES RCC - THERAPIE-ALGORITHMUS:\n\nIMDC-RISIKOSTRATIFIZIERUNG:\n- Günstig (0 Risikofaktoren)\n- Intermediär (1-2 Risikofaktoren)\n- Ungünstig (≥3 Risikofaktoren)\n\nRisikofaktoren: Karnofsky <80%, Zeit bis Systemtherapie <1 Jahr, Hämoglobin↓, Calcium↑, Neutrophile↑, Thrombozyten↑\n\nERSTLINIE (wenn ICI-Kombination möglich):\n- Günstig: NIVO+CABO (A), PEMBRO+AXI (A), PEMBRO+LEN (A), AVELU+AXI (B)\n- Intermediär: NIVO+CABO (A), NIVO+IPI (A), PEMBRO+AXI (A), PEMBRO+LEN (A)\n- Ungünstig: NIVO+CABO (A), NIVO+IPI (A), PEMBRO+AXI (A), PEMBRO+LEN (A)\n\nERSTLINIE (wenn ICI-Kombination NICHT möglich):\n- Günstig: Pazopanib (A), Sunitinib (A), Tivozanib (A), BEV+IFN (A)\n- Intermediär: Cabozantinib (B), Pazopanib (B), Sunitinib (B)\n- Ungünstig: Cabozantinib (B), Sunitinib (B), Temsirolimus (0)\n\nZWEITLINIE nach ICI-Kombination: Cabozantinib (A), Lenvatinib+Everolimus (A), Sunitinib (A)\nZWEITLINIE nach VEGF/R-Monotherapie: Cabozantinib (A), Nivolumab (A)\n\n---\n\nNICHT-METASTASIERTES RCC - THERAPIE-ALGORITHMUS:\n\n1. AKTIVE ÜBERWACHUNG (GoR 0): Kleine Tumoren + hohe Komorbidität/begrenzte Lebenserwartung\n2. ABLATION (GoR 0): Kleine Tumoren + hohe Komorbidität/begrenzte Lebenserwartung\n3. NIERENTEILRESEKTION: cT1 (≤7cm) SOLL durchgeführt werden (GoR A)\n4. RADIKALE NEPHREKTOMIE: Wenn Teilresektion nicht möglich (GoR A)\n\nLegende: A=starke Empfehlung, B=schwache Empfehlung, 0=Option\n\n\n=== AUFGABE ===\nAnalysiere den Fall schrittweise:\n1. METASTASIERUNG: Ist der Patient metastasiert? (basierend auf TNM, Anamnese, Bildgebung)\n2. HISTOLOGIE: Klarzellig vs. nicht-klarzellig?\n3. RISIKO: Falls metastasiert + klarzellig, IMDC-Risiko?\n4. THERAPIE: Empfehlung nach Leitlinie\n\nAntwort als JSON:\n{\n    \"is_metastatic\": true/false,\n    \"metastatic_reasoning\": \"Begründung...\",\n    \"imdc_risk\": \"guenstig/intermediaer/unguenstig/nicht_anwendbar\",\n    \"imdc_reasoning\": \"IMDC-Berechnung...\",\n    \"treatment_reasoning\": \"Schrittweise Begründung...\",\n    \"recommended_therapy\": \"Konkrete Empfehlung\",\n    \"therapy_category\": \"IO+TKI/TKI mono/Surgery/Surveillance/etc.\",\n    \"confidence\": 0.0-1.0\n}",
+  "output": {
+    "is_metastatic": true,
+    "metastatic_reasoning": "Der Patient zeigt retroperitoneale Lymphknotenmetastasen und ossäre Metastasen im CT vom 02.12.2025, was eindeutig für eine Metastasierung spricht. Er hatte bereits eine Nephrektomie rechts im Jahr 2022.",
+    "imdc_risk": "intermediaer",
+    "imdc_reasoning": "Der Patient hat einen Risikofaktor gemäß IMDC: erhöhtes korrigiertes Calcium. Der Karnofsky-Status ist nicht bekannt, wird aber aufgrund des ECOG-Status von 'None' als ≥80% angenommen. Die Zeit bis zur Systemtherapie ist <1 Jahr (da die Diagnose erst jetzt gestellt wird nach der Nephrektomie). Hämoglobin, Neutrophile und Thrombozyten sind nicht dokumentiert, werden aber nicht als erhöht angenommen, da sie nicht erwähnt werden. Somit liegt ein intermediäres Risiko vor.",
+    "treatment_reasoning": "Der Patient hat ein metastasiertes Nierenzellkarzinom mit intermediärem Risikoprofil. Die Leitlinien empfehlen für diese Risikogruppe in der Erstlinie eine Kombination aus Immuncheckpoint-Inhibitoren (ICI) und Tyrosinkinase-Inhibitoren (TKI) oder eine TKI-Monotherapie. Da keine Informationen über Kontraindikationen für ICI-Kombinationen vorliegen, wird zunächst eine ICI+TKI-Kombination bevorzugt. Die Wahl zwischen den verschiedenen Kombinationen (Nivo+Cabo, Nivo+Ipi, Pembro+Axi, Pembro+Len) hängt von individuellen Faktoren wie Nebenwirkungsprofil und Patientenpräferenz ab. Cabozantinib hat in Studien eine gute Wirksamkeit gezeigt und wird hier bevorzugt.",
+    "recommended_therapy": "Nivolumab in Kombination mit Cabozantinib",
+    "therapy_category": "IO+TKI",
+    "confidence": 0.85
+  },
+  "raw_response": "\n```json\n{\n    \"is_metastatic\": true,\n    \"metastatic_reasoning\": \"Der Patient zeigt retroperitoneale Lymphknotenmetastasen und ossäre Metastasen im CT vom 02.12.2025, was eindeutig für eine Metastasierung spricht. Er hatte bereits eine Nephrektomie rechts im Jahr 2022.\",\n    \"imdc_risk\": \"intermediaer\",\n    \"imdc_reasoning\": \"Der Patient hat einen Risikofaktor gemäß IMDC: erhöhtes korrigiertes Calcium. Der Karnofsky-Status ist nicht bekannt, wird aber aufgrund des ECOG-Status von 'None' als ≥80% angenommen. Die Zeit bis zur Systemtherapie ist <1 Jahr (da die Diagnose erst jetzt gestellt wird nach der Nephrektomie). Hämoglobin, Neutrophile und Thrombozyten sind nicht dokumentiert, werden aber nicht als erhöht angenommen, da sie nicht erwähnt werden. Somit liegt ein intermediäres Risiko vor.\",\n    \"treatment_reasoning\": \"Der Patient hat ein metastasiertes Nierenzellkarzinom mit intermediärem Risikoprofil. Die Leitlinien empfehlen für diese Risikogruppe in der Erstlinie eine Kombination aus Immuncheckpoint-Inhibitoren (ICI) und Tyrosinkinase-Inhibitoren (TKI) oder eine TKI-Monotherapie. Da keine Informationen über Kontraindikationen für ICI-Kombinationen vorliegen, wird zunächst eine ICI+TKI-Kombination bevorzugt. Die Wahl zwischen den verschiedenen Kombinationen (Nivo+Cabo, Nivo+Ipi, Pembro+Axi, Pembro+Len) hängt von individuellen Faktoren wie Nebenwirkungsprofil und Patientenpräferenz ab. Cabozantinib hat in Studien eine gute Wirksamkeit gezeigt und wird hier bevorzugt.\",\n    \"recommended_therapy\": \"Nivolumab in Kombination mit Cabozantinib\",\n    \"therapy_category\": \"IO+TKI\",\n    \"confidence\": 0.85\n}\n```",
+  "ground_truth_metastatic": null,
+  "ground_truth_therapy": "Einleitung einer Systemtherapie: IO + IO vs. IO + TKI (unter Berücksichtigung IMDC intermediate, Hyperkalzämie/Komorbiditäten). Parallel Abklärung der Hyperkalzämie (z. B. PTH/Phosphat/Vit.-D-Spiegel, ggf. endokrinologische Mitbetreuung) und Supportivmaßnahmen nach klinischer Situation.",
+  "metastatic_correct": null,
+  "inference_time_seconds": 15.001698970794678,
+  "tokens_used": 1610,
+  "success": true
+}

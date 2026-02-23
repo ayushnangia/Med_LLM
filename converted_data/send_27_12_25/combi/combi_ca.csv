@@ -1,0 +1,4 @@
+Nr. ,Cases,Classes : tumor entity _ real,urological/non_urological,Therapy line,json,json_ver
+,,,,,,
+1.0,"Draco, Severus, 03.03.1958","Prostatakarzinom, Urothelkarzinom ",True,,True,1.1.
+2.0,"Vega, Orion, 14.08.1962","Prostatakarzinom, Nierenkarzinom ",True,,True,1.1.

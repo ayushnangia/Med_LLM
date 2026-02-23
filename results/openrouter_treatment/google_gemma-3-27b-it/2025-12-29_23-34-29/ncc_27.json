@@ -1,0 +1,106 @@
+{
+  "case_id": "ncc_27",
+  "timestamp": "2025-12-29T23:41:38.729260",
+  "provider": "openrouter",
+  "model": "google/gemma-3-27b-it",
+  "input_case": {
+    "case_id": "ncc_27",
+    "patient_name": "Beispiel, Mustermann",
+    "age": 73,
+    "ecog": null,
+    "anamnese": "Z. n. Nephrektomie rechts 11/2022 bei klarzelligem RCC mit sarkomatoider Differenzierung. Aktuelle Vorstellung zur Befund- und Therapieentscheidung anhand CT Staging 18.11.2025 mit pulmonaler, hepatischer und ossärer Metastasierung. Vorerkrankungen/VOP: Z. n. Cholezystektomie, Z. n. Leistenhernien-OP beidseits. Medikation: Candesartan, Amlodipin, Marcumar.",
+    "diagnose_kurz": "Metastasiertes klarzelliges Nierenzellkarzinom (ccRCC) mit sarkomatoider Differenzierung nach Nephrektomie rechts 11/2022; CT 18.11.2025 mit pulmonaler, hepatischer und ossärer Metastasierung.",
+    "stadium": "mRCC; IMDC high risk; Metastasen: Lunge + Leber + Knochen; sarkomatoide Komponente",
+    "tnm_clinical": null,
+    "histologie_subtyp": null,
+    "histologie_klarzellig": null,
+    "bildgebung": [
+      {
+        "modalitaet": "CT",
+        "region": "Thorax/Abdomen/Becken",
+        "datum": "2025-11-18",
+        "befund_kurz": "Pulmonale, hepatische und ossäre Metastasierung.",
+        "quelle": "CT Staging 18.11.2025",
+        "details": {
+          "thorax": {
+            "lungen_metastasen": [
+              {
+                "lokalisation": "RLL",
+                "groesse_mm": 11,
+                "beschreibung": "Rundherd metastasenverdächtig"
+              },
+              {
+                "lokalisation": "LUL",
+                "groesse_mm": 7,
+                "beschreibung": "Rundherd metastasenverdächtig"
+              },
+              {
+                "lokalisation": "beidseits",
+                "groesse_mm": "3-5",
+                "beschreibung": "weitere kleine Rundherde"
+              }
+            ],
+            "pleuraerguss": "nein",
+            "mediastinale_hilaere_lk": "keine sicher pathologisch vergrößerten LK"
+          },
+          "abdomen_becken": {
+            "op_status": "Status nach Nephrektomie rechts",
+            "leber_metastasen": [
+              {
+                "segment": "VII",
+                "groesse_mm": 26,
+                "beschreibung": "metastasenverdächtig"
+              },
+              {
+                "segment": "IVa",
+                "groesse_mm": 14,
+                "beschreibung": "metastasenverdächtig"
+              }
+            ],
+            "aszites": "nein"
+          },
+          "skelett": {
+            "ossaere_metastasen": [
+              {
+                "lokalisation": "BWK9",
+                "groesse_mm": 17,
+                "typ": "osteolytisch",
+                "beschreibung": "metastasenverdächtig"
+              },
+              {
+                "lokalisation": "rechtes Os ilium",
+                "groesse_mm": 21,
+                "typ": "osteolytisch",
+                "beschreibung": "metastasenverdächtig"
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "nebendiagnosen": [
+      "status_nach_cholezystektomie",
+      "status_nach_leistenhernien_op"
+    ],
+    "ground_truth_metastatic": null,
+    "ground_truth_therapy": "Einleitung einer geeigneten Systemtherapie (IO-basiert) + Supportivmaßnahmen (Knochenprotektion/Analgesie, engmaschiges Labor-/Tox-Monitoring)."
+  },
+  "prompt_text": "Du bist ein erfahrener Onkologe, spezialisiert auf Nierenzellkarzinom (RCC).\nAnalysiere den folgenden klinischen Fall und erstelle eine strukturierte Therapieempfehlung.\n\n=== KLINISCHER FALL ===\nPatient: Beispiel, Mustermann, 73 Jahre\nECOG: None, Karnofsky: ?%\nKomorbidität: None\n\nDiagnose: Metastasiertes klarzelliges Nierenzellkarzinom (ccRCC) mit sarkomatoider Differenzierung nach Nephrektomie rechts 11/2022; CT 18.11.2025 mit pulmonaler, hepatischer und ossärer Metastasierung.\nStadium: mRCC; IMDC high risk; Metastasen: Lunge + Leber + Knochen; sarkomatoide Komponente\nTNM: nicht dokumentiert\n\nHISTOLOGIE: Nicht dokumentiert\n\nAnamnese: Z. n. Nephrektomie rechts 11/2022 bei klarzelligem RCC mit sarkomatoider Differenzierung. Aktuelle Vorstellung zur Befund- und Therapieentscheidung anhand CT Staging 18.11.2025 mit pulmonaler, hepatischer und ossärer Metastasierung. Vorerkrankungen/VOP: Z. n. Cholezystektomie, Z. n. Leistenhernien-OP beidseits. Medikation: Candesartan, Amlodipin, Marcumar.\n\nNebendiagnosen: status_nach_cholezystektomie, status_nach_leistenhernien_op\n\nBildgebung:\n  - CT Thorax/Abdomen/Becken (2025-11-18): Pulmonale, hepatische und ossäre Metastasierung.\n\nVorherige Systemtherapien: Keine\n\n=== THERAPIE-LEITLINIEN ===\n\nMETASTASIERTES KLARZELLIGES RCC - THERAPIE-ALGORITHMUS:\n\nIMDC-RISIKOSTRATIFIZIERUNG:\n- Günstig (0 Risikofaktoren)\n- Intermediär (1-2 Risikofaktoren)\n- Ungünstig (≥3 Risikofaktoren)\n\nRisikofaktoren: Karnofsky <80%, Zeit bis Systemtherapie <1 Jahr, Hämoglobin↓, Calcium↑, Neutrophile↑, Thrombozyten↑\n\nERSTLINIE (wenn ICI-Kombination möglich):\n- Günstig: NIVO+CABO (A), PEMBRO+AXI (A), PEMBRO+LEN (A), AVELU+AXI (B)\n- Intermediär: NIVO+CABO (A), NIVO+IPI (A), PEMBRO+AXI (A), PEMBRO+LEN (A)\n- Ungünstig: NIVO+CABO (A), NIVO+IPI (A), PEMBRO+AXI (A), PEMBRO+LEN (A)\n\nERSTLINIE (wenn ICI-Kombination NICHT möglich):\n- Günstig: Pazopanib (A), Sunitinib (A), Tivozanib (A), BEV+IFN (A)\n- Intermediär: Cabozantinib (B), Pazopanib (B), Sunitinib (B)\n- Ungünstig: Cabozantinib (B), Sunitinib (B), Temsirolimus (0)\n\nZWEITLINIE nach ICI-Kombination: Cabozantinib (A), Lenvatinib+Everolimus (A), Sunitinib (A)\nZWEITLINIE nach VEGF/R-Monotherapie: Cabozantinib (A), Nivolumab (A)\n\n---\n\nNICHT-METASTASIERTES RCC - THERAPIE-ALGORITHMUS:\n\n1. AKTIVE ÜBERWACHUNG (GoR 0): Kleine Tumoren + hohe Komorbidität/begrenzte Lebenserwartung\n2. ABLATION (GoR 0): Kleine Tumoren + hohe Komorbidität/begrenzte Lebenserwartung\n3. NIERENTEILRESEKTION: cT1 (≤7cm) SOLL durchgeführt werden (GoR A)\n4. RADIKALE NEPHREKTOMIE: Wenn Teilresektion nicht möglich (GoR A)\n\nLegende: A=starke Empfehlung, B=schwache Empfehlung, 0=Option\n\n\n=== AUFGABE ===\nAnalysiere den Fall schrittweise:\n1. METASTASIERUNG: Ist der Patient metastasiert? (basierend auf TNM, Anamnese, Bildgebung)\n2. HISTOLOGIE: Klarzellig vs. nicht-klarzellig?\n3. RISIKO: Falls metastasiert + klarzellig, IMDC-Risiko?\n4. THERAPIE: Empfehlung nach Leitlinie\n\nAntwort als JSON:\n{\n    \"is_metastatic\": true/false,\n    \"metastatic_reasoning\": \"Begründung...\",\n    \"imdc_risk\": \"guenstig/intermediaer/unguenstig/nicht_anwendbar\",\n    \"imdc_reasoning\": \"IMDC-Berechnung...\",\n    \"treatment_reasoning\": \"Schrittweise Begründung...\",\n    \"recommended_therapy\": \"Konkrete Empfehlung\",\n    \"therapy_category\": \"IO+TKI/TKI mono/Surgery/Surveillance/etc.\",\n    \"confidence\": 0.0-1.0\n}",
+  "output": {
+    "is_metastatic": true,
+    "metastatic_reasoning": "Der Patient zeigt nachweislich pulmonale, hepatische und ossäre Metastasen im CT vom 18.11.2025. Dies bestätigt die Metastasierung des Nierenzellkarzinoms.",
+    "imdc_risk": "unguenstig",
+    "imdc_reasoning": "Der Patient weist mindestens drei Risikofaktoren für ein ungünstiges IMDC-Risiko auf: \n1. Vorliegende Metastasen (Lunge, Leber, Knochen)\n2. Zeit bis zur Systemtherapie < 1 Jahr (Diagnose Nephrektomie 11/2022, CT-Befund 11/2025, also < 3 Jahre, aber da keine vorherige Therapie, wird dies als kurz interpretiert)\n3. Karnofsky-Score ist unbekannt, wird aber aufgrund des Alters und der Metastasierung konservativ mit <80% angenommen.  Da der Karnofsky-Score nicht dokumentiert ist, ist dies eine Annahme, die durch weitere Abklärung bestätigt werden muss.",
+    "treatment_reasoning": "Der Patient hat ein metastasiertes klarzelliges Nierenzellkarzinom (ccRCC) mit sarkomatoider Differenzierung und einem ungünstigen IMDC-Risiko.  Die Leitlinien empfehlen in der Erstlinie eine Kombination aus Immuncheckpoint-Inhibitoren (ICI) und Tyrosinkinase-Inhibitoren (TKI). Da keine vorherige Systemtherapie erfolgte, ist dies die Erstlinienbehandlung. Die sarkomatoide Differenzierung kann die Prognose verschlechtern und spricht tendenziell für eine aggressivere Therapie.  Die Komorbiditäten (Cholezystektomie, Leistenhernien-OP) und die Medikation (Candesartan, Amlodipin, Marcumar) müssen bei der Auswahl der Therapie berücksichtigt werden, aber stellen keine absolute Kontraindikation für eine ICI/TKI-Kombination dar.  Die Interaktion von Marcumar mit einigen TKIs muss beachtet werden.",
+    "recommended_therapy": "Nivolumab in Kombination mit Cabozantinib",
+    "therapy_category": "IO+TKI",
+    "confidence": 0.85
+  },
+  "raw_response": "\n```json\n{\n    \"is_metastatic\": true,\n    \"metastatic_reasoning\": \"Der Patient zeigt nachweislich pulmonale, hepatische und ossäre Metastasen im CT vom 18.11.2025. Dies bestätigt die Metastasierung des Nierenzellkarzinoms.\",\n    \"imdc_risk\": \"unguenstig\",\n    \"imdc_reasoning\": \"Der Patient weist mindestens drei Risikofaktoren für ein ungünstiges IMDC-Risiko auf: \\n1. Vorliegende Metastasen (Lunge, Leber, Knochen)\\n2. Zeit bis zur Systemtherapie < 1 Jahr (Diagnose Nephrektomie 11/2022, CT-Befund 11/2025, also < 3 Jahre, aber da keine vorherige Therapie, wird dies als kurz interpretiert)\\n3. Karnofsky-Score ist unbekannt, wird aber aufgrund des Alters und der Metastasierung konservativ mit <80% angenommen.  Da der Karnofsky-Score nicht dokumentiert ist, ist dies eine Annahme, die durch weitere Abklärung bestätigt werden muss.\",\n    \"treatment_reasoning\": \"Der Patient hat ein metastasiertes klarzelliges Nierenzellkarzinom (ccRCC) mit sarkomatoider Differenzierung und einem ungünstigen IMDC-Risiko.  Die Leitlinien empfehlen in der Erstlinie eine Kombination aus Immuncheckpoint-Inhibitoren (ICI) und Tyrosinkinase-Inhibitoren (TKI). Da keine vorherige Systemtherapie erfolgte, ist dies die Erstlinienbehandlung. Die sarkomatoide Differenzierung kann die Prognose verschlechtern und spricht tendenziell für eine aggressivere Therapie.  Die Komorbiditäten (Cholezystektomie, Leistenhernien-OP) und die Medikation (Candesartan, Amlodipin, Marcumar) müssen bei der Auswahl der Therapie berücksichtigt werden, aber stellen keine absolute Kontraindikation für eine ICI/TKI-Kombination dar.  Die Interaktion von Marcumar mit einigen TKIs muss beachtet werden.\",\n    \"recommended_therapy\": \"Nivolumab in Kombination mit Cabozantinib\",\n    \"therapy_category\": \"IO+TKI\",\n    \"confidence\": 0.85\n}\n```",
+  "ground_truth_metastatic": null,
+  "ground_truth_therapy": "Einleitung einer geeigneten Systemtherapie (IO-basiert) + Supportivmaßnahmen (Knochenprotektion/Analgesie, engmaschiges Labor-/Tox-Monitoring).",
+  "metastatic_correct": null,
+  "inference_time_seconds": 37.899320125579834,
+  "tokens_used": 1721,
+  "success": true
+}

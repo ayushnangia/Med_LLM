@@ -1,0 +1,22 @@
+Models that I installed until now on our Deep Learning PC: 
+glm-4.6:cloud
+gpt-oss:20b
+gemma3:27b
+gemma3:12b
+gemma3:4b
+qwen3-vl:4b
+qwen3:30b
+qwen3:8b
+qwen3:4b
+llama3:8b
+mistral:7b-instruct
+qwen2.5:14b-instruct
+
+What we could try: 
+m42-health/Llama3-Med42-8B; 
+gemma3:27b
+gemma3:12b
+medicalai/ClinicalBERT
+Intelligent-Internet/II-Medical-8B-1706
+
+I am also open for other suggestions

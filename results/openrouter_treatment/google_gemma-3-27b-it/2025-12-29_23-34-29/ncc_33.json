@@ -1,0 +1,113 @@
+{
+  "case_id": "ncc_33",
+  "timestamp": "2025-12-29T23:43:31.697634",
+  "provider": "openrouter",
+  "model": "google/gemma-3-27b-it",
+  "input_case": {
+    "case_id": "ncc_33",
+    "patient_name": "Beispiel, Bora",
+    "age": 71,
+    "ecog": 2,
+    "anamnese": "Metastasiertes Nierenzellkarzinom (mRCC), mehrfach vorbehandelt. Progress unter 3. Linie (Tivozanib) im CT-Staging 05.12.2025. Vorgeschichte: Z. n. Lungenarterienembolie (LAE) mit dauerhafter Antikoagulation. Z. n. Hysterektomie 2016.",
+    "diagnose_kurz": "Metastasiertes Nierenzellkarzinom (mRCC) mit systemischem Progress unter Tivozanib (3. Linie).",
+    "stadium": "metastasiert; Therapielinie: nach 3 Vorlinien",
+    "tnm_clinical": null,
+    "histologie_subtyp": null,
+    "histologie_klarzellig": null,
+    "bildgebung": [
+      {
+        "modalitaet": "CT",
+        "region": "Thorax/Abdomen/Becken",
+        "datum": "2025-12-05",
+        "befund_kurz": "Systemischer Progress: Thorax mit Zunahme pulmonaler Metastasen (RLL 15 mm vorher 11 mm; LUL 10 mm vorher 7 mm), kein Pleuraerguss. Abdomen mit neuer Lebermetastase Segment VI 18 mm und Progress bekannter Leberläsion Segment VII 22→30 mm. Retroperitoneum: paraaortaler LK 18→26 mm. Skelett: neue osteolytische Läsion BWK11 14 mm.",
+        "quelle": "Erforderlicher Befund",
+        "detailstruktur": {
+          "thorax": {
+            "pulmonale_metastasen": [
+              {
+                "lokalisation": "RLL",
+                "groesse_mm": 15,
+                "vorher_mm": 11,
+                "bewertung": "progredient"
+              },
+              {
+                "lokalisation": "LUL",
+                "groesse_mm": 10,
+                "vorher_mm": 7,
+                "bewertung": "progredient"
+              }
+            ],
+            "pleuraerguss": false,
+            "mediastinale_hilaere_lk": "keine_sicheren_pathologisch_vergroesserten"
+          },
+          "abdomen": {
+            "leber": [
+              {
+                "segment": "VI",
+                "groesse_mm": 18,
+                "vorher_mm": null,
+                "bewertung": "neu_metastasenverdaechtig"
+              },
+              {
+                "segment": "VII",
+                "groesse_mm": 30,
+                "vorher_mm": 22,
+                "bewertung": "progredient"
+              }
+            ],
+            "lokalrezidiv": "unknown",
+            "aszetes": false
+          },
+          "retroperitoneum": {
+            "lymphknoten": [
+              {
+                "lokalisation": "paraaortal",
+                "groesse_mm": 26,
+                "vorher_mm": 18,
+                "bewertung": "progredient"
+              }
+            ]
+          },
+          "skelett": {
+            "ossäre_laesionen": [
+              {
+                "lokalisation": "BWK11",
+                "typ": "osteolytisch",
+                "groesse_mm": 14,
+                "vorher_mm": null,
+                "bewertung": "neu_metastasenverdaechtig"
+              }
+            ]
+          }
+        },
+        "beurteilung": "Systemischer Progress (Lunge + Leber + LK, neu ossär) unter Tivozanib; Therapieumstellung indiziert."
+      }
+    ],
+    "nebendiagnosen": [
+      {
+        "diagnose": "Zustand nach Lungenarterienembolie (LAE)",
+        "details": "dauerhaft antikoaguliert"
+      }
+    ],
+    "ground_truth_metastatic": null,
+    "ground_truth_therapy": "Abwägung 4. Linie (Belzutifan, falls verfügbar/geeignet) vs. Best supportive care (BSC). | Supportiv: Analgesie, Knochenprotektion nach Standard, engmaschige Laborkontrollen (Hb/Ca). | Studiensuche und Vorstellung im molekularen Tumorboard."
+  },
+  "prompt_text": "Du bist ein erfahrener Onkologe, spezialisiert auf Nierenzellkarzinom (RCC).\nAnalysiere den folgenden klinischen Fall und erstelle eine strukturierte Therapieempfehlung.\n\n=== KLINISCHER FALL ===\nPatient: Beispiel, Bora, 71 Jahre\nECOG: 2, Karnofsky: 70%\nKomorbidität: unknown\n\nDiagnose: Metastasiertes Nierenzellkarzinom (mRCC) mit systemischem Progress unter Tivozanib (3. Linie).\nStadium: metastasiert; Therapielinie: nach 3 Vorlinien\nTNM: nicht dokumentiert\n\nHISTOLOGIE: Nicht dokumentiert\n\nAnamnese: Metastasiertes Nierenzellkarzinom (mRCC), mehrfach vorbehandelt. Progress unter 3. Linie (Tivozanib) im CT-Staging 05.12.2025. Vorgeschichte: Z. n. Lungenarterienembolie (LAE) mit dauerhafter Antikoagulation. Z. n. Hysterektomie 2016.\n\nNebendiagnosen: Zustand nach Lungenarterienembolie (LAE)\n\nBildgebung:\n  - CT Thorax/Abdomen/Becken (2025-12-05): Systemischer Progress: Thorax mit Zunahme pulmonaler Metastasen (RLL 15 mm vorher 11 mm; LUL 10 mm vorher 7 mm), kein Pleuraerguss. Abdomen mit neuer Lebermetastase Segment VI 18 mm und Progress bekannter Leberläsion Segment VII 22→30 mm. Retroperitoneum: paraaortaler LK 18→26 mm. Skelett: neue osteolytische Läsion BWK11 14 mm.\n\nVorherige Systemtherapien: Keine\n\n=== THERAPIE-LEITLINIEN ===\n\nMETASTASIERTES KLARZELLIGES RCC - THERAPIE-ALGORITHMUS:\n\nIMDC-RISIKOSTRATIFIZIERUNG:\n- Günstig (0 Risikofaktoren)\n- Intermediär (1-2 Risikofaktoren)\n- Ungünstig (≥3 Risikofaktoren)\n\nRisikofaktoren: Karnofsky <80%, Zeit bis Systemtherapie <1 Jahr, Hämoglobin↓, Calcium↑, Neutrophile↑, Thrombozyten↑\n\nERSTLINIE (wenn ICI-Kombination möglich):\n- Günstig: NIVO+CABO (A), PEMBRO+AXI (A), PEMBRO+LEN (A), AVELU+AXI (B)\n- Intermediär: NIVO+CABO (A), NIVO+IPI (A), PEMBRO+AXI (A), PEMBRO+LEN (A)\n- Ungünstig: NIVO+CABO (A), NIVO+IPI (A), PEMBRO+AXI (A), PEMBRO+LEN (A)\n\nERSTLINIE (wenn ICI-Kombination NICHT möglich):\n- Günstig: Pazopanib (A), Sunitinib (A), Tivozanib (A), BEV+IFN (A)\n- Intermediär: Cabozantinib (B), Pazopanib (B), Sunitinib (B)\n- Ungünstig: Cabozantinib (B), Sunitinib (B), Temsirolimus (0)\n\nZWEITLINIE nach ICI-Kombination: Cabozantinib (A), Lenvatinib+Everolimus (A), Sunitinib (A)\nZWEITLINIE nach VEGF/R-Monotherapie: Cabozantinib (A), Nivolumab (A)\n\n---\n\nNICHT-METASTASIERTES RCC - THERAPIE-ALGORITHMUS:\n\n1. AKTIVE ÜBERWACHUNG (GoR 0): Kleine Tumoren + hohe Komorbidität/begrenzte Lebenserwartung\n2. ABLATION (GoR 0): Kleine Tumoren + hohe Komorbidität/begrenzte Lebenserwartung\n3. NIERENTEILRESEKTION: cT1 (≤7cm) SOLL durchgeführt werden (GoR A)\n4. RADIKALE NEPHREKTOMIE: Wenn Teilresektion nicht möglich (GoR A)\n\nLegende: A=starke Empfehlung, B=schwache Empfehlung, 0=Option\n\n\n=== AUFGABE ===\nAnalysiere den Fall schrittweise:\n1. METASTASIERUNG: Ist der Patient metastasiert? (basierend auf TNM, Anamnese, Bildgebung)\n2. HISTOLOGIE: Klarzellig vs. nicht-klarzellig?\n3. RISIKO: Falls metastasiert + klarzellig, IMDC-Risiko?\n4. THERAPIE: Empfehlung nach Leitlinie\n\nAntwort als JSON:\n{\n    \"is_metastatic\": true/false,\n    \"metastatic_reasoning\": \"Begründung...\",\n    \"imdc_risk\": \"guenstig/intermediaer/unguenstig/nicht_anwendbar\",\n    \"imdc_reasoning\": \"IMDC-Berechnung...\",\n    \"treatment_reasoning\": \"Schrittweise Begründung...\",\n    \"recommended_therapy\": \"Konkrete Empfehlung\",\n    \"therapy_category\": \"IO+TKI/TKI mono/Surgery/Surveillance/etc.\",\n    \"confidence\": 0.0-1.0\n}",
+  "output": {
+    "is_metastatic": true,
+    "metastatic_reasoning": "Der Patient zeigt systemischen Progress mit Metastasen in Lunge, Leber und Knochen (BWK11) im CT-Thorax/Abdomen/Becken vom 05.12.2025. Dies belegt eine metastasierte Erkrankung.",
+    "imdc_risk": "intermediaer",
+    "imdc_reasoning": "Die IMDC-Risikobewertung basiert auf folgenden Faktoren: \n- Karnofsky Performance Status: 70% (entspricht einem ECOG von 2) - 1 Risikofaktor\n- Zeit bis zur systemischen Therapie: Nicht dokumentiert, wird aber als kurz angenommen, da der Patient bereits in der 3. Linie behandelt wird - 1 Risikofaktor\n- Hämoglobin, Calcium, Neutrophile, Thrombozyten: Nicht dokumentiert, werden aber für die Berechnung nicht benötigt, da bereits 2 Risikofaktoren vorliegen. \nDaher fällt der Patient in die intermediäre Risikogruppe.",
+    "treatment_reasoning": "Der Patient befindet sich in der dritten Linie der systemischen Therapie und hat unter Tivozanib einen Progress erlitten. Die vorherigen Therapien sind nicht dokumentiert, was die Therapieentscheidung erschwert. Da der Patient eine Lungenarterienembolie in der Anamnese hat, muss die Wahl der Therapie sorgfältig abgewogen werden, um das Risiko einer erneuten Embolie nicht zu erhöhen.  Die Leitlinien empfehlen nach einer VEGF-TKI Monotherapie (wie Tivozanib) in der zweiten Linie Cabozantinib oder Nivolumab. Aufgrund der Vorgeschichte mit der Lungenembolie und der potenziellen immunologischen Nebenwirkungen von Nivolumab, erscheint Cabozantinib die sicherere Option. Die Leitlinien empfehlen Cabozantinib (A) als Zweitlinientherapie nach VEGF/R-Monotherapie.",
+    "recommended_therapy": "Cabozantinib",
+    "therapy_category": "TKI mono",
+    "confidence": 0.85
+  },
+  "raw_response": "\n```json\n{\n    \"is_metastatic\": true,\n    \"metastatic_reasoning\": \"Der Patient zeigt systemischen Progress mit Metastasen in Lunge, Leber und Knochen (BWK11) im CT-Thorax/Abdomen/Becken vom 05.12.2025. Dies belegt eine metastasierte Erkrankung.\",\n    \"imdc_risk\": \"intermediaer\",\n    \"imdc_reasoning\": \"Die IMDC-Risikobewertung basiert auf folgenden Faktoren: \\n- Karnofsky Performance Status: 70% (entspricht einem ECOG von 2) - 1 Risikofaktor\\n- Zeit bis zur systemischen Therapie: Nicht dokumentiert, wird aber als kurz angenommen, da der Patient bereits in der 3. Linie behandelt wird - 1 Risikofaktor\\n- Hämoglobin, Calcium, Neutrophile, Thrombozyten: Nicht dokumentiert, werden aber für die Berechnung nicht benötigt, da bereits 2 Risikofaktoren vorliegen. \\nDaher fällt der Patient in die intermediäre Risikogruppe.\",\n    \"treatment_reasoning\": \"Der Patient befindet sich in der dritten Linie der systemischen Therapie und hat unter Tivozanib einen Progress erlitten. Die vorherigen Therapien sind nicht dokumentiert, was die Therapieentscheidung erschwert. Da der Patient eine Lungenarterienembolie in der Anamnese hat, muss die Wahl der Therapie sorgfältig abgewogen werden, um das Risiko einer erneuten Embolie nicht zu erhöhen.  Die Leitlinien empfehlen nach einer VEGF-TKI Monotherapie (wie Tivozanib) in der zweiten Linie Cabozantinib oder Nivolumab. Aufgrund der Vorgeschichte mit der Lungenembolie und der potenziellen immunologischen Nebenwirkungen von Nivolumab, erscheint Cabozantinib die sicherere Option. Die Leitlinien empfehlen Cabozantinib (A) als Zweitlinientherapie nach VEGF/R-Monotherapie.\",\n    \"recommended_therapy\": \"Cabozantinib\",\n    \"therapy_category\": \"TKI mono\",\n    \"confidence\": 0.85\n}\n```",
+  "ground_truth_metastatic": null,
+  "ground_truth_therapy": "Abwägung 4. Linie (Belzutifan, falls verfügbar/geeignet) vs. Best supportive care (BSC). | Supportiv: Analgesie, Knochenprotektion nach Standard, engmaschige Laborkontrollen (Hb/Ca). | Studiensuche und Vorstellung im molekularen Tumorboard.",
+  "metastatic_correct": null,
+  "inference_time_seconds": 17.4968581199646,
+  "tokens_used": 1705,
+  "success": true
+}
