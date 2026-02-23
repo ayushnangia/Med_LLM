@@ -75,6 +75,15 @@ source venv/bin/activate
 pip install -r requirements.txt  # or: pip install python-docx openpyxl pandas requests scikit-learn matplotlib seaborn python-pptx
 ```
 
+#### Environment variables
+
+```bash
+cp .env.example .env
+# Edit .env and add your keys:
+#   OPENROUTER_API_KEY=sk-or-v1-...    (for OpenRouter inference)
+#   HF_TOKEN=hf_...                     (for gated models on Modal)
+```
+
 ### Inference (requires Modal account)
 
 ```bash
@@ -84,6 +93,11 @@ modal run scripts/modal_treatment_predict.py
 # Judge evaluations
 modal run scripts/modal_judge.py
 ```
+
+Reproducibility is handled automatically inside the Modal scripts:
+- `seed=42` for deterministic sampling
+- `VLLM_BATCH_INVARIANT=1` for batch-size-independent outputs
+- `CUBLAS_WORKSPACE_CONFIG=:4096:8` for deterministic CUDA operations
 
 ### Evaluation
 
