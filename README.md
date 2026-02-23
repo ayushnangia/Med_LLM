@@ -97,7 +97,7 @@ python scripts/create_summary_report.py
 
 - **Inference:** [Modal](https://modal.com) vLLM on NVIDIA H100 GPUs
 - **Structured output:** Pydantic schema enforcement via vLLM grammar-guided generation
-- **Reproducibility:** Deterministic seed (42), fixed temperature (0.3 standard / 0.6 thinking models)
+- **Reproducibility:** Deterministic seed (42), fixed temperature (0.3 standard / 0.6 thinking models), [vLLM batch invariance](https://docs.vllm.ai/en/latest/features/batch_invariance/) (`VLLM_BATCH_INVARIANT=1`) — outputs are identical regardless of concurrent batch size, eliminating GPU kernel non-determinism
 - **Web application:** Next.js, Supabase PostgreSQL, deployed on Vercel
 - **Language:** All prompts, cases, and evaluations in German medical terminology
 

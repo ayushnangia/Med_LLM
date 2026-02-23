@@ -64,8 +64,11 @@ llm = LLM(
 {
     "CUBLAS_WORKSPACE_CONFIG": ":4096:8",
     "PYTHONHASHSEED": "42",
+    "VLLM_BATCH_INVARIANT": "1",  # Batch-invariant kernels for deterministic output
 }
 ```
+
+**Batch invariance** (`VLLM_BATCH_INVARIANT=1`): Ensures model outputs are identical regardless of how many requests are processed concurrently. Without this, GPU reduction kernels (matmul, attention, RMSNorm) use different schedules at different batch sizes, causing non-determinism even with a fixed seed. Enabling batch invariance swaps in deterministic kernels at some throughput cost. See [vLLM docs](https://docs.vllm.ai/en/latest/features/batch_invariance/).
 
 ---
 
