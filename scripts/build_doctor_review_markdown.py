@@ -19,7 +19,6 @@ OUTPUT_PATH = BASE_DIR / "hard_cases_workspace" / "summaries" / "doctor_review_p
 
 MODELS: List[Tuple[str, str]] = [
     ("google_gemma-3-27b-it", "Gemma 3 27B"),
-    ("google_medgemma-27b-text-it", "MedGemma 27B"),
     ("google_gemma-3-4b-it", "Gemma 3 4B"),
     ("allenai_olmo-3.1-32b-instruct", "OLMo 3.1 32B Instruct"),
     ("allenai_olmo-3.1-32b-think", "OLMo 3.1 32B Think"),
@@ -188,7 +187,7 @@ def build_report() -> str:
     lines.append("")
     lines.append("This review compares the original prompt-only runs against the newer guideline-based RAG runs using the German S3 kidney cancer guideline.")
     lines.append("")
-    lines.append("Important note: `MedGemma 27B` RAG is still incomplete in this report because several hard cases timed out during generation. Available recommendations are shown, and missing or unjudged rows are marked explicitly.")
+    lines.append("This doctor-facing version excludes models with incomplete or unreliable paired RAG coverage, so only fully reviewable comparisons are shown below.")
     lines.append("")
     lines.append("## Model Summary")
     lines.append("")
